@@ -3,6 +3,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MemberDAO">
-
-
+   <insert id="insertMember" parameterType="member">
+      INSERT INTO member (email, pass, nick, gender)
+      VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR})
+   </insert>
+   <update id="updateMember" parameterType="member">
+      UPDATE member SET pass = #{pass} WHERE email = #{email}
+   </update>
+   <delete id="deleteMember" parameterType="member">
+      DELETE FROM member WHERE email = #{email}
+   </delete>
+   <select id="getMember" resultType="member" parameterType="member">
+      SELECT * FROM member WHERE email = #{email} AND pass = #{pass}
+   </select>
 </mapper>
