@@ -6,7 +6,7 @@
 
 	<insert id="insertManager" parameterType="manager">
 		INSERT INTO manager (manager_id, manager_pass)
-		VALUES (#{managerId, jdbcType=VARCHAR}, #{managerPass, jdbType=VARCHAR})
+		VALUES (#{managerId, jdbcType=VARCHAR}, #{managerPass, jdbcType=VARCHAR})
 	</insert>
 	<update id="updateManager" parameterType="manager">
 		UPDATE manager SET manager_pass = #{managerPass, jdbcType=VARCHAR}
@@ -17,7 +17,7 @@
 	</delete>
 	<select id="getManager" resultType="manager" parameterType="manager">
 		SELECT * FROM manager
-		WHERE manager_id = #{managerId, jdbcType=VARCHAR} AND manager_pass = #{managerPass, jdbcType}
+		WHERE manager_id = #{managerId, jdbcType=VARCHAR} AND manager_pass = #{managerPass, jdbcType=VARCHAR}
 	</select>
 	
 	<resultMap type="manager" id="managerList">
