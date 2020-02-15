@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.main.oneflix.member.vo.MemberVO" alias="member"/>
+		<typeAlias type="com.main.oneflix.manager.vo.ManagerVO" alias="manager"/>
+		<typeAlias type="com.main.oneflix.actor.vo.ActorVO" alias="actor"/>
+		<typeAlias type="com.main.oneflix.director.vo.DirectorVO" alias="director"/>
+		<typeAlias type="com.main.oneflix.genre.vo.GenreVO" alias="genre"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappings/member-mapping.xml"/>
+		<mapper resource="mappings/manager-mapping.xml"/>
+		<mapper resource="mappings/actor-mapping.xml"/>
+		<mapper resource="mappings/director-mapping.xml"/>
+		<mapper resource="mappings/genre-mapping.xml"/>
+	</mappers>
+</configuration>

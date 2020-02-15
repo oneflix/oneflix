@@ -1,0 +1,515 @@
+/* 페이지 메인 */
+.css-1goh5jy-Main {
+    min-height: 100%;
+    flex: 1 1 0%;
+    background: rgb(20, 21, 23);
+}
+/* 페이지 메인 */
+main {
+    display: block;
+}
+/* 영화 정보 포스터 전체 틀 */
+.css-1k1qdr7-EmbedSlider {
+    position: relative;
+    background: #0B0C0D;
+    height: 0;
+    padding-left: 4%;
+    opacity: 0.01;
+    -webkit-transition: height 0.54s cubic-bezier(0.5,0,0.1,1) 0s,opacity 0.44s cubic-bezier(0.5,0,0.1,1) 0.1s;
+    transition: height 0.54s cubic-bezier(0.5,0,0.1,1) 0s,opacity 0.44s cubic-bezier(0.5,0,0.1,1) 0.1s;
+}
+.css-1k1qdr7-EmbedSlider.enter-done {
+    height: 35.15vw;
+    opacity: 1;
+}
+/* 영화 정보 포스터 전체 틀 */
+.css-9uh69i-EmbedFade {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    opacity: 0.01;
+}
+.css-9uh69i-EmbedFade.enter-done {
+    opacity: 1;
+    transition: opacity 200ms ease-in 0s;
+}
+/* 영화 정보 포스터 전체 틀 */
+.css-w7y03q-Self-Embed {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/* 영화 정보 포스터 전체 틀 -> 포스터 */
+.css-esw2c3-BackgroundImageWrapper {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 3;
+    width: 61.5625%;
+    height: 100%;
+    overflow: hidden;
+}
+/* 영화 정보 포스터 전체 틀 -> 포스터 */
+.css-vvtnaj-BackgroundImage {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url(https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_720,q_80,w_1280/v1463384896/mu5k7x-2033.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+/* 영화 정보 포스터 전체 틀 -> 포스터 */
+.css-1pm051q-BackgroundOpacity {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(11, 12, 13, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.1, 1) 0s;
+}
+/* 영화 정보 포스터 전체 틀 -> 포스터 */
+.css-1dq2ns1-BackgroundShadowLeft {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: linear-gradient(to right, rgb(11, 12, 13) 3%, rgba(11, 12, 13, 0.7) 26%, rgba(11, 12, 13, 0.45) 50%, rgba(11, 12, 13, 0.2) 75%, rgba(11, 12, 13, 0) 100%);
+    width: 45.6852%;
+    height: 100%;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보*/
+.css-kdlm68-ContentInfo {
+    position: relative;
+    z-index: 4;
+    padding-top: 1.8vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 영화 제목*/
+.css-1u794dh-Title {
+    left: -0.078125vw;
+    margin-top: 0.703125vw;
+    font-size: 2.8125vw;
+    font-weight: 700;
+    letter-spacing: -0.117188vw;
+    line-height: 3.28125vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점 이용가ㆍ시간*/
+.css-1ou0qey-Self-ContentMetaCreditWithPredicted {
+    font-size: 1.25vw;
+    margin: 1.09375vw 0px 0.625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점*/
+.css-1fqvgwp-Ratings {
+    display: inline-block;
+    vertical-align: top;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점*/
+.css-peygdp-RatingBox {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    line-height: 1;
+    padding-right: 2.57813vw;
+    border-width: 0.078125vw;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점*/
+.css-peygdp-RatingBox:last-of-type {
+    margin-right: 1.25vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점*/
+.css-peygdp-RatingBox + .css-peygdp-RatingBox {
+    margin-left: 0.625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 평균 별점*/
+.css-1o71ahp-RatingBoxLabel {
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    font-size: 0.9375vw;
+    font-weight: 700;
+    letter-spacing: -0.046875vw;
+    line-height: 1.40625vw;
+    padding: 0.078125vw 0.625vw 0.234375vw 0.546875vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> (별점 숫자)*/
+.css-m6lih3-RatingBoxValue {
+    position: absolute;
+    top: -0.078125vw;
+    right: -0.078125vw;
+    bottom: -0.078125vw;
+    background-color: rgb(255, 255, 255);
+    color: rgb(18, 18, 24);
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    width: 2.65625vw;
+    font-size: 1.17188vw;
+    font-weight: 700;
+    letter-spacing: -0.0078125vw;
+    line-height: 2.03125vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 이용가ㆍ시간*/
+.css-mnz9vt-Self-ContentMeta {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.7);
+    vertical-align: 0.234375vw;
+    font-size: 1.09375vw;
+    font-weight: 700;
+    letter-spacing: -0.046875vw;
+    line-height: 1.5625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 밑에 전체 틀*/
+.css-39xlmf-Self {
+    position: relative;
+    z-index: 4;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 줄거리*/
+.css-14m50u6-Story {
+    color: rgba(255, 255, 255, 0.8);
+    width: 32.8125vw;
+    margin-top: 0.15625vw;
+    font-size: 1.17188vw;
+    font-weight: 400;
+    letter-spacing: -0.03125vw;
+    line-height: 1.875vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 감독 배우 개요*/
+.css-1dj867o-Self-ContentMetaCredit {
+    letter-spacing: -0.03125vw;
+    margin-top: 0.9375vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 한줄*/
+.css-ajo6y3-CreditList {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.01563vw;
+    line-height: 1.40625vw;
+    margin-bottom: 0.15625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 한줄 왼쪽*/
+.css-gvfmob-CreditTitle {
+    font-weight: 700;
+    margin-right: 0.78125vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 한줄 오른쪽*/
+.css-1mnni33-CreditContent {
+    position: relative;
+    z-index: 4;
+    font-weight: 400;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 버튼 라인*/
+.css-7s5tof-Self-ContentActionButtons {
+    display: flex;
+    margin-top: 1.5625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 재생 버튼*/
+.css-62azfr-PlayButton-MainButtonStyle {
+    background-color: rgb(252, 66, 106);
+    color: rgb(255, 255, 255);
+    margin-right: 1.875vw;
+    font-size: 1.25vw;
+    font-weight: 700;
+    letter-spacing: -0.03125vw;
+    line-height: 1.95313vw;
+    border-radius: 0.3125vw;
+    padding: 0.546875vw 1.875vw 0.546875vw 1.64063vw;
+}
+.css-62azfr-PlayButton-MainButtonStyle:hover {
+    background-color: rgb(209, 46, 81);
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 재생 버튼*/
+.css-10748d4-MainButtonIcon {
+    display: inline-block;
+    width: 1.875vw;
+    height: 1.875vw;
+    margin-right: 0.625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 재생 버튼*/
+.css-10748d4-MainButtonIcon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 찜 버튼*/
+.css-1yj07nv-SubButton {
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    margin-right: 0.9375vw;
+    opacity: 0.5;
+    font-size: 1.25vw;
+    font-weight: 700;
+    letter-spacing: -0.03125vw;
+    line-height: 1.79687vw;
+    padding: 0.625vw 0.3125vw 0.625vw 0.234375vw;
+    border: 0;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 찜 버튼*/
+.css-rv7z9k-SubButtonIcon {
+    display: inline-block;
+    width: 1.875vw;
+    height: 1.875vw;
+    margin-right: 0.390625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 찜 버튼*/
+.css-rv7z9k-SubButtonIcon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점 라인*/
+.css-cwlpx1-RatingContainer {
+    display: flex;
+    margin-top: 1.40625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점 텍스트*/
+.css-14sesuo-RatingText {
+    color: rgba(255, 255, 255, 0.7);
+    width: 9.375vw;
+    font-size: 1.02375vw;
+    font-weight: 700;
+    letter-spacing: -0.03125vw;
+    line-height: 1.5625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별모양*/
+.css-1cp7z2d-Self-StarRating {
+    line-height: 1em;
+    text-align: center;
+    user-select: none;
+    font-size: 1.5625vw;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별모양*/
+.css-pjw7sn-StarsContainer {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 색있는별모양*/
+.css-1g8zxed-ActiveStars {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* 미리보기 */
+.css-custom {
+    height: 37vw;
+    background-color: #0B0C0D;
+    padding: 1% 16% 6%;
+}
+.css-custom-title{
+    height: 4vw;
+    padding-left: 6%;
+    color: #FFFFFF;
+    font-size: 1.484375vw;
+    letter-spacing: -0.03125vw;
+    line-height: 2.03125vw;
+    padding-top: 2vw;
+    background-color: #0B0C0D;
+}
+.css-custom-center{
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+}
+
+/* 리뷰 */
+.review-section {width: 100%;}
+.review-title-box {position: relative; width: 81%;  margin-left: 4%; padding-left: 1.9vw;}
+
+.css-pv0i3j-CommentsContainer {
+    background: #0B0C0D;
+    position: relative;
+    width: 100%;
+    
+    /* margin: 0 auto; */
+    
+}
+/* 리뷰 -> 별점라인 */
+.css-vqbxz-RatingAvg {
+    padding-top: 2vw;
+    font-size: 1.25vw;
+
+}
+/* 리뷰 -> 별점라인 -> 평균별점(텍스트) */
+.css-ycp4ll-RatingAvgTitle {
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 0.46875vw;
+
+}
+/* 리뷰 -> 별점라인 -> 별모양 */
+.css-1d7j8ma-Self-StarRating {
+    line-height: 1em;
+    text-align: center;
+    user-select: none;
+    display: inline;
+    font-size: 1.25vw;
+    margin-right: 3px;
+}
+/* 리뷰 -> 별점라인 -> 평균별점(숫자) */
+.css-7huvli-RatingAvgNumber {
+    font-family: Roboto;
+    letter-spacing: -0.0390625vw;
+    margin-right: 0.46875vw;
+}
+/* 리뷰 -> 별점라인 -> 리뷰남긴수 */
+.css-guq473-RatingAvgCount {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: Roboto;
+    font-size: 0.9375vw;
+}
+/* 리뷰 -> 여백 */
+.css-1sd2d4e-CommentGuideText {
+    margin-top: 0.15625vw;
+    margin-bottom: 0.625vw;
+}
+
+.review-box {
+    
+    display: flex;
+    flex-direction: column;
+    /* padding-right: 4vw; */
+    margin-bottom: 0.625vw;
+}
+/* 리뷰 -> 작성자 */
+.review-writer {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.09375vw;
+}
+/* 리뷰 -> 내용 */
+.review-content {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.17188vw;
+}
+.like-button{
+    background-color: #0B0C0D;
+    border: 0;
+}
+.like-icon{
+    border: 0;
+    display: inline-block;
+    font-size: 1.5vw;
+    margin-top: 0.35625vw;
+    margin-right: 0.625vw;
+}
+.like-count {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.01563vw;
+    margin-top: 0.15625vw;
+}
+.like-container {
+    background-color: #0B0C0D;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 1;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.css-5el3at-TextArea {
+    font-size: 1.02vw;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 26px;
+    width: 80%;
+    resize: none;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    outline: none;
+
+    overflow: auto;
+}
+
+.css-r6tv9-StylelessButton-Button-SmallButton-ActionButton {
+    position: relative;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 0.95vw;
+    font-weight: 500;
+    letter-spacing: -0.03125vw;
+    box-sizing: border-box; 
+    min-width: 4vw;
+    height: 2.35vw;
+    vertical-align: top;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    margin: 0.4vw 1vw;
+    background: rgb(252, 66, 106);
+    border-radius: 0.3125vw;
+    padding: auto;
+}
+
+.css-r6tv9-StylelessButton-Button-SmallButton-Button {
+    position: relative;
+    display: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 0.95vw;
+    font-weight: 500;
+    letter-spacing: -0.03125vw;
+    box-sizing: border-box; 
+    min-width: 4vw;
+    height: 2.35vw;
+    vertical-align: top;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    margin: 0.4vw 0vw 0.4vw 1vw;
+    background: rgb(252, 66, 106);
+    border-radius: 0.3125vw;
+    padding: auto;
+}
+
+.eu8v4402{
+    background: #151618;
+    color: rgb(255, 255, 255);
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    opacity: 0.5;
+}
+
+.eu8v4200{
+    display: inline;
+}
+
+.review-div{
+    padding-left: 1.9vw;
+    margin-left: 4%;
+    display: inline;
+}
+
+.review-avg-rating-title {
+    padding-left: 1.9vw;
+    margin-left: 4%;
+}
+
+.review-max-length{
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.99375vw;
+    float: right;
+    margin-right: 1.4vw;
+}
+
+video {border: 0; outline: none;}
+
+.review-container {width: calc(100% - 3.8vw); padding: 0 1.9vw; background-color: #0B0C0D; color: #000;}
+#review-slider-container > .swiper-wrapper > .swiper-slide {width: 100%;}
+#review-slider-container > .swiper-wrapper > .swiper-slide > div {height: 12vw; margin: 30px 0; padding: 0 70px; background-color: #0B0C0D;}
+/* #review-button-prev {z-index: 999;}
+#review-button-next {} */

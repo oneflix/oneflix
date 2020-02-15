@@ -1,0 +1,16 @@
+.custom-float{float:right;} .custom-body{overflow-x: hidden;} .custom-table-width{width: 100%;}
+
+.btn-register{
+    background-color: #131834;
+    color: #dedede;
+}
+
+.btn-register:hover {
+    color: #dedede;
+    background-color: #131834;
+    border-color: #131834;
+  }
+.th-width{width: 210px}
+.custom-float{float:right;} 
+.custom-body{overflow-x: hidden;} 
+.custom-table-width{width: 100%;}

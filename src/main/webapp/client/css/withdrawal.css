@@ -1,0 +1,99 @@
+/* 이미지 외부 틀 */
+.css-dfr6g9-Self-Wallpaper {
+    height: 100vh;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+/* 이미지 */
+.css-vvtnaj-BackgroundImage {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url(https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_720,q_80,w_1280/v1571375185/hugufujosd3gfmjakpdh.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+/* footer */
+.css-1m3aned-CancelFooter {
+    background: #212121;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    -webkit-letter-spacing: -0.7px;
+    -moz-letter-spacing: -0.7px;
+    -ms-letter-spacing: -0.7px;
+    letter-spacing: -0.7px;
+    line-height: 24px;
+    text-align: center;
+    padding: 20px 0 16px;
+}
+/* footer -> 버튼 라인 */
+.css-121bqo8-CancelButtons {
+    margin: 24px 7px 0;
+}
+/* footer -> 버튼 라인(안할래요) */
+.css-or2n4s-ButtonBlock {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    width: 20%;
+    padding: 0 7px;
+}
+/* footer -> 버튼 라인(안할래요) */
+.css-cop6tv-Button-PrimaryButton-PreferButton {
+    background-color: #2B2B2B;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 24px;
+    width: 100%;
+    padding: 10px 16px;
+    background-color: #FC426A;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    padding: 14px 0;
+}
+/* footer -> 버튼 라인(탈퇴하기) */
+.css-f1keza-Button-PrimaryButton-DispreferButton {
+    background-color: #2B2B2B;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 24px;
+    width: 100%;
+    padding: 10px 16px;
+    background-color: #FC426A;
+    color: #FFF;
+    background: rgba(255,255,255,0.34);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    padding: 14px 0;
+}
+button {
+    cursor: pointer;
+    background: none;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+}

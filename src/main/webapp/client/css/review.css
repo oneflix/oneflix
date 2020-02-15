@@ -1,0 +1,122 @@
+body {
+	background: #080808;
+}
+
+li {
+	list-style: none;
+}
+
+h4 {
+	margin-left: 40px;
+}
+
+p {
+	width: 50vw;
+	color: #f3f3f3;
+}
+
+a {
+	font-size: 30px;
+	color: #f3f3f3;
+}
+
+a:hover {
+	color: #666666 !important;
+	text-decoration: none;
+}
+
+.row {
+	background-color: #080808;
+	margin: 0 auto;
+}
+
+.page-body {
+	background-color: #080808;
+	margin-left: 10vw;
+}
+
+.my-review {
+	width: 60vw;
+	color: #f3f3f3;
+	text-align: justify;
+	padding-bottom: 10px;
+}
+
+.my-review-reg {
+	float: right;
+	width: 22vw;
+}
+
+.my-rating {
+	padding: 3px 10px;
+	margin-left: 20px;
+	font-size: 15px;
+	color: #080808;
+	background-color: #f3f3f3;
+	text-align: center;
+	border-radius: 70px;
+}
+
+.my-thumbs-up {
+	font-size: 17px;
+	color: #f3f3f3;
+}
+
+#myBtn {
+	display: none;
+	position: fixed;
+	bottom: 10%;
+	right: 80px;
+	z-index: 99;
+	font-size: 20px;
+	font-weight: bold;
+	outline: none;
+	border: none;
+	background-color: #080808;
+	color: #f3f3f3;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 60px;
+	scroll-behavior: smooth;
+	/* border-style: solid; */
+	/* border-color: #f3f3f3; */
+}
+
+#myBtn:hover {
+	color: #e50914;
+}
+
+</
+.post {
+	margin-top: 70px;
+}
+
+.post-seperator {
+	width: 60vw;
+	margin-right: 550px;
+	margin-top: 70px;
+	border-color: #3d3d3d80;
+}
+
+.one-post {
+	margin-bottom: 100px !important;
+}
+
+.user-block .username, .user-block .description, .user-block .comment {
+	display: block;
+	margin-left: 0;
+}
+
+.username {
+	display: float;
+}
+
+.float-right {
+	float: right;
+	margin-bottom: 2px;
+}
+
+.col-12 {
+	margin-top: 50px;
+	width: 80%;
+}
