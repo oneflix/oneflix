@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
@@ -17,10 +18,8 @@
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
-    <!-- ====================== 
-            ADD headr 
-     ====================== -->
-	<jsp:include page="${header_url}"></jsp:include>
+   
+   	<jsp:include page="${header_url}"></jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -41,7 +40,8 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <button type="button" class="btn btn-primary" style="float:left;">+ 추가</button>
+                <button type="button" class="btn btn-primary" style="float:left;" 
+                onclick="location.href='/insertGenre.mdo'">+ 추가</button>
 
 
 
@@ -69,216 +69,18 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach var="genre" items="${genreList}">
                     <tr>
-                      <td>1</td>
-                      <td>드라마</td>
+                      <td>${genre.genreId}</td>
+                      <td>${genre.genre}</td>
                       <td>
                         <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
+                          <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/updateGenre.mdo?genreId=${genre.genreId}'">수정</button>
+                          <button type="button" class="btn btn-sm btn-danger" onclick="location.href='/deleteGenreProc.mdo?genreId=${genre.genreId}'">삭제</button>
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>로맨스</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>애니메이션</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>음악</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>코미디</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>틴에이저</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>범죄</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td>재난</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>역사</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td>스포츠</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>11</td>
-                      <td>SF</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>12</td>
-                      <td>모험</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>13</td>
-                      <td>미스터리</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>14</td>
-                      <td>전쟁</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>15</td>
-                      <td>키즈</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>16</td>
-                      <td>판타지</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>17</td>
-                      <td>가족</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>18</td>
-                      <td>공포</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>19</td>
-                      <td>스릴러</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>20</td>
-                      <td>액션</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>21</td>
-                      <td>다큐멘터리</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div> <!-- /.card-body -->
@@ -290,10 +92,6 @@
     </div>
     <!-- /.content-wrapper -->
 
-    
-   <!-- ====================== 
-            ADD Footer
-     ====================== -->
      <jsp:include page="${footer_url}"></jsp:include>
 
   </div>
