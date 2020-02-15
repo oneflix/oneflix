@@ -43,8 +43,8 @@
 				style="text-align: center; width: 50%; height: 5%; font-size: 30px; margin: 0 auto;">
 
 				닉네임&nbsp;
-				<p style="text-align: center; display: inline;">이성계</p>
-				&nbsp; <input type="button" value="변경" onClick="show()"
+				<p style="text-align: center; display: inline;">${member.nick}</p>
+				&nbsp; <input type="button" value="변경" onClick="changeForm()"
 					style="display: inline;" /><br>
 				<div id="div1" style="display: none;">
 					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,11 +58,14 @@
 				<br>
 				<div
 					style="text-align: center; font-size: 30px; vertical-align: text-top;">
-					비밀번호: <input style="width: 150px; height: 30px;" name="password"
-						placeholder="현재 비밀번호" autocapitalize="off" type="password" value><br>
+					비밀번호: <input style="width: 150px; height: 30px;" name="passConfirm"
+						placeholder="현재 비밀번호" autocapitalize="off" type="password"><br>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input style="width: 150px; height: 30px;" name="password"
-						placeholder="현재 비밀번호" autocapitalize="off" type="password" value>
+					<input style="width: 150px; height: 30px;" name="newPass"
+						placeholder="새 비밀번호" autocapitalize="off" type="password"><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input style="width: 150px; height: 30px;" name="newPassConfirm"
+						placeholder="새 비밀번호 확인" autocapitalize="off" type="password">
 				</div>
 				<br>
 				<button type="submit" style="float: right; cursor: pointer;"
