@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
-
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
 <!DOCTYPE html>
 <html>
@@ -18,10 +17,7 @@
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
-    
-    <!-- ====================== 
-            ADD headr 
-     ====================== -->
+
      <jsp:include page="${header_url}"></jsp:include>
 
 
@@ -71,18 +67,21 @@
                       <th>관리</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>admin1</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
+                  
+                  <c:forEach var="manager" items="${managerList}">
+	                  <tbody>
+	                    <tr>
+	                      <td>1</td>
+	                      <td>${manager.managerId}</td>
+	                      <td>
+	                        <div>
+	                          <button type="button" class="btn btn-sm btn-primary">수정</button>
+	                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
+	                        </div>
+	                      </td>
+	                    </tr>
+	                  </tbody>
+                  </c:forEach>
 
                 </table>
               </div>
