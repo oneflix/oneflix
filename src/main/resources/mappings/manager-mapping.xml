@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ManagerDAO">
+
+	<insert id="insertManager" parameterType="manager">
+		INSERT INTO manager (manager_id, manager_pass)
+		VALUES (#{managerId, jdbcType=VARCHAR}, #{managerPass, jdbType=VARCHAR})
+	</insert>
+	<update id="updateManager" parameterType="manager">
+		UPDATE manager SET manager_pass = #{managerPass, jdbcType=VARCHAR}
+		WHERE manager_id = #{managerId, jdbcType=VARCHAR}
+	</update>
+	<delete id="deleteManager" parameterType="manager">
+		DELETE FROM manager WHERE manager_id = #{managerId, jdbcType=VARCHAR}
+	</delete>
+	<select id="getManager" resultType="manager" parameterType="manager">
+		SELECT * FROM manager
+		WHERE manager_id = #{managerId, jdbcType=VARCHAR} AND manager_pass = #{managerPass, jdbcType}
+	</select>
+	
+	<resultMap type="manager" id="managerList">
+		<id property="managerId" column="manager_id"/>
+		<result property="managerPass" column="manager_pass"/>
+		<result property="managerType" column="manager_type"/>
+	</resultMap>
+	
+	<select id="getManagerList" resultMap="managerList">
+		SELECT * FROM manager
+	</select>
+</mapper>
