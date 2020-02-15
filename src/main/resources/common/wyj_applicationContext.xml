@@ -8,4 +8,5 @@
 	<context:component-scan
 		base-package="com.main.oneflix.manager.dao.impl, com.main.oneflix.manager.service.impl">
 	</context:component-scan>
+
 </beans>

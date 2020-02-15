@@ -29,4 +29,5 @@
 	<select id="getManagerList" resultMap="managerList">
 		SELECT * FROM manager
 	</select>
+
 </mapper>

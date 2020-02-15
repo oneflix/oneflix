@@ -4,5 +4,38 @@
 
 <mapper namespace="GenreDAO">
 
+	<insert id="insertGenre" parameterType="genre">
+		INSERT INTO genre
+		(genre_id, genre)
+		VALUES((select nvl(max(genre_id),0)+1 from genre),#{genre})
+	</insert>
+
+	<update id="updateGenre" parameterType="genre">
+		UPDATE genre
+		SET
+		genre=#{genre}
+		WHERE
+		genre_id = #{genreId}
+	</update>
+
+	<delete id="deleteGenre" parameterType="genre">
+		DELETE FROM genre WHERE
+		genre_id = #{genreId}
+	</delete>
+
+	<select id="getGenre" parameterType="genre" resultType="genre">
+		SELECT *
+		FROM genre WHERE genre_id = #{genreId}
+	</select>
+
+	<resultMap type="genre" id="genreList">
+		<id property="genreId" column="genre_id" />
+		<result property="genre" column="genre" />
+	</resultMap>
+
+	<select id="getGenreList" resultMap="genreList">
+		SELECT * FROM genre ORDER BY genre_id ASC
+	</select>
+
 
 </mapper>
