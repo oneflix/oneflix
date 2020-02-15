@@ -1,4 +1,4 @@
-package com.main.oneflix.genre.dao.Impl;
+package com.main.oneflix.genre.dao.impl;
 
 import java.util.List;
 
