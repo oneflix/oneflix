@@ -42,7 +42,7 @@
             <form action="/updateManagerProc.mdo" method="post" class="row">
                 <div class="col-md-3"></div> <!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
                 <div class="col-md-6" style="margin-bottom: 5%;">
-                    <div class="card card-outline card-info">
+                    <div class="card card-info">
                         <div class="card-body pad">
 
                             <div class="form-group mb-3">

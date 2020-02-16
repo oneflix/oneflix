@@ -53,7 +53,7 @@
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item">
-					<a href="/dashboard.mdo" class="nav-link" id="dashboard">
+					<a href="/dashboardProc.mdo" class="nav-link" id="dashboard">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>대시보드</p>
 					</a>
@@ -61,49 +61,49 @@
 
 
 				<li class="nav-item">
-					<a href="/movieList.mdo" class="nav-link" id="movie">
+					<a href="/movieListProc.mdo" class="nav-link" id="movie">
 						<ion-icon name="film" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>영화</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/genreList.mdo" class="nav-link" id="genre">
+					<a href="/genreListProc.mdo" class="nav-link" id="genre">
 						<ion-icon name="apps" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>장르</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/directorList.mdo" class="nav-link" id="director">
+					<a href="/directorListProc.mdo" class="nav-link" id="director">
 						<ion-icon name="megaphone" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>감독</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/actorList.mdo" class="nav-link" id="actor">
+					<a href="/actorListProc.mdo" class="nav-link" id="actor">
 						<ion-icon name="glasses" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>배우</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/memberList.mdo" class="nav-link" id="member">
+					<a href="/memberListProc.mdo" class="nav-link" id="member">
 						<ion-icon name="people" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>회원</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/membershipList.mdo" class="nav-link" id="membership">
+					<a href="/membershipListProc.mdo" class="nav-link" id="membership">
 						<ion-icon name="card" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>이용권</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/salesList.mdo" class="nav-link" id="sales">
+					<a href="/salesListProc.mdo" class="nav-link" id="sales">
 						<ion-icon name="cash" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>판매</p>
 					</a>
@@ -118,7 +118,7 @@
 
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="/noticeList.mdo" class="nav-link" id="notice">
+							<a href="/noticeListProc.mdo" class="nav-link" id="notice">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<ion-icon name="arrow-dropright" size="small"></ion-icon>
 								<p>공지사항</p>
@@ -126,7 +126,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="/FAQList.mdo" class="nav-link" id="faq">
+							<a href="/FAQListProc.mdo" class="nav-link" id="faq">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<ion-icon name="arrow-dropright" size="small"></ion-icon>
 								<p>FAQ</p>
@@ -134,7 +134,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="/inquiryList.mdo" class="nav-link" id="inquiry">
+							<a href="/inquiryListProc.mdo" class="nav-link" id="inquiry">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<ion-icon name="arrow-dropright" size="small"></ion-icon>
 								<p>1:1 문의</p>
@@ -144,21 +144,21 @@
 				</li>
 
 				<li class="nav-item">
-					<a href="/screen.mdo" class="nav-link" id="screen">
+					<a href="/screenProc.mdo" class="nav-link" id="screen">
 						<ion-icon name="image" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>화면</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a href="/analysis.mdo" class="nav-link" id="analysis">
+					<a href="/analysisProc.mdo" class="nav-link" id="analysis">
 						<ion-icon name="pie" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>분석</p>
 					</a>
 				</li>
 
 				<li class="nav-item" id="manager-menu">
-					<a href="/managerList.mdo" class="nav-link" id="manager">
+					<a href="/managerListProc.mdo" class="nav-link" id="manager">
 					<ion-icon name="people" size="small"></ion-icon>&nbsp;&nbsp;
 					<p>관리자</p>
 					</a>
