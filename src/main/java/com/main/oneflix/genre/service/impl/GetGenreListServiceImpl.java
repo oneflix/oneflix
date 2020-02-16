@@ -16,7 +16,7 @@ public class GetGenreListServiceImpl implements GetGenreListService {
 	private GenreDAO genreDAO;
 	
 	@Override
-	public List<GenreVO> getGenreListService(GenreVO vo) {
+	public List<GenreVO> getGenreList(GenreVO vo) {
 		return genreDAO.getGenreList(vo);
 	}
 
