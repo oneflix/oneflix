@@ -2,32 +2,32 @@ package com.main.oneflix.manager.vo;
 
 public class ManagerVO {
 
-	private String adminId;
-	private String adminPass;
-	private int adminType;
+	private String managerId;
+	private String managerPass;
+	private int managerType;
 
-	public String getAdminId() {
-		return adminId;
+	public String getManagerId() {
+		return managerId;
 	}
 
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setManagerId(String managerId) {
+		this.managerId = managerId;
 	}
 
-	public String getAdminPass() {
-		return adminPass;
+	public String getManagerPass() {
+		return managerPass;
 	}
 
-	public void setAdminPass(String adminPass) {
-		this.adminPass = adminPass;
+	public void setManagerPass(String managerPass) {
+		this.managerPass = managerPass;
 	}
 
-	public int getAdminType() {
-		return adminType;
+	public int getManagerType() {
+		return managerType;
 	}
 
-	public void setAdminType(int adminType) {
-		this.adminType = adminType;
+	public void setManagerType(int managerType) {
+		this.managerType = managerType;
 	}
 
 }

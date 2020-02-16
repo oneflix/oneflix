@@ -18,7 +18,6 @@
 <body
 	class="hold-transition sidebar-mini">
 	<div class="wrapper">
-	
 		<jsp:include page="${header_url}"></jsp:include>
 
 		<!-- Content Wrapper. Contains page content -->

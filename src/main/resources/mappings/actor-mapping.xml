@@ -8,7 +8,7 @@
 		INSERT INTO
 		actor (actor_id,actor_name,actor_age)
 		VALUES
-		(#{actorId},#{actorName},#{actorAge})
+		(#{actorId, jdbcType=NUMERIC},#{actorName, jdbcType=VARCHAR},#{actorAge, jdbcType=NUMERIC})
 	</insert>
 	<update id="updateActor" parameterType="actor">
 		UPDATE Actor
@@ -29,7 +29,7 @@
 		actor_id
 		=
 		#{actorId,
-		jdbcType=NUMBER}
+		jdbcType=NUMERIC}
 		AND
 		actor_pass
 		=
@@ -37,10 +37,11 @@
 	</select>
 	<resultMap type="actor" id="actorList">
 		<id property="actorId" column="actor_id"/>
-		<result property="actor" column="actor"/>
+		<result property="actorName" column="actor_name"/>
+		<result property="actorAge" column="actor_age"/>
 	</resultMap>
 	<select id="getActorList" resultMap="actorList">
-		SELECT*FROM actor ORDER BY actor_id ASC
+		SELECT * FROM actor ORDER BY actor_id ASC
 	</select>
 
 </mapper>
