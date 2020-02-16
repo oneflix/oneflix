@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.manager.service.DeleteManagerService;
 import com.main.oneflix.manager.service.GetManagerListService;
+import com.main.oneflix.manager.service.GetManagerService;
 import com.main.oneflix.manager.service.InsertManagerService;
 import com.main.oneflix.manager.service.UpdateManagerService;
 import com.main.oneflix.manager.vo.ManagerVO;
@@ -24,6 +25,9 @@ public class ManagerController {
 	
 	@Autowired
 	private DeleteManagerService deleteManagerSerivce;
+	
+	@Autowired
+	private GetManagerService getManagerService;
 	
 	@Autowired
 	private GetManagerListService getManagerListService;
@@ -50,7 +54,9 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("/updateManager.mdo")
-	public ModelAndView updateManager(ModelAndView mav) {
+	public ModelAndView updateManager(ManagerVO vo, ModelAndView mav) {
+		vo = getManagerService.getManager(vo);
+		mav.addObject("manager", vo);
 		mav.setViewName("updateManager");
 		return mav;
 	}
@@ -59,12 +65,6 @@ public class ManagerController {
 	public ModelAndView updateManagerProc(ManagerVO vo, ModelAndView mav) {
 		updateManagerSerivce.updateManager(vo);
 		mav.setViewName("redirect:/managerList.mdo");
-		return mav;
-	}
-	
-	@RequestMapping("/deleteManager.mdo")
-	public ModelAndView deleteManager(ModelAndView mav) {
-		mav.setViewName("deleteManager");
 		return mav;
 	}
 	

@@ -15,7 +15,7 @@ public class UpdateManagerServiceImpl implements UpdateManagerService {
 	
 	@Override
 	public void updateManager(ManagerVO vo) {
-		managerDAO.deleteManager(vo);
+		managerDAO.updateManager(vo);
 	}
 
 }

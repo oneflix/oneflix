@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan
-		base-package="com.main.oneflix.manager.admin.controller">
+		base-package="com.main.oneflix.manager.admin.controller, com.main.oneflix.dashboard.admin.controller">
 	</context:component-scan>
 
 </beans>

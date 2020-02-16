@@ -5,11 +5,11 @@
 <mapper namespace="ManagerDAO">
 
 	<insert id="insertManager" parameterType="manager">
-		INSERT INTO manager (manager_id, manager_pass)
-		VALUES (#{managerId, jdbcType=VARCHAR}, #{managerPass, jdbcType=VARCHAR})
+		INSERT INTO manager VALUES (#{managerId, jdbcType=VARCHAR}, #{managerPass, jdbcType=VARCHAR}, #{managerType, jdbcType=NUMERIC})
 	</insert>
 	<update id="updateManager" parameterType="manager">
-		UPDATE manager SET manager_pass = #{managerPass, jdbcType=VARCHAR}
+		UPDATE manager SET
+		manager_pass = #{managerPass, jdbcType=VARCHAR}, manager_type = #{managerType, jdbcType=NUMERIC}
 		WHERE manager_id = #{managerId, jdbcType=VARCHAR}
 	</update>
 	<delete id="deleteManager" parameterType="manager">
@@ -17,7 +17,7 @@
 	</delete>
 	<select id="getManager" resultType="manager" parameterType="manager">
 		SELECT * FROM manager
-		WHERE manager_id = #{managerId, jdbcType=VARCHAR} AND manager_pass = #{managerPass, jdbcType=VARCHAR}
+		WHERE manager_id = #{managerId, jdbcType=VARCHAR}
 	</select>
 	
 	<resultMap type="manager" id="managerList">

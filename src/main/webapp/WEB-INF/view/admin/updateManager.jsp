@@ -39,7 +39,7 @@
             </section>
 
 
-            <form action="/insertManagerProc.mdo" method="post" class="row">
+            <form action="/updateManagerProc.mdo" method="post" class="row">
                 <div class="col-md-3"></div> <!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
                 <div class="col-md-6" style="margin-bottom: 5%;">
                     <div class="card card-outline card-info">
@@ -47,19 +47,19 @@
 
                             <div class="form-group mb-3">
                                 <label for="managerId">아이디</label>
-                                <input type="text" class="form-control" id="managerId" name="managerId">
+                                <input type="text" value="${manager.managerId}" readonly class="form-control" id="managerId" name="managerId">
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="managerPass">패스워드</label>
-                                <input type="password" class="form-control" id="managerPass" name="managerPass">
+                                <input type="password" value="${manager.managerPass}" class="form-control" id="managerPass" name="managerPass">
                             </div>
                             
                             <div class="form-group mb-3">
                                 <label for="managerType">권한</label>
                                 <select class="form-control" id="managerType" name="managerType">
-                                	<option value="0" selected>일반 관리자</option>
-                                	<option value="9">최고 관리자</option>
+                                	<option value="0" <c:if test="${manager.managerType eq 0}"> selected </c:if>>일반 관리자</option>
+                                	<option value="9" <c:if test="${manager.managerType eq 9}"> selected </c:if>>최고 관리자</option>
                                 </select>
                                 
                             </div>
