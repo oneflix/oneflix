@@ -28,6 +28,10 @@
 	
 	<select id="getManagerList" resultMap="managerList">
 		SELECT * FROM manager
+		WHERE 1=1
+		<if test="searchManager != null"> 
+			manager_id like '%'||#{searchManager}||'%'
+			OR manager_type like '%'||#{searchManager}||'%'
+		</if>
 	</select>
-
 </mapper>
