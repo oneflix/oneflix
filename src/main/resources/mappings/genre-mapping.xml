@@ -41,6 +41,4 @@
 		ORDER BY genre_id ASC
 	</select>
 
-
-
 </mapper>
