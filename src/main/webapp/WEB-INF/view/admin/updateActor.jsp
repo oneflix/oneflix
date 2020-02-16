@@ -29,7 +29,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>배우 추가</h1>
+							<h1>배우 수정</h1>
 						</div>
 					</div>
 				</div>
