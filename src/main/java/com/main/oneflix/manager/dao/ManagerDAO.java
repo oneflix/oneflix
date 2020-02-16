@@ -12,4 +12,5 @@ public interface ManagerDAO {
 	ManagerVO getManager(ManagerVO vo);
 	List<ManagerVO> getManagerList(ManagerVO vo);
 	
+	
 }
