@@ -22,12 +22,14 @@
         <!-- ===================== 공 지 사 항 ============================== -->
         <div class="notice-container">
             <h2 class="help-label">공지사항</h2>
-            <button class="accordion">제목1</button>
+            <c:forEach test="" items="">
+            <button class="accordion">${공지사항 제목 }</button>
             <div class="panel">
-                <p>내용1</p>
+                <p><${공지사항 내용 }</p>
             </div>
+            </c:forEach>
 
-            <button class="accordion">제목2</button>
+            <!-- <button class="accordion">제목2</button>
             <div class="panel">
                 <p>내용2</p>
             </div>
@@ -45,7 +47,7 @@
             <button class="accordion">제목5</button>
             <div class="panel">
                 <p>내용5</p>
-            </div>
+            </div> -->
 
             <button onclick="moreNotice()" id="myBtn" class="more-notice">공지사항 더 불러오기</button>
         </div>
