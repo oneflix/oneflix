@@ -1,5 +1,8 @@
 package com.main.oneflix.director.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DirectorVO {
 
 	private Integer directorId;

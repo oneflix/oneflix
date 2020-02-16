@@ -32,14 +32,14 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>감독 추가</h1>
+              <h1>감독 수정</h1>
             </div>
           </div>
         </div><!-- /.container-fluid -->
       </section>
 
 
-      <form action="insertDirectorProc.mdo" class="row">
+      <form action="#" class="row">
         <div class="col-md-3"></div> <!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
         <div class="col-md-6" style="margin-bottom: 5%;">
           <div class="card card-info">
@@ -47,17 +47,17 @@
 
               <div class="form-group mb-3">
                 <label for="title">이름</label>
-                <input type="text" class="form-control" id="title" name="directorName" required/>
+                <input type="text" class="form-control" id="title" name="title" required="">
               </div>
 
               <div class="form-group mb-3">
                 <label for="title">나이</label>
-                <input type="text" class="form-control" id="title" name="directorAge" required/>
+                <input type="text" class="form-control" id="title" name="title" required="">
               </div>
 
               <br>
               <div class="buttons" style="float: right;">
-                <button type="submit" class="btn btn-success">등록</button>
+                <button type="submit" class="btn btn-success">수정</button>
                 <button type="button" class="btn btn-secondary">취소</button>
               </div><!-- /.buttons -->
             </div> <!-- /.card-body pad -->
