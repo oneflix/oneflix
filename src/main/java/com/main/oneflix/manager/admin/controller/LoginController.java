@@ -37,7 +37,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/logout.mdo")
-	public ModelAndView logoutProc(ModelAndView mav, HttpSession session) {
+	public ModelAndView logout(ModelAndView mav, HttpSession session) {
 		session.invalidate();
 		mav.setViewName("login");
 		return mav;
