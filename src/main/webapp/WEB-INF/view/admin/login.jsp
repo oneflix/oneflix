@@ -50,16 +50,16 @@
 					<div class="col-lg-4 col-md-6 white-bg">
 						<div class="login-fancy pb-40 clearfix" id="login_area">
 							<h3 class="mb-30">로그인</h3>
-							<form class="" action="#" method="post">
+							<form class="" action="/loginProc.mdo" method="post">
 								<div class="section-field mb-20">
-									<label class="mb-10" for="name">이메일</label> <input id="email"
-										value="admin@example.com" class="web form-control"
-										type="email" placeholder="Email" name="email" required>
+									<label class="mb-10" for="name">아이디</label>
+									<input id="email" class="web form-control"
+										type="text" placeholder="ID" name="managerId">
 								</div>
 								<div class="section-field mb-20">
 									<label class="mb-10" for="Password">비밀번호</label> <input
-										id="Password" value="1234" class="Password form-control"
-										type="password" placeholder="Password" name="password"
+										id="Password" class="Password form-control"
+										type="password" placeholder="Password" name="managerPass"
 										required>
 								</div>
 								<button type="submit" class="btn btn-danger"

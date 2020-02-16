@@ -18,7 +18,7 @@
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
-   
+
    	<jsp:include page="${header_url}"></jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
@@ -42,6 +42,7 @@
               <div class="card-header">
                 <button type="button" class="btn btn-primary" style="float:left;" 
                 onclick="location.href='/insertGenre.mdo'">+ 추가</button>
+
 
 
 
