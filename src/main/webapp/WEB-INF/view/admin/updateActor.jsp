@@ -32,42 +32,33 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>관리자 수정</h1>
+                            <h1>배우 수정</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
 
-            <form action="/updateManagerProc.mdo" method="post" class="row">
+            <form action="/updateActorProc.mdo" method="post" class="row">
                 <div class="col-md-3"></div> <!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
                 <div class="col-md-6" style="margin-bottom: 5%;">
                     <div class="card card-info">
                         <div class="card-body pad">
-
+							<input name="actorId" type="hidden" value="${actor.actorId}"/>
                             <div class="form-group mb-3">
-                                <label for="managerId">아이디</label>
-                                <input type="text" value="${manager.managerId}" readonly class="form-control" id="managerId" name="managerId">
+                                <label for="actorName">이름</label>
+                                <input type="text" value="${actor.actorName}" class="form-control" id="actorName" name="actorName">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="managerPass">패스워드</label>
-                                <input type="password" value="${manager.managerPass}" class="form-control" id="managerPass" name="managerPass">
-                            </div>
-                            
-                            <div class="form-group mb-3">
-                                <label for="managerType">권한</label>
-                                <select class="form-control" id="managerType" name="managerType">
-                                	<option value="0" <c:if test="${manager.managerType eq 0}"> selected </c:if>>일반 관리자</option>
-                                	<option value="9" <c:if test="${manager.managerType eq 9}"> selected </c:if>>최고 관리자</option>
-                                </select>
-                                
+                                <label for="actorAge">나이</label>
+                                <input type="text" value="${actor.actorAge}" class="form-control" id="actorAge" name="actorAge">
                             </div>
 
                             <br>
                             <div class="buttons" style="float: right;">
                                 <button type="submit" class="btn btn-success">등록</button>
-                                <button type="button" class="btn btn-secondary" onclick="location.href='/managerListProc.mdo'">취소</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='/actorListProc.mdo'">취소</button>
                             </div><!-- /.buttons -->
                         </div> <!-- /.card-body .col-md-6 -->
 

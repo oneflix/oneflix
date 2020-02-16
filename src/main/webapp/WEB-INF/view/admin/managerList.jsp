@@ -88,7 +88,7 @@
 												<td>
 													<div>
 														<button type="button" class="btn btn-sm btn-primary"
-															onclick="location.href='/updateManager.mdo?managerId=${manager.managerId}'">수정</button>
+															onclick="location.href='/getManagerProc.mdo?managerId=${manager.managerId}'">수정</button>
 														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${manager.managerId}')">삭제</button>
 													</div>
 												</td>
