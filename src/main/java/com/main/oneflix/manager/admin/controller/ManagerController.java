@@ -54,8 +54,8 @@ public class ManagerController {
 		return mav;
 	}
 	
-	@RequestMapping("/updateManager.mdo")
-	public ModelAndView updateManager(ManagerVO vo, ModelAndView mav) {
+	@RequestMapping("/getManagerProc.mdo")
+	public ModelAndView getManagerProc(ManagerVO vo, ModelAndView mav) {
 		vo = getManagerService.getManager(vo);
 		mav.addObject("manager", vo);
 		mav.setViewName("updateManager");
