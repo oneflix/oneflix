@@ -14,7 +14,7 @@ public class DeleteGenreServiceImpl implements DeleteGenreService {
 	private GenreDAO genreDAO; 
 	
 	@Override
-	public void deleteGenreService(GenreVO vo) {
+	public void deleteGenre(GenreVO vo) {
 		genreDAO.deleteGenre(vo);
 
 	}

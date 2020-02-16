@@ -4,12 +4,13 @@ public class GenreVO {
 
 	private Integer genreId;
 	private String genre;
+	private String searchGenre;
 
 	public int getGenreId() {
 		return genreId;
 	}
 
-	public void setGenreId(int genreId) {
+	public void setGenreId(Integer genreId) {
 		this.genreId = genreId;
 	}
 
@@ -21,4 +22,13 @@ public class GenreVO {
 		this.genre = genre;
 	}
 
+	public String getSearchGenre() {
+		return searchGenre;
+	}
+
+	public void setSearchGenre(String searchGenre) {
+		this.searchGenre = searchGenre;
+	}
+
+	
 }
