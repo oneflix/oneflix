@@ -43,7 +43,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <button type="button" class="btn btn-primary" style="float:left;">+ 추가</button>
+                <button type="button" class="btn btn-primary" style="float:left;" onclick="location.href='/insertDirector.mdo'">+ 추가</button>
 
 
 
@@ -72,50 +72,19 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach var="director" items="${directorList}">
                     <tr>
-                      <td>1</td>
-                      <td>변영주</td>
-                      <td>54</td>
+                      <td>${director.directorId }</td>
+                      <td>${director.directorName }</td>
+                      <td>${director.directorAge }</td>
                       <td>
                         <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
+                          <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/updateDirector.mdo?directorId?${directorId}'">수정</button>
+                          <button type="button" class="btn btn-sm btn-danger" onclick="location.href='/deleteDirectorProc.mdo?directorId?${directorId}'">삭제</button>
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>그레타 거윅</td>
-                      <td>37</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>봉준호</td>
-                      <td>51</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>최동훈</td>
-                      <td>49</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                        </div>
-                      </td>
-                    </tr>
+                    </c:forEach>
                   </tbody>
 
                 </table>

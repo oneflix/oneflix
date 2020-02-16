@@ -1,4 +1,4 @@
-package com.main.oneflix.actor.manager.controller;
+package com.main.oneflix.actor.admin.controller;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import com.main.oneflix.actor.service.UpdateActorService;
 import com.main.oneflix.actor.vo.ActorVO;
 
 @Controller
-public class ActionController {
+public class ActorController {
 	@Autowired
 	private InsertActorService insertActorService;
 	

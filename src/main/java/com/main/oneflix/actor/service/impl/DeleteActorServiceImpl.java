@@ -4,18 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.main.oneflix.actor.dao.ActorDAO;
+import com.main.oneflix.actor.service.DeleteActorService;
 import com.main.oneflix.actor.service.GetActorService;
 import com.main.oneflix.actor.vo.ActorVO;
 @Service
-public class DeleteActorServiceImpl implements GetActorService {
+public class DeleteActorServiceImpl implements DeleteActorService {
 
 	@Autowired
 	private ActorDAO actorDAO;
 
 	@Override
-	public ActorVO getActorService(ActorVO vo) {
+	public void deleteActorService(ActorVO vo) {
 		// TODO Auto-generated method stub
-		return actorDAO.getActor(vo);
+		
 	}
 
 }
