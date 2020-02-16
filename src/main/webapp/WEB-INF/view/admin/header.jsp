@@ -188,7 +188,7 @@
 			});
 			
 			// 슈퍼 관리자인지 아닌지
-			if ("${manager.managerType}" != 9) {
+			if ("${loginManager.managerType}" != 9) {
 				$('#manager-menu').hide();
 			}
 			

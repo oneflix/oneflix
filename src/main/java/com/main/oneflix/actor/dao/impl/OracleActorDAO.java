@@ -41,6 +41,6 @@ public class OracleActorDAO implements ActorDAO{
 
 	@Override
 	public List<ActorVO> getActorList(ActorVO vo) {
-		return sqlSessionTemplate.selectOne("ActorDAO.getActorList",vo);
+		return sqlSessionTemplate.selectList("ActorDAO.getActorList",vo);
 	}
 }

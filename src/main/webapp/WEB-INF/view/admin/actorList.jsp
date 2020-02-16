@@ -44,9 +44,8 @@
 						<div class="card">
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
-									style="float: left;">+ 추가</button>
-								<form class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
+									style="float: left;" onclick="location.href='/insertActor.mdo'">+ 추가</button>
+								<form class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
 											<input type="text" name="table_search"
@@ -72,19 +71,22 @@
 											<th>관리</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>강동원</td>
-											<td>40</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-												</div>
-											</td>
-										</tr>
-									</tbody>
+									<c:forEach var="actor" items="${actorList}">
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>${actor.actorName}</td>
+												<td>${actor.actorAge}<td>
+													<div>
+														<button type="button" class="btn btn-sm btn-primary"
+															onclick="location.href='/getActorProc.mdo?actorId=${actor.actorId}'">수정</button>
+														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${actor.actorId}')">삭제</button>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</c:forEach>
+									
 								</table>
 							</div>
 						</div>
@@ -102,6 +104,14 @@
 
 	</div>
 	<!-- ./wrapper -->
+	<script>
+		function deleteCheck(actorId) {
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if (check == true) {
+				document.location.href = "/deleteActorProc.mdo?actorId=" + actorId;
+			}
+		}
+	</script>
 
 </body>
 

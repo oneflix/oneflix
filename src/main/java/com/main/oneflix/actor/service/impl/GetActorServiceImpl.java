@@ -14,7 +14,6 @@ public class GetActorServiceImpl implements GetActorService{
 
 	@Override
 	public ActorVO getActorService(ActorVO vo) {
-		// TODO Auto-generated method stub
 		return actorDAO.getActor(vo);
 	}
 }
