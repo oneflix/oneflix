@@ -46,10 +46,10 @@
 
 
 
-                <form class="form-inline ml-3" style="float: right; margin-top: 4px;">
+                <form method="post" action="/genreListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 300px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="검색">
+                      <input type="text" name="searchGenre" class="form-control float-right" placeholder="검색">
 
                       <div class="input-group-append">
                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
