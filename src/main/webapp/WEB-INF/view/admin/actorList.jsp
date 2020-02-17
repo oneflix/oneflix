@@ -45,10 +45,10 @@
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
 									style="float: left;" onclick="location.href='/insertActor.mdo'">+ 추가</button>
-								<form class="form-inline ml-3" style="float: right; margin-top: 4px;">
+								<form method="post" action="/actorListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="table_search"
+											<input type="text" name="searchActor"
 												class="form-control float-right" placeholder="Search">
 											<div class="input-group-append">
 												<button type="submit" class="btn btn-default">
