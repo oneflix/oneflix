@@ -14,7 +14,7 @@ public class GetGenreServiceImpl implements GetGenreService {
 	private GenreDAO genreDAO;
 	
 	@Override
-	public GenreVO getGenreService(GenreVO vo) {
+	public GenreVO getGenre(GenreVO vo) {
 		return genreDAO.getGenre(vo);
 
 	}
