@@ -43,8 +43,8 @@ public class GenreController {
 		return mav;
 	}
 	
-	@RequestMapping("/genreListProc.mdo")
-	public ModelAndView getGenreList(GenreVO vo, ModelAndView mav) {
+	@RequestMapping("/getGenreListProc.mdo")
+	public ModelAndView getGenreListProc(GenreVO vo, ModelAndView mav) {
 		if(vo.getSearchGenre() == null) vo.setSearchGenre("");
 		List<GenreVO> genreList = getGenreListService.getGenreList(vo);
 		mav.addObject("genreList", genreList);

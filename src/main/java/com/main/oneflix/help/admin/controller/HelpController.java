@@ -30,8 +30,8 @@ public class HelpController {
 	@Autowired
 	private GetHelpListService getHelpListService;
 	
-	@RequestMapping("/helpListProc.mdo")
-	public ModelAndView getHelpList(HelpVO vo,ModelAndView mav) {
+	@RequestMapping("/getHelpListProc.mdo")
+	public ModelAndView getHelpListProc(HelpVO vo,ModelAndView mav) {
 		List<HelpVO> helpList = getHelpListService.getHelpListService(vo);
 		mav.addObject("helpList",helpList);
 		mav.setViewName("helpList");
