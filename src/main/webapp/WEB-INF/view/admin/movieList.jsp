@@ -45,9 +45,8 @@
 						<div class="card">
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
-									style="float: left;">+ 추가</button>
-								<form class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
+									style="float: left;" onclick="location.href='/insertMovie.mdo'">+ 추가</button>
+								<form class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
 											<input type="text" name="table_search"
@@ -85,58 +84,21 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>드라마</td>
-											<td>(img)</td>
-											<td>윌터의 상상은 현실이 된다</td>
-											<td>
+										<c:forEach var="movie" items="${movieList}">
+											<tr>
+												<td>1</td>
+												<td>${movie.genreId1}</td>
+												<td><img src="${movie.posterPath}"/></td>
+												<td>${movie.movieTitle}</td>
+												<td>
 												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
+													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
+													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movieId}')">삭제</button>
 													<button type="button" class="btn btn-sm btn-info">상세보기</button>
 												</div>
 											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>로맨스</td>
-											<td>(img)</td>
-											<td>이터널 선샤인</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-													<button type="button" class="btn btn-sm btn-info">상세보기</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>코미디</td>
-											<td>(img)</td>
-											<td>나 홀로 집에</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-													<button type="button" class="btn btn-sm btn-info">상세보기</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>액션</td>
-											<td>(img)</td>
-											<td>매드맥스:분노의도로</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-													<button type="button" class="btn btn-sm btn-info">상세보기</button>
-												</div>
-											</td>
-										</tr>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -159,7 +121,14 @@
 
 	</div>
 	<!-- ./wrapper -->
-
+	<script>
+		function deleteCheck(movieId) {
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if (check == true) {
+				document.location.href = "/deleteMovieProc.mdo?movieId=" + movieId;
+			}
+		}
+	</script>
 
 </body>
 

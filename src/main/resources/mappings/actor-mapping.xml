@@ -19,12 +19,10 @@
 	</update>
 	<delete id="deleteActor" parameterType="actor">
 		DELETE FROM actor
-		WHERE
-		actor_id = #{actorId}
+		WHERE actor_id = #{actorId}
 	</delete>
 	<select id="getActor" parameterType="actor" resultType="actor">
-		SELECT *
-		FROM actor
+		SELECT * FROM actor
 		WHERE actor_id = #{actorId, jdbcType=NUMERIC}
 	</select>
 	<resultMap type="actor" id="actorList">
@@ -39,7 +37,6 @@
 		</if>
 		ORDER BY
 		actor_id ASC
-
 	</select>
 
 </mapper>
