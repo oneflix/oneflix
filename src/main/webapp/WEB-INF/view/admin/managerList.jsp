@@ -76,8 +76,8 @@
 										</tr>
 									</thead>
 
-									<c:forEach var="manager" items="${managerList}">
-										<tbody>
+									<tbody>
+										<c:forEach var="manager" items="${managerList}">
 											<tr>
 												<td>1</td>
 												<td>${manager.managerId}</td>
@@ -93,8 +93,8 @@
 													</div>
 												</td>
 											</tr>
-										</tbody>
-									</c:forEach>
+										</c:forEach>
+									</tbody>
 
 								</table>
 							</div>

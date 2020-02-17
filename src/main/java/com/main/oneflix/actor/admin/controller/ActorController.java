@@ -33,7 +33,6 @@ public class ActorController {
 
 	@RequestMapping("/actorListProc.mdo")
 	public ModelAndView getActorList(ActorVO vo, ModelAndView mav) {
-		System.out.println(vo.getSearchActor());
 		List<ActorVO> actorList = getActorListService.getActorListService(vo);
 		mav.addObject("actorList", actorList);
 		mav.setViewName("actorList");

@@ -71,8 +71,8 @@
 											<th>관리</th>
 										</tr>
 									</thead>
-									<c:forEach var="actor" items="${actorList}">
-										<tbody>
+									<tbody>
+										<c:forEach var="actor" items="${actorList}">
 											<tr>
 												<td>1</td>
 												<td>${actor.actorName}</td>
@@ -84,9 +84,9 @@
 													</div>
 												</td>
 											</tr>
-										</tbody>
-									</c:forEach>
+										</c:forEach>
 									
+									</tbody>
 								</table>
 							</div>
 						</div>
