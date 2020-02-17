@@ -23,26 +23,22 @@ public class OracleDirectorDAO implements DirectorDAO {
 
 	@Override
 	public void updateDirector(DirectorVO vo) {
-		// TODO Auto-generated method stub
-
+		sqlSessionTemplate.update("DirectorDAO.updateDirector", vo);
 	}
 
 	@Override
 	public void deleteDirector(DirectorVO vo) {
-		// TODO Auto-generated method stub
-
+		sqlSessionTemplate.delete("DirectorDAO.deleteDirector", vo);
 	}
 
 	@Override
 	public DirectorVO getDirector(DirectorVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne("DirectorDAO.getDirector", vo);
 	}
 
 	@Override
 	public List<DirectorVO> getDirectorList(DirectorVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("DirectorDAO.getDirectorList", vo);
 	}
 
 }
