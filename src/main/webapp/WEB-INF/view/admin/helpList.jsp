@@ -44,7 +44,7 @@
 						<div class="card">
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
-									style="float: left;">+ 추가</button>
+									style="float: left;" onclick="location.href='/insertHelp.mdo'">+ 추가</button>
 
 
 
@@ -52,7 +52,7 @@
 									style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="table_search"
+											<input type="text" name="searchHelp"
 												class="form-control float-right" placeholder="검색">
 
 											<div class="input-group-append">
@@ -76,58 +76,21 @@
 											<th>관리</th>
 										</tr>
 									</thead>
+									<c:forEach var="help" items="${helpList }">
 									<tbody>
 										<tr>
 											<td>1</td>
-											<td>Q.이용권 구독 중에 프리미엄 이용권으로 변경 가능한가요?</td>
+											<td>${help.helpTitle}</td>
 											<td>
 												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
+													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getHelpProc.mdo?helpId=${help.helpId}'">수정</button>
+													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${help.helpId}')">삭제</button>
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>Q.이메일 주소/비밀번호가 기억나지 않아요.</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Q.새로운 작품 추가를 제안하고 싶어요.</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Q.해지하고 싶어요.</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>Q.이용권 만료일을 어떻게 확인할 수 있나요?</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-												</div>
-											</td>
-										</tr>
+									
 									</tbody>
+									</c:forEach>
 
 								</table>
 							</div>
@@ -150,7 +113,14 @@
 
 	</div>
 	<!-- ./wrapper -->
-
+	<script>
+		function deleteCheck(helpId){
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if(check == true){
+				document.location.href = "/deleteHelpProc.mdo?helpId=" + helpId;
+			}
+		}
+	</script>
 
 </body>
 

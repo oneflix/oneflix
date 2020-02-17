@@ -8,6 +8,7 @@ public class DirectorVO {
 	private Integer directorId;
 	private String directorName;
 	private int directorAge;
+	private String searchDirectorName;
 
 	public Integer getDirectorId() {
 		return directorId;
@@ -33,4 +34,13 @@ public class DirectorVO {
 		this.directorAge = directorAge;
 	}
 
+	public String getSearchDirectorName() {
+		return searchDirectorName;
+	}
+
+	public void setSearchDirectorName(String searchDirectorName) {
+		this.searchDirectorName = searchDirectorName;
+	}
+	
+	
 }
