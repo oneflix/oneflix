@@ -77,7 +77,7 @@
                       <td>
                         <div>
                           <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getGenreProc.mdo?genreId=${genre.genreId}'">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger" onclick="location.href='/deleteGenreProc.mdo?genreId=${genre.genreId}'">삭제</button>
+                          <button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${genreId}')">삭제</button>
                         </div>
                       </td>
                     </tr>
@@ -98,20 +98,13 @@
   </div>
   <!-- ./wrapper -->
   <script>
-  	$('#searchGenre').keyup(function(){
-  		var sendData = {searchGenre : $('#searchGenre').value()}
-  		
-  		$.ajax({
-  			type: "POST",
-  			url: "/genreListProc.mdo",
-  			data: sendData,
-  			success: function(data {
-  				$
-  			})
-  		})
-  	});
-  	
-  </script>
+		function deleteCheck(genreId) {
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if (check == true) {
+				document.location.href = "/deleteGenreProc.mdo?genreId=" + genreId;
+			}
+		}
+	</script>
 
 </body>
 

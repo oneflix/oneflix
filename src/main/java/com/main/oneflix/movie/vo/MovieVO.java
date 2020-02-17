@@ -2,11 +2,13 @@ package com.main.oneflix.movie.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MovieVO {
 
 	private Integer movieId;
 	private String movieTitle;
-	private int movieScore;
+	private double movieScore;
 	private String rating;
 	private int duration;
 	private int directorId;
@@ -20,12 +22,16 @@ public class MovieVO {
 	private String country;
 	private String release;
 	private String summary;
+	private MultipartFile poster;
 	private String posterPath;
+	private MultipartFile fullVideo;
 	private String fullVideoPath;
+	private MultipartFile teaserVideo;
 	private String teaserVideoPath;
 	private int viewCount;
 	private Date movieRegDate;
 	private String mainCheck;
+	private String movieStatus;
 
 	public Integer getMovieId() {
 		return movieId;
@@ -43,11 +49,11 @@ public class MovieVO {
 		this.movieTitle = movieTitle;
 	}
 
-	public int getMovieScore() {
+	public double getMovieScore() {
 		return movieScore;
 	}
 
-	public void setMovieScore(int movieScore) {
+	public void setMovieScore(double movieScore) {
 		this.movieScore = movieScore;
 	}
 
@@ -155,6 +161,14 @@ public class MovieVO {
 		this.summary = summary;
 	}
 
+	public MultipartFile getPoster() {
+		return poster;
+	}
+
+	public void setPoster(MultipartFile poster) {
+		this.poster = poster;
+	}
+
 	public String getPosterPath() {
 		return posterPath;
 	}
@@ -163,12 +177,28 @@ public class MovieVO {
 		this.posterPath = posterPath;
 	}
 
+	public MultipartFile getFullVideo() {
+		return fullVideo;
+	}
+
+	public void setFullVideo(MultipartFile fullVideo) {
+		this.fullVideo = fullVideo;
+	}
+
 	public String getFullVideoPath() {
 		return fullVideoPath;
 	}
 
 	public void setFullVideoPath(String fullVideoPath) {
 		this.fullVideoPath = fullVideoPath;
+	}
+
+	public MultipartFile getTeaserVideo() {
+		return teaserVideo;
+	}
+
+	public void setTeaserVideo(MultipartFile teaserVideo) {
+		this.teaserVideo = teaserVideo;
 	}
 
 	public String getTeaserVideoPath() {
@@ -201,6 +231,14 @@ public class MovieVO {
 
 	public void setMainCheck(String mainCheck) {
 		this.mainCheck = mainCheck;
+	}
+
+	public String getMovieStatus() {
+		return movieStatus;
+	}
+
+	public void setMovieStatus(String movieStatus) {
+		this.movieStatus = movieStatus;
 	}
 
 }
