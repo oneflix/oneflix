@@ -16,7 +16,6 @@ public class GetActorListServiceImpl implements GetActorListService {
 
 	@Override
 	public List<ActorVO> getActorListService(ActorVO vo) {
-		// TODO Auto-generated method stub
 		return actorDAO.getActorList(vo);
 	}
 

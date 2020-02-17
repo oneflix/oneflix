@@ -29,7 +29,7 @@ public class LoginController {
 		if (vo == null) {
 			viewName = "login";
 		} else {
-			session.setAttribute("manager", vo);
+			session.setAttribute("loginManager", vo);
 			viewName = "redirect:/dashboard.mdo";
 		}
 		mav.setViewName(viewName);

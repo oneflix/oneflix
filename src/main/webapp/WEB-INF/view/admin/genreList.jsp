@@ -76,7 +76,7 @@
                       <td>${genre.genre}</td>
                       <td>
                         <div>
-                          <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/updateGenre.mdo?genreId=${genre.genreId}'">수정</button>
+                          <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getGenreProc.mdo?genreId=${genre.genreId}'">수정</button>
                           <button type="button" class="btn btn-sm btn-danger" onclick="location.href='/deleteGenreProc.mdo?genreId=${genre.genreId}'">삭제</button>
                         </div>
                       </td>

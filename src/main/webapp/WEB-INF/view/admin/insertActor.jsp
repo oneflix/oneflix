@@ -35,24 +35,24 @@
 				</div>
 			</section>
 
-			<form action="#" class="row">
+			<form action="/insertActorProc.mdo" method="post" class="row">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
 					<div class="card card-info">
 						<div class="card-body pad">
 							<div class="form-group mb-3">
-								<label for="title">이름</label> <input type="text"
-									class="form-control" id="title" name="title" required="">
+								<label for="actorName">이름</label>
+									<input type="text" class="form-control" id="actorName" name="actorName">
 							</div>
 							<div class="form-group mb-3">
-								<label for="title">나이</label> <input type="text"
-									class="form-control" id="title" name="title" required="">
+								<label for="actorAge">나이</label>
+									<input type="text" class="form-control" id="actorAge" name="actorAge">
 							</div>
 							<br>
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary">취소</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/actorListProc.mdo'">취소</button>
 							</div>
 						</div>
 					</div>
