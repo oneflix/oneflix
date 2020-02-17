@@ -32,8 +32,8 @@ public class ManagerController {
 	@Autowired
 	private GetManagerListService getManagerListService;
 	
-	@RequestMapping("/managerListProc.mdo")
-	public ModelAndView getManagerList(ManagerVO vo, ModelAndView mav) {
+	@RequestMapping("/getManagerListProc.mdo")
+	public ModelAndView getManagerListProc(ManagerVO vo, ModelAndView mav) {
 //		if (vo.getSearchManager() == null) vo.setSearchManager("");
 		List<ManagerVO> managerList = getManagerListService.getManagerList(vo);
 		mav.addObject("managerList", managerList);
