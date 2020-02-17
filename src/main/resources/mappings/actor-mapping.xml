@@ -39,7 +39,6 @@
 		</if>
 		ORDER BY
 		actor_id ASC
-
 	</select>
 
 </mapper>
