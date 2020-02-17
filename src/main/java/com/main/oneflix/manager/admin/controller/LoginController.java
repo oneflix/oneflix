@@ -29,7 +29,7 @@ public class LoginController {
 		if (vo == null) {
 			viewName = "login";
 		} else {
-			session.setAttribute("manager", vo);
+			session.setAttribute("loginManager", vo);
 			viewName = "redirect:/dashboard.mdo";
 		}
 		mav.setViewName(viewName);
@@ -37,7 +37,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/logout.mdo")
-	public ModelAndView logoutProc(ModelAndView mav, HttpSession session) {
+	public ModelAndView logout(ModelAndView mav, HttpSession session) {
 		session.invalidate();
 		mav.setViewName("login");
 		return mav;

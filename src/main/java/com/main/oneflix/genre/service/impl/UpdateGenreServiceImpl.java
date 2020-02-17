@@ -14,7 +14,7 @@ public class UpdateGenreServiceImpl implements UpdateGenreService {
 	private GenreDAO genreDAO;
 	
 	@Override
-	public void updateGenreService(GenreVO vo) {
+	public void updateGenre(GenreVO vo) {
 		genreDAO.updateGenre(vo);
 
 	}

@@ -47,11 +47,10 @@
 
 
 
-								<form class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
+								<form method="post" action="/managerListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="table_search"
+											<input type="text" name="searchManager"
 												class="form-control float-right" placeholder="Search">
 
 											<div class="input-group-append">
@@ -89,7 +88,7 @@
 												<td>
 													<div>
 														<button type="button" class="btn btn-sm btn-primary"
-															onclick="location.href='/updateManager.mdo?managerId=${manager.managerId}'">수정</button>
+															onclick="location.href='/getManagerProc.mdo?managerId=${manager.managerId}'">수정</button>
 														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${manager.managerId}')">삭제</button>
 													</div>
 												</td>

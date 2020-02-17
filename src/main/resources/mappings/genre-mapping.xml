@@ -34,8 +34,11 @@
 	</resultMap>
 
 	<select id="getGenreList" resultMap="genreList">
-		SELECT * FROM genre ORDER BY genre_id ASC
+		SELECT * FROM genre WHERE 1=1
+		<if test="searchGenre != null">
+			AND genre like '%' || #{searchGenre} || '%' 
+		</if> 
+		ORDER BY genre_id ASC
 	</select>
-
 
 </mapper>

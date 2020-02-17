@@ -32,7 +32,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>관리자 추가</h1>
+                            <h1>관리자 수정</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -42,7 +42,7 @@
             <form action="/updateManagerProc.mdo" method="post" class="row">
                 <div class="col-md-3"></div> <!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
                 <div class="col-md-6" style="margin-bottom: 5%;">
-                    <div class="card card-outline card-info">
+                    <div class="card card-info">
                         <div class="card-body pad">
 
                             <div class="form-group mb-3">
@@ -67,7 +67,7 @@
                             <br>
                             <div class="buttons" style="float: right;">
                                 <button type="submit" class="btn btn-success">등록</button>
-                                <button type="button" class="btn btn-secondary" onclick="location.href='/managerList.mdo'">취소</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='/managerListProc.mdo'">취소</button>
                             </div><!-- /.buttons -->
                         </div> <!-- /.card-body .col-md-6 -->
 

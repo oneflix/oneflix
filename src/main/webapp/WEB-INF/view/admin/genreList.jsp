@@ -46,10 +46,10 @@
 
 
 
-                <form class="form-inline ml-3" style="float: right; margin-top: 4px;">
+                <form method="post" action="/genreListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 300px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="검색">
+                      <input id="searchGenre" type="text" name="searchGenre" class="form-control float-right" placeholder="검색">
 
                       <div class="input-group-append">
                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -76,7 +76,7 @@
                       <td>${genre.genre}</td>
                       <td>
                         <div>
-                          <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/updateGenre.mdo?genreId=${genre.genreId}'">수정</button>
+                          <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getGenreProc.mdo?genreId=${genre.genreId}'">수정</button>
                           <button type="button" class="btn btn-sm btn-danger" onclick="location.href='/deleteGenreProc.mdo?genreId=${genre.genreId}'">삭제</button>
                         </div>
                       </td>
@@ -97,6 +97,21 @@
 
   </div>
   <!-- ./wrapper -->
+  <script>
+  	$('#searchGenre').keyup(function(){
+  		var sendData = {searchGenre : $('#searchGenre').value()}
+  		
+  		$.ajax({
+  			type: "POST",
+  			url: "/genreListProc.mdo",
+  			data: sendData,
+  			success: function(data {
+  				$
+  			})
+  		})
+  	});
+  	
+  </script>
 
 </body>
 

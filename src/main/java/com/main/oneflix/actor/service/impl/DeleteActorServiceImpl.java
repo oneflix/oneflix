@@ -7,6 +7,7 @@ import com.main.oneflix.actor.dao.ActorDAO;
 import com.main.oneflix.actor.service.DeleteActorService;
 import com.main.oneflix.actor.service.GetActorService;
 import com.main.oneflix.actor.vo.ActorVO;
+
 @Service
 public class DeleteActorServiceImpl implements DeleteActorService {
 
@@ -15,8 +16,7 @@ public class DeleteActorServiceImpl implements DeleteActorService {
 
 	@Override
 	public void deleteActorService(ActorVO vo) {
-		// TODO Auto-generated method stub
-		
+		actorDAO.deleteActor(vo);
 	}
 
 }

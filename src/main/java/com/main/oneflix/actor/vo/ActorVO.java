@@ -5,9 +5,18 @@ public class ActorVO {
 	private Integer actorId;
 	private String actorName;
 	private int actorAge;
+	private String searchActor;
 
 	public Integer getActorId() {
 		return actorId;
+	}
+
+	public String getSearchActor() {
+		return searchActor;
+	}
+
+	public void setSearchActor(String searchActor) {
+		this.searchActor = searchActor;
 	}
 
 	public void setActorId(Integer actorId) {
