@@ -32,6 +32,9 @@
 	
 	<select id="getDirectorList" parameterType="director" resultMap="directorList">
 		SELECT * FROM director
+		WHERE 1=1 
+		<if test="searchDirectorName!=null and !searchDirectorName.equals('')"> AND director_name LIKE '%'||#{searchDirectorName, jdbcType=VARCHAR}||'%' </if> 
+		ORDER BY director_id DESC
 	</select>
 
 </mapper>
