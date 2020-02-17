@@ -12,15 +12,16 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- Select2 -->
+<link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-
-		<!-- ====================== 
-            ADD header 
-     ====================== -->
+	
 		<jsp:include page="${header_url}"></jsp:include>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -75,39 +76,36 @@
 							<div class="form-group mb-3">
 								<label for="directorId">감독</label>
 								<select id="directorId" name="directorId" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
-									<option value="1">감독1</option>
-									<option value="2">감독2</option>
-									<option value="3">감독3</option>
+									<c:forEach var="director" items="${directorList}">
+									<option value="${director.directorId }">${director.directorName }</option>
+									</c:forEach>
 								</select>
 							</div>
 
 							<div class="form-group mb-3">
 								<label for="actorId">배우</label>
-								<select id="actorId" name="actorId" class="select2bs4" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-									<option value="1">배우1</option>
-									<option value="2">배우2</option>
-									<option value="3">배우3</option>
-									<option value="4">배우4</option>
-									<option value="5">배우5</option>
+								<select id="actorId" name="actorId" class="form-control select2bs4" multiple="multiple" size="5" data-placeholder="Select a State" style="width: 100%;">
+									<c:forEach var="actor" items="${actorList}">
+									<option value="${actor.actorId }">${actor.actorName }</option>
+									</c:forEach>
 								</select>
 							</div>
 							
 							<div class="form-group mb-3">
 								<label for="genreId">장르</label>
-								<select id="genreId" name="genreId" class="select2bs4" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-									<option value="1">코미디</option>
-									<option value="2">로맨스</option>
-									<option value="3">드라마</option>
-									<option value="4">액션</option>
+								<select id="genreId" name="genreId" class="select2bs4" multiple="multiple" size="2" data-placeholder="Select a State" style="width: 100%;">
+									<c:forEach var="genre" items="${genreList}">
+									<option value="${genre.genreId }">${genre.genre }</option>
+									</c:forEach>
 								</select>
 							</div>
 							
 							<div class="form-group mb-3">
 								<label for="country">국가</label>
-								<select id="country" name="country" class="select2bs4" data-placeholder="Select a State" style="width: 100%;">
+								<select id="country" name="country" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
+									<option>한국</option>
 									<option>미국</option>
 									<option>외국</option>
-									<option>한국</option>
 								</select>
 							</div>
 							
@@ -183,10 +181,6 @@
 		</div>
 		<!-- /.content-wrapper -->
 
-
-		<!-- ====================== 
-            ADD Footer
-     ====================== -->
 		<jsp:include page="${footer_url}"></jsp:include>
 
 	</div>
