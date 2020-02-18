@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.actor.service.GetActorListService;
@@ -46,7 +47,7 @@ public class MovieController {
 	
 	@Autowired
 	private GetGenreListService getGenreListService;
-
+	
 	@RequestMapping("/getMovieListProc.mdo")
 	public ModelAndView getMovieListProc(MovieVO vo, ModelAndView mav) {
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
@@ -68,7 +69,7 @@ public class MovieController {
 	}
 
 	@RequestMapping("/insertMovieProc.mdo")
-	public ModelAndView insertMovieProc(MovieVO vo, ModelAndView mav) {
+	public ModelAndView insertMovieProc(MovieVO vo, RequestParam param, ModelAndView mav) {
 		
 		//fileUploadService 구현해야함
 		
@@ -82,7 +83,7 @@ public class MovieController {
 		vo.setTeaserVideoPath(teaserVideoPath);
 		
 		insertMovieService.insertMovie(vo);
-		mav.setViewName("redirect:/movieListProc.mdo");
+		mav.setViewName("redirect:/getmovieListProc.mdo");
 		return mav;
 	}
 
@@ -97,14 +98,14 @@ public class MovieController {
 	@RequestMapping("/updateMovieProc.mdo")
 	public ModelAndView updateMovieProc(MovieVO vo, ModelAndView mav) {
 		updateMovieService.updateMovie(vo);
-		mav.setViewName("redirect:/movieListProc.mdo");
+		mav.setViewName("redirect:/getmovieListProc.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteMovieProc.mdo")
 	public ModelAndView deleteMovieProc(MovieVO vo, ModelAndView mav) {
 		deleteMovieService.deleteMovie(vo);
-		mav.setViewName("redirect:/movieListProc.mdo");
+		mav.setViewName("redirect:/getMovieListProc.mdo");
 		return mav;
 	}
 }

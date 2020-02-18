@@ -13,15 +13,17 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Select2 -->
-<link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
-<link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
+<link rel="stylesheet"
+	href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <!-- Bootstrap4 Duallistbox -->
-<link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<link rel="stylesheet"
+	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-	
+
 		<jsp:include page="${header_url}"></jsp:include>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -45,119 +47,135 @@
 					<div class="card card-info">
 						<div class="card-body pad">
 							<div class="form-group mb-3">
-								<label for="title">제목</label>
-									<input type="text" class="form-control" id="title" name="movieTitle">
+								<label for="title">제목</label> <input type="text"
+									class="form-control" id="title" name="movieTitle"
+									required="required">
 							</div>
-							
+
 							<div class="form-group mb-3">
-								<label for="moviceScore">평균 별점</label>
-								<select id="moviceScore" name="movieScore" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
+								<label for="moviceScore">평균 별점</label> <select id="moviceScore"
+									name="movieScore" class="form-control select2bs4"
+									data-placeholder="Select a State" style="width: 100%;">
 									<c:forEach var="i" begin="0" end="50">
-										<option><c:out value="${i/10}"/></option>
+										<option><c:out value="${i/10}" /></option>
 									</c:forEach>
 								</select>
 							</div>
-							
+
 							<div class="form-group mb-3">
-								<label for="rating">연령 제한</label>
-								<select id="rating" name="rating" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
+								<label for="rating">연령 제한</label> <select id="rating"
+									name="rating" class="form-control select2bs4"
+									data-placeholder="Select a State" style="width: 100%;">
 									<option value="all">전체 관람가</option>
 									<option value="12">12세 이상 관람가</option>
 									<option value="15">15세 이상 관람가</option>
 									<option value="19">청소년 관람불가</option>
 								</select>
 							</div>
-							
+
 							<div class="form-group mb-3">
 								<label for="summary">줄거리</label>
-								<textarea class="form-control" id="summary" name="summary"></textarea>
+								<textarea class="form-control" id="summary" name="summary"
+									required="required"></textarea>
 							</div>
-							
+
 							<div class="form-group mb-3">
-								<label for="directorId">감독</label>
-								<select id="directorId" name="directorId" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
+								<label for="director">감독</label> <select id="directorList"
+									name="directorId" class="form-control select2bs4"
+									required="required" data-placeholder="Select a State"
+									style="width: 100%;">
 									<c:forEach var="director" items="${directorList}">
-									<option value="${director.directorId }">${director.directorName }</option>
+										<option value='${director.directorId }'>${director.directorName }</option>
 									</c:forEach>
 								</select>
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="actorId">배우</label>
-								<select id="actorId" name="actorId" class="form-control select2bs4" multiple="multiple" size="5" data-placeholder="Select a State" style="width: 100%;">
+								<label for="actor">배우</label> <select id="actorList"
+									name="actorList" class="form-control select2bs4"
+									required="required" multiple="multiple" onclick="myFunction()"
+									data-placeholder="Select a State" style="width: 100%;">
 									<c:forEach var="actor" items="${actorList}">
-									<option value="${actor.actorId }">${actor.actorName }</option>
+										<option value="${actor.actorId }">${actor.actorName }</option>
 									</c:forEach>
 								</select>
 							</div>
-							
+
 							<div class="form-group mb-3">
-								<label for="genreId">장르</label>
-								<select id="genreId" name="genreId" class="select2bs4" multiple="multiple" size="2" data-placeholder="Select a State" style="width: 100%;">
+								<label for="genre">장르</label> <select id="genreList"
+									name="genreList" class="form-control select2bs4"
+									required="required" multiple="multiple"
+									data-placeholder="Select a State" style="width: 100%;">
 									<c:forEach var="genre" items="${genreList}">
-									<option value="${genre.genreId }">${genre.genre }</option>
+										<option value="${genre.genreId }">${genre.genre }</option>
 									</c:forEach>
 								</select>
 							</div>
-							
+
 							<div class="form-group mb-3">
-								<label for="country">국가</label>
-								<select id="country" name="country" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
+								<label for="country">국가</label> <select id="country"
+									required="required" name="country"
+									class="form-control select2bs4"
+									data-placeholder="Select a State" style="width: 100%;">
 									<option>한국</option>
 									<option>미국</option>
 									<option>외국</option>
 								</select>
 							</div>
-							
+
 							<div class="form-group mb-3">
-								<label for="release">개봉 연도</label>
-								<select id="release" name="release" class="form-control select2bs4" data-placeholder="Select a State" style="width: 100%;">
+								<label for="release">개봉 연도</label> <select id="release"
+									name="release" class="form-control select2bs4"
+									required="required" data-placeholder="Select a State"
+									style="width: 100%;">
 									<c:forEach var="i" begin="1950" end="2020">
-										<option><c:out value="${i}"/></option>
+										<option><c:out value="${i}" /></option>
 									</c:forEach>
 								</select>
 							</div>
-							
+
 							<div class="form-group">
 								<label>포스터</label>
 								<div class="custom-file">
-									<input type="file" name="poster" class="custom-file-input" id="poster">
-									<label class="custom-file-label" for="poster">파일 선택</label>
+									<input type="file" name="poster" class="custom-file-input"
+										required="required" id="poster"> <label
+										class="custom-file-label" for="poster">파일 선택</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label>Teaser Video</label>
 								<div class="custom-file">
-									<input type="file" name="teaserVideo" class="custom-file-input" id="teaser-video">
-									<label class="custom-file-label" for="teaser-video">파일 선택</label>
+									<input type="file" name="teaserVideo" class="custom-file-input"
+										required="required" id="teaser-video"> <label
+										class="custom-file-label" for="teaser-video">파일 선택</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label>Full Video</label>
 								<div class="custom-file">
-									<input type="file" name="fullVideo" class="custom-file-input" id="full-video">
-									<label class="custom-file-label" for="full-video">파일 선택</label>
+									<input type="file" name="fullVideo" class="custom-file-input"
+										required="required" id="full-video"> <label
+										class="custom-file-label" for="full-video">파일 선택</label>
 								</div>
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="duration">상영시간</label>
-								<input type="text" class="form-control" id="duration" name="duration">
+								<label for="duration">상영시간</label> <input type="text"
+									class="form-control" id="duration" name="duration"  />
 							</div>
 
 							<div class="form-group">
-								<label>활성화</label>
-								<select name="movieStatus" class="form-control">
+								<label>활성화</label> <select name="movieStatus"
+									class="form-control">
 									<option value="Y">YES</option>
 									<option value="N">NO</option>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label>메인</label>
-								<select name="mainCheck" class="form-control">
+								<label>메인</label> <select name="mainCheck" class="form-control">
 									<option value="Y">YES</option>
 									<option value="N">NO</option>
 								</select>
@@ -166,7 +184,8 @@
 							<br>
 							<div class="buttons custom-float">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary">취소</button>
+								<button type="button" class="btn btn-secondary"
+									onclick="location.href='/getMovieListProc.mdo'">취소</button>
 							</div>
 							<!-- /.buttons -->
 						</div>
@@ -193,24 +212,42 @@
 	<script
 		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 	<!-- bs-custom-file-input -->
-  	<script src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<script
+		src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script>
-        $(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2()
+		$(function() {
+			//Initialize Select2 Elements
+			$('.select2').select2()
 
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
-            //Bootstrap Duallistbox
-            $('.duallistbox').bootstrapDualListbox()
-            
-            //파일 인풋하면 텍스트 적어줌
-            bsCustomFileInput.init();
-        })
-    </script>
-	
+			//Initialize Select2 Elements
+			$('.select2bs4').select2({
+				theme : 'bootstrap4'
+			})
+			//Bootstrap Duallistbox
+			$('.duallistbox').bootstrapDualListbox()
+
+			//파일 인풋하면 텍스트 적어줌
+			bsCustomFileInput.init();
+		});
+	</script>
+
+	<script>
+		$('#actorList').change(function() {
+			if($('#actorList option:selected').length == 6){
+				alert("배우는 최대 5명까지만 등록할 수 있습니다.");
+				    $('#actorList option:selected:eq(0)').prop("selected", false);
+			};
+		});
+		
+		$('#genreList').change(function() {
+			if($('#genreList option:selected').length == 3){
+				alert("장르는 최대 2개까지만 등록할 수 있습니다.");
+				    $('#genreList option:selected:eq(0)').prop("selected", false);
+			};
+		});
+	</script>
+
+
 </body>
 
 </html>

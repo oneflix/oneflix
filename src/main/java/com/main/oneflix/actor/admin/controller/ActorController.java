@@ -48,7 +48,7 @@ public class ActorController {
 	@RequestMapping("/insertActorProc.mdo")
 	public ModelAndView insertActorProc(ActorVO vo, ModelAndView mav) {
 		insertActorService.InsertActorService(vo);
-		mav.setViewName("redirect:/actorListProc.mdo");
+		mav.setViewName("redirect:/getActorListProc.mdo");
 		return mav;
 	}
 	
