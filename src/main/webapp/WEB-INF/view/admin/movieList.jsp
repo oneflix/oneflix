@@ -19,9 +19,6 @@
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
-		<!-- ====================== 
-            ADD headr 
-     ====================== -->
 		<jsp:include page="${header_url}"></jsp:include>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -63,11 +60,9 @@
 								<select class="form-control form-control-sm select2bs4"
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option selected="selected">모든 장르</option>
-									<option>Genre 1</option>
-									<option>Genre 2</option>
-									<option>Genre 3</option>
-									<option>Genre 4</option>
-									<option>Genre 5</option>
+									<c:forEach var="genre" items="${genreList}">
+										<option value="${genre.genreId }">${genre.genre }</option>
+									</c:forEach>
 								</select>
 							</div>
 							<!-- /.card-header -->
@@ -93,7 +88,7 @@
 												<td>
 												<div>
 													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
-													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movieId}')">삭제</button>
+													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movie.movieId}')">삭제</button>
 													<button type="button" class="btn btn-sm btn-info">상세보기</button>
 												</div>
 											</td>
@@ -113,10 +108,6 @@
 		</div>
 		<!-- /.row -->
 
-
-		<!-- ====================== 
-            ADD Footer
-     ====================== -->
 		<jsp:include page="${footer_url}"></jsp:include>
 
 	</div>
