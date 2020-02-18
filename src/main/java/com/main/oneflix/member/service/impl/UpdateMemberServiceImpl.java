@@ -13,7 +13,7 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
 	private MemberDAO memberDAO;
 
 	@Override
-	public void updateMemberService(MemberVO vo) {
+	public void updateMember(MemberVO vo) {
 		memberDAO.updateMember(vo);
 	}
 

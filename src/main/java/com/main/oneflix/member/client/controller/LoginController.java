@@ -20,7 +20,7 @@ public class LoginController {
 		return mav;
 	}
 	@RequestMapping("/login.do")
-	public ModelAndView login(MemberVO vo, ModelAndView mav) {
+	public ModelAndView login(ModelAndView mav) {
 		mav.setViewName("login");
 		return mav;
 	}

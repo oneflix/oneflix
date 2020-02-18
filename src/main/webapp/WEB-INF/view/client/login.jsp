@@ -47,7 +47,7 @@
 		<div class="header">
 			<div class="nav">
 				<a href="#"><img class="header-logo" src="client/images/oneflix_logo.png"></a>
-				<button type="button" class="btn btn-sm btn-light login-button">
+				<button type="button" class="btn btn-sm btn-light login-button" onclick="location.href='join.do'">
 					회원가입
 				</button>
 			</div>

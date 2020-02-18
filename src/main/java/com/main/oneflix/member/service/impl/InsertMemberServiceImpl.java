@@ -12,7 +12,7 @@ public class InsertMemberServiceImpl implements InsertMemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	@Override
-	public void insertMemberService(MemberVO vo) {
+	public void insertMember(MemberVO vo) {
 		memberDAO.insertMember(vo);
 
 	}
