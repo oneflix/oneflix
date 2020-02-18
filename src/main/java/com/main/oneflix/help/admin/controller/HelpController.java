@@ -47,7 +47,7 @@ public class HelpController {
 	@RequestMapping("/insertHelpProc.mdo")
 	public ModelAndView insertHelpProc(HelpVO vo,ModelAndView mav) {
 		insertHelpService.insertHelpService(vo);
-		mav.setViewName("redirect:/helpListProc.mdo");
+		mav.setViewName("redirect:/getHelpListProc.mdo");
 		return mav;
 	}
 	
@@ -62,14 +62,14 @@ public class HelpController {
 	@RequestMapping("/updateHelpProc.mdo")
 	public ModelAndView updateHelpProc(HelpVO vo,ModelAndView mav) {
 		updateHelpService.updateHelpService(vo);
-		mav.setViewName("redirect:/helpListProc.mdo");
+		mav.setViewName("redirect:/getHelpListProc.mdo");
 		return mav;
 	}
 	
 	@RequestMapping("/deleteHelpProc.mdo")
 	public ModelAndView deleteHelpProc(HelpVO vo,ModelAndView mav) {
 		deleteHelpService.deleteHelpService(vo);
-		mav.setViewName("redirect:/helpListProc.mdo");
+		mav.setViewName("redirect:/getHelpListProc.mdo");
 		return mav;
 	}
 	

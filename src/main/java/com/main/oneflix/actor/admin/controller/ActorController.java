@@ -63,14 +63,14 @@ public class ActorController {
 	@RequestMapping("/updateActorProc.mdo")
 	public ModelAndView updateActorProc(ActorVO vo, ModelAndView mav) {
 		updateActorService.updateActorService(vo);
-		mav.setViewName("redirect:/actorListProc.mdo");
+		mav.setViewName("redirect:/getActorListProc.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteActorProc.mdo")
 	public ModelAndView deleteActorProc(ActorVO vo, ModelAndView mav) {
 		deleteActorService.deleteActorService(vo);
-		mav.setViewName("redirect:/actorListProc.mdo");
+		mav.setViewName("redirect:/getActorListProc.mdo");
 		return mav;
 	}
 

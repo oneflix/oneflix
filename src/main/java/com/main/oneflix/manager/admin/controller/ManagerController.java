@@ -50,7 +50,7 @@ public class ManagerController {
 	@RequestMapping("/insertManagerProc.mdo")
 	public ModelAndView insertManagerProc(ManagerVO vo, ModelAndView mav) {
 		insertManagerService.insertManager(vo);
-		mav.setViewName("redirect:/managerListProc.mdo");
+		mav.setViewName("redirect:/getManagerListProc.mdo");
 		return mav;
 	}
 	
@@ -65,14 +65,14 @@ public class ManagerController {
 	@RequestMapping("/updateManagerProc.mdo")
 	public ModelAndView updateManagerProc(ManagerVO vo, ModelAndView mav) {
 		updateManagerSerivce.updateManager(vo);
-		mav.setViewName("redirect:/managerListProc.mdo");
+		mav.setViewName("redirect:/getManagerListProc.mdo");
 		return mav;
 	}
 	
 	@RequestMapping("/deleteManagerProc.mdo")
 	public ModelAndView deleteManagerProc(ManagerVO vo, ModelAndView mav) {
 		deleteManagerSerivce.deleteManager(vo);
-		mav.setViewName("redirect:/managerListProc.mdo");
+		mav.setViewName("redirect:/getManagerListProc.mdo");
 		return mav;
 	}
 	
