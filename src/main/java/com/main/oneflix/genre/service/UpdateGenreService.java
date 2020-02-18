@@ -4,6 +4,6 @@ import com.main.oneflix.genre.vo.GenreVO;
 
 public interface UpdateGenreService {
 	
-	void updateGenreService(GenreVO vo);
+	void updateGenre(GenreVO vo);
 
 }

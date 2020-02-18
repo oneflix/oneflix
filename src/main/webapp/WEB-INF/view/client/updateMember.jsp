@@ -6,82 +6,107 @@
 <html lang="ko">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ONeflix</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONeflix</title>
 
-<link rel="stylesheet" href="client/css/all.css">
+    <link rel="stylesheet" href="client/css/all.css">
+    <link rel="stylesheet" href="client/css/user_update.css">
 </head>
 
 <body>
 
-	<!-- SIDE BAR -->
-	<jsp:include page="${sidebar_url}"></jsp:include>
+    <jsp:include page="${sidebar_url}"></jsp:include>
 
-	<div class="page-body">
+    <div class="page-body" style="background-color: #ffffff; height: 97vh;">
+        <section class="css-1vpi0so-Self-Self">
+            <section class="css-34jiqc-Section e1199ims14">
+                <h2 class="css-14w6zap-SectionHeader e1199ims15">본인인증</h2>
+                <ul class="css-gi4296-SettingListUl e1199ims20">
+                    <li class="css-ar8roi-SettingList e1199ims17">
+                        <div class="css-awho9y-SettingListTitle e1199ims21">본인인증 상태</div>
+                        <div class="css-18xcnb7-SettingListContent e1199ims18">
+                            <div class="css-1epg2mh-SettingListContentRow e1199ims19">
+                                <div class="css-ht5cer-SubscribeStatus e1199ims26">
+                                    <div class="css-1a5vbj5-SubscribeStatusText e1199ims27">X</div>
+                                </div>
+                            </div>
+                            <div class="css-1epg2mh-SettingListContentRow e1199ims19">
+                                <div class="css-1bognut-ChangeSubscribeStatusBlock e1199ims5"><button
+                                        class=" css-wfgy93-Self e1ktu1gx0" type="button">본인인증하기</button></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <form>
+                <section class="css-34jiqc-Section e1199ims14">
+                    <h2 class="css-14w6zap-SectionHeader e1199ims15">계정</h2>
+                    <ul class="css-gi4296-SettingListUl e1199ims20">
+                        <li class="css-ar8roi-SettingList e1199ims17">
+                            <div class="css-awho9y-SettingListTitle e1199ims21">닉네임</div>
+                            <div class="css-18xcnb7-SettingListContent e1199ims18">
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims19 pre-form">
+                                    <div class="css-av4kss-ValueTextBlock e1199ims30">nick1</div>
+                                    <div class="css-1vx1h8q-SmallButtonsBlock e1199ims24"><button
+                                            class=" e1199ims25 css-lzf1fk-Self-SmallSettingButton e1ktu1gx0"
+                                            type="button" id="form-change">변경</button></div>
+                                </div>
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims19 next-form">
+                                    <div class="css-1ymlnpj-FieldBlock e1199ims8">
+                                        <div class="css-unatsl-Self eu52ful0"><input name="password"
+                                                placeholder="닉네임을 입력해주세요." autocomplete="off"
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                    </div>
+                                </div>
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims19 next-form">
+                                    <div class="css-1ymlnpj-FieldBlock e1199ims8">
+                                        <div class="css-unatsl-Self eu52ful0"><input name="password"
+                                                placeholder="비밀번호를 입력해주세요." autocomplete="off"
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="css-ar8roi-SettingList e1199ims17">
+                            <div class="css-awho9y-SettingListTitle e1199ims21">비밀번호</div>
+                            <div class="css-18xcnb7-SettingListContent e1199ims18">
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims19">
+                                    <div class="css-1ymlnpj-FieldBlock e1199ims8">
+                                        <div class="css-unatsl-Self eu52ful0"><input name="password"
+                                                placeholder="현재 비밀번호" autocomplete="off"
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                    </div>
+                                </div>
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims19">
+                                    <div class="css-1ymlnpj-FieldBlock e1199ims8">
+                                        <div class="css-unatsl-Self eu52ful0"><input name="newPassword"
+                                                placeholder="새 비밀번호" autocomplete="off"
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                    </div>
+                                </div>
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims19">
+                                    <div class="css-1ymlnpj-FieldBlock e1199ims8">
+                                        <div class="css-unatsl-Self eu52ful0"><input name="newPasswordConfirmation"
+                                                placeholder="새 비밀번호 확인" autocomplete="off"
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                </section>
+                        <div class="css-t5kw01-ChangeProfileButtonBlock e1199ims3">
+                            <button type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
+                        </div>
+            </form>
+        </section>
+    </div>
 
-		<div style="text-align: left; width: 100%; height: 900px;">
-			<h1 style="font-weight: bolder; font-size: 3.5em;">개인정보수정</h1>
-			<br>
-			<br>
-			<li><span
-				style="text-align: right; width: 50%; height: 5%; font-size: 45px; font-weight: bold;">
-					본인인증여부 </span></li>
-			<div
-				style="text-align: center; width: 50%; height: 5%; font-size: 25px; margin: 0 auto">
-				<br>
-				<p style="font-size: 30px; display: inline;">이성계</p>
-				&nbsp;
-				<button type="button">인증하기</button>
-
-			</div>
-			<br>
-			<li><span
-				style="text-align: right; width: 50%; height: 5%; font-size: 45px; font-weight: bold;">
-					계정 </span></li>
-			<div
-				style="text-align: center; width: 50%; height: 5%; font-size: 30px; margin: 0 auto;">
-
-				닉네임&nbsp;
-				<p style="text-align: center; display: inline;">${member.nick}</p>
-				&nbsp; <input type="button" value="변경" onClick="changeForm()"
-					style="display: inline;" /><br>
-				<div id="div1" style="display: none;">
-					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input style="width: 150px; height: 25px;" name="" type="text"
-						placeholder="새 닉네임" /><br>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input style="width: 150px; height: 25px;" name="" type="password"
-						placeholder="비밀번호" />
-				</div>
-				<br>
-				<br>
-				<div
-					style="text-align: center; font-size: 30px; vertical-align: text-top;">
-					비밀번호: <input style="width: 150px; height: 30px;" name="passConfirm"
-						placeholder="현재 비밀번호" autocapitalize="off" type="password"><br>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input style="width: 150px; height: 30px;" name="newPass"
-						placeholder="새 비밀번호" autocapitalize="off" type="password"><br>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input style="width: 150px; height: 30px;" name="newPassConfirm"
-						placeholder="새 비밀번호 확인" autocapitalize="off" type="password">
-				</div>
-				<br>
-				<button type="submit" style="float: right; cursor: pointer;"
-					class="btn btn-success">변경사항저장</button>
-			</div>
-		</div>
-	</div>
-
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-	<!--클릭 이벤트-->
-	<script type="text/javascript">
-
-        
-    </script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="client/js/user_update.js"></script>
+    
 </body>
 
 </html>

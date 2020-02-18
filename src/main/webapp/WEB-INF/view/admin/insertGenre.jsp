@@ -18,7 +18,6 @@
 <body
 	class="hold-transition sidebar-mini">
 	<div class="wrapper">
-	
 		<jsp:include page="${header_url}"></jsp:include>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -50,7 +49,7 @@
 							<br>
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/genreList.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/genreListProc.mdo'">취소</button>
 							</div>
 						</div>
 					</div>

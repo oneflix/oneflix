@@ -42,21 +42,21 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="#" class="row">
+			<form action="/insertHelpProc.mdo" class="row">
 				<!--editor form-->
 	    <div class="editor-body" style="width: 80%; padding-left: 15%;">
 	    	<div class="form-group" style="padding-top: 2%;">
-	        	<label>제목</label>
-	        	<input type="text" class="form-control" placeholder="제목을 입력하세요">
+	        	<label for="helpTitle">제목</label>
+	        	<input type="text" class="form-control" placeholder="제목을 입력하세요" id="helpTitle" name="helpTitle">
 	        </div>
 	        <div class="form-group" style="padding-top: 1%;">
-	            <label>내용</label>
-	            <textarea name="editor1" class="form-control" placeholder="내용을 입력하세요"></textarea>
+	            <label for="helpContent">내용</label>
+	            <textarea class="form-control" placeholder="내용을 입력하세요" id="helpContent" name="helpContent"></textarea>
 	        </div>
 	
 	        <div class="buttons" style="float: right; margin-bottom: 2%;">
 	            <button type="submit" class="btn btn-success">등록</button>
-	            <button type="button" class="btn btn-secondary">취소</button>
+	            <button type="button" class="btn btn-secondary" onclick="location.href='/helpListProc.mdo'">취소</button>
 	        </div><!-- /.buttons -->
 	    </div><!--editorbody-->
 				<!-- /.wrapper -->
@@ -101,7 +101,7 @@
 	</script>
 	<script src="http://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('editor1');
+        CKEDITOR.replace('help_content');
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 

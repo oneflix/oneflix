@@ -4,5 +4,5 @@ import com.main.oneflix.genre.vo.GenreVO;
 
 public interface DeleteGenreService {
 	
-	void deleteGenreService(GenreVO vo);
+	void deleteGenre(GenreVO vo);
 }
