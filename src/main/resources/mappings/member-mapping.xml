@@ -4,8 +4,8 @@
 
 <mapper namespace="MemberDAO">
    <insert id="insertMember" parameterType="member">
-      INSERT INTO member (email, pass, nick, gender)
-      VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR})
+      INSERT INTO member (email, pass, nick, birth, gender)
+      VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR})
    </insert>
    <update id="updateMember" parameterType="member">
       UPDATE member SET pass = #{pass}, nick = #{nick}

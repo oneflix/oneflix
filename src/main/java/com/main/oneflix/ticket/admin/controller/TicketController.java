@@ -38,30 +38,30 @@ public class TicketController {
 		mav.setViewName("redirect:/ticketList.mdo");
 		return mav;
 	}
-	@RequestMapping("/getTicketList.mdo")
-	public ModelAndView getTicketList(TicketVO vo, ModelAndView mav) {
+	@RequestMapping("/getTicketListProc.mdo")
+	public ModelAndView getTicketListProc(TicketVO vo, ModelAndView mav) {
 		List<TicketVO> getTicketList = getTicketListService.getTicketList(vo);
-		mav.addObject("getTicketList", getTicketList);
-		mav.setViewName("getTicketList");
+		mav.addObject("ticketList", getTicketList);
+		mav.setViewName("ticketList");
 		return mav;
 	}
-	@RequestMapping("/updateTicket.mdo")
-	public ModelAndView updateTicket(TicketVO vo, ModelAndView mav) {
-		vo = getTicketService.getTicketService(vo);
-		mav.addObject("updateTicket", vo);
+	@RequestMapping("/getTicketProc.mdo")
+	public ModelAndView getTicketProc(TicketVO vo, ModelAndView mav) {
+		vo = getTicketService.getTicket(vo);
+		mav.addObject("ticket", vo);
 		mav.setViewName("updateTicket");
 		return mav;
 	}
 	@RequestMapping("/updateTicketProc.mdo")
 	public ModelAndView updateTicketProc(TicketVO vo, ModelAndView mav) {
-		updateTicketService.updateTicketService(vo);
-		mav.setViewName("redirect:/ticketList.mdo");
+		updateTicketService.updateTicket(vo);
+		mav.setViewName("redirect:/getTicketListProc.mdo");
 		return mav;
 	}
-	@RequestMapping("/deleteTicket.mdo")
-	public ModelAndView deleteTicket(TicketVO vo, ModelAndView mav) {
-		deleteTicketService.deleteTicketService(vo);
-		mav.setViewName("deleteTicket");
+	@RequestMapping("/deleteTicketProc.mdo")
+	public ModelAndView deleteTicketProc(TicketVO vo, ModelAndView mav) {
+		deleteTicketService.deleteTicket(vo);
+		mav.setViewName("redirect:/getTicketListProc.mdo");
 		return mav;
 	}
 }

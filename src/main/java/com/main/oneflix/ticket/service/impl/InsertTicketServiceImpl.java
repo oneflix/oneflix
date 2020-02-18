@@ -10,10 +10,10 @@ import com.main.oneflix.ticket.vo.TicketVO;
 @Service
 public class InsertTicketServiceImpl implements InsertTicketService {
 	@Autowired
-	private TicketDAO membershipDAO;
+	private TicketDAO ticketDAO;
 	@Override
 	public void insertTicket(TicketVO vo) {
-		membershipDAO.insertTicket(vo);
+		ticketDAO.insertTicket(vo);
 
 	}
 

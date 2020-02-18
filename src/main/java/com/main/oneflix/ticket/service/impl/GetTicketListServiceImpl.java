@@ -12,10 +12,10 @@ import com.main.oneflix.ticket.vo.TicketVO;
 @Service
 public class GetTicketListServiceImpl implements GetTicketListService {
 	@Autowired
-	private TicketDAO membershipDAO;
+	private TicketDAO ticketDAO;
 	@Override
 	public List<TicketVO> getTicketList(TicketVO vo) {
-		return membershipDAO.getTicketList(vo);
+		return ticketDAO.getTicketList(vo);
 	}
 
 }

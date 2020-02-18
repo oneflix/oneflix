@@ -67,7 +67,7 @@
 
 				<div class="wrap-login100 p-t-20 p-b-30">
 
-					<form class="login100-form validate-form">
+					<form action="/joinProc.do" method="post" onsubmit="validate()" class="login100-form validate-form">
 						<div class="login-label">회원가입</div>
 
 						<div class="wrap-input100 wrap-input100-top textfield-border">
@@ -107,8 +107,7 @@
 						</div>
 
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn"
-								onclick="location.href='/login.do'">회원가입</button>
+							<button class="login100-form-btn" type="submit">회원가입</button>
 						</div>
 
 						<hr class="seperator">
@@ -163,7 +162,7 @@
 	       var email = document.getElementById("email");
 		   var birth = document.getElementById("birth");
 	       var gender = document.getElementById("gender");
-
+		   
 	       if(!check(re,email,"이메일은  4~12자의 영문 대소문자와 숫자로만 입력")) {
 	           return false;
 	       }
@@ -203,15 +202,13 @@
 	       if(!check(re3, birth, "생년월일은 8자리 숫자로만 입력해주세요")) {
 	           return false;
 	       }
+	       if( !($('input:checkbox[name=checkAgree]').is(":checked")) ){
+		        alert('이용약관에 동의하지 않으셨습니다. 이용약관에 동의해주세요.');
+		        $('#checkAgree').focus();
+		        return false;
+	    	}
+	       return true;
 	   }
-</script>
-<script>
-	var checkAgree = function(){
-    	if( !($('input:checkbox[name=checkAgree']).is(":checked")) ){
-        alert('이용약관에 동의하지 않으셨습니다. 이용약관에 동의해주세요.');
-        $('#checkAgree').focus();
-        return false;
-    }
 </script>
 
 </body>

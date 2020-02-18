@@ -15,23 +15,23 @@ public class OracleTicketDAO implements TicketDAO {
 	SqlSessionTemplate sqlSessionTemplate;
 	@Override
 	public void insertTicket(TicketVO vo) {
-		sqlSessionTemplate.insert("MembershipDAO.insertTicket", vo);
+		sqlSessionTemplate.insert("TicketDAO.insertTicket", vo);
 	}
 	@Override
 	public TicketVO getTicket(TicketVO vo) {
-		return sqlSessionTemplate.selectOne("MembershipDAO.getTicket", vo);
+		return sqlSessionTemplate.selectOne("TicketDAO.getTicket", vo);
 	}
 	@Override
 	public void updateTicket(TicketVO vo) {
-		sqlSessionTemplate.update("MembershipDAO.updateTicket", vo);
+		sqlSessionTemplate.update("TicketDAO.updateTicket", vo);
 	}
 	@Override
 	public void deleteTicket(TicketVO vo) {
-		sqlSessionTemplate.delete("MembershipDAO.deleteTicket", vo);
+		sqlSessionTemplate.delete("TicketDAO.deleteTicket", vo);
 	}
 	@Override
 	public List<TicketVO> getTicketList(TicketVO vo) {
-		return sqlSessionTemplate.selectList("MembershipDAO.getTicketList", vo);
+		return sqlSessionTemplate.selectList("TicketDAO.getTicketList", vo);
 	}
 
 }

@@ -1,3 +1,7 @@
+html {
+    background-color: #fff;
+}
+
 ol, ul {
     list-style-type: none;
     margin-block-end: 0px;
@@ -30,11 +34,11 @@ ul{
     line-height: 27px;
     margin: 0px 0px 10px;
 }
-/* �젙蹂댁닔�젙 由ъ뒪�듃 */
+/* 정보수정 리스트 */
 .css-ar8roi-SettingList {
     display: flex;
 }
-/* �젙蹂댁닔�젙 由ъ뒪�듃 -> ���씠�� */
+/* 정보수정 리스트 -> 타이틀 */
 .css-awho9y-SettingListTitle {
     color: rgb(51, 51, 51);
     font-size: 15px;
@@ -43,7 +47,7 @@ ul{
     width: 140px;
     padding: 20px 0px;
 }
-/* �젙蹂댁닔�젙 由ъ뒪�듃 -> �궡�슜 */
+/* 정보수정 리스트 -> 내용 */
 .css-18xcnb7-SettingListContent {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -104,8 +108,8 @@ ul{
     width: 100%;
 }
 .css-5kai6j-StyledField {
-    width: 100%;
-    padding: 10px 44px 10px 14px;
+    width: 80%;
+    padding: 10px 20px 10px 14px;
     border-radius: 4px;
 }
 input.css-5kai6j-StyledField[type="email"], input.css-5kai6j-StyledField[type="number"], input.css-5kai6j-StyledField[type="password"], input.css-5kai6j-StyledField[type="search"], input.css-5kai6j-StyledField[type="tel"], input.css-5kai6j-StyledField[type="text"] {
@@ -118,18 +122,7 @@ input.css-5kai6j-StyledField[type="email"], input.css-5kai6j-StyledField[type="n
     border-bottom-width: 1px;
 }
 .css-1sli7is-Button-GreenButton-ChangeProfileButton {
-    background-color: #121218;
     color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 700;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
-    letter-spacing: -0.4px;
-    line-height: 21px;
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 4px;
     background: #22b99b;
     font-size: 14px;
     font-weight: 400;
@@ -138,13 +131,13 @@ input.css-5kai6j-StyledField[type="email"], input.css-5kai6j-StyledField[type="n
     -ms-letter-spacing: -0.4px;
     letter-spacing: -0.4px;
     line-height: 21px;
-    padding: 7px 11px;
     border-radius: 3px;
     font-size: 17px;
     font-weight: 700;
     width: 170px;
     padding: 13px 11px;
     border: 0;
+    margin-bottom: 20px;
 }
 .css-34jiqc-Section {
     padding: 0 0 30px;
@@ -180,15 +173,11 @@ input.css-5kai6j-StyledField[type="email"], input.css-5kai6j-StyledField[type="n
 }
 .css-1vpi0so-Self-Self {
     background: rgb(255, 255, 255);
-    padding: 55px;
-    overflow: hidden;
+    /*padding: 10px;*/
+    padding-top: 20px;
+    padding-right: 0px;
+    /* overflow: hidden; */
     height: 80vh;
-    margin-left: 10vw;
+    margin-left: 8vw;
+    margin-right: 8vw;
 }
-
- @media (max-width: 768px) {
-	.checkPass {
-		width: 
-	}
-	
-	        }
