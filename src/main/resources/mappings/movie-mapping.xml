@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MovieDAO">
+
+	<select id="getMovie" parameterType="movie" resultType="movie">
+		SELECT * FROM movie WHERE movie_id=#{movieId, jdbcType=VARCHAR}
+	</select>
+
+	<resultMap type="movie" id="movieList">
+		<id property="movieId" column="movie_id" />
+		<result property="movieTitle" column="movie_title" />
+		<result property="movieScore" column="movie_score" />
+		<result property="rating" column="rating" />
+		<result property="duration" column="duration" />
+		<result property="summary" column="summary" />
+		<result property="directId" column="direct_id" />
+		<result property="actorId1" column="actor_id1" />
+		<result property="actorId2" column="actor_id2" />
+		<result property="actorId3" column="actor_id3" />
+		<result property="actorId4" column="actor_id4" />
+		<result property="actorId5" column="actor_id5" />
+		<result property="genreId1" column="genre_id1" />
+		<result property="genreId2" column="genre_id2" />
+		<result property="country" column="country" />
+		<result property="release" column="release" />
+		<result property="postPath" column="post_path" />
+		<result property="teaserVideoPath" column="teaser_video_path" />
+		<result property="fullVideoPath" column="full_video_path" />
+		<result property="viewCount" column="view_count" />
+		<result property="mainCheck" column="main_check" />
+		<result property="movieStatus" column="movie_status" />
+		<result property="movieRegDate" column="movie_reg_date" />
+	</resultMap>
+
+	<select id="getMovieList" resultMap="movieList">
+		SELECT * FROM movie
+	</select>
+
+	<insert id="insertMovie" parameterType="movie">
+		INSERT INTO movie
+		(movie_id, movie_title, movie_score, rating, duration, summary, director_id,
+		actor_id1, actor_id2, actor_id3, actor_id4, actor_id5, genre_id1, genre_id2,
+		country, release, poster_path, teaser_video_path, full_video_path,
+		movie_status, main_check, movie_reg_date)
+		VALUES((select nvl(max(movie_id), 0)+1 from movie),
+		#{movieTitle}, #{movieScore}, #{rating}, #{duration}, #{summary}, #{directorId},
+		#{actorId1}, #{actorId2}, #{actorId3}, #{actorId4}, #{actorId5}, #{genreId1}, #{genreId2},
+		#{country}, #{release}, #{posterPath}, #{teaserVideoPath}, #{fullVideoPath},
+		#{movieStatus}, #{mainCheck}, sysdate)
+	</insert>
+
+	<update id="updateMovie" parameterType="movie">
+		UPDATE movie
+		SET
+		movie_title = #{movieTitle}, teaser_video_path = #{teaserVideoPath}, full_video_path = #{fullVideoPath},
+		poster_path = #{posterPath}, duration = #{duration}, summary = #{summary}, director_id = #{directorId},
+		genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, release = #{release}, movie_score = #{movieScore},
+		movie_status = #{movieStatus}, main_check = #{mainCheck}  
+		WHERE
+		movie_id = #{movieId}
+	</update>
+
+	<delete id="deleteMovie" parameterType="movie">
+		DELETE FROM movie WHERE
+		movie_id = #{movieId}
+	</delete>
+
+</mapper>

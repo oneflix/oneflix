@@ -15,7 +15,6 @@ $('.css-lzf1fk-Self-SmallSettingButton').bind('mouseout', (function (event) {
     $('.css-lzf1fk-Self-SmallSettingButton').css("background-color", 'rgb(255, 255, 255)');
 }));
 
-<!--클릭 이벤트-->
 $(function(){
     $('.next-form').css('display','none');
 });

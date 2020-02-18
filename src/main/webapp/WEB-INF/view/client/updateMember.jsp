@@ -94,7 +94,6 @@
                                 </div>
                             </div>
                         </li>
-
                     </ul>
                     
                 </section>
@@ -106,8 +105,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-   <script src="client/js/user_update.js"></script>
-    
+	<script src="client/js/user_update.js"></script>
 </body>
 
 </html>

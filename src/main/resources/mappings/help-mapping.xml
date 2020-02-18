@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="HelpDAO">
+
+	<select id="getHelp" parameterType="help" resultType="help">
+		SELECT
+		*
+		FROM helps
+		WHERE help_id = #{helpId, jdbcType=NUMERIC}
+	</select>
+
+	<resultMap type="help" id="helpList">
+		<id property="helpId" column="help_id" />
+		<result property="helpType" column="help_type" />
+		<result property="helpTitle" column="help_title" />
+		<result property="helpContent" column="help_content"></result>
+		<result property="helpRegDate" column="help_reg_date"></result>
+	</resultMap>
+
+	<select id="getHelpList" resultMap="helpList">
+		SELECT * FROM helps WHERE 1 = 1
+		<if test="searchHelp != null">
+			AND helpTitle like '%'|| #{searchHelp}||'%'
+		</if>
+		ORDER BY
+		help_id ASC
+	</select>
+
+	<insert id="insertHelp" parameterType="help">
+		INSERT INTO helps (help_id, help_type, help_title, help_content, help_reg_date)
+		VALUES((select nvl(max(help_id),0)+1 from helps),
+		#{helpType,jdbcType=VARCHAR},#{helpTitle,jdbcType=VARCHAR},#{helpContent,jdbcType=VARCHAR},
+		sysdate)
+	</insert>
+
+	<update id="updateHelp" parameterType="help">
+		UPDATE helps
+		SET
+		help_type=#{helpType,jdbcType=VARCHAR},
+		help_title=#{helpTitle,jdbcType=VARCHAR},
+		help_content=#{helpContent,jdbcType=VARCHAR}
+		WHERE
+		help_id = #{helpId,jdbcType=NUMERIC}
+	</update>
+
+	<delete id="deleteHelp" parameterType="help">
+		DELETE FROM helps WHERE
+		help_id = #{helpId}
+	</delete>
+
+</mapper>

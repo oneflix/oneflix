@@ -6,7 +6,7 @@
         .header > a > .header-logo {width: 120px;}
 
         .sidenav {height: 100%; width: 165px; position: fixed; z-index: 1; top: 0; left: 0;
-            background-color: #080808; overflow-x: hidden; padding-top: 20px;}
+            background-color: #080808;}
         .sidenav > .logo-container {padding-left: 20px;}
         .sidenav > .logo-container > a > .side-logo {width: 120px;}
         .sidenav > .logo-container > hr {margin-left: 3px;}
