@@ -40,7 +40,7 @@
 			</section>
 
 
-			<form action="/insertMovieProc.mdo" method="post" class="row">
+			<form action="/insertMovieProc.mdo" method="post" class="row" onsubmit="removeDisable()">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -205,7 +205,6 @@
 	</div>
 	<!-- ./wrapper -->
 
-
 	<!-- Select2 -->
 	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
 	<!-- Bootstrap4 Duallistbox -->
@@ -233,18 +232,26 @@
 
 	<script>
 		$('#actorList').change(function() {
-			if($('#actorList option:selected').length == 6){
-				alert("배우는 최대 5명까지만 등록할 수 있습니다.");
-				    $('#actorList option:selected:eq(0)').prop("selected", false);
-			};
+			if($('#actorList option:selected').length == 5){
+				$("#actorList option").prop("disabled", "disabled");
+			} else {
+				$("#actorList option").prop("disabled", "");
+			}
 		});
 		
 		$('#genreList').change(function() {
-			if($('#genreList option:selected').length == 3){
-				alert("장르는 최대 2개까지만 등록할 수 있습니다.");
-				    $('#genreList option:selected:eq(0)').prop("selected", false);
-			};
+			if($('#genreList option:selected').length == 2){
+				$("#genreList option").prop("disabled", "disabled");
+			} else {
+				$("#genreList option").prop("disabled", "");
+			}
 		});
+		
+		//submit 하기전에 disable 안없애면 값 안넘어감
+		function removeDisable() {
+			$("#mySelectID option").prop("disabled", "")
+			$("#genreList option").prop("disabled", "");
+		};
 	</script>
 
 

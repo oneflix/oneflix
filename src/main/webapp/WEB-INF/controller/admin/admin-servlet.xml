@@ -8,6 +8,8 @@
 	<mvc:resources location="/admin/" mapping="/admin/**"></mvc:resources>
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/admin/"></property>
 		<property name="suffix" value=".jsp"></property>
