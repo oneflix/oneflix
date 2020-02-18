@@ -192,7 +192,6 @@
 	</div>
 	<!-- ./wrapper -->
 
-
 	<!-- Select2 -->
 	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
 	<!-- Bootstrap4 Duallistbox -->
@@ -214,7 +213,17 @@
             
             //파일 인풋하면 텍스트 적어줌
             bsCustomFileInput.init();
-        })
+        });
+        
+        $('#actorId').change(function(){
+        	alert($('#actorId option:selected').nextAll().length);
+        	/*
+        	if ($('#actorId option:selected').nextAll().length == 3) {
+        		alert("3가지");
+        		$
+        	}
+        	*/
+        });
     </script>
 	
 </body>
