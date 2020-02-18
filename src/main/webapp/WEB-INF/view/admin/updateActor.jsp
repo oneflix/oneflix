@@ -57,7 +57,7 @@
 
                             <br>
                             <div class="buttons" style="float: right;">
-                                <button type="submit" class="btn btn-success">등록</button>
+                                <button type="submit" class="btn btn-success">수정</button>
                                 <button type="button" class="btn btn-secondary" onclick="location.href='/actorListProc.mdo'">취소</button>
                             </div><!-- /.buttons -->
                         </div> <!-- /.card-body .col-md-6 -->

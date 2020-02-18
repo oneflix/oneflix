@@ -48,6 +48,18 @@ public class MovieController {
 
 	@RequestMapping("/insertMovieProc.mdo")
 	public ModelAndView insertMovieProc(MovieVO vo, ModelAndView mav) {
+		
+		//fileUploadService 구현해야함
+		
+		//fileUploadService로 부터 path 받아서 집어넣기
+		String posterPath = "";
+		String fullVideoPath = "";
+		String teaserVideoPath = "";
+		
+		vo.setPosterPath(posterPath);
+		vo.setFullVideoPath(fullVideoPath);
+		vo.setTeaserVideoPath(teaserVideoPath);
+		
 		insertMovieService.insertMovie(vo);
 		mav.setViewName("redirect:/movieListProc.mdo");
 		return mav;
