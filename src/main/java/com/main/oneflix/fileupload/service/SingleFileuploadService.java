@@ -4,5 +4,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface SingleFileuploadService {
 
-	String uploadSingleFile(MultipartFile file, String fileName);
+	String uploadSingleFile(MultipartFile file, String path, String fileName);
 }

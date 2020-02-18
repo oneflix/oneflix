@@ -40,7 +40,7 @@
 			</section>
 
 
-			<form action="/insertMovieProc.mdo" method="post" class="row" onsubmit="removeDisable()">
+			<form action="/insertMovieProc.mdo" method="post" enctype="multipart/form-data" class="row" onsubmit="preProc()">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -156,14 +156,14 @@
 								<label>Full Video</label>
 								<div class="custom-file">
 									<input type="file" name="fullVideo" class="custom-file-input"
-										required="required" id="full-video"> <label
-										class="custom-file-label" for="full-video">파일 선택</label>
+										required="required" id="full-video">
+									<label class="custom-file-label" for="full-video">파일 선택</label>
 								</div>
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="duration">상영시간</label> <input type="text"
-									class="form-control" id="duration" name="duration"  />
+								<label for="duration">상영시간</label>
+									<input type="text" class="form-control" id="duration" name="duration" readonly />
 							</div>
 
 							<div class="form-group">
@@ -231,6 +231,7 @@
 	</script>
 
 	<script>
+		//배우 선택 제한
 		$('#actorList').change(function() {
 			if($('#actorList option:selected').length == 5){
 				$("#actorList option").prop("disabled", "disabled");
@@ -239,6 +240,7 @@
 			}
 		});
 		
+		//장르 선택 제한
 		$('#genreList').change(function() {
 			if($('#genreList option:selected').length == 2){
 				$("#genreList option").prop("disabled", "disabled");
@@ -247,11 +249,48 @@
 			}
 		});
 		
-		//submit 하기전에 disable 안없애면 값 안넘어감
-		function removeDisable() {
-			$("#mySelectID option").prop("disabled", "")
+		//상영시간 구하기
+		window.URL = window.URL || window.webkitURL;
+
+		document.getElementById('full-video').onchange = setFileInfo;
+
+		function setFileInfo() {
+		  var myVideo = this.files[0];
+
+		  var video = document.createElement('video');
+		  video.preload = 'metadata';
+
+		  video.src = URL.createObjectURL(myVideo);;
+
+		  video.onloadedmetadata = function() {
+		    window.URL.revokeObjectURL(video.src);
+		    var duration = video.duration;
+
+		    //console.log(myVideo.name + " duration: " + myVideo.duration + '\n');
+		    inputDuration(duration)
+		  }
+
+		}
+		
+		// 상영시간 넣기
+		function inputDuration(duration) {
+			var min = parseInt(duration / 60);
+            //var seconds = Math.floor(duration % 60);
+            $('#duration').val(min + "분 ");
+		}
+		
+		//submit 하기 전에 전처리
+		function preProc() {
+			//disalbed 안 풀어주면 값 안 넘어감			
+			$("#mySelectID option").prop("disabled", "");
 			$("#genreList option").prop("disabled", "");
+			
+			// '분' 글자 짤라서 보내기
+			var duration = $('#duration').val();
+			duration = duration.substr(0, duration.length - 2);
+			$('#duration').val(duration);
 		};
+		
 	</script>
 
 
