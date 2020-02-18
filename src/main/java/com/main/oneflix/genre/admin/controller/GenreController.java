@@ -47,6 +47,7 @@ public class GenreController {
 	public ModelAndView getGenreListProc(GenreVO vo, ModelAndView mav) {
 		if(vo.getSearchGenre() == null) vo.setSearchGenre("");
 		List<GenreVO> genreList = getGenreListService.getGenreList(vo);
+		
 		mav.addObject("genreList", genreList);
 		mav.setViewName("genreList");
 		return mav;

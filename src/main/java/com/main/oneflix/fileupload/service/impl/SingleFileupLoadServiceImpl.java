@@ -23,7 +23,7 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 			}
 			
 			File uploadFile = new File(filePath + movieTitle);
-			file.transferTo();
+//			file.transferTo();
 		}
 		return null;
 	}
