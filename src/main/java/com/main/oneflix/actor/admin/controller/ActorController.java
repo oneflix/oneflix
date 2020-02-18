@@ -31,9 +31,8 @@ public class ActorController {
 	@Autowired
 	private GetActorListService getActorListService;
 
-	@RequestMapping("/actorListProc.mdo")
-	public ModelAndView getActorList(ActorVO vo, ModelAndView mav) {
-		System.out.println(vo.getSearchActor());
+	@RequestMapping("/getActorListProc.mdo")
+	public ModelAndView getActorListProc(ActorVO vo, ModelAndView mav) {
 		List<ActorVO> actorList = getActorListService.getActorListService(vo);
 		mav.addObject("actorList", actorList);
 		mav.setViewName("actorList");
@@ -49,7 +48,7 @@ public class ActorController {
 	@RequestMapping("/insertActorProc.mdo")
 	public ModelAndView insertActorProc(ActorVO vo, ModelAndView mav) {
 		insertActorService.InsertActorService(vo);
-		mav.setViewName("redirect:/actorListProc.mdo");
+		mav.setViewName("redirect:/getActorListProc.mdo");
 		return mav;
 	}
 	
@@ -64,14 +63,14 @@ public class ActorController {
 	@RequestMapping("/updateActorProc.mdo")
 	public ModelAndView updateActorProc(ActorVO vo, ModelAndView mav) {
 		updateActorService.updateActorService(vo);
-		mav.setViewName("redirect:/actorListProc.mdo");
+		mav.setViewName("redirect:/getActorListProc.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteActorProc.mdo")
 	public ModelAndView deleteActorProc(ActorVO vo, ModelAndView mav) {
 		deleteActorService.deleteActorService(vo);
-		mav.setViewName("redirect:/actorListProc.mdo");
+		mav.setViewName("redirect:/getActorListProc.mdo");
 		return mav;
 	}
 
