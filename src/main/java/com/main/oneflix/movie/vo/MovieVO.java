@@ -32,6 +32,8 @@ public class MovieVO {
 	private Date movieRegDate;
 	private String mainCheck;
 	private String movieStatus;
+	private String[] actorList;
+	private String[] genreList;
 
 	public Integer getMovieId() {
 		return movieId;

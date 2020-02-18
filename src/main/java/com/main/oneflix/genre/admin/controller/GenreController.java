@@ -39,7 +39,7 @@ public class GenreController {
 	@RequestMapping("/insertGenreProc.mdo")
 	public ModelAndView insertGenreProc(GenreVO vo, ModelAndView mav) {
 		insertGenreService.insertGenre(vo);
-		mav.setViewName("redirect:/genreListProc.mdo");
+		mav.setViewName("redirect:/getGenreListProc.mdo");
 		return mav;
 	}
 	
@@ -47,6 +47,7 @@ public class GenreController {
 	public ModelAndView getGenreListProc(GenreVO vo, ModelAndView mav) {
 		if(vo.getSearchGenre() == null) vo.setSearchGenre("");
 		List<GenreVO> genreList = getGenreListService.getGenreList(vo);
+		
 		mav.addObject("genreList", genreList);
 		mav.setViewName("genreList");
 		return mav;
@@ -63,14 +64,14 @@ public class GenreController {
 	@RequestMapping("/updateGenreProc.mdo")
 	public ModelAndView updateGenreProc(GenreVO vo, ModelAndView mav) {
 		updateGenreService.updateGenre(vo);
-		mav.setViewName("redirect:/genreListProc.mdo");
+		mav.setViewName("redirect:/getGenreListProc.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteGenreProc.mdo")
 	public ModelAndView deleteGenreProc(GenreVO vo, ModelAndView mav) {
 		deleteGenreService.deleteGenre(vo);
-		mav.setViewName("redirect:/genreListProc.mdo");
+		mav.setViewName("redirect:/getGenreListProc.mdo");
 		return mav;
 	}
 	

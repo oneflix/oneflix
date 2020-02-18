@@ -42,12 +42,6 @@ public class DirectorController {
 		return mav;
 	}
 	
-//	@RequestMapping("/updateDirector.mdo")
-//	public ModelAndView updateDirector(DirectorVO vo, ModelAndView mav) {
-//		mav.setViewName("updateDirector");
-//		return mav;
-//	}
-	
 	@RequestMapping("/updateDirectorProc.mdo")
 	public ModelAndView updateDirectorProc(DirectorVO vo, ModelAndView mav) {
 		updateDirectorService.updateDirector(vo);
