@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ScreenDAO">
+
+	<insert id="insertScreen" parameterType="screen">
+		INSERT INTO screen (screen_id, screen_page_type, screen_order, screen_img_path, screen_title, screen_subtitle)
+		VALUES(#{screenId, jdbcType=NUMERIC}, #{screenPageType, jdbcType=CHAR}, #{screenOrder, jdbcType=NUMERIC},
+				#{screenImgPath, jdbcType=VARCHAR}, #{screenTitle, jdbcType=VARCHAR}, #{screenSubtitle, jdbcType=VARCHAR},)
+	</insert>
+
+	<update id="updateScreen" parameterType="screen">
+		UPDATE screen SET screen_page_type=#{screenPageType, jdbcType=CHAR}, screen_order=#{screenOrder, jdbcType=NUMERIC},
+			screen_img_path=#{screenImgPath, jdbcType=VARCHAR}, screen_title=#{screenTitle, jdbcType=VARCHAR},
+			screen_subtitle=#{screenSubtitle, jdbcType=VARCHAR}
+		WHERE screen_id=#{screenId, jdbcType=NUMERIC}
+	</update>
+
+	<delete id="deleteScreen" parameterType="screen">
+		DELETE FROM screen 
+		WHERE screen_id=#{screenId, jdbcType=NUMERIC}
+	</delete>
+	
+	<resultMap type="screen" id="screenList">
+		<id property="screenId" column="screen_id"/>
+		<result property="screenPageType" column="screen_page_type"/>
+		<result property="screenOrder" column="screen_order"/>
+		<result property="screenImgPath" column="screen_img_path"/>
+		<result property="screenTitle" column="screen_title"/>
+		<result property="screenSubitle" column="screen_subtitle"/>
+	</resultMap>
+	
+	<select id="getScreenList" parameterType="screen" resultType="screenList">
+		SELECT * FROM screen ORDER BY screen_order ASC;
+	</select>
+
+</mapper>
