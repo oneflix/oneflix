@@ -1,10 +1,7 @@
 package com.main.oneflix.movie.admin.controller;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +49,10 @@ public class MovieController {
 	
 	@Autowired
 	private GetGenreListService getGenreListService;
-	
+
 	@Autowired
 	private SingleFileuploadService singleFileuploadService;
-	
+
 	@RequestMapping("/getMovieListProc.mdo")
 	public ModelAndView getMovieListProc(MovieVO vo, ModelAndView mav) {
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
@@ -77,6 +74,7 @@ public class MovieController {
 	}
 
 	@RequestMapping("/insertMovieProc.mdo")
+
 	public ModelAndView insertMovieProc(MovieVO vo, HttpSession session, ModelAndView mav) {
 		//fileuploadService 구현해야함
 		String path = session.getServletContext().getRealPath("/resources/");
@@ -85,13 +83,16 @@ public class MovieController {
 		String posterPath = singleFileuploadService.uploadSingleFile(vo.getPoster(), path, vo.getMovieTitle());
 		String fullVideoPath = singleFileuploadService.uploadSingleFile(vo.getTeaserVideo(), path, vo.getMovieTitle());
 		String teaserVideoPath = singleFileuploadService.uploadSingleFile(vo.getFullVideo(), path, vo.getMovieTitle());
+
 		
 		vo.setPosterPath(posterPath);
 		vo.setFullVideoPath(fullVideoPath);
 		vo.setTeaserVideoPath(teaserVideoPath);
 		
 		insertMovieService.insertMovie(vo);
+
 		mav.setViewName("redirect:/getMovieListProc.mdo");
+
 		return mav;
 	}
 
@@ -107,6 +108,7 @@ public class MovieController {
 	public ModelAndView updateMovieProc(MovieVO vo, ModelAndView mav) {
 		updateMovieService.updateMovie(vo);
 		mav.setViewName("redirect:/getMovieListProc.mdo");
+
 		return mav;
 	}
 

@@ -19,7 +19,6 @@
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet"
 	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-	
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -39,7 +38,6 @@
 					</div>
 				</div>
 			</section>
-
 
 				<form action="/insertMovieProc.mdo" method="post"
 					enctype="multipart/form-data" class="row" onsubmit="preProc()">
