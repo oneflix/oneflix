@@ -65,4 +65,11 @@ public class MemberVO {
 		this.cert = cert;
 	}
 
+	@Override
+	public String toString() {
+		return "MemberVO [email=" + email + ", pass=" + pass + ", nick=" + nick + ", birth=" + birth + ", gender="
+				+ gender + ", ticketPeriod=" + ticketPeriod + ", cert=" + cert + "]";
+	}
+	
+
 }

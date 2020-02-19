@@ -15,7 +15,11 @@ $('.css-lzf1fk-Self-SmallSettingButton').bind('mouseout', (function (event) {
     $('.css-lzf1fk-Self-SmallSettingButton').css("background-color", 'rgb(255, 255, 255)');
 }));
 
-$('.e1ktu1gx01').click(function (){
-    $('.e1199ims33').css('display', 'flex');
-    $('.e1199ims34').css('display', 'none');
+$(function(){
+    $('.next-form').css('display','none');
+});
+
+$('#form-change').click(function(){
+    $('.pre-form').hide();
+    $('.next-form').show();
 });
