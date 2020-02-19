@@ -31,7 +31,7 @@
 		<result property="screenSubitle" column="screen_subtitle"/>
 	</resultMap>
 	
-	<select id="getScreenList" parameterType="screen" resultType="screenList">
+	<select id="getScreenList" parameterType="screen" resultMap="screenList">
 		SELECT * FROM screen ORDER BY screen_order ASC;
 	</select>
 
