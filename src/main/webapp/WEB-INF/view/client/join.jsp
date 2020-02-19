@@ -101,7 +101,7 @@
 
 						<div class="checkbox-container">
 							<label class="checkbox-label"> <input type="checkbox"
-								class="option-input checkbox" id="checkAgree" /> <span class="terms"
+								class="option-input checkbox" name="checkAgree" /> <span class="terms"
 								OnClick="window.open('#');">ONEFLIX 서비스 이용약관</span>에 동의합니다.
 							</label>
 						</div>
@@ -120,7 +120,7 @@
 								class="fa fa-keyboard-o"></i> KAKAO 계정으로 가입하기
 							</a>
 						</div>
-
+						<input type="hidden" name="cert" value="N"/>
 					</form>
 				</div>
 			</div>
@@ -171,7 +171,7 @@
 	       if(!check(re,email,"적합하지 않은 이메일 형식입니다.")) {
 	           return false;
 	       }
-	       if(!check(re2,pass,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+	       if(!check(re2,pass,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
 	           return false;
 	       }
 	       if(join.nick.value=="") {
@@ -179,7 +179,7 @@
 	           join.nick.focus();
 	           return false;
 	       }
-	       if(!check(re2,nick,"닉네임 4~12자의 영문 대소문자와 숫자로만 입력")) {
+	       if(!check(re2,nick,"닉네임 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
 	           return false;
 	       }
 	       if(join.birth.value=="") {
@@ -188,10 +188,10 @@
 	           return false;
 	       }
 
-	       if(!check(re3, birth, "생년월일은 8자리 숫자로만 입력해주세요")) {
+	       if(!check(re3, birth, "생년월일은 8자리 숫자로만 입력해주세요.")) {
 	           return false;
 	       }
-	       if( !($('input:radio[name=checkAgree]').is(":checked")) ){
+	       if( !($('input:radio[name=gender]').is(":checked")) ){
 		        alert('성별을 선택해주세요.');
 		        $('#gender').focus();
 		        return false;

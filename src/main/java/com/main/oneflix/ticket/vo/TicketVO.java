@@ -1,7 +1,7 @@
 package com.main.oneflix.ticket.vo;
 
 public class TicketVO {
-	int ticketPeriod;
+	Integer ticketPeriod;
 	int Price;
 	char recommend;
 	char ticketStatus;

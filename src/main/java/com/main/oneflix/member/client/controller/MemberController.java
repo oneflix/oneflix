@@ -2,6 +2,7 @@ package com.main.oneflix.member.client.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class MemberController {
 	}
 	@RequestMapping("/joinProc.do")
 	public ModelAndView joinProc(MemberVO vo,ModelAndView mav) {
+		System.out.println(vo);
 		insertMemberService.insertMember(vo);
 		mav.setViewName("login");
 		return mav;
@@ -38,30 +40,19 @@ public class MemberController {
 		mav.setViewName("mypageHome");
 		return mav;
 	}
-	@RequestMapping("/getMember.do")
-	public ModelAndView updateMember(ModelAndView mav) {
+	@RequestMapping("/getMemberProc.do")
+	public ModelAndView getMemberProc(ModelAndView mav) {
 		mav.setViewName("updateMember");
 		return mav;
 	}
-	@RequestMapping("/getMemberProc.do")
-	public ModelAndView updateMemberProc
-	(@RequestParam("newNick") String newNick, @RequestParam("passConfirm") String passConfirm,
-	 @RequestParam("newPass") String newPass, @RequestParam("newPassConfirm") String newPassConfirm,
-	 HttpSession session, ModelAndView mav) {
-		MemberVO vo = (MemberVO)session.getAttribute("member");
-		
-		String pass = vo.getPass();
-		//추가하기 
-		if(newNick.equals("")) {
-			
-		}
-		if(pass.equals(passConfirm) && newPass.equals(newPassConfirm)) {
-			vo.setPass(newPass);
-			session.setAttribute("member", vo);
-		}
-		
+	@RequestMapping("/updateMemberProc.do")
+	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick, @RequestParam("newPass") String newPass,  HttpSession session, ModelAndView mav) {
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		vo.setNick(newNick);
+		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);
-		mav.setViewName("updateMember");
+		session.setAttribute("member", vo);
+		mav.setViewName("redirect:/getMemberProc.do");
 		return mav;
 	}
 	@RequestMapping("/deleteDefense.do")
