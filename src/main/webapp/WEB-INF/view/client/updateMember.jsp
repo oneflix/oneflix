@@ -38,6 +38,7 @@
                         </div>
                     </li>
                 </ul>
+                
             </section>
             <form name="update" action="/updateMemberProc.do" onsubmit="return validate();" method="post">
                 <section class="css-34jiqc-Section e1199ims14">

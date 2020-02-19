@@ -27,8 +27,8 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 			path += "/full/" + date;
 			movieTitle += ".mp4";
 		}
-		
-		File uploadFile = new File(path,movieTitle);
+
+		File uploadFile = new File(path, movieTitle);
 		try {
 			file.transferTo(uploadFile);
 		} catch (IllegalStateException e) {
