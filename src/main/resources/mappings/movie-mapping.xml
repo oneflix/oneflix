@@ -64,7 +64,7 @@
 
 	<delete id="deleteMovie" parameterType="movie">
 		DELETE FROM movie WHERE
-		movie_id = #{movieId}
+		movie_id = #{movieId, jdbcType=NUMERIC}
 	</delete>
 
 </mapper>

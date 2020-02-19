@@ -11,7 +11,7 @@
     <title>ONeflix</title>
 
     <link rel="stylesheet" href="client/css/all.css">
-    <link rel="stylesheet" href="client/css/user_update.css">
+    <link rel="stylesheet" href="client/css/update_member.css">
 </head>
 
 <body>
@@ -54,14 +54,14 @@
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19 next-form">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
-                                        <div class="css-unatsl-Self eu52ful0"><input name="password"
+                                        <div class="css-unatsl-Self eu52ful0"><input name="nick"
                                                 placeholder="닉네임을 입력해주세요." autocomplete="off"
-                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                                class=" css-5kai6j-StyledField eu52ful1" type="nick" value=""></div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19 next-form">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
-                                        <div class="css-unatsl-Self eu52ful0"><input name="password"
+                                        <div class="css-unatsl-Self eu52ful0"><input name="pass"
                                                 placeholder="비밀번호를 입력해주세요." autocomplete="off"
                                                 class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
                                     </div>
@@ -105,7 +105,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script src="client/js/user_update.js"></script>
+	<script src="client/js/update_member.js"></script>
 	<script type="text/javascript">
 		function validate(){
 			
