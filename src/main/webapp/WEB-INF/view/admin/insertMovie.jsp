@@ -19,6 +19,7 @@
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet"
 	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+	
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -40,13 +41,8 @@
 			</section>
 
 
-			<<<<<<< HEAD
-			<form action="/insertMovieProc.mdo" method="post" class="row"
-				onsubmit="removeDisable()">
-				=======
 				<form action="/insertMovieProc.mdo" method="post"
 					enctype="multipart/form-data" class="row" onsubmit="preProc()">
-					>>>>>>> master
 					<div class="col-md-3"></div>
 					<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 					<div class="col-md-6" style="margin-bottom: 5%;">

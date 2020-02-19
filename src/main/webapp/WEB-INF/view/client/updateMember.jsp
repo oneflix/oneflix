@@ -38,6 +38,7 @@
                         </div>
                     </li>
                 </ul>
+                
             </section>
             <form>
                 <section class="css-34jiqc-Section e1199ims14">
@@ -46,12 +47,12 @@
                         <li class="css-ar8roi-SettingList e1199ims17">
                             <div class="css-awho9y-SettingListTitle e1199ims21">닉네임</div>
                             <div class="css-18xcnb7-SettingListContent e1199ims18">
-                                <d1iv class="css-1epg2mh-SettingListContentRow e1199ims34">
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims34">
                                     <div class="css-av4kss-ValueTextBlock e1199ims30">nick1</div>
                                     <div class="css-1vx1h8q-SmallButtonsBlock e1199ims24"><button
                                             class=" e1199ims25 css-lzf1fk-Self-SmallSettingButton e1ktu1gx01"
                                             type="button">변경</button></div>
-                                </d1iv>
+                                </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims33">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input name="nick"

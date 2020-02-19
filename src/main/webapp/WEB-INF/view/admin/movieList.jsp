@@ -14,6 +14,23 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<style>
+	td{
+		height: 90px;
+	}
+	
+	img {
+		width: 160px;
+		height: 90px;
+	}
+	
+	td > p, td > div {
+		margin-top: 30px;
+	}
+
+
+</style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -61,7 +78,7 @@
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option selected="selected">모든 장르</option>
 									<c:forEach var="genre" items="${genreList}">
-										<option value="${genre.genreId }">${genre.genre }</option>
+										<option value="${genre.genreId}">${genre.genre}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -81,17 +98,17 @@
 									<tbody>
 										<c:forEach var="movie" items="${movieList}">
 											<tr>
-												<td>1</td>
-												<td>${movie.genreId1}</td>
-												<td><img src="${movie.posterPath}"/></td>
-												<td>${movie.movieTitle}</td>
+												<td><p>1</p></td>
+												<td><p>${movie.genreId1}</p></td>
+												<td><img src="/resources/poster/2020_02/확인.png"/></td>
+												<td><p>${movie.movieTitle}</p></td>
 												<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
-													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movie.movieId}')">삭제</button>
-													<button type="button" class="btn btn-sm btn-info">상세보기</button>
-												</div>
-											</td>
+													<div>
+														<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
+														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movie.movieId}')">삭제</button>
+														<button type="button" class="btn btn-sm btn-info">상세보기</button>
+													</div>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
