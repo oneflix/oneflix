@@ -38,12 +38,12 @@ public class MemberController {
 		mav.setViewName("mypageHome");
 		return mav;
 	}
-	@RequestMapping("/updateMember.do")
+	@RequestMapping("/getMember.do")
 	public ModelAndView updateMember(ModelAndView mav) {
 		mav.setViewName("updateMember");
 		return mav;
 	}
-	@RequestMapping("/updateMemberProc.do")
+	@RequestMapping("/getMemberProc.do")
 	public ModelAndView updateMemberProc
 	(@RequestParam("newNick") String newNick, @RequestParam("passConfirm") String passConfirm,
 	 @RequestParam("newPass") String newPass, @RequestParam("newPassConfirm") String newPassConfirm,
@@ -64,7 +64,7 @@ public class MemberController {
 		mav.setViewName("updateMember");
 		return mav;
 	}
-	@RequestMapping("/deleteDefense.do") //요청이름 체크
+	@RequestMapping("/deleteDefense.do")
 	public ModelAndView deleteDefense(ModelAndView mav) {
 		mav.setViewName("deleteDefense");
 		return mav;

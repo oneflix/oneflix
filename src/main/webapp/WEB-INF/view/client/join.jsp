@@ -67,31 +67,31 @@
 
 				<div class="wrap-login100 p-t-20 p-b-30">
 
-					<form action="/joinProc.do" method="post" onsubmit="validate()" class="login100-form validate-form">
+					<form action="/joinProc.do" name="join" method="post" onsubmit="return validate();" class="login100-form validate-form">
 						<div class="login-label">회원가입</div>
 
 						<div class="wrap-input100 wrap-input100-top textfield-border">
-							<input class="input100" type="text" name="email"
+							<input class="input100" type="text" id="email" name="email"
 								autocomplete="off" placeholder="이메일">
 						</div>
 						<div class="wrap-input100 textfield-border">
 							<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
-							</span> <input class="input100" type="password" name="pass"
+							</span> <input class="input100" type="password" id="pass" name="pass"
 								placeholder="비밀번호">
 						</div>
 						<div class="wrap-input100 textfield-border">
-							<input class="input100" type="text" name="nick"
+							<input class="input100" type="text" id="nick" name="nick"
 								autocomplete="off" placeholder="닉네임">
 						</div>
 						<div class="wrap-input100 textfield-border">
-							<input class="input100" type="text" name="birth"
+							<input class="input100" type="text" id="birth" name="birth"
 								autocomplete="off" maxlength="8" placeholder="생년월일 (숫자로만 8자리)">
 						</div>
 						<div class="wrap-input100 wrap-input100-bottom m-b-16 height">
 
 							<label class="label-padding">성별</label>
 							<div class="gender-radio">
-								<label> <input class="option-input radio" name="gender"
+								<label> <input class="option-input radio" id="gender" name="gender"
 									value="F" type="radio" />여성
 								</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
 									class="option-input radio" name="gender" value="M" type="radio" />남성
@@ -155,45 +155,34 @@
 	<script src="client/js/ls-main.js"></script>
 	<script type="text/javascript">
 	   function validate() {
-	       var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
-	       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	       var re3 =/^[0-9]{8}$/
-	       var pw = document.getElementById("pw");
+	       var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	       var re2 = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
+	       var re3 =/^[0-9]{8}$/ //생년월일 체크
 	       var email = document.getElementById("email");
+	       var pass = document.getElementById("pass");
+	       var nick = document.getElementById("nick");
 		   var birth = document.getElementById("birth");
-	       var gender = document.getElementById("gender");
 		   
-	       if(!check(re,email,"이메일은  4~12자의 영문 대소문자와 숫자로만 입력")) {
-	           return false;
-	       }
-
-	       if(!check(re,pw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-	           return false;
-	       }
-
-	       if(join.pw.value != join.checkpw.value) {
-	           alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-	           join.checkpw.value = "";
-	           join.checkpw.focus();
-	           return false;
-	       }
-
 	       if(email.value=="") {
 	           alert("이메일을 입력해 주세요");
 	           email.focus();
 	           return false;
 	       }
-
-	       if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+	       if(!check(re,email,"적합하지 않은 이메일 형식입니다.")) {
 	           return false;
 	       }
-
+	       if(!check(re2,pass,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+	           return false;
+	       }
 	       if(join.nick.value=="") {
 	           alert("닉네임을 입력해 주세요");
 	           join.nick.focus();
 	           return false;
 	       }
-	       if(birth.value=="") {
+	       if(!check(re2,nick,"닉네임 4~12자의 영문 대소문자와 숫자로만 입력")) {
+	           return false;
+	       }
+	       if(join.birth.value=="") {
 	           alert("생년월일을 입력해 주세요");
 	           birth.focus();
 	           return false;
@@ -202,12 +191,26 @@
 	       if(!check(re3, birth, "생년월일은 8자리 숫자로만 입력해주세요")) {
 	           return false;
 	       }
+	       if( !($('input:radio[name=checkAgree]').is(":checked")) ){
+		        alert('성별을 선택해주세요.');
+		        $('#gender').focus();
+		        return false;
+	    	}
 	       if( !($('input:checkbox[name=checkAgree]').is(":checked")) ){
 		        alert('이용약관에 동의하지 않으셨습니다. 이용약관에 동의해주세요.');
 		        $('#checkAgree').focus();
 		        return false;
 	    	}
-	       return true;
+	       alert("회원가입이 완료되었습니다.");
+	   }
+	   function check(re, what, message) {
+	       if(re.test(what.value)) {
+	           return true;
+	       }
+	       alert(message);
+	       what.value = "";
+	       what.focus();
+	       //return false;
 	   }
 </script>
 

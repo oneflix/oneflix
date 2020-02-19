@@ -39,7 +39,7 @@
                     </li>
                 </ul>
             </section>
-            <form>
+            <form action="/getMemberProc.do" onsubmit="validate()" method="post">
                 <section class="css-34jiqc-Section e1199ims14">
                     <h2 class="css-14w6zap-SectionHeader e1199ims15">계정</h2>
                     <ul class="css-gi4296-SettingListUl e1199ims20">
@@ -73,21 +73,21 @@
                             <div class="css-18xcnb7-SettingListContent e1199ims18">
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
-                                        <div class="css-unatsl-Self eu52ful0"><input name="password"
+                                        <div class="css-unatsl-Self eu52ful0"><input name="passConfirm"
                                                 placeholder="현재 비밀번호" autocomplete="off"
                                                 class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
-                                        <div class="css-unatsl-Self eu52ful0"><input name="newPassword"
+                                        <div class="css-unatsl-Self eu52ful0"><input name="newPass"
                                                 placeholder="새 비밀번호" autocomplete="off"
                                                 class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
-                                        <div class="css-unatsl-Self eu52ful0"><input name="newPasswordConfirmation"
+                                        <div class="css-unatsl-Self eu52ful0"><input name="newPassConfirm"
                                                 placeholder="새 비밀번호 확인" autocomplete="off"
                                                 class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
                                     </div>
@@ -106,6 +106,11 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="client/js/user_update.js"></script>
+	<script type="text/javascript">
+		function validate(){
+			
+		}
+	</script>
 </body>
 
 </html>
