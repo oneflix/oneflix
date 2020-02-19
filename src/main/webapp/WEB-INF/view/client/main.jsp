@@ -35,7 +35,7 @@
                 <div class="container clearfix">
                     <div class="navs">
                         <div class="logo">
-                            <a href="#">
+                            <a href="/oneflix.do">
                                 <img class="ico" src="client/images/oneflix_logo.png">
                             </a>
                         </div>
@@ -97,7 +97,7 @@
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle profile-button" type="button"
                                             data-toggle="dropdown">
-                                            <span>이름</span>
+                                            <span>${member.nick}</span>
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right profile-menu">

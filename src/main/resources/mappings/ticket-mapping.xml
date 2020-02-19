@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TicketDAO">
+
+	<insert id="inserTicket" parameterType="ticket">
+		INSERT INTO ticket (ticketPeriod, price, recommend, ticketStatus)
+		VALUES(#{ticketPeriod},#{price},#{recommend},#{ticketStatus})
+	</insert>
+
+	<select id="getTicket" parameterType="ticket" resultType="ticket">
+		SELECT * FROM ticket
+		WHERE ticketPeriod = #{ticketPeriod}
+	</select>
+
+	<resultMap type="ticket" id="ticketList">
+		<id property="ticketPeriod" column="ticket_period" />
+		<result property="price" column="price" />
+		<result property="recommend" column="recommend" />
+		<result property="ticketStatus" column="ticket_status" />
+	</resultMap>
+
+	<select id="getTicketList" resultMap="ticketList">
+		SELECT * FROM ticket ORDER BY ticketPeriod ASC
+	</select>
+	
+	<update id="updateTicket" parameterType="ticket">
+		UPDATE ticket
+		SET
+		recommend=#{recommend},ticketStatus=#{ticketStatus}
+		WHERE
+		ticketPeriod = #{ticketPeriod}
+	</update>
+
+	<delete id="deleteTicket" parameterType="ticket">
+		DELETE FROM ticket WHERE
+		ticektPeriod = #{ticketPeriod}
+	</delete>
+
+</mapper>
