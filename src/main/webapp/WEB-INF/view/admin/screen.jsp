@@ -66,6 +66,15 @@
 													onclick="addRow()">
 												</td>
 											</tr>
+											<tr>
+												<td><input type="text" class="form-control" id="title"
+													name="title" required placeholder="Title" /></td>
+											</tr>
+											<tr>
+												<td><input type="text" class="form-control"
+													id="subtitle" name="subtitle" required
+													placeholder="SubTitle" /></td>
+											</tr>
 										</tbody>
 									</table>
 
@@ -83,6 +92,15 @@
 													class="btn btn-xs btn-danger" onclick="deleteRow(this)"
 													value="- 삭제">
 												</td>
+											</tr>
+											<tr>
+												<td><input type="text" class="form-control" id="title"
+													name="title" required placeholder="Title" /></td>
+											</tr>
+											<tr>
+												<td><input type="text" class="form-control"
+													id="subtitle" name="subtitle" required
+													placeholder="SubTitle" /></td>
 											</tr>
 										</tbody>
 									</table>
@@ -147,6 +165,15 @@
 												onclick="addBox()">
 											</td>
 										</tr>
+										<tr>
+											<td><input type="text" class="form-control" id="title"
+												name="title" required placeholder="Title" /></td>
+										</tr>
+										<tr>
+											<td><input type="text" class="form-control"
+												id="subtitle" name="subtitle" required
+												placeholder="SubTitle" /></td>
+										</tr>
 									</tbody>
 								</table>
 								<table id="addtableTWO" class="custom-table-width">
@@ -163,6 +190,15 @@
 												class="btn btn-xs btn-danger" onclick="deleteBox(this)"
 												value="- 삭제" />
 											</td>
+										</tr>
+										<tr>
+											<td><input type="text" class="form-control" id="title"
+												name="title" required placeholder="Title" /></td>
+										</tr>
+										<tr>
+											<td><input type="text" class="form-control"
+												id="subtitle" name="subtitle" required
+												placeholder="SubTitle" /></td>
 										</tr>
 									</tbody>
 								</table>
