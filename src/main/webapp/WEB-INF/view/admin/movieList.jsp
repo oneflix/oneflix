@@ -15,20 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-	td{
-		height: 90px;
-	}
-	
-	img {
-		width: 160px;
-		height: 90px;
-	}
-	
-	td > p, td > div {
-		margin-top: 30px;
-	}
-
-
+	td{height: 90px;}
+	img {width: 160px; height: 90px;}
+	td > p, td > div {margin-top: 30px;}
 </style>
 
 </head>
@@ -89,9 +78,10 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>장르</th>
 											<th>썸네일</th>
 											<th>제목</th>
+											<th>장르</th>
+											<th>상영시간</th>
 											<th>관리</th>
 										</tr>
 									</thead>
@@ -99,9 +89,22 @@
 										<c:forEach var="movie" items="${movieList}">
 											<tr>
 												<td><p>1</p></td>
-												<td><p>${movie.genreId1}</p></td>
-												<td><img src="/resources/poster/2020_02/확인.png"/></td>
+												<td><img src="${movie.posterPath}"/></td>
 												<td><p>${movie.movieTitle}</p></td>
+												<td><p>
+													<c:forEach var="genre" items="${genreList}">
+														<c:if test="${genre.genreId eq movie.genreId1}">
+															${genre.genre}
+														</c:if>
+														<c:if test="${movie.genreId2 ne 0}">
+															<c:if test="${genre.genreId eq movie.genreId2}">
+																&nbsp;· ${genre.genre}
+															</c:if>
+														</c:if>
+													</c:forEach>
+													</p>
+												</td>
+												<td><p>${movie.duration}분</p></td>
 												<td>
 													<div>
 														<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
