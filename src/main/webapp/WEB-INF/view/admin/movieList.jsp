@@ -14,6 +14,12 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<style>
+	td{height: 90px;}
+	img {width: 160px; height: 90px;}
+	td > p, td > div {margin-top: 30px;}
+</style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -61,7 +67,7 @@
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option selected="selected">모든 장르</option>
 									<c:forEach var="genre" items="${genreList}">
-										<option value="${genre.genreId }">${genre.genre }</option>
+										<option value="${genre.genreId}">${genre.genre}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -72,26 +78,40 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>장르</th>
 											<th>썸네일</th>
 											<th>제목</th>
+											<th>장르</th>
+											<th>상영시간</th>
 											<th>관리</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="movie" items="${movieList}">
 											<tr>
-												<td>1</td>
-												<td>${movie.genreId1}</td>
+												<td><p>1</p></td>
 												<td><img src="${movie.posterPath}"/></td>
-												<td>${movie.movieTitle}</td>
+												<td><p>${movie.movieTitle}</p></td>
+												<td><p>
+													<c:forEach var="genre" items="${genreList}">
+														<c:if test="${genre.genreId eq movie.genreId1}">
+															${genre.genre}
+														</c:if>
+														<c:if test="${movie.genreId2 ne 0}">
+															<c:if test="${genre.genreId eq movie.genreId2}">
+																&nbsp;· ${genre.genre}
+															</c:if>
+														</c:if>
+													</c:forEach>
+													</p>
+												</td>
+												<td><p>${movie.duration}분</p></td>
 												<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
-													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movie.movieId}')">삭제</button>
-													<button type="button" class="btn btn-sm btn-info">상세보기</button>
-												</div>
-											</td>
+													<div>
+														<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
+														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movie.movieId}')">삭제</button>
+														<button type="button" class="btn btn-sm btn-info">상세보기</button>
+													</div>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>

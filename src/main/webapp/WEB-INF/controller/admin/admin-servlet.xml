@@ -7,7 +7,7 @@
 
 	<mvc:resources location="/admin/" mapping="/admin/**"></mvc:resources>
 	<mvc:annotation-driven></mvc:annotation-driven>
-	
+
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="5242880000"></property>
 		<property name="defaultEncoding" value="UTF-8"></property>

@@ -21,6 +21,20 @@
 	</properties>
 
 	<dependencies>
+		<!-- Javax Mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<!-- Spring-Context-Support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+
+
 		<!-- Spring-Context -->
 		<dependency>
 			<groupId>org.springframework</groupId>

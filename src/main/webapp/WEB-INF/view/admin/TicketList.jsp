@@ -46,7 +46,7 @@
 						<div class="card">
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
-									style="float: left;">+ 추가</button>
+									style="float: left;"onclick="location.href='/insertTicket.mdo'">+ 추가</button>
 								<form class="form-inline ml-3"
 									style="float: right; margin-top: 4px;">
 									<div class="card-tools">
@@ -76,32 +76,20 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach var="ticket" items="${ticketList}">
 										<tr>
 											<td>1</td>
-											<td>90일 이용권</td>
-											<td>35,700</td>
-											<td>비활성</td>
+											<td>${ticket.ticketPeriod}</td>
+											<td>${ticket.price}</td>
+											<td>${ticket.ticketStatus}</td>
 											<td>
 												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
+													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/updateTicket.mdo?ticketPeriod=${ticket.ticketPeriod}'">수정</button>
+													<button type="button" class="btn btn-sm btn-danger" onclick="location.href='/deleteTicket.mdo?ticketPeriod=${ticket.ticketPeriod}'">삭제</button>
 												</div>
 											</td>
 										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>2</td>
-											<td>365일 이용권</td>
-											<td>134,400</td>
-											<td>활성</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
-												</div>
-											</td>
-										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
