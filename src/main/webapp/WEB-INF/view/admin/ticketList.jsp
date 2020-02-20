@@ -81,6 +81,7 @@
 									<c:forEach var="ticket" items="${ticketList}">
 										<tr>
 											<td>1</td>
+											<td>${ticket.ticketPeriod}일 이용권</td>
 											<td>${ticket.ticketPeriod}</td>
 											<td>${ticket.price}</td>
 											<td>${ticket.recommend}</td>

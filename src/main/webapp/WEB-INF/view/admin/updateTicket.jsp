@@ -79,9 +79,7 @@
 									<option>n</option>
 								</select>
 							</div>
-				
-
-							<br>
+		
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
 								<button type="button" class="btn btn-secondary" onclick="location.href='/ticketListProc.mdo'">취소</button>
