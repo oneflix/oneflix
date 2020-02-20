@@ -19,6 +19,7 @@
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet"
 	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+	
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -222,7 +223,7 @@
 			//disalbed 안 풀어주면 값 안 넘어감			
 			$("#actorList option").prop("disabled", "");
 			$("#genreList option").prop("disabled", "");
-	
+
 			// '분' 글자 짤라서 보내기
 			var duration = $('#duration').val();
 			alert(duration.length);

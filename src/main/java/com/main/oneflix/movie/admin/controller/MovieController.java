@@ -41,13 +41,13 @@ public class MovieController {
 
 	@Autowired
 	private GetMovieListService getMovieListService;
-	
+
 	@Autowired
 	private GetDirectorListService getDirectorListService;
-	
+
 	@Autowired
 	private GetActorListService getActorListService;
-	
+
 	@Autowired
 	private GetGenreListService getGenreListService;
 
@@ -59,7 +59,7 @@ public class MovieController {
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		mav.addObject("movieList", movieList);
-		mav.addObject("genreList",genreList);
+		mav.addObject("genreList", genreList);
 		mav.setViewName("movieList");
 		return mav;
 	}
@@ -79,17 +79,18 @@ public class MovieController {
 	@RequestMapping("/insertMovieProc.mdo")
 
 	public ModelAndView insertMovieProc(MovieVO vo, HttpSession session, ModelAndView mav) {
-		//fileuploadService 구현해야함
+		// fileuploadService 구현해야함
 		String path = session.getServletContext().getRealPath("/");
 
-		//fileuploadService로 부터 path 받아서 집어넣기
+		// fileuploadService로 부터 path 받아서 집어넣기
 		String posterPath = singleFileuploadService.uploadSingleFile(vo.getPoster(), path, vo.getMovieTitle());
 		String fullVideoPath = singleFileuploadService.uploadSingleFile(vo.getTeaserVideo(), path, vo.getMovieTitle());
 		String teaserVideoPath = singleFileuploadService.uploadSingleFile(vo.getFullVideo(), path, vo.getMovieTitle());
+
 		vo.setPosterPath(posterPath);
 		vo.setFullVideoPath(fullVideoPath);
 		vo.setTeaserVideoPath(teaserVideoPath);
-		
+
 		insertMovieService.insertMovie(vo);
 
 		mav.setViewName("redirect:/getMovieListProc.mdo");
@@ -112,7 +113,26 @@ public class MovieController {
 	}
 
 	@RequestMapping("/updateMovieProc.mdo")
-	public ModelAndView updateMovieProc(MovieVO vo, ModelAndView mav) {
+	public ModelAndView updateMovieProc(MovieVO vo, HttpSession session, ModelAndView mav) {
+
+		// fileuploadService 구현해야함
+		String path = session.getServletContext().getRealPath("/");
+		
+		if (vo.getPosterPath().equals("")) {
+			String posterPath = singleFileuploadService.uploadSingleFile(vo.getPoster(), path, vo.getMovieTitle());
+			vo.setPosterPath(posterPath);
+		}
+		
+		if (vo.getTeaserVideoPath().equals("")) {
+			String fullVideoPath = singleFileuploadService.uploadSingleFile(vo.getTeaserVideo(), path, vo.getMovieTitle());
+			vo.setFullVideoPath(fullVideoPath);			
+		}
+
+		if (vo.getFullVideoPath().equals("")) {
+			String teaserVideoPath = singleFileuploadService.uploadSingleFile(vo.getFullVideo(), path, vo.getMovieTitle());
+			vo.setTeaserVideoPath(teaserVideoPath);
+		}
+
 		updateMovieService.updateMovie(vo);
 		mav.setViewName("redirect:/getMovieListProc.mdo");
 
