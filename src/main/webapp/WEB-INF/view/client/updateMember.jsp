@@ -136,12 +136,12 @@
 		       }
 			   //비밀번호 변경할때
 		       if(newPass.value != ""){
-		    	   if(pass.value == ${member.pass} && newPass.value == newPassConfirm.value){
+		    	   if(pass.value == "${member.pass}"" && newPass.value == newPassConfirm.value){
 			    	   if(!check(re,newPass,"변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요."){
 			    		   return false;
 			    	   }
 		    		   confirm = true;
-		    	   }else if(pass.value == ${member.pass}){
+		    	   }else if(pass.value == "${member.pass}"){
 			    	   alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
 			    	   update.pass.focus();
 			           return false;
@@ -151,10 +151,10 @@
 			           return false;
 		    	   }
 		       }else{
-		    	   newPass.value = ${member.pass};
+		    	   newPass.value = "${member.pass}";
 		       }
 		       //변경사항 없이 저장할때 
-		       if(newNick.value==${member.nick} && newPass.value ==${member.pass}){
+		       if(newNick.value=="${member.nick}" && newPass.value =="${member.pass}"){
 		    	   alert("변경할 사항을 입력해 주세요.")
 		       }
 		       alert("정보수정이 완료되었습니다.");

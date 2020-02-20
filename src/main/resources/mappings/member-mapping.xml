@@ -26,6 +26,7 @@
 		<result property="pass" column="pass" />
 		<result property="nick" column="nick" />
 		<result property="birth" column="birth" />
+		<result property="memberAge" column="member_age" />
 		<result property="gender" column="gender" />
 		<result property="cert" column="cert" />
 	</resultMap>
