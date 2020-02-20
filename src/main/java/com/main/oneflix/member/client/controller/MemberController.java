@@ -1,9 +1,8 @@
 package com.main.oneflix.member.client.controller;
 
+
 import java.util.Calendar;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +57,7 @@ public class MemberController {
 		return mav;
 	}
 
+
 	@RequestMapping("/updateMemberProc.do")
 	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick,
 			@RequestParam("newPass") String newPass, HttpSession session, ModelAndView mav) {
@@ -75,6 +75,7 @@ public class MemberController {
 		mav.setViewName("deleteDefense");
 		return mav;
 	}
+
 
 	@RequestMapping("/deleteMember.do")
 	public ModelAndView deleteMember(HttpSession session, ModelAndView mav) {
