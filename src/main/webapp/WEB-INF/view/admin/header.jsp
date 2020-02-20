@@ -194,7 +194,7 @@
 			
 			// 선택된 메뉴 active 추가
 			var menu = [$('#dashboard'), $('#movie'), $('#genre'), $('#director'), $('#actor'),
-					$('#member'), $('#membership'), $('#sales'), $('#notice'), $('#faq'),
+					$('#member'), $('#ticket'), $('#sales'), $('#notice'), $('#faq'),
 					$('#inquiry'), $('#screen'), $('#analysis'), $('#manager')];
 			
 			var action = location.href.substr(
@@ -210,10 +210,10 @@
 				menu[3].addClass('active');
 			} else if (action.toLowerCase().indexOf('actor') != -1) {
 				menu[4].addClass('active');
-			} else if (action.toLowerCase().indexOf('membership') != -1) {
-				menu[6].addClass('active');
 			} else if (action.toLowerCase().indexOf('member') != -1) {
 				menu[5].addClass('active');
+			} else if (action.toLowerCase().indexOf('ticket') != -1) {
+				menu[6].addClass('active');
 			} else if (action.toLowerCase().indexOf('sales') != -1) {
 				menu[7].addClass('active');
 			} else if (action.toLowerCase().indexOf('notice') != -1) {

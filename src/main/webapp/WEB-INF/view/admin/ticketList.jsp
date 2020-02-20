@@ -82,7 +82,6 @@
 										<tr>
 											<td>1</td>
 											<td>${ticket.ticketPeriod}</td>
-											<td>${ticket.ticketPeriod}</td>
 											<td>${ticket.price}</td>
 											<td>${ticket.recommend}</td>
 											<td>${ticket.ticketStatus}</td>
@@ -116,12 +115,12 @@
 	</div>
 	<!-- ./wrapper -->
  <script>
-		function deleteConfirm(ticketPeriod) {
+		 function deleteConfirm(ticketPeriod) {
 			var confirm = confirm("정말로 삭제하시겠습니까?");
 			if (confirm == true) {
 				document.location.href = "/deleteTicketProc.mdo?ticketPeriod=" + ticketPeriod;
 			}
-		}
+		} 
 	</script>
 
 </body>

@@ -35,7 +35,7 @@ public class TicketController {
 	@RequestMapping("/insertTicketProc.mdo")
 	public ModelAndView insertTicketProc(TicketVO vo, ModelAndView mav) {
 		insertTicketService.insertTicket(vo);
-		mav.setViewName("redirect:/getTicketListProc.mdo");
+		mav.setViewName("redirect:/ticketList.mdo");
 		return mav;
 	}
 	@RequestMapping("/getTicketListProc.mdo")

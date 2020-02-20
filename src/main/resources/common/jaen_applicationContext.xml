@@ -9,6 +9,7 @@
 	base-package="com.main.oneflix.member.service.impl, 
 	com.main.oneflix.member.dao.impl,com.main.oneflix.ticket.service.impl, 
 	com.main.oneflix.ticket.dao.impl"></context:component-scan>
+
 	<!-- 이메일 발송 bean 설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" /> <!-- gmail을 사용 -->
@@ -24,6 +25,7 @@
             </props>
         </property>
     </bean>
+
 </beans>
 
 

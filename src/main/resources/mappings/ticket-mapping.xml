@@ -7,6 +7,7 @@
 	<insert id="insertTicket" parameterType="ticket">
 		INSERT INTO ticket (ticket_period, price, recommend, ticket_status)
 		VALUES(#{ticketPeriod,jdbcType=NUMERIC},#{price,jdbcType=NUMERIC},#{recommend,jdbcType=CHAR},#{ticketStatus,jdbcType=CHAR})
+
 	</insert>
 
 	<select id="getTicket" parameterType="ticket" resultType="ticket">
@@ -36,6 +37,7 @@
 	<delete id="deleteTicket" parameterType="ticket">
 		DELETE FROM ticket WHERE
 		ticekt_period = #{ticketPeriod}
+
 	</delete>
 
 </mapper>

@@ -18,9 +18,6 @@
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
-		<!-- ====================== 
-            ADD headr 
-     ====================== -->
 		<jsp:include page="${header_url}"></jsp:include>
 
 
@@ -76,17 +73,38 @@
 										</tr>
 									</thead>
 									<tbody>
+										<c:forEach var="member" items="${memberList }">
 										<tr>
 											<td>1</td>
-											<td>email1@naver.com</td>
-											<td>nick1</td>
-											<td>22</td>
-											<td>프리미엄 구독중</td>
-											<td>X</td>
+											<td>${member.email }</td>
+											<td>${member.nick }</td>
+											<td>${member.memberAge }</td>
+											<c:if test="${member.ticketPeriod eq 0 }">
+											<td>이용권 없음</td>
+											</c:if>
+											<c:if test="${member.ticketPeriod eq -1 }">
+											<td>정기권</td>
+											</c:if>
+											<c:if test="${member.ticketPeriod eq 30 }">
+											<td>30일</td>
+											</c:if>
+											<c:if test="${member.ticketPeriod eq 60 }">
+											<td>60일</td>
+											</c:if>
+											<c:if test="${member.ticketPeriod eq 90 }">
+											<td>90일</td>
+											</c:if>
+											<c:if test="${member.ticketPeriod eq 180 }">
+											<td>180일</td>
+											</c:if>
+											<c:if test="${member.ticketPeriod eq 365 }">
+											<td>365일</td>
+											</c:if>
+											<td>${member.cert }</td>
 											<td>
 												<div>
-													<button type="button" class="btn btn-sm btn-primary">수정</button>
-													<button type="button" class="btn btn-sm btn-danger">삭제</button>
+													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMemberProc.mdo?email=${member.email}'">상세</button>
+													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${member.email}')">삭제</button>
 													<div class="custom-control custom-switch custom-float">
 														<input type="checkbox" class="custom-control-input"
 															id="customSwitch1"> <label
@@ -95,6 +113,7 @@
 												</div>
 											</td>
 										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -109,14 +128,20 @@
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
-
-		<!-- ====================== 
-            ADD Footer
-  ====================== -->
+		
 		<jsp:include page="${footer_url}"></jsp:include>
 
 	</div>
 	<!-- ./wrapper -->
+	
+	<script>
+		function deleteCheck(email) {
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if (check == true) {
+				document.location.href = "/deleteMemberProc.mdo?email=" + email;
+			}
+		}
+	</script>
 
 </body>
 

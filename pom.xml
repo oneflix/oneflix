@@ -27,6 +27,7 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.6.2</version>
 		</dependency>
+
 		<!-- Javax Mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>

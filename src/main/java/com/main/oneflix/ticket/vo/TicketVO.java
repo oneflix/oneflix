@@ -16,6 +16,7 @@ public class TicketVO {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+
 	}
 	public char getRecommend() {
 		return recommend;
