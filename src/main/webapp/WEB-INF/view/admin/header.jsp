@@ -96,7 +96,7 @@
 				</li>
 
 				<li class="nav-item">
-					<a href="/getMembershipListProc.mdo" class="nav-link" id="membership">
+					<a href="/getTicketListProc.mdo" class="nav-link" id="ticket">
 						<ion-icon name="card" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>이용권</p>
 					</a>

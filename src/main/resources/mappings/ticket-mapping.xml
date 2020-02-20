@@ -4,14 +4,14 @@
 
 <mapper namespace="TicketDAO">
 
-	<insert id="inserTicket" parameterType="ticket">
-		INSERT INTO ticket (ticketPeriod, price, recommend, ticketStatus)
-		VALUES(#{ticketPeriod},#{price},#{recommend},#{ticketStatus})
+	<insert id="insertTicket" parameterType="ticket">
+		INSERT INTO ticket (ticket_period, price, recommend, ticket_status)
+		VALUES(#{ticketPeriod,jdbcType=NUMERIC},#{price,jdbcType=NUMERIC},#{recommend,jdbcType=CHAR},#{ticketStatus,jdbcType=CHAR})
 	</insert>
 
 	<select id="getTicket" parameterType="ticket" resultType="ticket">
 		SELECT * FROM ticket
-		WHERE ticketPeriod = #{ticketPeriod}
+		WHERE ticket_period = #{ticketPeriod}
 	</select>
 
 	<resultMap type="ticket" id="ticketList">
@@ -22,20 +22,20 @@
 	</resultMap>
 
 	<select id="getTicketList" resultMap="ticketList">
-		SELECT * FROM ticket ORDER BY ticketPeriod ASC
+		SELECT * FROM ticket ORDER BY ticket_period ASC
 	</select>
 	
 	<update id="updateTicket" parameterType="ticket">
 		UPDATE ticket
 		SET
-		recommend=#{recommend},ticketStatus=#{ticketStatus}
+		recommend=#{recommend},ticket_status=#{ticketStatus}
 		WHERE
-		ticketPeriod = #{ticketPeriod}
+		ticket_period = #{ticketPeriod}
 	</update>
 
 	<delete id="deleteTicket" parameterType="ticket">
 		DELETE FROM ticket WHERE
-		ticektPeriod = #{ticketPeriod}
+		ticekt_period = #{ticketPeriod}
 	</delete>
 
 </mapper>

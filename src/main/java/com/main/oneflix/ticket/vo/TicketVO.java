@@ -2,7 +2,7 @@ package com.main.oneflix.ticket.vo;
 
 public class TicketVO {
 	Integer ticketPeriod;
-	int Price;
+	int price;
 	char recommend;
 	char ticketStatus;
 	public int getTicketPeriod() {
@@ -12,10 +12,10 @@ public class TicketVO {
 		this.ticketPeriod = ticketPeriod;
 	}
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 	public void setPrice(int price) {
-		Price = price;
+		this.price = price;
 	}
 	public char getRecommend() {
 		return recommend;

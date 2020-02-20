@@ -110,7 +110,7 @@
 	<script src="client/js/update_member.js"></script>
 	<script type="text/javascript">
 		function validate(){
-		       var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
+ 		       var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
 		       var newNick = document.getElementById("newNick");
 		       var passConfirm = document.getElementById("passConfirm");
 		       var pass = document.getElementById("pass");
@@ -120,13 +120,13 @@
 		       var confirm = false;
 		       //닉네임 변경할때
 		       if(newNick.value!="") {
-		    	   if(!check(re,newNick,"닉네임은 4~12자의 영문 대소문자와 숫자로만 입력해주세요."){
+		    	   if(!check(re,newNick,"닉네임은 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")){
 		    		   return false;
 		    	   }
 		    	   if(passConfirm.value == ${member.pass}){ 
 		           confirm = true;
 		    	   }else{
-		    		   alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+		    		   alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			    	   update.passConfirm.focus();
 			           return false;
 		    	   }
@@ -135,29 +135,30 @@
 		       }
 			   //비밀번호 변경할때
 		       if(newPass.value != ""){
-		    	   if(pass.value == ${member.pass} && newPass.value == newPassConfirm.value){
-			    	   if(!check(re,newPass,"변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요."){
+		    	   if(pass.value == "${member.pass}" && newPass.value == newPassConfirm.value){
+			    	   if(!check(re,newPass,"변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")){
 			    		   return false;
 			    	   }
 		    		   confirm = true;
-		    	   }else if(pass.value == ${member.pass}){
-			    	   alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+		    	   }else if(pass.value == "${member.pass}"){
+			    	   alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			    	   update.pass.focus();
 			           return false;
 		    	   }else if(newPass.value == newPassConfirm.value){
-			    	   alert("새 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+			    	   alert("새 비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			    	   update.newPass.focus();
 			           return false;
 		    	   }
 		       }else{
-		    	   newPass.value = ${member.pass};
+		    	   newPass.value = "${member.pass}";
 		       }
 		       //변경사항 없이 저장할때 
-		       if(newNick.value==${member.nick} && newPass.value ==${member.pass}){
-		    	   alert("변경할 사항을 입력해 주세요.")
+		       if(newNick.value=="${member.nick}" && newPass.value =="${member.pass}"){
+		    	   alert("변경할 사항을 입력해 주세요.");
+		    	   return false;
 		       }
 		       alert("정보수정이 완료되었습니다.");
-		       return confirm;
+		       return confirm; 
 		   }
 		   function check(re, what, message) {
 		       if(re.test(what.value)) {
