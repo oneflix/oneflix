@@ -21,13 +21,19 @@
 	</properties>
 
 	<dependencies>
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.2</version>
+		</dependency>
+
 		<!-- Javax Mail API -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.6.2</version>
 		</dependency>
-
 		<!-- Javax Mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -179,11 +185,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
-
 	</dependencies>
-
-
 
 	<build>
 		<finalName>oneflix</finalName>
