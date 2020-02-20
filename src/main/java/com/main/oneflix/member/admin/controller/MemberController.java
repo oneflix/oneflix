@@ -44,7 +44,6 @@ public class MemberController {
 	@RequestMapping("/getMemberListProc.mdo")
 	public ModelAndView getMemberListProc(MemberVO vo, ModelAndView mav) {
 
-		getMemberListService.getMemberList(vo);
 		List<MemberVO> memberList = getMemberListService.getMemberList(vo);
 
 		mav.addObject("memberList", memberList);

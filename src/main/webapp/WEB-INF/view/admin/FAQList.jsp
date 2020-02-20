@@ -46,8 +46,6 @@
 								<button type="button" class="btn btn-primary"
 									style="float: left;" onclick="location.href='/insertHelp.mdo'">+ 추가</button>
 
-
-
 								<form class="form-inline ml-3"
 									style="float: right; margin-top: 4px;">
 									<div class="card-tools">
@@ -64,6 +62,18 @@
 									</div>
 								</form>
 
+								<select id="select-category" class="form-control form-control-sm select2bs4"
+									style="width: inherit; float: right; margin-top: 4px;">
+									<option value="faq" selected="selected">모든 카테고리</option>
+									<option value="frequency">자주 묻는 질문</option>
+									<option value="payment">결제</option>
+									<option value="refund">해지/환불</option>
+									<option value="ticket">이용권/쿠폰</option>
+									<option value="account">로그인/계정 관리</option>
+									<option value="contents">콘텐츠</option>
+									<option value="video">재생 문의</option>
+									<option value="service">서비스 문의</option>
+								</select>
 							</div>
 							<!-- /.card-header -->
 
@@ -71,12 +81,13 @@
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>FAQ</th>
+											<th style="width: 2vw;">#</th>
+											<th style="width: 10vw;">카테고리</th>
+											<th>제목</th>
 											<th>관리</th>
 										</tr>
 									</thead>
-									<c:forEach var="help" items="${helpList }">
+									<c:forEach var="help" items="${FAQList}">
 									<tbody>
 										<tr>
 											<td>1</td>
@@ -113,13 +124,19 @@
 
 	</div>
 	<!-- ./wrapper -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
 		function deleteCheck(helpId){
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if(check == true){
 				document.location.href = "/deleteHelpProc.mdo?helpId=" + helpId;
 			}
-		}
+		};
+		
+		$('#select-category').change(function(){
+			
+		});
+		
 	</script>
 
 </body>
