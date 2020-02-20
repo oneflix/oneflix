@@ -121,9 +121,11 @@
 							</a>
 						</div>
 						<input type="hidden" name="cert" value="N"/>
+						<input type="hidden" name="ban" value="N"/>
 					</form>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 

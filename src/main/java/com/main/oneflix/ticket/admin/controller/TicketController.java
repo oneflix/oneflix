@@ -29,7 +29,7 @@ public class TicketController {
 
 	@RequestMapping("/insertTicket.mdo")
 	public ModelAndView insertTicket(ModelAndView mav) {
-		mav.setViewName("ticketList");
+		mav.setViewName("insertTicket");
 		return mav;
 	}
 	@RequestMapping("/insertTicketProc.mdo")
@@ -40,8 +40,8 @@ public class TicketController {
 	}
 	@RequestMapping("/getTicketListProc.mdo")
 	public ModelAndView getTicketListProc(TicketVO vo, ModelAndView mav) {
-		List<TicketVO> getTicketList = getTicketListService.getTicketList(vo);
-		mav.addObject("ticketList", getTicketList);
+		List<TicketVO> ticketList = getTicketListService.getTicketList(vo);
+		mav.addObject("ticketList", ticketList);
 		mav.setViewName("ticketList");
 		return mav;
 	}

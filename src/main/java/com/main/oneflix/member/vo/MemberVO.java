@@ -83,10 +83,4 @@ public class MemberVO {
 		this.ban = ban;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberVO [email=" + email + ", pass=" + pass + ", nick=" + nick + ", birth=" + birth + ", gender="
-				+ gender + ", ticketPeriod=" + ticketPeriod + ", cert=" + cert + "]";
-	}
-
 }

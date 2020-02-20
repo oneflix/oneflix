@@ -46,4 +46,5 @@ public class OracleMemberDAO implements MemberDAO {
 		return sqlSessionTemplate.selectOne("MemberDAO.getMemberAdmin", vo);
 	}
 
+
 }
