@@ -4,18 +4,34 @@
 
 <mapper namespace="MemberDAO">
    <insert id="insertMember" parameterType="member">
-      INSERT INTO member (email, pass, nick, birth, gender,cert)
-      VALUES(#{email}, #{pass}, #{nick},#{birth}, #{gender},#{cert}) 
+      INSERT INTO member (email, pass, nick, birth, member_age, gender,cert)
+      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender},#{cert}) 
  	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
    </insert>
    <update id="updateMember" parameterType="member">
-      UPDATE member SET pass = #{pass}, nick = #{nick}
+      UPDATE member SET pass = #{pass}, nick = #{nick},
+      member_age = #{memberAge}, ban = #{ban}
       WHERE email = #{email}
    </update>
+  
    <delete id="deleteMember" parameterType="member">
       DELETE FROM member WHERE email = #{email}
    </delete>
    <select id="getMember" resultType="member" parameterType="member">
-      SELECT * FROM member WHERE email = #{email} AND pass = #{pass}
+      SELECT * FROM member WHERE email = #{email}
    </select>
+   
+   <resultMap type="member" id="memberList">
+		<id property="email" column="email" />
+		<result property="pass" column="pass" />
+		<result property="nick" column="nick" />
+		<result property="birth" column="birth" />
+		<result property="gender" column="gender" />
+		<result property="cert" column="cert" />
+	</resultMap>
+  
+   <select id="getMemberList" resultMap="memberList">
+      SELECT * FROM member ORDER BY email ASC
+   </select>
+	
 </mapper>

@@ -77,6 +77,7 @@ public class MovieController {
 	}
 
 	@RequestMapping("/insertMovieProc.mdo")
+
 	public ModelAndView insertMovieProc(MovieVO vo, HttpSession session, ModelAndView mav) {
 		// fileuploadService 구현해야함
 		String path = session.getServletContext().getRealPath("/");
@@ -134,6 +135,7 @@ public class MovieController {
 
 		updateMovieService.updateMovie(vo);
 		mav.setViewName("redirect:/getMovieListProc.mdo");
+
 		return mav;
 	}
 
