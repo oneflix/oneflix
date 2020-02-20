@@ -77,7 +77,7 @@
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>#</th>
+											<th style="width: 2vw;">#</th>
 											<th>썸네일</th>
 											<th>제목</th>
 											<th>장르</th>
