@@ -222,24 +222,26 @@
 		src="admin/plugins/bootstrap/js/bootstrap.js"></script>
 	<script src="admin/js/movie.js"></script>
 	<script>
-		$("#movieScore").val("${movie.movieScore}").prop("selected", true);
-		$("#rating").val("${movie.rating}").prop("selected", true);
-		$("#directorId").val("${movie.directorId}").prop("selected", true);
-		$('#actorList').val(["${movie.actorId1}","${movie.actorId2}","${movie.actorId3}","${movie.actorId4}","${movie.actorId5}"]);
-		$('#genreList').val(["${movie.genreId1}","${movie.genreId2}"]);
-		$("#country").val("${movie.country}").prop("selected", true);
-		$("#release").val("${movie.release}").prop("selected", true);
-		var posterPath = "${movie.posterPath}";
-		posterPath = posterPath.substring(posterPath.lastIndexOf("/")+1);
-		$("label[for='poster']").text(posterPath);
-		var teaserVideoPath = "${movie.teaserVideoPath}";
-		teaserVideoPath = teaserVideoPath.substring(teaserVideoPath.lastIndexOf("/")+1);
-		$("label[for='teaser-video']").text(teaserVideoPath);
-		var fullVideoPath = "${movie.fullVideoPath}";
-		fullVideoPath = fullVideoPath.substring(fullVideoPath.lastIndexOf("/")+1);
-		$("label[for='full-video']").text(fullVideoPath);
-		$("#movieStatus").val("${movie.movieStatus}").prop("selected", true);
-		$("#mainCheck").val("${movie.mainCheck}").prop("selected", true);
+		$(function(){
+			$("#movieScore").val("${movie.movieScore}").prop("selected", true);
+			$("#rating").val("${movie.rating}").prop("selected", true);
+			$("#directorId").val("${movie.directorId}").prop("selected", true);
+			$('#actorList').val(["${movie.actorId1}","${movie.actorId2}","${movie.actorId3}","${movie.actorId4}","${movie.actorId5}"]);
+			$('#genreList').val(["${movie.genreId1}","${movie.genreId2}"]);
+			$("#country").val("${movie.country}").prop("selected", true);
+			$("#release").val("${movie.release}").prop("selected", true);
+			var posterPath = "${movie.posterPath}";
+			posterPath = posterPath.substring(posterPath.lastIndexOf("/")+1);
+			$("label[for='poster']").text(posterPath);
+			var teaserVideoPath = "${movie.teaserVideoPath}";
+			teaserVideoPath = teaserVideoPath.substring(teaserVideoPath.lastIndexOf("/")+1);
+			$("label[for='teaser-video']").text(teaserVideoPath);
+			var fullVideoPath = "${movie.fullVideoPath}";
+			fullVideoPath = fullVideoPath.substring(fullVideoPath.lastIndexOf("/")+1);
+			$("label[for='full-video']").text(fullVideoPath);
+			$("#movieStatus").val("${movie.movieStatus}").prop("selected", true);
+			$("#mainCheck").val("${movie.mainCheck}").prop("selected", true);
+		});
 		
 		//submit 하기 전에 전처리
 		function preProc() {

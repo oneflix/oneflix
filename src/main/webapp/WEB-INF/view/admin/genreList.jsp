@@ -64,9 +64,9 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th style="width: 4vw;">#</th>
                       <th>장르명</th>
-                      <th>관리</th>
+                      <th style="width: 150px;">관리</th>
                     </tr>
                   </thead>
                   <tbody>
