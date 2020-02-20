@@ -30,7 +30,7 @@ public class LoginController {
 			viewName = "login";
 		} else {
 			session.setAttribute("loginManager", vo);
-			viewName = "redirect:/dashboard.mdo";
+			viewName = "redirect:/getDashboardProc.mdo";
 		}
 		mav.setViewName(viewName);
 		return mav;
