@@ -30,8 +30,8 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 		}
 		
 		realPath += uploadPath.toString();
-
 		File uploadFile = new File(realPath, movieTitle);
+		
 		try {
 			file.transferTo(uploadFile);
 		} catch (IllegalStateException e) {

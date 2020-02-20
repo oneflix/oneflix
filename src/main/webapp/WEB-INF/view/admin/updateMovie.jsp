@@ -39,8 +39,9 @@
 				</div>
 			</section>
 
-				<form action="/insertMovieProc.mdo" method="post"
+				<form action="/updateMovieProc.mdo" method="post"
 					enctype="multipart/form-data" class="row" onsubmit="preProc()">
+					<input type="hidden" name="movieId" value="${movie.movieId}"/>
 					<div class="col-md-3"></div>
 					<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 					<div class="col-md-6" style="margin-bottom: 5%;">
@@ -142,6 +143,7 @@
 									<div class="custom-file">
 										<input type="file" name="poster" class="custom-file-input" id="poster">
 										<label class="custom-file-label" for="poster">파일 선택</label>
+										<input type="hidden" id="posterPath" name="posterPath" value=""/>
 									</div>
 								</div>
 
@@ -150,6 +152,7 @@
 									<div class="custom-file">
 										<input type="file" name="teaserVideo" class="custom-file-input" id="teaser-video">
 										<label class="custom-file-label" for="teaser-video">파일 선택</label>
+										<input type="hidden" id="teaserVideoPath" name="teaserVideoPath" value=""/>
 									</div>
 								</div>
 
@@ -158,6 +161,7 @@
 									<div class="custom-file">
 										<input type="file" name="fullVideo" class="custom-file-input" id="full-video">
 										<label class="custom-file-label" for="full-video">파일 선택</label>
+										<input type="hidden" id="fullVideoPath" name="fullVideoPath" value=""/>
 									</div>
 								</div>
 
@@ -243,19 +247,20 @@
 			$("#actorList option").prop("disabled", "");
 			$("#genreList option").prop("disabled", "");
 
+			alert($('#actorList option:selected').length);
 			// '분' 글자 짤라서 보내기
 			var duration = $('#duration').val();
 			duration = duration.substr(0, duration.length - 1);
 			$('#duration').val(duration);
 			
-			if ("${movie.poster}" == "") {
-				$("#poster").val(null);
+			if ($('#poster').val() == "") {
+				$('#posterPath').val("${movie.posterPath}");
 			}
 			if ("${movie.teaserVideo}" == "") {
-				$("#teaserVideo").val(null);
+				$('#teaserVideoPath').val("${movie.teaserVideoPath}");
 			}
 			if ("${movie.fullVideo}" == "") {
-				$("#fullVideo").val(null);
+				$('#fullVideoPath').val("${movie.fullVideoPath}");
 			}
 		};
 		
