@@ -1,6 +1,7 @@
 package com.main.oneflix.movie.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +33,8 @@ public class MovieVO {
 	private Date movieRegDate;
 	private String mainCheck;
 	private String movieStatus;
+	private List<Integer> actorList;
+	private List<Integer> genreList;
 
 	public Integer getMovieId() {
 		return movieId;
@@ -239,6 +242,22 @@ public class MovieVO {
 
 	public void setMovieStatus(String movieStatus) {
 		this.movieStatus = movieStatus;
+	}
+
+	public List<Integer> getActorList() {
+		return actorList;
+	}
+
+	public void setActorList(List<Integer> actorList) {
+		this.actorList = actorList;
+	}
+
+	public List<Integer> getGenreList() {
+		return genreList;
+	}
+
+	public void setGenreList(List<Integer> genreList) {
+		this.genreList = genreList;
 	}
 
 }

@@ -32,7 +32,7 @@
       <div class="oneflix-logo">
         <a href="#"><img src="client/images/oneflix_logo.png"></a>
       </div>
-      <a href="#" class="css-login-Button">시작하기</a>
+      <a href="/login.do" class="css-login-Button">시작하기</a>
     </header>
     <!-- /.헤더 -->
 

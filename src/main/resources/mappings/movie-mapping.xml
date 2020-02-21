@@ -56,6 +56,7 @@
 		SET
 		movie_title = #{movieTitle}, teaser_video_path = #{teaserVideoPath}, full_video_path = #{fullVideoPath},
 		poster_path = #{posterPath}, duration = #{duration}, summary = #{summary}, director_id = #{directorId},
+		actor_id1 = #{actorId1}, actor_id2 = #{actorId2}, actor_id3 = #{actorId3}, actor_id4 = #{actorId4}, actor_id5 = #{actorId5},
 		genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, release = #{release}, movie_score = #{movieScore},
 		movie_status = #{movieStatus}, main_check = #{mainCheck}  
 		WHERE
@@ -64,7 +65,7 @@
 
 	<delete id="deleteMovie" parameterType="movie">
 		DELETE FROM movie WHERE
-		movie_id = #{movieId}
+		movie_id = #{movieId, jdbcType=NUMERIC}
 	</delete>
 
 </mapper>

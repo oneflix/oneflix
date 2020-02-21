@@ -23,6 +23,8 @@
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <link rel="stylesheet" href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- <link rel="stylesheet" href="admin/plugins/bootstrap-toggle-master/css/bootstrap2-toggle.min.css"> -->
+<link rel="stylesheet" href="admin/plugins/bootstrap-toggle-master/css/bootstrap-toggle.min.css">
 <link rel="stylesheet" href="admin/css/adminlte.min.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="admin/css/custom.css">
@@ -96,7 +98,7 @@
 				</li>
 
 				<li class="nav-item">
-					<a href="/getMembershipListProc.mdo" class="nav-link" id="membership">
+					<a href="/getTicketListProc.mdo" class="nav-link" id="ticket">
 						<ion-icon name="card" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>이용권</p>
 					</a>
@@ -170,6 +172,8 @@
 
 	<script src="admin/plugins/jquery/jquery.min.js"></script>
 	<script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="admin/plugins/bootstrap-toggle-master/js/bootstrap2-toggle.min.js"></script> -->
+	<script src="admin/plugins/bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
 	<script src="admin/plugins/datatables/jquery.dataTables.js"></script>
 	<script src="admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 	<script src="admin/js/adminlte.min.js"></script>
@@ -194,7 +198,7 @@
 			
 			// 선택된 메뉴 active 추가
 			var menu = [$('#dashboard'), $('#movie'), $('#genre'), $('#director'), $('#actor'),
-					$('#member'), $('#membership'), $('#sales'), $('#notice'), $('#faq'),
+					$('#member'), $('#ticket'), $('#sales'), $('#notice'), $('#faq'),
 					$('#inquiry'), $('#screen'), $('#analysis'), $('#manager')];
 			
 			var action = location.href.substr(
@@ -210,10 +214,10 @@
 				menu[3].addClass('active');
 			} else if (action.toLowerCase().indexOf('actor') != -1) {
 				menu[4].addClass('active');
-			} else if (action.toLowerCase().indexOf('membership') != -1) {
-				menu[6].addClass('active');
 			} else if (action.toLowerCase().indexOf('member') != -1) {
 				menu[5].addClass('active');
+			} else if (action.toLowerCase().indexOf('ticket') != -1) {
+				menu[6].addClass('active');
 			} else if (action.toLowerCase().indexOf('sales') != -1) {
 				menu[7].addClass('active');
 			} else if (action.toLowerCase().indexOf('notice') != -1) {

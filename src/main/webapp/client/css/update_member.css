@@ -1,0 +1,192 @@
+html {
+    background-color: #fff;
+}
+
+ol, ul {
+    list-style-type: none;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+ul{
+    display: block;
+}
+
+.css-ktmjdr-Container {
+    max-width: 960px;
+    margin: 0px auto;
+}
+
+.css-34jiqc-Section {
+    padding: 0px 0px 30px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    margin: 0px 0px 50px;
+}
+.css-14w6zap-SectionHeader {
+    color: rgb(42, 42, 42);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 27px;
+    margin: 0px 0px 10px;
+}
+/* �젙蹂댁닔�젙 由ъ뒪�듃 */
+.css-ar8roi-SettingList {
+    display: flex;
+}
+/* �젙蹂댁닔�젙 由ъ뒪�듃 -> ���씠�� */
+.css-awho9y-SettingListTitle {
+    color: rgb(51, 51, 51);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    width: 140px;
+    padding: 20px 0px;
+}
+/* �젙蹂댁닔�젙 由ъ뒪�듃 -> �궡�슜 */
+.css-18xcnb7-SettingListContent {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+}
+.css-1epg2mh-SettingListContentRow {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    padding: 8px 0;
+}
+.css-av4kss-ValueTextBlock {
+    color: #333333;
+    font-size: 15px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.3px;
+    -moz-letter-spacing: -0.3px;
+    -ms-letter-spacing: -0.3px;
+    letter-spacing: -0.3px;
+    vertical-align: top;
+    padding: 12px 0;
+}
+.css-1vx1h8q-SmallButtonsBlock {
+    margin-left: 19px;
+}
+.css-lzf1fk-Self-SmallSettingButton {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+    padding: 7px 11px;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    line-height: 21px;
+    padding: 4px 8px 5px 8px;
+    margin: 8px 0 0 0;
+    background-color: rgb(255, 255, 255);
+}
+.css-1ymlnpj-FieldBlock {
+    width: 250px;
+}
+.css-unatsl-Self {
+    position: relative;
+    width: 100%;
+}
+.css-5kai6j-StyledField {
+    width: 80%;
+    padding: 10px 20px 10px 14px;
+    border-radius: 4px;
+}
+input.css-5kai6j-StyledField[type="email"], input.css-5kai6j-StyledField[type="number"], input.css-5kai6j-StyledField[type="password"], input.css-5kai6j-StyledField[type="search"], input.css-5kai6j-StyledField[type="tel"], input.css-5kai6j-StyledField[type="text"] {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border: 1px solid #d4d4d4;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+.css-1sli7is-Button-GreenButton-ChangeProfileButton {
+    color: #FFFFFF;
+    background: #22b99b;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: 700;
+    width: 170px;
+    padding: 13px 11px;
+    border: 0;
+    margin-bottom: 20px;
+}
+.css-34jiqc-Section {
+    padding: 0 0 30px;
+    border-bottom: 1px solid #ececec;
+    margin: 0 0 50px;
+}
+.css-ht5cer-SubscribeStatus {
+    color: rgb(51, 51, 51);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+.css-1a5vbj5-SubscribeStatusText {
+    padding: 12px 0px 0px;
+}
+.css-1bognut-ChangeSubscribeStatusBlock {
+    white-space: pre-line;
+}
+.css-wfgy93-Self {
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+    padding: 7px 11px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(212, 212, 212);
+    border-image: initial;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+}
+.css-1vpi0so-Self-Self {
+    background: rgb(255, 255, 255);
+    /*padding: 10px;*/
+    padding-top: 20px;
+    padding-right: 0px;
+    /* overflow: hidden; */
+    height: 80vh;
+    margin-left: 8vw;
+    margin-right: 8vw;
+}
+input.css-5kai6j-StyledField[type="nick"], input.css-5kai6j-StyledField[type="number"], input.css-5kai6j-StyledField[type="pass"], input.css-5kai6j-StyledField[type="search"], input.css-5kai6j-StyledField[type="tel"], input.css-5kai6j-StyledField[type="text"] {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border: 1px solid #d4d4d4;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}

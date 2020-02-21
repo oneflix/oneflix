@@ -13,6 +13,8 @@ a {color: #f1f1f1; text-decoration: none;}
 .main-slider .swiper-button-next {position: absolute; top: 50%; right: -40px;}
 .main-slider .swiper-button-prev {position: absolute; top: 50%; left: -40px;}
 
+
+
 @media (max-width: 1240px) {
     .main-slider .swiper-wrapper {height: 13vw;}
 }
