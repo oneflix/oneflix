@@ -177,16 +177,6 @@
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script>
 		$(function() {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging" : true,
-				"lengthChange" : false,
-				"searching" : false,
-				"ordering" : true,
-				"info" : true,
-				"autoWidth" : false,
-			});
-			
 			// 슈퍼 관리자인지 아닌지
 			if ("${loginManager.managerType}" != 9) {
 				$('#manager-menu').hide();
