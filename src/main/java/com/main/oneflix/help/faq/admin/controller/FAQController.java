@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.help.service.DeleteHelpService;
@@ -34,11 +35,21 @@ public class FAQController {
 
 	@RequestMapping("/getFAQListProc.mdo")
 	public ModelAndView getFAQListProc(HelpVO vo, ModelAndView mav) {
-		vo.setHelpType("faq");
+		if (vo.getHelpType() == null) {
+			vo.setHelpType("faq");
+		};
 		List<HelpVO> FAQList = getHelpListService.getHelpList(vo);
+		mav.addObject("FAQ", vo);
 		mav.addObject("FAQList", FAQList);
 		mav.setViewName("FAQList");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/getFAQListProcAjax.mdo", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public List<HelpVO> getFAQListProcAjax(HelpVO vo) {
+		List<HelpVO> helpList = getHelpListService.getHelpList(vo);
+		return helpList;
 	}
 
 	@RequestMapping("/insertFAQ.mdo")
