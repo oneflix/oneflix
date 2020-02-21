@@ -1,16 +1,95 @@
-.custom-float{float:right;} .custom-body{overflow-x: hidden;} .custom-table-width{width: 100%;}
+.custom-float {
+	float: right;
+}
 
-.btn-register{
-    background-color: #131834;
-    color: #dedede;
+.custom-body {
+	overflow-x: hidden;
+}
+
+.custom-table-width {
+	width: 100%;
+}
+
+.btn-register {
+	background-color: #131834;
+	color: #dedede;
 }
 
 .btn-register:hover {
-    color: #dedede;
-    background-color: #131834;
-    border-color: #131834;
-  }
-.th-width{width: 210px}
-.custom-float{float:right;} 
-.custom-body{overflow-x: hidden;} 
-.custom-table-width{width: 100%;}
+	color: #dedede;
+	background-color: #131834;
+	border-color: #131834;
+}
+
+.th-width {
+	width: 210px
+}
+
+.custom-float {
+	float: right;
+}
+
+.custom-body {
+	overflow-x: hidden;
+}
+
+.custom-table-width {
+	width: 100%;
+}
+
+.member-label {
+	float: left;
+	margin-top:20px;
+	margin-bottom: 50px;
+	margin-left: 30px;
+	height: 500px;
+	font-size: 17px;
+	justify-content: space-between;
+}
+
+.member-label>div {
+	margin-top: 4px;
+	margin-bottom: 36px;
+	letter-spacing: -2px;
+}
+
+.member-content {
+	float: left;
+	margin-left: 40px;
+	margin-top:20px;
+	margin-bottom: 50px;
+	height: 500px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.member-content>div {
+	margin-bottom: 34px;
+}
+
+.member-card-position {
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #ffffff;
+	background-clip: border-box;
+	border: 0 solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+}
+
+.buttons{
+	margin-top: 500px;
+	float: right;
+}
+
+.member-content > div > input{
+	background-color: #fff; 
+	border: none; 
+	outline: none; 
+	font-weight: bold;
+	readonly;
+}

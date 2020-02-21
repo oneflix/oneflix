@@ -64,9 +64,9 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th style="width: 4vw;">#</th>
                       <th>장르명</th>
-                      <th>관리</th>
+                      <th style="width: 150px;">관리</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -77,7 +77,7 @@
                       <td>
                         <div>
                           <button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getGenreProc.mdo?genreId=${genre.genreId}'">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${genreId}')">삭제</button>
+                          <button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${genre.genreId}')">삭제</button>
                         </div>
                       </td>
                     </tr>

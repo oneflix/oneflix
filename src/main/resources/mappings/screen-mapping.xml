@@ -43,5 +43,4 @@
 		</choose>
 		ORDER BY screen_order ASC
 	</select>
-	
 </mapper>

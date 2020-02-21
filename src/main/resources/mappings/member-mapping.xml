@@ -3,6 +3,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MemberDAO">
-
-
+   <insert id="insertMember" parameterType="member">
+      INSERT INTO member (email, pass, nick, birth, member_age, gender, cert, ban)
+      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}) 
+ 	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
+   </insert>
+   <update id="updateMember" parameterType="member">
+      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}
+      WHERE email = #{email}
+   </update>
+  
+   <delete id="deleteMember" parameterType="member">
+      DELETE FROM member WHERE email = #{email}
+   </delete>
+   <select id="getMember" resultType="member" parameterType="member">
+      SELECT * FROM member WHERE email = #{email}
+   </select>
+   
+   <resultMap type="member" id="memberList">
+		<id property="email" column="email" />
+		<result property="pass" column="pass" />
+		<result property="nick" column="nick" />
+		<result property="birth" column="birth" />
+		<result property="memberAge" column="member_age" />
+		<result property="gender" column="gender" />
+		<result property="cert" column="cert" />
+	</resultMap>
+  
+   <select id="getMemberList" resultMap="memberList">
+      SELECT * FROM member WHERE 1=1
+		<if test="searchMember != null">
+			AND email like '%' || #{searchMember} || '%'
+		</if> 
+      ORDER BY email ASC
+   </select>
+	
 </mapper>

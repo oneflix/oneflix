@@ -49,5 +49,4 @@ public class ScreenVO {
 		this.screenSubtitle = screenSubtitle;
 	}
 	
-	
 }

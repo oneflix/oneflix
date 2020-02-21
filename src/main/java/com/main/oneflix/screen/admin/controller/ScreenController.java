@@ -24,7 +24,7 @@ public class ScreenController {
 	DeleteScreenService deleteScreenService;
 	@Autowired
 	GetScreenListService getScreenListService;
-	
+
 	
 	@RequestMapping("/insertScreenProc.mdo")
 	public ModelAndView insertScreenProc(ScreenVO vo, ModelAndView mav) {

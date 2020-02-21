@@ -19,11 +19,19 @@
 		<result property="helpRegDate" column="help_reg_date"></result>
 	</resultMap>
 
-	<select id="getHelpList" resultMap="helpList">
+	<select id="getHelpList" resultMap="helpList" parameterType="help">
 		SELECT * FROM helps WHERE 1 = 1
 		<if test="searchHelp != null">
-			AND helpTitle like '%'|| #{searchHelp}||'%'
+			AND help_title like '%'|| #{searchHelp}||'%'
 		</if>
+		<choose>
+			<when test='helpType == "faq"'>
+				AND help_type != 'notice'
+			</when>
+			<otherwise>
+				AND help_type = #{helpType}
+			</otherwise>
+		</choose>
 		ORDER BY
 		help_id ASC
 	</select>
@@ -31,18 +39,15 @@
 	<insert id="insertHelp" parameterType="help">
 		INSERT INTO helps (help_id, help_type, help_title, help_content, help_reg_date)
 		VALUES((select nvl(max(help_id),0)+1 from helps),
-		#{helpType,jdbcType=VARCHAR},#{helpTitle,jdbcType=VARCHAR},#{helpContent,jdbcType=VARCHAR},
-		sysdate)
+		#{helpType}, #{helpTitle}, #{helpContent}, sysdate)
 	</insert>
 
 	<update id="updateHelp" parameterType="help">
 		UPDATE helps
 		SET
-		help_type=#{helpType,jdbcType=VARCHAR},
-		help_title=#{helpTitle,jdbcType=VARCHAR},
-		help_content=#{helpContent,jdbcType=VARCHAR}
+		help_type = #{helpType}, help_title = #{helpTitle}, help_content = #{helpContent}
 		WHERE
-		help_id = #{helpId,jdbcType=NUMERIC}
+		help_id = #{helpId}
 	</update>
 
 	<delete id="deleteHelp" parameterType="help">
