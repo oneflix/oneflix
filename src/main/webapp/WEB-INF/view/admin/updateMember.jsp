@@ -38,8 +38,8 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/updateMemberProc.mdo" class="row">
-				<input type="hidden" name="email" value="${member.email}">
+			<form action="/updateMemberProc.mdo"  method="post" class="row">
+			<input type="hidden" name="pass" value="${member.pass }">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -57,32 +57,34 @@
 									<div>계정정지</div>
 								</div>
 								<div class="member-content">
-									<div>${member.email }</div>
-									<div>${member.nick }</div>
-									<div>${member.birth }</div>
-									<div>${member.memberAge }</div>
+									<div><input name="email" value="${member.email}"></div>
+									<div><input name="nick" value="${member.nick}"></div>
+									<div><input name="birth" value="${member.birth}"></div>
+									<div><input name="memberAge" value="${member.memberAge}"></div>
+									<c:if test="${member.ticketPeriod eq 0}">
 									<div>
-										정기권
-										<button type="button" class="btn btn-sm btn-info">이용권등록</button>
+									<input name="ticketPeriod" value="0">
+									<button type="button" class="btn btn-sm btn-info">이용권등록</button>
 									</div>
+									</c:if>
 									<div>2020.02.01 - 2020.03.01</div>
-									<div>${member.cert }</div>
+									<div><input name="cert" value="${member.cert}"></div>
 									<div>
-										N
-										<button type="button" class="btn btn-sm btn-danger">정지</button>
+										<input type="checkbox" name="ban" id="ban"
+												data-toggle="toggle" data-on="BAN" data-off="ACT"
+												data-onstyle="danger" data-size="small"
+												<c:if test="${member.ban eq 'Y' }">checked</c:if>>
 									</div>
 								</div>
 							</div>
-
 							<br>
 							<div class="buttons">
-								<button type="submit" class="btn btn-success">등록</button>
+								<button type="submit" class="btn btn-success">수정</button>
 								<button type="button" class="btn btn-secondary" onclick="location.href='/getMemberListProc.mdo'">취소</button>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</form>
 		</div>
 		<!-- /.content-wrapper -->
@@ -95,6 +97,23 @@
 
 	</div>
 	<!-- ./wrapper -->
+	
+	<script type="text/javascript">
+	
+		//checkbox value 전달
+		$("#ban").change(
+				function() {
+					if($("#ban").is(":checked")){
+						$("#ban").val('Y');
+						alert($("#ban").val());
+					}else{
+						$("#ban").val('N');
+						alert($("#ban").val());
+					}
+					
+				});
+		
+	</script>
 
 
 </body>

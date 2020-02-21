@@ -59,12 +59,12 @@
 	margin-top:20px;
 	margin-bottom: 50px;
 	height: 500px;
-	font-size: 20px;
+	font-size: 17px;
 	font-weight: bold;
 }
 
 .member-content>div {
-	margin-bottom: 30px;
+	margin-bottom: 34px;
 }
 
 .member-card-position {
@@ -86,6 +86,10 @@
 	float: right;
 }
 
-.member-content > div > button{
-	margin-left: 20px;
+.member-content > div > input{
+	background-color: #fff; 
+	border: none; 
+	outline: none; 
+	font-weight: bold;
+	readonly;
 }

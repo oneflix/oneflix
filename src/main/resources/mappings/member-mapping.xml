@@ -4,13 +4,12 @@
 
 <mapper namespace="MemberDAO">
    <insert id="insertMember" parameterType="member">
-      INSERT INTO member (email, pass, nick, birth, member_age, gender,cert)
-      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender},#{cert}) 
+      INSERT INTO member (email, pass, nick, birth, member_age, gender, cert, ban)
+      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}) 
  	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
    </insert>
    <update id="updateMember" parameterType="member">
-      UPDATE member SET pass = #{pass}, nick = #{nick},
-      member_age = #{memberAge}, ban = #{ban}
+      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}
       WHERE email = #{email}
    </update>
   
@@ -32,7 +31,11 @@
 	</resultMap>
   
    <select id="getMemberList" resultMap="memberList">
-      SELECT * FROM member ORDER BY email ASC
+      SELECT * FROM member WHERE 1=1
+		<if test="searchMember != null">
+			AND email like '%' || #{searchMember} || '%'
+		</if> 
+      ORDER BY email ASC
    </select>
 	
 </mapper>
