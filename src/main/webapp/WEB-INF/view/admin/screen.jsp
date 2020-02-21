@@ -48,44 +48,119 @@
 							<div class="form-group mb-3">
 								<div class="form-group">
 									<div>
-										<label>비회원</label>
+										<label>비회원 페이지</label>
 									</div>
-									<table class="custom-table-width">
-										<tbody>
-											<tr>
-												<td>
-													<div class="custom-file">
-														<input type="file" class="custom-file-input"
-															id="non-members-page"> <label
-															class="custom-file-label" for="non-members-page">파일
-															선택</label>
-													</div>
-												</td>
-												<td>&nbsp; <input type="button"
-													class="btn btn-xs btn-primary" value="+ 추가"
-													onclick="addRow()">
-												</td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control" id="title"
-													name="title" required placeholder="Title" /></td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													id="subtitle" name="subtitle" required
-													placeholder="SubTitle" /></td>
-											</tr>
-										</tbody>
-									</table>
+									<c:if test="${!empty oneflixScreenList}">
+										<c:forEach var="screen" items="${oneflixScreenList }"
+											varStatus="status">
+											<c:choose>
+												<c:when test="${status.first}">
+													<table class="custom-table-width">
+														<tbody>
+															<tr>
+																<td>
+																	<div class="custom-file">
+																		<input type="file" class="custom-file-input"
+																			id="non-members-page" name="screenImgPath"
+																			value="${screen.screenImgPath }"> <label
+																			class="custom-file-label" for="non-members-page">파일
+																			선택</label>
+																	</div>
+																</td>
+																<td>&nbsp; <input type="button"
+																	class="btn btn-xs btn-primary" value="+ 추가"
+																	onclick="addRow()">
+																</td>
+															</tr>
+															<tr>
+																<td><input type="text" class="form-control"
+																	id="title" name="screenTitle"
+																	value="${screen.screenTitle }" required
+																	placeholder="Title" /></td>
+															</tr>
+															<tr>
+																<td><input type="text" class="form-control"
+																	id="subtitle" name="screenSubtitle"
+																	value="${screen.screenSubtitle }" required
+																	placeholder="SubTitle" /></td>
+															</tr>
+														</tbody>
+													</table>
+												</c:when>
 
+												<c:otherwise>
+													<table id="addTable1" class="custom-table-width">
+														<tbody id="templeteTBody1">
+															<tr>
+																<td>
+																	<div class="custom-file">
+																		<input type="file" class="custom-file-input"
+																			id="add-file" name="screenImgPath"
+																			value="${screen.screenImgPath }"> <label
+																			class="custom-file-label" for="add-file">파일
+																			선택</label>
+																	</div>
+																</td>
+																<td>&nbsp; <input type="button"
+																	class="btn btn-xs btn-danger" onclick="deleteRow1(this)"
+																	value="- 삭제">
+																</td>
+															</tr>
+															<tr>
+																<td><input type="text" class="form-control"
+																	id="title" name="screenTitle"
+																	value="${screen.screenTitle }" required
+																	placeholder="Title" /></td>
+															</tr>
+															<tr>
+																<td><input type="text" class="form-control"
+																	id="subtitle" name="screenSubtitle"
+																	value="${screen.screenSubtitle }" required
+																	placeholder="SubTitle" /></td>
+															</tr>
+														</tbody>
+													</table>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:if>
+									<c:if test="${empty oneflixScreenList}">
+										<table class="custom-table-width">
+											<tbody>
+												<tr>
+													<td>
+														<div class="custom-file">
+															<input type="file" class="custom-file-input"
+																id="non-members-page" name="screenImgPath"> <label
+																class="custom-file-label" for="non-members-page">파일
+																선택</label>
+														</div>
+													</td>
+													<td>&nbsp; <input type="button"
+														class="btn btn-xs btn-primary" value="+ 추가"
+														onclick="addRow()">
+													</td>
+												</tr>
+												<tr>
+													<td><input type="text" class="form-control" id="title"
+														name="screenTitle" required placeholder="Title" /></td>
+												</tr>
+												<tr>
+													<td><input type="text" class="form-control"
+														id="subtitle" name="screenSubtitle" required
+														placeholder="SubTitle" /></td>
+												</tr>
+											</tbody>
+										</table>
+									</c:if>
 									<table id="addTable" class="custom-table-width">
 										<tbody id="templeteTBody" style="display: none;">
 											<tr>
 												<td>
 													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="add-file">
-														<label class="custom-file-label" for="add-file">파일
-															선택</label>
+														<input type="file" class="custom-file-input" id="add-file"
+															name="screenImgPath"> <label
+															class="custom-file-label" for="add-file">파일 선택</label>
 													</div>
 												</td>
 												<td>&nbsp; <input type="button"
@@ -136,6 +211,11 @@
 					var table = document.getElementById("addtableTWO");
 					table.removeChild(tbody);
 				}
+				function deleteBox1(obj) {
+					var tbody = obj.parentNode.parentNode.parentNode;
+					var table = document.getElementById("addtableTWO1");
+					table.removeChild(tbody);
+				}
 				//값 주입
 				function setValueZ() {
 					var tbody = addRow();
@@ -148,34 +228,108 @@
 					<div class="card card-info">
 						<div class="card-body pad">
 							<div class="form-group mb-3">
-								<label>탈퇴</label>
-								<table class="custom-table-width">
-									<tbody>
-										<tr>
-											<td>
-												<div class="custom-file">
-													<input type="file" class="custom-file-input"
-														id="non-members-page"> <label
-														class="custom-file-label" for="non-members-page">파일
-														선택</label>
-												</div>
-											</td>
-											<td>&nbsp; <input type="button"
-												class="btn btn-xs btn-primary" value="+ 추가"
-												onclick="addBox()">
-											</td>
-										</tr>
-										<tr>
-											<td><input type="text" class="form-control" id="title"
-												name="title" required placeholder="Title" /></td>
-										</tr>
-										<tr>
-											<td><input type="text" class="form-control"
-												id="subtitle" name="subtitle" required
-												placeholder="SubTitle" /></td>
-										</tr>
-									</tbody>
-								</table>
+								<label>회원 탈퇴 페이지</label>
+								<c:if test="${!empty deletedefenseScreenList}">
+									<c:forEach var="screen" items="${deletedefenseScreenList }"
+										varStatus="status">
+										<c:choose>
+											<c:when test="${status.first}">
+												<table class="custom-table-width">
+													<tbody>
+														<tr>
+															<td>
+																<div class="custom-file">
+																	<input type="file" class="custom-file-input"
+																		id="non-members-page" name="screenImgPath"
+																		value="${screen.screenImgPath }"> <label
+																		class="custom-file-label" for="non-members-page">파일
+																		선택</label>
+																</div>
+															</td>
+															<td>&nbsp; <input type="button"
+																class="btn btn-xs btn-primary" value="+ 추가"
+																onclick="addBox()">
+															</td>
+														</tr>
+														<tr>
+															<td><input type="text" class="form-control"
+																id="title" name="screenTitle"
+																value="${screen.screenTitle }" required
+																placeholder="Title" /></td>
+														</tr>
+														<tr>
+															<td><input type="text" class="form-control"
+																id="subtitle" name="screenSubtitle"
+																value="${screen.screenSubtitle }" required
+																placeholder="SubTitle" /></td>
+														</tr>
+													</tbody>
+												</table>
+											</c:when>
+											<c:otherwise>
+												<table id="addtableTWO1" class="custom-table-width">
+													<tbody id="templeteTBodyTWO1">
+														<tr>
+															<td>
+																<div class="custom-file">
+																	<input type="file" class="custom-file-input"
+																		id="add-file" name="screenImgPath"
+																		value="${screen.screenImgPath }"> <label
+																		class="custom-file-label" for="add-file">파일 선택</label>
+																</div>
+															</td>
+															<td>&nbsp; <input type="button"
+																class="btn btn-xs btn-danger" onclick="deleteBox1(this)"
+																value="- 삭제" />
+															</td>
+														</tr>
+														<tr>
+															<td><input type="text" class="form-control"
+																id="title" name="screenTitle"
+																value="${screen.screenTitle }" required
+																placeholder="Title" /></td>
+														</tr>
+														<tr>
+															<td><input type="text" class="form-control"
+																id="subtitle" name="screenSubtitle"
+																value="${screen.screenSubtitle }" required
+																placeholder="SubTitle" /></td>
+														</tr>
+													</tbody>
+												</table>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:if>
+								<c:if test="${empty deletedefenseScreenList}">
+									<table class="custom-table-width">
+										<tbody>
+											<tr>
+												<td>
+													<div class="custom-file">
+														<input type="file" class="custom-file-input"
+															id="non-members-page"> <label
+															class="custom-file-label" for="non-members-page">파일
+															선택</label>
+													</div>
+												</td>
+												<td>&nbsp; <input type="button"
+													class="btn btn-xs btn-primary" value="+ 추가"
+													onclick="addBox()">
+												</td>
+											</tr>
+											<tr>
+												<td><input type="text" class="form-control" id="title"
+													name="title" required placeholder="Title" /></td>
+											</tr>
+											<tr>
+												<td><input type="text" class="form-control"
+													id="subtitle" name="subtitle" required
+													placeholder="SubTitle" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</c:if>
 								<table id="addtableTWO" class="custom-table-width">
 									<tbody id="templeteTBodyTWO" style="display: none;">
 										<tr>
@@ -240,6 +394,11 @@
 		function deleteRow(obj) {
 			var tbody = obj.parentNode.parentNode.parentNode;
 			var table = document.getElementById("addTable");
+			table.removeChild(tbody);
+		}
+		function deleteRow1(obj) {
+			var tbody = obj.parentNode.parentNode.parentNode;
+			var table = document.getElementById("addTable1");
 			table.removeChild(tbody);
 		}
 		//값 주입

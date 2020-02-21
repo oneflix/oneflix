@@ -25,16 +25,35 @@ public class ScreenController {
 	@Autowired
 	GetScreenListService getScreenListService;
 	
-	@RequestMapping("screen.mdo")
-	public ModelAndView screen(ScreenVO vo, ModelAndView mav) {
-		mav.setViewName("screen");
+	
+	@RequestMapping("/insertScreenProc.mdo")
+	public ModelAndView insertScreenProc(ScreenVO vo, ModelAndView mav) {
+		insertScreenService.insertScreen(vo);
+		mav.setViewName("redirect:/getScreenListProc.mdo");
 		return mav;
 	}
 	
+	/*
+	 * @RequestMapping("/updateScreenProc.mdo") public ModelAndView
+	 * updateScreenProc(ScreenVO vo, ModelAndView mav) {
+	 * updateScreenService.updateScreen(vo);
+	 * mav.setViewName("redirect:/getScreenListProc.mdo"); return mav; }
+	 * 
+	 * @RequestMapping("/deleteScreenProc.mdo") public ModelAndView
+	 * deleteScreenProc(ScreenVO vo, ModelAndView mav) {
+	 * deleteScreenService.deleteScreen(vo);
+	 * mav.setViewName("redirect:/getScreenListProc.mdo"); return mav; }
+	 */
 	@RequestMapping("/getScreenListProc.mdo")
 	public ModelAndView getScreenListProc(ScreenVO vo, ModelAndView mav) {
-		List<ScreenVO> screenList = getScreenListService.getScreenList(vo);
-		mav.addObject("screenList", screenList);
+		vo.setScreenPageType("o");
+		List<ScreenVO> oneflixScreenList = getScreenListService.getScreenList(vo);
+		
+		vo.setScreenPageType("d");
+		List<ScreenVO> deletedefenseScreenList = getScreenListService.getScreenList(vo);
+		
+		mav.addObject("oneflixScreenList", oneflixScreenList);
+		mav.addObject("deletedefenseScreenList", deletedefenseScreenList);
 		mav.setViewName("screen");
 		return mav;
 	}
