@@ -69,50 +69,56 @@
 											<th>나이</th>
 											<th>이용권</th>
 											<th>본인인증 여부</th>
+											<th>계정상태</th>
 											<th class="th-width">관리</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="member" items="${memberList }">
-										<tr>
-											<td>1</td>
-											<td>${member.email }</td>
-											<td>${member.nick }</td>
-											<td>${member.memberAge }</td>
-											<c:if test="${member.ticketPeriod eq 0 }">
-											<td>이용권 없음</td>
-											</c:if>
-											<c:if test="${member.ticketPeriod eq -1 }">
-											<td>정기권</td>
-											</c:if>
-											<c:if test="${member.ticketPeriod eq 30 }">
-											<td>30일</td>
-											</c:if>
-											<c:if test="${member.ticketPeriod eq 60 }">
-											<td>60일</td>
-											</c:if>
-											<c:if test="${member.ticketPeriod eq 90 }">
-											<td>90일</td>
-											</c:if>
-											<c:if test="${member.ticketPeriod eq 180 }">
-											<td>180일</td>
-											</c:if>
-											<c:if test="${member.ticketPeriod eq 365 }">
-											<td>365일</td>
-											</c:if>
-											<td>${member.cert }</td>
-											<td>
-												<div>
-													<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMemberProc.mdo?email=${member.email}'">상세</button>
-													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${member.email}')">삭제</button>
-													<div class="custom-control custom-switch custom-float">
-														<input type="checkbox" class="custom-control-input"
-															id="customSwitch1"> <label
-															class="custom-control-label" for="customSwitch1">블랙</label>
+											<tr>
+												<td>1</td>
+												<td>${member.email }</td>
+												<td>${member.nick }</td>
+												<td>${member.memberAge }</td>
+												<c:if test="${member.ticketPeriod eq 0 }">
+													<td>이용권 없음</td>
+												</c:if>
+												<c:if test="${member.ticketPeriod eq -1 }">
+													<td>정기권</td>
+												</c:if>
+												<c:if test="${member.ticketPeriod eq 30 }">
+													<td>30일</td>
+												</c:if>
+												<c:if test="${member.ticketPeriod eq 60 }">
+													<td>60일</td>
+												</c:if>
+												<c:if test="${member.ticketPeriod eq 90 }">
+													<td>90일</td>
+												</c:if>
+												<c:if test="${member.ticketPeriod eq 180 }">
+													<td>180일</td>
+												</c:if>
+												<c:if test="${member.ticketPeriod eq 365 }">
+													<td>365일</td>
+												</c:if>
+												<td>${member.cert }</td>
+												<c:choose>
+													<c:when test="${member.ban eq 'Y' }">
+														<td>정지</td>
+													</c:when>
+													<c:otherwise>
+														<td>활성</td>
+													</c:otherwise>
+												</c:choose>
+												<td>
+													<div>
+														<button type="button" class="btn btn-sm btn-primary"
+															onclick="location.href='/getMemberProc.mdo?email=${member.email}'">상세</button>
+														<button type="button" class="btn btn-sm btn-danger"
+															onclick="deleteCheck('${member.email}')">삭제</button>
 													</div>
-												</div>
-											</td>
-										</tr>
+												</td>
+											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
@@ -128,12 +134,12 @@
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
-		
+
 		<jsp:include page="${footer_url}"></jsp:include>
 
 	</div>
 	<!-- ./wrapper -->
-	
+
 	<script>
 		function deleteCheck(email) {
 			var check = confirm("정말로 삭제하시겠습니까?");
@@ -141,6 +147,7 @@
 				document.location.href = "/deleteMemberProc.mdo?email=" + email;
 			}
 		}
+		
 	</script>
 
 </body>
