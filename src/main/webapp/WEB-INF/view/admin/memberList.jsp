@@ -180,7 +180,7 @@
 				document.location.href = "/deleteMemberProc.mdo?email=" + email;
 			}
 		}
-		
+
 		$(document.ready(function () {
 			if($('#select-category').val() == email || nick){
 				$('#ticket').hide();
@@ -189,7 +189,6 @@
 			}
 			
 		}))
-		
 	</script>
 
 </body>

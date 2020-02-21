@@ -30,6 +30,7 @@
 		<result property="cert" column="cert" />
 	</resultMap>
   
+
    <select id="getMemberList" resultMap="memberList" parameterType="member">
       SELECT * FROM member WHERE 1=1
 		<if test="searchMember != null">

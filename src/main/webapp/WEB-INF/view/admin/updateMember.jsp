@@ -61,6 +61,7 @@
 									<div><input name="nick" value="${member.nick}"></div>
 									<div><input name="birth" value="${member.birth}"></div>
 									<div><input name="memberAge" value="${member.memberAge}"></div>
+
 									<div>
 									<input name="ticketPeriod" id="ticketPeriod" 
 										<c:choose>
@@ -147,6 +148,7 @@
 				$('#ticketPeriod').val(ticketPeriod);
 			}
 		}
+
 	</script>
 
 
