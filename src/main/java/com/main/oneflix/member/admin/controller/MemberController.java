@@ -28,7 +28,6 @@ public class MemberController {
 	@RequestMapping("/getMemberProc.mdo")
 	public ModelAndView getMemberProc(MemberVO vo, ModelAndView mav) {
 		vo = getMemberService.getMember(vo);
-		System.out.println(vo.toString());
 		mav.addObject("member", vo);
 		mav.setViewName("updateMember");
 		return mav;
@@ -36,8 +35,10 @@ public class MemberController {
 
 	@RequestMapping("/updateMemberProc.mdo")
 	public ModelAndView updateMember(MemberVO vo, ModelAndView mav) {
+		if(vo.getBan()==null) {
+			vo.setBan("N");
+		}
 		updateMemeberService.updateMember(vo);
-		System.out.println(vo.toString());
 		mav.setViewName("redirect:/getMemberListProc.mdo");
 		return mav;
 	}
@@ -46,9 +47,6 @@ public class MemberController {
 	public ModelAndView getMemberListProc(MemberVO vo, ModelAndView mav) {
 		if(vo.getSearchMember() == null) vo.setSearchMember("");
 		List<MemberVO> memberList = getMemberListService.getMemberList(vo);
-		for(MemberVO member : memberList) {
-			System.out.println(member.toString());
-		}
 
 		mav.addObject("memberList", memberList);
 		mav.setViewName("memberList");

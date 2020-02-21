@@ -41,12 +41,15 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<form class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
+							
+								<form action="/getMemberListProc.mdo" class="form-inline ml-3"
+									style="float: right; margin-top: 4px;" onsubmit="categorySet()">
+									<input id="searchCategory" type="hidden" name="searchCategory"/>
+									<input id="secondCategory" type="hidden" name="secondCategory" style="display: hide;"/>
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="table_search"
-												class="form-control float-right" placeholder="Search">
+											<input type="text" name="searchMember"
+												class="form-control float-right" placeholder="검색">
 
 											<div class="input-group-append">
 												<button type="submit" class="btn btn-default">
@@ -56,6 +59,36 @@
 										</div>
 									</div>
 								</form>
+								
+								<select id="tiket-category" class="form-control form-control-sm select2bs4"
+									style="width: inherit; float: right; margin-top: 4px;">
+									<option value="0" selected="selected">이용권 없음</option>
+									<option value="-1">정기권</option>
+									<option value="30">30일</option>
+									<option value="60">60일</option>
+									<option value="90">90일</option>
+									<option value="180">180일</option>
+									<option value="365">365일</option>
+								</select>
+								<select id="cert-category" class="form-control form-control-sm select2bs4"
+									style="width: inherit; float: right; margin-top: 4px;">
+									<option value="cert-check" selected="selected">인증</option>
+									<option value="cert-non">미인증</option>
+								</select>
+								<select id="ban-category" class="form-control form-control-sm select2bs4"
+									style="width: inherit; float: right; margin-top: 4px;">
+									<option value="ban-act" selected="selected">활성</option>
+									<option value="ban-ban">정지</option>
+								</select>
+								<select id="select-category" class="form-control form-control-sm select2bs4"
+									style="width: inherit; float: right; margin-top: 4px;">
+									<option value="member" selected="selected">모든 카테고리</option>
+									<option value="email">이메일</option>
+									<option value="nick">닉네임</option>
+									<option value="ticket">이용권</option>
+									<option value="cert">본인인증여부</option>
+									<option value="ban">계정상태</option>
+								</select>
 							</div>
 							<!-- /.card-header -->
 
@@ -147,6 +180,15 @@
 				document.location.href = "/deleteMemberProc.mdo?email=" + email;
 			}
 		}
+		
+		$(document.ready(function () {
+			if($('#select-category').val() == email || nick){
+				$('#ticket').hide();
+				$('#cert').hide();
+				$('#ban').hide();
+			}
+			
+		}))
 		
 	</script>
 
