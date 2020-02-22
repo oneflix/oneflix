@@ -47,9 +47,9 @@
 							</div>
 
 							<br>
-							<div class="buttons" style="float: right;">
+							<div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
 								<button type="submit" class="btn btn-success">수정</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/genreListProc.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/getGenreListProc.mdo'">취소</button>
 							</div>
 						</div>
 					</div>
