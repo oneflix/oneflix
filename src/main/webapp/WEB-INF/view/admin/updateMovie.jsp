@@ -77,7 +77,7 @@
 								<div class="form-group mb-3">
 									<label for="summary">줄거리</label>
 									<textarea class="form-control" id="summary" name="summary"
-										required="required">${movie.summary}</textarea> 
+										required="required" style="height: 300px;">${movie.summary}</textarea> 
 								</div>
 
 								<div class="form-group mb-3">
@@ -172,22 +172,29 @@
 								</div>
 
 								<div class="form-group">
-									<label>활성화</label> <select name="movieStatus"
-										class="form-control">
+									<label>활성화</label>
+									<select id="movieStatus" name="movieStatus" class="form-control">
 										<option value="Y">YES</option>
 										<option value="N">NO</option>
 									</select>
 								</div>
 
 								<div class="form-group">
-									<label>메인</label> <select name="mainCheck" class="form-control">
+									<label>메인</label>
+									<select id="mainCheck" name="mainCheck" class="form-control">
 										<option value="Y">YES</option>
 										<option value="N">NO</option>
 									</select>
 								</div>
+								
+								<div class="form-group mb-3">
+									<label for="movieSubtitle">부연 설명</label>
+										<input type="text" class="form-control" id="movieSubtitle" name="movieTitle"
+											value="${movie.movieSubtitle}">
+								</div>
 
 								<br>
-								<div class="buttons custom-float">
+								<div class="buttons custom-float" style="margin-top: 0; padding-bottom: 20px;">
 									<button type="submit" class="btn btn-success">수정</button>
 									<button type="button" class="btn btn-secondary"
 										onclick="location.href='/getMovieListProc.mdo'">취소</button>
@@ -210,6 +217,7 @@
 	</div>
 	<!-- ./wrapper -->
 
+	
 	<!-- Select2 -->
 	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
 	<!-- Bootstrap4 Duallistbox -->
@@ -222,7 +230,7 @@
 		src="admin/plugins/bootstrap/js/bootstrap.js"></script>
 	<script src="admin/js/movie.js"></script>
 	<script>
-		$(function(){
+		document.addEventListener("DOMContentLoaded", function(){
 			$("#movieScore").val("${movie.movieScore}").prop("selected", true);
 			$("#rating").val("${movie.rating}").prop("selected", true);
 			$("#directorId").val("${movie.directorId}").prop("selected", true);
@@ -230,26 +238,32 @@
 			$('#genreList').val(["${movie.genreId1}","${movie.genreId2}"]);
 			$("#country").val("${movie.country}").prop("selected", true);
 			$("#release").val("${movie.release}").prop("selected", true);
-			var posterPath = "${movie.posterPath}";
-			posterPath = posterPath.substring(posterPath.lastIndexOf("/")+1);
-			$("label[for='poster']").text(posterPath);
-			var teaserVideoPath = "${movie.teaserVideoPath}";
-			teaserVideoPath = teaserVideoPath.substring(teaserVideoPath.lastIndexOf("/")+1);
-			$("label[for='teaser-video']").text(teaserVideoPath);
-			var fullVideoPath = "${movie.fullVideoPath}";
-			fullVideoPath = fullVideoPath.substring(fullVideoPath.lastIndexOf("/")+1);
-			$("label[for='full-video']").text(fullVideoPath);
+			$("label[for='poster']").text("${movie.movieTitle}" + ".png");
+			$("label[for='teaser-video']").text("${movie.movieTitle}" + ".mp4");
+			$("label[for='full-video']").text("${movie.movieTitle}" + ".mp4");
 			$("#movieStatus").val("${movie.movieStatus}").prop("selected", true);
 			$("#mainCheck").val("${movie.mainCheck}").prop("selected", true);
+			if ($('#mainCheck').val() == "Y") {
+				$('#movieSubtitle').prop("disabled", "");
+			} else {
+				$('#movieSubtitle').prop("disabled", true);
+			}
 		});
 		
+		$('#mainCheck').change(function(){
+			if ($('#mainCheck').val() == "Y") {
+				$('#movieSubtitle').prop("disabled", "");
+			} else {
+				$('#movieSubtitle').prop("disabled", true);
+			}
+		});
+
 		//submit 하기 전에 전처리
 		function preProc() {
 			//disalbed 안 풀어주면 값 안 넘어감			
 			$("#actorList option").prop("disabled", "");
 			$("#genreList option").prop("disabled", "");
 
-			alert($('#actorList option:selected').length);
 			// '분' 글자 짤라서 보내기
 			var duration = $('#duration').val();
 			duration = duration.substr(0, duration.length - 1);

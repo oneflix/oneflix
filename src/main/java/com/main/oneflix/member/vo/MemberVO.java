@@ -10,6 +10,7 @@ public class MemberVO {
 	private int ticketPeriod;
 	private String cert;
 	private String ban;
+	private String searchMember;
 
 	public String getEmail() {
 		return email;
@@ -82,5 +83,22 @@ public class MemberVO {
 	public void setBan(String ban) {
 		this.ban = ban;
 	}
+
+	public String getSearchMember() {
+		return searchMember;
+	}
+
+	public void setSearchMember(String searchMember) {
+		this.searchMember = searchMember;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [email=" + email + ", pass=" + pass + ", nick=" + nick + ", birth=" + birth + ", gender="
+				+ gender + ", MemberAge=" + MemberAge + ", ticketPeriod=" + ticketPeriod + ", cert=" + cert + ", ban="
+				+ ban + ", searchMember=" + searchMember + "]";
+	}
+
+	
 
 }
