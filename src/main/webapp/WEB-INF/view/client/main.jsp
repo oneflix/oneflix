@@ -71,7 +71,7 @@
                                     <div><a href="#">찜 목록</a></div>
                                     <div class="divider"></div>
                                     <div><a href="#">고객센터</a></div>
-                                    <div><a href="#">1:1 문의</a></div>
+                                    <div><a href="/getInquiryListProc.do">1:1 문의</a></div>
                                     <div><a href="#">로그아웃</a></div>
                                 </ul>
                             </div>
@@ -104,7 +104,7 @@
                                             <div><a href="/mypageHome.do">마이 페이지</a></div>
                                             <div class="divider"></div>
                                             <div><a href="#">고객센터</a></div>
-                                            <div><a href="/inquiryList.do">1:1 문의</a></div>
+                                            <div><a href="/getInquiryListProc.do">1:1 문의</a></div>
                                             <div><a href="#">로그아웃</a></div>
                                         </ul>
                                     </div>

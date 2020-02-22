@@ -89,7 +89,7 @@
 											<td>
 												<div>
 													<button type="submit" class="btn btn-sm btn-primary" onclick="location.href='/getTicketProc.mdo?ticketPeriod=${ticket.ticketPeriod}'">수정</button>
-													<button type="button" class="btn btn-sm btn-danger" onclick="deleteConfirm('${ticket.ticketPeriod}')">삭제</button>
+													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${ticket.ticketPeriod}')">삭제</button>
 												</div>
 											</td>
 										</tr>
@@ -117,8 +117,8 @@
 	<!-- ./wrapper -->
  <script>
 		 function deleteConfirm(ticketPeriod) {
-			var confirm = confirm("정말로 삭제하시겠습니까?");
-			if (confirm == true) {
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if (check == true) {
 				document.location.href = "/deleteTicketProc.mdo?ticketPeriod=" + ticketPeriod;
 			}
 		} 

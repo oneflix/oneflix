@@ -40,7 +40,9 @@
 			</section>
 
 
-			<form action="/updateTicketProc.mdo" method="post" class="row" name="updateTicket" onsubmit="return check()">
+			<form action="/updateTicketProc.mdo" method="post" class="row"
+			name="updateTicket" onsubmit="return check()">
+				<input name="ticektPeriod" type="hidden" value="${ticket.ticketPeriod}" />
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -48,7 +50,8 @@
 						<div class="card-body pad">
 							<div class="form-group mb-3">
 								<label for="title">기간</label> 
-								<select class="form-control" name="ticketPeriod">
+								<select class="form-control"
+									name="ticketPeriod">
 									<option>30</option>
 									<option>60</option>
 									<option>90</option>
@@ -58,31 +61,31 @@
 							</div>
 
 							<div class="form-group">
-								<label for="title">가격</label> 
-								<input type="text" class="form-control" id="price" name="price" required=""
+								<label for="title">가격</label> <input type="text"
+									class="form-control" id="price" name="price" required=""
 									onkeyup="number_chk(this);"
 									onkeypress="javascript:if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;">
 							</div>
 
-							<div class="form-group" >
-								<label>상태</label> 
-								<select class="form-control" name="ticketStatus">
+							<div class="form-group">
+								<label>상태</label> <select class="form-control"
+									name="ticketStatus">
 									<option>y</option>
 									<option>n</option>
 								</select>
 							</div>
-							
-								<div class="form-group">
-								<label>추천</label> 
-								<select class="form-control" name="recommend">
+
+							<div class="form-group">
+								<label>추천</label> <select class="form-control" name="recommend">
 									<option>y</option>
 									<option>n</option>
 								</select>
 							</div>
-		
+
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/ticketListProc.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary"
+									onclick="location.href='/ticketListProc.mdo'">취소</button>
 							</div>
 							<!-- /.buttons -->
 						</div>
@@ -147,13 +150,13 @@
 		}
 	</script>
 	<script>
-	function check(){
-		if(document.inserTicket.ticket.value==""){
-			alert("이용권명을 입력하세요.");
-			document.inserTicket.ticket.focus();
-			return false;
+		function check() {
+			if (document.inserTicket.ticket.value == "") {
+				alert("이용권명을 입력하세요.");
+				document.inserTicket.ticket.focus();
+				return false;
+			}
 		}
-	}
 	</script>
 
 </body>
