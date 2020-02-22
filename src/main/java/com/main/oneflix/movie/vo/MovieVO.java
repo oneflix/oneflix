@@ -31,10 +31,13 @@ public class MovieVO {
 	private String teaserVideoPath;
 	private int viewCount;
 	private Date movieRegDate;
-	private String mainCheck;
 	private String movieStatus;
+	private String mainCheck;
+	private String movieSubtitle;
 	private List<Integer> actorList;
 	private List<Integer> genreList;
+	private int searchGenre;
+	private String searchMovie;
 
 	public Integer getMovieId() {
 		return movieId;
@@ -228,6 +231,14 @@ public class MovieVO {
 		this.movieRegDate = movieRegDate;
 	}
 
+	public String getMovieStatus() {
+		return movieStatus;
+	}
+
+	public void setMovieStatus(String movieStatus) {
+		this.movieStatus = movieStatus;
+	}
+
 	public String getMainCheck() {
 		return mainCheck;
 	}
@@ -236,12 +247,12 @@ public class MovieVO {
 		this.mainCheck = mainCheck;
 	}
 
-	public String getMovieStatus() {
-		return movieStatus;
+	public String getMovieSubtitle() {
+		return movieSubtitle;
 	}
 
-	public void setMovieStatus(String movieStatus) {
-		this.movieStatus = movieStatus;
+	public void setMovieSubtitle(String movieSubtitle) {
+		this.movieSubtitle = movieSubtitle;
 	}
 
 	public List<Integer> getActorList() {
@@ -258,6 +269,22 @@ public class MovieVO {
 
 	public void setGenreList(List<Integer> genreList) {
 		this.genreList = genreList;
+	}
+
+	public int getSearchGenre() {
+		return searchGenre;
+	}
+
+	public void setSearchGenre(int searchGenre) {
+		this.searchGenre = searchGenre;
+	}
+
+	public String getSearchMovie() {
+		return searchMovie;
+	}
+
+	public void setSearchMovie(String searchMovie) {
+		this.searchMovie = searchMovie;
 	}
 
 }

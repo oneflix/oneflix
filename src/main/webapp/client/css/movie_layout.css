@@ -3,7 +3,7 @@
 html,body {position: relative; height: 100%;}
 #wrap {width: 100%; height: 100%; margin: 0 auto;}
 #header {width: 100%; background: rgba(0,0,0,1);}
-#body {position:relative; min-height: 100%; margin-bottom: 0px;}
+#body {position:relative; margin-bottom: 0px;}
 #footer {position: absolute; width: 100%; height: 180px; background: #000;}
 i {font-size: 20px; float: left;}
 
@@ -18,99 +18,39 @@ i {font-size: 20px; float: left;}
 .m_menu {position: absolute; display: none; font-size: 20px; margin-right: 50px; top: 35%; right: 0;}
 
 /* 이용권 */
-#root {
-    width: 100%;
-    height: 100%;
-}
-
-.css-1tumwum-Self {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    height: 100%;
-    padding: 56px 0 0;
-}
+#root {width: 100%; height: 100%;}
+.css-1tumwum-Self {display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+    -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+    height: 100%; padding: 56px 0 0;}
+    
 /* 이용권 header */
-.css-1926epj-Self {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 500;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    background: #22b99b;
-    width: 100%;
-    height: 56px;
-    padding: 0 50px;
-}
+.css-1926epj-Self {display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+    position: fixed; top: 0; left: 0; z-index: 3; -webkit-align-items: center;
+    -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+    background: #22b99b; width: 100%; height: 56px; padding: 0 50px;}
+    
 /* 이용권 header -> 텍스트 */
-.css-kodeqh-Title {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    color: #2d2e2f;
-    font-size: 14px;
-    font-weight: 700;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
-    letter-spacing: -0.4px;
-    line-height: 24px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+.css-kodeqh-Title {-webkit-flex: 1; -ms-flex: 1; flex: 1; color: #2d2e2f; font-size: 14px; font-weight: 700;
+	-webkit-letter-spacing: -0.4px; -moz-letter-spacing: -0.4px; -ms-letter-spacing: -0.4px; letter-spacing: -0.4px;
+    line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+    
 /* 이용권 header -> 버튼 */
-.css-1dm7gp7-Buttons {
-    margin: 0 -4px;
-}
+.css-1dm7gp7-Buttons {margin: 0 -4px;}
+
 /* 이용권 header -> 버튼(이용권) */
-.css-18t3r5j-Button-BlackButton-Button {
-    background-color: #121218;
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 700;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
-    letter-spacing: -0.4px;
-    line-height: 21px;
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 4px;
-    background: #010101;
-    color: #FFFFFF;
-    background: #1d1e1f;
-    font-size: 14px;
-    font-weight: 700;
-    -webkit-letter-spacing: -0.6px;
-    -moz-letter-spacing: -0.6px;
-    -ms-letter-spacing: -0.6px;
-    letter-spacing: -0.6px;
-    line-height: 14px;
-    width: auto !important;
-    padding: 11px 11px;
-    border-radius: 3px;
-    margin: 0 3px;
-    margin-right: 105px;
-    border: 0;
-}
+.css-18t3r5j-Button-BlackButton-Button {background-color: #121218; color: #FFFFFF;
+    font-size: 14px; font-weight: 700; -webkit-letter-spacing: -0.4px; -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px; letter-spacing: -0.4px; line-height: 21px; width: 100%;
+    padding: 10px 14px; border-radius: 4px; background: #010101; color: #FFFFFF; background: #1d1e1f;
+    font-size: 14px; font-weight: 700; -webkit-letter-spacing: -0.6px; -moz-letter-spacing: -0.6px;
+    -ms-letter-spacing: -0.6px; letter-spacing: -0.6px; line-height: 14px; width: auto !important;
+    padding: 11px 11px; border-radius: 3px; margin: 0 3px; margin-right: 105px; border: 0;}
 
 /* 헤더 */
 .header {position: relative; width: 100%; height: 70px; background: #000;}
 
 .header .container {position: absolute; top: 0;  width: 100%;}
-.header .container .navs {position: fixed; padding-top: 20px; width: 100%; height: 50px; z-index: 999; background: rgba(0,0,0,1);}
+.header .container .navs {position: fixed; padding-top: 20px; width: 100%; height: 50px; z-index: 3; background: rgba(0,0,0,1);}
 .container .navs .logo {float: left; margin-left: 50px;  margin-right: 10px;}
 .container .navs .logo .ico {width: 100px;}
 
@@ -120,15 +60,15 @@ i {font-size: 20px; float: left;}
 .navs button:hover {cursor: pointer;}
 .navs .profile-button {margin-bottom: 22px;}
 .navs .search-form {position: relative;}
-.navs #search {position: absolute; width: 20vw; height: 25px; font-weight: 600; margin-top: -19px;
+.navs #search {position: absolute; width: 20vw; height: 25px; font-weight: 600; margin-top: -23px;
         color: #000; background: #fff; border: 0; outline: none; border-radius: 2px; cursor: text; padding-left: 40px;
         display: none;}
-.navs #search-submit-button {position: absolute; margin-top: 0px; background: #fff; border: 0; border-right: 1px solid #d1d1dc; 
+.navs #search-submit-button {position: absolute; margin-top: -22px; background: #fff; border: 0; border-right: 1px solid #d1d1dc; 
     color: #555; height: 23px; padding: 2px 3px 3px 6px; font-weight: 600; border-bottom-left-radius: 2px; border-top-left-radius: 2px;
     display: none;}
 .navs #search-submit-button .fa-search {color: #555;}
-.navs nav ul li{margin: 4px 15px; font-size: 15px; float: left;}
-.navs .right_nav ul li:last-child {margin-right: 50px;}
+.navs > nav > ul > li{margin: 4px 15px; font-size: 15px; float: left;}
+.navs > .right_nav > ul > li:last-child {margin-right: 50px;}
 
 /* select-section */
 .select-container {padding: 3.5vw 50px;}
@@ -141,8 +81,8 @@ i {font-size: 20px; float: left;}
 /* grid-wrapper */
 .grid-wrapper {padding: 0 50px 0; display: grid;
     grid-template-columns: repeat(6, 1fr); grid-auto-rows: 12vw; grid-gap: 5px;}
-.grid-wrapper > div > a > img {width: 100%; height: 80%;}
-.grid-wrapper > div > a > p {margin-top: -3px; font-size: 1.1vw; font-weight: bold;}
+.grid-wrapper > div > img {width: 100%; height: 80%;}
+.grid-wrapper > div > p {margin-top: -3px; font-size: 1.1vw; font-weight: bold;}
 
 /* footer */
 .footer_info {padding: 40px 60px;}
@@ -154,25 +94,24 @@ i {font-size: 20px; float: left;}
 
 @media (max-width: 1240px) {
     .grid-wrapper {grid-template-columns: repeat(5, 1fr); grid-auto-rows: 13vw;}
-    .grid-wrapper > div > a > p {font-size: 1.2vw;}
+    .grid-wrapper > div > p {font-size: 1.2vw;}
 }
 
 @media (max-width: 960px) {
     .container .navs .logo {margin-top: 3px;}
     .container .navs .logo .ico {width: 80px;}
-    .navs nav ul li{margin: 6px 10px; font-size: 13px; float: left;}
+    .navs > nav > ul > li{margin: 6px 10px; font-size: 13px; float: left;}
     .navs button {font-size: 13px;}
     
     .navs .bell-button {margin-bottom: 21px;}
     .navs .profile-button {margin-bottom: 23px;}
     .navs #search {height: 20px; padding-top: 3px; padding-bottom: 3px;}
     .navs #search-ico {margin-top: 2px;}
-    .navs #search-submit-button {margin-top: -2px;}
 
     .select-container > p {font-size: 1.6vw;}
     .select-container > div > select {width: 15vw; height: 3.5vw; font-size: 1.5vw;}
     .grid-wrapper {grid-template-columns: repeat(4, 1fr); grid-auto-rows: 15.5vw;}
-    .grid-wrapper > div > a > p {font-size: 1.3vw;}
+    .grid-wrapper > div > p {font-size: 1.3vw;}
 }
 
 @media (max-width: 768px) {
@@ -182,21 +121,20 @@ i {font-size: 20px; float: left;}
     .navs #search {width: 30vw;}
     .right_nav {display: none;}
     .m_menu {display: block;}
-    .header-slider .swiper-container .row {top: 40%;}
 
     .select-container > p {font-size: 1.8vw;}
     .select-container > div > select {width: 17vw; height: 4.2vw; font-size: 1.7vw;}
     .grid-wrapper {grid-template-columns: repeat(3, 1fr); grid-auto-rows: 22vw;}
-    .grid-wrapper > div > a > p {font-size: 1.7vw;}
+    .grid-wrapper > div > p {font-size: 1.7vw;}
 }
 
 @media (max-width: 640px) {
     .container .navs .logo {margin-right: 0;}
     .navs .fa-search {margin-left: -10px;}
-    .navs #search {margin-left: -10px; width: 30vw;}
     .navs #search-submit-button .fa-search{margin-left: -10px;}
+    .navs #search {margin-left: -10px;}
     .grid-wrapper {grid-template-columns: repeat(2, 1fr); grid-auto-rows: 28vw;}
-    .grid-wrapper > div > a > p {font-size: 2.1vw;}
+    .grid-wrapper > div > p {font-size: 2.1vw;}
 }
 
 @media (max-width: 512px) {

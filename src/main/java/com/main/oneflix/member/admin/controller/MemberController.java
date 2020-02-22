@@ -36,8 +36,10 @@ public class MemberController {
 
 	@RequestMapping("/updateMemberProc.mdo")
 	public ModelAndView updateMember(MemberVO vo, ModelAndView mav) {
+		if(vo.getBan()==null) {
+			vo.setBan("N");
+		}
 		updateMemeberService.updateMember(vo);
-		System.out.println(vo.toString());
 		mav.setViewName("redirect:/getMemberListProc.mdo");
 		return mav;
 	}

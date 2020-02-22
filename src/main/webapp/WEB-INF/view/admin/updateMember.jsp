@@ -38,7 +38,7 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/updateMemberProc.mdo"  method="post" class="row">
+			<form action="/updateMemberProc.mdo"  method="post" class="row" onsubmit="preProc()">
 			<input type="hidden" name="pass" value="${member.pass }">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -61,12 +61,36 @@
 									<div><input name="nick" value="${member.nick}"></div>
 									<div><input name="birth" value="${member.birth}"></div>
 									<div><input name="memberAge" value="${member.memberAge}"></div>
-									<c:if test="${member.ticketPeriod eq 0}">
+
 									<div>
-									<input name="ticketPeriod" value="0">
+									<input name="ticketPeriod" id="ticketPeriod" 
+										<c:choose>
+											<c:when test="${member.ticketPeriod eq 0}">
+												value="이용권 없음"
+											</c:when>
+											<c:when test="${member.ticketPeriod eq -1}">
+												value="정기권"
+											</c:when>
+											<c:when test="${member.ticketPeriod eq 30}">
+												value="30일"
+											</c:when>
+											<c:when test="${member.ticketPeriod eq 60}">
+												value="60일"
+											</c:when>
+											<c:when test="${member.ticketPeriod eq 90}">
+												value="90일"
+											</c:when>
+											<c:when test="${member.ticketPeriod eq 180}">
+												value="180일"
+											</c:when>
+											<c:when test="${member.ticketPeriod eq 365}">
+												value="365일"
+											</c:when>
+										</c:choose>
+										>
+									
 									<button type="button" class="btn btn-sm btn-info">이용권등록</button>
 									</div>
-									</c:if>
 									<div>2020.02.01 - 2020.03.01</div>
 									<div><input name="cert" value="${member.cert}"></div>
 									<div>
@@ -105,14 +129,26 @@
 				function() {
 					if($("#ban").is(":checked")){
 						$("#ban").val('Y');
-						alert($("#ban").val());
 					}else{
 						$("#ban").val('N');
-						alert($("#ban").val());
 					}
 					
 				});
 		
+		//티켓 이름 String->int 변환
+		function preProc() {
+			var ticketPeriod = $('#ticketPeriod').val();
+			alert(ticketPeriod);
+			if ($('#ticketPeriod').val() == '정기권') {
+				$('#ticketPeriod').val(-1);
+			} else if ($('#ticketPeriod').val() == '이용권 없음') {
+				$('#ticketPeriod').val(0);
+			} else {
+				ticketPeriod = ticketPeriod.substr(0, ticketPeriod.length - 1);
+				$('#ticketPeriod').val(ticketPeriod);
+			}
+		}
+
 	</script>
 
 

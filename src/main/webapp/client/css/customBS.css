@@ -449,7 +449,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000;
+    z-index: 3;
     display: none;
     float: left;
     min-width: 160px;
@@ -480,17 +480,17 @@
   .dropdown-menu .divider:hover {
     background-color: #555;
   }
-  .dropdown-menu > div {
+  .dropdown-menu > li > div {
       cursor: pointer;
       padding-left: 10%;
   }
-  .dropdown-menu > div:hover,
-  .dropdown-menu > div:focus {
+  .dropdown-menu > li > div:hover,
+  .dropdown-menu > li > div:focus {
       background-color: #484952;
       
       /* background-color: #000; */
     }
-  .dropdown-menu > div > a {
+  .dropdown-menu > li > div > a {
     display: block;
     padding: 3px 0px;
     clear: both;
@@ -569,7 +569,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 990;
+    z-index: 3;
   }
   .pull-right > .dropdown-menu {
     right: 0;
