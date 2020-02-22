@@ -23,6 +23,8 @@
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <link rel="stylesheet" href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- <link rel="stylesheet" href="admin/plugins/bootstrap-toggle-master/css/bootstrap2-toggle.min.css"> -->
+<link rel="stylesheet" href="admin/plugins/bootstrap-toggle-master/css/bootstrap-toggle.min.css">
 <link rel="stylesheet" href="admin/css/adminlte.min.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="admin/css/custom.css">
@@ -170,6 +172,8 @@
 
 	<script src="admin/plugins/jquery/jquery.min.js"></script>
 	<script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="admin/plugins/bootstrap-toggle-master/js/bootstrap2-toggle.min.js"></script> -->
+	<script src="admin/plugins/bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
 	<script src="admin/plugins/datatables/jquery.dataTables.js"></script>
 	<script src="admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 	<script src="admin/js/adminlte.min.js"></script>
@@ -177,16 +181,6 @@
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script>
 		$(function() {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging" : true,
-				"lengthChange" : false,
-				"searching" : false,
-				"ordering" : true,
-				"info" : true,
-				"autoWidth" : false,
-			});
-			
 			// 슈퍼 관리자인지 아닌지
 			if ("${loginManager.managerType}" != 9) {
 				$('#manager-menu').hide();

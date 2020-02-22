@@ -32,10 +32,17 @@
 		<result property="mainCheck" column="main_check" />
 		<result property="movieStatus" column="movie_status" />
 		<result property="movieRegDate" column="movie_reg_date" />
+		<result property="movieSubtitle" column="movie_subtitle" />
 	</resultMap>
 
 	<select id="getMovieList" resultMap="movieList">
-		SELECT * FROM movie
+		SELECT * FROM movie WHERE 1 = 1
+		<if test="searchGenre != 0">
+			AND genre_id1 = #{searchGenre} OR genre_id2 = #{searchGenre} 
+		</if>
+		<if test="searchMovie != null">
+			AND movie_title like '%' || #{searchMovie} || '%'
+		</if>
 	</select>
 
 	<insert id="insertMovie" parameterType="movie">
@@ -43,12 +50,12 @@
 		(movie_id, movie_title, movie_score, rating, duration, summary, director_id,
 		actor_id1, actor_id2, actor_id3, actor_id4, actor_id5, genre_id1, genre_id2,
 		country, release, poster_path, teaser_video_path, full_video_path,
-		movie_status, main_check, movie_reg_date)
+		movie_status, main_check, movie_subtitle, movie_reg_date)
 		VALUES((select nvl(max(movie_id), 0)+1 from movie),
 		#{movieTitle}, #{movieScore}, #{rating}, #{duration}, #{summary}, #{directorId},
 		#{actorId1}, #{actorId2}, #{actorId3}, #{actorId4}, #{actorId5}, #{genreId1}, #{genreId2},
 		#{country}, #{release}, #{posterPath}, #{teaserVideoPath}, #{fullVideoPath},
-		#{movieStatus}, #{mainCheck}, sysdate)
+		#{movieStatus}, #{mainCheck}, #{movieSubtitle, jdbcType=VARCHAR}, sysdate)
 	</insert>
 
 	<update id="updateMovie" parameterType="movie">
@@ -58,14 +65,14 @@
 		poster_path = #{posterPath}, duration = #{duration}, summary = #{summary}, director_id = #{directorId},
 		actor_id1 = #{actorId1}, actor_id2 = #{actorId2}, actor_id3 = #{actorId3}, actor_id4 = #{actorId4}, actor_id5 = #{actorId5},
 		genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, release = #{release}, movie_score = #{movieScore},
-		movie_status = #{movieStatus}, main_check = #{mainCheck}  
+		movie_status = #{movieStatus}, main_check = #{mainCheck}, movie_subtitle = #{movieSubtitle, jdbcType=VARCHAR}  
 		WHERE
 		movie_id = #{movieId}
 	</update>
 
 	<delete id="deleteMovie" parameterType="movie">
 		DELETE FROM movie WHERE
-		movie_id = #{movieId, jdbcType=NUMERIC}
+		movie_id = #{movieId}
 	</delete>
 
 </mapper>

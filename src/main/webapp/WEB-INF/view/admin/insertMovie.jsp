@@ -165,27 +165,33 @@
 								</div>
 
 								<div class="form-group mb-3">
-									<label for="duration">상영시간</label> <input type="text"
-										class="form-control" id="duration" name="duration" readonly />
+									<label for="duration">상영시간</label>
+									<input type="text" class="form-control" id="duration" name="duration" readonly />
 								</div>
 
 								<div class="form-group">
-									<label>활성화</label> <select name="movieStatus"
-										class="form-control">
+									<label>활성화</label>
+									<select id="movieStatus" name="movieStatus" class="form-control">
 										<option value="Y">YES</option>
 										<option value="N">NO</option>
 									</select>
 								</div>
 
 								<div class="form-group">
-									<label>메인</label> <select name="mainCheck" class="form-control">
+									<label>메인</label>
+									<select id="mainCheck" name="mainCheck" class="form-control">
 										<option value="Y">YES</option>
 										<option value="N">NO</option>
 									</select>
+								</div>
+								
+								<div class="form-group mb-3">
+									<label for="movieSubtitle">소제목</label>
+										<input type="text" class="form-control" id="movieSubtitle" name="movieSubtitle">
 								</div>
 
 								<br>
-								<div class="buttons custom-float">
+								<div class="buttons custom-float" style="margin-top: 0; padding-bottom: 20px;">
 									<button type="submit" class="btn btn-success">등록</button>
 									<button type="button" class="btn btn-secondary"
 										onclick="location.href='/getMovieListProc.mdo'">취소</button>
@@ -218,6 +224,14 @@
 		src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script src="admin/js/movie.js"></script>
 	<script>
+	
+		$('#mainCheck').change(function(){
+			if ($('#mainCheck').val() == "Y") {
+				$('#movieSubtitle').prop("disabled", "");
+			} else {
+				$('#movieSubtitle').prop("disabled", true);
+			}
+		});
 		//submit 하기 전에 전처리
 		function preProc() {
 			//disalbed 안 풀어주면 값 안 넘어감			
@@ -226,7 +240,6 @@
 
 			// '분' 글자 짤라서 보내기
 			var duration = $('#duration').val();
-			alert(duration.length);
 			duration = duration.substr(0, duration.length - 1);
 			$('#duration').val(duration);
 		};
