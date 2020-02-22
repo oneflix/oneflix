@@ -73,7 +73,6 @@ public class MovieController {
 	@RequestMapping("/getMovieListProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> getMovieListProcAjax(MovieVO vo) {
-		System.out.println(vo.getSearchGenre());
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		Map<String, Object> map = new HashMap<String, Object>();
