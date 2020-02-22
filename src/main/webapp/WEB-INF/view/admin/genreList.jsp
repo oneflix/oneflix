@@ -46,7 +46,7 @@
 
 
 
-                <form method="post" action="/genreListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
+                <form action="/getGenreListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 300px;">
                       <input id="searchGenre" type="text" name="searchGenre" class="form-control float-right" placeholder="검색">
