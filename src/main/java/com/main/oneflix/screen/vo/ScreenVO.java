@@ -1,6 +1,7 @@
 package com.main.oneflix.screen.vo;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class ScreenVO {
@@ -8,6 +9,7 @@ public class ScreenVO {
 	private String screenPageType;
 	private int screenOrder;
 	private String screenImgPath;
+	private MultipartFile screenImgFile;
 	private String screenTitle;
 	private String screenSubtitle;
 	
@@ -36,6 +38,12 @@ public class ScreenVO {
 	public void setScreenImgPath(String screenImgPath) {
 		this.screenImgPath = screenImgPath;
 	}
+	public MultipartFile getScreenImgFile() {
+		return screenImgFile;
+	}
+	public void setScreenImgFile(MultipartFile screenImgFile) {
+		this.screenImgFile = screenImgFile;
+	}
 	public String getScreenTitle() {
 		return screenTitle;
 	}
@@ -48,5 +56,6 @@ public class ScreenVO {
 	public void setScreenSubtitle(String screenSubtitle) {
 		this.screenSubtitle = screenSubtitle;
 	}
+	
 	
 }

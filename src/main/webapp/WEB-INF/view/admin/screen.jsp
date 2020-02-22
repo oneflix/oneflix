@@ -39,7 +39,7 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="#" class="row">
+			<form action="/insertScreenProc.mdo" method="post" enctype="multipart/form-data" class="row">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -61,7 +61,7 @@
 																<td>
 																	<div class="custom-file">
 																		<input type="file" class="custom-file-input"
-																			id="non-members-page" name="screenImgPath"
+																			id="non-members-page" name="screenImgFile" multiple
 																			value="${screen.screenImgPath }"> <label
 																			class="custom-file-label" for="non-members-page">파일
 																			선택</label>
@@ -74,7 +74,7 @@
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	id="title" name="screenTitle"
+																	id="screenTitle" name="screenTitle"
 																	value="${screen.screenTitle }" required
 																	placeholder="Title" /></td>
 															</tr>
@@ -95,15 +95,15 @@
 																<td>
 																	<div class="custom-file">
 																		<input type="file" class="custom-file-input"
-																			id="add-file" name="screenImgPath"
+																			id="add-file" name="screenImgFile" multiple
 																			value="${screen.screenImgPath }"> <label
 																			class="custom-file-label" for="add-file">파일
 																			선택</label>
 																	</div>
 																</td>
 																<td>&nbsp; <input type="button"
-																	class="btn btn-xs btn-danger" onclick="deleteRow1(this)"
-																	value="- 삭제">
+																	class="btn btn-xs btn-danger"
+																	onclick="deleteRow1(this)" value="- 삭제">
 																</td>
 															</tr>
 															<tr>
@@ -131,8 +131,8 @@
 													<td>
 														<div class="custom-file">
 															<input type="file" class="custom-file-input"
-																id="non-members-page" name="screenImgPath"> <label
-																class="custom-file-label" for="non-members-page">파일
+																id="non-members-page" name="screenImgFile" multiple>
+															<label class="custom-file-label" for="non-members-page">파일
 																선택</label>
 														</div>
 													</td>
@@ -159,7 +159,7 @@
 												<td>
 													<div class="custom-file">
 														<input type="file" class="custom-file-input" id="add-file"
-															name="screenImgPath"> <label
+															name="screenImgFile" multiple> <label
 															class="custom-file-label" for="add-file">파일 선택</label>
 													</div>
 												</td>
@@ -170,11 +170,11 @@
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control" id="title"
-													name="title" required placeholder="Title" /></td>
+													name="screenTitle" required placeholder="Title" /></td>
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control"
-													id="subtitle" name="subtitle" required
+													id="subtitle" name="screenSubtitle" required
 													placeholder="SubTitle" /></td>
 											</tr>
 										</tbody>
@@ -194,33 +194,6 @@
 			<!--   </div> /. card body -->
 			<!--  </div> /.card card-outline card-info -->
 
-
-			<script type="text/javascript">
-				//추가
-				function addBox() {
-					var table = document.getElementById("addtableTWO");
-					var tbody = document.getElementById("templeteTBodyTWO");
-					var newTBody = tbody.cloneNode(true);
-					newTBody.style.display = "";
-					var footTBody = document.getElementById("footTbody");
-					return table.insertBefore(newTBody, footTBody);
-				}
-				//삭제
-				function deleteBox(obj) {
-					var tbody = obj.parentNode.parentNode.parentNode;
-					var table = document.getElementById("addtableTWO");
-					table.removeChild(tbody);
-				}
-				function deleteBox1(obj) {
-					var tbody = obj.parentNode.parentNode.parentNode;
-					var table = document.getElementById("addtableTWO1");
-					table.removeChild(tbody);
-				}
-				//값 주입
-				function setValueZ() {
-					var tbody = addRow();
-				}
-			</script>
 			<form action="#" class="row">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -240,7 +213,7 @@
 															<td>
 																<div class="custom-file">
 																	<input type="file" class="custom-file-input"
-																		id="non-members-page" name="screenImgPath"
+																		id="non-members-page" name="screenImgFile"
 																		value="${screen.screenImgPath }"> <label
 																		class="custom-file-label" for="non-members-page">파일
 																		선택</label>
@@ -273,7 +246,7 @@
 															<td>
 																<div class="custom-file">
 																	<input type="file" class="custom-file-input"
-																		id="add-file" name="screenImgPath"
+																		id="add-file" name="screenImgFile"
 																		value="${screen.screenImgPath }"> <label
 																		class="custom-file-label" for="add-file">파일 선택</label>
 																</div>
@@ -308,7 +281,7 @@
 												<td>
 													<div class="custom-file">
 														<input type="file" class="custom-file-input"
-															id="non-members-page"> <label
+															id="non-members-page" name="screenImgFile"> <label
 															class="custom-file-label" for="non-members-page">파일
 															선택</label>
 													</div>
@@ -335,9 +308,9 @@
 										<tr>
 											<td>
 												<div class="custom-file">
-													<input type="file" class="custom-file-input" id="add-file">
-													<label class="custom-file-label" for="add-file">파일
-														선택</label>
+													<input type="file" class="custom-file-input" id="add-file"
+														name="screenImgFile"> <label
+														class="custom-file-label" for="add-file">파일 선택</label>
 												</div>
 											</td>
 											<td>&nbsp; <input type="button"
@@ -403,6 +376,32 @@
 		}
 		//값 주입
 		function setValue() {
+			var tbody = addRow();
+		}
+	</script>
+	<script type="text/javascript">
+		//추가
+		function addBox() {
+			var table = document.getElementById("addtableTWO");
+			var tbody = document.getElementById("templeteTBodyTWO");
+			var newTBody = tbody.cloneNode(true);
+			newTBody.style.display = "";
+			var footTBody = document.getElementById("footTbody");
+			return table.insertBefore(newTBody, footTBody);
+		}
+		//삭제
+		function deleteBox(obj) {
+			var tbody = obj.parentNode.parentNode.parentNode;
+			var table = document.getElementById("addtableTWO");
+			table.removeChild(tbody);
+		}
+		function deleteBox1(obj) {
+			var tbody = obj.parentNode.parentNode.parentNode;
+			var table = document.getElementById("addtableTWO1");
+			table.removeChild(tbody);
+		}
+		//값 주입
+		function setValueZ() {
 			var tbody = addRow();
 		}
 	</script>

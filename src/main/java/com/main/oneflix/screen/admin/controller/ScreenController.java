@@ -28,22 +28,18 @@ public class ScreenController {
 	
 	@RequestMapping("/insertScreenProc.mdo")
 	public ModelAndView insertScreenProc(ScreenVO vo, ModelAndView mav) {
-		insertScreenService.insertScreen(vo);
+		System.out.println(vo.getScreenId());
+		System.out.println(vo.getScreenPageType());
+		System.out.println(vo.getScreenOrder());
+		System.out.println(vo.getScreenImgPath());
+		System.out.println(vo.getScreenImgFile());
+		System.out.println(vo.getScreenTitle());
+		System.out.println(vo.getScreenSubtitle());
+//		insertScreenService.insertScreen(vo);
 		mav.setViewName("redirect:/getScreenListProc.mdo");
 		return mav;
 	}
 	
-	/*
-	 * @RequestMapping("/updateScreenProc.mdo") public ModelAndView
-	 * updateScreenProc(ScreenVO vo, ModelAndView mav) {
-	 * updateScreenService.updateScreen(vo);
-	 * mav.setViewName("redirect:/getScreenListProc.mdo"); return mav; }
-	 * 
-	 * @RequestMapping("/deleteScreenProc.mdo") public ModelAndView
-	 * deleteScreenProc(ScreenVO vo, ModelAndView mav) {
-	 * deleteScreenService.deleteScreen(vo);
-	 * mav.setViewName("redirect:/getScreenListProc.mdo"); return mav; }
-	 */
 	@RequestMapping("/getScreenListProc.mdo")
 	public ModelAndView getScreenListProc(ScreenVO vo, ModelAndView mav) {
 		vo.setScreenPageType("o");
