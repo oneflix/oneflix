@@ -9,7 +9,7 @@ public class MemberVO {
 	private String birth;
 	private String gender;
 	private int MemberAge;
-	private int ticketPeriod;
+	private int ticketId;
 	private String cert;
 	private String ban;
 	private String searchMember;
@@ -67,12 +67,14 @@ public class MemberVO {
 		this.gender = gender;
 	}
 
-	public int getTicketPeriod() {
-		return ticketPeriod;
+	
+
+	public int getTicketId() {
+		return ticketId;
 	}
 
-	public void setTicketPeriod(int ticketPeriod) {
-		this.ticketPeriod = ticketPeriod;
+	public void setTicketId(int ticketId) {
+		this.ticketId = ticketId;
 	}
 
 	public String getCert() {
@@ -139,11 +141,5 @@ public class MemberVO {
 		this.joinDate = joinDate;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberVO [email=" + email + ", pass=" + pass + ", nick=" + nick + ", birth=" + birth + ", gender="
-				+ gender + ", MemberAge=" + MemberAge + ", ticketPeriod=" + ticketPeriod + ", cert=" + cert + ", ban="
-				+ ban + ", searchMember=" + searchMember + "]";
-	}
 
 }

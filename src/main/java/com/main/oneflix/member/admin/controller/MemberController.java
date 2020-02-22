@@ -35,7 +35,9 @@ public class MemberController {
 	@RequestMapping("/getMemberProc.mdo")
 	public ModelAndView getMemberProc(MemberVO vo, ModelAndView mav) {
 		vo = getMemberService.getMember(vo);
+		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
 		mav.addObject("member", vo);
+		mav.addObject("ticketList", ticketList);
 		mav.setViewName("updateMember");
 		return mav;
 	}
@@ -53,11 +55,12 @@ public class MemberController {
 	@RequestMapping("/getMemberListProc.mdo")
 	public ModelAndView getMemberListProc(MemberVO vo, ModelAndView mav) {
 		if(vo.getSearchMember() == null) vo.setSearchMember("");
+		if(vo.getSearchAll() == null) vo.setSearchAll("condition");
 		List<MemberVO> memberList = getMemberListService.getMemberList(vo);
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
-
 		mav.addObject("memberList", memberList);
 		mav.addObject("ticketList", ticketList);
+		mav.addObject("member",vo);
 		mav.setViewName("memberList");
 		return mav;
 
@@ -65,7 +68,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/getMemberListProcAjax.mdo", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public Map<String, Object> getFAQListProcAjax(MemberVO vo) {
+	public Map<String, Object> getMemberListProcAjax(MemberVO vo) {
 		List<MemberVO> memberList = getMemberListService.getMemberList(vo);
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
 		Map<String, Object> map = new HashMap<String, Object>();
