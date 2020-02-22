@@ -101,11 +101,6 @@
 			$('.textarea').summernote()
 		})
 	</script>
-	<script src="http://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('help_content');
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </body>
 
