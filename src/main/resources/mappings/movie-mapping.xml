@@ -36,7 +36,13 @@
 	</resultMap>
 
 	<select id="getMovieList" resultMap="movieList">
-		SELECT * FROM movie
+		SELECT * FROM movie WHERE 1 = 1
+		<if test="searchGenre != 0">
+			AND genre_id1 = #{searchGenre} OR genre_id2 = #{searchGenre} 
+		</if>
+		<if test="searchMovie != null">
+			AND movie_title like '%' || #{searchMovie} || '%'
+		</if>
 	</select>
 
 	<insert id="insertMovie" parameterType="movie">

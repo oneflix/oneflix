@@ -63,6 +63,7 @@ public class MovieController {
 	public ModelAndView getMovieListProc(MovieVO vo, ModelAndView mav) {
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
+		mav.addObject("movie", vo);
 		mav.addObject("movieList", movieList);
 		mav.addObject("genreList", genreList);
 		mav.setViewName("movieList");
@@ -72,6 +73,7 @@ public class MovieController {
 	@RequestMapping("/getMovieListProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> getMovieListProcAjax(MovieVO vo) {
+		System.out.println(vo.getSearchGenre());
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		Map<String, Object> map = new HashMap<String, Object>();

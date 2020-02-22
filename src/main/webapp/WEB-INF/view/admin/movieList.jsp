@@ -48,11 +48,11 @@
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
 									style="float: left;" onclick="location.href='/insertMovie.mdo'">+ 추가</button>
-								<form class="form-inline ml-3" style="float: right; margin-top: 4px;">
+								<form action="/getMovieListProc.mdo" method="post" class="form-inline ml-3" onsubmit="genreSet()" style="float: right; margin-top: 4px;">
 									<input type="hidden" name="searchGenre" id="searchGenre"/>
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="table_search"
+											<input type="text" name="searchMovie"
 												class="form-control float-right" placeholder="Search">
 											<div class="input-group-append">
 												<button type="submit" class="btn btn-default">
@@ -65,7 +65,7 @@
 
 								<select id="select-genre" class="form-control form-control-sm select2bs4"
 									style="width: inherit; float: right; margin-top: 4px;">
-									<option selected="selected">모든 장르</option>
+									<option value="0" selected="selected">모든 장르</option>
 									<c:forEach var="genre" items="${genreList}">
 										<option value="${genre.genreId}">${genre.genre}</option>
 									</c:forEach>
@@ -99,7 +99,7 @@
 												<td><p>${movie.movieTitle}</p></td>
 												<td><p>
 													<c:forEach var="genre" items="${genreList}">
-														<c:if test="${genre.genreId eq movie.genreId1}">
+														<c:if test="${movie.genreId1 eq genre.genreId}">
 															${genre.genre}
 														</c:if>
 														<c:if test="${movie.genreId2 ne 0}">
@@ -148,14 +148,14 @@
 		}
 		
 		// 마지막 select한 값 유지
-		//$(function(){
-			//$("#select-genre").val("${FAQ.helpType}").prop("selected", true);
-		//});
+		$(function(){
+			$("#select-genre").val("${movie.searchGenre}").prop("selected", true);
+		});
 	
 		// 검색시 카테고리 갖고가기
-		function categorySet() {
-			var category = $('#select-genre option:selected').val();
-			$('#searchGenre').val(category);
+		function genreSet() {
+			var genre = $('#select-genre option:selected').val();
+			$('#searchGenre').val(genre);
 		};
 		
 		// 카테고리 선택 ajax
@@ -167,7 +167,8 @@
 				url: "/getMovieListProcAjax.mdo",
 				data: sendData,
 				success: function(map) {
-					var movieList = map.get
+					var movieList = map.movieList;
+					var genreList = map.genreList;
 					
 					$('#movieList-body > tr > td').remove();
 					if (movieList.length == 0) {
@@ -177,44 +178,32 @@
 						var movie = movieList[i];
 						var regDate = new Date(movie.movieRegDate);
 						regDate = getFormatDate(regDate);
-						var type;
-						switch (FAQ.helpType) {
-						case "frequency":
-							type = "자주 묻는 질문";
-							break;
-						case "payment":
-							type = "결제";
-							break;
-						case "refund":
-							type = "해지/환불";
-							break;
-						case "ticket":
-							type = "이용권/쿠폰";
-							break;
-						case "account":
-							type = "로그인/계정 관리";
-							break;
-						case "contents":
-							type = "콘텐츠";
-							break;
-						case "video":
-							type = "재생 문의";
-							break;
-						case "service":
-							type = "서비스 문의";
-							break;
+						var genre;
+						for (var j = 0; j < genreList.length; j++) {
+							var genre = genreList[j];
+							if (genre.genreId == movie.genreId1) {
+								movieGenre = genre.genre;
+							}
+							if (movie.genreId2 == 0) {
+								if (genre.genreId == movie.genreId2) {
+									movieGenre += " · " + genre.genre;
+								}
+							}
 						}
 						
-						$('#FAQList-body').append(
+						$('#movieList-body').append(
 								"<tr>" +
-									"<td>" + 1 + "</td>" +
-									"<td>" + type + "</td>" +
-									"<td>" + FAQ.helpTitle + "</td>" +
-									"<td>" + regDate + "</td>" +
+									"<td><div>" + 1 + "</div></td>" +
+									"<td><img src='" + movie.posterPath + "\'/></td>" +
+									"<td><div>" + movie.movieTitle + "</div></td>" +
+									"<td><div>" + movieGenre + "</div></td>" +
+									"<td><div>" + movie.duration + "분</div></td>" +
+									"<td><div>" + regDate + "</div></td>" +
 									"<td>" +
 										"<div>" +
-											"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"location.href=\'/getFAQProc.mdo?helpId=" + FAQ.helpId + "\'\">수정</button>" +
-											"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + FAQ.helpId + "\')\">삭제</button>" +
+											"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"location.href=\'/getMovieProc.mdo?movieId=" + movie.movieId + "\'\">수정</button>" +
+											"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + movie.movieId + "\')\">삭제</button>" +
+											"<button type=\"button\" class=\"btn btn-sm btn-info\">상세보기</button>" +
 										"</div>" +
 									"</td>" +
 								"</tr>");	
