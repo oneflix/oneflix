@@ -16,7 +16,7 @@ h3{
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 9;
     /* Sit on top */
     padding-top: 100px;
     /* Location of the box */
@@ -78,23 +78,26 @@ h3{
     height: 40px;
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
+    /*text-align: center;*/
     color: #9d9d9e;
     border: 1px solid #9d9d9e;
     border-radius: 4px;
     margin-bottom: 5px;
 }
 
-.radio-toolbar label:hover {
+.radio-toolbar label:hover > span:nth-child(2),
+.radio-toolbar label:hover > span:nth-child(3) {
     border-color: #c0c0c0;
     color: #fff;
 }
 
-.radio-toolbar input[type="radio"]:focus+label {
+.radio-toolbar input[type="radio"]:focus {
     border: 1px solid #fc426a;
 }
 
-.radio-toolbar input[type="radio"]:checked+label {
+
+/*아래 코드 안됨 자바스크립트로 대체 */
+.radio-toolbar input[type="radio"]:checked {
     background-color: #080808;
     color: #fff;
     border-color: #fc426a;
