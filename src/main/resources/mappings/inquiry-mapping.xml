@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="InquiryDAO">
+
+	<select id="getInquiry" parameterType="inquiry" resultType="inquiry">
+		SELECT * FROM inquiries WHERE inquiry_id=#{inquiryId, jdbcType=VARCHAR}
+	</select>
+
+	<resultMap type="inquiry" id="inquiryList">
+		<id property="inquiryId" column="inquiry_id" />
+		<result property="inquiryType" column="inquiry_type" />
+		<result property="nick" column="nick" />
+		<result property="memberEmail" column="member_email" />
+		<result property="adminName" column="admin_name" />
+		<result property="adminEmail" column="admin_email" />
+		<result property="inquiryTitle" column="inquiry_title" />
+		<result property="inquiryContent" column="inquiry_content" />
+		<result property="emailTitle" column="email_title" />
+		<result property="emailContent" column="email_content" />
+		<result property="receiveDate" column="receive_date" />
+		<result property="replyDate" column="reply_date" />
+	</resultMap>
+
+	<select id="getInquiryList" resultMap="inquiryList">
+		SELECT * FROM inquiries
+	</select>
+
+	<insert id="insertInquiry" parameterType="inquiry">
+		INSERT INTO inquiries (inquiry_id,inquiry_type,nick,member_email,admin_name,admin_email,
+		inquiry_title,inquiry_content,email_title,email_content,recieve_date)
+		VALUES(#{inquiryId},#{inquiryType},#{nick},#{memberEmail},#{adminName},#{adminEmail},
+		#{inquiryTitle},#{inquiryContent},#{emailTitle},#{emailContent},sysdate)
+	</insert>
+
+	<update id="updateInquiry" parameterType="inquiry">
+		UPDATE inquiries
+		SET
+		inquiry_type=#{inquiryType},nick=#{nick},member_email=#{memberEmail},
+		admin_name=#{adminName},admin_mail=#{adminMail},
+		inquiry_title=#{inquiryTitle},inquiry_content=#{inquiryContent},
+		email_title=#{emailTitle},email_content=#{emailContent},
+		reply_date=sysdate
+		WHERE
+		inquiry_id = #{inquiryId}
+	</update>
+
+	<delete id="deleteInquiry" parameterType="inquiry">
+		DELETE FROM inquiries WHERE
+		inquiry_id = #{inquiryId}
+	</delete>
+
+</mapper>
