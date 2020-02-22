@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<typeAlias type="com.main.oneflix.movie.vo.MovieVO" alias="movie"/>
 		<typeAlias type="com.main.oneflix.screen.vo.ScreenVO" alias="screen"/>
 		<typeAlias type="com.main.oneflix.help.vo.HelpVO" alias="help"/>
+		<typeAlias type="com.main.oneflix.inquiry.vo.InquiryVO" alias="inquiry"/>
 	</typeAliases>
 	
 	<mappers>
@@ -29,5 +30,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<mapper resource="mappings/movie-mapping.xml"/>
 		<mapper resource="mappings/screen-mapping.xml"/>
 		<mapper resource="mappings/help-mapping.xml"/>
+		<mapper resource="mappings/inquiry-mapping.xml"/>
 	</mappers>
 </configuration>

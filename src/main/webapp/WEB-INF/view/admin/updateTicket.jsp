@@ -40,51 +40,57 @@
 			</section>
 
 
-			<form action="/updateTicketProc.mdo" method="post" class="row" name="updateTicket" onsubmit="return check()">
+			<form action="/updateTicketProc.mdo" method="post" class="row"
+            name="insertTicket">
+				<input name="ticketId" type="hidden" value="${ticket.ticketId}" />
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
 					<div class="card card-info">
 						<div class="card-body pad">
+							<div class="form-group">
+								<label for="title">이용권명</label> <input type="text"
+									class="form-control" id="ticketName" name="ticketName"
+									value="${ticket.ticketName}" />
+							</div>
 							<div class="form-group mb-3">
-								<label for="title">기간</label> 
-								<select class="form-control" name="ticketPeriod">
-									<option>30</option>
-									<option>60</option>
-									<option>90</option>
-									<option>180</option>
-									<option>365</option>
+								<label for="title">기간</label> <select class="form-control"
+									id="ticketPeriod" name="ticketPeriod" required="required"
+									data-placeholder="Select a State">
+									<option value="30">30</option>
+									<option value="60">60</option>
+									<option value="90">90</option>
+									<option value="180">180</option>
+									<option value="365">365</option>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="title">가격</label> 
-								<input type="text" class="form-control" id="price" name="price" required=""
-									onkeyup="number_chk(this);"
-									onkeypress="javascript:if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;">
+								<label for="title">가격</label> <input type="text"
+									class="form-control" id="ticketPrice" name="ticketPrice"
+									value="${ticket.ticketPrice}" />
 							</div>
 
-							<div class="form-group" >
+						<div class="form-group">
 								<label>상태</label> 
-								<select class="form-control" name="ticketStatus">
-									<option>y</option>
-									<option>n</option>
+								<select class="form-control" id="ticketStatus" name="ticketStatus" required="required" data-placeholder="Select a State">
+									<option value="Y">Y</option>
+									<option value="N">N</option>
 								</select>
 							</div>
-							
-								<div class="form-group">
-								<label>추천</label> 
-								<select class="form-control" name="recommend">
-									<option>y</option>
-									<option>n</option>
-								</select>
-							</div>
-				
 
-							<br>
+							<div class="form-group">
+								<label>추천</label> 
+								<select class="form-control" id="ticketRecommend" name="ticketRecommend" required="required" data-placeholder="Select a State">
+									<option value="Y">Y</option>
+									<option value="N">N</option>
+								</select>
+							</div>
+
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/ticketListProc.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary"
+									onclick="location.href='/getTicketListProc.mdo'">취소</button>
 							</div>
 							<!-- /.buttons -->
 						</div>
@@ -115,8 +121,13 @@
 
 	<script>
 		$(function() {
-			//Initialize Select2 Elements
-			$('.select2').select2()
+			// select 값 셋팅
+			$("#ticketPeriod").val("${ticket.ticketPeriod}").prop("selected",
+					true);
+			$("#ticketRecommend").val("${ticket.ticketRecommend}").prop(
+					"selected", true);
+			$("#ticketStatus").val("${ticket.ticketStatus}").prop("selected",
+					true);
 
 			//Initialize Select2 Elements
 			$('.select2bs4').select2({
@@ -149,13 +160,13 @@
 		}
 	</script>
 	<script>
-	function check(){
-		if(document.inserTicket.ticket.value==""){
-			alert("이용권명을 입력하세요.");
-			document.inserTicket.ticket.focus();
-			return false;
+		function check() {
+			if (document.inserTicket.ticket.value == "") {
+				alert("이용권명을 입력하세요.");
+				document.inserTicket.ticket.focus();
+				return false;
+			}
 		}
-	}
 	</script>
 
 </body>

@@ -1,28 +1,41 @@
 package com.main.oneflix.ticket.vo;
 
 public class TicketVO {
-	Integer ticketPeriod;
-	int price;
-	char recommend;
+	Integer ticketId;
+	String ticketName;
+	int ticketPeriod;
+	int ticketPrice;
+	char ticketRecommend;
 	char ticketStatus;
+	public Integer getTicketId() {
+		return ticketId;
+	}
+	public void setTicketId(Integer ticketId) {
+		this.ticketId = ticketId;
+	}
+	public String getTicketName() {
+		return ticketName;
+	}
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
 	public int getTicketPeriod() {
 		return ticketPeriod;
 	}
 	public void setTicketPeriod(int ticketPeriod) {
 		this.ticketPeriod = ticketPeriod;
 	}
-	public int getPrice() {
-		return price;
+	public int getTicketPrice() {
+		return ticketPrice;
 	}
-	public void setPrice(int price) {
-		this.price = price;
-
+	public void setTicketPrice(int ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
-	public char getRecommend() {
-		return recommend;
+	public char getTicketRecommend() {
+		return ticketRecommend;
 	}
-	public void setRecommend(char recommend) {
-		this.recommend = recommend;
+	public void setTicketRecommend(char ticketRecommend) {
+		this.ticketRecommend = ticketRecommend;
 	}
 	public char getTicketStatus() {
 		return ticketStatus;

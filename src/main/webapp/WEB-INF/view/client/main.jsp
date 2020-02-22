@@ -19,6 +19,63 @@
 </head>
 
 <body>
+    <!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>이용권을 선택해주세요.</h2>
+			<br> <br>
+			<!-- 추천 -->
+			<div class="e111">
+				<div class="e112">
+					<div class="radio-toolbar">
+						<h3>추천</h3><br>
+						<label>
+							<input type="radio" name="ticket-type" value="0">
+							<span style="float: left;">정기권</span><span style="float: right;">월￦7,900</span>
+						</label>
+						
+						<label>
+							<input type="radio" name="ticket-type" value="90">
+							<span style="float: left;">90일</span>
+							<span style="float: right;">월￦7,000</span>
+							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
+						</label>
+					</div>
+				</div>
+				<div class="e113">
+					<div class="radio-toolbar">
+						<h3>일반</h3><br>
+						<label>
+						<input type="radio" name="ticket-type" value="30">
+							<span style="float: left;">30일</span>
+							<span style="float: right;">월￦7,500</span>
+							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
+						</label>
+						<label>
+						<input type="radio" name="ticket-type" value="180">
+							<span style="float: left;">180일</span>
+							<span style="float: right;">월￦6,700</span>
+							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
+						</label>
+						<label>
+						<input type="radio" name="ticket-type" value="365">
+							<span style="float: left;">365일</span>
+							<span style="float: right;">월￦6,200</span>
+							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="css-12314nb-BottomButtonContainer evsc26g1">
+				<button class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
+					구매하기</button>
+			</div>
+		</div>
+	</div>
+
     <div id="wrap">
         <header id="header">
             <div id="root">
@@ -95,14 +152,14 @@
                                     <button class="search-button" type="button">
                                         <i id="search-ico" class="fas fa-search"></i>
                                         <span>검색</span>
-                                        <form method="GET" action="https://www.naver.com" class="search-form">
-
-                                            <input type="text" id="search" placeholder="제목, 감독, 배우로 검색">
-                                            <button type="submit" id="search-submit-button">
-                                            	<i class="fas fa-search"></i>
-                                            </button>
-                                        </form>
                                     </button>
+                                    <form method="GET" action="https://www.naver.com" class="search-form">
+
+                                        <input type="text" id="search" placeholder="제목, 감독, 배우로 검색">
+                                        <button type="submit" id="search-submit-button">
+                                        	<i class="fas fa-search"></i>
+                                        </button>
+                                    </form>
                                 </li>
                             </ul>
                         </nav>
@@ -115,13 +172,13 @@
                                     <i class="fas fa-bars"></i>
                                 </button>
                                 <ul class="dropdown-menu hamburger-menu">
-                                    <div><a href="/mypageHome.do">마이 페이지</a></div>
-                                    <div><a href="#">알림</a></div>
-                                    <div><a href="#">찜 목록</a></div>
-                                    <div class="divider"></div>
-                                    <div><a href="#">고객센터</a></div>
-                                    <div><a href="#">1:1 문의</a></div>
-                                    <div><a href="#">로그아웃</a></div>
+                                    <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
+                                    <li><div><a href="#">알림</a></div></li>
+                                    <li><div><a href="#">찜 목록</a></div></li>
+                                    <li><div class="divider"></div></li>
+                                    <li><div><a href="#">고객센터</a></div></li>
+                                    <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
+                                    <li><div><a href="#">로그아웃</a></div></li>
                                 </ul>
                             </div>
                         </nav>
@@ -136,8 +193,8 @@
                                         </button>
                                         <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
                                         <ul class="dropdown-menu bell-menu">
-                                            <div><a href="#">새로 올라온 작품</a></div>
-                                            <div><a href="/inquiryList.do">답변 알림</a></div>
+                                            <li><div><a href="#">새로 올라온 작품</a></div></li>
+                                            <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -150,11 +207,11 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right profile-menu">
-                                            <div><a href="/mypageHome.do">마이 페이지</a></div>
-                                            <div class="divider"></div>
-                                            <div><a href="#">고객센터</a></div>
-                                            <div><a href="/inquiryList.do">1:1 문의</a></div>
-                                            <div><a href="#">로그아웃</a></div>
+                                            <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
+                                            <li><div class="divider"></div></li>
+                                            <li><div><a href="#">고객센터</a></div></li>
+                                            <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
+                                            <li><div><a href="#">로그아웃</a></div></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -209,13 +266,11 @@
                 <div class="main-slider popular-slider">
                     <div id="popular-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <a href="#">
-                                    <img src="client/images/dunkirk.jpg">
-                                    <div class="row">
-                                        <p>어벤져스</p>
-                                    </div>
-                                </a>
+                            <div class="swiper-slide" onclick="location.href='#'">
+                                <img src="client/images/dunkirk.jpg">
+								<div class="row">
+	                                <p>어벤져스</p>
+                                </div>
                             </div>
                             <div class="swiper-slide">
                                 <img src="client/images/francesha.jpg">
@@ -368,8 +423,8 @@
     <script src="client/js/bootstrap.js"></script>
     <script src="client/js/swiper.js"></script>
     <script src="client/js/script.js"></script>
-    
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -397,6 +452,7 @@
             }
         }
 
+<<<<<<< HEAD
         $('.ticket').mouseenter(function () {
             $('.ticket').addClass('ticket-hover');
         });
@@ -406,11 +462,33 @@
         $('.ticket').click(function () {
             $('.ticket').addClass('ticket-active');
         });
+=======
+>>>>>>> master
         $('.close').click(function () {
             $('.ticket').removeClass('ticket-active');
         });
 
+<<<<<<< HEAD
 
+=======
+        $('label').mouseenter(function () {
+            $(this).children(":eq(1)").css("color", "#fff");
+            $(this).children(":eq(2)").css("color", "#fff");
+        });
+        
+        $('label').mouseleave(function () {
+        	$(this).children("input:radio:not(:checked)").nextAll().eq(0).css("color", "#9d9d9e");
+        	$(this).children("input:radio:not(:checked)").nextAll().eq(1).css("color", "#9d9d9e");
+        });
+  
+        $("input:radio").change(function(){
+			$("input:radio").closest("label").css("border-color", "#9d9d9e");
+			$("input:radio").nextAll().css("color", "#9d9d9e");
+			$("input:radio:checked").closest("label").css("border-color", "#fc426a");			
+			$("input:radio:checked").nextAll().eq(0).css("color", "#fff");
+			$("input:radio:checked").nextAll().eq(1).css("color", "#fff");
+		});
+>>>>>>> master
     </script>
 
 </body>

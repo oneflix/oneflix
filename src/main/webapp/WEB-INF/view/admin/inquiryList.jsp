@@ -60,40 +60,27 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>제목</th>
-                      <th>email</th>
-                      <th>답변</th>
-                      <th>날짜</th>
+                      <th>카테고리</th>
+                      <th>고객명</th>
+                      <th>문의제목</th>
+                      <th>문의날짜</th>
+                      <th>답변날짜</th>
                       <th class="th-width">관리</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>질문 있어요</td>
-                      <td>one@gmail.com</td>
-                      <td>답변입니다</td>
-                      <td>2020.02.02</td>
+                      <td>${inquiry.inquiryId}</td>
+                      <td>${inquiry.inquiryType}</td>
+                      <td>${inquiry.memberEmail}</td>
+                      <td>${inquiry.inquiryTitle}</td>
+                      <td>${inquiry.receiveDate}</td>
+                      <td>${inquiry.replyDate}</td>
                       <td>
                         <div>
                           <button type="button" class="btn btn-sm btn-primary">수정</button>
                           <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                          <div class="custom-control custom-switch custom-float">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>궁금해요</td>
-                      <td>two@gmail.com</td>
-                      <td>답변입니다</td>
-                      <td>2020.02.03</td>
-                      <td>
-                        <div>
-                          <button type="button" class="btn btn-sm btn-primary">수정</button>
-                          <button type="button" class="btn btn-sm btn-danger">삭제</button>
+                          <button type="button" class="btn btn-sm btn-info">답변하기</button>
                           <div class="custom-control custom-switch custom-float">
                             <input type="checkbox" class="custom-control-input" id="customSwitch1">
                           </div>
