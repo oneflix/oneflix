@@ -1,5 +1,7 @@
 package com.main.oneflix.member.vo;
 
+import java.util.Date;
+
 public class MemberVO {
 	private String email;
 	private String pass;
@@ -11,6 +13,11 @@ public class MemberVO {
 	private String cert;
 	private String ban;
 	private String searchMember;
+	private String searchAll;
+	private String searchTicket;
+	private String searchCert;
+	private String searchBan;
+	private Date joinDate;
 
 	public String getEmail() {
 		return email;
@@ -92,13 +99,51 @@ public class MemberVO {
 		this.searchMember = searchMember;
 	}
 
+	public String getSearchAll() {
+		return searchAll;
+	}
+
+	public void setSearchAll(String searchAllCategory) {
+		this.searchAll = searchAllCategory;
+	}
+
+	public String getSearchTicket() {
+		return searchTicket;
+	}
+
+	public void setSearchTicket(String searchTicket) {
+		this.searchTicket = searchTicket;
+	}
+
+	public String getSearchCert() {
+		return searchCert;
+	}
+
+	public void setSearchCert(String searchCert) {
+		this.searchCert = searchCert;
+	}
+
+	public String getSearchBan() {
+		return searchBan;
+	}
+
+	public void setSearchBan(String searchBan) {
+		this.searchBan = searchBan;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [email=" + email + ", pass=" + pass + ", nick=" + nick + ", birth=" + birth + ", gender="
 				+ gender + ", MemberAge=" + MemberAge + ", ticketPeriod=" + ticketPeriod + ", cert=" + cert + ", ban="
 				+ ban + ", searchMember=" + searchMember + "]";
 	}
-
-	
 
 }
