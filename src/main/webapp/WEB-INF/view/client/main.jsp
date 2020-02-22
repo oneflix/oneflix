@@ -32,7 +32,7 @@
                         <!-- The Modal -->
 	<div id="myModal" class="modal">
 
-		<!-- Modal content -->s
+		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<h2>이용권을 선택해주세요.</h2>
