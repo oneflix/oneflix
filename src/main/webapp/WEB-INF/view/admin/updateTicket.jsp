@@ -41,7 +41,7 @@
 
 
 			<form action="/updateTicketProc.mdo" method="post" class="row"
-				name="insertTicket">
+            name="insertTicket">
 				<input name="ticketId" type="hidden" value="${ticket.ticketId}" />
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -157,6 +157,15 @@
 				n = n.replace(reg, "$1" + "," + "$2");
 			}
 			return n;
+		}
+	</script>
+	<script>
+		function check() {
+			if (document.inserTicket.ticket.value == "") {
+				alert("이용권명을 입력하세요.");
+				document.inserTicket.ticket.focus();
+				return false;
+			}
 		}
 	</script>
 
