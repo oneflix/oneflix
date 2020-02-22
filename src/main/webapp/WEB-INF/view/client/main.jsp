@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="client/css/customBS.css">
     <link rel="stylesheet" href="client/css/main_style.css">
     <link rel="stylesheet" href="client/css/swiper.css">
+    <link rel="stylesheet" href="client/css/ticket_modal.css">
 
 </head>
 
@@ -25,9 +26,57 @@
                     <div class="css-1926epj-Self e1wyxeas0">
                         <p class="css-kodeqh-Title e1wyxeas6">모든 작품, 무제한 감상하세요. 마음에 들지 않으면 클릭 1번으로 언제든 해지할 수 있어요.
                         </p>
-                        <div class="css-1dm7gp7-Buttons e1wyxeas4"><button type="button"
+                        <div class="css-1dm7gp7-Buttons e1wyxeas4"><button id="ticket-modal" type="button"
                                 class="css-18t3r5j-Button-BlackButton-Button e1wyxeas1">이용권 구매</button>
                         </div>
+                        <!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->s
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>이용권을 선택해주세요.</h2>
+			<br> <br>
+			<!-- 추천 -->
+			<div class="e111">
+				<div class="e112">
+					<div class="radio-toolbar">
+						<h3>추천</h3>
+						<input type="radio" id="season-ticket" name="ticket-type"
+							value="0" checked> <label for="season-ticket">정기권
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+							&nbsp; 월￦12,900</label> <input type="radio" id="90days-ticket"
+							name="ticket-type" value="90"> <label for="90days-ticket">90일&nbsp;
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span
+							class="ticket-origin-price">월￦7,900</span>월￦7,000
+						</label>
+					</div>
+				</div>
+				<div class="e113">
+					<div class="radio-toolbar">
+						<h3>일반</h3>
+						<input type="radio" id="30days-ticket" name="ticket-type"
+							value="30"> <label for="30days-ticket">30일&nbsp;
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span
+							class="ticket-origin-price">월￦7,900</span>월￦7,000
+						</label> <input type="radio" id="180days-ticket" name="ticket-type"
+							value="180"> <label for="180days-ticket">180일
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span
+							class="ticket-origin-price">월￦7,900</span>월￦6,700
+						</label> <input type="radio" id="365days-ticket" name="ticket-type"
+							value="365"> <label for="365days-ticket">365일
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span
+							class="ticket-origin-price">월￦7,900</span>월￦6,200
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="css-12314nb-BottomButtonContainer evsc26g1">
+				<button class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
+					구매하기</button>
+			</div>
+		</div>
+	</div>
                     </div>
                 </div>
             </div>
@@ -319,6 +368,50 @@
     <script src="client/js/bootstrap.js"></script>
     <script src="client/js/swiper.js"></script>
     <script src="client/js/script.js"></script>
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("ticket-modal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        $('.ticket').mouseenter(function () {
+            $('.ticket').addClass('ticket-hover');
+        });
+        $('.ticket').mouseleave(function () {
+            $('.ticket').removeClass('ticket-hover');
+        });
+        $('.ticket').click(function () {
+            $('.ticket').addClass('ticket-active');
+        });
+        $('.close').click(function () {
+            $('.ticket').removeClass('ticket-active');
+        });
+
+
+    </script>
 
 </body>
 

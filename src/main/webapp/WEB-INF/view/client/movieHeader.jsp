@@ -20,7 +20,7 @@
 					<p class="css-kodeqh-Title e1wyxeas6">모든 작품, 무제한 감상하세요. 마음에 들지
 						않으면 클릭 1번으로 언제든 해지할 수 있어요.</p>
 					<div class="css-1dm7gp7-Buttons e1wyxeas4">
-						<button id="ticket-promo" type="button"
+						<button id="ticket-modal" type="button"
 							class="css-18t3r5j-Button-BlackButton-Button e1wyxeas1">이용권
 							구매</button>
 					</div>
@@ -193,7 +193,7 @@
 		var modal = document.getElementById("myModal");
 
 		// Get the button that opens the modal
-		var btn = document.getElementById("ticket-promo");
+		var btn = document.getElementById("ticket-modal");
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
