@@ -31,7 +31,7 @@ public class LoginController {
 			mav.setViewName("login");		
 		}else {
 			mav.addObject("member",vo);
-			mav.setViewName("main");
+			mav.setViewName("redirect:/homeProc.do");
 		}
 		return mav;
 	}

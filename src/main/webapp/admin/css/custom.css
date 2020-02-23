@@ -82,7 +82,6 @@
 }
 
 .buttons{
-	margin-top: 500px;
 	float: right;
 }
 
@@ -93,3 +92,5 @@
 	font-weight: bold;
 	readonly;
 }
+
+.display-none {display: none;}
