@@ -5,7 +5,7 @@
 <mapper namespace="InquiryDAO">
 
 	<select id="getInquiry" parameterType="inquiry" resultType="inquiry">
-		SELECT * FROM inquiries WHERE inquiry_id=#{inquiryId, jdbcType=VARCHAR}
+		SELECT * FROM inquiry WHERE inquiry_id=#{inquiryId}
 	</select>
 
 	<resultMap type="inquiry" id="inquiryList">
@@ -24,30 +24,27 @@
 	</resultMap>
 
 	<select id="getInquiryList" resultMap="inquiryList">
-		SELECT * FROM inquiries
+		SELECT * FROM inquiry
 	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
-		INSERT INTO inquiries (inquiry_id,inquiry_type,nick,member_email,admin_name,admin_email,
-		inquiry_title,inquiry_content,email_title,email_content,recieve_date)
-		VALUES(#{inquiryId},#{inquiryType},#{nick},#{memberEmail},#{adminName},#{adminEmail},
-		#{inquiryTitle},#{inquiryContent},#{emailTitle},#{emailContent},sysdate)
+		INSERT INTO inquiry (inquiry_id,inquiry_type,nick,member_email,
+		inquiry_title,inquiry_content,recieve_date)
+		VALUES((select nvl(max(inquiry_id),0)+1 from inquiry),#{inquiryType},#{nick},#{memberEmail},
+		#{inquiryTitle},#{inquiryContent},sysdate)
 	</insert>
 
 	<update id="updateInquiry" parameterType="inquiry">
-		UPDATE inquiries
+		UPDATE inquiry
 		SET
-		inquiry_type=#{inquiryType},nick=#{nick},member_email=#{memberEmail},
-		admin_name=#{adminName},admin_mail=#{adminMail},
-		inquiry_title=#{inquiryTitle},inquiry_content=#{inquiryContent},
-		email_title=#{emailTitle},email_content=#{emailContent},
-		reply_date=sysdate
+		inquiry_type=#{inquiryType}, admin_name=#{adminName},admin_mail=#{adminMail},
+		email_title=#{emailTitle},email_content=#{emailContent},reply_date=sysdate
 		WHERE
 		inquiry_id = #{inquiryId}
 	</update>
 
 	<delete id="deleteInquiry" parameterType="inquiry">
-		DELETE FROM inquiries WHERE
+		DELETE FROM inquiry WHERE
 		inquiry_id = #{inquiryId}
 	</delete>
 

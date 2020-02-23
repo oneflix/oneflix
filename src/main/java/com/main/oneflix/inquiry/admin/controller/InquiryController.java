@@ -20,6 +20,8 @@ import com.main.oneflix.util.email.service.SendEmailService;
 	@Controller
 	public class InquiryController {
 		@Autowired
+		InsertInquiryService insertInquiryService;
+		@Autowired
 		GetInquiryService getInquiryService;
 		@Autowired
 		GetInquiryListService getInquiryListService;
@@ -27,14 +29,50 @@ import com.main.oneflix.util.email.service.SendEmailService;
 		UpdateInquiryService updateInquiryService;
 	    @Autowired
 	    SendEmailService emailService; 
-	 
-		@RequestMapping("/getInquiryListProc.mdo")
-		public ModelAndView getInquiryListProc(InquiryVO vo, ModelAndView mav) {
+	    
+	    //유저화면
+		@RequestMapping("/insertInquiry.do")
+		public ModelAndView insertInquiry(ModelAndView mav) {
+			mav.setViewName("insertInquiry");
+			return mav;
+		}
+		@RequestMapping("/insertInquiryProc.do")
+		public ModelAndView insertInquiryProc(InquiryVO vo,ModelAndView mav) {
+			insertInquiryService.insertInqiry(vo);
+			mav.setViewName("redirect:/getInquiryListProc.do");
+			return mav;
+		}
+		@RequestMapping("/getInquiryListProc.do")
+		public ModelAndView getInquiryListProc(InquiryVO vo,ModelAndView mav) {
 			List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
 			mav.addObject("inquiryList", inquiryList);
 			mav.setViewName("inquiryList");
 			return mav;
 		}
+		//관리자화면 
+		@RequestMapping("/getInquiryListProc.mdo")
+		public ModelAndView getInquiryListProcAdmin(InquiryVO vo, ModelAndView mav) {
+			List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
+			mav.addObject("inquiryList", inquiryList);
+			mav.setViewName("inquiryList");
+			return mav;
+		}
+
+		@RequestMapping("/getInquiryProc.mdo")
+		public ModelAndView getInquiryProc(InquiryVO vo, ModelAndView mav) {
+			vo = getInquiryService.getInquiry(vo);
+			mav.addObject("inquiry", vo);
+			mav.setViewName("updateInquiry");
+			return mav;
+		}
+		@RequestMapping("/updateInquiryProc.mdo")
+		public ModelAndView updateInquiryProc(InquiryVO vo, ModelAndView mav) {
+			updateInquiryService.updateInquiry(vo);
+			mav.setViewName("redirect:/getInquiryListProc.mdo");
+			return mav;
+		}
+		
+		//관리자화면 -이메일 기능
 	    @RequestMapping("/emailWrite.mdo") // 이메일 쓰기를 누르면 이 메소드로 맵핑되어서
 	    public String write() {
 	        return "/emailWrite"; // 다시 write jsp 페이지로 이동하고 jsp페이지에서 내용을 다 채운 뒤에 확인 버튼을 누르면 send.do로 넘어감
