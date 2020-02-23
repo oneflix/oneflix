@@ -5,39 +5,41 @@
 <mapper namespace="TicketDAO">
 
 	<insert id="insertTicket" parameterType="ticket">
-		INSERT INTO ticket (ticket_period, price, recommend, ticket_status)
-		VALUES(#{ticketPeriod,jdbcType=NUMERIC},#{price,jdbcType=NUMERIC},#{recommend,jdbcType=CHAR},#{ticketStatus,jdbcType=CHAR})
-
+		INSERT INTO ticket (ticket_id, ticket_name, ticket_period, ticket_price, ticket_recommend, ticket_status)
+		VALUES((select nvl(max(ticket_id),0)+1 from ticket),#{ticketName},
+		#{ticketPeriod},#{ticketPrice},#{ticketRecommend},#{ticketStatus})
 	</insert>
 
 	<select id="getTicket" parameterType="ticket" resultType="ticket">
 		SELECT * FROM ticket
-		WHERE ticket_period = #{ticketPeriod}
+		WHERE ticket_id = #{ticketId}
 	</select>
 
 	<resultMap type="ticket" id="ticketList">
-		<id property="ticketPeriod" column="ticket_period" />
-		<result property="price" column="price" />
-		<result property="recommend" column="recommend" />
+		<id property="ticketId" column="ticket_id" />
+		<result property="ticketName" column="ticket_name" />
+		<result property="ticketPeriod" column="ticket_period" />
+		<result property="ticketPrice" column="ticket_price" />
+		<result property="ticketRecommend" column="ticket_recommend" />
 		<result property="ticketStatus" column="ticket_status" />
 	</resultMap>
 
 	<select id="getTicketList" resultMap="ticketList">
-		SELECT * FROM ticket ORDER BY ticket_period ASC
+		SELECT * FROM ticket WHERE 1=1
 	</select>
 	
 	<update id="updateTicket" parameterType="ticket">
 		UPDATE ticket
 		SET
-		recommend=#{recommend},ticket_status=#{ticketStatus}
+		ticket_name = #{ticketName}, ticket_period = #{ticketPeriod}, ticket_price = #{ticketPrice},
+		ticket_recommend = #{ticketRecommend}, ticket_status = #{ticketStatus}
 		WHERE
-		ticket_period = #{ticketPeriod}
+		ticket_id = #{ticketId}
 	</update>
 
 	<delete id="deleteTicket" parameterType="ticket">
 		DELETE FROM ticket WHERE
-		ticekt_period = #{ticketPeriod}
-
+		ticket_Id = #{ticketId}
 	</delete>
 
 </mapper>
