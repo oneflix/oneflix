@@ -375,7 +375,6 @@
     <script src="client/js/bootstrap.js"></script>
     <script src="client/js/swiper.js"></script>
     <script src="client/js/script.js"></script>
-    
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -402,7 +401,6 @@
                 modal.style.display = "none";
             }
         }
-
         $('.close').click(function () {
             $('.ticket').removeClass('ticket-active');
         });

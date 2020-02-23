@@ -49,11 +49,12 @@
                             <div class="css-18xcnb7-SettingListContent e1199ims18">
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19 pre-form">
                                     <div class="css-av4kss-ValueTextBlock e1199ims30">${member.nick}</div>
+
                                     <div class="css-1vx1h8q-SmallButtonsBlock e1199ims24"><button
-                                            class=" e1199ims25 css-lzf1fk-Self-SmallSettingButton e1ktu1gx0"
-                                            type="button" id="form-change">변경</button></div>
-                                </div>
-                                <div class="css-1epg2mh-SettingListContentRow e1199ims19 next-form">
+                                            class=" e1199ims25 css-lzf1fk-Self-SmallSettingButton e1ktu1gx01"
+                                            type="button">변경</button></div>
+                                </d1iv>
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims33">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0">
                                         	<input id="newNick" name="newNick"
@@ -61,7 +62,7 @@
                                                 class=" css-5kai6j-StyledField eu52ful1" type="nick" value=""></div>
                                     </div>
                                 </div>
-                                <div class="css-1epg2mh-SettingListContentRow e1199ims19 next-form">
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims33">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="passConfirm" name="passConfirm"
                                                 placeholder="비밀번호를 입력해주세요." autocomplete="off"
