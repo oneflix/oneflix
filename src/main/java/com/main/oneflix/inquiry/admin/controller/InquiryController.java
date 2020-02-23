@@ -57,6 +57,7 @@ import com.main.oneflix.util.email.service.SendEmailService;
 			mav.setViewName("inquiryList");
 			return mav;
 		}
+
 		@RequestMapping("/getInquiryProc.mdo")
 		public ModelAndView getInquiryProc(InquiryVO vo, ModelAndView mav) {
 			vo = getInquiryService.getInquiry(vo);

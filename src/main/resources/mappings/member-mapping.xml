@@ -35,6 +35,16 @@
       SELECT * FROM member WHERE 1=1
 		<if test="searchMember != null">
 			AND email like '%' || #{searchMember} || '%'
+			OR nick like '%' || #{searchMember} || '%'
+		</if> 
+		<if test="searchTicket != null">
+			AND ticket_id = #{searchTicket}
+		</if> 
+		<if test="searchCert != null">
+			AND cert = #{searchCert}
+		</if> 
+		<if test="searchBan != null">
+			AND ban = #{searchBan}
 		</if> 
       ORDER BY email ASC
    </select>

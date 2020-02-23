@@ -11,8 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.actor.service.GetActorListService;
@@ -73,7 +75,6 @@ public class MovieController {
 	@RequestMapping("/getMovieListProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> getMovieListProcAjax(MovieVO vo) {
-		System.out.println(vo.getSearchGenre());
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		Map<String, Object> map = new HashMap<String, Object>();

@@ -62,31 +62,12 @@
 									<div><input name="birth" value="${member.birth}"></div>
 									<div><input name="memberAge" value="${member.memberAge}"></div>
 
-									<div>
-									<input name="ticketPeriod" id="ticketPeriod" 
-										<c:choose>
-											<c:when test="${member.ticketPeriod eq 0}">
-												value="이용권 없음"
-											</c:when>
-											<c:when test="${member.ticketPeriod eq -1}">
-												value="정기권"
-											</c:when>
-											<c:when test="${member.ticketPeriod eq 30}">
-												value="30일"
-											</c:when>
-											<c:when test="${member.ticketPeriod eq 60}">
-												value="60일"
-											</c:when>
-											<c:when test="${member.ticketPeriod eq 90}">
-												value="90일"
-											</c:when>
-											<c:when test="${member.ticketPeriod eq 180}">
-												value="180일"
-											</c:when>
-											<c:when test="${member.ticketPeriod eq 365}">
-												value="365일"
-											</c:when>
-										</c:choose>
+									<div><input name="ticketName" id="ticketName" 
+										<c:forEach var="ticket" items="${ticketList }">
+											<c:if test="${ticket.ticketId eq member.ticketId}">
+													value="${ticket.ticketName}"
+											</c:if>
+										</c:forEach>
 										>
 									
 									<button type="button" class="btn btn-sm btn-info">이용권등록</button>

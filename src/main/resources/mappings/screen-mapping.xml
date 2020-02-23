@@ -28,11 +28,19 @@
 		<result property="screenOrder" column="screen_order"/>
 		<result property="screenImgPath" column="screen_img_path"/>
 		<result property="screenTitle" column="screen_title"/>
-		<result property="screenSubitle" column="screen_subtitle"/>
+		<result property="screenSubtitle" column="screen_subtitle"/>
 	</resultMap>
 	
 	<select id="getScreenList" parameterType="screen" resultMap="screenList">
-		SELECT * FROM screen ORDER BY screen_order ASC;
+		SELECT * FROM screen WHERE 1=1
+		<choose>
+			<when test='screenPageType.equals("o")'>
+				AND screen_page_type='o'
+			</when>
+			<when test='screenPageType.equals("d")'>
+				AND screen_page_type='d'
+			</when>
+		</choose>
+		ORDER BY screen_order ASC
 	</select>
-
 </mapper>

@@ -178,7 +178,7 @@
 						var movie = movieList[i];
 						var regDate = new Date(movie.movieRegDate);
 						regDate = getFormatDate(regDate);
-						var genre;
+						var movieGenre;
 						for (var j = 0; j < genreList.length; j++) {
 							var genre = genreList[j];
 							if (genre.genreId == movie.genreId1) {
