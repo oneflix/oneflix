@@ -80,7 +80,7 @@
                         <div>
                           <button type="button" class="btn btn-sm btn-primary">수정</button>
                           <button type="button" class="btn btn-sm btn-danger">삭제</button>
-                          <button type="button" class="btn btn-sm btn-info">답변하기</button>
+                          <button type="button" class="btn btn-sm btn-info" onClick="location.href='/replyInquiry'">답변하기</button>
                           <div class="custom-control custom-switch custom-float">
                             <input type="checkbox" class="custom-control-input" id="customSwitch1">
                           </div>
