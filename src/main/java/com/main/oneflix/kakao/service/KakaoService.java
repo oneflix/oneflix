@@ -11,7 +11,7 @@ public interface KakaoService {
 	static final String KAKAO_SINGLE_PAY = "TC0ONETIME";
 	static final String KAKAO_SUBSCRIP_PAY = "TCSUBSCRIP";
 	
-	static final String PAY_READY_PATH = "/v1/payment/ready";
-	static final String PAY_APPROVE_PATH = "/v1/payment/approve";
-	static final String PAY_SUBSCRIP_PATH = "/v1/payment/subscription";
+	static final String PAYMENT_READY_PATH = "/v1/payment/ready";
+	static final String PAYMENT_APPROVE_PATH = "/v1/payment/approve";
+	static final String PAYMENT_SUBSCRIP_PATH = "/v1/payment/subscription";
 }

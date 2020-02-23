@@ -1,32 +1,40 @@
-package com.main.oneflix.payment.service.impl;
+package com.main.oneflix.kakao.payment.service.impl;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.main.oneflix.kakao.payment.service.ReadyPaymentService;
 import com.main.oneflix.kakao.service.KakaoService;
+import com.main.oneflix.sales.vo.SalesVO;
 
+@Service
 public class ReadyPaymentServiceImpl implements KakaoService, ReadyPaymentService {
 
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	@Override
 	public Properties readyPayment(Properties props) {
-		// 빈으로 등록하는 방법 연구해보기
-		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", KAKAO_AUTH);
 		headers.add("Content-Type", CONTENT_TYPE);
 		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-		if (props.get("cid").equals("single")) {
-			params.add("cid", KAKAO_SINGLE_PAY);
-		} else {
-			params.add("cid", KAKAO_SUBSCRIP_PAY);
-		}
+//		if (props.get("cid").equals("single")) {
+//			params.add("cid", KAKAO_SINGLE_PAY);
+//		} else {
+//			params.add("cid", KAKAO_SUBSCRIP_PAY);
+//		}
+		params.add("cid", KAKAO_SINGLE_PAY);
 		params.add("partner_order_id", props.getProperty("partner_order_id"));
 		params.add("partner_user_id", props.getProperty("partner_user_id"));
 		params.add("item_name", props.getProperty("item_name"));
@@ -39,6 +47,17 @@ public class ReadyPaymentServiceImpl implements KakaoService, ReadyPaymentServic
 		params.add("fail_url", MY_HOST + props.getProperty("fail_url"));
 		
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
+		
+		
+		try {
+			URI uri = new URI(KAKAO_HOST + PAYMENT_READY_PATH);
+			SalesVO response = restTemplate.postForObject(uri, body, SalesVO.class);
+			System.out.println(response.getNext_redirect_pc_url());
+			
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 		return null;
