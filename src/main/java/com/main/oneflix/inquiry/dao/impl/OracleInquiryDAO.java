@@ -19,8 +19,8 @@ public class OracleInquiryDAO implements InquiryDAO {
 		sqlSessionTemplate.insert("InqiryDAO.insertInquiry", vo);
 	}
 	@Override
-	public void getInquiry(InquiryVO vo) {
-		sqlSessionTemplate.selectOne("InquiryDAO.getInquiry", vo);
+	public InquiryVO getInquiry(InquiryVO vo) {
+		return sqlSessionTemplate.selectOne("InquiryDAO.getInquiry", vo);
 	}
 	@Override
 	public List<InquiryVO> getInquiryList(InquiryVO vo) {

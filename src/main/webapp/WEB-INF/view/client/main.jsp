@@ -452,7 +452,6 @@
             }
         }
 
-<<<<<<< HEAD
         $('.ticket').mouseenter(function () {
             $('.ticket').addClass('ticket-hover');
         });
@@ -462,15 +461,10 @@
         $('.ticket').click(function () {
             $('.ticket').addClass('ticket-active');
         });
-=======
->>>>>>> master
         $('.close').click(function () {
             $('.ticket').removeClass('ticket-active');
         });
 
-<<<<<<< HEAD
-
-=======
         $('label').mouseenter(function () {
             $(this).children(":eq(1)").css("color", "#fff");
             $(this).children(":eq(2)").css("color", "#fff");
@@ -488,7 +482,6 @@
 			$("input:radio:checked").nextAll().eq(0).css("color", "#fff");
 			$("input:radio:checked").nextAll().eq(1).css("color", "#fff");
 		});
->>>>>>> master
     </script>
 
 </body>
