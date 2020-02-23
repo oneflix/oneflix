@@ -40,8 +40,8 @@
 			</section>
 
 
-			<form action="/updateTicketProc.mdo" method="post" class="row"
-            name="insertTicket">
+			<form action="/updateTicketProc.mdo" method="post" class="row" name="insertTicket">
+
 				<input name="ticketId" type="hidden" value="${ticket.ticketId}" />
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -88,7 +88,7 @@
 							</div>
 
 							<div class="buttons" style="float: right;">
-								<button type="submit" class="btn btn-success">등록</button>
+								<button type="submit" class="btn btn-success">수정</button>
 								<button type="button" class="btn btn-secondary"
 									onclick="location.href='/getTicketListProc.mdo'">취소</button>
 							</div>
