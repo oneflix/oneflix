@@ -70,7 +70,7 @@
 				</div>
 			</div>
 			<div class="css-12314nb-BottomButtonContainer evsc26g1">
-				<button class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
+				<button onclick="paymentRequest()" class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
 					구매하기</button>
 			</div>
 		</div>
@@ -424,6 +424,23 @@
 			$("input:radio:checked").nextAll().eq(0).css("color", "#fff");
 			$("input:radio:checked").nextAll().eq(1).css("color", "#fff");
 		});
+        
+		var popX = window.screen.width / 2 - 200;
+		var popY = window.screen.height / 2 - 300;
+        var paymentRequest = function() {
+        	var selectTicket = $("input:radio:checked").val();
+        	var sendData = {'ticketId': selectTicket}
+        	$.ajax({
+        		type: 'POST',
+        		url: '/paymentRequest.do',
+        		data: sendData,
+        		success: function(url) {
+        			window.open(url, '_blank',
+        					'width=400, height=600, left='+popX+', top='+popY+',location=no, menubar=no, toolbar=no, scrollbars=no, resizable=no', false);			
+        		}
+        	});
+        	
+        }
     </script>
 
 </body>
