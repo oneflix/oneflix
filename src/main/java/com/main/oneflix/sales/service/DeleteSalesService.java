@@ -2,7 +2,7 @@ package com.main.oneflix.sales.service;
 
 import com.main.oneflix.sales.vo.SalesVO;
 
-public interface CountSalesService {
+public interface DeleteSalesService {
 
-	int countSales(SalesVO vo);
+	void deleteSales(SalesVO vo);
 }

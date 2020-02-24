@@ -1,6 +1,6 @@
-package com.main.oneflix.kakao.service;
+package com.main.oneflix.util.kakao;
 
-public interface KakaoService {
+public interface KakaoConst {
 
 	static final String MY_HOST = "http://127.0.0.1:8080/";
 	static final String CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";

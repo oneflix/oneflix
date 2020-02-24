@@ -12,9 +12,25 @@ public class OracleSalesDAO implements SalesDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
+
 	@Override
-	public int countSales(SalesVO vo) {
-		return sqlSessionTemplate.selectOne("SalesDAO.countSales", vo);
+	public SalesVO getSales(SalesVO vo) {
+		return sqlSessionTemplate.selectOne("SalesDAO.getSales", vo);
 	}
+
+	@Override
+	public void insertSales(SalesVO vo) {
+		sqlSessionTemplate.insert("SalesDAO.insertSales", vo);
+	}
+
+	@Override
+	public void updateSales(SalesVO vo) {
+		sqlSessionTemplate.update("SalesDAO.updateSales", vo);
+	}
+
+	@Override
+	public void deleteSales(SalesVO vo) {
+		sqlSessionTemplate.delete("SalesDAO.deleteSales", vo);
+	}
+	
 }
