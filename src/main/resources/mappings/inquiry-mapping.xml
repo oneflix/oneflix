@@ -9,7 +9,7 @@
 		SELECT * FROM inquiry WHERE inquiry_id=#{inquiryId}
 	</select>
 
-	<resultMap type="inquiry" id="inquiryList">
+ 	<resultMap type="inquiry" id="inquiryList">
 		<id property="inquiryId" column="inquiry_id" />
 		<result property="inquiryType" column="inquiry_type" />
 		<result property="nick" column="nick" />
@@ -27,7 +27,7 @@
 	<select id="getInquiryList" resultMap="inquiryList">
 		SELECT * FROM inquiry
 		WHERE 1=1
-	</select>
+	</select> 
 
 	<insert id="insertInquiry" parameterType="inquiry">
 		INSERT INTO inquiry
@@ -60,15 +60,15 @@
 	</select>
 	<!-- 페이징 처리 후 게시글 조회 -->
 	<select id="selectInquiry" parameterType="paging" resultType="inquiry">
-	SELECT * 
-		FROM (
-			SELECT ROWNUM RNUM, A.* 
-				FROM (
-						SELECT * 
-						FROM INQUIRY 
-						ORDER BY INQUIRY_ID DESC 
-						) A
-				)
+	SELECT *
+	FROM (
+	SELECT ROWNUM RNUM, A.*
+	FROM (
+	SELECT *
+	FROM INQUIRY
+	ORDER BY INQUIRY_ID DESC
+	) A
+	)
 	WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
