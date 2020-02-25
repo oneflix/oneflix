@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -123,46 +125,88 @@
 			<div class="e111">
 				<div class="e112">
 					<div class="radio-toolbar">
-						<h3>추천</h3><br>
-						<label>
-							<input type="radio" name="ticket-type" value="0">
-							<span style="float: left;">정기권</span><span style="float: right;">월￦7,900</span>
-						</label>
-						
-						<label>
-							<input type="radio" name="ticket-type" value="90">
-							<span style="float: left;">90일</span>
-							<span style="float: right;">월￦7,000</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
+						<div style="width: 272px;">
+							<p class="ticket-category">추천</p>
+						</div><br>
+						<c:forEach var="ticket" items="${ticketList}">
+							<c:if test="${ticket.ticketPeriod eq -1}">
+								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
+							</c:if>
+							<c:if test="${ticket.ticketStatus eq 'Y' && ticket.ticketRecommend eq 'Y'}">
+								<label>
+									<input type="radio" name="ticket-type" value="${ticket.ticketId}">
+									<span style="float: left;">${ticket.ticketName}</span>
+									<span style="float: right;">
+										<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
+									</span>
+									<c:if test="${ticket.ticketPeriod ne -1}">
+										<span style="float: right;" class="ticket-origin-price">
+											<fmt:formatNumber type="currency" value="${originPrice * ticket.ticketPeriod / 30}"/>
+										</span>
+									</c:if>
+								</label>
+							</c:if>
+						</c:forEach>
 					</div>
 				</div>
 				<div class="e113">
 					<div class="radio-toolbar">
-						<h3>일반</h3><br>
-						<label>
-						<input type="radio" name="ticket-type" value="30">
-							<span style="float: left;">30일</span>
-							<span style="float: right;">월￦7,500</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
-						<label>
-						<input type="radio" id="180days-ticket" name="ticket-type" value="180">
-							<span style="float: left;">180일</span>
-							<span style="float: right;">월￦6,700</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
-						<label>
-						<input type="radio" id="365days-ticket" name="ticket-type" value="365">
-							<span style="float: left;">365일</span>
-							<span style="float: right;">월￦6,200</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
+						<div style="width: 272px;">
+							<p class="ticket-category">일반</p>
+						</div><br>
+						<c:forEach var="ticket" items="${ticketList}">
+							<c:if test="${ticket.ticketPeriod eq -1}">
+								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
+							</c:if>
+							<c:if test="${ticket.ticketStatus eq 'Y' && ticket.ticketRecommend eq 'N'}">
+								<label>
+									<input type="radio" name="ticket-type" value="${ticket.ticketId}">
+									<span style="float: left;">${ticket.ticketName}</span>
+									<span style="float: right;">
+										<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
+									</span>
+									<c:if test="${ticket.ticketPeriod ne -1}">
+										<span style="float: right;" class="ticket-origin-price">
+											<fmt:formatNumber type="currency" value="${originPrice * ticket.ticketPeriod / 30}"/>
+										</span>
+									</c:if>
+								</label>
+							</c:if>
+						</c:forEach>
 					</div>
+				</div>
+				<div class="e114">
+					<div class="box">
+						<ul>
+							<li>
+								<i class="fas fa-check"></i>
+								<div>
+									<div class="box-title">지속적인 신작 업데이트</div>
+									<div class="box-content">매주 업데이트되는 200여편의 작품을 무료로 즐겨보세요.</div>
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-check"></i>
+								<div>
+									<div class="box-title">6만여 편의 작품 무제한 감상</div>
+									<div class="box-content">인기 영화를 추가 지불 없이 감상하세요.</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ul>
+						<li><p>이용기간이 종료되기 24시간 이내에 다음 이용에 대한 비용이 결제 됩니다. 즉, 이용기간 종료 시점으로부터 최소 23시간 전에 이용을 취소하지 않으시면 이용권이 자동으로 갱신됩니다.</p></li>
+						<li>결제취소는 결제 후 7일 내 서비스 미 이용시 가능하며, 결제 후 7일 경과 또는 서비스 이용 시에는 환불이 불가능합니다.</li>
+						<li>저작권자의 요청에 따라 일부 콘텐츠의 동시 재생이 제한될 수 있습니다.</li>
+						<li>최대 화질의 이용 가능 여부는 이용권 종류, 네트워크 환경, 콘텐츠 계약 조건, 디바이스의 물리적 사양에 따라 제한될 수 있습니다.</li>
+						<li>한국 외 국가에서는 감상이 제한되며, 일부 영상은 저작권자의 요청에 따라 도중에 제공이 중단될 수 있습니다.</li>
+						<li>엣지, 크롬, 파이어폭스, 웨일 브라우저를 지원합니다.</li>
+						<li>구매하신 이용권 종류 혹은 결제 상태(제휴상품, 쿠폰 등)에 따라 이용권 변경이 제한될 수 있습니다.</li>
+					</ul>
 				</div>
 			</div>
 			<div class="css-12314nb-BottomButtonContainer evsc26g1">
-				<button class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
+				<button onclick="paymentRequest()" class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
 					구매하기</button>
 			</div>
 		</div>
@@ -172,54 +216,6 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="client/js/movie_layout.js"></script>
-	<script>
-		// Get the modal
-		var modal = document.getElementById("myModal");
-
-		// Get the button that opens the modal
-		var btn = document.getElementById("ticket-modal");
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		btn.onclick = function() {
-			modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-
-		$('.close').click(function () {
-            $('.ticket').removeClass('ticket-active');
-        });
-
-        $('label').mouseenter(function () {
-            $(this).children(":eq(1)").css("color", "#fff");
-            $(this).children(":eq(2)").css("color", "#fff");
-        });
-        
-        $('label').mouseleave(function () {
-        	$(this).children("input:radio:not(:checked)").nextAll().eq(0).css("color", "#9d9d9e");
-        	$(this).children("input:radio:not(:checked)").nextAll().eq(1).css("color", "#9d9d9e");
-        });
-  
-        $("input:radio").change(function(){
-			$("input:radio").closest("label").css("border-color", "#9d9d9e");
-			$("input:radio").nextAll().css("color", "#9d9d9e");
-			$("input:radio:checked").closest("label").css("border-color", "#fc426a");			
-			$("input:radio:checked").nextAll().eq(0).css("color", "#fff");
-			$("input:radio:checked").nextAll().eq(1).css("color", "#fff");
-		});
-	</script>
+	<script src="client/js/ticket_modal.js"></script>
 </body>
 </html>

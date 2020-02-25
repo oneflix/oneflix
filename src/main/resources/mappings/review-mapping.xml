@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReviewDAO">
+
+	<insert id="insertReview" parameterType="review">
+		INSERT INTO review (review_id, movie_id, email, review_content, review_score, like_count, review_reg_date)
+		VALUES((select nvl(max(genre_id),0)+1 from genre),#{movieId},#{email},#{reviewContent},#{reviewScore}, #{likeCount}, #{revieweRegDate})
+	</insert>
+	
+	<update id="updateReview" parameterType="review">
+		UPDATE review
+		SET review_content=#{reviewContent}
+		WHERE
+		email = #{email}
+	</update>
+	
+	<!-- movieDetail.jsp의 myReview-->
+	<select id="getReview" parameterType="review" resultType="review">
+		SELECT * FROM review
+		WHERE email = #{email} AND movie_id = #{movieId}
+	</select>
+
+	<resultMap type="review" id="getReviewList">
+		<id property="reviewId" column="review_id" />
+		<result property="movieId" column="movie_id" />
+		<result property="movieTitle" column="movie_title" />
+		<result property="email" column="email" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewScore" column="review_score" />
+		<result property="likeCount" column="like_count" />
+	</resultMap>
+	
+	<select id="getReviewList" resultMap="getReviewList">
+<<<<<<< HEAD
+		SELECT r.review_id, r.movie_id, m.movie_title, r.email, mem.nick, r.review_content, r.review_score,
+    	r.like_count, r.review_reg_date FROM review r, movie m, member mem
+    	WHERE r.movie_id = m.movie_id
+		AND r.email = mem.email
+		<if test = "movieId != 0">
+		AND r.movie_id = #{movieId}
+		</if>
+		<if test="email != null">
+		AND r.email = #{email}
+		</if>
+		ORDER BY review_id DESC
+=======
+		<if test = "email == null">
+		SELECT * FROM review WHERE movie_id = #{movieId}
+		</if>
+		<if test = "movieId == 0">
+		SELECT review_id, email, review_content, review_score, like_count, review_reg_date, 
+		(SELECT m.movie_title FROM movie m, review r WHERE m.movie_id = r.movie_id) as movie_title
+		 FROM review WHERE email = #{email}
+		</if>
+		ORDER BY like_count DESC, review_reg_date DESC
+>>>>>>> master
+	</select>
+
+	<delete id="deleteReview" parameterType="review">
+		DELETE FROM review 
+		WHERE review_id = #{reviewId}
+	</delete>
+
+</mapper>

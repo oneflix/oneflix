@@ -60,15 +60,15 @@
 	</select>
 	<!-- 페이징 처리 후 게시글 조회 -->
 	<select id="selectInquiry" parameterType="paging" resultType="inquiry">
-	SELECT *
-	FROM (
-	SELECT ROWNUM RNUM, A.*
-	FROM (
-	SELECT *
-	FROM INQUIRY
-	ORDER BY INQUIRY_ID DESC
-	) A
-	)
+	SELECT * 
+		FROM (
+			SELECT ROWNUM RNUM, A.* 
+				FROM (
+						SELECT * 
+						FROM INQUIRY 
+						ORDER BY INQUIRY_ID DESC 
+						) A
+				)
 	WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
