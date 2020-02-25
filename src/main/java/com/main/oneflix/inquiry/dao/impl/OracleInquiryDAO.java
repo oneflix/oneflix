@@ -37,7 +37,7 @@ public class OracleInquiryDAO implements InquiryDAO {
 	}
 	@Override
 	public List<InquiryVO> selectInquiry(PagingVO vo) {
-		return sqlSessionTemplate.selectList("InquiryDAO.selectInquiry");
+		return sqlSessionTemplate.selectList("InquiryDAO.selectInquiry",vo);
 	}
 
 }

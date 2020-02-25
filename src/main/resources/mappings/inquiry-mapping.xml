@@ -59,7 +59,7 @@
 		SELECT COUNT(*) FROM inquiry
 	</select>
 	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectInquiry" parameterType="inquiry" resultType="inquiry">
+	<select id="selectInquiry" parameterType="paging" resultType="inquiry">
 	SELECT * 
 		FROM (
 			SELECT ROWNUM RNUM, A.* 
