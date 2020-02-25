@@ -8,14 +8,25 @@ import org.springframework.stereotype.Service;
 import com.main.oneflix.inquiry.dao.InquiryDAO;
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
+import com.main.oneflix.util.paging.vo.PagingVO;
 
 @Service
 public class GetInquiryListServivceImpl implements GetInquiryListService {
 	@Autowired
 	private InquiryDAO inquiryDAO;
+	
 	@Override
 	public List<InquiryVO> getInquiryList(InquiryVO vo) {
 		return inquiryDAO.getInquiryList(vo);
 	}
+	
+	@Override
+	public int countInquiry() {
+		return inquiryDAO.countInquiry();
+	}
 
+	@Override
+	public List<InquiryVO> selectInquiry(PagingVO vo) {
+		return inquiryDAO.selectInquiry(vo);
+	}
 }

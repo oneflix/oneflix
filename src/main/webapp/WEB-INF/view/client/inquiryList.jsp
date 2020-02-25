@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,12 +27,14 @@
 		<!-- 페이지 시작 -->
 		<div style="background-color: #080808;">
 			<p>나의 문의</p>
-			<br>
-			<br>
+			<br> <br>
 		</div>
 		<div>
-			<button class="float-right" type="button" class="btn btn-sm btn-primary" onclick="location.href='/insertInquiry.do'">문의하기</button>
+			<button class="float-right" type="button"
+				class="btn btn-sm btn-primary"
+				onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
+		<div id="outter">
 			<div style="background-color: #080808;">
 				<table class="table table-hover table-dark">
 					<thead class="thead-grey">
@@ -40,34 +43,58 @@
 							<th scope="col">제목</th>
 							<th scope="col">등록날짜</th>
 							<th scope="col">답변날짜</th>
+							<th scope="col">관리</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>${inquiry.inquiryId}</td>
-							<td>${inquiry.inquiryTitle}</td>
-							<td>${inquiry.receiveDate}</td>
-							<!-- date format -->
-							<td>${inquiry.replyDate}</td>
-							<!-- date format -->
-						</tr>
+						<c:forEach items="${viewAll}" var="inquiry">
+							<tr>
+								<td>${inquiry.inquiryId }</td>
+								<td>${inquiry.inquiryTitle}</td>
+								<td>${inquiry.receiveDate}</td>
+								<td>${inquiry.replyDate}</td>
+								<td><button class="float-right" type="button"
+										class="btn btn-sm btn-primary"
+										onclick="location.href='/getInquiryProc.do'">상세보기</button></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<div class="card-footer clearfix">
-					<!--page-link, m-0, float-right css 없음-->
-					<ul class="pagination pagination-sm m-0 float-right">
-						<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-					</ul>
+					<!-- 				page-link, m-0, float-right css 없음
+				<ul class="pagination pagination-sm m-0 float-right">
+					<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+				</ul> -->
+					<c:if test="${paging.startPage != 1 }">
+						<a
+							href="/getInquiryListProc.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+						var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a
+									href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a
+							href="/getInquiryListProc.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+					</c:if>
 				</div>
 				<!--card-footer-->
 			</div>
 		</div>
-
-		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 
 </html>

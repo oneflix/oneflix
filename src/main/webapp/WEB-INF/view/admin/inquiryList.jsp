@@ -69,6 +69,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach var="inquiry" items="${inquiryList}">
                     <tr>
                       <td>${inquiry.inquiryId}</td>
                       <td>${inquiry.inquiryType}</td>
@@ -78,13 +79,14 @@
                       <td>${inquiry.replyDate}</td>
                       <td>
                         <div>
-                          <button type="button" class="btn btn-sm btn-info" onClick="location.href='/replyInquiry'">답변하기</button>
+                          <button type="button" class="btn btn-sm btn-info" onClick="location.href='/getInquiryProc.mdo?inquiryId=${inquiry.inquiryId}'">답변하기</button>
                           <div class="custom-control custom-switch custom-float">
                             <input type="checkbox" class="custom-control-input" id="customSwitch1">
                           </div>
                         </div>
                       </td>
                     </tr>
+                    </c:forEach>
                   </tbody>
                 </table>
               </div>

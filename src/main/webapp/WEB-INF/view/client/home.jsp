@@ -113,6 +113,35 @@
 						<li>구매하신 이용권 종류 혹은 결제 상태(제휴상품, 쿠폰 등)에 따라 이용권 변경이 제한될 수 있습니다.</li>
 					</ul>
 				</div>
+				<div class="e114">
+					<div class="box">
+						<ul>
+							<li>
+								<i class="fas fa-check"></i>
+								<div>
+									<div class="box-title">지속적인 신작 업데이트</div>
+									<div class="box-content">매주 업데이트되는 200여편의 작품을 무료로 즐겨보세요.</div>
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-check"></i>
+								<div>
+									<div class="box-title">6만여 편의 작품 무제한 감상</div>
+									<div class="box-content">인기 영화를 추가 지불 없이 감상하세요.</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ul>
+						<li><p>이용기간이 종료되기 24시간 이내에 다음 이용에 대한 비용이 결제 됩니다. 즉, 이용기간 종료 시점으로부터 최소 23시간 전에 이용을 취소하지 않으시면 이용권이 자동으로 갱신됩니다.</p></li>
+						<li>결제취소는 결제 후 7일 내 서비스 미 이용시 가능하며, 결제 후 7일 경과 또는 서비스 이용 시에는 환불이 불가능합니다.</li>
+						<li>저작권자의 요청에 따라 일부 콘텐츠의 동시 재생이 제한될 수 있습니다.</li>
+						<li>최대 화질의 이용 가능 여부는 이용권 종류, 네트워크 환경, 콘텐츠 계약 조건, 디바이스의 물리적 사양에 따라 제한될 수 있습니다.</li>
+						<li>한국 외 국가에서는 감상이 제한되며, 일부 영상은 저작권자의 요청에 따라 도중에 제공이 중단될 수 있습니다.</li>
+						<li>엣지, 크롬, 파이어폭스, 웨일 브라우저를 지원합니다.</li>
+						<li>구매하신 이용권 종류 혹은 결제 상태(제휴상품, 쿠폰 등)에 따라 이용권 변경이 제한될 수 있습니다.</li>
+					</ul>
+				</div>
 			</div>
 			<div class="css-12314nb-BottomButtonContainer evsc26g1">
 				<button onclick="paymentRequest()" class="css-30d8ai-GrayButton-PinkButton e1ye64s20">이용권
