@@ -19,7 +19,7 @@
 	<!-- movieDetail.jsp의 myReview-->
 	<select id="getReview" parameterType="review" resultType="review">
 		SELECT * FROM review
-		WHERE email = #{email} AND movie_id = #{movie_id}
+		WHERE email = #{email} AND movie_id = #{movieId}
 	</select>
 
 	<resultMap type="review" id="getReviewList">
@@ -33,15 +33,17 @@
 	</resultMap>
 	
 	<select id="getReviewList" resultMap="getReviewList">
-		<if test = "email == null">
-		SELECT * FROM review WHERE movie_id = #{movieId}
+		SELECT r.review_id, r.movie_id, m.movie_title, r.email, mem.nick, r.review_content, r.review_score,
+    	r.like_count, r.review_reg_date FROM review r, movie m, member mem
+    	WHERE r.movie_id = m.movie_id
+		AND r.email = mem.email
+		<if test = "movieId != 0">
+		AND r.movie_id = #{movieId}
 		</if>
-		<if test = "movieId == 0">
-		SELECT review_id, email, review_content, review_score, like_count, review_reg_date, 
-		(SELECT m.movie_title FROM movie m, review r WHERE m.movie_id = r.movie_id) as movie_title
-		 FROM review WHERE email = #{email}
+		<if test="email != null">
+		AND r.email = #{email}
 		</if>
-		ORDER BY like_count DESC, review_reg_date DESC
+		ORDER BY review_id DESC
 	</select>
 
 	<delete id="deleteReview" parameterType="review">
