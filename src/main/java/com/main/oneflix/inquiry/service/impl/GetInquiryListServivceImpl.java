@@ -19,5 +19,14 @@ public class GetInquiryListServivceImpl implements GetInquiryListService {
 	public List<InquiryVO> getInquiryList(InquiryVO vo) {
 		return inquiryDAO.getInquiryList(vo);
 	}
+	
+	@Override
+	public int countInquiry() {
+		return inquiryDAO.countInquiry();
+	}
 
+	@Override
+	public List<InquiryVO> selectInquiry(PagingVO vo) {
+		return inquiryDAO.selectInquiry(vo);
+	}
 }

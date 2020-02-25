@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,7 +35,6 @@
 				onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
 		<div id="outter">
-			<!-- 옵션선택 끝 -->
 			<div style="background-color: #080808;">
 				<table class="table table-hover table-dark">
 					<thead class="thead-grey">
@@ -48,17 +47,17 @@
 						</tr>
 					</thead>
 					<tbody>
-				<c:forEach items="${viewAll}" var="list">
-			<tr>
-				<td>${inquiry.inquiryId }</td>
-				<td>${inquiry.inquiryTitle}</td>
-				<td>${inquiry.receiveDate} </td>
-				<td>${inquiry.replyDate} </td>
-				<td><button class="float-right" type="button"
-				class="btn btn-sm btn-primary"
-				onclick="location.href='/getInquiryProc.do'">상세보기</button></td>
-			</tr>
-		</c:forEach>
+						<c:forEach items="${viewAll}" var="inquiry">
+							<tr>
+								<td>${inquiry.inquiryId }</td>
+								<td>${inquiry.inquiryTitle}</td>
+								<td>${inquiry.receiveDate}</td>
+								<td>${inquiry.replyDate}</td>
+								<td><button class="float-right" type="button"
+										class="btn btn-sm btn-primary"
+										onclick="location.href='/getInquiryProc.do'">상세보기</button></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<div class="card-footer clearfix">
@@ -95,14 +94,7 @@
 			</div>
 		</div>
 	</div>
-		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-		<script>
-			function selChange() {
-				var sel = document.getElementById('cntPerPage').value;
-				location.href = "getInquiryListProc.do?nowPage=${paging.nowPage}&cntPerPage="
-						+ sel;
-			}
-		</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 
 </html>

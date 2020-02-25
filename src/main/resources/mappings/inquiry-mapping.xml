@@ -25,7 +25,8 @@
 	</resultMap>
 
 	<select id="getInquiryList" resultMap="inquiryList">
-		SELECT * FROM inquiry WHERE 1=1
+		SELECT * FROM inquiry
+		WHERE 1=1
 	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
@@ -55,21 +56,19 @@
 
 	<!-- 총 게시글 갯수 출력 -->
 	<select id="countInquiry" resultType="int">
-		SELECT COUNT(*) FROM
-		inquiry
+		SELECT COUNT(*) FROM inquiry
 	</select>
-
 	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectInquiry" resultType="inquiry">
-		SELECT *
+	<select id="selectInquiry" parameterType="inquiry" resultType="inquiry">
+	SELECT * 
 		FROM (
-		SELECT ROWNUM RN, A.*
-		FROM (
-		SELECT *
-		FROM inquiry
-		ORDER BY inquiry_id DESC
-		) A
-		)
-		WHERE RN BETWEEN #{start} AND #{end}
+			SELECT ROWNUM RNUM, A.* 
+				FROM (
+						SELECT * 
+						FROM INQUIRY 
+						ORDER BY INQUIRY_ID DESC 
+						) A
+				)
+	WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
