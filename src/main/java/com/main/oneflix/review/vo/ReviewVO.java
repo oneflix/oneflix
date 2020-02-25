@@ -8,6 +8,7 @@ public class ReviewVO {
 	private int movieId;
 	private String movieTitle;
 	private String email;
+	private String nick;
 	private String reviewContent;
 	private double reviewScore;
 	private int likeCount;
@@ -45,6 +46,17 @@ public class ReviewVO {
 		this.email = email;
 	}
 
+<<<<<<< HEAD
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+=======
+>>>>>>> master
 	public String getReviewContent() {
 		return reviewContent;
 	}

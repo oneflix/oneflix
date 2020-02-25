@@ -110,22 +110,23 @@ $('.eee1').click(function (event) {
 });
 
 
-$('.eu8v4400').click(function(){
-    $('.e1ia9yz82').prop('readonly', true);
-    $('.eu8v4400').css('display', 'none');
-    $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'inline');
-    $(".eu8v4101").css('pointer-events', 'none');
-    //$(".eu8v4101").off('click');
+//등록버튼
+$('.eu8v4400').click(function(){ 
+	    $('.e1ia9yz82').prop('readonly', true);
+	    $('.eu8v4400').css('display', 'none');
+	    $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'inline');
+	    $(".eu8v4101").css('pointer-events', 'none');
+	    //$(".eu8v4101").off('click');
 });
 
-$('.eu8v4401').click(function(){
+$('.eu8v4401').click(function(){ //수정버튼
     $('.e1ia9yz82').prop('readonly', false);
     $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'none');
     $('.eu8v4400').css('display', 'inline');
     $(".eu8v4101").css('pointer-events', 'auto');
 });
 
-$('.eu8v4402').click(function(){
+$('.eu8v4402').click(function(){ //삭제버튼
     $('.e1ia00').html('(0 / 최대 130자)');
     $('.e1ia9yz82').prop('readonly', false);
     $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'none');

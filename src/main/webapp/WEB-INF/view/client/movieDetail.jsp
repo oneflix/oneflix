@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="header_url" value="/WEB-INF/view/client/movieHeader.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
-
+<c:set var="reviewListLength" value="${fn:length(reviewList)}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -138,6 +139,36 @@
                 <form method="post" action="/insertReviewProc.do">
                 <section class="review-section">
                     <div class="css-pv0i3j-CommentsContainer e17lrvw510">
+<<<<<<< HEAD
+                      <form method="post" action="/insertReviewProc.do">
+                           <div class="css-custom-title">
+                               <h2>리뷰</h2>
+                           </div>
+                           <div class="review-title-box">
+                               <div class="css-vqbxz-RatingAvg e17lrvw515">
+                                   <span class="css-ycp4ll-RatingAvgTitle e17lrvw518">내 리뷰</span>
+                                   <div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
+                                       <div class="css-pjw7sn-StarsContainer eu8v4101">
+                                           <div class="css-1liv69o-BackgroundStars eu8v4102"
+                                               style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
+                                           <div class="css-1g8zxed-ActiveStars eu8v4103"
+                                               style="color: rgb(255, 255, 255); width: 0%;">★★★★★</div>
+                                       </div>
+                                   </div>
+                                   <span class="review-max-length e1ia00">(0 / 최대 130자)</span>
+                               </div>
+                           </div>
+                           <div class="review-div">
+                               <textarea placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
+                                   class="css-5el3at-TextArea e1ia9yz82"></textarea>
+                               <div class="eu8v4200">
+                                   <button type="submit"
+                                       class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
+                                   <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401" onclick="location.href='/updateReivew.do'">수정</button>
+                                   <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
+                               </div>
+                           </div>
+=======
                         <div class="css-custom-title">
                             <h2>리뷰</h2>
                         </div>
@@ -165,6 +196,7 @@
                                 <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
                             </div>
                         </div>
+>>>>>>> master
                         </form>
                         <div class="review-avg-rating-title">
                             <div class="css-vqbxz-RatingAvg e17lrvw515"><span
@@ -188,85 +220,42 @@
                             <div class="review-slider">
                                 <div id="review-slider-container" class="swiper-container">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="review-box">
-                                                <div class="review-title">
-                                                    <span class="review-writer">작성자</span>
-                                                </div>
-                                                <div class="review-content">
-                                                    글 내용
-                                                </div>
-                                                <div class="like-container">
-                                                    <button class="like-button">
-                                                        <i class="far fa-thumbs-up like-icon"></i>
-                                                        <span class="like-count">개수</span></button>
-                                                </div>
-                                            </div>
-                                            <div class="review-box">
-                                                <div class="review-title">
-                                                    <span class="review-writer">작성자</span>
-                                                </div>
-                                                <div class="review-content">
-                                                    글내용
-                                                </div>
-                                                <div class="like-container"><button class="like-button"><i
-                                                            class="far fa-thumbs-up like-icon"></i>
-                                                        <span class="like-count">개수</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="review-box">
-                                                <div class="review-title">
-                                                    <span class="review-writer">작성자</span>
-                                                </div>
-                                                <div class="review-content">
-                                                    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세
-                                                </div>
-                                                <div class="like-container"><button class="like-button"><i
-                                                            class="far fa-thumbs-up like-icon"></i>
-                                                        <span class="like-count">개수</span></button>
-                                                </div>
-                                            </div>
-                                            <div class="review-box">
-                                                <div class="review-title">
-                                                    <span class="review-writer">작성자</span>
-                                                </div>
-                                                <div class="review-content">
-                                                    글내용
-                                                </div>
-                                                <div class="like-container"><button class="like-button"><i
-                                                            class="far fa-thumbs-up like-icon"></i>
-                                                        <span class="like-count">개수</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="review-box">
-                                                <div class="review-title">
-                                                    <span class="review-writer">작성자</span>
-                                                </div>
-                                                <div class="review-content">
-                                                    글내용
-                                                </div>
-                                                <div class="like-container"><button class="like-button"><i
-                                                            class="far fa-thumbs-up like-icon"></i>
-                                                        <span class="like-count">개수</span></button>
-                                                </div>
-                                            </div>
-                                            <div class="review-box">
-                                                <div class="review-title">
-                                                    <span class="review-writer">작성자</span>
-                                                </div>
-                                                <div class="review-content">
-                                                    글내용
-                                                </div>
-                                                <div class="like-container"><button class="like-button"><i
-                                                            class="far fa-thumbs-up like-icon"></i>
-                                                        <span class="like-count">개수</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       <c:forEach var="i" begin="0" end="${reviewListLength}" step="2">
+                                           <div class="swiper-slide">
+                                               <div class="review-box">
+                                               
+                                                   <div class="review-title">
+                                                       <span class="review-writer">${reviewList[i].nick }</span>
+                                                   </div>
+                                                   <div class="review-content">
+                                                   		${reviewList[i].reviewContent }
+                                                   </div>
+                                                   <div class="like-container">
+                                                       <button class="like-button">
+                                                           <i class="far fa-thumbs-up like-icon"></i>
+                                                           <span class="like-count">${reviewList[i].likeCount}</span></button>
+                                                   </div>
+                                               </div>
+                                               <c:if test="${reviewListLength - 1 ne i}">
+                                                  <div class="review-box">
+                                                      <div class="review-title">
+                                                          <span class="review-writer">${reviewList[i+1].nick }</span>
+                                                      </div>
+                                                      <div class="review-content">
+                                                      	${reviewList[i+1].reviewContent }
+                                                      </div>
+                                                      <div class="like-container"><button class="like-button"><i
+                                                                  class="far fa-thumbs-up like-icon"></i>
+                                                              <span class="like-count">${reviewList[i+1].likeCount }</span></button>
+                                                      </div>
+                                                  </div>
+                                               
+                                               </c:if>
+                                           </div>
+                                       
+                                       </c:forEach>
+                                        
+                                        
                                     </div>
                                     <div id="review-button-next" class="swiper-button-next"></div>
                                     <div id="review-button-prev" class="swiper-button-prev"></div>
