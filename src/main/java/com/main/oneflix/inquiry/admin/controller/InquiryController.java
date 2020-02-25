@@ -26,8 +26,9 @@ import com.main.oneflix.util.email.service.EmailService;
 		GetInquiryListService getInquiryListService;
 		@Autowired
 		UpdateInquiryService updateInquiryService;
-	    @Autowired
+		@Autowired
 	    EmailService emailService; 
+
 		//관리자화면 
 		@RequestMapping("/getInquiryListProc.mdo")
 		public ModelAndView getInquiryListProcAdmin(InquiryVO vo, ModelAndView mav) {
@@ -36,6 +37,7 @@ import com.main.oneflix.util.email.service.EmailService;
 			mav.setViewName("inquiryList");
 			return mav;
 		}
+
 		@RequestMapping("/getInquiryProc.mdo")
 		public ModelAndView getInquiryProc(InquiryVO vo, ModelAndView mav) {
 			vo = getInquiryService.getInquiry(vo);
@@ -43,12 +45,7 @@ import com.main.oneflix.util.email.service.EmailService;
 			mav.setViewName("replyInquiry");
 			return mav;
 		}
-//		@RequestMapping("/updateInquiryProc.mdo")
-//		public ModelAndView updateInquiryProc(InquiryVO vo, ModelAndView mav) {
-//			updateInquiryService.updateInquiry(vo);
-//			mav.setViewName("redirect:/getInquiryListProc.mdo");
-//			return mav;
-//		}
+		
 		//관리자화면 -이메일 기능
 	    @RequestMapping("/replyInquiry.mdo") //이메일쓰기화면으로
 	    public ModelAndView replyInquiry(ModelAndView mav) {

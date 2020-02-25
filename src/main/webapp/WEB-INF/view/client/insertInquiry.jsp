@@ -29,7 +29,7 @@
 			<br>
 			<br>
 		</div>
-					<form action="/insertInquiryProc.do" method="POST" class="row" name="insertInquiry" onsubmit="return check()">
+				<form action="/insertInquiryProc.do" method="POST" class="row" name="insertInquiry" onsubmit="return check()">
 				<!--editor form-->
 	    		<div class="editor-body" style="width: 80%; padding-left: 15%;">
 					<div class="form-group mb-3">
