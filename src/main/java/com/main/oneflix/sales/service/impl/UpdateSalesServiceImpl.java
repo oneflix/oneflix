@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.main.oneflix.sales.dao.SalesDAO;
-import com.main.oneflix.sales.service.CountSalesService;
+import com.main.oneflix.sales.service.UpdateSalesService;
 import com.main.oneflix.sales.vo.SalesVO;
 
 @Service
-public class CountSalesServiceImpl implements CountSalesService {
+public class UpdateSalesServiceImpl implements UpdateSalesService {
 
 	@Autowired
 	private SalesDAO salesDAO;
 	
 	@Override
-	public int countSales(SalesVO vo) {
-		return salesDAO.countSales(vo);
+	public void updateSales(SalesVO vo) {
+		salesDAO.updateSales(vo);
 	}
 
 }

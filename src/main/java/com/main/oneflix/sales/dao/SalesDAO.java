@@ -4,5 +4,8 @@ import com.main.oneflix.sales.vo.SalesVO;
 
 public interface SalesDAO {
 
-	int countSales(SalesVO vo);
+	SalesVO getSales(SalesVO vo);
+	void insertSales(SalesVO vo);
+	void updateSales(SalesVO vo);
+	void deleteSales(SalesVO vo);
 }

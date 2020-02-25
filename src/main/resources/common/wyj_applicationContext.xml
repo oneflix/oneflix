@@ -13,7 +13,7 @@
 			com.main.oneflix.util.fileupload.service.impl
 			com.main.oneflix.sales.dao.impl
 			com.main.oneflix.sales.service.impl
-			com.main.oneflix.kakao.payment.service.impl">
+			com.main.oneflix.util.kakao.payment.service.impl">
 	</context:component-scan>
 	
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>

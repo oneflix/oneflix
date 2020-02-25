@@ -4,8 +4,29 @@
 
 <mapper namespace="SalesDAO">
 
-	<select id="countSales" parameterType="sales" resultType="int">
-		SELECT NVL(COUNT(*),0) FROM sales
+	<select id="getSales" parameterType="sales" resultType="sales">
+		SELECT * FROM sales WHERE 1 = 1
+		<if test="email != null">
+			AND email = #{email}
+		</if>
+		<if test="salesStatus != null">
+			AND sales_status = #{salesStatus}
+		</if>
 	</select>
+	
+	<insert id="insertSales" parameterType="sales">
+		INSERT INTO sales(cid, tid, sales_id, email, sales_status)
+		VALUES (#{cid}, #{tid}, #{salesId}, #{email}, #{salesStatus})
+	</insert>
+	
+	<update id="updateSales" parameterType="sales">
+		UPDATE sales SET
+		sales_status = #{salesStatus}
+		WHERE sales_id = #{salesId}
+	</update>
+	
+	<delete id="deleteSales" parameterType="sales">
+		DELETE FROM sales WHERE email = #{email} AND sales_status = #{salesStatus}
+	</delete>
 
 </mapper>
