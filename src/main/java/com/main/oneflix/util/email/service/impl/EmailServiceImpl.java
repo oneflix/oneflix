@@ -1,5 +1,6 @@
 package com.main.oneflix.util.email.service.impl;
 
+
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
@@ -9,12 +10,13 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.main.oneflix.inquiry.vo.InquiryVO;
-import com.main.oneflix.util.email.service.SendEmailService;
+import com.main.oneflix.util.email.service.EmailService;
 
 @Service
-public class SendEmailServiceImpl implements SendEmailService {
+public class EmailServiceImpl implements EmailService {
 	 @Autowired
 	 JavaMailSender mailSender; 
+	 
 	@Override
 	public void sendEmail(InquiryVO vo) {
 		 try {
@@ -23,7 +25,7 @@ public class SendEmailServiceImpl implements SendEmailService {
 	 
 	            // 받는 사람을 설정 (수신자, 받는사람의 이메일 주소 객체를 생성해서 수신자 이메일주소를 담음)
 	            msg.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemberEmail()));
-	 
+	     
 	            /*
 	             * createMimeMessage() : MimeMessage객체를 생성시킴 (이것을 이용해서 메시지를 구성한 뒤 메일 발송)
 	             * addRecipient() : 메시지의 발신자를 설정 InternetAddress() : 이메일 주소 getReceiveMail() :
@@ -33,7 +35,8 @@ public class SendEmailServiceImpl implements SendEmailService {
 	            // 보내는 사람(이메일주소+이름)
 	            // (발신자, 보내는 사람의 이메일 주소와 이름을 담음)
 	            // 이메일 발신자
-	            msg.addFrom(new InternetAddress[] { new InternetAddress(vo.getAdminEmail(), vo.getMemberEmail()) });
+	            String adminEmail = "janyes17@gmail.com";
+	            msg.addFrom(new InternetAddress[] { new InternetAddress(adminEmail, vo.getMemberEmail()) });
 	 
 	            // 이메일 제목 (인코딩을 해야 한글이 깨지지 않음)
 	            msg.setSubject(vo.getEmailTitle(), "utf-8");
@@ -42,15 +45,16 @@ public class SendEmailServiceImpl implements SendEmailService {
 	 
 //	            html로 보낼 경우            
 //	            MimeMessage message = mailSender.createMimeMessage();
-//	            MimeMessageHelper helper 
+//	            MimeMessageHelper helper
 //	            = new MimeMessageHelper(message, true);
 //	            helper.setTo("test@host.com");
 //	            helper.setText("<html><body><img src='cid:identifier1234'></body></html>", true);
-	 
+	            
 	            // 이메일 보내기
 	            mailSender.send(msg);
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
+
 	    }
 }

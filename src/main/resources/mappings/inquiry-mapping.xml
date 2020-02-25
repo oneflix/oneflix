@@ -4,7 +4,8 @@
 
 <mapper namespace="InquiryDAO">
 
-	<select id="getInquiry" parameterType="inquiry" resultType="inquiry">
+	<select id="getInquiry" parameterType="inquiry"
+		resultType="inquiry">
 		SELECT * FROM inquiry WHERE inquiry_id=#{inquiryId}
 	</select>
 
@@ -25,27 +26,50 @@
 
 	<select id="getInquiryList" resultMap="inquiryList">
 		SELECT * FROM inquiry
+		WHERE 1=1
 	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
-		INSERT INTO inquiry (inquiry_id,inquiry_type,nick,member_email,
-		inquiry_title,inquiry_content,recieve_date)
-		VALUES((select nvl(max(inquiry_id),0)+1 from inquiry),#{inquiryType},#{nick},#{memberEmail},
-		#{inquiryTitle},#{inquiryContent},sysdate)
+		INSERT INTO inquiry
+		(inquiry_id,inquiry_type,nick,member_email,
+		inquiry_title,inquiry_content,receive_date)
+		VALUES((select
+		NVL(max(inquiry_id),0)+1 from inquiry),
+		#{inquiryType},#{nick},#{memberEmail},
+		#{inquiryTitle},#{inquiryContent},SYSDATE)
 	</insert>
 
 	<update id="updateInquiry" parameterType="inquiry">
 		UPDATE inquiry
 		SET
-		inquiry_type=#{inquiryType}, admin_name=#{adminName},admin_mail=#{adminMail},
-		email_title=#{emailTitle},email_content=#{emailContent},reply_date=sysdate
+		email_title=#{emailTitle},email_content=#{emailContent},reply_date=SYSDATE
 		WHERE
-		inquiry_id = #{inquiryId}
+		inquiry_id=#{inquiryId}
 	</update>
 
 	<delete id="deleteInquiry" parameterType="inquiry">
-		DELETE FROM inquiry WHERE
-		inquiry_id = #{inquiryId}
+		DELETE FROM inquiry
+		WHERE
+		inquiry_id=#{inquiryId}
 	</delete>
 
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countInquiry" resultType="int">
+		SELECT COUNT(*) FROM
+		inquiry
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectInquiry" resultType="inquiry">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM inquiry
+		ORDER BY inquiry_id DESC
+		) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
 </mapper>

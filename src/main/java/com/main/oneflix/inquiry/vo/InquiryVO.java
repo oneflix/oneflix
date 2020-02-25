@@ -15,7 +15,7 @@ public class InquiryVO {
 	private String adminEmail; // 발신자메일
 	private String emailTitle; // 메일제목
 	private String emailContent; // 메일내용
-	private Date recieveDate;
+	private Date receiveDate;
 	private Date replyDate;
 
 	public Integer getInquiryId() {
@@ -98,12 +98,12 @@ public class InquiryVO {
 		this.emailContent = emailContent;
 	}
 
-	public Date getRecieveDate() {
-		return recieveDate;
+	public Date getReceiveDate() {
+		return receiveDate;
 	}
 
-	public void setRecieveDate(Date recieveDate) {
-		this.recieveDate = recieveDate;
+	public void setReceiveDate(Date receiveDate) {
+		this.receiveDate = receiveDate;
 	}
 
 	public Date getReplyDate() {

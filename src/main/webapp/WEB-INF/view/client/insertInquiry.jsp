@@ -29,11 +29,12 @@
 			<br>
 			<br>
 		</div>
-					<form action="/insertInquiryProc.do" class="row">
+					<form action="/insertInquiryProc.do" method="POST" class="row" name="insertInquiry" onsubmit="return check()">
 				<!--editor form-->
 	    		<div class="editor-body" style="width: 80%; padding-left: 15%;">
 					<div class="form-group mb-3">
-					<input type="hidden" id="inquiry"/>
+					<input type="hidden" id="memberEmail" name="memberEmail" value="${member.email }"/>
+					<input type="hidden" id="nick" name="nick" value="${member.nick}"/>
 						<label for="InquiryType">카테고리</label> 
 						<select id="InquiryType"
 							name="InquiryType" class="form-control select2bs4"
@@ -60,7 +61,7 @@
 	        		</div>
 	
 	        		<div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
-	            		<button type="submit" class="btn btn-sm btn-primary reg" style="background-color: #218838 border-color: #1e7e34">등록</button>
+	            		<button type="submit" class="btn btn-sm btn-primary reg">등록</button>
 	            		<button type="button" class="btn btn-sm btn-primary cancel" onclick="location.href='/getInquiryListProc.do'">취소</button>
 	        		</div><!-- /.buttons -->
 	    		</div><!--editorbody-->
@@ -68,5 +69,14 @@
 			</form>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+			<script>
+		function check() {
+			if (document.insertInquiry.inquiryTitle.value == "") {
+				alert("제목을 입력하세요.");
+				document.insertInquiry.inquiryTitle.focus();
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

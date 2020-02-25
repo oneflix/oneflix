@@ -155,9 +155,9 @@
 	</script>
 	<script>
 		function check() {
-			if (document.inserTicket.ticket.value == "") {
+			if (document.insertTicket.ticket.value == "") {
 				alert("이용권명을 입력하세요.");
-				document.inserTicket.ticket.focus();
+				document.insertTicket.ticket.focus();
 				return false;
 			}
 		}

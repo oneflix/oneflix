@@ -42,40 +42,52 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/emailWriteProc.mdo" class="row">
+			<form action="/replyInquiryProc.mdo" class="row"
+				onsubmit="sendCheck()">
 				<!--editor form-->
-	    		<div class="editor-body" style="width: 80%; padding-left: 15%;">
-					<div class="form-group mb-3">
-						<label for="helpType">카테고리</label> 
-						<select id="helpType"
-							name="helpType" class="form-control select2bs4"
-							required="required" data-placeholder="Select a State"
-							style="width: 100%;">
-							<option value="frequency" selected>자주 묻는 질문</option>
-							<option value="payment">결제</option>
-							<option value="refund">해지/환불</option>
-							<option value="ticket">이용권/쿠폰</option>
-							<option value="account">로그인/계정 관리</option>
-							<option value="contents">콘텐츠</option>
-							<option value="video">재생 문의</option>
-							<option value="service">서비스 문의</option>
-						</select>
+				<div class="editor-body" style="width: 80%; padding-left: 15%;">
+				<input type="hidden" name="adminName" id="adminName" value="${inquiry.adminName}"/>
+				<input type="hidden" name="inquiryId" id="inquiryId" value="${inquiry.inquiryId}"/>
+					<div class="form-group" style="padding-top: 2%;">
+						<label for="inquiryType">문의타입</label> <input type="text"
+							class="form-control"  id="inquiryType"
+							name="inquiryType" value="${inquiry.inquiryType}">
 					</div>
-	    			<div class="form-group" style="padding-top: 2%;">
-	        			<label for="helpTitle">제목</label>
-	        			<input type="text" class="form-control" placeholder="제목을 입력하세요" id="helpTitle" name="helpTitle">
-	        		</div>
-		        	<div class="form-group" style="padding-top: 2%;">
-			            <label for="helpContent">내용</label>
-	        		    <textarea class="form-control" placeholder="내용을 입력하세요" id="helpContent" name="helpContent"
-	        		    	style="height: 300px;"></textarea>
-	        		</div>
-	
-	        		<div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
-	            		<button type="submit" class="btn btn-success">등록</button>
-	            		<button type="button" class="btn btn-secondary" onclick="location.href='/getInquiryListProc.mdo'">취소</button>
-	        		</div><!-- /.buttons -->
-	    		</div><!--editorbody-->
+					<div class="form-group" style="padding-top: 2%;">
+						<label for="memberEmail">고객이메일</label> <input type="text"
+							class="form-control" placeholder="이메일주소를 입력하세요" id="memberEmail"
+							name="memberEmail" value="${inquiry.memberEmail}">
+					</div>
+					<div class="form-group" style="padding-top: 2%;">
+						<label for="inquiryTitle">문의제목</label> <input type="text"
+							class="form-control" value="${inquiry.inquiryTitle}" id="inquiryTitle"
+							name="inquiryTitle">
+					</div>
+					<div class="form-group" style="padding-top: 2%;">
+						<label for="inquiryContent">문의내용</label>
+						<textarea class="form-control"
+							id="inquiryContent" name="inquiryContent" style="height: 300px;">${inquiry.inquiryContent}</textarea>
+					</div>
+					<div class="form-group" style="padding-top: 2%;">
+						<label for="emailTitle">답변제목</label> <input type="text"
+							class="form-control" placeholder="제목을 입력하세요" id="emailTitle"
+							name="emailTitle">
+					</div>
+					<div class="form-group" style="padding-top: 2%;">
+						<label for="emailContent">답변내용</label>
+						<textarea class="form-control" placeholder="내용을 입력하세요"
+							id="emailContent" name="emailContent" style="height: 300px;"></textarea>
+					</div>
+
+					<div class="buttons"
+						style="float: right; margin-top: 0; padding-bottom: 20px;">
+						<button type="submit" class="btn btn-success">보내기</button>
+						<button type="button" class="btn btn-secondary"
+							onclick="location.href='/getInquiryListProc.mdo'">취소</button>
+					</div>
+					<!-- /.buttons -->
+				</div>
+				<!--editorbody-->
 				<!-- /.wrapper -->
 			</form>
 		</div>
@@ -85,10 +97,17 @@
      ====================== -->
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
+	<script>
+		function sendCheck() {
+			var check = confirm("메일을 전송하시겠습니까?");
+			if (check == true) {
+				document.location.href = "/replyInquiryProc.mdo";
+			}
+		}
+	</script>
 
-	<!-- Select2 -->
+ 	<!-- Select2 -->
 	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
-	<!-- Bootstrap4 Duallistbox -->
 	<script
 		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 
@@ -107,15 +126,7 @@
 
 		})
 	</script>
-	<!-- Summernote -->
-	<script src="admin/plugins/summernote/summernote-bs4.min.js"></script>
-	<script>
-		$(function() {
-			// Summernote
-			$('.textarea').summernote()
-		});
-	</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
 
 </body>
 
