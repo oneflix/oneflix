@@ -135,6 +135,7 @@
                 </section>
 
                 <!-- 리뷰 -->
+                <form method="post" action="/insertReviewProc.do">
                 <section class="review-section">
                     <div class="css-pv0i3j-CommentsContainer e17lrvw510">
                         <div class="css-custom-title">
@@ -158,12 +159,13 @@
                             <textarea placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
                                 class="css-5el3at-TextArea e1ia9yz82"></textarea>
                             <div class="eu8v4200">
-                                <button
+                                <button type="submit"
                                     class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
-                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401">수정</button>
-                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402">삭제</button>
+                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401" onclick="location.href='/updateReivew.do'">수정</button>
+                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
                             </div>
                         </div>
+                        </form>
                         <div class="review-avg-rating-title">
                             <div class="css-vqbxz-RatingAvg e17lrvw515"><span
                                     class="css-ycp4ll-RatingAvgTitle e17lrvw518">평균별점</span>
