@@ -24,7 +24,7 @@
 <body>
     <!-- The Modal -->
 	<div id="myModal" class="modal">
-
+	<div class="modal-container">
 		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">&times;</span>
@@ -35,7 +35,7 @@
 				<div class="e112">
 					<div class="radio-toolbar">
 						<div style="width: 272px;">
-							<h3>추천</h3>
+							<p class="ticket-category">추천</p>
 						</div><br>
 						<c:forEach var="ticket" items="${ticketList}">
 							<c:if test="${ticket.ticketPeriod eq -1}">
@@ -61,7 +61,7 @@
 				<div class="e113">
 					<div class="radio-toolbar">
 						<div style="width: 272px;">
-							<h3>일반</h3>
+							<p class="ticket-category">일반</p>
 						</div><br>
 						<c:forEach var="ticket" items="${ticketList}">
 							<c:if test="${ticket.ticketPeriod eq -1}">
@@ -119,6 +119,7 @@
 					구매하기</button>
 			</div>
 		</div>
+	</div><!-- modal container -->
 	</div>
 
     <div id="wrap">
@@ -420,53 +421,8 @@
     <script src="client/js/bootstrap.js"></script>
     <script src="client/js/swiper.js"></script>
     <script src="client/js/script.js"></script>
+    <script src="client/js/ticket_modal.js"></script>
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("ticket-modal");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        $('.close').click(function () {
-            $('.ticket').removeClass('ticket-active');
-        });
-
-        $('label').mouseenter(function () {
-            $(this).children(":eq(1)").css("color", "#fff");
-            $(this).children(":eq(2)").css("color", "#fff");
-        });
-        
-        $('label').mouseleave(function () {
-        	$(this).children("input:radio:not(:checked)").nextAll().eq(0).css("color", "#9d9d9e");
-        	$(this).children("input:radio:not(:checked)").nextAll().eq(1).css("color", "#9d9d9e");
-        });
-  
-        $("input:radio").change(function(){
-			$("input:radio").closest("label").css("border-color", "#9d9d9e");
-			$("input:radio").nextAll().css("color", "#9d9d9e");
-			$("input:radio:checked").closest("label").css("border-color", "#fc426a");			
-			$("input:radio:checked").nextAll().eq(0).css("color", "#fff");
-			$("input:radio:checked").nextAll().eq(1).css("color", "#fff");
-		});
         
 		var popX = window.screen.width / 2 - 200;
 		var popY = window.screen.height / 2 - 300;
