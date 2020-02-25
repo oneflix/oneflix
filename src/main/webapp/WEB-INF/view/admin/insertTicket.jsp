@@ -137,7 +137,6 @@
 			$('.duallistbox').bootstrapDualListbox()
 
 		})
-
 	</script>
 
 </body>

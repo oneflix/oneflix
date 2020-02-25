@@ -33,7 +33,6 @@
 	</resultMap>
 	
 	<select id="getReviewList" resultMap="getReviewList">
-<<<<<<< HEAD
 		SELECT r.review_id, r.movie_id, m.movie_title, r.email, mem.nick, r.review_content, r.review_score,
     	r.like_count, r.review_reg_date FROM review r, movie m, member mem
     	WHERE r.movie_id = m.movie_id
@@ -45,17 +44,6 @@
 		AND r.email = #{email}
 		</if>
 		ORDER BY review_id DESC
-=======
-		<if test = "email == null">
-		SELECT * FROM review WHERE movie_id = #{movieId}
-		</if>
-		<if test = "movieId == 0">
-		SELECT review_id, email, review_content, review_score, like_count, review_reg_date, 
-		(SELECT m.movie_title FROM movie m, review r WHERE m.movie_id = r.movie_id) as movie_title
-		 FROM review WHERE email = #{email}
-		</if>
-		ORDER BY like_count DESC, review_reg_date DESC
->>>>>>> master
 	</select>
 
 	<delete id="deleteReview" parameterType="review">
