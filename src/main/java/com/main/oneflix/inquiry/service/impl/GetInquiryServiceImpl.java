@@ -14,8 +14,8 @@ public class GetInquiryServiceImpl implements GetInquiryService {
 	private InquiryDAO inquiryDAO;
 
 	@Override
-	public void getInquiry(InquiryVO vo) {
-		inquiryDAO.getInquiry(vo);
+	public InquiryVO getInquiry(InquiryVO vo) {
+		return inquiryDAO.getInquiry(vo);
 	}
 
 }
