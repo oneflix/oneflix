@@ -13,7 +13,6 @@
 		<config>src/main/resources/common/proleesh_applicationContext.xml</config>
 		<config>src/main/resources/common/wyj_applicationContext.xml</config>
 		<config>src/main/resources/common/fml_applicationContext.xml</config>
-		<config>src/main/webapp/WEB-INF/controller/admin/jaen_admin-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/controller/admin/purple_admin-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/controller/admin/wyj_admin-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/controller/admin/proleesh_admin-servlet.xml</config>
@@ -23,6 +22,7 @@
 		<config>src/main/webapp/WEB-INF/controller/client/jaen_client-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/controller/client/wyj_client-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/controller/client/proleesh_client-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/controller/admin/jaen_admin-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/controller/admin/admin-servlet.xml</config>

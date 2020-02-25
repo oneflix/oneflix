@@ -60,25 +60,12 @@ public class MemberController {
 		mav.setViewName("mypageHome");
 		return mav;
 	}
-	@RequestMapping("/getInquiryListProc.do")
-	public ModelAndView getInquiryListProc(InquiryVO vo, ModelAndView mav) {
-		List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
-		mav.addObject("inquiryList", inquiryList);
-		mav.setViewName("inquiryList");
-		return mav;
-	}
 
-	@RequestMapping("/insertInquiry.do")
-	public ModelAndView insertInquiry(ModelAndView mav) {
-		mav.setViewName("insertInquiry");
-		return mav;
-	}
 	@RequestMapping("/getMemberProc.do")
 	public ModelAndView getMemberProc(ModelAndView mav) {
 		mav.setViewName("updateMember");
 		return mav;
 	}
-
 
 	@RequestMapping("/updateMemberProc.do")
 	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick,

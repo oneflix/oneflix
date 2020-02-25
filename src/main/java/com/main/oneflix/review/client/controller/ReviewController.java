@@ -29,6 +29,8 @@ public class ReviewController {
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
+	@Autowired
+	private GetReviewService getReviewService;
 	
 	@RequestMapping("/insertReviewProc.do")
 	public ModelAndView insertReviewProc(ReviewVO vo, ModelAndView mav) {
@@ -63,6 +65,6 @@ public class ReviewController {
 		
 		return mav;
 	}
-	
+
 
 }

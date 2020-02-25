@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.main.oneflix.inquiry.dao.InquiryDAO;
 import com.main.oneflix.inquiry.vo.InquiryVO;
+import com.main.oneflix.util.paging.vo.PagingVO;
 
 @Repository
 public class OracleInquiryDAO implements InquiryDAO {
@@ -16,7 +17,7 @@ public class OracleInquiryDAO implements InquiryDAO {
 	
 	@Override
 	public void insertInquiry(InquiryVO vo) {
-		sqlSessionTemplate.insert("InqiryDAO.insertInquiry", vo);
+		sqlSessionTemplate.insert("InquiryDAO.insertInquiry", vo);
 	}
 	@Override
 	public InquiryVO getInquiry(InquiryVO vo) {
@@ -30,4 +31,13 @@ public class OracleInquiryDAO implements InquiryDAO {
 	public void updateInquiry(InquiryVO vo) {
 		sqlSessionTemplate.update("InquiryDAO.updateInquiry",vo);
 	}
+	@Override
+	public int countInquiry() {
+		return sqlSessionTemplate.selectOne("InquiryDAO.countInquiry");
+	}
+	@Override
+	public List<InquiryVO> selectInquiry(PagingVO vo) {
+		return sqlSessionTemplate.selectList("InquiryDAO.selectInquiry",vo);
+	}
+
 }

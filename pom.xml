@@ -35,12 +35,6 @@
 			<version>2.10.2</version>
 		</dependency>
 
-		<!-- Javax Mail API -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-			<version>1.6.2</version>
-		</dependency>
 		<!-- Javax Mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
