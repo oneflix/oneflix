@@ -32,7 +32,7 @@
 				height: 300,
 				maxHeight: null,
 		        focus: true, 
-		        lang : 'ko-KR'
+		        lang : 'ko-KR',
 	        	cleaner:{
 	                action: 'both', // both|button|paste 'button' only cleans via toolbar button, 'paste' only clean when pasting content, both does both options.
 	                newline: '<br>', // Summernote's default is to use '<p><br></p>'
