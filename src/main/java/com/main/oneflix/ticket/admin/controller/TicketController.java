@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.ticket.service.DeleteTicketService;
@@ -38,6 +39,14 @@ public class TicketController {
 		mav.setViewName("redirect:/getTicketListProc.mdo");
 		return mav;
 	}
+	
+	@RequestMapping("/getTicketListProcAjax.mdo")
+	@ResponseBody
+	public List<TicketVO> getTicketListProcAjax(TicketVO vo) {
+		List<TicketVO> ticketList = getTicketListService.getTicketList(vo);
+		return ticketList;
+	}
+	
 	@RequestMapping("/getTicketListProc.mdo")
 	public ModelAndView getTicketListProc(TicketVO vo, ModelAndView mav) {
 		List<TicketVO> ticketList = getTicketListService.getTicketList(vo);

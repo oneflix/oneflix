@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
-
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
 <!DOCTYPE html>
 <html>
@@ -58,8 +58,8 @@
 											<th>이용권명</th>
 											<th>기간</th>
 											<th>가격</th>
-											<th>추천</th>
 											<th>상태</th>
+											<th>추천</th>
 											<th>관리</th>
 										</tr>
 									</thead>
@@ -68,10 +68,26 @@
 										<tr>
 											<td>${ticket.ticketId}</td>
 											<td>${ticket.ticketName}</td>
-											<td>${ticket.ticketPeriod}</td>
-											<td>${ticket.ticketPrice}</td>
-											<td>${ticket.ticketRecommend}</td>
-											<td>${ticket.ticketStatus}</td>
+											<td>
+												<c:choose>
+													<c:when test="${ticket.ticketPeriod eq -1}">정기</c:when>
+													<c:otherwise>${ticket.ticketPeriod}일</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${ticket.ticketPrice}"></fmt:formatNumber>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${ticket.ticketStatus eq 'Y'}">활성화</c:when>
+													<c:otherwise>비활성화</c:otherwise>
+												</c:choose>
+											<td>
+												<c:choose>
+													<c:when test="${ticket.ticketRecommend eq 'Y'}">추천</c:when>
+													<c:otherwise>비추천</c:otherwise>
+												</c:choose>
+											</td>
 											<td>
 												<div>
 													<button type="submit" class="btn btn-sm btn-primary" onclick="location.href='/getTicketProc.mdo?ticketId=${ticket.ticketId}'">수정</button>
