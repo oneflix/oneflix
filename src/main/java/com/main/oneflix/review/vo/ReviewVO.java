@@ -46,7 +46,6 @@ public class ReviewVO {
 		this.email = email;
 	}
 
-<<<<<<< HEAD
 	public String getNick() {
 		return nick;
 	}
@@ -55,8 +54,6 @@ public class ReviewVO {
 		this.nick = nick;
 	}
 
-=======
->>>>>>> master
 	public String getReviewContent() {
 		return reviewContent;
 	}
