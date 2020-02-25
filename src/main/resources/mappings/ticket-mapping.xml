@@ -26,6 +26,7 @@
 
 	<select id="getTicketList" resultMap="ticketList">
 		SELECT * FROM ticket WHERE 1=1
+		ORDER BY ticket_period
 	</select>
 	
 	<update id="updateTicket" parameterType="ticket">

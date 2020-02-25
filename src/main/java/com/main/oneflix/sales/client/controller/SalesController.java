@@ -2,6 +2,8 @@ package com.main.oneflix.sales.client.controller;
 
 import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.member.service.GetMemberService;
+import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.service.DeleteSalesService;
 import com.main.oneflix.sales.service.GetSalesService;
 import com.main.oneflix.sales.service.InsertSalesService;
@@ -45,10 +48,12 @@ public class SalesController {
 
 	@RequestMapping("/paymentRequestProc.do")
 	@ResponseBody
-	public SalesVO paymentRequestProc(SalesVO vo, ModelAndView mav) {
+	public SalesVO paymentRequestProc(SalesVO vo, ModelAndView mav, HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setCid("single");
 		vo.setSalesId(makeSalesId());
-		System.out.println(vo.getEmail());
+//		vo.setEmail(member.getEmail());
+		vo.setEmail("green@mail.com");
 		vo.setItem_name("젓가락");
 		vo.setTotal_amount("2100");
 		vo.setQuantity("1");

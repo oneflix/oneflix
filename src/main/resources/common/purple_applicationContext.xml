@@ -7,7 +7,8 @@
 
 	<context:component-scan
 		base-package="com.main.oneflix.genre.dao.impl, com.main.oneflix.genre.service.impl,
-			com.main.oneflix.movie.dao.impl, com.main.oneflix.movie.service.impl">
+			com.main.oneflix.movie.dao.impl, com.main.oneflix.movie.service.impl,
+			com.main.oneflix.review.dao.impl, com.main.oneflix.review.service.impl">
 	</context:component-scan>
 
 </beans>

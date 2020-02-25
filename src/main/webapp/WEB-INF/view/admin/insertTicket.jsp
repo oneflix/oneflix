@@ -13,11 +13,17 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- Select2 -->
+<link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
+<link rel="stylesheet"
+	href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet"
+	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 </head>
 
 <body
-	class="hold-transition sidebar-mini layout-navbar-fixed custom-body">
+	class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
 		<!-- ====================== 
@@ -49,39 +55,38 @@
 						<div class="card-body pad">
 							<div class="form-group">
 								<label for="title">이용권명</label> <input type="text"
-									class="form-control" id="ticketName" name="ticketName" required="">
+									class="form-control" id="ticketName" name="ticketName">
 							</div>
 							<div class="form-group mb-3">
 								<label for="title">기간</label> <select class="form-control" id="ticketPeriod"
 									name="ticketPeriod" required="required" data-placeholder="Select a State">
-									<option value="30">30</option>
-									<option value="60">60</option>
-									<option value="90">90</option>
-									<option value="180">180</option>
-									<option value="365">365</option>
+									<option value="-1">정기권</option>
+									<option value="30">30일</option>
+									<option value="60">60일</option>
+									<option value="90">90일</option>
+									<option value="180">180일</option>
+									<option value="365">365일</option>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="ticketPrice">가격</label> <input type="text"
-									class="form-control" id="ticketPrice" name="ticketPrice" required=""
-									<%-- onkeyup="number_chk(this);"
-									onkeypress="javascript:if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;" --%>>
+								<label for="ticketPrice">가격</label> <input type="number"
+									class="form-control" id="ticketPrice" name="ticketPrice">
 							</div>
 
 							<div class="form-group">
 								<label>상태</label> 
 								<select class="form-control" id="ticketStatus" name="ticketStatus" required="required" data-placeholder="Select a State">
-									<option value="Y">Y</option>
-									<option value="N">N</option>
+									<option value="Y">활성화</option>
+									<option value="N">비활성화</option>
 								</select>
 							</div>
 
 							<div class="form-group">
 								<label>추천</label> 
 								<select class="form-control" id="ticketRecommend" name="ticketRecommend" required="required" data-placeholder="Select a State">
-									<option value="Y">Y</option>
-									<option value="N">N</option>
+									<option value="Y">YES</option>
+									<option value="N">NO</option>
 								</select>
 							</div>
 
@@ -89,7 +94,7 @@
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
 								<button type="button" class="btn btn-secondary"
-									onclick="location.href='/ticketListProc.mdo'">취소</button>
+									onclick="location.href='/getTicketListProc.mdo'">취소</button>
 							</div>
 							<!-- /.buttons -->
 						</div>
@@ -117,7 +122,7 @@
 	<!-- Bootstrap4 Duallistbox -->
 	<script
 		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
+	<script src="admin/js/ticket.js"></script>
 	<script>
 		$(function() {
 			//Initialize Select2 Elements
@@ -132,35 +137,6 @@
 			$('.duallistbox').bootstrapDualListbox()
 
 		})
-	</script>
-
-	<script>
-		function number_chk(obj) {
-			var val = obj.value.replace(/,/g, "");
-			var val2 = val.substr(0, 1);
-			var val3 = val.length;
-			if (val2 == 0) {
-				val = val.substr(1, val3);
-			}
-			obj.value = num_format(val);
-		}
-		function num_format(n) {
-			var reg = /(^[+-]?\d+)(\d{3})/; // 정규식
-			n = String(n); //숫자 -> 문자변환
-			while (reg.test(n)) {
-				n = n.replace(reg, "$1" + "," + "$2");
-			}
-			return n;
-		}
-	</script>
-	<script>
-		function check() {
-			if (document.insertTicket.ticket.value == "") {
-				alert("이용권명을 입력하세요.");
-				document.insertTicket.ticket.focus();
-				return false;
-			}
-		}
 	</script>
 
 </body>
