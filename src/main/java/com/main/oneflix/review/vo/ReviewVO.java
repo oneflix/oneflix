@@ -46,7 +46,6 @@ public class ReviewVO {
 		this.email = email;
 	}
 
-
 	public String getNick() {
 		return nick;
 	}
