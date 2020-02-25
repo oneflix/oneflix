@@ -135,36 +135,36 @@
                 </section>
 
                 <!-- 리뷰 -->
-                <form method="post" action="/insertReviewProc.do">
                 <section class="review-section">
                     <div class="css-pv0i3j-CommentsContainer e17lrvw510">
-                        <div class="css-custom-title">
-                            <h2>리뷰</h2>
-                        </div>
-                        <div class="review-title-box">
-                            <div class="css-vqbxz-RatingAvg e17lrvw515">
-                                <span class="css-ycp4ll-RatingAvgTitle e17lrvw518">내 리뷰</span>
-                                <div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
-                                    <div class="css-pjw7sn-StarsContainer eu8v4101">
-                                        <div class="css-1liv69o-BackgroundStars eu8v4102"
-                                            style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
-                                        <div class="css-1g8zxed-ActiveStars eu8v4103"
-                                            style="color: rgb(255, 255, 255); width: 0%;">★★★★★</div>
-                                    </div>
-                                </div>
-                                <span class="review-max-length e1ia00">(0 / 최대 130자)</span>
-                            </div>
-                        </div>
-                        <div class="review-div">
-                            <textarea placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
-                                class="css-5el3at-TextArea e1ia9yz82"></textarea>
-                            <div class="eu8v4200">
-                                <button type="submit"
-                                    class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
-                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401" onclick="location.href='/updateReivew.do'">수정</button>
-                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
-                            </div>
-                        </div>
+		                <form method="post" action="/insertReviewProc.do">
+	                        <div class="css-custom-title">
+	                            <h2>리뷰</h2>
+	                        </div>
+	                        <div class="review-title-box">
+	                            <div class="css-vqbxz-RatingAvg e17lrvw515">
+	                                <span class="css-ycp4ll-RatingAvgTitle e17lrvw518">내 리뷰</span>
+	                                <div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
+	                                    <div class="css-pjw7sn-StarsContainer eu8v4101">
+	                                        <div class="css-1liv69o-BackgroundStars eu8v4102"
+	                                            style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
+	                                        <div class="css-1g8zxed-ActiveStars eu8v4103"
+	                                            style="color: rgb(255, 255, 255); width: 0%;">★★★★★</div>
+	                                    </div>
+	                                </div>
+	                                <span class="review-max-length e1ia00">(0 / 최대 130자)</span>
+	                            </div>
+	                        </div>
+	                        <div class="review-div">
+	                            <textarea placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
+	                                class="css-5el3at-TextArea e1ia9yz82"></textarea>
+	                            <div class="eu8v4200">
+	                                <button type="submit"
+	                                    class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
+	                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401" onclick="location.href='/updateReivew.do'">수정</button>
+	                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
+	                            </div>
+	                        </div>
                         </form>
                         <div class="review-avg-rating-title">
                             <div class="css-vqbxz-RatingAvg e17lrvw515"><span
