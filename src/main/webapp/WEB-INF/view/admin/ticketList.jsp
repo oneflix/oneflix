@@ -117,13 +117,14 @@
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
 	<!-- ./wrapper -->
- <script>
-		 function deleteCheck(ticketId) {
+	<script>
+		function deleteCheck(ticketId) {
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if (check == true) {
-				document.location.href = "/deleteTicketProc.mdo?ticketId=" + ticketId;
+				document.location.href = "/deleteTicketProc.mdo?ticketId="
+						+ ticketId;
 			}
-		} 
+		}
 	</script>
 
 </body>
