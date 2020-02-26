@@ -16,16 +16,14 @@ import com.main.oneflix.review.vo.ReviewVO;
 public class MovieController {
 	
 	@Autowired
-	private GetReviewService getReviewService;
-	@Autowired
 	private GetReviewListService getReviewListService;
+	@Autowired
+	private GetReviewService getReviewService;
 	
 	@RequestMapping("/getMovieDetailProc.do")
 	public ModelAndView getMovieDetailProc(MovieVO vo, ModelAndView mav) {
 		ReviewVO review = new ReviewVO();
-		review.setMovieId(vo.getMovieId());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
-		System.out.println(reviewList.size());
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("movieDetail");
 		

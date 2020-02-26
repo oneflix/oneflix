@@ -5,6 +5,7 @@
 <c:set var="header_url" value="/WEB-INF/view/client/movieHeader.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <c:set var="reviewListLength" value="${fn:length(reviewList)}"></c:set>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -190,6 +191,7 @@
                                 <div id="review-slider-container" class="swiper-container">
                                     <div class="swiper-wrapper">
                                        <c:forEach var="i" begin="0" end="${reviewListLength}" step="2">
+                                           
                                            <div class="swiper-slide">
                                                <div class="review-box">
                                                
