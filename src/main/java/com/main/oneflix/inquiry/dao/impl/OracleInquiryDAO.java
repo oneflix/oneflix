@@ -32,12 +32,9 @@ public class OracleInquiryDAO implements InquiryDAO {
 		sqlSessionTemplate.update("InquiryDAO.updateInquiry",vo);
 	}
 	@Override
-	public int countInquiry() {
-		return sqlSessionTemplate.selectOne("InquiryDAO.countInquiry");
+	public int getCountInquiry(InquiryVO vo) {
+		return sqlSessionTemplate.selectOne("InquiryDAO.getCountInquiry",vo);
 	}
-	@Override
-	public List<InquiryVO> selectInquiry(PagingVO vo) {
-		return sqlSessionTemplate.selectList("InquiryDAO.selectInquiry",vo);
-	}
+
 
 }
