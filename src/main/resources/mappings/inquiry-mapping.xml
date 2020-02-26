@@ -9,7 +9,7 @@
 		SELECT * FROM inquiry WHERE inquiry_id=#{inquiryId}
 	</select>
 
-	<resultMap type="inquiry" id="inquiryList">
+ 	<resultMap type="inquiry" id="inquiryList">
 		<id property="inquiryId" column="inquiry_id" />
 		<result property="inquiryType" column="inquiry_type" />
 		<result property="nick" column="nick" />
@@ -27,7 +27,7 @@
 	<select id="getInquiryList" resultMap="inquiryList">
 		SELECT * FROM inquiry
 		WHERE 1=1
-	</select>
+	</select> 
 
 	<insert id="insertInquiry" parameterType="inquiry">
 		INSERT INTO inquiry

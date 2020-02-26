@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="../admin/css/adminlte.css">
 <link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
+<link rel="stylesheet" href="client/css/inquiry.css">
 
 </head>
 
@@ -26,13 +27,13 @@
 
 		<!-- 페이지 시작 -->
 		<div style="background-color: #080808;">
-			<p>나의 문의</p>
+			<p style="font-size: 25px;">나의 문의</p>
 			<br> <br>
 		</div>
 		<div>
 			<button class="float-right" type="button"
 				class="btn btn-sm btn-primary"
-				onclick="location.href='/insertInquiry.do'">문의하기</button>
+				onclick="location.href='/insertInquiry.do'" style="float: right; margin-right: 1%; margin-bottom: 1%;">문의하기</button>
 		</div>
 		<div id="outter">
 			<div style="background-color: #080808;">
@@ -40,6 +41,7 @@
 					<thead class="thead-grey">
 						<tr>
 							<th scope="col">문의번호</th>
+							<th scope="col">카테고리</th>
 							<th scope="col">제목</th>
 							<th scope="col">등록날짜</th>
 							<th scope="col">답변날짜</th>
@@ -50,12 +52,13 @@
 						<c:forEach items="${viewAll}" var="inquiry">
 							<tr>
 								<td>${inquiry.inquiryId }</td>
+								<td>${inquiry.inquiryType }</td>
 								<td>${inquiry.inquiryTitle}</td>
 								<td>${inquiry.receiveDate}</td>
 								<td>${inquiry.replyDate}</td>
 								<td><button class="float-right" type="button"
 										class="btn btn-sm btn-primary"
-										onclick="location.href='/getInquiryProc.do'">상세보기</button></td>
+										onClick="location.href='/getInquiryProc.do?inquiryId=${inquiry.inquiryId}'">상세보기</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

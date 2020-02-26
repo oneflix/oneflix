@@ -32,8 +32,23 @@
 				height: 300,
 				maxHeight: null,
 		        focus: true, 
-		        lang : 'ko-KR'
+		        lang : 'ko-KR',
+	        	cleaner:{
+	                action: 'both', // both|button|paste 'button' only cleans via toolbar button, 'paste' only clean when pasting content, both does both options.
+	                newline: '<br>', // Summernote's default is to use '<p><br></p>'
+	                notStyle: 'position:absolute;top:0;left:0;right:0', // Position of Notification
+	                icon: '<i class="note-icon">[Your Button]</i>',
+	                keepHtml: false, // Remove all Html formats
+	                keepOnlyTags: ['<p>', '<br>', '<ul>', '<li>', '<b>', '<strong>','<i>', '<a>'], // If keepHtml is true, remove all tags except these
+	                keepClasses: false, // Remove Classes
+	                badTags: ['style', 'script', 'applet', 'embed', 'noframes', 'noscript', 'html'], // Remove full tags with contents
+	                badAttributes: ['style', 'start'], // Remove attributes from remaining tags
+	                limitChars: false, // 0/false|# 0/false disables option
+	                limitDisplay: 'both', // text|html|both
+	                limitStop: false // true/false
+	        	}
 			});
+
 		});
 	</script>
 </head>
@@ -61,8 +76,7 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/replyInquiryProc.mdo" class="row"
-				onsubmit="sendCheck()">
+			<form action="/replyInquiryProc.mdo" class="row" onsubmit="sendCheck()">
 				<!--editor form-->
 				<div class="editor-body" style="width: 80%; padding-left: 15%;">
 					<input type="hidden" name="adminName" id="adminName"

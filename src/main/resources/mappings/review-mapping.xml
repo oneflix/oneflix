@@ -44,7 +44,6 @@
 		AND r.email = #{email}
 		</if>
 		ORDER BY review_id DESC
-
 	</select>
 
 	<delete id="deleteReview" parameterType="review">
