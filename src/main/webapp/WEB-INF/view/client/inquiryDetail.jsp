@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../admin/css/adminlte.css">
 <link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
-
+<link rel="stylesheet" href="client/css/inquiry.css">
 </head>
 
 <body>
@@ -22,37 +22,58 @@
 	<jsp:include page="${sidebar_url}"></jsp:include>
 
 	<div class="page-body">
-		<div style="background-color: #080808;">
+		<div class="title">
 			<p>나의 문의</p>
 			<br>
 			<br>
-			<button type="button" class="btn-close">목록보기</button>
+			<button type="button" class="btn-close" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
 		</div>
-		<div class="myInquiry_content" style="background-color: #080808;">
+		<div class="title">
 			<table class="table table-dark">
 				<thead class="thead-grey">
 					<tr>
-						<td>문의</td>
+						<td>문의제목</td>
 					</tr>
 				</thead>
-				<tbody style="background-color: #1a1919;">
+				<tbody>
 					<tr>
-						<td>회원정보수정은 어디에서 할 수 있나요?</td>
+						<td>${inquiry.inquiryTitle}</td>
+					</tr>
+				</tbody>
+				<thead class="thead-grey">
+					<tr>
+						<td>문의내용</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${inquiry.inquiryContent}</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="myInquiry_reply" style="background-color: #080808;">
+			<br><br>
+			<div class="title">
 				<table class="table table-dark">
-					<thead class="thead-grey">
-						<tr>
-							<td>답변</td>
-						</tr>
-					</thead>
-					<tbody style="background-color: #1a1919;">
-						<tr>
-							<td>안녕하세요 고객님! ONEFLIX입니다.</td>
-						</tr>
-					</tbody>
+				<thead class="thead-grey">
+					<tr>
+						<td>답변제목</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${inquiry.emailTitle}</td>
+					</tr>
+				</tbody>
+				<thead class="thead-grey">
+					<tr>
+						<td>답변내용</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${inquiry.emailContent}</td>
+					</tr>
+				</tbody>
 				</table>
 			</div>
 		</div>

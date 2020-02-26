@@ -21,10 +21,10 @@ public class InquiryController {
 	@Autowired
 	private GetInquiryListService getInquiryListService;
 
-   
     //유저화면
 	@RequestMapping("/insertInquiry.do")
 	public ModelAndView insertInquiry(ModelAndView mav) {
+		mav.setViewName("insertInquiry");
 		return mav;
 	}
 	
@@ -34,22 +34,13 @@ public class InquiryController {
 		mav.setViewName("redirect:/getInquiryListProc.do");
 		return mav;
 	}
-	@RequestMapping("/getInquiryProc.mdo")
+	@RequestMapping("/getInquiryProc.do")
 	public ModelAndView getInquiryProc(InquiryVO vo, ModelAndView mav) {
 		vo = getInquiryService.getInquiry(vo);
 		mav.addObject("inquiry", vo);
 		mav.setViewName("inquiryDetail");
 		return mav;
 	}
-/*	@RequestMapping("/getInquiryListProc.do")
-	public ModelAndView getInquiryListProc(InquiryVO vo,ModelAndView mav) {
-		List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
-		mav.addObject("inquiryList", inquiryList);
-		mav.setViewName("inquiryList");
-		return mav;
-	}
-*/
-	
 	@RequestMapping("/getInquiryListProc.do")
 	public ModelAndView getInquiryListProc(PagingVO vo,ModelAndView mav
 			,@RequestParam(value="nowPage", required=false, defaultValue="1") String nowPage) {
