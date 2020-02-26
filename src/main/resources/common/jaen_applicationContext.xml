@@ -9,7 +9,8 @@
 	base-package="com.main.oneflix.member.service.impl, com.main.oneflix.member.dao.impl,
 	com.main.oneflix.ticket.service.impl, com.main.oneflix.ticket.dao.impl,
 	com.main.oneflix.inquiry.service.impl, com.main.oneflix.inquiry.dao.impl,
-	com.main.oneflix.util.email.service.impl"></context:component-scan>
+	com.main.onflix.util.paging.service.impl ,com.main.oneflix.util.email.service.impl">
+	</context:component-scan>
 
 	<!-- 이메일 발송 bean 설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

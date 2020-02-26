@@ -58,7 +58,8 @@
 										</div>
 									</div>
 								</form>
-								<select id="select-genre" class="form-control form-control-sm select2bs4"
+								<select id="select-genre"
+									class="form-control form-control-sm select2bs4"
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option value="0" selected="selected">카테고리</option>
 									<c:forEach var="inquiry" items="${inquiry.inquiryType}">
