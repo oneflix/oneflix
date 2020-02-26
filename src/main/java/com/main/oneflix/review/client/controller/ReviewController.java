@@ -34,7 +34,13 @@ public class ReviewController {
 	
 	@RequestMapping("/insertReviewProc.do")
 	public ModelAndView insertReviewProc(ReviewVO vo, ModelAndView mav) {
+		vo.setEmail("blue@mail.com");
+		System.out.println("reviewContent = " + vo.getReviewContent());
+		System.out.println("reviewEmail = " + vo.getEmail());
+		System.out.println("MovieId = " + vo.getMovieId());
+		System.out.println("reviewId = " + vo.getReviewId());
 		insertReviewService.insertReview(vo);
+		mav.setViewName("/getMovieDetailProc.do");
 		return mav;
 	}
 	

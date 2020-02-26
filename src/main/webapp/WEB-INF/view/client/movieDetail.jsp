@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="header_url" value="/WEB-INF/view/client/movieHeader.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <c:set var="reviewListLength" value="${fn:length(reviewList)}"></c:set>
-
+<% String paramEmail = request.getParameter("email"); %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -139,34 +140,37 @@
                 <!-- 리뷰 -->
                 <section class="review-section">
                     <div class="css-pv0i3j-CommentsContainer e17lrvw510">
-		                <form method="post" action="/insertReviewProc.do">
-	                        <div class="css-custom-title">
-	                            <h2>리뷰</h2>
-	                        </div>
-	                        <div class="review-title-box">
-	                            <div class="css-vqbxz-RatingAvg e17lrvw515">
-	                                <span class="css-ycp4ll-RatingAvgTitle e17lrvw518">내 리뷰</span>
-	                                <div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
-	                                    <div class="css-pjw7sn-StarsContainer eu8v4101">
-	                                        <div class="css-1liv69o-BackgroundStars eu8v4102"
-	                                            style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
-	                                        <div class="css-1g8zxed-ActiveStars eu8v4103"
-	                                            style="color: rgb(255, 255, 255); width: 0%;">★★★★★</div>
-	                                    </div>
-	                                </div>
-	                                <span class="review-max-length e1ia00">(0 / 최대 130자)</span>
-	                            </div>
-	                        </div>
-	                        <div class="review-div">
-	                            <textarea placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
-	                                class="css-5el3at-TextArea e1ia9yz82"></textarea>
-	                            <div class="eu8v4200">
-	                                <button type="submit"
-	                                    class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
-	                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401" onclick="location.href='/updateReivew.do'">수정</button>
-	                                <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
-	                            </div>
-	                        </div>
+                      <form method="post" action="/insertReviewProc.do">
+                           <div class="css-custom-title">
+                               <h2>리뷰</h2>
+                           </div>
+                           <div class="review-title-box">
+                               <div class="css-vqbxz-RatingAvg e17lrvw515">
+                                   <span class="css-ycp4ll-RatingAvgTitle e17lrvw518">내 리뷰</span>
+                                   <div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
+                                       <div class="css-pjw7sn-StarsContainer eu8v4101">
+                                           <div class="css-1liv69o-BackgroundStars eu8v4102"
+                                               style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
+                                           <div class="css-1g8zxed-ActiveStars eu8v4103"
+                                               style="color: rgb(255, 255, 255); width: 0%;">★★★★★</div>
+                                       </div>
+                                   </div>
+                                   <span class="review-max-length e1ia00">(0 / 최대 130자)</span>
+                               </div>
+                           </div>
+                           <div class="review-div">
+                           <c:if test="${myReview.reviewContent eq null }">
+                               <textarea name="reviewContent" placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
+                                   class="css-5el3at-TextArea e1ia9yz82"></textarea></c:if>
+                           <c:if test="${myReview.reviewContent ne null }">
+                               <textarea name="reviewContent" id="myReview" class="css-5el3at-TextArea e1ia9yz82">${myReview.reviewContent }</textarea></c:if>
+                               <div class="eu8v4200">
+                                   <button type="submit"
+                                       class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
+                                   <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401" onclick="location.href='/updateReivew.do'">수정</button>
+                                   <button class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402" onclick="location.href='/deleteReivew.do'">삭제</button>
+                               </div>
+                           </div>
                         </form>
                         <div class="review-avg-rating-title">
                             <div class="css-vqbxz-RatingAvg e17lrvw515"><span
@@ -191,7 +195,6 @@
                                 <div id="review-slider-container" class="swiper-container">
                                     <div class="swiper-wrapper">
                                        <c:forEach var="i" begin="0" end="${reviewListLength}" step="2">
-                                           
                                            <div class="swiper-slide">
                                                <div class="review-box">
                                                
@@ -199,7 +202,7 @@
                                                        <span class="review-writer">${reviewList[i].nick }</span>
                                                    </div>
                                                    <div class="review-content">
-                                                   		${reviewList[i].reviewContent }
+                                                         ${reviewList[i].reviewContent }
                                                    </div>
                                                    <div class="like-container">
                                                        <button class="like-button">
@@ -213,7 +216,7 @@
                                                           <span class="review-writer">${reviewList[i+1].nick }</span>
                                                       </div>
                                                       <div class="review-content">
-                                                      	${reviewList[i+1].reviewContent }
+                                                         ${reviewList[i+1].reviewContent }
                                                       </div>
                                                       <div class="like-container"><button class="like-button"><i
                                                                   class="far fa-thumbs-up like-icon"></i>
@@ -248,6 +251,8 @@
     <script src="client/js/swiper.js"></script>
     <script src="client/js/movie_layout.js"></script>
     <script src="client/js/detail.js"></script>
+    
+   
 </body>
 
 </html>

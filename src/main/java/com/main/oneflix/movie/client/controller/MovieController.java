@@ -22,13 +22,20 @@ public class MovieController {
 	
 	@RequestMapping("/getMovieDetailProc.do")
 	public ModelAndView getMovieDetailProc(MovieVO vo, ModelAndView mav) {
+		ReviewVO myReview = new ReviewVO();
+		myReview.setEmail("blue@mail.com");
+		myReview.setMovieId(2);
+		myReview = getReviewService.getReview(myReview);
 		ReviewVO review = new ReviewVO();
+		review.setMovieId(2);
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
 		System.out.println(reviewList.size());
 		mav.addObject("reviewList", reviewList);
+		mav.addObject("myReview", myReview); 
 		mav.setViewName("movieDetail");
 		
 		return mav;
 	}
+	
 
 }

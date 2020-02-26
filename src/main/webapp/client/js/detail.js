@@ -111,13 +111,15 @@ $('.eee1').click(function (event) {
 
 
 //등록버튼
-$('.eu8v4400').click(function(){ 
+if( $('#myReview').val() != null){
+//$('.eu8v4400').click(function(){ 
 	    $('.e1ia9yz82').prop('readonly', true);
 	    $('.eu8v4400').css('display', 'none');
 	    $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'inline');
 	    $(".eu8v4101").css('pointer-events', 'none');
 	    //$(".eu8v4101").off('click');
-});
+//});
+}
 
 $('.eu8v4401').click(function(){ //수정버튼
     $('.e1ia9yz82').prop('readonly', false);

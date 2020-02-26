@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class ReviewVO {
 
-	private int reviewId;
-	private int movieId;
+	private Integer reviewId;
+	private Integer movieId;
 	private String movieTitle;
 	private String email;
 	private String nick;
