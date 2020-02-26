@@ -48,6 +48,7 @@
 	                limitStop: false // true/false
 	        	}
 			});
+
 		});
 	</script>
 </head>
@@ -75,8 +76,7 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/replyInquiryProc.mdo" class="row"
-				onsubmit="sendCheck()">
+			<form action="/replyInquiryProc.mdo" class="row" onsubmit="sendCheck()">
 				<!--editor form-->
 				<div class="editor-body" style="width: 80%; padding-left: 15%;">
 					<input type="hidden" name="adminName" id="adminName"
