@@ -14,7 +14,6 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
 <!-- Select2 -->
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
@@ -24,7 +23,6 @@
    href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
-
 
 <body class="hold-transition sidebar-mini">
    <div class="wrapper">
