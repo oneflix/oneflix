@@ -15,9 +15,7 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-	.total-sales:read-only {background: #fff;}
-</style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -48,12 +46,11 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<form class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
-									<div class="card-tools">
+								<form class="form-inline ml-3" style="height: 30px; position: relative; margin-top: 4px;">
+									<div class="card-tools" style="position: absolute; right: 0;">
 										<div class="input-group input-group-sm" style="width: 300px;">
 											<input type="text" name="table_search"
-												class="form-control float-right" placeholder="Search">
+												class="form-control" placeholder="Search">
 
 											<div class="input-group-append">
 												<button type="submit" class="btn btn-default">
@@ -63,27 +60,28 @@
 										</div>
 									</div>
 								</form>
-								<div class="form-inline" style="margin-top: 4px;">
-									<select id="select-month" class="form-control form-control-sm"
-										style="width: 90px;">
-										<option value="0" selected>전체 월</option>
-										<c:forEach var="i" begin="1" end="12">
-											<option value="${i}">${i}월</option>
-										</c:forEach>
-									</select> &nbsp;&nbsp;
-									 
-									<select id="select-year" class="form-control form-control-sm"
-										style="width: 90px;">
-										<option value="0" selected>전체 년</option>
-										<c:forEach var="i" begin="2020" end="${year}">
-											<option value="${i}">${i}년</option>
-										</c:forEach>
-									</select>
-								</div>
-								<div class="form-inline" style="margin-top: 4px; display: flex">
-									<label>합계</label>
-									<input class="total-sales" type="text" value="￦19,999,999"
-										style="text-align: right; width: 150px;  border: 0;" readonly>
+								<div class="form-inline" style="height: 30px; margin-top: 4px; position: relative;">
+									<div>
+										<select id="select-month" class="form-control form-control-sm"
+											style="width: 90px;">
+											<option value="0" selected>전체 월</option>
+											<c:forEach var="i" begin="1" end="12">
+												<option value="${i}">${i}월</option>
+											</c:forEach>
+										</select> &nbsp;&nbsp;
+										 
+										<select id="select-year" class="form-control form-control-sm"
+											style="width: 90px;">
+											<option value="0" selected>전체 년</option>
+											<c:forEach var="i" begin="2020" end="${year}">
+												<option value="${i}">${i}년</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div style="position: absolute; right: 0; display: flex">
+										<label>총 매출</label>
+										<input class="form-control form-control-sm" type="text" style="border: 0;">
+									</div>
 								</div>
 
 								<table id="example2" class="table table-bordered table-hover">

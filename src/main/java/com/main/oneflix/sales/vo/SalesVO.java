@@ -40,9 +40,10 @@ public class SalesVO {
 //	private String sid;
 	@JsonProperty("partner_order_id")
 	private String salesId;
-	@JsonProperty("partner_user_id")
 	private String email;
-	private String ticketId;
+	private Integer ticketId;
+	private String ticketName;
+	private String ticketPrice;
 	private String salesStatus;
 	private Date paymentDate;
 
@@ -53,22 +54,6 @@ public class SalesVO {
 	public void setCid(String cid) {
 		this.cid = cid;
 	}
-
-//	public String getPartner_order_id() {
-//		return partner_order_id;
-//	}
-//
-//	public void setPartner_order_id(String partner_order_id) {
-//		this.partner_order_id = partner_order_id;
-//	}
-//
-//	public String getPartner_user_id() {
-//		return partner_user_id;
-//	}
-//
-//	public void setPartner_user_id(String partner_user_id) {
-//		this.partner_user_id = partner_user_id;
-//	}
 
 	public String getItem_name() {
 		return item_name;
@@ -206,12 +191,28 @@ public class SalesVO {
 		this.email = email;
 	}
 
-	public String getTicketId() {
+	public Integer getTicketId() {
 		return ticketId;
 	}
 
-	public void setTicketId(String ticketId) {
+	public void setTicketId(Integer ticketId) {
 		this.ticketId = ticketId;
+	}
+
+	public String getTicketName() {
+		return ticketName;
+	}
+
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
+
+	public String getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(String ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
 
 	public String getSalesStatus() {
@@ -228,17 +229,6 @@ public class SalesVO {
 
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
-	}
-
-	@Override
-	public String toString() {
-		return "SalesVO [cid=" + cid + ", item_name=" + item_name + ", quantity=" + quantity + ", total_amount="
-				+ total_amount + ", tax_free_amount=" + tax_free_amount + ", approval_url=" + approval_url
-				+ ", cancel_url=" + cancel_url + ", fail_url=" + fail_url + ", tid=" + tid + ", next_redirect_pc_url="
-				+ next_redirect_pc_url + ", pg_token=" + pg_token + ", sid=" + sid + ", payment_method_type="
-				+ payment_method_type + ", amount=" + amount + ", card_info=" + card_info + ", approved_ad="
-				+ approved_at + ", salesId=" + salesId + ", email=" + email + ", ticketId=" + ticketId
-				+ ", salesStatus=" + salesStatus + ", paymentDate=" + paymentDate + "]";
 	}
 
 }

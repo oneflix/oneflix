@@ -5,7 +5,7 @@
 <mapper namespace="MovieDAO">
 
 	<select id="getMovie" parameterType="movie" resultType="movie">
-		SELECT * FROM movie WHERE movie_id=#{movieId, jdbcType=VARCHAR}
+		SELECT * FROM movie WHERE movie_id=#{movieId}
 	</select>
 
 	<resultMap type="movie" id="movieList">
