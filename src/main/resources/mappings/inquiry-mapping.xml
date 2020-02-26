@@ -9,7 +9,7 @@
 		SELECT * FROM inquiry WHERE inquiry_id=#{inquiryId}
 	</select>
 
- 	<resultMap type="inquiry" id="inquiryList">
+	<resultMap type="inquiry" id="inquiryList">
 		<id property="inquiryId" column="inquiry_id" />
 		<result property="inquiryType" column="inquiry_type" />
 		<result property="nick" column="nick" />
@@ -24,10 +24,27 @@
 		<result property="replyDate" column="reply_date" />
 	</resultMap>
 
-	<select id="getInquiryList" resultMap="inquiryList">
-		SELECT * FROM inquiry
-		WHERE 1=1
-	</select> 
+	<select id="getInquiryList" parameterType="inquiry" resultMap="inquiryList">
+		SELECT *
+			FROM (
+				SELECT ROWNUM RNUM, A.*
+				FROM (
+					SELECT *
+					FROM INQUIRY
+					ORDER BY INQUIRY_ID DESC
+					) A
+				)
+		WHERE 1 = 1
+		<if test="start != 0">
+			AND RNUM BETWEEN #{start} AND #{end}
+		</if>
+		<if test="memberEmail != null">
+			AND member_email = #{memberEmail}
+		</if>
+		<!-- <if test="searchInquiryType != 0"> AND inquiry_type1 = #{searchInquiry} 
+			OR inquiry_type2 = #{searchInquiry} </if> <if test="searchInquiry != null"> 
+			AND inquiry_title like '%' || #{searchInquiry} || '%' </if> -->
+	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
 		INSERT INTO inquiry
@@ -55,20 +72,12 @@
 	</delete>
 
 	<!-- 총 게시글 갯수 출력 -->
-	<select id="countInquiry" resultType="int">
-		SELECT COUNT(*) FROM inquiry
-	</select>
-	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectInquiry" parameterType="paging" resultType="inquiry">
-	SELECT * 
-		FROM (
-			SELECT ROWNUM RNUM, A.* 
-				FROM (
-						SELECT * 
-						FROM INQUIRY 
-						ORDER BY INQUIRY_ID DESC 
-						) A
-				)
-	WHERE RNUM BETWEEN #{start} AND #{end}
+	<select id="getCountInquiry" parameterType="inquiry" resultType="int">
+		SELECT COUNT(*) FROM
+		inquiry
+		WHERE 1 = 1
+		<if test="memberEmail != null">
+		   AND member_email = #{memberEmail}
+		</if>
 	</select>
 </mapper>

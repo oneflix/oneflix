@@ -53,7 +53,7 @@ import com.main.oneflix.util.email.service.EmailService;
 	    public ModelAndView sendEmail(InquiryVO vo, ModelAndView mav) {
 	        try {
 	            emailService.sendEmail(vo); // vo (메일관련 정보)를 sendMail에 저장함
-	            mav.addObject("message", "이메일이 발송되었습니다."); 
+	            mav.addObject("message", "이메일 발송성공"); 
 	    
 	            updateInquiryService.updateInquiry(vo);
 	            mav.setViewName("redirect:/getInquiryListProc.mdo");
@@ -61,7 +61,7 @@ import com.main.oneflix.util.email.service.EmailService;
 	 
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            mav.addObject("message", "이메일 발송 실패"); 
+	            mav.addObject("message", "이메일 발송실패"); 
 	            mav.setViewName("redirect:/replyInquiry.mdo");
 	            return mav;
 	        }

@@ -10,6 +10,5 @@ public interface InquiryDAO {
 	public InquiryVO getInquiry(InquiryVO vo);
 	public List<InquiryVO> getInquiryList(InquiryVO vo);
 	public void updateInquiry(InquiryVO vo);
-	public int countInquiry();
-	public List<InquiryVO> selectInquiry(PagingVO vo);
+	public int getCountInquiry(InquiryVO vo);
 }

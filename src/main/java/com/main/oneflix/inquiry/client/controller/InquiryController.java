@@ -1,16 +1,20 @@
 package com.main.oneflix.inquiry.client.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.oneflix.inquiry.service.GetCountInquiryService;
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.GetInquiryService;
 import com.main.oneflix.inquiry.service.InsertInquiryService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
+import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.util.paging.vo.PagingVO;
+import com.main.onflix.util.paging.service.PagingService;
 
 @Controller
 public class InquiryController {
@@ -20,6 +24,10 @@ public class InquiryController {
 	private GetInquiryService getInquiryService;
 	@Autowired
 	private GetInquiryListService getInquiryListService;
+	@Autowired
+	private PagingService pagingService;
+	@Autowired
+	private GetCountInquiryService getCountInquiryService;
 
     //유저화면
 	@RequestMapping("/insertInquiry.do")
@@ -42,17 +50,24 @@ public class InquiryController {
 		return mav;
 	}
 	@RequestMapping("/getInquiryListProc.do")
-	public ModelAndView getInquiryListProc(PagingVO vo,ModelAndView mav
-			,@RequestParam(value="nowPage", required=false, defaultValue="1") String nowPage) {
-		int total = getInquiryListService.countInquiry();
-		if (nowPage == null) {
-			nowPage = "1";
+	public ModelAndView getInquiryListProc(PagingVO vo,ModelAndView mav,HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		InquiryVO inquiry = new InquiryVO();
+		inquiry.setMemberEmail(member.getEmail());
+
+		int total = getCountInquiryService.getCountInquiry(inquiry);
+		if (vo.getNowPage() == 0) {
+			vo.setNowPage(1);
 		}
-		vo = new PagingVO(total, Integer.parseInt(nowPage));
+		vo.setTotal(total);
+		vo = pagingService.buildPaging(vo);
+		
+		inquiry.setStart(vo.getStart());
+		inquiry.setEnd(vo.getEnd());
+		
 		mav.addObject("paging", vo);
-		mav.addObject("viewAll", getInquiryListService.selectInquiry(vo));
+		mav.addObject("viewAll", getInquiryListService.getInquiryList(inquiry));
 		mav.setViewName("inquiryList");
 		return mav;
-	
 	}
 }
