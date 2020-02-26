@@ -24,6 +24,7 @@ public class MovieController {
 	public ModelAndView getMovieDetailProc(MovieVO vo, ModelAndView mav) {
 		ReviewVO review = new ReviewVO();
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
+		System.out.println(reviewList.size());
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("movieDetail");
 		
