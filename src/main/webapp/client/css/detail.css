@@ -513,3 +513,25 @@ video {border: 0; outline: none;}
 #review-slider-container > .swiper-wrapper > .swiper-slide > div {height: 12vw; margin: 30px 0; padding: 0 70px; background-color: #0B0C0D;}
 /* #review-button-prev {z-index: 999;}
 #review-button-next {} */
+
+.starR1{
+    background: url('../images/icons/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('../images/icons/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1.on{background-position:0 0; color: #fff;}
+.starR2.on{background-position:-15px 0; color: #fff;}
+
