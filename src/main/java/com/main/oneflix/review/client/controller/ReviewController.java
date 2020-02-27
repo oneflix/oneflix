@@ -17,10 +17,9 @@ import com.main.oneflix.review.service.InsertReviewService;
 import com.main.oneflix.review.service.UpdateReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
 
-
 @Controller
 public class ReviewController {
-	
+
 	@Autowired
 	private InsertReviewService insertReviewService;
 	@Autowired
@@ -31,40 +30,47 @@ public class ReviewController {
 	private GetReviewListService getReviewListService;
 	@Autowired
 	private GetReviewService getReviewService;
-	
+
 	@RequestMapping("/insertReviewProc.do")
 	public ModelAndView insertReviewProc(ReviewVO vo, ModelAndView mav) {
+		vo.setEmail("purple@mail.com");
+		if(vo.getReviewId() != null) deleteReviewService.deleteReview(vo);
 		insertReviewService.insertReview(vo);
+		mav.addObject("movieId", vo.getMovieId());
+		mav.setViewName("redirect:/getMovieDetailProc.do");
 		return mav;
 	}
+
 	
+	  @RequestMapping("/deleteReviewProc.do") public ModelAndView
+	  deleteReviewProc(ReviewVO vo, ModelAndView mav) {
+	  deleteReviewService.deleteReview(vo); System.out.println("vo = " + vo);
+	  mav.addObject("movieId", vo.getMovieId());
+	  mav.setViewName("redirect:/getMovieDetailProc.do");
+	  return mav;
+	  }
+	  
+	 
 	@RequestMapping("/updateReviewProc.do")
 	public ModelAndView getReviewProc(ReviewVO vo, ModelAndView mav) {
 		updateReviewService.updateReview(vo);
 		return mav;
 	}
-	
-	@RequestMapping("/deleteReviewProc.do")
-	public ModelAndView deleteReviewProc(ReviewVO vo, ModelAndView mav) {
-		deleteReviewService.deleteReview(vo);
-		return mav;
-	}
-	
+
 	@RequestMapping("/getReviewListProc.do")
 	public ModelAndView getReviewListProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
-		MemberVO member = (MemberVO)session.getAttribute("member");
+		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
-		for(ReviewVO review : reviewList) {
-			System.out.println("movieTitle = "+review.getMovieTitle());
-			System.out.println("reviewContent = "+review.getReviewContent());
-			System.out.println("reviewScore = "+review.getReviewScore());
+		for (ReviewVO review : reviewList) {
+			System.out.println("movieTitle = " + review.getMovieTitle());
+			System.out.println("reviewContent = " + review.getReviewContent());
+			System.out.println("reviewScore = " + review.getReviewScore());
 		}
-		mav.addObject("reviewList",reviewList);
+		mav.addObject("reviewList", reviewList);
 		mav.setViewName("reviewList");
-		
+
 		return mav;
 	}
-
 
 }
