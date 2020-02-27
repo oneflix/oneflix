@@ -36,7 +36,6 @@ public class OracleInquiryDAO implements InquiryDAO {
 	@Override
 	public void deleteInquiry(InquiryVO vo) {
 		sqlSessionTemplate.delete("InquiryDAO.deleteInquiry",vo);
-		
 	}
 
 

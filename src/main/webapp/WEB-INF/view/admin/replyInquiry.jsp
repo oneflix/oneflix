@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 
@@ -13,7 +13,6 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- Select2 -->
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
@@ -25,11 +24,10 @@
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css"
 	rel="stylesheet">
 </head>
-
 <body class="hold-transition sidebar-mini">
-	<div class="wrapper">
+   <div class="wrapper">
 
-		<!-- ====================== 
+      <!-- ====================== 
               ADD headr 
        ====================== -->
 		<jsp:include page="${header_url}"></jsp:include>

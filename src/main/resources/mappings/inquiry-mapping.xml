@@ -56,7 +56,6 @@
 			AND nick '%' || #{searchMember} || '%' 
 			OR member_email like '%' || #{searchMember} || '%'
 		</if>
-
 	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
@@ -85,8 +84,7 @@
 	</delete>
 
 	<!-- 총 게시글 갯수 출력 -->
-	<select id="getCountInquiry" parameterType="inquiry"
-		resultType="int">
+	<select id="getCountInquiry" parameterType="inquiry" resultType="int">
 		SELECT COUNT(*) FROM
 		inquiry
 		WHERE 1 = 1

@@ -19,6 +19,7 @@ public class InquiryVO {
 	private Date receiveDate;
 	private Date replyDate;
 	
+
 	//페이징
 	private int start;
 	private int end;
@@ -28,31 +29,6 @@ public class InquiryVO {
 	private String searchInquiryType;
 	private String searchMember;
 	private String searchCheckReply;
-	
-	public String getSearchInquiry() {
-		return searchInquiry;
-	}
-	public void setSearchInquiry(String searchInquiry) {
-		this.searchInquiry = searchInquiry;
-	}
-	public String getSearchInquiryType() {
-		return searchInquiryType;
-	}
-	public void setSearchInquiryType(String searchInquiryType) {
-		this.searchInquiryType = searchInquiryType;
-	}
-	public String getSearchMember() {
-		return searchMember;
-	}
-	public void setSearchMember(String searchMember) {
-		this.searchMember = searchMember;
-	}
-	public String getSearchCheckReply() {
-		return searchCheckReply;
-	}
-	public void setSearchCheckReply(String searchCheckReply) {
-		this.searchCheckReply = searchCheckReply;
-	}
 	public Integer getInquiryId() {
 		return inquiryId;
 	}
@@ -137,4 +113,29 @@ public class InquiryVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-}	
+	public String getSearchInquiry() {
+		return searchInquiry;
+	}
+	public void setSearchInquiry(String searchInquiry) {
+		this.searchInquiry = searchInquiry;
+	}
+	public String getSearchInquiryType() {
+		return searchInquiryType;
+	}
+	public void setSearchInquiryType(String searchInquiryType) {
+		this.searchInquiryType = searchInquiryType;
+	}
+	public String getSearchMember() {
+		return searchMember;
+	}
+	public void setSearchMember(String searchMember) {
+		this.searchMember = searchMember;
+	}
+	public String getSearchCheckReply() {
+		return searchCheckReply;
+	}
+	public void setSearchCheckReply(String searchCheckReply) {
+		this.searchCheckReply = searchCheckReply;
+	}
+	
+}

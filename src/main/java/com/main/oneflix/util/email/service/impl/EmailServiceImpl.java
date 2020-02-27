@@ -1,9 +1,7 @@
 package com.main.oneflix.util.email.service.impl;
 
 
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -26,6 +24,7 @@ public class EmailServiceImpl implements EmailService {
 	 
 	            // 받는 사람을 설정 (수신자, 받는사람의 이메일 주소 객체를 생성해서 수신자 이메일주소를 담음)
 //	            msg.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemberEmail()));
+
 	            /*
 	             * createMimeMessage() : MimeMessage객체를 생성시킴 (이것을 이용해서 메시지를 구성한 뒤 메일 발송)
 	             * addRecipient() : 메시지의 발신자를 설정 InternetAddress() : 이메일 주소 getReceiveMail() :

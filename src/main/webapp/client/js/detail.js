@@ -111,30 +111,40 @@ $('.eee1').click(function (event) {
 
 
 //등록버튼
-$('.eu8v4400').click(function(){ 
+if( $('#myReview').val() != null){
+//$('.eu8v4400').click(function(){ 
 	    $('.e1ia9yz82').prop('readonly', true);
 	    $('.eu8v4400').css('display', 'none');
 	    $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'inline');
 	    $(".eu8v4101").css('pointer-events', 'none');
 	    //$(".eu8v4101").off('click');
-});
+//});
+}
 
-$('.eu8v4401').click(function(){ //수정버튼
+//수정버튼 눌러서 textArea 활성화
+if($('#myReview').is('[readonly]')){
+	$('.eu8v4401').click(function(){
+		$('.e1ia9yz82').prop('readonly', false);
+	});
+}
+
+//수정버튼
+$('.eu8v4401').click(function(){
     $('.e1ia9yz82').prop('readonly', false);
     $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'none');
     $('.eu8v4400').css('display', 'inline');
     $(".eu8v4101").css('pointer-events', 'auto');
 });
 
-$('.eu8v4402').click(function(){ //삭제버튼
+/*$('.eu8v4402').click(function(){ //삭제버튼
     $('.e1ia00').html('(0 / 최대 130자)');
     $('.e1ia9yz82').prop('readonly', false);
     $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'none');
     $('.eu8v4400').css('display', 'inline');
     $('.eu8v4103').css("width", "0%");
     $(".eu8v4101").css('pointer-events', 'auto');
-    $('.css-5el3at-TextArea').val('');
-});
+    //$('.css-5el3at-TextArea').val('');
+});*/
 
 $('.eu8v4101').click(function (event) {
     var starEl = $(".eu8v4101");
@@ -164,6 +174,8 @@ $('.eu8v4101').click(function (event) {
     } else if (x <= (divX + (divW * 10))) {
         $('.eu8v4103').css("width", "100%");
     }
+    
+    
 });
 
 $('.e1ia9yz82').keyup(function (e) {
