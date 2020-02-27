@@ -9,7 +9,8 @@
 		base-package="com.main.oneflix.manager.admin.controller
 			com.main.oneflix.dashboard.admin.controller
 			com.main.oneflix.help.notice.admin.controller
-			com.main.oneflix.help.faq.admin.controller">
+			com.main.oneflix.help.faq.admin.controller
+			com.main.oneflix.sales.admin.controller">
 	</context:component-scan>
 
 </beans>

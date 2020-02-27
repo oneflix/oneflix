@@ -131,7 +131,7 @@
 										required="required" data-placeholder="Select a State"
 										style="width: 100%;">
 										<c:forEach var="i" begin="1950" end="2020">
-											<option><c:out value="${i}" /></option>
+											<option value="${i}">${i}년</option>
 										</c:forEach>
 									</select>
 								</div>
