@@ -5,10 +5,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.main.oneflix.inquiry.dao.InquiryDAO;
 import com.main.oneflix.inquiry.vo.InquiryVO;
-import com.main.oneflix.util.paging.vo.PagingVO;
 
 @Repository
 public class OracleInquiryDAO implements InquiryDAO {
@@ -34,6 +32,11 @@ public class OracleInquiryDAO implements InquiryDAO {
 	@Override
 	public int getCountInquiry(InquiryVO vo) {
 		return sqlSessionTemplate.selectOne("InquiryDAO.getCountInquiry",vo);
+	}
+	@Override
+	public void deleteInquiry(InquiryVO vo) {
+		sqlSessionTemplate.delete("InquiryDAO.deleteInquiry",vo);
+		
 	}
 
 

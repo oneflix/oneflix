@@ -16,9 +16,7 @@
 <link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
-
 </head>
-
 <body>
 
 	<jsp:include page="${sidebar_url}"></jsp:include>
@@ -28,12 +26,12 @@
 		<!-- 페이지 시작 -->
 		<div style="background-color: #080808;">
 			<p style="font-size: 25px;">나의 문의</p>
-			<br> <br>
 		</div>
 		<div>
 			<button class="float-right" type="button"
 				class="btn btn-sm btn-primary"
-				onclick="location.href='/insertInquiry.do'" style="float: right; margin-right: 1%; margin-bottom: 1%;">문의하기</button>
+				onclick="location.href='/insertInquiry.do'"
+				style="float: right; margin-right: 1%; margin-bottom: 1%;">문의하기</button>
 		</div>
 		<div id="outter">
 			<div style="background-color: #080808;">
@@ -52,10 +50,24 @@
 						<c:forEach items="${viewAll}" var="inquiry">
 							<tr>
 								<td>${inquiry.inquiryId }</td>
-								<td>${inquiry.inquiryType }</td>
+								<td><c:choose>
+										<c:when test="${inquiry.inquiryType eq 'payment'}">결제</c:when>
+										<c:when test="${inquiry.inquiryType eq 'refund'}">해지/환불</c:when>
+										<c:when test="${inquiry.inquiryType eq 'ticket'}">이용권/쿠폰</c:when>
+										<c:when test="${inquiry.inquiryType eq 'account'}">로그인/계정 관리</c:when>
+										<c:when test="${inquiry.inquiryType eq 'contents'}">콘텐츠</c:when>
+										<c:when test="${inquiry.inquiryType eq 'video'}">재생 문의</c:when>
+										<c:when test="${inquiry.inquiryType eq 'service'}">서비스 문의</c:when>
+										<c:otherwise>카테고리</c:otherwise>
+									</c:choose></td>
 								<td>${inquiry.inquiryTitle}</td>
-								<td>${inquiry.receiveDate}</td>
-								<td>${inquiry.replyDate}</td>
+								<td><fmt:formatDate value="${inquiry.receiveDate}" pattern="yyyy-MM-dd"/></td>
+								<c:if test="${empty inquiry.replyDate}">
+								<td>미답변</td>
+								</c:if>
+								<c:if test="${not empty inquiry.replyDate}" >
+								<td><fmt:formatDate value="${inquiry.replyDate}" pattern="yyyy-MM-dd"/></td>
+								</c:if>
 								<td><button class="float-right" type="button"
 										class="btn btn-sm btn-primary"
 										onClick="location.href='/getInquiryProc.do?inquiryId=${inquiry.inquiryId}'">상세보기</button></td>
@@ -63,41 +75,48 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				
 				<div class="card-footer clearfix">
-					<!-- 				page-link, m-0, float-right css 없음
-				<ul class="pagination pagination-sm m-0 float-right">
-					<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-				</ul> -->
-					<c:if test="${paging.startPage != 1 }">
-						<a
-							href="/getInquiryListProc.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-					</c:if>
-					<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-						var="p">
-						<c:choose>
-							<c:when test="${p == paging.nowPage }">
-								<b>${p }</b>
-							</c:when>
-							<c:when test="${p != paging.nowPage }">
-								<a
-									href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${paging.endPage != paging.lastPage}">
-						<a
-							href="/getInquiryListProc.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-					</c:if>
+						<ul class="pagination pagination-sm m-0 float-right">
+						<c:if test="${paging.startPage != 1 }">
+							<li class="page-item"><a class="page-link"
+								href="/getInquiryListProc.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&laquo;</a></li>
+						</c:if>
+						
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+							var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<li class="page-item"><a class="page-link"
+										href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<li class="page-item"><a class="page-link"
+										href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<li class="page-item"><a class="page-link"
+								href="/getInquiryListProc.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&raquo;</a></li>
+						</c:if>
+					</ul>
 				</div>
 				<!--card-footer-->
 			</div>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script>
+		function getFormatDate(date) {
+		var year = date.getFullYear();
+		var month = (1 + date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		return year + '-' + month + '-' + day;
+	}
+	</script>
 </body>
 
 </html>

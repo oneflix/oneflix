@@ -25,7 +25,7 @@ public class EmailServiceImpl implements EmailService {
 	            MimeMessage msg = mailSender.createMimeMessage();
 	 
 	            // 받는 사람을 설정 (수신자, 받는사람의 이메일 주소 객체를 생성해서 수신자 이메일주소를 담음)
-	            msg.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemberEmail()));
+//	            msg.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemberEmail()));
 	            /*
 	             * createMimeMessage() : MimeMessage객체를 생성시킴 (이것을 이용해서 메시지를 구성한 뒤 메일 발송)
 	             * addRecipient() : 메시지의 발신자를 설정 InternetAddress() : 이메일 주소 getReceiveMail() :
@@ -36,7 +36,7 @@ public class EmailServiceImpl implements EmailService {
 	            // (발신자, 보내는 사람의 이메일 주소와 이름을 담음)
 	            // 이메일 발신자
 //	            String AdminEmail = "jaenyes17@gmail.com";
-//	            msg.addFrom(new InternetAddress[] { new InternetAddress(AdminEmail, vo.getAdminName())});
+//	            msg.addFrom(new InternetAddress[] { new InternetAddress(vo.getAdminEmail(), vo.getAdminName())});
 	 
 //	            // 이메일 제목 (인코딩을 해야 한글이 깨지지 않음)
 //	            msg.setSubject(vo.getEmailTitle(), "utf-8");
@@ -47,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
 //	            MimeMessage message = mailSender.createMimeMessage();
 	            MimeMessageHelper helper
 	            = new MimeMessageHelper(msg, true,"utf-8");
-	            helper.setFrom(vo.getAdminEmail());
+//	            helper.setFrom(vo.getAdminEmail());
 	            helper.setTo(vo.getMemberEmail());
 	            helper.setSubject(vo.getEmailTitle());
 	            helper.setText(vo.getEmailContent(), true);
