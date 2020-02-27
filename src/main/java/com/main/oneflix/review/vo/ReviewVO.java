@@ -14,19 +14,19 @@ public class ReviewVO {
 	private int likeCount;
 	private Date reviewRegDate;
 
-	public int getReviewId() {
+	public Integer getReviewId() {
 		return reviewId;
 	}
 
-	public void setReviewId(int reviewId) {
+	public void setReviewId(Integer reviewId) {
 		this.reviewId = reviewId;
 	}
 
-	public int getMovieId() {
+	public Integer getMovieId() {
 		return movieId;
 	}
 
-	public void setMovieId(int movieId) {
+	public void setMovieId(Integer movieId) {
 		this.movieId = movieId;
 	}
 
