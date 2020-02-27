@@ -1,12 +1,16 @@
 package com.main.oneflix.review.client.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.member.vo.MemberVO;
@@ -40,20 +44,34 @@ public class ReviewController {
 		mav.setViewName("redirect:/getMovieDetailProc.do");
 		return mav;
 	}
-
 	
-	  @RequestMapping("/deleteReviewProc.do") public ModelAndView
-	  deleteReviewProc(ReviewVO vo, ModelAndView mav) {
-	  deleteReviewService.deleteReview(vo); System.out.println("vo = " + vo);
-	  mav.addObject("movieId", vo.getMovieId());
-	  mav.setViewName("redirect:/getMovieDetailProc.do");
-	  return mav;
-	  }
-	  
+	@RequestMapping("/insertReviewProcAjax.do")
+	@ResponseBody
+	public void insertReviewProcAjax(ReviewVO vo) {
+		insertReviewService.insertReview(vo);
+	}
+	
+
+	@RequestMapping("/deleteReviewProc.do")
+	public ModelAndView deleteReviewProc(ReviewVO vo, ModelAndView mav) {
+		deleteReviewService.deleteReview(vo);
+		mav.addObject("movieId", vo.getMovieId());
+		mav.setViewName("redirect:/getMovieDetailProc.do");
+		return mav;
+	}
+	
+	@RequestMapping("/updateReviewProcAjax.do")
+	@ResponseBody
+	public void updateReviewProcAjax(ReviewVO vo) {
+		updateReviewService.updateReview(vo);
+		
+	}
 	 
 	@RequestMapping("/updateReviewProc.do")
-	public ModelAndView getReviewProc(ReviewVO vo, ModelAndView mav) {
+	public ModelAndView updateReviewProc(ReviewVO vo, ModelAndView mav) {
 		updateReviewService.updateReview(vo);
+		mav.addObject("movieId", vo.getMovieId());
+		mav.setViewName("redirect:/getMovieDetailProc.do");
 		return mav;
 	}
 

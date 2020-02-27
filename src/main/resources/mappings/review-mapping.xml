@@ -8,14 +8,14 @@
 		INSERT INTO review
 		(review_id, movie_id, email, review_content, review_score, like_count, review_reg_date)
 		VALUES((select nvl(max(review_id),0)+1 from review),#{movieId},#{email},
-		#{reviewContent},#{reviewScore}, #{likeCount}, SYSDATE)
+		#{reviewContent, jdbcType=VARCHAR},#{reviewScore}, #{likeCount}, SYSDATE)
 	</insert>
 	
 	<update id="updateReview" parameterType="review">
 		UPDATE review
-		SET review_content=#{reviewContent}
+		SET review_content = #{reviewContent}, review_score = #{reviewScore}
 		WHERE
-		email = #{email}
+		email = #{email} AND movie_id = #{movieId}
 	</update>
 	
 	<!-- movieDetail.jsp의 myReview-->
