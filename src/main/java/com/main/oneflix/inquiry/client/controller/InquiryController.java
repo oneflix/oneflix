@@ -31,7 +31,10 @@ public class InquiryController {
 
     //유저화면
 	@RequestMapping("/insertInquiry.do")
-	public ModelAndView insertInquiry(ModelAndView mav) {
+	public ModelAndView insertInquiry(InquiryVO vo,ModelAndView mav) {
+		vo.setAdminName("관리자");
+		vo.setAdminEmail("jaenyes17@gmail.com");
+		mav.addObject("inquiry", vo);
 		mav.setViewName("insertInquiry");
 		return mav;
 	}

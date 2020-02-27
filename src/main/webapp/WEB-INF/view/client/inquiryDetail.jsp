@@ -26,7 +26,7 @@
 			<p>나의 문의</p>
 			<br>
 			<br>
-			<button type="button" class="btn-close" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
+			<button class="float-right" type="button" class="btn btn-sm btn-primary" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
 		</div>
 		<div class="title">
 			<table class="table table-dark">
