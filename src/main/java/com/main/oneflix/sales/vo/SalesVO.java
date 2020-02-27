@@ -4,8 +4,12 @@ import java.util.Date;
 
 import org.json.simple.JSONObject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SalesVO {
 
 	// kakaopay request
@@ -38,6 +42,7 @@ public class SalesVO {
 //	private String cid;
 //	private String tid;
 //	private String sid;
+	private int rnum;
 	@JsonProperty("partner_order_id")
 	private String salesId;
 	private String email;
@@ -46,6 +51,8 @@ public class SalesVO {
 	private String ticketPrice;
 	private String salesStatus;
 	private Date paymentDate;
+	private String startDate;
+	private String endDate;
 
 	public String getCid() {
 		return cid;
@@ -175,6 +182,14 @@ public class SalesVO {
 		this.approved_at = approved_at;
 	}
 
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 	public String getSalesId() {
 		return salesId;
 	}
@@ -231,4 +246,21 @@ public class SalesVO {
 		this.paymentDate = paymentDate;
 	}
 
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	
 }

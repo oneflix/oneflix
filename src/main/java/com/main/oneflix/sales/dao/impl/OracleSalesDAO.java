@@ -39,5 +39,10 @@ public class OracleSalesDAO implements SalesDAO {
 	public List<SalesVO> getSalesList(SalesVO vo) {
 		return sqlSessionTemplate.selectList("SalesDAO.getSalesList", vo);
 	}
+
+	@Override
+	public int getTotalSales(SalesVO vo) {
+		return sqlSessionTemplate.selectOne("SalesDAO.getTotalSales", vo);
+	}
 	
 }
