@@ -1,16 +1,22 @@
 package com.main.oneflix.inquiry.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.oneflix.inquiry.service.DeleteInquiryService;
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.GetInquiryService;
 import com.main.oneflix.inquiry.service.UpdateInquiryService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
+import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.ticket.vo.TicketVO;
 import com.main.oneflix.util.email.service.EmailService;
 
 	 
@@ -22,6 +28,8 @@ import com.main.oneflix.util.email.service.EmailService;
 		GetInquiryListService getInquiryListService;
 		@Autowired
 		UpdateInquiryService updateInquiryService;
+		@Autowired
+		DeleteInquiryService deleteInquiryService;
 		@Autowired
 	    EmailService emailService; 
 
@@ -41,6 +49,12 @@ import com.main.oneflix.util.email.service.EmailService;
 			mav.setViewName("replyInquiry");
 			return mav;
 		}
+		@RequestMapping("/deleteInquiryProc.mdo")
+		public ModelAndView deleteInquiryProc(InquiryVO vo, ModelAndView mav) {
+			deleteInquiryService.deleteInquiry(vo);
+			mav.setViewName("redirect:/getInquiryListProc.mdo");
+			return mav;
+		}
 		
 		//관리자화면 -이메일 기능
 	    @RequestMapping("/replyInquiry.mdo") //이메일쓰기화면으로
@@ -48,6 +62,15 @@ import com.main.oneflix.util.email.service.EmailService;
 	    	mav.setViewName("replyInquiry");
 	    	return mav;
 	    }
+	    
+		@RequestMapping(value = "/getInquiryListProcAjax.mdo", produces = "application/json; charset=UTF-8")
+		@ResponseBody
+		public Map<String, Object> getInquiryListProcAjax(InquiryVO vo) {
+			List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("inquiryList", inquiryList);
+			return map;
+		}
 	 
 	    @RequestMapping("/replyInquiryProc.mdo") // 확인 (메일발송) 버튼을 누르면 맵핑되는 메소드
 	    public ModelAndView sendEmail(InquiryVO vo, ModelAndView mav) {

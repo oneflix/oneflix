@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
+<fmt:setLocale value="ko_kr"/>
 <!DOCTYPE html>
 <html>
 
@@ -75,7 +76,7 @@
 												</c:choose>
 											</td>
 											<td>
-												<fmt:formatNumber type="number" maxFractionDigits="3" value="${ticket.ticketPrice}"></fmt:formatNumber>
+												<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
 											</td>
 											<td>
 												<c:choose>
