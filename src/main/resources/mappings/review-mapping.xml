@@ -5,8 +5,10 @@
 <mapper namespace="ReviewDAO">
 
 	<insert id="insertReview" parameterType="review">
-		INSERT INTO review (review_id, movie_id, email, review_content, review_score, like_count, review_reg_date)
-		VALUES((select nvl(max(genre_id),0)+1 from genre),#{movieId},#{email},#{reviewContent},#{reviewScore}, #{likeCount}, #{revieweRegDate})
+		INSERT INTO review
+		(review_id, movie_id, email, review_content, review_score, like_count, review_reg_date)
+		VALUES((select nvl(max(review_id),0)+1 from review),#{movieId},#{email},
+		#{reviewContent},#{reviewScore}, #{likeCount}, SYSDATE)
 	</insert>
 	
 	<update id="updateReview" parameterType="review">
@@ -37,7 +39,7 @@
     	r.like_count, r.review_reg_date FROM review r, movie m, member mem
     	WHERE r.movie_id = m.movie_id
 		AND r.email = mem.email
-		<if test = "movieId != 0">
+		<if test = "movieId != null">
 		AND r.movie_id = #{movieId}
 		</if>
 		<if test="email != null">

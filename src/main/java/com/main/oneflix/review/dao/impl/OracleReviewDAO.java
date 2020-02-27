@@ -30,6 +30,7 @@ public class OracleReviewDAO implements ReviewDAO {
 	@Override
 	public void deleteReview(ReviewVO vo) {
 		sqlSessionTemplate.delete("ReviewDAO.deleteReview",vo);
+		System.out.println("ReviewDAO vo = " + vo.getReviewId());
 
 	}
 

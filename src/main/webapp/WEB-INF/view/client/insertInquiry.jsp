@@ -35,6 +35,8 @@
 					<div class="form-group mb-3">
 					<input type="hidden" id="memberEmail" name="memberEmail" value="${member.email }"/>
 					<input type="hidden" id="nick" name="nick" value="${member.nick}"/>
+					<input type="hidden" id="adminName" name="adminName" value="${inquiry.adminName}"/>
+					<input type="hidden" id="adminEmail" name="adminEmail" value="${inquiry.adminEmail}"/>
 						<label for="InquiryType">카테고리</label> 
 						<select id="InquiryType"
 							name="InquiryType" class="form-control select2bs4"

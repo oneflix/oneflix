@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class ReviewVO {
 
-	private int reviewId;
-	private int movieId;
+	private Integer reviewId;
+	private Integer movieId;
 	private String movieTitle;
 	private String email;
 	private String nick;
@@ -14,19 +14,19 @@ public class ReviewVO {
 	private int likeCount;
 	private Date reviewRegDate;
 
-	public int getReviewId() {
+	public Integer getReviewId() {
 		return reviewId;
 	}
 
-	public void setReviewId(int reviewId) {
+	public void setReviewId(Integer reviewId) {
 		this.reviewId = reviewId;
 	}
 
-	public int getMovieId() {
+	public Integer getMovieId() {
 		return movieId;
 	}
 
-	public void setMovieId(int movieId) {
+	public void setMovieId(Integer movieId) {
 		this.movieId = movieId;
 	}
 
@@ -45,6 +45,7 @@ public class ReviewVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 	public String getNick() {
 		return nick;
