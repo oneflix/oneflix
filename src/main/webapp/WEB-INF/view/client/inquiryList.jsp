@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,9 +15,8 @@
 <link rel="stylesheet" href="../admin/css/adminlte.css">
 <link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
-
+<link rel="stylesheet" href="client/css/inquiry.css">
 </head>
-
 <body>
 
 	<jsp:include page="${sidebar_url}"></jsp:include>
@@ -25,49 +25,98 @@
 
 		<!-- 페이지 시작 -->
 		<div style="background-color: #080808;">
-			<p>나의 문의</p>
-			<br>
-			<br>
+			<p style="font-size: 25px;">나의 문의</p>
 		</div>
 		<div>
-			<button class="float-right" type="button" class="btn btn-sm btn-primary" onclick="location.href='/insertInquiry.do'">문의하기</button>
+			<button class="float-right" type="button"
+				class="btn btn-sm btn-primary"
+				onclick="location.href='/insertInquiry.do'"
+				style="float: right; margin-right: 1%; margin-bottom: 1%;">문의하기</button>
 		</div>
+		<div id="outter">
 			<div style="background-color: #080808;">
 				<table class="table table-hover table-dark">
 					<thead class="thead-grey">
 						<tr>
 							<th scope="col">문의번호</th>
+							<th scope="col">카테고리</th>
 							<th scope="col">제목</th>
 							<th scope="col">등록날짜</th>
 							<th scope="col">답변날짜</th>
+							<th scope="col">관리</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>${inquiry.inquiryId}</td>
-							<td>${inquiry.inquiryTitle}</td>
-							<td>${inquiry.receiveDate}</td>
-							<!-- date format -->
-							<td>${inquiry.replyDate}</td>
-							<!-- date format -->
-						</tr>
+						<c:forEach items="${viewAll}" var="inquiry">
+							<tr>
+								<td>${inquiry.inquiryId }</td>
+								<td><c:choose>
+										<c:when test="${inquiry.inquiryType eq 'payment'}">결제</c:when>
+										<c:when test="${inquiry.inquiryType eq 'refund'}">해지/환불</c:when>
+										<c:when test="${inquiry.inquiryType eq 'ticket'}">이용권/쿠폰</c:when>
+										<c:when test="${inquiry.inquiryType eq 'account'}">로그인/계정 관리</c:when>
+										<c:when test="${inquiry.inquiryType eq 'contents'}">콘텐츠</c:when>
+										<c:when test="${inquiry.inquiryType eq 'video'}">재생 문의</c:when>
+										<c:when test="${inquiry.inquiryType eq 'service'}">서비스 문의</c:when>
+										<c:otherwise>카테고리</c:otherwise>
+									</c:choose></td>
+								<td>${inquiry.inquiryTitle}</td>
+								<td><fmt:formatDate value="${inquiry.receiveDate}" pattern="yyyy-MM-dd"/></td>
+								<c:if test="${empty inquiry.replyDate}">
+								<td>미답변</td>
+								</c:if>
+								<c:if test="${not empty inquiry.replyDate}" >
+								<td><fmt:formatDate value="${inquiry.replyDate}" pattern="yyyy-MM-dd"/></td>
+								</c:if>
+								<td><button class="float-right" type="button"
+										class="btn btn-sm btn-primary"
+										onClick="location.href='/getInquiryProc.do?inquiryId=${inquiry.inquiryId}'">상세보기</button></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
+				
 				<div class="card-footer clearfix">
-					<!--page-link, m-0, float-right css 없음-->
-					<ul class="pagination pagination-sm m-0 float-right">
-						<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+						<ul class="pagination pagination-sm m-0 float-right">
+						<c:if test="${paging.startPage != 1 }">
+							<li class="page-item"><a class="page-link"
+								href="/getInquiryListProc.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&laquo;</a></li>
+						</c:if>
+						
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+							var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<li class="page-item"><a class="page-link"
+										href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<li class="page-item"><a class="page-link"
+										href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<li class="page-item"><a class="page-link"
+								href="/getInquiryListProc.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&raquo;</a></li>
+						</c:if>
 					</ul>
 				</div>
 				<!--card-footer-->
 			</div>
 		</div>
-
-		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script>
+		function getFormatDate(date) {
+		var year = date.getFullYear();
+		var month = (1 + date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		return year + '-' + month + '-' + day;
+	}
+	</script>
 </body>
 
 </html>

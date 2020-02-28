@@ -74,11 +74,14 @@ $('.eee1').click(function (event) {
 
     var divX = starEl.offset().left;
     var divW = starEl.width() / 10;
+    var score;
     x = event.pageX;
 
     if (x <= (divX + (divW))) {
         $('.eee2').css("width", "10%");
         $('.e1vsnrt610').text('최악이에요!');
+        score = 0.5;
+        
     } else if (x <= (divX + (divW * 2))) {
         $('.eee2').css("width", "20%");
         $('.e1vsnrt610').text('싫어요');
@@ -110,14 +113,25 @@ $('.eee1').click(function (event) {
 });
 
 
-$('.eu8v4400').click(function(){
-    $('.e1ia9yz82').prop('readonly', true);
-    $('.eu8v4400').css('display', 'none');
-    $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'inline');
-    $(".eu8v4101").css('pointer-events', 'none');
-    //$(".eu8v4101").off('click');
-});
+//등록버튼
+if( $('#myReview').val().trim() != "" &&  $('#myReview').val().trim() != null){
+//$('.eu8v4400').click(function(){ 
+	    $('.e1ia9yz82').prop('readonly', true);
+	    $('.eu8v4400').css('display', 'none');
+	    $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'inline');
+	    $(".eu8v4101").css('pointer-events', 'none');
+	    //$(".eu8v4101").off('click');
+//});
+}
 
+//수정버튼 눌러서 textArea 활성화
+if($('#myReview').is('[readonly]')){
+	$('.eu8v4401').click(function(){
+		$('.e1ia9yz82').prop('readonly', false);
+	});
+}
+
+//수정버튼
 $('.eu8v4401').click(function(){
     $('.e1ia9yz82').prop('readonly', false);
     $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'none');
@@ -125,15 +139,15 @@ $('.eu8v4401').click(function(){
     $(".eu8v4101").css('pointer-events', 'auto');
 });
 
-$('.eu8v4402').click(function(){
+/*$('.eu8v4402').click(function(){ //삭제버튼
     $('.e1ia00').html('(0 / 최대 130자)');
     $('.e1ia9yz82').prop('readonly', false);
     $('.css-r6tv9-StylelessButton-Button-SmallButton-Button').css('display', 'none');
     $('.eu8v4400').css('display', 'inline');
     $('.eu8v4103').css("width", "0%");
     $(".eu8v4101").css('pointer-events', 'auto');
-    $('.css-5el3at-TextArea').val('');
-});
+    //$('.css-5el3at-TextArea').val('');
+});*/
 
 $('.eu8v4101').click(function (event) {
     var starEl = $(".eu8v4101");
@@ -163,6 +177,8 @@ $('.eu8v4101').click(function (event) {
     } else if (x <= (divX + (divW * 10))) {
         $('.eu8v4103').css("width", "100%");
     }
+    
+    
 });
 
 $('.e1ia9yz82').keyup(function (e) {

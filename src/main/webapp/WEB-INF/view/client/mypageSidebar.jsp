@@ -33,14 +33,13 @@
 			<hr>
 		</div>
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#">홈</a> <a href="#">내 영화</a> <a href="#">내 리뷰</a> <a
+		<a href="#">홈</a> <a href="#">내 영화</a> <a href="/getReviewListProc.do">내 리뷰</a> <a
 			href="#">이용권</a> <a href="/getMemberProc.do">내 정보</a> <a href="/getInquiryListProc.do">내 문의</a> <a href="/deleteDefense.do">탈퇴하기</a> <a
-			href="#">로그아웃</a>
+			href="/logout.do">로그아웃</a>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="client/js/mypage_sidebar.js"></script>
-
 </body>
 
 </html>

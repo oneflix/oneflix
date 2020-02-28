@@ -1,8 +1,6 @@
 package com.main.oneflix.member.client.controller;
 
-
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.InsertInquiryService;
-import com.main.oneflix.inquiry.vo.InquiryVO;
 import com.main.oneflix.member.service.DeleteMemberService;
 import com.main.oneflix.member.service.InsertMemberService;
 import com.main.oneflix.member.service.UpdateMemberService;
@@ -60,25 +57,12 @@ public class MemberController {
 		mav.setViewName("mypageHome");
 		return mav;
 	}
-	@RequestMapping("/getInquiryListProc.do")
-	public ModelAndView getInquiryListProc(InquiryVO vo, ModelAndView mav) {
-		List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
-		mav.addObject("inquiryList", inquiryList);
-		mav.setViewName("inquiryList");
-		return mav;
-	}
 
-	@RequestMapping("/insertInquiry.do")
-	public ModelAndView insertInquiry(ModelAndView mav) {
-		mav.setViewName("insertInquiry");
-		return mav;
-	}
 	@RequestMapping("/getMemberProc.do")
 	public ModelAndView getMemberProc(ModelAndView mav) {
 		mav.setViewName("updateMember");
 		return mav;
 	}
-
 
 	@RequestMapping("/updateMemberProc.do")
 	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick,
@@ -98,12 +82,12 @@ public class MemberController {
 		return mav;
 	}
 
-
-	@RequestMapping("/deleteMember.do")
+	@RequestMapping("/deleteMemberProc.do")
 	public ModelAndView deleteMember(HttpSession session, ModelAndView mav) {
-		MemberVO vo = (MemberVO) session.getAttribute("member");
+		MemberVO vo = (MemberVO) session.getAttribute("loginMember");
 		deleteMemberService.deleteMember(vo);
 		session.invalidate();
+		mav.addObject("result");
 		mav.setViewName("oneflix");
 		return mav;
 	}

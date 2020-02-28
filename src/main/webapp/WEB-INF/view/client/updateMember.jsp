@@ -40,7 +40,7 @@
                 </ul>
                 
             </section>
-            <form name="update" action="/updateMemberProc.do" onsubmit="return validate();" method="post">
+            <form name="update" action="/updateMemberProc.do" onsubmit="return validate()" method="post">
                 <section class="css-34jiqc-Section e1199ims14">
                     <h2 class="css-14w6zap-SectionHeader e1199ims15">계정</h2>
                     <ul class="css-gi4296-SettingListUl e1199ims20">
@@ -51,22 +51,23 @@
                                     <div class="css-av4kss-ValueTextBlock e1199ims30">${member.nick}</div>
 
                                     <div class="css-1vx1h8q-SmallButtonsBlock e1199ims24"><button
+                                          id="form-change"
                                             class=" e1199ims25 css-lzf1fk-Self-SmallSettingButton e1ktu1gx01"
                                             type="button">변경</button></div>
-                                </d1iv>
-                                <div class="css-1epg2mh-SettingListContentRow e1199ims33">
+                                </div>
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims33 next-form">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0">
-                                        	<input id="newNick" name="newNick"
+                                           <input id="newNick" name="newNick"
                                                 placeholder="닉네임을 입력해주세요." autocomplete="off"
-                                                class=" css-5kai6j-StyledField eu52ful1" type="nick" value=""></div>
+                                                class="css-5kai6j-StyledField eu52ful1" type="nick"></div>
                                     </div>
                                 </div>
-                                <div class="css-1epg2mh-SettingListContentRow e1199ims33">
+                                <div class="css-1epg2mh-SettingListContentRow e1199ims33 next-form">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="passConfirm" name="passConfirm"
                                                 placeholder="비밀번호를 입력해주세요." autocomplete="off"
-                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                                class="css-5kai6j-StyledField eu52ful1" type="password"></div>
                                     </div>
                                 </div>
                             </div>
@@ -78,21 +79,21 @@
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="pass" name="pass"
                                                 placeholder="현재 비밀번호" autocomplete="off"
-                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password"></div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="newPass" name="newPass"
                                                 placeholder="새 비밀번호" autocomplete="off"
-                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password"></div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="newPassConfirm" name="newPassConfirm"
                                                 placeholder="새 비밀번호 확인" autocomplete="off"
-                                                class=" css-5kai6j-StyledField eu52ful1" type="password" value=""></div>
+                                                class=" css-5kai6j-StyledField eu52ful1" type="password"></div>
                                     </div>
                                 </div>
                             </div>
@@ -109,70 +110,78 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script src="client/js/update_member.js"></script>
-	<script type="text/javascript">
-		function validate(){
-		       var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
-		       var newNick = document.getElementById("newNick");
-		       var passConfirm = document.getElementById("passConfirm");
-		       var pass = document.getElementById("pass");
-		       var newPass = document.getElementById("newPass");
-		       var newPassConfirm = document.getElementById("newPassConfirm");
-		       
-		       var confirm = false;
-		       //닉네임 변경할때
-		       if(newNick.value!="") {
-		    	   if(!check(re,newNick,"닉네임은 4~12자의 영문 대소문자와 숫자로만 입력해주세요."){
-		    		   return false;
-		    	   }
-		    	   if(passConfirm.value == ${member.pass}){ 
-		           confirm = true;
-		    	   }else{
-		    		   alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
-			    	   update.passConfirm.focus();
-			           return false;
-		    	   }
-		       }else{
-		    	   newNick.value = ${member.nick};
-		       }
-			   //비밀번호 변경할때
-		       if(newPass.value != ""){
-		    	   if(pass.value == "${member.pass}"" && newPass.value == newPassConfirm.value){
-			    	   if(!check(re,newPass,"변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요."){
-			    		   return false;
-			    	   }
-		    		   confirm = true;
-		    	   }else if(pass.value == "${member.pass}"){
-			    	   alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
-			    	   update.pass.focus();
-			           return false;
-		    	   }else if(newPass.value == newPassConfirm.value){
-			    	   alert("새 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
-			    	   update.newPass.focus();
-			           return false;
-		    	   }
-		       }else{
-		    	   newPass.value = "${member.pass}";
-		       }
-		       //변경사항 없이 저장할때 
-		       if(newNick.value=="${member.nick}" && newPass.value =="${member.pass}"){
-		    	   alert("변경할 사항을 입력해 주세요.")
-		       }
-		       alert("정보수정이 완료되었습니다.");
-		       return confirm;
-		   }
-		   function check(re, what, message) {
-		       if(re.test(what.value)) {
-		           return true;
-		       }
-		       alert(message);
-		       what.value = "";
-		       what.focus();
-		       //return false;
-		   }
-			
-		   }
-	</script>
+   <script src="client/js/update_member.js"></script>
+   <script type="text/javascript">
+      function validate() {
+         var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
+         var newNick = document.getElementById("newNick");
+         var passConfirm = document.getElementById("passConfirm");
+         var pass = document.getElementById("pass");
+         var newPass = document.getElementById("newPass");
+         var newPassConfirm = document.getElementById("newPassConfirm");
+         var updateNickCheck = true;
+         var updatePassCheck = true;
+
+         //닉네임 변경할때
+         if (newNick.value != "") {
+            if (!check(re, newNick, "닉네임은 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+               return false;
+            }
+
+            if (passConfirm.value != "${member.pass}") {
+               alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+               update.passConfirm.focus();
+               return false;
+            }
+         } else {
+            updateNickCheck = false;
+         }
+         //비밀번호 변경할때
+         if (newPass.value != "") {
+            if (!check(re, newPass,
+                  "변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+               return false;
+            } else if (pass.value != "${member.pass}") {
+               alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+               update.pass.focus();
+               return false;
+            } else if (newPass.value != newPassConfirm.value) {
+               alert("새 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+               update.newPass.focus();
+               return false;
+            }
+
+         } else {
+            updatePassCheck = false;
+         }
+         
+         //변경사항 없이 저장할때 
+         if (!updateNickCheck && !updatePassCheck) {
+            alert("변경할 사항을 입력해 주세요.");
+            return false;
+            
+         } else {
+            if (!updateNickCheck) {
+               newNick.value = "${member.nick}";
+            }
+            if (!updatePassCheck) {
+               newPass.value = "${member.pass}";
+            }
+            alert("정보수정이 완료되었습니다.");
+            return true;
+         }
+
+      }
+      function check(re, what, message) {
+         if (re.test(what.value)) {
+            return true;
+         }
+         alert(message);
+         what.value = "";
+         what.focus();
+         return false;
+      }
+   </script>
 </body>
 
 </html>

@@ -14,7 +14,7 @@ public class InsertInquiryServiceImpl implements InsertInquiryService {
 	private InquiryDAO inquiryDAO;
 	
 	@Override
-	public void insertInqiry(InquiryVO vo) {
+	public void insertInquiry(InquiryVO vo) {
 		inquiryDAO.insertInquiry(vo);
 	}
 

@@ -1,13 +1,10 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h2 {
+.modal h2 {
     color: #f3f3f3;
 }
-h3{
+.modal .ticket-category{
     color: #f3f3f3;
     text-align: center;
+    font-size: 16px;
 }
 
 /* The Modal (background) */
@@ -17,31 +14,33 @@ h3{
     position: fixed;
     /* Stay in place */
     z-index: 9;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
 }
+.modal-container {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	overflow: auto;
+}
 
 /* Modal Content */
 .modal-content {
-    background-color: #191a1c;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
+	position: relative;
+	background-color: #191a1c;
+	margin: 100px auto;
+	padding: 40px;
+    border: 1px solid #353638;
     border-radius: 10px;
-    width: 610px;
+    width: 900px;
     padding-top: 30px;
 }
 
@@ -73,7 +72,7 @@ h3{
 .radio-toolbar label {
     display: inline-block;
     background-color: #191a1c;
-    padding: 20px 20px 0;
+    padding: 15px 20px 0;
     width: 230px;
     height: 40px;
     font-size: 16px;
@@ -82,7 +81,7 @@ h3{
     color: #9d9d9e;
     border: 1px solid #9d9d9e;
     border-radius: 4px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .radio-toolbar label:hover > span:nth-child(2),
@@ -108,6 +107,8 @@ h3{
     text-decoration-line: line-through;
     -webkit-text-decoration-color: #9d9d9e; /* Safari */
     text-decoration-color: #9d9d9e;
+    margin-top: 5px;
+    margin-right: 5px;
     font-size: 12px;
 }
 .ticket-buy-btn{
@@ -141,21 +142,78 @@ h3{
     padding: 11px 0px 13px;
     background: rgb(252, 66, 106);
     border: 0;
+    outline: 0;
 }
 
 .e111{
-    display: inline-block;
+    display: flex;
 }
 .e112{
-    display: block;
-    justify-content: space-around;
-    width: 48%;
-    float: left;
+	flex: 1;
+	justify-content: space-around;
     /* border: 1px solid #9d9d9e; */
 }
 .e113{
-    display: block;
-    width: 48%;
-    float: right;
+    flex: 1;
     /* border: 1px solid #9d9d9e; */
+}
+.e114{
+	width: 40%;
+	margin-left: 20px;
+	margin-right: 10px;
+    /* border: 1px solid #9d9d9e; */
+}
+.e114 > div {
+	width: 100%;
+	background: #080808;
+	margin-bottom: 10px;
+}
+.e114 > div.box > ul{
+	padding: 20px 20px 0;
+}
+.e114 > div.box > ul > li{
+	display: flex;
+}
+.e114 > div.box > ul > li{
+	padding-bottom: 20px;
+}
+.e114 > div.box > ul > li > i {
+	color: #fc426a;
+	margin-top: 5px;
+	margin-right: 8px;
+}
+.e114 > div.box > ul > li > div {
+	flex: 1;
+}
+.e114 > div.box > ul > li > div > .box-title{
+	font-weight: bold;
+	font-size: 15px;
+	color: #d1d1d1;
+}
+.e114 > div.box > ul > li > div > .box-content{
+	font-weight: bold;
+	font-size: 12px;
+	color: #797979;
+}
+.e114 > ul > li::before {
+	content: "·";
+	margin-right: 7px;
+}
+.e114 > ul > li {
+	display: flex;
+	color: #525355;
+	font-weight: bold;
+	font-size: 11px;
+	margin-bottom: 3px;
+}
+.e114 > ul > li > p{
+	flex: 1;
+}
+
+/* modal 창 켜질 시 parent 스크롤 방지 */
+.not_scroll{
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%
 }

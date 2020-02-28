@@ -1,5 +1,7 @@
 package com.main.oneflix.member.client.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +27,25 @@ public class LoginController {
 		return mav;
 	}
 	@RequestMapping("/loginProc.do")
-	public ModelAndView loginProc(MemberVO vo, ModelAndView mav) {
-		vo = getMemberService.getMember(vo);
-		if(vo == null) {
+	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session){
+		MemberVO member = new MemberVO();
+		member = getMemberService.getMember(vo);
+		if (!member.getPass().equals(vo.getPass())) {
+			mav.addObject("result", "fail");
 			mav.setViewName("login");		
 		}else {
-			mav.addObject("member",vo);
+			session.setAttribute("loginMember",member);
+			mav.addObject("member",member);
+			mav.addObject("result", "success");
 			mav.setViewName("redirect:/homeProc.do");
 		}
 		return mav;
+	}
+	@RequestMapping("/logout.do")
+	public ModelAndView logout(MemberVO vo, ModelAndView mav,HttpSession session) {
+			session.invalidate();
+			mav.setViewName("oneflix");
+			return mav;
 	}
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.main.oneflix.inquiry.dao.InquiryDAO;
 import com.main.oneflix.inquiry.vo.InquiryVO;
 
@@ -16,7 +15,7 @@ public class OracleInquiryDAO implements InquiryDAO {
 	
 	@Override
 	public void insertInquiry(InquiryVO vo) {
-		sqlSessionTemplate.insert("InqiryDAO.insertInquiry", vo);
+		sqlSessionTemplate.insert("InquiryDAO.insertInquiry", vo);
 	}
 	@Override
 	public InquiryVO getInquiry(InquiryVO vo) {
@@ -30,4 +29,14 @@ public class OracleInquiryDAO implements InquiryDAO {
 	public void updateInquiry(InquiryVO vo) {
 		sqlSessionTemplate.update("InquiryDAO.updateInquiry",vo);
 	}
+	@Override
+	public int getCountInquiry(InquiryVO vo) {
+		return sqlSessionTemplate.selectOne("InquiryDAO.getCountInquiry",vo);
+	}
+	@Override
+	public void deleteInquiry(InquiryVO vo) {
+		sqlSessionTemplate.delete("InquiryDAO.deleteInquiry",vo);
+	}
+
+
 }
