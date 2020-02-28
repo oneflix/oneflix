@@ -219,34 +219,18 @@
                 </div>
                 <div class="header-slider">
                     <div id="header-slider-container" class="swiper-container">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper" style="background-image: url('${movie.posterPath}');">
+                        <c:forEach var="main" items=${mainMovieList }>
                             <div class="swiper-slide">
                                 <!-- <a href="#">
                                     <img src="client/images/avengers.jpg">
                                 </a> -->
                                         <div class="row">
-                                            <h2>2월 3주 신작</h2>
-                                            <p>캐롤, 리틀 포레스트 등</p>
+                                            <h2>${main.movieTitle }</h2>
+                                            <p>${main.subtitle }</p>
                                         </div>
                             </div>
-                            <div class="swiper-slide">
-                                <!-- <a href="#">
-                                    <img src="client/images/eternal_sunshine.jpg">
-                                </a> -->
-                                        <div class="row">
-                                            <h2>인생을 담다</h2>
-                                            <p>휴머니즘 다큐 영화 모음집</p>
-                                        </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- <a href="#">
-                                    <img src="client/images/green_book.jpg">
-                                </a> -->
-                                        <div class="row">
-                                            <h2>최고 인기작</h2>
-                                            <p>Call me by your name</p>
-                                        </div>
-                            </div>
+                            </c:forEach>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div id="header-button-next" class="swiper-button-next"></div>
