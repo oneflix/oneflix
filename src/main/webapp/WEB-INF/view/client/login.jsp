@@ -60,7 +60,7 @@
 
 				<div class="wrap-login100 p-t-20 p-b-30">
 
-					<form class="login100-form validate-form" action="/loginProc.do" method="post">
+					<form class="login100-form validate-form" action="/loginProc.do" method="post" onsubmit="return validate();">
 						<div class="login-label">
 							로그인
 							<span class="find-pass" OnClick="location.href='#'">비밀번호를 잊어버리셨나요?</span>

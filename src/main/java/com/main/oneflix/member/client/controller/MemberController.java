@@ -1,9 +1,12 @@
 package com.main.oneflix.member.client.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,11 +89,15 @@ public class MemberController {
 	}
 
 
-	@RequestMapping("/deleteMember.do")
-	public ModelAndView deleteMember(HttpSession session, ModelAndView mav) {
-		MemberVO vo = (MemberVO) session.getAttribute("member");
+	@RequestMapping("/deleteMemberProc.do")
+	public ModelAndView deleteMember(HttpSession session, ModelAndView mav,HttpServletResponse response) throws IOException {
+		MemberVO vo = (MemberVO) session.getAttribute("loginMember");
 		deleteMemberService.deleteMember(vo);
 		session.invalidate();
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('탈퇴처리가 완료되었습니다.'); history.go(-1);</script>");
+		out.flush(); 
 		mav.setViewName("oneflix");
 		return mav;
 	}

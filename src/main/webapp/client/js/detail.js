@@ -74,11 +74,14 @@ $('.eee1').click(function (event) {
 
     var divX = starEl.offset().left;
     var divW = starEl.width() / 10;
+    var score;
     x = event.pageX;
 
     if (x <= (divX + (divW))) {
         $('.eee2').css("width", "10%");
         $('.e1vsnrt610').text('최악이에요!');
+        score = 0.5;
+        
     } else if (x <= (divX + (divW * 2))) {
         $('.eee2').css("width", "20%");
         $('.e1vsnrt610').text('싫어요');
@@ -111,7 +114,7 @@ $('.eee1').click(function (event) {
 
 
 //등록버튼
-if( $('#myReview').val() != null){
+if( $('#myReview').val().trim() != "" &&  $('#myReview').val().trim() != null){
 //$('.eu8v4400').click(function(){ 
 	    $('.e1ia9yz82').prop('readonly', true);
 	    $('.eu8v4400').css('display', 'none');

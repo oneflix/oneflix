@@ -30,11 +30,9 @@ ul{
     line-height: 27px;
     margin: 0px 0px 10px;
 }
-/* �젙蹂댁닔�젙 由ъ뒪�듃 */
 .css-ar8roi-SettingList {
     display: flex;
 }
-/* �젙蹂댁닔�젙 由ъ뒪�듃 -> ���씠�� */
 .css-awho9y-SettingListTitle {
     color: rgb(51, 51, 51);
     font-size: 15px;
@@ -43,7 +41,6 @@ ul{
     width: 140px;
     padding: 20px 0px;
 }
-/* �젙蹂댁닔�젙 由ъ뒪�듃 -> �궡�슜 */
 .css-18xcnb7-SettingListContent {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -108,7 +105,7 @@ ul{
     padding: 10px 44px 10px 14px;
     border-radius: 4px;
 }
-input.css-5kai6j-StyledField[type="nick"], input.css-5kai6j-StyledField[type="number"], input.css-5kai6j-StyledField[type="pass"], input.css-5kai6j-StyledField[type="search"], input.css-5kai6j-StyledField[type="tel"], input.css-5kai6j-StyledField[type="text"] {
+input.css-5kai6j-StyledField[type="text"], input.css-5kai6j-StyledField[type="number"], input.css-5kai6j-StyledField[type="pass"], input.css-5kai6j-StyledField[type="search"], input.css-5kai6j-StyledField[type="tel"], input.css-5kai6j-StyledField[type="text"] {
     color: #333333;
     font-size: 14px;
     font-weight: 400;
@@ -183,23 +180,9 @@ input.css-5kai6j-StyledField[type="nick"], input.css-5kai6j-StyledField[type="nu
     color: aqua;
     padding: 55px;
     overflow: hidden;
-    height: 80vh;
-<<<<<<< HEAD:src/main/webapp/client/css/update_member.css
+    height: 100vh;
     margin-left: 10vw;
 }
 .e1199ims33{
     display: none;
-=======
-    margin-left: 8vw;
-    margin-right: 8vw;
-}
-input.css-5kai6j-StyledField[type="nick"], input.css-5kai6j-StyledField[type="number"], input.css-5kai6j-StyledField[type="pass"], input.css-5kai6j-StyledField[type="search"], input.css-5kai6j-StyledField[type="tel"], input.css-5kai6j-StyledField[type="text"] {
-    color: #333333;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    border: 1px solid #d4d4d4;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
->>>>>>> master:src/main/webapp/client/css/user_update.css
 }

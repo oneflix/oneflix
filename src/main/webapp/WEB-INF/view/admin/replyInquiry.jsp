@@ -13,16 +13,17 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Select2 -->
-<link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
-<link rel="stylesheet"
-	href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-<!-- Bootstrap4 Duallistbox -->
-<link rel="stylesheet"
-	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css"
-	rel="stylesheet">
+<!-- include libraries(jQuery, bootstrap) -->
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- include summernote css/js-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
+<!-- include summernote-ko-KR -->
+<script src="/admin/js/summernote-ko-KR.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
    <div class="wrapper">
