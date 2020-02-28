@@ -55,12 +55,6 @@
 				) M
 			)
 		WHERE 1 = 1
-		<if test="movieType == 'popular'">
-			<![CDATA[
-				AND rnum >= 80
-				ORDER BY movie_score
-			]]> 
-		</if>
 		<if test="start != 0 and end != 0">
 			AND rnum BETWEEN #{start} AND #{end}				
 		</if> 
@@ -70,6 +64,12 @@
 		</if>
 		<if test="searchMovie != null">
 			AND movie_title like '%' || #{searchMovie} || '%'
+		</if>
+		<if test="movieType == 'popular'">
+			<![CDATA[
+				AND rnum <= 80
+				ORDER BY movie_score
+			]]> 
 		</if>
 	</select>
 
