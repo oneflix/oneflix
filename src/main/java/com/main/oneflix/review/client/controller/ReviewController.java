@@ -1,9 +1,6 @@
 package com.main.oneflix.review.client.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,18 +74,31 @@ public class ReviewController {
 
 	@RequestMapping("/getReviewListProc.do")
 	public ModelAndView getReviewListProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
+		vo.setStart(1);
+		vo.setEnd(10);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
 		for (ReviewVO review : reviewList) {
+			System.out.println("======================================");
+			System.out.println("reviewId = " + review.getReviewId());
 			System.out.println("movieTitle = " + review.getMovieTitle());
 			System.out.println("reviewContent = " + review.getReviewContent());
 			System.out.println("reviewScore = " + review.getReviewScore());
+			System.out.println("======================================");
+			System.out.println();
 		}
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("reviewList");
 
 		return mav;
+	}
+	
+	@RequestMapping("/getReviewListProcAjax.do")
+	@ResponseBody
+	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo){
+		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
+		return reviewList;
 	}
 
 }
