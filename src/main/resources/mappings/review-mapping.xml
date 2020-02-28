@@ -48,7 +48,7 @@
 		)
 		WHERE 1=1
 		<if test="start != 0 and end != 0">
-		AND rnum BETWEEN ${start} AND ${end} 
+		AND rnum BETWEEN #{start} AND #{end} 
 		</if>		
 		ORDER BY review_id DESC
 	</select>
