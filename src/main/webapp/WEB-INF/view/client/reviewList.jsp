@@ -55,7 +55,7 @@
                             <div class="user-block">
                                 <span class="username">
                                     <a href="/getMovieDetailProc.do">${review.movieTitle }</a>
-												<text class="my-rating">★ ${review.reviewScore }</text>
+												<span class="my-rating">★ ${review.reviewScore }</span>
                                 </span>
                             </div> <!-- /.user-block -->
                             <p class="my-review">
@@ -65,7 +65,7 @@
                             <p>
                                 <a href="#" class="link-black text-sm"><i
 													class="fas fa-thumbs-up mr-2"></i>
-                                    <text class="my-thumbs-up">${review.likeCount }</text>
+                                    <span class="my-thumbs-up">${review.likeCount }</span>
                                 </a>
                             </p>
                             <hr class="post-seperator">
@@ -80,8 +80,92 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+    
+  //Get the button
+    var mybutton = document.getElementById("myBtn");
 
-    <script src="client/js/review.js"></script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+	
+    
+    var count = 1;
+    var reviewList;
+    var reviewListLength;
+    
+    $(window).scroll(function() {
+    	console.log(Math.round(($(window).scrollTop())+20));
+        if (($(window).scrollTop())+20 >= $(document).height() - $(window).height()) {
+        	
+        	if (reviewListLength != 0) {
+        	count++;
+            var start = (count - 1) * 10 + 1 ;
+            var end = count * 10;
+            var sendData = {"start": start, "end": end};
+        	
+        	$.ajax({
+                type: "POST",
+                url: "/getReviewListProcAjax.do",
+                data: sendData,
+                async: false,
+                success: function(res) {
+                   reviewList = res;
+                   reviewListLength = reviewList.length;
+                },
+                
+                error: function(e){
+                   alert("error");
+                }
+        	
+             });
+        	}
+        	
+        	for (var i = 0; i < reviewList.length; i++){
+        		var review = reviewList[i];
+        		$('#post').append(
+        				"<li>" +
+                        "<div class=\"post one-post\" id=\"review\">" + 
+                            "<div class=\"user-block\">" + 
+                                "<span class=\"username\">" + 
+                                    "<a href=\"/getMovieDetailProc.do\">" + review.movieTitle + 
+                                    "</a>" + 
+									"<span class=\"my-rating\">★" + review.reviewScore + "</span>" +
+                                "</span>" + 
+                            "</div>" +
+                            "<p class=\"my-review\">" + 
+                                review.reviewContent +
+                            "</p>" + 
+                            "<p>" +
+                                "<a href=\"#\" class=\"link-black text-sm\">" + 
+                            "<i class=\"fas fa-thumbs-up mr-2\"></i>" + 
+                                    "<span class=\"my-thumbs-up\">" + review.likeCount + "</span>" + 
+                                "</a>" + 
+                            "</p>" + 
+                            "<hr class=\"post-seperator\">" + 
+                        "</div>" + 
+                    "</li>"
+        		);
+        	}
+        	
+        }
+        
+    });
+    
+    </script>
 
 </body>
 
