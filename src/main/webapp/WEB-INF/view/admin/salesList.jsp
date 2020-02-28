@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
+<c:set var="year"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
+<fmt:setLocale value="ko_kr"/>
 <!DOCTYPE html>
 <html>
 
@@ -12,14 +16,16 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<style>
+	.total-sales:read-only {background: #fff;}
+</style>
 </head>
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
 		<!-- ====================== 
-            ADD headㄷr 
+            ADD header 
      ====================== -->
 		<jsp:include page="${header_url}"></jsp:include>
 
@@ -58,75 +64,35 @@
 										</div>
 									</div>
 								</form>
-								<div class="form-inline" style="margin-top: 10px;">
-									<select class="form-control form-control-sm"
-										style="margin-top: 10px; width: 5%">
-										<option>월</option>
-										<script>
-                      for (var j = 1; j <= 12; j++) {
-                        document.write("<option value='" + j + "'>" + j + "</option>");
-                      }
-                    </script>
-									</select> &nbsp;&nbsp; <select class="form-control form-control-sm"
-										style="margin-top: 10px; width: 5%">
-										<option>년</option>
-										<script>
-                      for (var i = 2000; i <= 2020; i++) {
-                        document.write("<option value='" + i + "'>" + i + "</option>");
-                      }
-                    </script>
-									</select>
+								<div class="form-inline" style="margin-top: 4px;">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i
+												class="far fa-calendar-alt"></i>
+											</span>
+										</div>
+										<input type="text" class="form-control float-right"
+											id="reservation">
+									</div>
+								</div>
+								<div class="form-inline ml-3" style="margin-top: 10px; display: flex">
+									<label>합계</label>
+									<input class="total-sales" type="text"
+										value="<fmt:formatNumber type="currency" value="${totalSales}"></fmt:formatNumber>"
+										style="text-align: right; width: 150px;  border: 0;" readonly>
 								</div>
 
-
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="salesTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>date</th>
+											<th>이메일</th>
 											<th>이용권</th>
 											<th>가격</th>
-											<th>email</th>
-											<th>비고</th>
+											<th>결제일</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>1970-01-01</td>
-											<td>30일</td>
-											<td>9000원</td>
-											<td>aaa@email.com</td>
-											<td>회원입니다.</td>
-
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>1970-01-01</td>
-											<td>30일</td>
-											<td>9000원</td>
-											<td>bbb@email.com</td>
-											<td>회원입니다.</td>
-
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>1970-01-01</td>
-											<td>30일</td>
-											<td>9000원</td>
-											<td>ccc@email.com</td>
-											<td>회원입니다.</td>
-
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>1970-01-01</td>
-											<td>30일</td>
-											<td>9000원</td>
-											<td>ddd@email.com</td>
-											<td>회원입니다.</td>
-										</tr>
-									</tbody>
+									
 								</table>
 							</div>
 						</div>
@@ -143,6 +109,112 @@
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
 	<!-- ./wrapper -->
+<!-- InputMask -->
+<script src="admin/plugins/moment/moment.min.js"></script>
+<script src="admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
+<script>
+	var table;
+	var selectDate; 
+	
+	//Date range picker
+    $('#reservation').daterangepicker();
+
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      }
+    );
+    
+    function getStartEnd() {
+    	var date = $('#reservation').val();
+    	var start = date.split('-')[0];
+    	start = start.split('/');
+    	var end = date.split('-')[1];
+    	end = end.split('/'); 
+    	var startDate = start[2].trim() + start[0].trim() + start[1].trim();
+    	var endDate = end[2].trim() + end[0].trim() + end[1].trim();
+    	return [startDate, endDate];
+    }
+
+    function getFormatDate(date) {
+    	var date = new Date(date);
+		var year = date.getFullYear();
+		var month = (1 + date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		return year + '-' + month + '-' + day;
+	}
+    
+    $(document).ready(function() {
+    	var columns = ["RNUM", "EMAIL", "TICKET_NAME", "TICKET_PRICE", "PAYMENT_DATE"];
+    	selectDate = getStartEnd();
+    	
+    	$('#salesTable').DataTable({
+    		
+    		pageLength: 10,
+    		lengthChange: false,
+    		info: false,
+    		//order: [[ 0, "desc" ], [1, "asc"]],
+    		//order: [] //정렬 안할때
+    		//pagingType: "full_numbers",
+    		bPaginate: true,
+    		bLengthChange: true,
+    		//lengthMenu :[[1, 3, 5, 10, -1], [1, 3, 5, 10, "All"]],
+    		responsive: true,
+    		bAutoWidth: false,
+    		processing: true,
+    		ordering: true,
+    		bServerSide: true,
+    		searching: false,
+    		
+    		ajax: {
+    			"type": "POST",
+    			"url": "/getSalesListProcAjax.mdo",
+    			"data": function(sendData) {
+    				sendData.startDate = selectDate[0];
+    				sendData.endDate = selectDate[1];
+    			},
+    		},
+   			columns: [
+   				{data: "rnum"},
+   				{data: "email"},
+   				{data: "ticketName"},
+   				{data: "ticketPrice",
+   					render: function(data){
+   						data = new Number(data);
+   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
+   						return data;
+   					}},
+   				{data: "paymentDate",
+   					render: function(data) {
+   						data = getFormatDate(data);
+   						return data;
+   					}}
+   			]
+    	});
+    });
+    
+    $('#reservation').change(function(){
+		selectDate = getStartEnd();
+		$('#salesTable').DataTable().ajax.reload(null, false);
+    });
+    
+</script>
 
 </body>
 

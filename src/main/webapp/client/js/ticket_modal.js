@@ -63,6 +63,7 @@ var paymentRequest = function() {
 		data: sendData,
 		success: function(sales) {
 			var url = sales.next_redirect_pc_url;
+			var email = sales.email;
 			var option = 'width=500, height=600, left=' + popX + ', top=' + popY +
 			',location=no, menubar=no, toolbar=no, scrollbars=no, resizable=no' +
 			',directories=no, status=no';
@@ -70,7 +71,6 @@ var paymentRequest = function() {
 			var interval = window.setInterval(function() {
 				try {
 					// 창이 꺼졌는지 판단
-					
 					if( popup == null || popup.closed ) {
 						window.clearInterval(interval);
 						popup = null;
