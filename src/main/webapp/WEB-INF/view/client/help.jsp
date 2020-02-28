@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+>>>>>>> master
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,6 +16,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/help.css">
+<<<<<<< HEAD
+<style type="text/css">
+.notice-list {
+	display: none;
+}
+</style>
+=======
+>>>>>>> master
 </head>
 
 <body>
@@ -23,6 +35,22 @@
 			<!-- ===================== 공 지 사 항 ============================== -->
 			<div class="notice-container">
 				<h2 class="help-label">공지사항</h2>
+<<<<<<< HEAD
+
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'n' }">
+						<div class="notice-list">
+							<button class="accordion">${help.helpTitle }</button>
+							<div class="panel">
+								<p>${help.helpContent }</p>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<button onclick="moreNotice(event)" id="myBtn" class="more-notice">공지사항
+=======
 				
 				
 					<button class="accordion">제목1</button>
@@ -124,6 +152,7 @@
 			</div>
 
 			<button onclick="moreNotice()" id="myBtn" class="more-notice">공지사항
+>>>>>>> master
 				더 불러오기</button>
 		</div>
 		<!-- ===================== FAQ ============================== -->
@@ -146,6 +175,96 @@
 					문의</button>
 			</div>
 
+<<<<<<< HEAD
+
+			<div id="faq-faq" class=" tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f1' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-pay" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f2' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-refund" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f3' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-membership" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f4' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-account" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f5' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-contents" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f6' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-play" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f7' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<div id="faq-service" class="tabcontent">
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f8' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+=======
 			<div id="faq-faq" class=" tabcontent">
 				<button class="accordion">자주 묻는 질문1</button>
 				<div class="panel">
@@ -282,6 +401,7 @@
 				</div>
 			</div>
 
+>>>>>>> master
 		</div>
 	</div>
 
@@ -306,9 +426,20 @@
 	</script>
 
 	<script>
+<<<<<<< HEAD
+		$(".notice-list").slice(0, 5).css("display", "block"); // 최초 10개 선택
+		function moreNotice(e) {
+			e.preventDefault();
+			$(".notice-list:hidden").slice(0, 5).css("display", "block"); // 숨김 설정된 다음 10개를 선택하여 표시
+			if ($(".notice-list:hidden").length == 0) { // 숨겨진 DIV가 있는지 체크
+				$("#myBtn").css("display", "none");
+			}
+		};
+=======
 		function moreNotice() {
 			
 		}
+>>>>>>> master
 	</script>
 	<script>
 		function openCity(evt, cityName) {
