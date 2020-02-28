@@ -38,6 +38,7 @@ public class MovieVO {
 	private List<Integer> genreList;
 	private int searchGenre;
 	private String searchMovie;
+	private String movieType;
 	private int start;
 	private int end;
 
@@ -287,6 +288,14 @@ public class MovieVO {
 
 	public void setSearchMovie(String searchMovie) {
 		this.searchMovie = searchMovie;
+	}
+
+	public String getMovieType() {
+		return movieType;
+	}
+
+	public void setMovieType(String movieType) {
+		this.movieType = movieType;
 	}
 
 	public int getStart() {
