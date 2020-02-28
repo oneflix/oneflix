@@ -15,8 +15,6 @@ import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.GetInquiryService;
 import com.main.oneflix.inquiry.service.UpdateInquiryService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
-import com.main.oneflix.member.vo.MemberVO;
-import com.main.oneflix.ticket.vo.TicketVO;
 import com.main.oneflix.util.email.service.EmailService;
 
 	 
