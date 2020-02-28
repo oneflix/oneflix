@@ -13,8 +13,6 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-
 <!-- include libraries(jQuery, bootstrap) -->
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -26,8 +24,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
 <!-- include summernote-ko-KR -->
 <script src="/admin/js/summernote-ko-KR.js"></script>
-
-=======
 <!-- Select2 -->
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
@@ -38,7 +34,6 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css"
 	rel="stylesheet">
->>>>>>> 0e596605b518e8b7e0fb9d172b0bc4e017acfd2e
 </head>
 <body class="hold-transition sidebar-mini">
    <div class="wrapper">

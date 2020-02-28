@@ -36,7 +36,18 @@
 	</resultMap>
 
 	<select id="getMovieList" resultMap="movieList">
-		SELECT * FROM movie WHERE 1 = 1
+		SELECT * 
+			FROM (SELECT ROWNUM rnum, M.*
+				FROM (SELECT m.*
+					FROM movie m
+					WHERE 1 = 1
+				) M
+			)
+		WHERE 1 = 1
+		<if test="start != 0 and end != 0">
+			AND rnum BETWEEN ${start} AND ${end}				
+		</if> 
+		
 		<if test="searchGenre != 0">
 			AND genre_id1 = #{searchGenre} OR genre_id2 = #{searchGenre} 
 		</if>
