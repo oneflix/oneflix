@@ -271,11 +271,11 @@
                 <div class="main-slider new-slider">
                     <div id="new-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                        <c:forEach var="i" begin="0" end="30">
-                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${newMovieList[i].movieId}">
-                                <img src="${newMovieList[i].posterPath }">
+                        <c:forEach var="newMovie" items="${newMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                                <img src="${newMovie.posterPath }">
 								<div class="row">
-	                                <p>${newMovieList[i].movieTitle }</p>
+	                                <p>${newMovie.movieTitle }</p>
                                 </div>
                             </div>
                         </c:forEach>
@@ -292,11 +292,11 @@
                 <div class="main-slider recent-slider">
                     <div id="recent-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                           <c:forEach var="i" begin="0" end="30">
-                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${newMovieList[i].movieId}">
-                                <img src="${newMovieList[i].posterPath }">
+                           <c:forEach var="newMovie" items="${newMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                                <img src="${newMovie.posterPath }">
 								<div class="row">
-	                                <p>${newMovieList[i].movieTitle }</p>
+	                                <p>${newMovie.movieTitle }</p>
                                 </div>
                             </div>
                         </c:forEach>
