@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.member.service.GetMemberService;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.service.DeleteSalesService;
 import com.main.oneflix.sales.service.GetSalesService;
@@ -18,6 +17,7 @@ import com.main.oneflix.sales.service.InsertSalesService;
 import com.main.oneflix.sales.service.UpdateSalesService;
 import com.main.oneflix.sales.vo.SalesVO;
 import com.main.oneflix.ticket.service.GetTicketService;
+import com.main.oneflix.ticket.vo.TicketVO;
 import com.main.oneflix.util.kakao.payment.service.ApprovePaymentService;
 import com.main.oneflix.util.kakao.payment.service.ReadyPaymentService;
 
@@ -36,67 +36,51 @@ public class SalesController {
 	private UpdateSalesService updateSalesService;
 	@Autowired
 	private DeleteSalesService deleteSalesService;
-	
-	
 	@Autowired
 	private GetTicketService getTicketService;
-
-	@Autowired
-	private GetMemberService getMemberService;
-	
-	
 
 	@RequestMapping("/paymentRequestProc.do")
 	@ResponseBody
 	public SalesVO paymentRequestProc(SalesVO vo, ModelAndView mav, HttpSession session) {
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		vo.setCid("single");
+		
+		TicketVO ticket = new TicketVO();
+		ticket.setTicketId(vo.getTicketId());
+		ticket = getTicketService.getTicket(ticket);
+
+		// 정기권 이라면
+		if (ticket.getTicketPeriod() == -1) {
+			vo.setCid("subscription");
+		} else { // 기간제이면
+			vo.setCid("single");
+		}
+		
 		vo.setSalesId(makeSalesId());
-//		vo.setEmail(member.getEmail());
-		vo.setEmail("green@mail.com");
-		vo.setItem_name("젓가락");
-		vo.setTotal_amount("2100");
+
+		// 유저 닉네임 셋팅
+		MemberVO mem = new MemberVO();
+		mem.setEmail("blue@mail.com");
+		session.setAttribute("member", mem);
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo.setEmail(member.getEmail());
+		
+		// 아이템 이름
+		vo.setItem_name(ticket.getTicketName());
+		// 가격
+		vo.setTotal_amount(String.valueOf(ticket.getTicketPrice()));
 		vo.setQuantity("1");
 		vo.setTax_free_amount("0");
+		
 		vo.setApproval_url("paymentApproveProc.do?email=" + vo.getEmail());
 		vo.setCancel_url("paymentCancelProc.do?email=" + vo.getEmail());
 		vo.setFail_url("paymentFailProc.do?email=" + vo.getEmail());
 		vo.setSalesStatus("ready");
 		
+		// 지정 안 하면 카카오머니도 선택 가능
+//		vo.setPayment_method_type("CARD");
+		
 		SalesVO response = (readyPaymentService.readyPayment(vo));
-		System.out.println(response);
+		System.out.println(vo.getEmail());
 		insertSalesService.insertSales(vo);
-//		TicketVO ticket = new TicketVO();
-//		ticket.setTicketId(vo.getTicketId());
-//		ticket = getTicketService.getTicket(ticket);
-//
-//		// 정기권 이라면
-//		if (ticket.getTicketPeriod() != -1) {
-//			props.setProperty("cid", "subscription");
-//		} else { // 기간제이면
-//			props.setProperty("cid", "single");
-//		}
-//		// sales_id + 1 갖고오기
-//		int orderId = countSalesService.countSales(vo) + 1;
-//		props.setProperty("partener_order_id", String.valueOf(orderId));
-//
-//		// 유저 닉네임 셋팅
-//		MemberVO member = new MemberVO();
-//		member.setEmail(vo.getMemberEmail());
-//		member = getMemberService.getMember(member);
-//		props.setProperty("parter_user_id", member.getNick());
-//
-//		props.setProperty("item_name", ticket.getTicketName());
-//		props.setProperty("total_amount", String.valueOf(ticket.getTicketPrice()));
-//		props.setProperty("quantity", "1");
-//		props.setProperty("tax_free_amount", "0");
-//
-//		// 지정 안 하면 카카오머니도 선택 가능
-//		props.setProperty("payment_method_type", "CARD");
-//
-//		props.setProperty("approval_url", "/home.do");
-//		props.setProperty("cancel_url", "/home.do");
-//		props.setProperty("fail_url", "/home.do");
 		return response;
 	}
 	
@@ -111,7 +95,6 @@ public class SalesController {
 		// 찾아온 vo에 pg_token 셋팅
 		vo.setPg_token(pg_token);
 		vo = approvePaymentService.approvePayment(vo);
-		System.out.println(vo);
 		
 		// sales_status success로 업데이트 및 나머지 값 업데이트
 		vo.setSalesStatus("success");
