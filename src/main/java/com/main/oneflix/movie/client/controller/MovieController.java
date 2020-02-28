@@ -5,8 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.oneflix.genre.service.GetGenreListService;
+import com.main.oneflix.genre.vo.GenreVO;
+import com.main.oneflix.movie.service.GetMovieListService;
 import com.main.oneflix.movie.vo.MovieVO;
 import com.main.oneflix.review.service.GetReviewListService;
 import com.main.oneflix.review.service.GetReviewService;
@@ -15,6 +19,10 @@ import com.main.oneflix.review.vo.ReviewVO;
 @Controller
 public class MovieController {
 	
+	@Autowired
+	private GetMovieListService getMovieListService;
+	@Autowired
+	private GetGenreListService getGenreListService;
 	@Autowired
 	private GetReviewListService getReviewListService;
 	@Autowired
@@ -36,5 +44,23 @@ public class MovieController {
 		return mav;
 	}
 	
+	@RequestMapping("/getMovieListProc.do")
+	public ModelAndView getMovieListProc(MovieVO vo, ModelAndView mav) {
+		vo.setStart(1);
+		vo.setEnd(20);
+		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
+		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
+		mav.addObject("movieList", movieList);
+		mav.addObject("genreList", genreList);
+		mav.setViewName("movieList");
+		return mav;
+	}
+	
+	@RequestMapping("/getMovieListProcAjax.do")
+	@ResponseBody
+	public List<MovieVO> getMovieListProcAjax(MovieVO vo) {
+		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
+		return movieList;
+	}
 
 }

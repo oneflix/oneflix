@@ -32,7 +32,7 @@
 			<div class="container clearfix">
 				<div class="navs">
 					<div class="logo">
-						<a href="#"> <img class="ico"
+						<a href="/homeProc.do"> <img class="ico"
 							src="client/images/oneflix_logo.png">
 						</a>
 					</div>
