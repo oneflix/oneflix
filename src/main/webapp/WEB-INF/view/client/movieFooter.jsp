@@ -15,7 +15,7 @@
 	<footer id="footer">
 	    <div class="footer_info">
 	        <div class="logo">
-	            <a href="#">
+	            <a href="/homeProc.do">
 	                <img class="ico" src="client/images/oneflix_logo.png">
 	            </a>
 	        </div>
