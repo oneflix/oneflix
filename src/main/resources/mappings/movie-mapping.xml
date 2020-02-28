@@ -41,11 +41,28 @@
 				FROM (SELECT m.*
 					FROM movie m
 					WHERE 1 = 1
+					<choose>
+						<when test="movieType == 'main'">
+							AND main_check = 'Y'
+						</when>
+						<when test="movieType == 'new'">
+							AND movie_reg_date BETWEEN TRUNC(SYSDATE - 30) AND SYSDATE
+						</when>
+						<when test="movieType == 'popular'">
+							ORDER BY view_count 
+						</when>
+					</choose>
 				) M
 			)
 		WHERE 1 = 1
+		<if test="movieType == 'popular'">
+			<![CDATA[
+				AND rnum >= 80
+				ORDER BY movie_score
+			]]> 
+		</if>
 		<if test="start != 0 and end != 0">
-			AND rnum BETWEEN ${start} AND ${end}				
+			AND rnum BETWEEN #{start} AND #{end}				
 		</if> 
 		
 		<if test="searchGenre != 0">
@@ -66,7 +83,7 @@
 		#{movieTitle}, #{movieScore}, #{rating}, #{duration}, #{summary}, #{directorId},
 		#{actorId1}, #{actorId2}, #{actorId3}, #{actorId4}, #{actorId5}, #{genreId1}, #{genreId2},
 		#{country}, #{release}, #{posterPath}, #{teaserVideoPath}, #{fullVideoPath},
-		#{movieStatus}, #{mainCheck}, #{movieSubtitle, jdbcType=VARCHAR}, sysdate)
+		#{movieStatus}, #{mainCheck}, #{movieSubtitle, jdbcType=VARCHAR}, SYSDATE)
 	</insert>
 
 	<update id="updateMovie" parameterType="movie">
