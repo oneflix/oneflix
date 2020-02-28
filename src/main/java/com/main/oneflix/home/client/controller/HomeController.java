@@ -7,19 +7,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.movie.service.GetMovieListService;
+import com.main.oneflix.movie.vo.MovieVO;
 import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.vo.TicketVO;
 
 @Controller
 public class HomeController {
-
+	
+	@Autowired
+	private GetMovieListService getMovieListService;
 	@Autowired
 	private GetTicketListService getTicketListService;
 	
 	@RequestMapping("/homeProc.do")
-	public ModelAndView mainProc(MemberVO vo, ModelAndView mav) {
+	public ModelAndView homeProc(MovieVO vo, ModelAndView mav) {
 		// 값 셋팅하기
+		vo.setMovieType("main");		
+		List<MovieVO> mainMovieList = getMovieListService.getMovieList(vo);
+		System.out.println("사이즈욤 = " + mainMovieList.size());
+		vo.setMovieType("popular");
+		List<MovieVO> popularMovieList = getMovieListService.getMovieList(vo);
+		vo.setMovieType("new");		
+		List<MovieVO> newMovieList = getMovieListService.getMovieList(vo);
+		
+		mav.addObject("mainMovieList",mainMovieList);
+		mav.addObject("popularMovieList",popularMovieList);
+		mav.addObject("newMovieList",newMovieList);
+		
+		
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
 		mav.addObject("ticketList", ticketList);
 		mav.setViewName("home");
