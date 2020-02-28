@@ -88,16 +88,12 @@ public class MemberController {
 		return mav;
 	}
 
-
 	@RequestMapping("/deleteMemberProc.do")
-	public ModelAndView deleteMember(HttpSession session, ModelAndView mav,HttpServletResponse response) throws IOException {
+	public ModelAndView deleteMember(HttpSession session, ModelAndView mav) {
 		MemberVO vo = (MemberVO) session.getAttribute("loginMember");
 		deleteMemberService.deleteMember(vo);
 		session.invalidate();
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>alert('탈퇴처리가 완료되었습니다.'); history.go(-1);</script>");
-		out.flush(); 
+		mav.addObject("result");
 		mav.setViewName("oneflix");
 		return mav;
 	}
