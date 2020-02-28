@@ -28,6 +28,9 @@
 			<when test='helpType == "faq"'>
 				AND help_type != 'notice'
 			</when>
+			<when test='helpType == "all"'>
+				
+			</when>
 			<otherwise>
 				AND help_type = #{helpType}
 			</otherwise>
