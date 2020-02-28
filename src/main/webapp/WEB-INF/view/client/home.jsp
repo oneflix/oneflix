@@ -176,7 +176,7 @@
                                     <li><div class="divider"></div></li>
                                     <li><div><a href="#">고객센터</a></div></li>
                                     <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
-                                    <li><div><a href="/logoutProc.do">로그아웃</a></div></li>
+                                    <li><div><a href="/logout.do">로그아웃</a></div></li>
                                 </ul>
                             </div>
                         </nav>
@@ -209,7 +209,7 @@
                                             <li><div class="divider"></div></li>
                                             <li><div><a href="#">고객센터</a></div></li>
                                             <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
-                                            <li><div><a href="/logoutProc.do">로그아웃</a></div></li>
+                                            <li><div><a href="/logout.do">로그아웃</a></div></li>
                                         </ul>
                                     </div>
                                 </li>
