@@ -1,5 +1,5 @@
 body {
-	background: #080808;
+	background: #ffffff;
 }
 
 li {
@@ -12,12 +12,12 @@ h4 {
 
 p {
 	width: 50vw;
-	color: #f3f3f3;
+	color: #080808;
 }
 
 a {
 	font-size: 30px;
-	color: #f3f3f3;
+	color: #080808;
 }
 
 a:hover {
@@ -26,18 +26,18 @@ a:hover {
 }
 
 .row {
-	background-color: #080808;
+	background-color: #ffffff;
 	margin: 0 auto;
 }
 
 .page-body {
-	background-color: #080808;
+	background-color: #ffffff;
 	margin-left: 10vw;
 }
 
 .my-review {
 	width: 60vw;
-	color: #f3f3f3;
+	color: #080808;
 	text-align: justify;
 	padding-bottom: 10px;
 }
@@ -51,15 +51,15 @@ a:hover {
 	padding: 3px 10px;
 	margin-left: 20px;
 	font-size: 15px;
-	color: #080808;
-	background-color: #f3f3f3;
+	color: #ffffff;
+	background-color: #080808;
 	text-align: center;
 	border-radius: 70px;
 }
 
 .my-thumbs-up {
 	font-size: 17px;
-	color: #f3f3f3;
+	color: #080808;
 }
 
 #myBtn {
@@ -72,7 +72,7 @@ a:hover {
 	font-weight: bold;
 	outline: none;
 	border: none;
-	background-color: #080808;
+	background-color: #ffffff;
 	color: #f3f3f3;
 	cursor: pointer;
 	padding: 15px;

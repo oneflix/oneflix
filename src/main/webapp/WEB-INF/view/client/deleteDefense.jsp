@@ -40,8 +40,6 @@ function deleteConfirm(){
 		}
 		}
 	}
-
-
 </script>
 </body>
 </html>

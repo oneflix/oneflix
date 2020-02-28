@@ -1,12 +1,7 @@
 package com.main.oneflix.member.client.controller;
 
-
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.InsertInquiryService;
-import com.main.oneflix.inquiry.vo.InquiryVO;
 import com.main.oneflix.member.service.DeleteMemberService;
 import com.main.oneflix.member.service.InsertMemberService;
 import com.main.oneflix.member.service.UpdateMemberService;
