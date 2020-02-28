@@ -29,7 +29,6 @@
 			<!-- ===================== 공 지 사 항 ============================== -->
 			<div class="notice-container">
 				<h2 class="help-label">공지사항</h2>
-
 				<c:forEach var="help" items="${helpList}">
 					<c:if test="${help.helpType eq 'n' }">
 						<div class="notice-list">
@@ -64,6 +63,7 @@
 				<button class="tablinks" onclick="openCity(event, 'faq-service')">서비스
 					문의</button>
 			</div>
+
 
 			<div id="faq-faq" class=" tabcontent">
 				<c:forEach var="help" items="${helpList}">
@@ -176,10 +176,10 @@
 	</script>
 
 	<script>
-		$(".notice-list").slice(0, 5).css("display", "block"); // 최초 10개 선택
+		$(".notice-list").slice(0, 5).css("display", "block"); // 최초 5개 선택
 		function moreNotice(e) {
 			e.preventDefault();
-			$(".notice-list:hidden").slice(0, 5).css("display", "block"); // 숨김 설정된 다음 10개를 선택하여 표시
+			$(".notice-list:hidden").slice(0, 5).css("display", "block"); // 숨김 설정된 다음 5개를 선택하여 표시
 			if ($(".notice-list:hidden").length == 0) { // 숨겨진 DIV가 있는지 체크
 				$("#myBtn").css("display", "none");
 			}
