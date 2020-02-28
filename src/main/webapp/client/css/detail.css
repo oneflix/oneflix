@@ -44,7 +44,7 @@ main {
     position: absolute;
     top: 0px;
     right: 0px;
-    z-index: 3;
+    z-index: 1;
     width: 61.5625%;
     height: 100%;
     overflow: hidden;
@@ -84,7 +84,7 @@ main {
 /* 영화 정보 포스터 전체 틀 -> 영화 정보*/
 .css-kdlm68-ContentInfo {
     position: relative;
-    z-index: 4;
+    z-index: 2;
     padding-top: 1.8vw;
 }
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 영화 제목*/
@@ -165,7 +165,7 @@ main {
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 밑에 전체 틀*/
 .css-39xlmf-Self {
     position: relative;
-    z-index: 4;
+    z-index: 2;
 }
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 줄거리*/
 .css-14m50u6-Story {
@@ -197,7 +197,7 @@ main {
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 한줄 오른쪽*/
 .css-1mnni33-CreditContent {
     position: relative;
-    z-index: 4;
+    z-index: 2;
     font-weight: 400;
 }
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 버튼 라인*/
@@ -513,3 +513,25 @@ video {border: 0; outline: none;}
 #review-slider-container > .swiper-wrapper > .swiper-slide > div {height: 12vw; margin: 30px 0; padding: 0 70px; background-color: #0B0C0D;}
 /* #review-button-prev {z-index: 999;}
 #review-button-next {} */
+
+.starR1{
+    background: url('../images/icons/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('../images/icons/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1.on{background-position:0 0; color: #fff;}
+.starR2.on{background-position:-15px 0; color: #fff;}
+

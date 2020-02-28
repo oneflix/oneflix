@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
+<fmt:setLocale value="ko_kr"/>
 <!DOCTYPE html>
 <html>
 
@@ -15,13 +20,16 @@
     <link rel="stylesheet" href="client/css/main_style.css">
     <link rel="stylesheet" href="client/css/swiper.css">
     <link rel="stylesheet" href="client/css/ticket_modal.css">
+    <style type="text/css">
+    	.swiper-slide {cursor: pointer;}
+    </style>
 
 </head>
 
 <body>
     <!-- The Modal -->
 	<div id="myModal" class="modal">
-
+	<div class="modal-container">
 		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">&times;</span>
@@ -31,42 +39,84 @@
 			<div class="e111">
 				<div class="e112">
 					<div class="radio-toolbar">
-						<h3>추천</h3><br>
-						<label>
-							<input type="radio" name="ticket-type" value="0">
-							<span style="float: left;">정기권</span><span style="float: right;">월￦7,900</span>
-						</label>
-						
-						<label>
-							<input type="radio" name="ticket-type" value="90">
-							<span style="float: left;">90일</span>
-							<span style="float: right;">월￦7,000</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
+						<div style="width: 272px;">
+							<p class="ticket-category">추천</p>
+						</div><br>
+						<c:forEach var="ticket" items="${ticketList}">
+							<c:if test="${ticket.ticketPeriod eq -1}">
+								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
+							</c:if>
+							<c:if test="${ticket.ticketStatus eq 'Y' && ticket.ticketRecommend eq 'Y'}">
+								<label>
+									<input type="radio" name="ticket-type" value="${ticket.ticketId}">
+									<span style="float: left;">${ticket.ticketName}</span>
+									<span style="float: right;">
+										<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
+									</span>
+									<c:if test="${ticket.ticketPeriod ne -1}">
+										<span style="float: right;" class="ticket-origin-price">
+											<fmt:formatNumber type="currency" value="${originPrice * ticket.ticketPeriod / 30}"/>
+										</span>
+									</c:if>
+								</label>
+							</c:if>
+						</c:forEach>
 					</div>
 				</div>
 				<div class="e113">
 					<div class="radio-toolbar">
-						<h3>일반</h3><br>
-						<label>
-						<input type="radio" name="ticket-type" value="30">
-							<span style="float: left;">30일</span>
-							<span style="float: right;">월￦7,500</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
-						<label>
-						<input type="radio" name="ticket-type" value="180">
-							<span style="float: left;">180일</span>
-							<span style="float: right;">월￦6,700</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
-						<label>
-						<input type="radio" name="ticket-type" value="365">
-							<span style="float: left;">365일</span>
-							<span style="float: right;">월￦6,200</span>
-							<span style="float: right;" class="ticket-origin-price">월￦7,900</span>
-						</label>
+						<div style="width: 272px;">
+							<p class="ticket-category">일반</p>
+						</div><br>
+						<c:forEach var="ticket" items="${ticketList}">
+							<c:if test="${ticket.ticketPeriod eq -1}">
+								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
+							</c:if>
+							<c:if test="${ticket.ticketStatus eq 'Y' && ticket.ticketRecommend eq 'N'}">
+								<label>
+									<input type="radio" name="ticket-type" value="${ticket.ticketId}">
+									<span style="float: left;">${ticket.ticketName}</span>
+									<span style="float: right;">
+										<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
+									</span>
+									<c:if test="${ticket.ticketPeriod ne -1}">
+										<span style="float: right;" class="ticket-origin-price">
+											<fmt:formatNumber type="currency" value="${originPrice * ticket.ticketPeriod / 30}"/>
+										</span>
+									</c:if>
+								</label>
+							</c:if>
+						</c:forEach>
 					</div>
+				</div>
+				<div class="e114">
+					<div class="box">
+						<ul>
+							<li>
+								<i class="fas fa-check"></i>
+								<div>
+									<div class="box-title">지속적인 신작 업데이트</div>
+									<div class="box-content">매주 업데이트되는 200여편의 작품을 무료로 즐겨보세요.</div>
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-check"></i>
+								<div>
+									<div class="box-title">6만여 편의 작품 무제한 감상</div>
+									<div class="box-content">인기 영화를 추가 지불 없이 감상하세요.</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ul>
+						<li><p>이용기간이 종료되기 24시간 이내에 다음 이용에 대한 비용이 결제 됩니다. 즉, 이용기간 종료 시점으로부터 최소 23시간 전에 이용을 취소하지 않으시면 이용권이 자동으로 갱신됩니다.</p></li>
+						<li>결제취소는 결제 후 7일 내 서비스 미 이용시 가능하며, 결제 후 7일 경과 또는 서비스 이용 시에는 환불이 불가능합니다.</li>
+						<li>저작권자의 요청에 따라 일부 콘텐츠의 동시 재생이 제한될 수 있습니다.</li>
+						<li>최대 화질의 이용 가능 여부는 이용권 종류, 네트워크 환경, 콘텐츠 계약 조건, 디바이스의 물리적 사양에 따라 제한될 수 있습니다.</li>
+						<li>한국 외 국가에서는 감상이 제한되며, 일부 영상은 저작권자의 요청에 따라 도중에 제공이 중단될 수 있습니다.</li>
+						<li>엣지, 크롬, 파이어폭스, 웨일 브라우저를 지원합니다.</li>
+						<li>구매하신 이용권 종류 혹은 결제 상태(제휴상품, 쿠폰 등)에 따라 이용권 변경이 제한될 수 있습니다.</li>
+					</ul>
 				</div>
 			</div>
 			<div class="css-12314nb-BottomButtonContainer evsc26g1">
@@ -74,6 +124,7 @@
 					구매하기</button>
 			</div>
 		</div>
+	</div><!-- modal container -->
 	</div>
 
     <div id="wrap">
@@ -93,20 +144,19 @@
                 <div class="container clearfix">
                     <div class="navs">
                         <div class="logo">
-                            <a href="/oneflix.do">
+                            <a href="/homeProc.do">
                                 <img class="ico" src="client/images/oneflix_logo.png">
                             </a>
                         </div>
                         <nav class="left_nav">
                             <ul class="clearfix">
-                                <li><a href="#">전체보기</a></li>
+                                <li><a href="/getMovieListProc.do">전체보기</a></li>
                                 <li>
                                     <button class="search-button" type="button">
                                         <i id="search-ico" class="fas fa-search"></i>
                                         <span>검색</span>
                                     </button>
-                                    <form method="GET" action="https://www.naver.com" class="search-form">
-
+                                    <form method="POST" action="/getMovieListProc.do" class="search-form">
                                         <input type="text" id="search" placeholder="제목, 감독, 배우로 검색">
                                         <button type="submit" id="search-submit-button">
                                         	<i class="fas fa-search"></i>
@@ -125,18 +175,18 @@
                                 </button>
                                 <ul class="dropdown-menu hamburger-menu">
                                     <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
-                                    <li><div><a href="#">알림</a></div></li>
-                                    <li><div><a href="#">찜 목록</a></div></li>
+                                    <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
+                                    <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
                                     <li><div class="divider"></div></li>
                                     <li><div><a href="#">고객센터</a></div></li>
                                     <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
-                                    <li><div><a href="#">로그아웃</a></div></li>
+                                    <li><div><a href="/logout.do">로그아웃</a></div></li>
                                 </ul>
                             </div>
                         </nav>
                         <nav class="right_nav">
                             <ul class="clearfix">
-                                <li><a href="#">보고싶어요</a></li>
+                                <li><a href="/getMovieListProc.do?movieType=wish">보고싶어요</a></li>
                                 <li>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle bell-button" type="button"
@@ -145,7 +195,7 @@
                                         </button>
                                         <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
                                         <ul class="dropdown-menu bell-menu">
-                                            <li><div><a href="#">새로 올라온 작품</a></div></li>
+                                            <li><div><a href="/getMovieListProc.do?movieType=new">새로 올라온 작품</a></div></li>
                                             <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
                                         </ul>
                                     </div>
@@ -163,7 +213,7 @@
                                             <li><div class="divider"></div></li>
                                             <li><div><a href="#">고객센터</a></div></li>
                                             <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
-                                            <li><div><a href="#">로그아웃</a></div></li>
+                                            <li><div><a href="/logout.do">로그아웃</a></div></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -174,33 +224,15 @@
                 <div class="header-slider">
                     <div id="header-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <!-- <a href="#">
-                                    <img src="client/images/avengers.jpg">
-                                </a> -->
+                        <c:forEach var="main" items="${mainMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
+                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath};">
                                         <div class="row">
-                                            <h2>2월 3주 신작</h2>
-                                            <p>캐롤, 리틀 포레스트 등</p>
+                                            <h2>${main.movieTitle }</h2>
+                                            <p>${main.movieSubtitle }</p>
                                         </div>
                             </div>
-                            <div class="swiper-slide">
-                                <!-- <a href="#">
-                                    <img src="client/images/eternal_sunshine.jpg">
-                                </a> -->
-                                        <div class="row">
-                                            <h2>인생을 담다</h2>
-                                            <p>휴머니즘 다큐 영화 모음집</p>
-                                        </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- <a href="#">
-                                    <img src="client/images/green_book.jpg">
-                                </a> -->
-                                        <div class="row">
-                                            <h2>최고 인기작</h2>
-                                            <p>Call me by your name</p>
-                                        </div>
-                            </div>
+                            </c:forEach>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div id="header-button-next" class="swiper-button-next"></div>
@@ -212,140 +244,62 @@
         <div id="body">
             <section class="main">
                 <div class="row">
-                    <span class="category">이어보기</span>
-                    <span class="more" onclick="location.href='#'">더보기 <i class="fas fa-angle-right"></i></span>
+                    <span class="category">원플릭스 최고 인기작</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=popular'">더보기 <i class="fas fa-angle-right"></i></span>
                 </div>
                 <div class="main-slider popular-slider">
                     <div id="popular-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" onclick="location.href='#'">
-                                <img src="client/images/dunkirk.jpg">
+                        <c:forEach var="i" begin="0" end="30">
+                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${popularMovieList[i].movieId}">
+                                <img src="${popularMovieList[i].posterPath }">
 								<div class="row">
-	                                <p>어벤져스</p>
+	                                <p>${popularMovieList[i].movieTitle }</p>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/francesha.jpg">
-                                <div class="row">
-                                    <p>이터널 선샤인</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/green_book.jpg">
-                                <div class="row">
-                                    <p>그린북</p>
-                                </div>
-                            </div>
-                            <div id="test" class="swiper-slide">
-                                <img src="client/images/eternal_sunshine.jpg">
-                                <div class="row">
-                                    <p>어벤져스</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/call_me_by_your_name.png">
-                                <div class="row">
-                                    <p>이터널 선샤인</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/green_book.jpg">
-                                <div class="row">
-                                    <p>그린북</p>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div id="popular-button-next" class="swiper-button-next"></div>
                     <div id="popular-button-prev" class="swiper-button-prev"></div>
                 </div>
                 <!-- 다음 슬라이드 -->
-                <h5>추천 영화</h5>
+                <div class="row">
+                    <span class="category">새로 올라온 작품</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=new'">더보기 <i class="fas fa-angle-right"></i></span>
+                </div>
                 <div class="main-slider new-slider">
                     <div id="new-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="client/images/avengers.jpg">
-                                <div class="row">
-                                    <p>어벤져스</p>
+                        <c:forEach var="newMovie" items="${newMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                                <img src="${newMovie.posterPath }">
+								<div class="row">
+	                                <p>${newMovie.movieTitle }</p>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/eternal_sunshine.jpg">
-                                <div class="row">
-                                    <p>이터널 선샤인</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/green_book.jpg">
-                                <div class="row">
-                                    <p>그린북</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/avengers.jpg">
-                                <div class="row">
-                                    <p>어벤져스</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/eternal_sunshine.jpg">
-                                <div class="row">
-                                    <p>이터널 선샤인</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/green_book.jpg">
-                                <div class="row">
-                                    <p>그린북</p>
-                                </div>
-                            </div>
+                        </c:forEach>
                         </div>
                     </div>
                     <div id="new-button-next" class="swiper-button-next"></div>
                     <div id="new-button-prev" class="swiper-button-prev"></div>
                 </div>
                 <!-- 다음 슬라이드 -->
-                <h5>최근 본 영화</h5>
+                <div class="row">
+                    <span class="category">이어보기</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=watching'">더보기 <i class="fas fa-angle-right"></i></span>
+                </div>
                 <div class="main-slider recent-slider">
                     <div id="recent-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="client/images/avengers.jpg">
-                                <div class="row">
-                                    <p>어벤져스</p>
+                           <c:forEach var="newMovie" items="${newMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                                <img src="${newMovie.posterPath }">
+								<div class="row">
+	                                <p>${newMovie.movieTitle }</p>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/eternal_sunshine.jpg">
-                                <div class="row">
-                                    <p>이터널 선샤인</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/green_book.jpg">
-                                <div class="row">
-                                    <p>그린북</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/avengers.jpg">
-                                <div class="row">
-                                    <p>어벤져스</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/eternal_sunshine.jpg">
-                                <div class="row">
-                                    <p>이터널 선샤인</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="client/images/green_book.jpg">
-                                <div class="row">
-                                    <p>그린북</p>
-                                </div>
-                            </div>
+                        </c:forEach>
                         </div>
                     </div>
                     <div id="recent-button-next" class="swiper-button-next"></div>
@@ -354,93 +308,19 @@
             </section>
         </div>
         
-        <footer id="footer">
-            <div class="footer_info">
-                <div class="logo">
-                    <a href="#">
-                        <img class="ico" src="client/images/oneflix_logo.png">
-                    </a>
-                </div>
-                <ul class="clearfix">
-                    <li><a href="#">이용약관</a></li>
-                    <li>&nbsp;|&nbsp;</li>
-                    <li><a href="#">고객센터</a></li>
-                </ul>
-                <p><strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights reserved.</p>
-            </div>
-        </footer>
+        <jsp:include page="${footer_url}"></jsp:include>
     </div> <!-- wrap end -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="client/js/bootstrap.js"></script>
     <script src="client/js/swiper.js"></script>
     <script src="client/js/script.js"></script>
-    <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("ticket-modal");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        $('.close').click(function () {
-            $('.ticket').removeClass('ticket-active');
-        });
-
-        $('label').mouseenter(function () {
-            $(this).children(":eq(1)").css("color", "#fff");
-            $(this).children(":eq(2)").css("color", "#fff");
-        });
-        
-        $('label').mouseleave(function () {
-        	$(this).children("input:radio:not(:checked)").nextAll().eq(0).css("color", "#9d9d9e");
-        	$(this).children("input:radio:not(:checked)").nextAll().eq(1).css("color", "#9d9d9e");
-        });
-  
-        $("input:radio").change(function(){
-			$("input:radio").closest("label").css("border-color", "#9d9d9e");
-			$("input:radio").nextAll().css("color", "#9d9d9e");
-			$("input:radio:checked").closest("label").css("border-color", "#fc426a");			
-			$("input:radio:checked").nextAll().eq(0).css("color", "#fff");
-			$("input:radio:checked").nextAll().eq(1).css("color", "#fff");
-		});
-        
-		var popX = window.screen.width / 2 - 200;
-		var popY = window.screen.height / 2 - 300;
-        var paymentRequest = function() {
-        	var selectTicket = $("input:radio:checked").val();
-        	var sendData = {'ticketId': selectTicket}
-        	$.ajax({
-        		type: 'POST',
-        		url: '/paymentRequest.do',
-        		data: sendData,
-        		success: function(url) {
-        			window.open(url, '_blank',
-        					'width=400, height=600, left='+popX+', top='+popY+',location=no, menubar=no, toolbar=no, scrollbars=no, resizable=no', false);			
-        		}
-        	});
-        	
-        }
-    </script>
-
+    <script src="client/js/ticket_modal.js"></script>
+    <script type="text/javascript">
+    function goMovieDetail(movieId) {
+            location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+     }
+  </script>
 </body>
 
 </html>

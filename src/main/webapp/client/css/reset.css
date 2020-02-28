@@ -1,3 +1,4 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 /* 여백 초기화 */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -14,7 +15,7 @@ a:hover {color: #fff}
 
 /* 폰트 초기화 */
 body, input, textarea, select, button, table {
-    font-family: 'Nanum Gothic', 'Malgun Gothic', '맑은 고딕', '돋움', sans-serif;
+    font-family: "Noto Sans KR",'Nanum Gothic', 'Malgun Gothic', '맑은 고딕', '돋움', sans-serif;
     color: #fff;
     background: #080808;
     font-size: 13px;

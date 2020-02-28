@@ -13,9 +13,9 @@ import com.main.oneflix.inquiry.vo.InquiryVO;
 public class GetInquiryListServivceImpl implements GetInquiryListService {
 	@Autowired
 	private InquiryDAO inquiryDAO;
+	
 	@Override
 	public List<InquiryVO> getInquiryList(InquiryVO vo) {
 		return inquiryDAO.getInquiryList(vo);
 	}
-
 }

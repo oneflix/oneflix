@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReviewDAO">
+
+	<insert id="insertReview" parameterType="review">
+		INSERT INTO review
+		(review_id, movie_id, email, review_content, review_score, like_count, review_reg_date)
+		VALUES((select nvl(max(review_id),0)+1 from review),#{movieId},#{email},
+		#{reviewContent, jdbcType=VARCHAR},#{reviewScore}, #{likeCount}, SYSDATE)
+	</insert>
+	
+	<update id="updateReview" parameterType="review">
+		UPDATE review
+		SET review_content = #{reviewContent}, review_score = #{reviewScore}
+		WHERE
+		email = #{email} AND movie_id = #{movieId}
+	</update>
+	
+	<!-- movieDetail.jsp의 myReview-->
+	<select id="getReview" parameterType="review" resultType="review">
+		SELECT * FROM review
+		WHERE email = #{email} AND movie_id = #{movieId}
+	</select>
+
+	<resultMap type="review" id="getReviewList">
+		<id property="reviewId" column="review_id" />
+		<result property="movieId" column="movie_id" />
+		<result property="movieTitle" column="movie_title" />
+		<result property="email" column="email" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewScore" column="review_score" />
+		<result property="likeCount" column="like_count" />
+	</resultMap>
+	
+	<select id="getReviewList" resultMap="getReviewList">
+		SELECT * FROM (SELECT ROWNUM rnum, R.* FROM
+		(SELECT r.*, m.movie_title, mem.nick FROM review r, movie m, member mem
+    	WHERE r.movie_id = m.movie_id AND r.email = mem.email
+    	<if test="email != null">
+		AND r.email = #{email}
+		</if>
+		<if test = "movieId != null">
+		AND r.movie_id = #{movieId}
+		</if>
+			) R
+		)
+		WHERE 1=1
+		<if test="start != 0 and end != 0">
+		AND rnum BETWEEN #{start} AND #{end} 
+		</if>		
+		ORDER BY review_id DESC
+	</select>
+
+	<delete id="deleteReview" parameterType="review">
+		DELETE FROM review 
+		WHERE review_id = #{reviewId}
+	</delete>
+
+</mapper>

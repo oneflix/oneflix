@@ -15,68 +15,46 @@
     <link rel="stylesheet" href="client/css/all.css">
     <link rel="stylesheet" href="client/css/movie_layout.css">
     <link rel="stylesheet" href="client/css/ticket_modal.css">
+    <style>
+    	.movie-box {cursor: pointer;}
+		#myBtn {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; font-size: 18px; border: none;
+		  outline: none; background-color: red; color: white; cursor: pointer; padding: 15px; border-radius: 4px;}
+		#myBtn:hover {background-color: #555;}
+	</style>
 </head>
 <body>
     <div id="wrap">
 	    <jsp:include page="${header_url}"></jsp:include>
 	    <div id="body">
+	    
 	        <section>
+	      	    <button onclick="topFunction()" id="myBtn">
+	                <i class="fas fa-angle-double-up"></i> TOP
+	            </button>
 	            <div class="select-container">
 	                <p>보고싶은 작품을 찾아보세요</p>
 	                <div>
-	                    <select>
-	                        <option>전체 장르</option>
-	                        <option>애니메이션</option>
-	                        <option>판타지</option>
-	                        <option>역사</option>
-	                        <option>SF</option>
-	                        <option>음악</option>
-	                        <option>키즈</option>
-	                        <option>공포</option>
-	                        <option>다큐멘터리</option>
-	                        <option>재난</option>
-	                        <option>모험</option>
-	                        <option>미스터리</option>
-	                        <option>가족</option>
-	                        <option>로맨스</option>
-	                        <option>코미디</option>
-	                        <option>액션</option>
-	                        <option>범죄</option>
-	                        <option>스포츠</option>
-	                        <option>전쟁</option>
-	                        <option>스릴러</option>
+	                    <select id="select-genre">
+	                        <option value="0">전체 장르</option>
+	                        <c:forEach var="genre" items="${genreList}">
+	                        	<option value="${genre.genreId}">${genre.genre}</option>
+	                        </c:forEach>
 	                    </select>
 	                    <select class="rank-select">
-	                        <option>추천 순</option>
-	                        <option>평균별점 순</option>
-	                        <option>최신작품 순</option>
+	                        <option value="recommend">추천 순</option>
+	                        <option value="score">평균별점 순</option>
+	                        <option value="new">최신작품 순</option>
 	                    </select>
 	                </div>
 	            </div>
 	        </section>
 	        <section class="grid-wrapper">
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
-	            <div onclick='#'><img src="client/images/eternal_sunshine.jpg"><p>이터널</p></div>
+	        	<c:forEach var="movie" items="${movieList}">
+		            <div class="movie-box" onclick="goMovieDetail('${movie.movieId}')">
+		            	<img src="${movie.posterPath}"/>
+		            	<p>${movie.movieTitle}</p>
+		            </div>
+	        	</c:forEach>
 	        </section>
 	    </div>
 	    <jsp:include page="${footer_url}"></jsp:include>
@@ -86,5 +64,68 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="client/js/swiper.js"></script> 
 	<script src="client/js/movie_layout.js"></script>
+	<script>
+		var count = 1;
+		var movieList;
+		var movieListLength;
+		var movieType = "${movieType}";
+		 $(window).scroll(function() {
+		        if (Math.round($(window).scrollTop() + 20) >= $(document).height() - $(window).height()) {
+		        	if (movieListLength != 0) {
+			        	count++;
+			        	var start = (count - 1) * 10 + 1 ;
+			        	var end = count * 10;
+	                	var sendData = {"start": start, "end": end, "movieType": movieType};
+	                	$.ajax({
+	                		type: "POST",
+	                		url: "/getMovieListProcAjax.do",
+	                		data: sendData,
+	                		async: false,
+	                		success: function(res) {
+	                			movieList = res;
+	                			movieListLength = movieList.length;
+	                		},
+	                		
+	                		error: function(e){
+	                			alert("error");
+	                		}
+	                	});
+	                	
+	                    for (var i = 0; i < movieList.length; i++) {
+	                    	var movie = movieList[i];
+	                    	$('.grid-wrapper').append(
+	                    		"<div class=\"movie-box\" onclick=\"goMovieDetail(\'" + movie.movieId + "\')\">" +
+	        		            	"<img src=\"" + movie.posterPath + "\"/>" +
+	        		            	"<p>" + movie.movieTitle + "</p>" +
+	        		            "</div>");
+	                    }
+		        	}
+		        }
+		    });
+
+			function goMovieDetail(movieId) {
+				window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+			}
+			
+			 //Get the button
+	        var mybutton = document.getElementById("myBtn");
+
+	        // When the user scrolls down 20px from the top of the document, show the button
+	        window.onscroll = function () { scrollFunction() };
+
+	        function scrollFunction() {
+	            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	                mybutton.style.display = "block";
+	            } else {
+	                mybutton.style.display = "none";
+	            }
+	        }
+
+	        // When the user clicks on the button, scroll to the top of the document
+	        function topFunction() {
+	            document.body.scrollTop = 0;
+	            document.documentElement.scrollTop = 0;
+	        }
+	</script>
 </body>
 </html>

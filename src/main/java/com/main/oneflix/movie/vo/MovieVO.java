@@ -38,6 +38,9 @@ public class MovieVO {
 	private List<Integer> genreList;
 	private int searchGenre;
 	private String searchMovie;
+	private String movieType;
+	private int start;
+	private int end;
 
 	public Integer getMovieId() {
 		return movieId;
@@ -285,6 +288,30 @@ public class MovieVO {
 
 	public void setSearchMovie(String searchMovie) {
 		this.searchMovie = searchMovie;
+	}
+
+	public String getMovieType() {
+		return movieType;
+	}
+
+	public void setMovieType(String movieType) {
+		this.movieType = movieType;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getEnd() {
+		return end;
+	}
+
+	public void setEnd(int end) {
+		this.end = end;
 	}
 
 }

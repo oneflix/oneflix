@@ -9,4 +9,7 @@ public interface InquiryDAO {
 	public InquiryVO getInquiry(InquiryVO vo);
 	public List<InquiryVO> getInquiryList(InquiryVO vo);
 	public void updateInquiry(InquiryVO vo);
+	public int getCountInquiry(InquiryVO vo);
+	public void deleteInquiry(InquiryVO vo);
+
 }

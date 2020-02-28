@@ -4,8 +4,76 @@
 
 <mapper namespace="SalesDAO">
 
-	<select id="countSales" parameterType="sales" resultType="int">
-		SELECT NVL(COUNT(*),0) FROM sales
+	<resultMap type="sales" id="salesList">
+		<id property="salesId" column="sales_id" />
+		<result property="rnum" column="rnum" />
+		<result property="cid" column="cid" />
+		<result property="tid" column="tid" />
+		<result property="sid" column="sid" />
+		<result property="email" column="email" />
+		<result property="ticketId" column="ticket_id" />
+		<result property="ticketName" column="ticket_name" />
+		<result property="ticketPrice" column="ticket_price" />
+		<result property="salesStatus" column="sales_status" />
+		<result property="paymentDate" column="payment_date" />
+	</resultMap>
+
+	<select id="getSalesList" parameterType="sales" resultMap="salesList">
+		SELECT * 
+			FROM (SELECT ROWNUM rnum, S.*
+				FROM (SELECT s.*, t.ticket_name, t.ticket_price 
+					FROM sales s, ticket t
+					WHERE s.ticket_id = t.ticket_id
+					AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+					AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
+					ORDER BY s.sales_id
+			 ) S
+		)
 	</select>
 
+	<select id="getSales" parameterType="sales" resultType="sales">
+		SELECT * FROM sales WHERE 1 = 1
+		<if test="salesId != null">
+			AND sales_id = #{salesId}
+		</if>
+		<if test="email != null">
+			AND email = #{email}
+		</if>
+		<if test="salesStatus != null">
+			AND sales_status = #{salesStatus}
+		</if>
+	</select>
+	
+	<insert id="insertSales" parameterType="sales">
+		INSERT INTO sales(cid, tid, sales_id, email, ticket_id, sales_status)
+		VALUES (#{cid}, #{tid}, #{salesId}, #{email}, #{ticketId}, #{salesStatus})
+	</insert>
+	
+	<update id="updateSales" parameterType="sales">
+		UPDATE sales SET
+		sid = #{sid, jdbcType=VARCHAR}, sales_status = #{salesStatus}, payment_date = SYSDATE
+		WHERE sales_id = #{salesId}
+	</update>
+	
+	<delete id="deleteSales" parameterType="sales">
+		DELETE FROM sales WHERE email = #{email} AND sales_status = #{salesStatus}
+	</delete>
+
+	<select id="getTotalSales" parameterType="sales" resultType="int">
+		SELECT NVL(SUM(t.ticket_price),0)
+		FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id
+		AND s.sales_status = 'success'
+		<choose>
+			<when test="startDate != null || endDate != null">
+				<![CDATA[
+					AND	payment_date >= TO_DATE(#{startDate}, 'YYYYMMDD')
+					AND payment_date <= TO_DATE(#{endDate}, 'YYYYMMDD')
+				]]>
+			</when>
+			<otherwise>
+				AND TO_CHAR(payment_date, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
+			</otherwise>
+		</choose>
+	</select>
 </mapper>

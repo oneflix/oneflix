@@ -8,3 +8,23 @@
 	background-color: #6c757d;
     border-color: #6c757d;
 }
+
+.title{
+	background-color: #080808;
+}
+
+.content{
+	background-color: #1a1919;
+}
+.insert{
+	margin-right: 5%;
+	margin-bottom: 2%;
+}
+
+tbody{
+	background-color: #1a1919;
+}
+.table-dark > tbody > tr > td > p {
+	background-color: #1a1919;
+	margin-top: 1.5%
+}

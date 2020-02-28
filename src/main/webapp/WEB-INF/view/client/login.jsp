@@ -47,7 +47,7 @@
 		<div class="header">
 			<div class="nav">
 				<a href="#"><img class="header-logo" src="client/images/oneflix_logo.png"></a>
-				<button type="button" class="btn btn-sm btn-light login-button" onclick="location.href='join.do'">
+				<button type="button" class="btn btn-sm btn-light login-button" onsubmit="return validate()" onclick="location.href='join.do'">
 					회원가입
 				</button>
 			</div>
@@ -60,7 +60,7 @@
 
 				<div class="wrap-login100 p-t-20 p-b-30">
 
-					<form class="login100-form validate-form" action="/loginProc.do" method="post">
+					<form class="login100-form validate-form" action="/loginProc.do" method="post" onsubmit="return validate();">
 						<div class="login-label">
 							로그인
 							<span class="find-pass" OnClick="location.href='#'">비밀번호를 잊어버리셨나요?</span>
@@ -68,14 +68,14 @@
 
 
 						<div class="wrap-input100 wrap-input100-top m-b-1">
-							<input class="input100" type="text" name="email" autocomplete="off" placeholder="이메일">
+							<input class="input100" type="text" name="email" id="email" autocomplete="off" placeholder="이메일">
 						</div>
 
 						<div class="wrap-input100 wrap-input100-bottom m-b-20">
 							<span class="btn-show-pass">
 								<i class="fa fa fa-eye"></i>
 							</span>
-							<input class="input100" type="password" name="pass" placeholder="비밀번호">
+							<input class="input100" type="password" name="pass" id="pass" placeholder="비밀번호">
 						</div>
 
 						<div class="container-login100-form-btn">
@@ -127,6 +127,16 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
+	
+
+	<script>
+	$(document).ready(function(){
+	    var result = "${result}";
+	    if (result == "seccess") {
+	         alert("로그인 정보가 일치하지 않습니다.");
+	    }
+	});
+	</script>
 
 </body>
 
