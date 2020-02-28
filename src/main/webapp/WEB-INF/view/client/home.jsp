@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <fmt:setLocale value="ko_kr"/>
 <!DOCTYPE html>
 <html>
@@ -139,20 +140,19 @@
                 <div class="container clearfix">
                     <div class="navs">
                         <div class="logo">
-                            <a href="/oneflix.do">
+                            <a href="/homeProc.do">
                                 <img class="ico" src="client/images/oneflix_logo.png">
                             </a>
                         </div>
                         <nav class="left_nav">
                             <ul class="clearfix">
-                                <li><a href="#">전체보기</a></li>
+                                <li><a href="/getMovieListProc.do">전체보기</a></li>
                                 <li>
                                     <button class="search-button" type="button">
                                         <i id="search-ico" class="fas fa-search"></i>
                                         <span>검색</span>
                                     </button>
-                                    <form method="GET" action="https://www.naver.com" class="search-form">
-
+                                    <form method="POST" action="/getMovieListProc.do" class="search-form">
                                         <input type="text" id="search" placeholder="제목, 감독, 배우로 검색">
                                         <button type="submit" id="search-submit-button">
                                         	<i class="fas fa-search"></i>
@@ -171,8 +171,8 @@
                                 </button>
                                 <ul class="dropdown-menu hamburger-menu">
                                     <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
-                                    <li><div><a href="#">알림</a></div></li>
-                                    <li><div><a href="#">찜 목록</a></div></li>
+                                    <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
+                                    <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
                                     <li><div class="divider"></div></li>
                                     <li><div><a href="#">고객센터</a></div></li>
                                     <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
@@ -182,7 +182,7 @@
                         </nav>
                         <nav class="right_nav">
                             <ul class="clearfix">
-                                <li><a href="#">보고싶어요</a></li>
+                                <li><a href="/getMovieListProc.do?movieType=wish">보고싶어요</a></li>
                                 <li>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle bell-button" type="button"
@@ -191,7 +191,7 @@
                                         </button>
                                         <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
                                         <ul class="dropdown-menu bell-menu">
-                                            <li><div><a href="#">새로 올라온 작품</a></div></li>
+                                            <li><div><a href="/getMovieListProc.do?movieType=new">새로 올라온 작품</a></div></li>
                                             <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
                                         </ul>
                                     </div>
@@ -400,21 +400,7 @@
             </section>
         </div>
         
-        <footer id="footer">
-            <div class="footer_info">
-                <div class="logo">
-                    <a href="#">
-                        <img class="ico" src="client/images/oneflix_logo.png">
-                    </a>
-                </div>
-                <ul class="clearfix">
-                    <li><a href="#">이용약관</a></li>
-                    <li>&nbsp;|&nbsp;</li>
-                    <li><a href="#">고객센터</a></li>
-                </ul>
-                <p><strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights reserved.</p>
-            </div>
-        </footer>
+        <jsp:include page="${footer_url}"></jsp:include>
     </div> <!-- wrap end -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
