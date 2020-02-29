@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,6 +13,11 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/help.css">
+<style type="text/css">
+.notice-list {
+	display: none;
+}
+</style>
 </head>
 
 <body>
@@ -23,107 +29,19 @@
 			<!-- ===================== 공 지 사 항 ============================== -->
 			<div class="notice-container">
 				<h2 class="help-label">공지사항</h2>
-				
-				
-					<button class="accordion">제목1</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목2</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목3</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목4</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목5</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목6</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목7</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목8</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목9</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목10</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목11</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목12</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목13</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
-
-				<div class="notice-list">
-					<button class="accordion">제목14</button>
-					<div class="panel">
-						<p>내용1</p>
-					</div>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'n' }">
+						<div class="notice-list">
+							<button class="accordion">${help.helpTitle }</button>
+							<div class="panel">
+								<p>${help.helpContent }</p>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
-			<button onclick="moreNotice()" id="myBtn" class="more-notice">공지사항
+			<button onclick="moreNotice(event)" id="myBtn" class="more-notice">공지사항
 				더 불러오기</button>
 		</div>
 		<!-- ===================== FAQ ============================== -->
@@ -146,142 +64,94 @@
 					문의</button>
 			</div>
 
+
 			<div id="faq-faq" class=" tabcontent">
-				<button class="accordion">자주 묻는 질문1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">자주 묻는 질문2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">자주 묻는 질문3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f1' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-pay" class="tabcontent">
-				<button class="accordion">결제1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">결제2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">결제3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f2' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-refund" class="tabcontent">
-				<button class="accordion">해지1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">해지2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">해지3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f3' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-membership" class="tabcontent">
-				<button class="accordion">이용권1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">이용권2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">이용권3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f4' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-account" class="tabcontent">
-				<button class="accordion">계정1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">계정2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">계정3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f5' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-contents" class="tabcontent">
-				<button class="accordion">콘텐츠1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">콘텐츠2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">콘텐츠3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f6' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-play" class="tabcontent">
-				<button class="accordion">재생1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">재생2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">재생3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f7' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 
 			<div id="faq-service" class="tabcontent">
-				<button class="accordion">서비스1</button>
-				<div class="panel">
-					<p>내용1</p>
-				</div>
-
-				<button class="accordion">서비스2</button>
-				<div class="panel">
-					<p>내용2</p>
-				</div>
-
-				<button class="accordion">서비스3</button>
-				<div class="panel">
-					<p>내용3</p>
-				</div>
+				<c:forEach var="help" items="${helpList}">
+					<c:if test="${help.helpType eq 'f8' }">
+						<button class="accordion">${help.helpTitle }</button>
+						<div class="panel">
+							<p>${help.helpContent }</p>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
-
 		</div>
 	</div>
 
@@ -306,9 +176,14 @@
 	</script>
 
 	<script>
-		function moreNotice() {
-			
-		}
+		$(".notice-list").slice(0, 5).css("display", "block"); // 최초 5개 선택
+		function moreNotice(e) {
+			e.preventDefault();
+			$(".notice-list:hidden").slice(0, 5).css("display", "block"); // 숨김 설정된 다음 5개를 선택하여 표시
+			if ($(".notice-list:hidden").length == 0) { // 숨겨진 DIV가 있는지 체크
+				$("#myBtn").css("display", "none");
+			}
+		};
 	</script>
 	<script>
 		function openCity(evt, cityName) {

@@ -1,9 +1,5 @@
 package com.main.oneflix.member.client.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,25 +27,22 @@ public class LoginController {
 		return mav;
 	}
 	@RequestMapping("/loginProc.do")
-	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session,HttpServletResponse response) throws IOException {
+	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session){
 		MemberVO member = new MemberVO();
 		member = getMemberService.getMember(vo);
 		if (!member.getPass().equals(vo.getPass())) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-			out.flush(); 
+			mav.addObject("result", "fail");
 			mav.setViewName("login");		
 		}else {
 			session.setAttribute("loginMember",member);
 			mav.addObject("member",member);
-			response.setContentType("text/html; charset=UTF-8");
+			mav.addObject("result", "success");
 			mav.setViewName("redirect:/homeProc.do");
 		}
 		return mav;
 	}
-	@RequestMapping("/logoutProc.do")
-	public ModelAndView logoutProc(MemberVO vo, ModelAndView mav,HttpSession session) {
+	@RequestMapping("/logout.do")
+	public ModelAndView logout(MemberVO vo, ModelAndView mav,HttpSession session) {
 			session.invalidate();
 			mav.setViewName("oneflix");
 			return mav;

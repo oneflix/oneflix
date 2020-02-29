@@ -16,28 +16,10 @@
     <link rel="stylesheet" href="client/css/movie_layout.css">
     <link rel="stylesheet" href="client/css/ticket_modal.css">
     <style>
-    	.movie-box {
-    		cursor: pointer;
-    	}
-		#myBtn {
-		  display: none;
-		  position: fixed;
-		  bottom: 20px;
-		  right: 30px;
-		  z-index: 99;
-		  font-size: 18px;
-		  border: none;
-		  outline: none;
-		  background-color: red;
-		  color: white;
-		  cursor: pointer;
-		  padding: 15px;
-		  border-radius: 4px;
-		}
-		
-		#myBtn:hover {
-		  background-color: #555;
-		}
+    	.movie-box {cursor: pointer;}
+		#myBtn {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; font-size: 18px; border: none;
+		  outline: none; background-color: red; color: white; cursor: pointer; padding: 15px; border-radius: 4px;}
+		#myBtn:hover {background-color: #555;}
 	</style>
 </head>
 <body>
@@ -86,13 +68,14 @@
 		var count = 1;
 		var movieList;
 		var movieListLength;
+		var movieType = "${movieType}";
 		 $(window).scroll(function() {
 		        if (Math.round($(window).scrollTop() + 20) >= $(document).height() - $(window).height()) {
 		        	if (movieListLength != 0) {
 			        	count++;
 			        	var start = (count - 1) * 10 + 1 ;
 			        	var end = count * 10;
-	                	var sendData = {"start": start, "end": end};
+	                	var sendData = {"start": start, "end": end, "movieType": movieType};
 	                	$.ajax({
 	                		type: "POST",
 	                		url: "/getMovieListProcAjax.do",
