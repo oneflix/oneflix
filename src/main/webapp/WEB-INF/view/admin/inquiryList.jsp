@@ -48,6 +48,7 @@
 									<input id="searchInquiry" type="hidden" name="searchInquiry"/>
 									<input id="searchInquiryType" type="hidden" name="searchInquiryType" /> 
 									<input id="searchMember" type="hidden" name="searchMember"/>
+									<input id="searchCheckReply" type="hidden" name="searchCheckReply"/>
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
 											<input type="text" name="search" id="search"
@@ -72,6 +73,14 @@
 									<option value="contents">콘텐츠</option>
 									<option value="video">재생 문의</option>
 									<option value="service">서비스 문의</option>
+								</select>
+								<!-- CheckReply -->
+								<select id="item-inquiryType" name="searchInquiryType"
+									class="detail form-control form-control-sm select2bs4 display-none"
+									style="width: inherit; float: right; margin-top: 4px;">
+									<option value="category" selected="selected">답변여부</option>
+									<option value="Y">답변</option>
+									<option value="N">미답변</option>
 								</select>
 								<!-- 검색조건 선택 -->
 								<select id="select-item" name="selectItem"
@@ -224,7 +233,8 @@
 						+ "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck('"
 						+ inquiry.inquiryId
 						+ "')\">삭제</button>"
-						+ "</div></td>" + "</tr>");
+						+ "</div></td>" + "</tr>"
+						);
 					}
 				}
 			});

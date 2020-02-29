@@ -29,6 +29,8 @@ public class InquiryVO {
 	private String searchInquiryType;
 	private String searchMember;
 	private String searchCheckReply;
+	
+	
 	public Integer getInquiryId() {
 		return inquiryId;
 	}
