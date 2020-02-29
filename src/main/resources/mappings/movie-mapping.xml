@@ -71,6 +71,12 @@
 		<if test="searchMovie != null">
 			AND movie_title like '%' || #{searchMovie} || '%'
 		</if>
+		<if test="movieType == 'popular'">
+			<![CDATA[
+				AND rnum <= 80
+				ORDER BY movie_score
+			]]> 
+		</if>
 	</select>
 
 	<insert id="insertMovie" parameterType="movie">
