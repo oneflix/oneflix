@@ -17,12 +17,6 @@ public class NoticeController {
 	private GetHelpListService getHelpListService;
 	
 	
-	@RequestMapping("/help.do")
-	public ModelAndView help(ModelAndView mav) {
-		mav.setViewName("help");
-		return mav;
-	}
-	
 	@RequestMapping("/getHelpListProc.do")
 	public ModelAndView getHelpListProc(ModelAndView mav, HelpVO vo) {
 		vo.setHelpType("all");
