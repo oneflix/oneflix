@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="WatchDAO">
+
+	<select id="getCountWatchGenre" parameterType="watch" resultType="int">
+		SELECT NVL(COUNT(*),0) 
+		FROM (SELECT w.*, m.genre_id1, m.genre_id2
+				FROM watch w, movie m
+				WHERE w.movie_id = m.movie_id AND email = #{email}
+						AND (m.genre_id1 = #{genreId} OR m.genre_id2 = #{genreId})
+			)
+	</select>
+</mapper>
