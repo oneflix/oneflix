@@ -20,6 +20,8 @@ public class MovieVO {
 	private int actorId5;
 	private int genreId1;
 	private int genreId2;
+	private String genre1;
+	private String genre2;
 	private String country;
 	private String release;
 	private String summary;
@@ -37,8 +39,10 @@ public class MovieVO {
 	private List<Integer> actorList;
 	private List<Integer> genreList;
 	private int searchGenre;
+	private int recommendGenre;
 	private String searchMovie;
 	private String movieType;
+	private String searchOrder;
 	private int start;
 	private int end;
 
@@ -144,6 +148,22 @@ public class MovieVO {
 
 	public void setGenreId2(int genreId2) {
 		this.genreId2 = genreId2;
+	}
+
+	public String getGenre1() {
+		return genre1;
+	}
+
+	public void setGenre1(String genre1) {
+		this.genre1 = genre1;
+	}
+
+	public String getGenre2() {
+		return genre2;
+	}
+
+	public void setGenre2(String genre2) {
+		this.genre2 = genre2;
 	}
 
 	public String getCountry() {
@@ -282,6 +302,14 @@ public class MovieVO {
 		this.searchGenre = searchGenre;
 	}
 
+	public int getRecommendGenre() {
+		return recommendGenre;
+	}
+
+	public void setRecommendGenre(int recommendGenre) {
+		this.recommendGenre = recommendGenre;
+	}
+
 	public String getSearchMovie() {
 		return searchMovie;
 	}
@@ -296,6 +324,14 @@ public class MovieVO {
 
 	public void setMovieType(String movieType) {
 		this.movieType = movieType;
+	}
+
+	public String getSearchOrder() {
+		return searchOrder;
+	}
+
+	public void setSearchOrder(String searchOrder) {
+		this.searchOrder = searchOrder;
 	}
 
 	public int getStart() {

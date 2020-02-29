@@ -34,7 +34,7 @@
 	</resultMap>
 
 	<select id="getGenreList" resultMap="genreList">
-		SELECT * FROM genre WHERE 1=1
+		SELECT * FROM genre WHERE genre_id != 0
 		<if test="searchGenre != null">
 			AND genre like '%' || #{searchGenre} || '%' 
 		</if> 
