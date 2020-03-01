@@ -38,35 +38,24 @@
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
 <!--===============================================================================================-->
 </head>
-
 <body>
-
-
 
 	<div class="limiter">
 		<div class="header">
 			<div class="nav">
 				<a href="#"><img class="header-logo"
 					src="client/images/oneflix_logo.png"></a>
-				<button type="button" class="btn btn-sm btn-light login-button"
-					onsubmit="return validate()" onclick="location.href='join.do'">
-					회원가입</button>
 			</div>
 		</div>
-
-
-		<div class="container-login100 sectionA">
-
-			<div>
+		<div class="container-login100 sectionA" >
 
 				<div class="wrap-login100 p-t-20 p-b-30">
-
-					<form class="login100-form validate-form" action="/loginProc.do"
-						method="post" onsubmit="return validate();">
 						<div class="login-label">
 							로그인 <span class="find-pass" OnClick="location.href='/findPass.do'">비밀번호를
 								잊어버리셨나요?</span>
 						</div>
+					<form class="login100-form validate-form" action="/loginProc.do"
+						method="post" onsubmit="return validate();">
 
 
 						<div class="wrap-input100 wrap-input100-top m-b-1">
@@ -85,29 +74,13 @@
 						</div>
 
 						<hr class="seperator">
-
-
-						<div class="wrapper">
-						<div class="guide">소셜 계정으로 로그인하기
-						 </div>
-						 <div class="social">
-							<a href="#" class="whiteA"> 
-							구글로 로그인하기
-						  	</a>
-						  </div>
-							  
-						 <div class="social">
-							<a href="#" class="whiteA"> 
-							카카오로 로그인하기
-						  	</a>
-						  </div>
-						
-						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
-						</div>
+											<p class="logindetail">소셜로그인 성공!<br>
+					   기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.</p>
+						<span class="join" OnClick="location.href='/join.do'">
+						아직 ONEFLIX 회원이 아니신가요? </span>
 					</form>
 				</div>
-			</div>
-		</div>
+    		</div>
 	</div>
 
 	<footer id="footer">
