@@ -24,8 +24,7 @@
 		<result property="replyDate" column="reply_date" />
 	</resultMap>
 
-	<select id="getInquiryList" parameterType="inquiry"
-		resultMap="inquiryList">
+	<select id="getInquiryList" parameterType="inquiry" resultMap="inquiryList">
 		SELECT *
 		FROM (
 		SELECT ROWNUM RNUM, A.*
@@ -41,10 +40,6 @@
 		<if test="start != 0">
 		AND RNUM BETWEEN #{start} AND #{end}
 		</if>
-		<if test="memberEmail != null">
-			AND member_email = #{memberEmail}
-		</if>
-
 		<if test="searchInquiryType != null">
 			AND inquiry_type = #{searchInquiryType}
 		</if>
@@ -53,9 +48,9 @@
 			OR inquiry_content like '%' || #{searchInquiry} || '%'
 		</if>
 		<if test="searchMember != null">
-			AND nick '%' || #{searchMember} || '%' 
-			OR member_email like '%' || #{searchMember} || '%'
+			AND member_email like '%' || #{searchMember} || '%'
 		</if>
+		ORDER BY inquiry_id DESC
 	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
