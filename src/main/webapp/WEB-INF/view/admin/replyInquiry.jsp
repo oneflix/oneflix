@@ -13,7 +13,6 @@
 <title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">

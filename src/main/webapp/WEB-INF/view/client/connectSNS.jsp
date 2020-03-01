@@ -38,35 +38,24 @@
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
 <!--===============================================================================================-->
 </head>
-
 <body>
-
-
 
 	<div class="limiter">
 		<div class="header">
 			<div class="nav">
 				<a href="#"><img class="header-logo"
 					src="client/images/oneflix_logo.png"></a>
-				<button type="button" class="btn btn-sm btn-light login-button"
-					onsubmit="return validate()" onclick="location.href='join.do'">
-					회원가입</button>
 			</div>
 		</div>
-
-
-		<div class="container-login100 sectionA">
-
-			<div>
+		<div class="container-login100 sectionA" >
 
 				<div class="wrap-login100 p-t-20 p-b-30">
-
-					<form class="login100-form validate-form" action="/loginProc.do"
-						method="post" onsubmit="return validate();">
 						<div class="login-label">
 							로그인 <span class="find-pass" OnClick="location.href='/findPass.do'">비밀번호를
 								잊어버리셨나요?</span>
 						</div>
+					<form class="login100-form validate-form" action="/loginProc.do"
+						method="post" onsubmit="return validate();">
 
 
 						<div class="wrap-input100 wrap-input100-top m-b-1">
@@ -85,29 +74,16 @@
 						</div>
 
 						<hr class="seperator">
-
-
-						<div class="wrapper">
-						<div class="guide">소셜 계정으로 로그인하기
-						 </div>
-						 <div class="social">
-							<a href="#" class="whiteA"> 
-							구글로 로그인하기
-						  	</a>
-						  </div>
-							  
-						 <div class="social">
-							<a href="#" class="whiteA"> 
-							카카오로 로그인하기
-						  	</a>
-						  </div>
-						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
-						</div>
+											<p class="logindetail">소셜로그인 성공!<br>
+					   기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.</p>
+						<span class="join" OnClick="location.href='/join.do'">
+						아직 ONEFLIX 회원이 아니신가요? </span>
 					</form>
 				</div>
-			</div>
-		</div>
+    		</div>
 	</div>
+	<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
+
 
 	<footer id="footer">
 
@@ -135,46 +111,12 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
-	
+
 	<!-- 네이버로그인 -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 	<script>
-	<!-- KAKAO LOGIN -->
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<!-- 네이버 로그인 -->
-	<script src="client/js/naverLogin.js"></script>
-
-	<script>
-	$(document).ready(function(){
-	    var result = "${result}";
-	    if (result == "seccess") {
-	         alert("로그인 정보가 일치하지 않습니다.");
-	    }
-	});
-	
-	
-	//카카오로그인
-	/* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
-	Kakao.Auth.createLoginButton({
-		container:'#kakao-login-btn',
-		success : function(authObj){
-			Kakao.API.request({
-				url:'/v2/user/me',
-				success: function(res){
-					alert(JSON.stringfy(res));
-				},
-				fail: function(error){
-					alert(JSON.stringfy(error));
-				}
-			});
-		},
-		fail: function(error){
-			alert(JSON.stringfy(err));
-		}
-	}); */
-
 		$(document).ready(function() {
 			var result = "${result}";
 			if (result == "success") {
@@ -184,5 +126,5 @@
 	</script>
 
 </body>
+</html> 
 
-</html>

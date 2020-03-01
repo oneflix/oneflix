@@ -76,7 +76,6 @@
 									<option value="video">재생 문의</option>
 									<option value="service">서비스 문의</option>
 								</select>
-								
 							</div>
 							<!-- /.card-header -->
 
@@ -248,22 +247,26 @@
 	//SearchBox Setting
 	$(document).ready(function() {
 		$("#item-inquiryType").hide();
+		$("#item-checkReply").hide();
 
 		$('#select-item').change(function() {
 			var selected = $("#select-item option:selected").val();
 			if (selected == "category") {
 				$("#item-inquiryType").hide();
+				$("#item-checkReply").hide();
 				$(location).prop('href', '/getInquiryListProc.mdo');
 			}
 			if (selected == "inquiryType") $("#item-inquiryType").toggle();
 			else $("#item-inquiryType").hide();
+			if (selected == "checkReply") $("#item-checkReply").toggle();
+			else $("#item-checkReply").hide();
 		  
 		})
 	});
 	//Change Value
 	$('#select-item').change(function() {
 		var selectItem = $('#select-item option:selected').val();
-		$('#selectItem').val(selectItem);
+		$('#searchAll').val(selectItem);
 	});
 */
 	
