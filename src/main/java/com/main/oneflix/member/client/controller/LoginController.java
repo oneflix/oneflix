@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.member.service.GetMemberService;
 import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.util.kakao.login.controller.KakaoLoginController;
 
 @Controller
 @SessionAttributes("member")
@@ -22,12 +23,17 @@ public class LoginController {
 		return mav;
 	}
 	@RequestMapping("/login.do")
-	public ModelAndView login(ModelAndView mav) {
+	public ModelAndView login(ModelAndView mav, HttpSession session) {
 		mav.setViewName("login");
 		return mav;
 	}
 	@RequestMapping("/loginProc.do")
 	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session){
+		//======== 카카오 로그인 url 가져오기 V ========
+		String kakaoURI = KakaoLoginController.getAuthorizationURL(session);
+		mav.addObject("kakaoURI", kakaoURI);
+		//======== 카카오 로그인 url 가져오기 ^ ========
+		
 		MemberVO member = new MemberVO();
 		member = getMemberService.getMember(vo);
 		if (!member.getPass().equals(vo.getPass())) {

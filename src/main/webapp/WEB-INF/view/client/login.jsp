@@ -93,7 +93,7 @@
 								Google로 로그인
 							</a>
 
-							<a href="#" class="btn-login-with">
+							<a href="${kakaoURI }" id="kakao-login-btn" class="btn-login-with">
 								<img src="client/images/kakao_account_login_btn_medium_wide.png">
 							</a>
 						</div>
@@ -127,7 +127,8 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
-	
+	<!-- KAKAO LOGIN -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 	<script>
 	$(document).ready(function(){
@@ -136,6 +137,28 @@
 	         alert("로그인 정보가 일치하지 않습니다.");
 	    }
 	});
+	
+	
+	//카카오로그인
+	Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
+	Kakao.Auth.createLoginButton({
+		container:'#kakao-login-btn',
+		success : function(authObj){
+			Kakao.API.request({
+				url:'/v2/user/me',
+				success: function(res){
+					alert(JSON.stringfy(res));
+				},
+				fail: function(error){
+					alert(JSON.stringfy(error));
+				}
+			});
+		},
+		fail: function(error){
+			alert(JSON.stringfy(err));
+		}
+	})
+	
 	</script>
 
 </body>
