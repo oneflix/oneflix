@@ -1,4 +1,4 @@
-package com.main.onflix.util.paging.service;
+package com.main.oneflix.util.paging.service;
 
 import com.main.oneflix.util.paging.vo.PagingVO;
 

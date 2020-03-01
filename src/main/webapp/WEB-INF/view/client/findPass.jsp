@@ -37,6 +37,23 @@
 <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
 <!--===============================================================================================-->
+<style>
+.sectionA {
+	background-color: #141517;
+	background-size: cover;
+	background-position: center;
+}
+.passdetail{
+	float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 10px;
+    font-weight: lighter;
+    opacity: 0.6;
+    color: white;
+}
+</style>
+
 </head>
 
 <body>
@@ -49,8 +66,8 @@
 				<a href="#"><img class="header-logo"
 					src="client/images/oneflix_logo.png"></a>
 				<button type="button" class="btn btn-sm btn-light login-button"
-					onsubmit="return validate()" onclick="location.href='join.do'">
-					회원가입</button>
+					onsubmit="return validate()" onclick="location.href='login.do'">
+					로그인</button>
 			</div>
 		</div>
 
@@ -61,52 +78,22 @@
 
 				<div class="wrap-login100 p-t-20 p-b-30">
 
-					<form class="login100-form validate-form" action="/loginProc.do"
-						method="post" onsubmit="return validate();">
+					<form class="login100-form validate-form" action="/findPassProc.do"
+						method="post">
 						<div class="login-label">
-							로그인 <span class="find-pass" OnClick="location.href='/findPass.do'">비밀번호를
-								잊어버리셨나요?</span>
+							비밀번호 찾기 
 						</div>
 
 
-						<div class="wrap-input100 wrap-input100-top m-b-1">
-							<input class="input100" type="text" name="email" id="email"
+						<div class="wrap-input100 wrap-input100 m-b-1" style="border-radius: 8px;">
+							<input class="input100" type="text" name="findPassEmail" id="findPassEmail"
 								autocomplete="off" placeholder="이메일">
 						</div>
-
-						<div class="wrap-input100 wrap-input100-bottom m-b-20">
-							<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
-							</span> <input class="input100" type="password" name="pass" id="pass"
-								placeholder="비밀번호">
-						</div>
+						
+						<p class="passdetail">기존에 가입하신 이메일 주소를 입력해주시면 임시주소가 발송됩니다. <br>임시주소로 들어오신 뒤 새로운 비밀 번호를 설정하세요.</p>
 
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit">로그인</button>
-						</div>
-
-						<hr class="seperator">
-
-
-						<div class="wrapper">
-						<div class="guide">소셜 계정으로 로그인하기
-						 </div>
-						 <div class="social">
-							<a href="#" class="whiteA"> 
-							구글로 로그인하기
-						  	</a>
-						  </div>
-							  
-						 <div class="social">
-							<a href="#" class="whiteA"> 
-							카카오로 로그인하기
-						  	</a>
-						  </div>
-						
-							<div class="social" id="naver_id_login">
-								<a href="${url}" class="whiteA" id="naver_id_login">
-								네이버로 로그인하기
-								</a>
-							</div>
+							<button class="login100-form-btn" type="submit">확인</button>
 						</div>
 					</form>
 				</div>
@@ -140,25 +127,16 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
-	<!-- 네이버 로그인 -->
-	<script src="client/js/naverLogin.js"></script>
-	 <script type="text/javascript">
-		var naver_id_login = new naver_id_login("pML7geIoAzold42feHKn", "http://localhost:8080/naverLoginProc.do");
-		var state = naver_id_login.getUniqState();
-		
-	    naver_id_login.response_type="code";
-	    naver_id_login.setButton=("white",10,40);
-		naver_id_login.setDomain("http://localhost:8080/naverLogin.do");
-		naver_id_login.setState(state);
-//		naver_id_login.setPopup();
-		naver_id_login.init_naver_id_login();
-	</script>
 
 	<script>
 		$(document).ready(function() {
 			var result = "${result}";
 			if (result == "success") {
-				alert("로그인 정보가 일치하지 않습니다.");
+				alert("임시비밀번호 메일이 발송되었습니다.");
+			}else if(result == "fail") {
+				alert("메일 발송에 실패했습니다. 다시한번 시도해주세요.");
+			}else if (result == "check") {
+				alert("계정이 존재하지 않습니다. 다시한번 확인해주세요.");
 			}
 		});
 	</script>

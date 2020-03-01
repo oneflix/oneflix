@@ -15,6 +15,7 @@ import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.GetInquiryService;
 import com.main.oneflix.inquiry.service.UpdateInquiryService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
+import com.main.oneflix.member.service.GetMemberListService;
 import com.main.oneflix.util.email.service.EmailService;
 
 	 
@@ -25,6 +26,8 @@ import com.main.oneflix.util.email.service.EmailService;
 		@Autowired
 		GetInquiryListService getInquiryListService;
 		@Autowired
+		GetMemberListService getMemberListService;
+		@Autowired
 		UpdateInquiryService updateInquiryService;
 		@Autowired
 		DeleteInquiryService deleteInquiryService;
@@ -34,6 +37,8 @@ import com.main.oneflix.util.email.service.EmailService;
 		//관리자화면 
 		@RequestMapping("/getInquiryListProc.mdo")
 		public ModelAndView getInquiryListProcAdmin(InquiryVO vo, ModelAndView mav) {
+			if(vo.getSearchMember() == null) vo.setSearchMember("");
+			if(vo.getSearchAll() == null) vo.setSearchAll("category");
 			List<InquiryVO> inquiryList = getInquiryListService.getInquiryList(vo);
 			mav.addObject("inquiryList", inquiryList);
 			mav.setViewName("inquiryList");
