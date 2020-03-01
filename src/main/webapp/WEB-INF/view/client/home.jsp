@@ -320,7 +320,6 @@
     <script src="client/js/swiper.js"></script>
     <script src="client/js/script.js"></script>
     <script src="client/js/ticket_modal.js"></script>
-  
     <script type="text/javascript">
     function goMovieDetail(movieId) {
             location.href = "/getMovieDetailProc.do?movieId=" + movieId;

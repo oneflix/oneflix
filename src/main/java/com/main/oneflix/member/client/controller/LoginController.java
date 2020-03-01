@@ -41,7 +41,8 @@ public class LoginController {
 	@Autowired
 	UpdateMemberService updateMemberService;
 	@Autowired
-	EmailService emailService;
+    EmailService emailService; 
+	
 
 	@RequestMapping("/oneflix.do")
 	public ModelAndView oneflix(ModelAndView mav) {
@@ -115,8 +116,36 @@ public class LoginController {
 			  return mav;
 
 	}
-
-	// 비밀번호 찾기
+	//네이버로그인하기
+	@RequestMapping(value="/naverLogin.do", method= {RequestMethod.GET,RequestMethod.POST})
+//	public ModelAndView naverLogin(ModelAndView mav,HttpSession session) {
+//		//네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
+//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//		
+//		System.out.println("네이버:" + naverAuthUrl);
+//		mav.addObject("url", naverAuthUrl);
+	public ModelAndView naverLogin(ModelAndView mav) {
+		mav.setViewName("login");
+		return mav;
+	}
+	//네이버로그인 callback
+	@RequestMapping(value="/naverLoginProc.do", method= {RequestMethod.GET,RequestMethod.POST})
+	/*
+	 * public ModelAndView naverLoginProc(ModelAndView mav,
+	 * 
+	 * @RequestParam String code, @RequestParam String state, HttpSession session)
+	 * throws IOException { System.out.println("callback message");
+	 * OAuth2AccessToken oauthToken; oauthToken =
+	 * naverLoginBO.getAccessToken(session, code, state); //1. 로그인 사용자 정보를 읽어온다.
+	 * apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
+	 * 
+	 * mav.addObject("result", apiResult);
+	 */
+	public ModelAndView naverLoginProc(ModelAndView mav, HttpSession session) {
+		mav.setViewName("home");
+		return mav;
+		}
+	//비밀번호 찾기
 	@RequestMapping("/findPass.do")
 	public ModelAndView findPass(ModelAndView mav) {
 		mav.setViewName("findPass");

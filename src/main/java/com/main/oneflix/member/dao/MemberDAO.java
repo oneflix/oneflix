@@ -12,6 +12,9 @@ public interface MemberDAO {
 	public List<MemberVO> getMemberList(MemberVO vo);
 	public void updateMember(MemberVO vo);
 	public void deleteMember(MemberVO vo);
+	
+	//카카오아이디집어넣기 
+	public void insertKakao(MemberVO vo);
 
 
 }

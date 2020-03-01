@@ -8,6 +8,12 @@
       VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}) 
  	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
    </insert>
+   
+   <insert id="insertKakao" parameterType="member" >
+      INSERT INTO member (email, nick)
+      VALUES(#{email}, #{nick})
+   </insert>
+   
    <update id="updateMember" parameterType="member">
       UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}
       WHERE email = #{email}

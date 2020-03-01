@@ -102,7 +102,15 @@
 						  	</a>
 						  </div>
 						
+<<<<<<< HEAD
 						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
+=======
+							<div class="social" id="naver_id_login">
+								<a href="${url}" class="whiteA" id="naver_id_login">
+								네이버로 로그인하기
+								</a>
+							</div>
+>>>>>>> master
 						</div>
 					</form>
 				</div>
@@ -142,6 +150,40 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 	<script>
+	<!-- KAKAO LOGIN -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<!-- 네이버 로그인 -->
+	<script src="client/js/naverLogin.js"></script>
+
+	<script>
+	$(document).ready(function(){
+	    var result = "${result}";
+	    if (result == "seccess") {
+	         alert("로그인 정보가 일치하지 않습니다.");
+	    }
+	});
+	
+	
+	//카카오로그인
+	/* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
+	Kakao.Auth.createLoginButton({
+		container:'#kakao-login-btn',
+		success : function(authObj){
+			Kakao.API.request({
+				url:'/v2/user/me',
+				success: function(res){
+					alert(JSON.stringfy(res));
+				},
+				fail: function(error){
+					alert(JSON.stringfy(error));
+				}
+			});
+		},
+		fail: function(error){
+			alert(JSON.stringfy(err));
+		}
+	}); */
+	
 		$(document).ready(function() {
 			var result = "${result}";
 			if (result == "success") {
