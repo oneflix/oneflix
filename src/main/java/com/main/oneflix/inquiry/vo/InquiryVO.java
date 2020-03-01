@@ -25,12 +25,19 @@ public class InquiryVO {
 	private int end;
 	
 	//검색
+	private String searchAll;
 	private String searchInquiry;
 	private String searchInquiryType;
 	private String searchMember;
 	private String searchCheckReply;
 	
 	
+	public String getSearchAll() {
+		return searchAll;
+	}
+	public void setSearchAll(String searchAll) {
+		this.searchAll = searchAll;
+	}
 	public Integer getInquiryId() {
 		return inquiryId;
 	}

@@ -1,9 +1,10 @@
-package com.main.onflix.util.paging.service.impl;
+package com.main.oneflix.util.paging.service.impl;
+
 
 import org.springframework.stereotype.Service;
 
+import com.main.oneflix.util.paging.service.PagingService;
 import com.main.oneflix.util.paging.vo.PagingVO;
-import com.main.onflix.util.paging.service.PagingService;
 
 @Service
 public class PagingServiceImpl implements PagingService {

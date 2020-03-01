@@ -51,7 +51,7 @@
 									<input id="searchCheckReply" type="hidden" name="searchCheckReply"/>
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="search" id="search"
+											<input type="text" name="searchInquiry"
 												class="form-control float-right" placeholder="문의제목,내용으로 검색">
 											<div class="input-group-append">
 												<button type="submit" class="btn btn-default">
@@ -75,10 +75,10 @@
 									<option value="service">서비스 문의</option>
 								</select>
 								<!-- CheckReply -->
-								<select id="item-inquiryType" name="searchInquiryType"
+								<select id="item-checkReply" name="searchCheckReply"
 									class="detail form-control form-control-sm select2bs4 display-none"
 									style="width: inherit; float: right; margin-top: 4px;">
-									<option value="category" selected="selected">답변여부</option>
+									<option value="checkReply" selected="selected">답변여부</option>
 									<option value="Y">답변</option>
 									<option value="N">미답변</option>
 								</select>
@@ -88,7 +88,8 @@
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option value="category" selected="selected">카테고리</option>
 									<option value="inquiryType">문의타입</option>
-									<option value="memberEmail">이메일</option>
+									<option value="checkReply">답변여부</option>
+									<option value="searchMember">이메일</option>
 								</select>
 							</div>
 							<!-- /.card-header -->
@@ -172,22 +173,26 @@
 	//SearchBox Setting
 	$(document).ready(function() {
 		$("#item-inquiryType").hide();
+		$("#item-checkReply").hide();
 
 		$('#select-item').change(function() {
 			var selected = $("#select-item option:selected").val();
 			if (selected == "category") {
 				$("#item-inquiryType").hide();
+				$("#item-checkReply").hide();
 				$(location).prop('href', '/getInquiryListProc.mdo');
 			}
 			if (selected == "inquiryType") $("#item-inquiryType").toggle();
 			else $("#item-inquiryType").hide();
+			if (selected == "checkReply") $("#item-checkReply").toggle();
+			else $("#item-checkReply").hide();
 		  
 		})
 	});
 	//Change Value
 	$('#select-item').change(function() {
 		var selectItem = $('#select-item option:selected').val();
-		$('#selectItem').val(selectItem);
+		$('#searchAll').val(selectItem);
 	});
 
 	$('.detail').change(
@@ -199,7 +204,30 @@
 			if (categoryId == "item-inquiryType") {
 				sendData = {"searchInquiryType" : category}
 				$("#searchInquiryType").val(category);
+				$("#searchCheckReply").val(null);
+				$("#searchMember").val(null);
 			}
+			else if (categoryId == "item-checkReply") {
+				sendData = {"searchCheckReply" : category}
+				$("#searchCheckReply").val(category);
+				$("#searchInquiryType").val(null);
+			}
+			else if (categoryId == "item-inquiryType") {
+				sendData = {"searchInquiryType" : category}
+				$("#searchInquiryType").val(category);
+				$("#searchCheckReply").val(null);
+			}
+	      $(function(){
+	    	  $('#select-item').val("${inquiry.searchAll}");
+	    	  if ("${inquiry.searchInquiryType}" != "") {
+	    		  $("#item-inquiryType").show();
+	    		  $("#item-inquiryType").val("${searchInquiryType}");
+	    	  } else if ("${inquiry.searchCheckReply}" !="") {
+	    		  $("#item-checkReply").show();
+	    		  $("#item-checkReply").val("${checkReply}");
+
+	    	  }
+	      });
 			
 			$.ajax({
 				type : 'POST',
@@ -217,8 +245,14 @@
 						receiveDate = getFormatDate(receiveDate);
 						var replyDate = new Date(inquiry.replyDate)
 						replyDate = getFormatDate(replyDate);
-
+						
+						var checkReply;
+						if (inquiry.replyDate != null) {
+						    checkReply = "답변";
+						} else {
+						    checkReply = "미답변";
 						}
+					}
 						$('#inquiryList-body').append(
 				 "<tr>" + "<td>"+ inquiry.inquiryId + "</td>"
 						+ "<td>"+ inquiry.inquiryType + "</td>"
@@ -236,10 +270,8 @@
 						+ "</div></td>" + "</tr>"
 						);
 					}
-				}
+				})
 			});
-
-		});
 	function getFormatDate(date) {
 		var year = date.getFullYear();
 		var month = (1 + date.getMonth());
