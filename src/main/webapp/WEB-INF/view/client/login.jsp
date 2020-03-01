@@ -140,9 +140,42 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
+	<!-- KAKAO LOGIN -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<!-- 네이버 로그인 -->
 	<script src="client/js/naverLogin.js"></script>
-	 <script type="text/javascript">
+
+	<script>
+	$(document).ready(function(){
+	    var result = "${result}";
+	    if (result == "seccess") {
+	         alert("로그인 정보가 일치하지 않습니다.");
+	    }
+	});
+	
+	
+	//카카오로그인
+	/* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
+	Kakao.Auth.createLoginButton({
+		container:'#kakao-login-btn',
+		success : function(authObj){
+			Kakao.API.request({
+				url:'/v2/user/me',
+				success: function(res){
+					alert(JSON.stringfy(res));
+				},
+				fail: function(error){
+					alert(JSON.stringfy(error));
+				}
+			});
+		},
+		fail: function(error){
+			alert(JSON.stringfy(err));
+		}
+	}); */
+	
+	
+		//네이버 로그인
 		var naver_id_login = new naver_id_login("pML7geIoAzold42feHKn", "http://localhost:8080/naverLoginProc.do");
 		var state = naver_id_login.getUniqState();
 		
