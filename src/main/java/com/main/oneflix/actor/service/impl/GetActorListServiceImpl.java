@@ -15,7 +15,7 @@ public class GetActorListServiceImpl implements GetActorListService {
 	
 
 	@Override
-	public List<ActorVO> getActorListService(ActorVO vo) {
+	public List<ActorVO> getActorList(ActorVO vo) {
 		return actorDAO.getActorList(vo);
 	}
 

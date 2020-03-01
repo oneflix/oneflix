@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ONEFLIX</title>
+  <title>ONeflix</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,7 +37,7 @@
         </div><!-- /.container-fluid -->
       </section>
 
-      <form action="/updateDirectorProc.mdo" class="row" method="post" name="insertDirector" onsubmit="writeCheck()">
+      <form action="/updateDirectorProc.mdo" class="row" method="post">
         <div class="col-md-3"></div> <!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
         <div class="col-md-6" style="margin-bottom: 5%;">
           <div class="card card-info">
@@ -56,7 +56,7 @@
               <br>
               <div class="buttons" style="float: right;">
                 <button type="submit" class="btn btn-success">수정</button>
-                <button type="button" class="btn btn-secondary" onclick="location.href='/getDirectorListProc.mdo'">취소</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/directorList.mdo'">취소</button>
               </div><!-- /.buttons -->
             </div> <!-- /.card-body pad -->
           </div>
@@ -73,26 +73,6 @@
 
   </div>
   <!-- ./wrapper -->
-
- 
-  <!-- Select2 -->
-  <script src="admin/plugins/select2/js/select2.full.min.js"></script>
-  <!-- Bootstrap4 Duallistbox -->
-  <script src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
-  <script>
-    $(function () {
-      //Initialize Select2 Elements
-      $('.select2').select2()
-
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      })
-      //Bootstrap Duallistbox
-      $('.duallistbox').bootstrapDualListbox()
-    })
-  </script>
 </body>
 
 </html>

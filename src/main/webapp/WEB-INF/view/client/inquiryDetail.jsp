@@ -61,7 +61,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>${inquiry.emailTitle}</td>
+						<td>${inquiry.replyTitle}</td>
 					</tr>
 				</tbody>
 				<thead class="thead-grey">
@@ -71,7 +71,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>${inquiry.emailContent}</td>
+						<td>${inquiry.replyContent}</td>
 					</tr>
 				</tbody>
 				</table>

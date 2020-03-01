@@ -10,15 +10,10 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- summernote -->
-<link rel="stylesheet"
-	href="admin/plugins/summernote/summernote-bs4.css">
 </head>
-
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -73,7 +68,7 @@
 	
 	        		<div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
 	            		<button type="submit" class="btn btn-success">등록</button>
-	            		<button type="button" class="btn btn-secondary" onclick="location.href='/getFAQListProc.mdo'">취소</button>
+	            		<button type="button" class="btn btn-secondary" onclick="location.href='/FAQList.mdo'">취소</button>
 	        		</div><!-- /.buttons -->
 	    		</div><!--editorbody-->
 				<!-- /.wrapper -->
@@ -107,19 +102,6 @@
 
 		})
 	</script>
-	<!-- Summernote -->
-	<script src="admin/plugins/summernote/summernote-bs4.min.js"></script>
-	<script src="http://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-	<script>
-		$(function() {
-			// Summernote
-			$('.textarea').summernote()
-		});
-	</script>
-    <script>
-        CKEDITOR.replace('help_content');
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </body>
 

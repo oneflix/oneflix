@@ -5,32 +5,41 @@
 <mapper namespace="ManagerDAO">
 
 	<insert id="insertManager" parameterType="manager">
-		INSERT INTO manager VALUES (#{managerId, jdbcType=VARCHAR}, #{managerPass, jdbcType=VARCHAR}, #{managerType, jdbcType=NUMERIC})
+		INSERT INTO manager VALUES (#{managerId}, #{managerPass}, #{managerType}, SYSDATE)
 	</insert>
 	<update id="updateManager" parameterType="manager">
 		UPDATE manager SET
-		manager_pass = #{managerPass, jdbcType=VARCHAR}, manager_type = #{managerType, jdbcType=NUMERIC}
-		WHERE manager_id = #{managerId, jdbcType=VARCHAR}
+		manager_pass = #{managerPass}, manager_type = #{managerType}
+		WHERE manager_id = #{managerId}
 	</update>
 	<delete id="deleteManager" parameterType="manager">
-		DELETE FROM manager WHERE manager_id = #{managerId, jdbcType=VARCHAR}
+		DELETE FROM manager WHERE manager_id = #{managerId}
 	</delete>
 	<select id="getManager" resultType="manager" parameterType="manager">
 		SELECT * FROM manager
-		WHERE manager_id = #{managerId, jdbcType=VARCHAR}
+		WHERE manager_id = #{managerId}
 	</select>
 	
 	<resultMap type="manager" id="managerList">
 		<id property="managerId" column="manager_id"/>
+		<result property="rnum" column="rnum"/>
 		<result property="managerPass" column="manager_pass"/>
 		<result property="managerType" column="manager_type"/>
+		<result property="managerRegDate" column="manager_reg_date"/>
 	</resultMap>
 	
 	<select id="getManagerList" resultMap="managerList">
-		SELECT * FROM manager
-		WHERE 1=1
-		<if test="searchManager != null"> 
-			AND manager_id like '%'||#{searchManager}||'%'
-		</if>
+		SELECT *
+		FROM (SELECT ROWNUM rnum, M.*
+				FROM (SELECT * 
+						FROM manager
+						WHERE 1 = 1
+						<if test="searchManager != null and searchManager != ''">
+							AND manager_id like '%'||#{searchManager}||'%'
+						</if>
+						ORDER BY manager_reg_date
+					) M
+			)
+		ORDER BY rnum DESC
 	</select>
 </mapper>

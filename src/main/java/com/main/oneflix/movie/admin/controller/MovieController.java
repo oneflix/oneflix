@@ -87,7 +87,7 @@ public class MovieController {
 	@RequestMapping("/insertMovie.mdo")
 	public ModelAndView insertMovie(ModelAndView mav) {
 		List<DirectorVO> directorList = getDirectorListService.getDirectorList(new DirectorVO());
-		List<ActorVO> actorList = getActorListService.getActorListService(new ActorVO());
+		List<ActorVO> actorList = getActorListService.getActorList(new ActorVO());
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		mav.addObject("directorList", directorList);
 		mav.addObject("actorList", actorList);
@@ -124,7 +124,7 @@ public class MovieController {
 	public ModelAndView getMovieProc(MovieVO vo, ModelAndView mav) {
 		vo = getMovieService.getMovie(vo);
 		List<DirectorVO> directorList = getDirectorListService.getDirectorList(new DirectorVO());
-		List<ActorVO> actorList = getActorListService.getActorListService(new ActorVO());
+		List<ActorVO> actorList = getActorListService.getActorList(new ActorVO());
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		mav.addObject("directorList", directorList);
 		mav.addObject("actorList", actorList);

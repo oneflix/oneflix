@@ -6,16 +6,13 @@
 
 	<insert id="insertActor" parameterType="actor">
 		INSERT INTO actor
-		(actor_id, actor_name, actor_age)
-		VALUES((select nvl(max(actor_id),0)+1
-		from actor), #{actorName, jdbcType=VARCHAR}, #{actorAge,
-		jdbcType=NUMERIC})
+		VALUES((SELECT NVL(MAX(actor_id),0)+1 FROM actor),
+		#{actorName}, #{actorAge})
 	</insert>
 	<update id="updateActor" parameterType="actor">
 		UPDATE actor SET
-		actor_name = #{actorName, jdbcType=VARCHAR}, actor_age = #{actorAge,
-		jdbcType=NUMERIC}
-		WHERE actor_id = #{actorId, jdbcType=NUMERIC}
+		actor_name = #{actorName}, actor_age = #{actorAge}
+		WHERE actor_id = #{actorId}
 	</update>
 	<delete id="deleteActor" parameterType="actor">
 		DELETE FROM actor
@@ -23,20 +20,27 @@
 	</delete>
 	<select id="getActor" parameterType="actor" resultType="actor">
 		SELECT * FROM actor
-		WHERE actor_id = #{actorId, jdbcType=NUMERIC}
+		WHERE actor_id = #{actorId}
 	</select>
 	<resultMap type="actor" id="actorList">
 		<id property="actorId" column="actor_id" />
+		<result property="rnum" column="rnum" />
 		<result property="actorName" column="actor_name" />
 		<result property="actorAge" column="actor_age" />
 	</resultMap>
 	<select id="getActorList" resultMap="actorList">
-		SELECT * FROM actor WHERE actor_id != 0
-		<if test="searchActor != null">
-			AND actor_name like '%'||#{searchActor}||'%'
-		</if>
-		ORDER BY
-		actor_id ASC
+		SELECT *
+		FROM (SELECT ROWNUM rnum, A.*
+				FROM (SELECT * 
+						FROM actor
+						WHERE actor_id != 0
+						<if test="searchActor != null and searchActor != ''">
+							AND actor_name like '%'||#{searchActor}||'%'
+						</if>
+						ORDER BY actor_id
+					) A
+			)
+		ORDER BY rnum DESC
 	</select>
 
 </mapper>

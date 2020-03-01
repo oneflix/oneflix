@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -49,21 +49,21 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<form class="form-inline ml-3"
+								<div class="form-inline ml-3"
 									style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="table_search"
+											<input type="text" name="searchEmail " id="searchEmail"
 												class="form-control float-right" placeholder="Search">
 
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button id="search-button" type="button" class="btn btn-default">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 								<div class="form-inline" style="margin-top: 4px;">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -78,8 +78,7 @@
 								<div class="form-inline ml-3" style="margin-top: 10px; display: flex">
 									<label>합계</label>
 									<input class="total-sales" type="text"
-										value="<fmt:formatNumber type="currency" value="${totalSales}"></fmt:formatNumber>"
-										style="text-align: right; width: 150px;  border: 0;" readonly>
+										style="font-size: 19px; padding-left: 20px; text-align: left; width: 170px;  border: 0;" readonly>
 								</div>
 
 								<table id="salesTable" class="table table-bordered table-hover">
@@ -115,7 +114,9 @@
 <script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
 	var table;
-	var selectDate; 
+	var selectDate;
+	var searchEmail;
+	var totalSales;
 	
 	//Date range picker
     $('#reservation').daterangepicker();
@@ -139,6 +140,81 @@
       }
     );
     
+    // Data Table
+    $(document).ready(function() {
+    	selectDate = getStartEnd();
+    	
+    	table = $('#salesTable').DataTable({
+    		pageLength: 10,
+    		pagingType: "simple_numbers",
+    		lengthChange: false,
+    		info: false,
+    		responsive: true,
+    		autoWidth: false,
+    		processing: true,
+    		searching: false,
+    		ordering: true,
+    		order: [[0, 'desc']],
+    		language: {
+    			"processing": "잠시만 기다려주세요.",
+    			"paginate": {
+    				"previous": "이전",
+    				"next": "다음"
+    			}
+    		},
+    		ajax: {
+    			"type": "POST",
+    			"url": "/getSalesListProcAjax.mdo",
+    			"data": function(sendData) {
+    				sendData.startDate = selectDate[0];
+    				sendData.endDate = selectDate[1];
+    				sendData.searchEmail = searchEmail;
+    				console.log(sendData);
+    			},
+    			"dataSrc":function(response) {
+    				totalSales = response.totalSales.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' })
+    				$('.total-sales').val(totalSales);
+    				return response.data;
+    			}
+    		},
+   			columns: [
+   				{data: "rnum"},
+   				{data: "email"},
+   				{data: "ticketName"},
+   				{data: "ticketPrice",
+   					render: function(data){
+   						data = new Number(data);
+   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
+   						return data;
+   					}},
+   				{data: "paymentDate",
+   					render: function(data) {
+   						data = getFormatDate(data);
+   						return data;
+   					}}
+   			]
+    	});
+    	
+    });
+    
+    $('#reservation').change(function(){
+		selectDate = getStartEnd();
+		searchEmail = $('#searchEmail').val();
+		table.ajax.reload();
+    });
+    
+    $('#search-button').click(function() {
+    	selectDate = getStartEnd();
+    	searchEmail = $('#searchEmail').val();
+    	table.ajax.reload();
+    });
+    
+    $("#searchEmail").keydown(function(key) {
+        if (key.keyCode == 13) {
+        	$('#search-button').trigger('click');
+        }
+    });
+    
     function getStartEnd() {
     	var date = $('#reservation').val();
     	var start = date.split('-')[0];
@@ -159,61 +235,7 @@
 		day = day >= 10 ? day : '0' + day;
 		return year + '-' + month + '-' + day;
 	}
-    
-    $(document).ready(function() {
-    	var columns = ["RNUM", "EMAIL", "TICKET_NAME", "TICKET_PRICE", "PAYMENT_DATE"];
-    	selectDate = getStartEnd();
-    	
-    	$('#salesTable').DataTable({
-    		
-    		pageLength: 10,
-    		lengthChange: false,
-    		info: false,
-    		//order: [[ 0, "desc" ], [1, "asc"]],
-    		//order: [] //정렬 안할때
-    		//pagingType: "full_numbers",
-    		bPaginate: true,
-    		bLengthChange: true,
-    		//lengthMenu :[[1, 3, 5, 10, -1], [1, 3, 5, 10, "All"]],
-    		responsive: true,
-    		bAutoWidth: false,
-    		processing: true,
-    		ordering: true,
-    		bServerSide: true,
-    		searching: false,
-    		
-    		ajax: {
-    			"type": "POST",
-    			"url": "/getSalesListProcAjax.mdo",
-    			"data": function(sendData) {
-    				sendData.startDate = selectDate[0];
-    				sendData.endDate = selectDate[1];
-    			},
-    		},
-   			columns: [
-   				{data: "rnum"},
-   				{data: "email"},
-   				{data: "ticketName"},
-   				{data: "ticketPrice",
-   					render: function(data){
-   						data = new Number(data);
-   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
-   						return data;
-   					}},
-   				{data: "paymentDate",
-   					render: function(data) {
-   						data = getFormatDate(data);
-   						return data;
-   					}}
-   			]
-    	});
-    });
-    
-    $('#reservation').change(function(){
-		selectDate = getStartEnd();
-		$('#salesTable').DataTable().ajax.reload(null, false);
-    });
-    
+
 </script>
 
 </body>

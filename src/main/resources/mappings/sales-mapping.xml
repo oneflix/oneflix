@@ -26,9 +26,13 @@
 					WHERE s.ticket_id = t.ticket_id
 					AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 					AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
-					ORDER BY s.sales_id
-			 ) S
-		)
+					<if test="searchSales != null and searchSales != ''">
+						AND s.email like '%'||#{searchSales}||'%'
+					</if>
+					ORDER BY s.payment_date
+			 		) S
+				)
+			ORDER BY rnum DESC
 	</select>
 
 	<select id="getSales" parameterType="sales" resultType="sales">
@@ -64,16 +68,12 @@
 		FROM sales s, ticket t
 		WHERE s.ticket_id = t.ticket_id
 		AND s.sales_status = 'success'
-		<choose>
-			<when test="startDate != null || endDate != null">
-				<![CDATA[
-					AND	payment_date >= TO_DATE(#{startDate}, 'YYYYMMDD')
-					AND payment_date <= TO_DATE(#{endDate}, 'YYYYMMDD')
-				]]>
-			</when>
-			<otherwise>
-				AND TO_CHAR(payment_date, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
-			</otherwise>
-		</choose>
+			<if test="startDate != null || endDate != null">
+				AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+				AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
+			</if>
+			<if test="searchSales != null and searchSales != ''">
+				AND s.email like '%'||#{searchSales}||'%'
+			</if>
 	</select>
 </mapper>

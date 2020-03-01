@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.main.oneflix.actor.dao.ActorDAO;
 import com.main.oneflix.actor.service.DeleteActorService;
-import com.main.oneflix.actor.service.GetActorService;
 import com.main.oneflix.actor.vo.ActorVO;
 
 @Service
@@ -15,7 +14,7 @@ public class DeleteActorServiceImpl implements DeleteActorService {
 	private ActorDAO actorDAO;
 
 	@Override
-	public void deleteActorService(ActorVO vo) {
+	public void deleteActor(ActorVO vo) {
 		actorDAO.deleteActor(vo);
 	}
 
