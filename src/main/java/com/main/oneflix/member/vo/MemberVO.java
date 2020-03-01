@@ -18,12 +18,43 @@ public class MemberVO {
 	private String searchCert;
 	private String searchBan;
 	private Date joinDate;
+	
 	private String grant_type;
 	private String client_id;
 	private String client_secreat;
 	private String redirect_uri;
 	private String code;
 	private String refresh_token;
+	
+	private String google;
+	private String kakao;
+	private String naver;
+	
+	
+
+	public String getGoogle() {
+		return google;
+	}
+
+	public void setGoogle(String google) {
+		this.google = google;
+	}
+
+	public String getKakao() {
+		return kakao;
+	}
+
+	public void setKakao(String kakao) {
+		this.kakao = kakao;
+	}
+
+	public String getNaver() {
+		return naver;
+	}
+
+	public void setNaver(String naver) {
+		this.naver = naver;
+	}
 
 	public String getEmail() {
 		return email;
