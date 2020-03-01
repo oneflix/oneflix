@@ -29,8 +29,6 @@ public class MemberVO {
 	private String google;
 	private String kakao;
 	private String naver;
-	
-	
 
 	public String getGoogle() {
 		return google;

@@ -84,6 +84,7 @@
 	</div>
 	<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
 
+
 	<footer id="footer">
 
 		<p>
@@ -125,5 +126,5 @@
 	</script>
 
 </body>
-
 </html> 
+

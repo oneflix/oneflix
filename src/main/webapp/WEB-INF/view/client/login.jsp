@@ -101,12 +101,7 @@
 							카카오로 로그인하기
 						  	</a>
 						  </div>
-						
-							<div class="social" id="naver_id_login">
-								<a href="${url}" class="whiteA" id="naver_id_login">
-								네이버로 로그인하기
-								</a>
-							</div>
+						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
 						</div>
 					</form>
 				</div>
@@ -140,6 +135,12 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
+	
+	<!-- 네이버로그인 -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script>
 	<!-- KAKAO LOGIN -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<!-- 네이버 로그인 -->
@@ -174,7 +175,6 @@
 		}
 	}); */
 
-	<script>
 		$(document).ready(function() {
 			var result = "${result}";
 			if (result == "success") {

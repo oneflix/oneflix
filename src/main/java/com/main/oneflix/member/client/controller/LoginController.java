@@ -3,7 +3,6 @@ package com.main.oneflix.member.client.controller;
 import java.io.IOException;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -26,12 +25,13 @@ import com.main.oneflix.util.naver.login.NaverLoginBO;
 
 @Controller
 public class LoginController {
-	//네이버 로그인
+	// 네이버 로그인
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
+
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-	this.naverLoginBO = naverLoginBO;
+		this.naverLoginBO = naverLoginBO;
 	}
 
 	@Autowired
@@ -41,11 +41,13 @@ public class LoginController {
 	@Autowired
     EmailService emailService; 
 	
+
 	@RequestMapping("/oneflix.do")
 	public ModelAndView oneflix(ModelAndView mav) {
 		mav.setViewName("oneflix");
 		return mav;
 	}
+
 	@RequestMapping(value="/login.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView login(ModelAndView mav, HttpSession session) {
 		//네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
@@ -54,6 +56,7 @@ public class LoginController {
 		mav.setViewName("login");
 		return mav;
 	}
+
 	@RequestMapping("/loginProc.do")
 	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session){
 		MemberVO member = new MemberVO();
@@ -126,45 +129,47 @@ public class LoginController {
 		mav.setViewName("findPass");
 		return mav;
 	}
+
 	@RequestMapping("/findPassProc.do")
-	public ModelAndView findPassProc(MemberVO vo,ModelAndView mav, @RequestParam("findPassEmail") String findPassEmail) {
-		//임시 비밀번호 생성
-        String tempPass = UUID.randomUUID().toString();
-        //uuid 32 자리중 8자리만 끊기 
-        tempPass = tempPass.split("-")[0];
-        vo.setEmail(findPassEmail);
-        vo = getMemberService.getMember(vo);
-        if(vo != null) {
-        	try {
-        		InquiryVO inquiry = new InquiryVO();
-        		inquiry.setMemberEmail(findPassEmail);
-        		inquiry.setEmailTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
-        		inquiry.setEmailContent(
-        		"임시 비밀번호는 ["+tempPass+"] 입니다. <br> 로그인 후 비밀번호를 재설정 해주세요. "
-        		+ "<br> <a href='http://localhost:8080/login.do'>ONEFLIX로 이동하기</a>");
-        		emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
-        		vo.setPass(tempPass);
-        		updateMemberService.updateMember(vo);
-        		mav.addObject("result", "success"); 
-        		mav.setViewName("login");
-        		return mav;
-        	} catch (Exception e) {
-        		e.printStackTrace();
-        		mav.addObject("result", "fail"); 
-        		mav.setViewName("findPass");
-        		return mav;
-        	}
-        }else{
-    		mav.addObject("result", "check"); 
-    		mav.setViewName("findPass");
-    		return mav;
-        }
-}
-	@RequestMapping("/logout.do")
-	public ModelAndView logout(MemberVO vo, ModelAndView mav,HttpSession session) {
-			session.invalidate();
-			mav.setViewName("oneflix");
+	public ModelAndView findPassProc(MemberVO vo, ModelAndView mav,
+			@RequestParam("findPassEmail") String findPassEmail) {
+		// 임시 비밀번호 생성
+		String tempPass = UUID.randomUUID().toString();
+		// uuid 32 자리중 8자리만 끊기
+		tempPass = tempPass.split("-")[0];
+		vo.setEmail(findPassEmail);
+		vo = getMemberService.getMember(vo);
+		if (vo != null) {
+			try {
+				InquiryVO inquiry = new InquiryVO();
+				inquiry.setMemberEmail(findPassEmail);
+				inquiry.setEmailTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
+				inquiry.setEmailContent("임시 비밀번호는 [" + tempPass + "] 입니다. <br> 로그인 후 비밀번호를 재설정 해주세요. "
+						+ "<br> <a href='http://localhost:8080/login.do'>ONEFLIX로 이동하기</a>");
+				emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
+				vo.setPass(tempPass);
+				updateMemberService.updateMember(vo);
+				mav.addObject("result", "success");
+				mav.setViewName("login");
+				return mav;
+			} catch (Exception e) {
+				e.printStackTrace();
+				mav.addObject("result", "fail");
+				mav.setViewName("findPass");
+				return mav;
+			}
+		} else {
+			mav.addObject("result", "check");
+			mav.setViewName("findPass");
 			return mav;
+		}
+	}
+
+	@RequestMapping("/logout.do")
+	public ModelAndView logout(MemberVO vo, ModelAndView mav, HttpSession session) {
+		session.invalidate();
+		mav.setViewName("oneflix");
+		return mav;
 	}
 
 }
