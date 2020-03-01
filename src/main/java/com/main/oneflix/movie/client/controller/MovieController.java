@@ -22,7 +22,6 @@ import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
 import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.vo.TicketVO;
-import com.main.oneflix.watch.service.GetCountWatchGenreService;
 
 @Controller
 public class MovieController {
