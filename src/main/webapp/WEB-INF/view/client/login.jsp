@@ -101,16 +101,7 @@
 							카카오로 로그인하기
 						  	</a>
 						  </div>
-						
-<<<<<<< HEAD
 						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
-=======
-							<div class="social" id="naver_id_login">
-								<a href="${url}" class="whiteA" id="naver_id_login">
-								네이버로 로그인하기
-								</a>
-							</div>
->>>>>>> master
 						</div>
 					</form>
 				</div>
@@ -183,7 +174,7 @@
 			alert(JSON.stringfy(err));
 		}
 	}); */
-	
+
 		$(document).ready(function() {
 			var result = "${result}";
 			if (result == "success") {

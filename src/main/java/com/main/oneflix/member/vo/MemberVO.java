@@ -19,11 +19,6 @@ public class MemberVO {
 	private String searchBan;
 	private Date joinDate;
 	
-	private String google;
-	private String kakao;
-	private String naver;
-	
-	//카카오 로그인
 	private String grant_type;
 	private String client_id;
 	private String client_secreat;
@@ -31,6 +26,10 @@ public class MemberVO {
 	private String code;
 	private String refresh_token;
 	
+	private String google;
+	private String kakao;
+	private String naver;
+
 	public String getGoogle() {
 		return google;
 	}
