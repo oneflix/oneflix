@@ -14,6 +14,7 @@ import com.main.oneflix.genre.service.GetGenreListService;
 import com.main.oneflix.genre.vo.GenreVO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.movie.service.GetMovieListService;
+import com.main.oneflix.movie.service.GetMovieService;
 import com.main.oneflix.movie.service.GetRecommendMovieListService;
 import com.main.oneflix.movie.vo.MovieVO;
 import com.main.oneflix.review.service.GetReviewListService;
@@ -21,7 +22,6 @@ import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
 import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.vo.TicketVO;
-import com.main.oneflix.watch.service.GetCountWatchGenreService;
 
 @Controller
 public class MovieController {
@@ -33,6 +33,8 @@ public class MovieController {
 	@Autowired
 	private GetGenreListService getGenreListService;
 	@Autowired
+	private GetMovieService getMovieService;
+	@Autowired
 	private GetReviewListService getReviewListService;
 	@Autowired
 	private GetReviewService getReviewService;
@@ -41,6 +43,7 @@ public class MovieController {
 	
 	@RequestMapping("/getMovieDetailProc.do")
 	public ModelAndView getMovieDetailProc(MovieVO vo, HttpSession session, ModelAndView mav) {
+		vo = getMovieService.getMovie(vo);
 		MemberVO mem = new MemberVO();
 		mem.setEmail("purple@mail.com");
 		session.setAttribute("member", mem);
@@ -55,7 +58,7 @@ public class MovieController {
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("myReview", myReview);
-		mav.addObject("movieId", vo.getMovieId());
+		mav.addObject("movie", vo);
 		mav.setViewName("movieDetail");
 		return mav;
 	}

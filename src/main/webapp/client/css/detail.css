@@ -2,7 +2,7 @@
 .css-1goh5jy-Main {
     min-height: 100%;
     flex: 1 1 0%;
-    background: rgb(20, 21, 23);
+    background: #0B0C0D;
 }
 /* 페이지 메인 */
 main {
@@ -56,7 +56,7 @@ main {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-image: url(https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_720,q_80,w_1280/v1463384896/mu5k7x-2033.jpg);
+    /*background-image: url(https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_720,q_80,w_1280/v1463384896/mu5k7x-2033.jpg);*/
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
