@@ -142,9 +142,9 @@ public class LoginController {
 		if (vo != null) {
 			try {
 				InquiryVO inquiry = new InquiryVO();
-				inquiry.setMemberEmail(findPassEmail);
-				inquiry.setEmailTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
-				inquiry.setEmailContent("임시 비밀번호는 [" + tempPass + "] 입니다. <br> 로그인 후 비밀번호를 재설정 해주세요. "
+				inquiry.setEmail(findPassEmail);
+				inquiry.setReplyTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
+				inquiry.setReplyContent("임시 비밀번호는 [" + tempPass + "] 입니다. <br> 로그인 후 비밀번호를 재설정 해주세요. "
 						+ "<br> <a href='http://localhost:8080/login.do'>ONEFLIX로 이동하기</a>");
 				emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
 				vo.setPass(tempPass);
