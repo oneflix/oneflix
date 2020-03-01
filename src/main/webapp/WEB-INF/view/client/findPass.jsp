@@ -131,7 +131,7 @@
 	<script>
 		$(document).ready(function() {
 			var result = "${result}";
-			if (result == "seccess") {
+			if (result == "success") {
 				alert("임시비밀번호 메일이 발송되었습니다.");
 			}else if(result == "fail") {
 				alert("메일 발송에 실패했습니다. 다시한번 시도해주세요.");

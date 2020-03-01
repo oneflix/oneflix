@@ -3,6 +3,7 @@ package com.main.oneflix.member.client.controller;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,26 +68,30 @@ public class LoginController {
 
 	//네이버로그인하기
 	@RequestMapping(value="/naverLogin.do", method= {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView naverLogin(ModelAndView mav,HttpSession session) {
-		//네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		
-		System.out.println("네이버:" + naverAuthUrl);
-		mav.addObject("url", naverAuthUrl);
+//	public ModelAndView naverLogin(ModelAndView mav,HttpSession session) {
+//		//네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
+//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//		
+//		System.out.println("네이버:" + naverAuthUrl);
+//		mav.addObject("url", naverAuthUrl);
+	public ModelAndView naverLogin(ModelAndView mav) {
 		mav.setViewName("login");
 		return mav;
 	}
 	//네이버로그인 callback
 	@RequestMapping(value="/naverLoginProc.do", method= {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView naverLoginCallback(ModelAndView mav,
-		@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
-		System.out.println("callback message");
-		OAuth2AccessToken oauthToken;
-		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		//1. 로그인 사용자 정보를 읽어온다.
-		apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
-
-		mav.addObject("result", apiResult);
+	/*
+	 * public ModelAndView naverLoginProc(ModelAndView mav,
+	 * 
+	 * @RequestParam String code, @RequestParam String state, HttpSession session)
+	 * throws IOException { System.out.println("callback message");
+	 * OAuth2AccessToken oauthToken; oauthToken =
+	 * naverLoginBO.getAccessToken(session, code, state); //1. 로그인 사용자 정보를 읽어온다.
+	 * apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
+	 * 
+	 * mav.addObject("result", apiResult);
+	 */
+	public ModelAndView naverLoginProc(ModelAndView mav, HttpSession session) {
 		mav.setViewName("home");
 		return mav;
 		}
@@ -101,30 +106,32 @@ public class LoginController {
 		//임시 비밀번호 생성
         String tempPass = UUID.randomUUID().toString();
         //uuid 32 자리중 8자리만 끊기 
-        tempPass = tempPass.split(tempPass, '-')[0];
-        System.out.println(tempPass);
+        tempPass = tempPass.split("-")[0];
         vo.setEmail(findPassEmail);
         vo = getMemberService.getMember(vo);
         if(vo != null) {
         	try {
         		InquiryVO inquiry = new InquiryVO();
+        		inquiry.setMemberEmail(findPassEmail);
+        		inquiry.setEmailTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
+        		inquiry.setEmailContent(
+        		"임시 비밀번호는 ["+tempPass+"] 입니다. <br> 로그인 후 비밀번호를 재설정 해주세요. "
+        		+ "<br> <a href='http://localhost:8080/login.do'>ONEFLIX로 이동하기</a>");
+        		emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
         		vo.setPass(tempPass);
         		updateMemberService.updateMember(vo);
-        		inquiry.setEmailTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
-        		inquiry.setEmailContent("임시 비밀번호는 "+tempPass+"입니다. 로그인 후 비밀번호를 재설정 해주세요.");
-        		emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
         		mav.addObject("result", "success"); 
         		mav.setViewName("login");
         		return mav;
         	} catch (Exception e) {
         		e.printStackTrace();
         		mav.addObject("result", "fail"); 
-        		mav.setViewName("redirect:/findPass.do");
+        		mav.setViewName("findPass");
         		return mav;
         	}
         }else{
     		mav.addObject("result", "check"); 
-    		mav.setViewName("redirect:/findPass.do");
+    		mav.setViewName("findPass");
     		return mav;
         }
 }

@@ -37,14 +37,6 @@
 <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
 <!--===============================================================================================-->
-<style>
-.sectionA {
-	background-color: #141517;
-	background-size: cover;
-	background-position: center;
-}
-</style>
-
 </head>
 
 <body>
@@ -95,20 +87,27 @@
 						<hr class="seperator">
 
 
-						<div>
-							<a href="#" class="btn-login-with m-b-10"> <i
-								class="fa fa-google"></i> Google로 로그인
-							</a> <a href="#" class="btn-login-with"> <img
-								src="client/images/kakao_account_login_btn_medium_wide.png">
-							</a>
-							<div id="naver_id_login">
-								<a href="${url}" id="naver_id_login" class="btn-login-with m-b-10"> <img
-									src="client/images/naver_login_kor.PNG"
-									style="margin-top: 10%;">
+						<div class="wrapper">
+						<div class="guide">소셜 계정으로 로그인하기
+						 </div>
+						 <div class="social">
+							<a href="#" class="whiteA"> 
+							구글로 로그인하기
+						  	</a>
+						  </div>
+							  
+						 <div class="social">
+							<a href="#" class="whiteA"> 
+							카카오로 로그인하기
+						  	</a>
+						  </div>
+						
+							<div class="social" id="naver_id_login">
+								<a href="${url}" class="whiteA" id="naver_id_login">
+								네이버로 로그인하기
 								</a>
 							</div>
 						</div>
-
 					</form>
 				</div>
 			</div>
@@ -141,37 +140,27 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
-<<<<<<< HEAD
 	<!-- 네이버 로그인 -->
+	<script src="client/js/naverLogin.js"></script>
 	 <script type="text/javascript">
 		var naver_id_login = new naver_id_login("pML7geIoAzold42feHKn", "http://localhost:8080/naverLoginProc.do");
 		var state = naver_id_login.getUniqState();
 		
-	 	naver_id_login.setButton("white", 2,40);
+	    naver_id_login.response_type="code";
+	    naver_id_login.setButton=("white",10,40);
 		naver_id_login.setDomain("http://localhost:8080/naverLogin.do");
 		naver_id_login.setState(state);
-		naver_id_login.setPopup();
+//		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
 	</script>
 
 	<script>
 		$(document).ready(function() {
 			var result = "${result}";
-			if (result == "seccess") {
+			if (result == "success") {
 				alert("로그인 정보가 일치하지 않습니다.");
 			}
 		});
-=======
-	
-
-	<script>
-	$(document).ready(function(){
-	    var result = "${result}";
-	    if (result == "seccess") {
-	         alert("로그인 정보가 일치하지 않습니다.");
-	    }
-	});
->>>>>>> master
 	</script>
 
 </body>
