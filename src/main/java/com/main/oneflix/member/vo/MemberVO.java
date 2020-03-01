@@ -20,6 +20,7 @@ public class MemberVO {
 	private Date joinDate;
 	private String grant_type;
 	private String client_id;
+	private String client_secreat;
 	private String redirect_uri;
 	private String code;
 	private String refresh_token;
@@ -160,6 +161,14 @@ public class MemberVO {
 		this.client_id = client_id;
 	}
 
+	public String getClient_secreat() {
+		return client_secreat;
+	}
+
+	public void setClient_secreat(String client_secreat) {
+		this.client_secreat = client_secreat;
+	}
+
 	public String getRedirect_uri() {
 		return redirect_uri;
 	}
@@ -183,8 +192,5 @@ public class MemberVO {
 	public void setRefresh_token(String refresh_token) {
 		this.refresh_token = refresh_token;
 	}
-	
-	
-	
 
 }

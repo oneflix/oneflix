@@ -93,7 +93,7 @@
 								Google로 로그인
 							</a>
 
-							<a href="${kakaoURI }" id="kakao-login-btn" class="btn-login-with">
+							<a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" id="kakao-login-btn" class="btn-login-with">
 								<img src="client/images/kakao_account_login_btn_medium_wide.png">
 							</a>
 						</div>
@@ -140,7 +140,7 @@
 	
 	
 	//카카오로그인
-	Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
+	/* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
 	Kakao.Auth.createLoginButton({
 		container:'#kakao-login-btn',
 		success : function(authObj){
@@ -157,7 +157,7 @@
 		fail: function(error){
 			alert(JSON.stringfy(err));
 		}
-	})
+	}); */
 	
 	</script>
 

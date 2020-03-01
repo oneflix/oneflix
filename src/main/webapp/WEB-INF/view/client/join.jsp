@@ -113,13 +113,13 @@
 						<hr class="seperator">
 
 
-						<div>
+						<!-- <div>
 							<a href="#" class="btn-login-with m-b-10"> <i
 								class="fa fa-google"></i> Google 계정으로 가입하기
 							</a> <a href="#" class="btn-login-with m-b-10"> <i
 								class="fa fa-keyboard-o"></i> KAKAO 계정으로 가입하기
 							</a>
-						</div>
+						</div> -->
 						<input type="hidden" name="cert" value="N"/>
 						<input type="hidden" name="ban" value="N"/>
 					</form>
