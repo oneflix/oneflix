@@ -14,4 +14,12 @@ public interface KakaoConst {
 	static final String PAYMENT_READY_PATH = "/v1/payment/ready";
 	static final String PAYMENT_APPROVE_PATH = "/v1/payment/approve";
 	static final String PAYMENT_SUBSCRIP_PATH = "/v1/payment/subscription";
+	
+	static final String KAKAO_CLIENT_ID = "1820aaaf12b6f3ad68c37261ecbf9eed";
+	static final String KAKAO_REDIRECT_URI = "http://localhost:8080/kakao_oauth.do";
+	static final String KAKAO_REQUEST_URL = "https://kauth.kakao.com/oauth/token";
+	static final String KAKAO_URI = "https://kauth.kakao.com.oauth/authorize?"
+									+"client_id" + KAKAO_CLIENT_ID + "&redirect_uri="
+									+ KAKAO_REDIRECT_URI + "&response_type=code";
+	
 }

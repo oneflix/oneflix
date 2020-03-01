@@ -46,5 +46,10 @@ public class OracleMemberDAO implements MemberDAO {
 		return sqlSessionTemplate.selectOne("MemberDAO.getMemberAdmin", vo);
 	}
 
+	@Override
+	   public void insertKakao(MemberVO vo) {
+	      //kakao email name insert
+	      sqlSessionTemplate.insert("MemberDAO.insertKakao", vo);
+	   }
 
 }

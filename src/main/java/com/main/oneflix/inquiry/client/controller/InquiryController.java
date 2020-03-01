@@ -13,8 +13,8 @@ import com.main.oneflix.inquiry.service.GetInquiryService;
 import com.main.oneflix.inquiry.service.InsertInquiryService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
 import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.util.paging.service.PagingService;
 import com.main.oneflix.util.paging.vo.PagingVO;
-import com.main.onflix.util.paging.service.PagingService;
 
 @Controller
 public class InquiryController {
