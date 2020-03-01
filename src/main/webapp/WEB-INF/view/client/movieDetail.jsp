@@ -20,6 +20,16 @@
 <link rel="stylesheet" href="client/css/customBS.css">
 <link rel="stylesheet" href="client/css/movie_layout.css">
 <link rel="stylesheet" href="client/css/detail.css">
+<style>
+	.after::after {
+		content: "  ·  ";
+	}
+	.swiper-button-prev {display: none;}
+    .swiper-button-next,
+    .swiper-button-prev {opacity: 0; transition: opacity 0.5s ease-in-out;}
+    .swiper-container:hover .swiper-button-next,
+    .swiper-container:hover .swiper-button-prev {opacity: 0.35;}
+</style>
 </head>
 
 <body>
@@ -35,63 +45,96 @@
 						<div class="css-9uh69i-EmbedFade enter-done">
 							<div class="css-w7y03q-Self-Embed">
 								<div class="css-esw2c3-BackgroundImageWrapper e1la0pie3">
-									<div
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_720,q_80,w_1280/v1463384896/mu5k7x-2033.jpg"
+									<div style="background-image: url(${pageContext.request.contextPath}/${movie.posterPath};"
 										class="css-vvtnaj-BackgroundImage e1la0pie1"></div>
 									<div class="css-1pm051q-BackgroundOpacity e1la0pie2"></div>
 									<div class="css-1dq2ns1-BackgroundShadowLeft e1la0pie4"></div>
 								</div>
 								<div class="css-kdlm68-ContentInfo">
-									<h1 class="css-1u794dh-Title e1la0pie10">페어런트 트랩</h1>
+									<h1 class="css-1u794dh-Title e1la0pie10">${movie.movieTitle}</h1>
 									<div class="css-1ou0qey-Self-ContentMetaCreditWithPredicted">
 										<div class="css-1fqvgwp-Ratings">
 											<div class="css-peygdp-RatingBox eyuu5hp2">
 												<div class="css-1o71ahp-RatingBoxLabel eyuu5hp3">평균 별점</div>
-												<div class="css-m6lih3-RatingBoxValue eyuu5hp4">3.9</div>
+												<div class="css-m6lih3-RatingBoxValue eyuu5hp4">${movie.movieScore}</div>
 											</div>
 										</div>
-										<div class="eyuu5hp1 css-mnz9vt-Self-ContentMeta e1gitfbg0">전체
-											• 2시간 7분</div>
+										<div class="eyuu5hp1 css-mnz9vt-Self-ContentMeta e1gitfbg0">
+											<c:choose>
+												<c:when test="${movie.rating eq 'all'}">
+													전체 관람가
+												</c:when>
+												<c:when test="${movie.rating eq '12'}">
+													12세 관람가
+												</c:when>
+												<c:when test="${movie.rating eq '15'}">
+													15세 관람가
+												</c:when>
+												<c:when test="${movie.rating eq '19'}">
+													청소년 관람 불가
+												</c:when>
+											</c:choose>
+											• ${movie.duration}분</div>
 									</div>
 									<div class="css-39xlmf-Self e1vsnrt60">
-										<div class="css-14m50u6-Story e1vsnrt65">아빠와 함께 살고 있는
-											할리, 엄마와 함께 살고 있는 애니. 여름캠프에서 만난 두 사람은 너무나 닮은 서로의 모습에 놀라고, 사실 두
-											사람이 쌍둥이 자매라는 것을 알게 된다.</div>
+										<div class="css-14m50u6-Story e1vsnrt65">${movie.summary}</div>
 										<ul
 											class="e1vsnrt62 css-1dj867o-Self-ContentMetaCredit e1qb11zh0">
 											<li class="css-ajo6y3-CreditList e1qb11zh1"><span
-												class="css-gvfmob-CreditTitle e1qb11zh3">감독&nbsp;&nbsp;</span><span
+												class="css-gvfmob-CreditTitle e1qb11zh3">감독&nbsp;&nbsp;&nbsp;</span><span
 												class="css-1mnni33-CreditContent e1qb11zh2"><span><a
-														href="#">낸시 마이어스</a></span></span></li>
+														href="#">${movie.directorName}</a></span></span></li>
 											<li class="css-ajo6y3-CreditList e1qb11zh1"><span
-												class="css-gvfmob-CreditTitle e1qb11zh3">출연&nbsp;&nbsp;</span><span
-												class="css-1mnni33-CreditContent e1qb11zh2"><span><a
-														href="#">린지 로한</a></span><span><span>, </span><a href="#">데니스
-															퀘이드</a></span><span><span>, </span><a href="#">나타샤 리처드슨</a></span></span></li>
-											<li class="css-ajo6y3-CreditList e1qb11zh1"><span
-												class="css-gvfmob-CreditTitle e1qb11zh3">개요&nbsp;&nbsp;</span><span
-												class="css-1mnni33-CreditContent e1qb11zh2"><span><a
-														href="#">로맨스</a></span><span><span> · </span><a href="#">가족</a></span><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><span>
-														미국</span><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;1998년</span></span>
+												class="css-gvfmob-CreditTitle e1qb11zh3">출연&nbsp;&nbsp;</span>
+												<span class="css-1mnni33-CreditContent e1qb11zh2">
+													<c:if test="${movie.actorName1 != null}">
+														<span class="actorName-span"><a href="#">${movie.actorName1}</a></span>
+													</c:if>
+													<c:if test="${movie.actorName2 != null}">
+														<span class="actorName-span"><a href="#">${movie.actorName2}</a></span>
+													</c:if>
+													<c:if test="${movie.actorName3 != null}">
+														<span class="actorName-span"><a href="#">${movie.actorName3}</a></span>
+													</c:if>
+													<c:if test="${movie.actorName4 != null}">
+														<span class="actorName-span"><a href="#">${movie.actorName4}</a></span>
+													</c:if>
+													<c:if test="${movie.actorName5 != null}">
+														<span class="actorName-span"><a href="#">${movie.actorName5}</a></span>
+													</c:if>
+												</span>
+											</li>
+											<li class="css-ajo6y3-CreditList e1qb11zh1">
+												<span class="css-gvfmob-CreditTitle e1qb11zh3">개요&nbsp;&nbsp;</span>
+												<span class="css-1mnni33-CreditContent e1qb11zh2">
+													<c:if test="${movie.genre1 != null}">
+														<span class="genre-span"><a href="#">${movie.genre1}</a></span>
+													</c:if>
+													<c:if test="${movie.genre2 != null}">
+														<span class="genre-span"><a href="#">${movie.genre2}</a></span>
+													</c:if>
+													<span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+													<span>${movie.country}</span>
+													<span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${movie.release}년</span>
+												</span>
 											</li>
 										</ul>
 										<div
 											class="e1vsnrt61 css-7s5tof-Self-ContentActionButtons e1jklz6e0">
 											<a class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
-												aria-label="재생"><span
-												class="SVGInline css-10748d4-MainButtonIcon e1jklz6e2"><svg
-														class="SVGInline-svg css-10748d4-MainButtonIcon- e1jklz6e2-svg"
+												aria-label="재생">
+												<span style="margin-top: 3px;" class="SVGInline css-10748d4-MainButtonIcon e1jklz6e2">
+													<svg class="SVGInline-svg css-10748d4-MainButtonIcon- e1jklz6e2-svg"
 														xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 														viewBox="0 0 24 24">
-                                                        <g fill="none"
-															fill-rule="evenodd">
-                                                            <circle
-															cx="12" cy="12" r="11" stroke="#FFF" stroke-width="2">
-                                                            </circle>
-                                                            <path
-															fill="#FFF" d="M8.5 7l9 4.872L8.5 17z"></path>
+                                                        <g fill="none" fill-rule="evenodd">
+                                                        	<circle cx="12" cy="12" r="11" stroke="#FFF" stroke-width="2"></circle>
+                                                            <path fill="#FFF" d="M8.5 7l9 4.872L8.5 17z"></path>
                                                         </g>
-                                                    </svg></span>재생</a>
+                                                    </svg>
+                                                </span>
+                                                <span style="display: block; float: right; margin-top: 3px;">재생</span>
+                                            </a>
 											<button class="css-1yj07nv-SubButton e1jklz6e5">
 												<span class="SVGInline css-rv7z9k-SubButtonIcon e1jklz6e4"><svg
 														class="SVGInline-svg css-rv7z9k-SubButtonIcon-svg"
@@ -135,7 +178,7 @@
 							<video id="testVideo"
 								class="video-js vjs-big-play-centered vjs-fluid" controls
 								preload="auto" data-setup="{}">
-								<source src="client/images/Sea Gull.mp4" type="video/mp4" />
+								<source src="${movie.teaserVideoPath}" type="video/mp4" />
 							</video>
 						</div>
 					</div>
@@ -143,9 +186,9 @@
 
 				<!-- 리뷰 -->
 				<section class="review-section">
-					<div class="css-pv0i3j-CommentsContainer e17lrvw510">
+					<div sclass="css-pv0i3j-CommentsContainer e17lrvw510">
 						<form id="reviewForm" method="post" action="/updateReviewProc.do" onsubmit="return reviewCheck()">
-							<input type="hidden" name="movieId" value="${movieId}" />
+							<input type="hidden" name="movieId" value="${movie.movieId}" />
 							<input type="hidden" name="reviewId" value="${myReview.reviewId}"/>
 							<input type="hidden" id="hiddenScore" name="reviewScore"/>
 							<input type="hidden" name="email" value="${member.email }"/>
@@ -158,39 +201,41 @@
 									<div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
 										<div class="css-pjw7sn-StarsContainer eu8v4101">
 											<div class="starRev">
-												<span id="0.5" class="starR1 reviewScore" value="0.5">★</span> 
-												<span id="1.0" class="starR2 reviewScore" value="1">★</span>
-												<span id="1.5" class="starR1 reviewScore" value="1.5">★</span> 
-												<span id="2.0" class="starR2 reviewScore" value="2">★</span>
-												<span id="2.5" class="starR1 reviewScore" value="2.5">★</span> 
-												<span id="3.0" class="starR2 reviewScore" value="3">★</span>
-												<span id="3.5" class="starR1 reviewScore" value="3.5">★</span> 
-												<span id="4.0" class="starR2 reviewScore" value="4">★</span>
-												<span id="4.5" class="starR1 reviewScore" value="4.5">★</span> 
-												<span id="5.0" class="starR2 reviewScore" value="5">★</span>
+												<span id="0.5" class="starR1 reviewScore"></span> 
+												<span id="1.0" class="starR2 reviewScore"></span>
+												<span id="1.5" class="starR1 reviewScore"></span> 
+												<span id="2.0" class="starR2 reviewScore"></span>
+												<span id="2.5" class="starR1 reviewScore"></span> 
+												<span id="3.0" class="starR2 reviewScore"></span>
+												<span id="3.5" class="starR1 reviewScore"></span> 
+												<span id="4.0" class="starR2 reviewScore"></span>
+												<span id="4.5" class="starR1 reviewScore"></span> 
+												<span id="5.0" class="starR2 reviewScore"></span>
 											</div>
 										</div>
 									</div>
-									<span class="review-max-length e1ia00">(0 / 최대 130자)</span>
+									<span style="margin-right: 0.5vw; margin-top: 13px;" class="review-max-length e1ia00">(0 / 최대 130자)</span>
 								</div>
 							</div>
 							<div class="review-div">
-									<textarea name="reviewContent" id="myReview"
+									<textarea style="background: #080808; height: 8vw; line-height: 1.5vw; padding: 10px 0 10px 10px; " name="reviewContent" id="myReview"
 								<c:if test="${myReview.reviewContent eq null }">
 										placeholder="이 작품에 대한 생각을 자유롭게 표현해주세요."
 								</c:if>
 										class="css-5el3at-TextArea e1ia9yz82"><c:if test="${myReview.reviewContent ne null }">${myReview.reviewContent }</c:if></textarea>
 								<div class="eu8v4200">
-									<button id="submitBtn" type="submit"
+									<button style="margin-top: 3.5vw;" id="submitBtn" type="submit"
 										class="css-r6tv9-StylelessButton-Button-SmallButton-ActionButton eu8v4400">등록</button>
 
 								</div>
 							</div>
 						</form>
-						<button id="updateBtn"
-							class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401">수정</button>
-						<button id="deleteBtn" class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402"
-							onclick="deleteCheck()">삭제</button>
+						<div style="float: right; margin-top: -6.888vw; margin-right: 2.5vw;">
+							<button id="updateBtn"
+								class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4401">수정</button>
+							<button style="margin-left: 0.3vw;" id="deleteBtn" class="css-r6tv9-StylelessButton-Button-SmallButton-Button eu8v4402"
+								onclick="deleteCheck()">삭제</button>
+						</div>
 						<div class="review-avg-rating-title">
 							<div class="css-vqbxz-RatingAvg e17lrvw515">
 								<span class="css-ycp4ll-RatingAvgTitle e17lrvw518">평균별점</span>
@@ -202,8 +247,9 @@
 											style="color: rgb(255, 255, 255); width: 78%;">★★★★★</div>
 									</div>
 								</div>
-								<span class="css-7huvli-RatingAvgNumber e17lrvw517">3.9</span><span
-									class="css-guq473-RatingAvgCount e17lrvw516">159,321명</span>
+								<span class="css-7huvli-RatingAvgNumber e17lrvw517">${movie.movieScore}</span><span
+									class="css-guq473-RatingAvgCount e17lrvw516">
+									<fmt:formatNumber type="number" value="${reviewListLength}"/>명</span>
 							</div>
 						</div>
 						<div class="css-1sd2d4e-CommentGuideText e17lrvw514"></div>
@@ -223,21 +269,22 @@
 												</c:when>
 												<c:otherwise>
 													<div class="swiper-slide">
-														<div class="review-box">
-
-															<div class="review-title">
-																<span class="review-writer">${reviewList[i].nick }</span>
+														<c:if test="${reviewList[i].reviewContent != null}">
+															<div class="review-box">
+																<div class="review-title">
+																	<span class="review-writer">${reviewList[i].nick }</span>
+																</div>
+																<div class="review-content">
+																	${reviewList[i].reviewContent }</div>
+																<div class="like-container">
+																	<button class="like-button">
+																		<i class="far fa-thumbs-up like-icon"></i> <span
+																			class="like-count">${reviewList[i].likeCount}</span>
+																	</button>
+																</div>
 															</div>
-															<div class="review-content">
-																${reviewList[i].reviewContent }</div>
-															<div class="like-container">
-																<button class="like-button">
-																	<i class="far fa-thumbs-up like-icon"></i> <span
-																		class="like-count">${reviewList[i].likeCount}</span>
-																</button>
-															</div>
-														</div>
-														<c:if test="${reviewListLength - 1 ne i}">
+														</c:if>
+														<c:if test="${(reviewListLength - 1 ne i) && (reviewList[i+1].reviewContent != null)}">
 															<div class="review-box">
 																<div class="review-title">
 																	<span class="review-writer">${reviewList[i+1].nick }</span>
@@ -286,80 +333,121 @@
 	var reviewScore;
 	var reviewContent;
 	
-	$(document).ready(function(){
-	       reviewScore = "${myReview.reviewScore}";
-	       reviewContent = "${myReview.reviewContent}";
-	       if (reviewScore != null && reviewScore != 0){
+	
+		$(document).ready(function() {
+			reviewScore = "${myReview.reviewScore}";
+			reviewContent = $('#myReview').val();
+			if (reviewScore != null && reviewScore != 0) {
 				var star = document.getElementById(reviewScore);
 				$(star).addClass('on').prevAll('span').addClass('on');
-	    	}
-	       
-	});
-	
-	function reviewCheck(){
-		var content = $("#myReview").val();
-		if(content == null || content == "" || reviewScore == null){
-			alert(content + reviewScore);
-			return false;
-		}
-		
-		$('#hiddenScore').val(reviewScore);
-		return true;
-		
-	};
-	
-	$('.reviewScore').click(function(){
-		$(this).parent().children('span').removeClass('on');
-		  $(this).addClass('on').prevAll('span').addClass('on');
-		  
-		var url;
-	
-		if (reviewScore == null || reviewScore == 0) {
-			alert("0일때");
-		   url = "/insertReviewProcAjax.do";
-		} else {
-			alert("0아닐때");
-		   url = "/updateReviewProcAjax.do";
-		}
-		
-		   reviewScore = $(this).prop('id');
-		   var movieId =  "${movieId}";
-		   var email = "${member.email}"
-		   var reviewId = "${myReview.reviewId}"
-		   var sendData = {"reviewScore": reviewScore,
-				   			"movieId":movieId,
-				   			"email":email,
-				   			"reviewId":reviewId};
-		   var result;
-		   $.ajax({
-		      type: 'POST',
-		      url: url,
-		      data: sendData,
-		      async: false,
-		      success: function(response) {
-		    	  result = response.result;
-		    	  
-		      }
-		   });
-		   
-	});
-	
+			}
+
+			$('.actorName-span').addClass('after');
+			$('.actorName-span:last').removeClass('after');
+
+			$('.genre-span').addClass('after');
+			$('.genre-span:last').removeClass('after');
+			var reviewListLength = "${reviewListLength}";
+			var reviewCount = 0;
+			for (var i = 0; i < reviewListLength; i++) {
+				if ("${reviewList[i].reviewContent}" != null) {
+					reviewCount++;
+				}
+			}
+
+			var nextButtonClickableCount = Math.floor(reviewCount / 4);
+			var prevButtonClickableCount = 0;
+			var nextButtonClickCount = 0;
+			if (nextButtonClickableCount == nextButtonClickCount) {
+				$('.swiper-button-next').css('display', 'none');
+			}
+			
+			$('.swiper-button-next').click(function() {
+				nextButtonClickCount++;
+				prevButtonClickableCount++;
+				if (prevButtonClickableCount == 1) { // display: block 한번만 하게끔
+					$('.swiper-button-prev').css('display', 'block');
+				}
+				if (nextButtonClickableCount == nextButtonClickCount) {
+					$('.swiper-button-next').css('display', 'none');
+				}
+			});
+			
+			$('.swiper-button-prev').click(function() {
+				prevButtonClickableCount--;
+				nextButtonClickCount--;
+				if (nextButtonClickableCount == nextButtonClickCount + 1) { // display: block 한번만 하게끔
+					$('.swiper-button-next').css('display', 'block');
+				}
+				if (prevButtonClickableCount == 0) {
+					$('.swiper-button-prev').css('display', 'none');
+				}
+			});
+		});
+
+		function reviewCheck() {
+			var content = $("#myReview").val();
+			if (content == null || content == "" || reviewScore == null) {
+				alert(content + reviewScore);
+				return false;
+			}
+
+			$('#hiddenScore').val(reviewScore);
+			return true;
+
+		};
+
+		$('.reviewScore').click(function() {
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+
+			var url;
+
+			if (reviewScore == null || reviewScore == 0) {
+				alert("0일때");
+				url = "/insertReviewProcAjax.do";
+			} else {
+				alert("0아닐때");
+				url = "/updateReviewProcAjax.do";
+			}
+
+			reviewScore = $(this).prop('id');
+			var movieId = "${movie.movieId}";
+			var email = "${member.email}"
+			var reviewId = "${myReview.reviewId}"
+			var sendData = {
+				"reviewScore" : reviewScore,
+				"movieId" : movieId,
+				"email" : email,
+				"reviewId" : reviewId
+			};
+			var result;
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : sendData,
+				async : false,
+				success : function(response) {
+					result = response.result;
+
+				}
+			});
+
+		});
+
 		function deleteCheck() {
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if (check == true) {
-				document.location.href = "/deleteReviewProc.do?reviewId=" + ${myReview.reviewId}+"&" + "movieId=" + ${movieId};
+				document.location.href = "/deleteReviewProc.do?reviewId=" + ${myReview.reviewId} + "&" + "movieId=" + ${movie.movieId};
 			}
 		}
-		
+
 		//클릭 별 색깔 변경
 		/*  $('.starRev span').click(function(){
 			  $(this).parent().children('span').removeClass('on');
 			  $(this).addClass('on').prevAll('span').addClass('on');
 			  return false;
 			}); */
-		
-		
-		
 	</script>
 
 </body>

@@ -16,10 +16,23 @@
     <link rel="stylesheet" href="client/css/movie_layout.css">
     <link rel="stylesheet" href="client/css/ticket_modal.css">
     <style>
-    	.movie-box {cursor: pointer;}
+		@keyframes slide-up {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+    	.movie-box {cursor: pointer; display: none;}
+    	.opacity-animation {animation: slide-up 0.4s ease;}
 		#myBtn {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; font-size: 18px; border: none;
 		  outline: none; background-color: red; color: white; cursor: pointer; padding: 15px; border-radius: 4px;}
 		#myBtn:hover {background-color: #555;}
+		.no-result {height: 350px; padding-top: 100px; color: #fff; 
+				font-size: 22px; text-align: center; display: none;}
 	</style>
 </head>
 <body>
@@ -34,19 +47,25 @@
 	            <div class="select-container">
 	                <p>보고싶은 작품을 찾아보세요</p>
 	                <div>
-	                    <select id="select-genre">
-	                        <option value="0">전체 장르</option>
+	                    <select name="searchGenre" id="searchGenre">
+	                        <option value="0" selected>전체 장르</option>
 	                        <c:forEach var="genre" items="${genreList}">
 	                        	<option value="${genre.genreId}">${genre.genre}</option>
 	                        </c:forEach>
 	                    </select>
-	                    <select class="rank-select">
+	                    <select name="searchOrder" id="searchOrder">
+	                        <option value="new" selected>최신작품 순</option>
+	                        <option value="popular">인기 순</option>
 	                        <option value="recommend">추천 순</option>
-	                        <option value="score">평균별점 순</option>
-	                        <option value="new">최신작품 순</option>
 	                    </select>
 	                </div>
 	            </div>
+	        </section>
+	        <!-- 검색 결과가 없을 시 -->
+	        <section class="no-result">
+	        	<div>
+	        		<p>검색 결과가 없습니다.</p>
+	        	</div>
 	        </section>
 	        <section class="grid-wrapper">
 	        	<c:forEach var="movie" items="${movieList}">
@@ -65,17 +84,53 @@
 	<script src="client/js/swiper.js"></script> 
 	<script src="client/js/movie_layout.js"></script>
 	<script>
-		var count = 1;
+		var searchGenre;
+		var searchOrder;
 		var movieList;
 		var movieListLength;
+		
+		$(document).ready(function(){
+			$('#searchGenre').val("${searchGenre}");
+			$('#searchOrder').val("${searchOrder}");
+			
+			searchGenre = $('#searchGenre option:selected').val();
+			searchOrder = $('#searchOrder option:selected').val();
+			
+			movieList = "${movieList}";
+			movieListLength = movieList.length;
+			if (movieListLength == 2) {
+				$('.grid-wrapper').css("display", "none");
+				$('.no-result').css("display", "block");
+			}
+			
+			$(".movie-box").slice(0, 20).css("display", "block").addClass("opacity-animation");
+			
+		});
+		
+		$('#searchGenre').change(function(){
+			searchGenre = $('#searchGenre option:selected').val();
+			window.location.href = "/getMovieListProc.do?searchGenre=" + searchGenre + "&searchOrder=" + searchOrder;
+		});
+		
+		$('#searchOrder').change(function(){
+			searchOrder = $('#searchOrder option:selected').val();
+			window.location.href = "/getMovieListProc.do?searchGenre=" + searchGenre + "&searchOrder=" + searchOrder;
+		});
+		
+		function goMovieDetail(movieId) {
+			window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+		}
+	
+		// endless scroll
+		var count = 2;
 		var movieType = "${movieType}";
 		 $(window).scroll(function() {
 		        if (Math.round($(window).scrollTop() + 20) >= $(document).height() - $(window).height()) {
-		        	if (movieListLength != 0) {
+		        	if (movieListLength != 0 && searchOrder != 'recommend') {
 			        	count++;
 			        	var start = (count - 1) * 10 + 1 ;
 			        	var end = count * 10;
-	                	var sendData = {"start": start, "end": end, "movieType": movieType};
+	                	var sendData = {"start": start, "end": end, "movieType": movieType, "searchGenre": searchGenre, "searchOrder": searchOrder};
 	                	$.ajax({
 	                		type: "POST",
 	                		url: "/getMovieListProcAjax.do",
@@ -90,7 +145,7 @@
 	                			alert("error");
 	                		}
 	                	});
-	                	
+		                	
 	                    for (var i = 0; i < movieList.length; i++) {
 	                    	var movie = movieList[i];
 	                    	$('.grid-wrapper').append(
@@ -98,34 +153,31 @@
 	        		            	"<img src=\"" + movie.posterPath + "\"/>" +
 	        		            	"<p>" + movie.movieTitle + "</p>" +
 	        		            "</div>");
-	                    }
-		        	}
-		        }
-		    });
+						}
+			    	}
+				}
+				$(".movie-box:hidden").slice(0, 10).css("display", "block").addClass("opacity-animation"); // 숨김 설정된 다음 5개를 선택하여 표시
+		});
+		
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+		
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function () { scrollFunction() };
 
-			function goMovieDetail(movieId) {
-				window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
-			}
-			
-			 //Get the button
-	        var mybutton = document.getElementById("myBtn");
+		function scrollFunction() {
+		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		        mybutton.style.display = "block";
+		    } else {
+		        mybutton.style.display = "none";
+		    }
+		}
 
-	        // When the user scrolls down 20px from the top of the document, show the button
-	        window.onscroll = function () { scrollFunction() };
-
-	        function scrollFunction() {
-	            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-	                mybutton.style.display = "block";
-	            } else {
-	                mybutton.style.display = "none";
-	            }
-	        }
-
-	        // When the user clicks on the button, scroll to the top of the document
-	        function topFunction() {
-	            document.body.scrollTop = 0;
-	            document.documentElement.scrollTop = 0;
-	        }
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		    document.body.scrollTop = 0;
+		    document.documentElement.scrollTop = 0;
+		}	
 	</script>
 </body>
 </html>

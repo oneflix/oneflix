@@ -31,7 +31,7 @@
 		<result property="actorAge" column="actor_age" />
 	</resultMap>
 	<select id="getActorList" resultMap="actorList">
-		SELECT * FROM actor WHERE 1 = 1
+		SELECT * FROM actor WHERE actor_id != 0
 		<if test="searchActor != null">
 			AND actor_name like '%'||#{searchActor}||'%'
 		</if>

@@ -21,7 +21,28 @@
     <link rel="stylesheet" href="client/css/swiper.css">
     <link rel="stylesheet" href="client/css/ticket_modal.css">
     <style type="text/css">
+    	@keyframes slide-up {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+    	#body, .header-slider {animation: slide-up 0.8s ease;}
+    	.main-slider .swiper-button-prev {display: none;}
+    	.swiper-button-next, .swiper-button-prev {opacity: 0; transition: opacity 0.5s ease-in-out;}
+    	.swiper-container:hover .swiper-button-next,
+    	.swiper-container:hover .swiper-button-prev {opacity: 1;}
+    	.main-slider:hover .swiper-button-next,
+    	.main-slider:hover .swiper-button-prev {opacity: 1;}
     	.swiper-slide {cursor: pointer;}
+    	.swiper-slide > .movie-card {transition: transform 1s ease; }
+    	.swiper-slide > .hidden-card > {position: relative;}
+    	.swiper-slide > .hidden-card > img {opacity: 0.3; position: absolute}
+    	.swiper-slide > .hidden-card > .movie-mini-box {position: fixed;}
     </style>
 
 </head>
@@ -205,7 +226,7 @@
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle profile-button" type="button"
                                             data-toggle="dropdown">
-                                            <span>${member.nick}</span>
+                                            <span>${member.nick}님</span>
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right profile-menu">
@@ -227,10 +248,10 @@
                         <c:forEach var="main" items="${mainMovieList }">
                             <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
                 											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath};">
-                                        <div class="row">
-                                            <h2>${main.movieTitle }</h2>
-                                            <p>${main.movieSubtitle }</p>
-                                        </div>
+	                            <div class="row">
+	                                <h2>${main.movieTitle }</h2>
+	                                <p>${main.movieSubtitle }</p>
+	                            </div>
                             </div>
                             </c:forEach>
                         </div>
@@ -252,16 +273,53 @@
                         <div class="swiper-wrapper">
                         <c:forEach var="i" begin="0" end="30">
                             <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${popularMovieList[i].movieId}">
-                                <img src="${popularMovieList[i].posterPath }">
-								<div class="row">
-	                                <p>${popularMovieList[i].movieTitle }</p>
+                            	<div class="movie-box movie-card">
+	                                <img src="${popularMovieList[i].posterPath }">
+									<div class="row">
+		                                <p>${popularMovieList[i].movieTitle }</p>
+	                                </div>
                                 </div>
+	                            <div class="hidden-card movie-card">
+	                            	<img src="${popularMovieList[i].posterPath}"/>
+	                            	<div class="movie-mini-box">
+	                            		<p>${popularMovieList[i].summary}</p>
+	                            	</div>
+	                            </div>
                             </div>
-                            </c:forEach>
+                        </c:forEach>
                         </div>
                     </div>
                     <div id="popular-button-next" class="swiper-button-next"></div>
                     <div id="popular-button-prev" class="swiper-button-prev"></div>
+                </div>
+                <!-- 다음 슬라이드 -->
+                <div class="row">
+                    <span class="category">${member.nick}님을 위한 추천 작품</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?searchOrder=recommend'">더보기 <i class="fas fa-angle-right"></i></span>
+                </div>
+                <div class="main-slider recommend-slider">
+                    <div id="recommend-slider-container" class="swiper-container">
+                        <div class="swiper-wrapper">
+                        <c:forEach var="i" begin="0" end="30">
+                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${recommendMovieList[i].movieId}">
+                            	<div class="movie-box movie-card">
+	                                <img src="${recommendMovieList[i].posterPath }">
+									<div class="row">
+		                                <p>${recommendMovieList[i].movieTitle }</p>
+	                                </div>
+                            	</div>
+                                <div class="hidden-card movie-card">
+                                	<img src="${recommendMovieList[i].posterPath}">
+                                	<div class="movie-mini-box">
+		                            	<p>${recommendMovieList[i].summary}</p>
+                                	</div>
+	                            </div>
+                            </div>
+                        </c:forEach>
+                        </div>
+                    </div>
+                    <div id="recommend-button-next" class="swiper-button-next"></div>
+                    <div id="recommend-button-prev" class="swiper-button-prev"></div>
                 </div>
                 <!-- 다음 슬라이드 -->
                 <div class="row">
@@ -273,10 +331,18 @@
                         <div class="swiper-wrapper">
                         <c:forEach var="newMovie" items="${newMovieList }">
                             <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
-                                <img src="${newMovie.posterPath }">
-								<div class="row">
-	                                <p>${newMovie.movieTitle }</p>
-                                </div>
+                            	<div class="movie-box movie-card">
+	                                <img src="${newMovie.posterPath }">
+									<div class="row">
+		                                <p>${newMovie.movieTitle }</p>
+	                                </div>
+                            	</div>
+                                <div class="hidden-card movie-card">
+                                	<img src="${newMovie.posterPath}"/>
+                                	<div class="movie-mini-box">
+		                            	<p>${newMovie.summary}</p>
+                                	</div>
+	                            </div>
                             </div>
                         </c:forEach>
                         </div>
@@ -294,10 +360,18 @@
                         <div class="swiper-wrapper">
                            <c:forEach var="newMovie" items="${newMovieList }">
                             <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
-                                <img src="${newMovie.posterPath }">
-								<div class="row">
-	                                <p>${newMovie.movieTitle }</p>
-                                </div>
+                            	<div class="movie-box movie-card">
+	                                <img src="${newMovie.posterPath }">
+									<div class="row">
+		                                <p>${newMovie.movieTitle }</p>
+	                                </div>
+                            	</div>
+                                <div class="hidden-card movie-card">
+                                	<img src="${newMovie.posterPath}">
+                                	<div class="movie-mini-box">
+		                            	<p>${newMovie.summary}</p>
+                                	</div>
+	                            </div>
                             </div>
                         </c:forEach>
                         </div>
@@ -317,10 +391,13 @@
     <script src="client/js/script.js"></script>
     <script src="client/js/ticket_modal.js"></script>
     <script type="text/javascript">
-    function goMovieDetail(movieId) {
-            location.href = "/getMovieDetailProc.do?movieId=" + movieId;
-     }
-  </script>
+		$('.swiper-button-next').click(function(){
+			$(this).next().css("display", "block");
+		});
+	    function goMovieDetail(movieId) {
+	            location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+	    }
+	</script>
 </body>
 
 </html>

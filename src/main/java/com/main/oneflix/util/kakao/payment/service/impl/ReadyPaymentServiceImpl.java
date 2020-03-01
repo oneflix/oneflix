@@ -2,7 +2,6 @@ package com.main.oneflix.util.kakao.payment.service.impl;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
