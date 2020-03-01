@@ -76,7 +76,7 @@ i {font-size: 20px; float: left;}
 .select-container > div {margin-top: 1vw;}
 .select-container > div > select {width: 13vw; height: 2.8vw; padding: 3px 5px; font-size: 1.3vw; color: #999; font-weight: bold;
             border: 1px solid #999; outline: 0;}             
-.select-container > div > .rank-select {float: right;}
+.select-container > div > #searchOrder {float: right;}
 
 /* grid-wrapper */
 .grid-wrapper {padding: 0 50px 0; display: grid;

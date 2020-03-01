@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+=======
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+>>>>>>> master
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <fmt:setLocale value="ko_kr" />
 <!DOCTYPE html>
@@ -170,279 +176,157 @@
 								</li>
 							</ul>
 						</nav>
+                        <!-- 햄버거 메뉴 -->
+                        <nav class="m_menu">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle hamburger-button" type="button"
+                                    data-toggle="dropdown">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                                <ul class="dropdown-menu hamburger-menu">
+                                    <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
+                                    <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
+                                    <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
+                                    <li><div class="divider"></div></li>
+                                    <li><div><a href="#">고객센터</a></div></li>
+                                    <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
+                                    <li><div><a href="/logout.do">로그아웃</a></div></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <nav class="right_nav">
+                            <ul class="clearfix">
+                                <li><a href="/getMovieListProc.do?movieType=wish">보고싶어요</a></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle bell-button" type="button"
+                                            data-toggle="dropdown">
+                                            <i class="far fa-bell"></i><span class="badge">12</span>
+                                        </button>
+                                        <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
+                                        <ul class="dropdown-menu bell-menu">
+                                            <li><div><a href="/getMovieListProc.do?movieType=new">새로 올라온 작품</a></div></li>
+                                            <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-user-circle"></i>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle profile-button" type="button"
+                                            data-toggle="dropdown">
+                                            <span>${member.nick}</span>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right profile-menu">
+                                            <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
+                                            <li><div class="divider"></div></li>
+                                            <li><div><a href="#">고객센터</a></div></li>
+                                            <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
+                                            <li><div><a href="/logout.do">로그아웃</a></div></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="header-slider">
+                    <div id="header-slider-container" class="swiper-container">
+                        <div class="swiper-wrapper">
+                        <c:forEach var="main" items="${mainMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
+                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath};">
+                                        <div class="row">
+                                            <h2>${main.movieTitle }</h2>
+                                            <p>${main.movieSubtitle }</p>
+                                        </div>
+                            </div>
+                            </c:forEach>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div id="header-button-next" class="swiper-button-next"></div>
+                        <div id="header-button-prev" class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            <section class="main">
+                <div class="row">
+                    <span class="category">원플릭스 최고 인기작</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=popular'">더보기 <i class="fas fa-angle-right"></i></span>
+                </div>
+                <div class="main-slider popular-slider">
+                    <div id="popular-slider-container" class="swiper-container">
+                        <div class="swiper-wrapper">
+                        <c:forEach var="i" begin="0" end="30">
+                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${popularMovieList[i].movieId}">
+                                <img src="${popularMovieList[i].posterPath }">
+								<div class="row">
+	                                <p>${popularMovieList[i].movieTitle }</p>
+                                </div>
+                            </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <div id="popular-button-next" class="swiper-button-next"></div>
+                    <div id="popular-button-prev" class="swiper-button-prev"></div>
+                </div>
+                <!-- 다음 슬라이드 -->
+                <div class="row">
+                    <span class="category">새로 올라온 작품</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=new'">더보기 <i class="fas fa-angle-right"></i></span>
+                </div>
+                <div class="main-slider new-slider">
+                    <div id="new-slider-container" class="swiper-container">
+                        <div class="swiper-wrapper">
+                        <c:forEach var="newMovie" items="${newMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                                <img src="${newMovie.posterPath }">
+								<div class="row">
+	                                <p>${newMovie.movieTitle }</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        </div>
+                    </div>
+                    <div id="new-button-next" class="swiper-button-next"></div>
+                    <div id="new-button-prev" class="swiper-button-prev"></div>
+                </div>
+                <!-- 다음 슬라이드 -->
+                <div class="row">
+                    <span class="category">이어보기</span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=watching'">더보기 <i class="fas fa-angle-right"></i></span>
+                </div>
+                <div class="main-slider recent-slider">
+                    <div id="recent-slider-container" class="swiper-container">
+                        <div class="swiper-wrapper">
+                           <c:forEach var="newMovie" items="${newMovieList }">
+                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                                <img src="${newMovie.posterPath }">
+								<div class="row">
+	                                <p>${newMovie.movieTitle }</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        </div>
+                    </div>
+                    <div id="recent-button-next" class="swiper-button-next"></div>
+                    <div id="recent-button-prev" class="swiper-button-prev"></div>
+                </div>
+            </section>
+        </div>
+        
+        <jsp:include page="${footer_url}"></jsp:include>
+    </div> <!-- wrap end -->
 
-<<<<<<< HEAD
-						<!-- 햄버거 메뉴 -->
-						<nav class="m_menu">
-							<div class="dropdown">
-								<button class="btn dropdown-toggle hamburger-button"
-									type="button" data-toggle="dropdown">
-									<i class="fas fa-bars"></i>
-								</button>
-								<ul class="dropdown-menu hamburger-menu">
-									<li><div>
-											<a href="/mypageHome.do">마이 페이지</a>
-										</div></li>
-									<li><div>
-											<a href="/getMovieListProc.do?movieType=new">신작 알림</a>
-										</div></li>
-									<li><div>
-											<a href="/getMovieListProc.do?movieType=wish">찜 목록</a>
-										</div></li>
-									<li><div class="divider"></div></li>
-									<li><div>
-											<a href="#">고객센터</a>
-										</div></li>
-									<li><div>
-											<a href="/getInquiryListProc.do">1:1 문의</a>
-										</div></li>
-									<li><div>
-											<a href="/logout.do">로그아웃</a>
-										</div></li>
-								</ul>
-							</div>
-						</nav>
-						<nav class="right_nav">
-							<ul class="clearfix">
-								<li><a href="/getMovieListProc.do?movieType=wish">보고싶어요</a></li>
-								<li>
-									<div class="dropdown">
-										<button class="btn dropdown-toggle bell-button" type="button"
-											data-toggle="dropdown">
-											<i class="far fa-bell"></i><span class="badge">12</span>
-										</button>
-										<!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
-										<ul class="dropdown-menu bell-menu">
-											<li><div>
-													<a href="/getMovieListProc.do?movieType=new">새로 올라온 작품</a>
-												</div></li>
-											<li><div>
-													<a href="/inquiryList.do">답변 알림</a>
-												</div></li>
-										</ul>
-									</div>
-								</li>
-								<li><i class="fas fa-user-circle"></i>
-									<div class="dropdown">
-										<button class="btn dropdown-toggle profile-button"
-											type="button" data-toggle="dropdown">
-											<span>${member.nick}</span> <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-right profile-menu">
-											<li><div>
-													<a href="/mypageHome.do">마이 페이지</a>
-												</div></li>
-											<li><div class="divider"></div></li>
-											<li><div>
-													<a href="#">고객센터</a>
-												</div></li>
-											<li><div>
-													<a href="/getInquiryListProc.do">1:1 문의</a>
-												</div></li>
-											<li><div>
-													<a href="/logout.do">로그아웃</a>
-												</div></li>
-										</ul>
-									</div></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-				<div class="header-slider">
-					<div id="header-slider-container" class="swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<!-- <a href="#">
-                                    <img src="client/images/avengers.jpg">
-                                </a> -->
-								<div class="row">
-									<h2>2월 3주 신작</h2>
-									<p>캐롤, 리틀 포레스트 등</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<!-- <a href="#">
-                                    <img src="client/images/eternal_sunshine.jpg">
-                                </a> -->
-								<div class="row">
-									<h2>인생을 담다</h2>
-									<p>휴머니즘 다큐 영화 모음집</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<!-- <a href="#">
-                                    <img src="client/images/green_book.jpg">
-                                </a> -->
-								<div class="row">
-									<h2>최고 인기작</h2>
-									<p>Call me by your name</p>
-								</div>
-							</div>
-						</div>
-						<div class="swiper-pagination"></div>
-						<div id="header-button-next" class="swiper-button-next"></div>
-						<div id="header-button-prev" class="swiper-button-prev"></div>
-					</div>
-				</div>
-			</div>
-		</header>
-		<div id="body">
-			<section class="main">
-				<div class="row">
-					<span class="category">이어보기</span> <span class="more"
-						onclick="location.href='#'">더보기 <i
-						class="fas fa-angle-right"></i></span>
-				</div>
-				<div class="main-slider popular-slider">
-					<div id="popular-slider-container" class="swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide" onclick="location.href='#'">
-								<img src="client/images/dunkirk.jpg">
-								<div class="row">
-									<p>어벤져스</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/francesha.jpg">
-								<div class="row">
-									<p>이터널 선샤인</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/green_book.jpg">
-								<div class="row">
-									<p>그린북</p>
-								</div>
-							</div>
-							<div id="test" class="swiper-slide">
-								<img src="client/images/eternal_sunshine.jpg">
-								<div class="row">
-									<p>어벤져스</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/call_me_by_your_name.png">
-								<div class="row">
-									<p>이터널 선샤인</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/green_book.jpg">
-								<div class="row">
-									<p>그린북</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="popular-button-next" class="swiper-button-next"></div>
-					<div id="popular-button-prev" class="swiper-button-prev"></div>
-				</div>
-				<!-- 다음 슬라이드 -->
-				<h5>추천 영화</h5>
-				<div class="main-slider new-slider">
-					<div id="new-slider-container" class="swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<img src="client/images/avengers.jpg">
-								<div class="row">
-									<p>어벤져스</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/eternal_sunshine.jpg">
-								<div class="row">
-									<p>이터널 선샤인</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/green_book.jpg">
-								<div class="row">
-									<p>그린북</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/avengers.jpg">
-								<div class="row">
-									<p>어벤져스</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/eternal_sunshine.jpg">
-								<div class="row">
-									<p>이터널 선샤인</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/green_book.jpg">
-								<div class="row">
-									<p>그린북</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="new-button-next" class="swiper-button-next"></div>
-					<div id="new-button-prev" class="swiper-button-prev"></div>
-				</div>
-				<!-- 다음 슬라이드 -->
-				<h5>최근 본 영화</h5>
-				<div class="main-slider recent-slider">
-					<div id="recent-slider-container" class="swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<img src="client/images/avengers.jpg">
-								<div class="row">
-									<p>어벤져스</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/eternal_sunshine.jpg">
-								<div class="row">
-									<p>이터널 선샤인</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/green_book.jpg">
-								<div class="row">
-									<p>그린북</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/avengers.jpg">
-								<div class="row">
-									<p>어벤져스</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/eternal_sunshine.jpg">
-								<div class="row">
-									<p>이터널 선샤인</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<img src="client/images/green_book.jpg">
-								<div class="row">
-									<p>그린북</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="recent-button-next" class="swiper-button-next"></div>
-					<div id="recent-button-prev" class="swiper-button-prev"></div>
-				</div>
-			</section>
-		</div>
-
-		<jsp:include page="${footer_url}"></jsp:include>
-	</div>
-	<!-- wrap end -->
-
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script src="client/js/bootstrap.js"></script>
-	<script src="client/js/swiper.js"></script>
-	<script src="client/js/script.js"></script>
-	<script src="client/js/ticket_modal.js"></script>
-
-	<!--네이버 로그인 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="client/js/bootstrap.js"></script>
+    <script src="client/js/swiper.js"></script>
+    <script src="client/js/script.js"></script>
+    <script src="client/js/ticket_modal.js"></script>
+    <!--네이버 로그인 -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript">
@@ -456,8 +340,13 @@
 			alert(naver_id_login.getProfileData('email'));
 			alert(naver_id_login.getProfileData('nickname'));
 			alert(naver_id_login.getProfileData('age'));
-		}
 	</script>
+    <script type="text/javascript">
+    function goMovieDetail(movieId) {
+            location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+     }
+    
+   </script>
 </body>
 
 </html>

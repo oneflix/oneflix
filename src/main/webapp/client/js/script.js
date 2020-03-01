@@ -4,11 +4,13 @@ var headerSwiper = new Swiper('#header-slider-container', {
         nextEl: '#header-button-next',
         prevEl: '#header-button-prev'
     },
+    /*
     pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
         clickable: true
     },
+    */
     autoplay: {
         delay: 2000
     },
@@ -60,7 +62,25 @@ const createPopularSwiper = function(slideCount) {
         },
     
         loop: true,
-        speed: 500,
+        speed: 1000,
+    });
+};
+
+const createRecommendSwiper = function(slideCount) {
+    var recommendSwiper = new Swiper('#recommend-slider-container', {
+        slidesPerView: slideCount,
+        spaceBetween: 5,
+        slidesPerGroup: slideCount,
+    
+        // loopFillGroupWithBlank: true,
+    
+        navigation: {
+            nextEl: '#recommend-button-next',
+            prevEl: '#recommend-button-prev'
+        },
+    
+        loop: true,
+        speed: 1000,
     });
 };
 
@@ -78,7 +98,7 @@ const createNewSwiper = function(slideCount) {
         },
     
         loop: true,
-        speed: 500,
+        speed: 1000,
     });
 };
 
@@ -96,18 +116,20 @@ const createRecentSwiper = function(slideCount) {
         },
     
         loop: true,
-        speed: 500,
+        speed: 1000,
     });
 };
 
 $(document).ready(function() {
     createPopularSwiper(calcSlideCount());
+    createRecommendSwiper(calcSlideCount());
     createNewSwiper(calcSlideCount());
     createRecentSwiper(calcSlideCount());
 });
 
 $(window).resize(function() {
     createPopularSwiper(calcSlideCount());
+    createRecommendSwiper(calcSlideCount());
     createNewSwiper(calcSlideCount());
     createRecentSwiper(calcSlideCount());
 });
