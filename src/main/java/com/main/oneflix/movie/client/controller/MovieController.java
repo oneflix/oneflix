@@ -63,6 +63,7 @@ public class MovieController {
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
+		mav.addObject("movieType", vo.getMovieType());
 		mav.addObject("movieList", movieList);
 		mav.addObject("genreList", genreList);
 		mav.addObject("ticketList", ticketList);

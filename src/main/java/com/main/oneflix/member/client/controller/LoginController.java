@@ -64,6 +64,7 @@ public class LoginController {
 		}
 		return mav;
 	}
+
 	//네이버로그인하기
 	@RequestMapping(value="/naverLogin.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView naverLogin(ModelAndView mav,HttpSession session) {

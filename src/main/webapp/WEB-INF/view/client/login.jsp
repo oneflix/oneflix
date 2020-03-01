@@ -141,6 +141,7 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
+<<<<<<< HEAD
 	<!-- 네이버 로그인 -->
 	 <script type="text/javascript">
 		var naver_id_login = new naver_id_login("pML7geIoAzold42feHKn", "http://localhost:8080/naverLoginProc.do");
@@ -160,6 +161,17 @@
 				alert("로그인 정보가 일치하지 않습니다.");
 			}
 		});
+=======
+	
+
+	<script>
+	$(document).ready(function(){
+	    var result = "${result}";
+	    if (result == "seccess") {
+	         alert("로그인 정보가 일치하지 않습니다.");
+	    }
+	});
+>>>>>>> master
 	</script>
 
 </body>

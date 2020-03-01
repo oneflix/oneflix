@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <fmt:setLocale value="ko_kr" />
 <!DOCTYPE html>
@@ -12,14 +13,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONeflix</title>
 
-<!-- style -->
-<link rel="stylesheet" href="client/css/reset.css">
-<link rel="stylesheet" href="client/css/all.css">
-<link rel="stylesheet" href="client/css/customBS.css">
-<link rel="stylesheet" href="client/css/main_style.css">
-<link rel="stylesheet" href="client/css/swiper.css">
-<link rel="stylesheet" href="client/css/ticket_modal.css">
-
+    <!-- style -->
+    <link rel="stylesheet" href="client/css/reset.css">
+    <link rel="stylesheet" href="client/css/all.css">
+    <link rel="stylesheet" href="client/css/customBS.css">
+    <link rel="stylesheet" href="client/css/main_style.css">
+    <link rel="stylesheet" href="client/css/swiper.css">
+    <link rel="stylesheet" href="client/css/ticket_modal.css">
+    <style type="text/css">
+    	.swiper-slide {cursor: pointer;}
+    </style>
 </head>
 
 <body>
@@ -168,6 +171,7 @@
 							</ul>
 						</nav>
 
+<<<<<<< HEAD
 						<!-- 햄버거 메뉴 -->
 						<nav class="m_menu">
 							<div class="dropdown">
@@ -454,7 +458,6 @@
 			alert(naver_id_login.getProfileData('age'));
 		}
 	</script>
-
 </body>
 
 </html>
