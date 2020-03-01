@@ -4,15 +4,9 @@
 
 <mapper namespace="HelpDAO">
 
-	<select id="getHelp" parameterType="help" resultType="help">
-		SELECT
-		*
-		FROM helps
-		WHERE help_id = #{helpId, jdbcType=NUMERIC}
-	</select>
-
 	<resultMap type="help" id="helpList">
 		<id property="helpId" column="help_id" />
+		<result property="rnum" column="rnum"/>
 		<result property="helpType" column="help_type" />
 		<result property="helpTitle" column="help_title" />
 		<result property="helpContent" column="help_content"></result>
@@ -20,33 +14,45 @@
 	</resultMap>
 
 	<select id="getHelpList" resultMap="helpList" parameterType="help">
-		SELECT * FROM helps WHERE 1 = 1
-		<if test="searchHelp != null">
-			AND help_title like '%'|| #{searchHelp}||'%'
-		</if>
-		<choose>
-			<when test='helpType == "faq"'>
-				AND help_type != 'notice'
-			</when>
-			<when test='helpType == "all"'>
-				
-			</when>
-			<otherwise>
-				AND help_type = #{helpType}
-			</otherwise>
-		</choose>
-		ORDER BY
-		help_id ASC
+		SELECT * 
+		FROM (SELECT ROWNUM rnum, H.*
+				FROM (SELECT *
+						FROM help
+						WHERE 1 = 1
+						<if test="searchHelp != null and searchHelp != ''">
+							AND help_title like '%'|| #{searchHelp}||'%'
+						</if>
+						<if test="helpType != null and helpType != ''">
+							<choose>
+								<when test='helpType == "faq"'>
+									AND help_type != 'notice'
+								</when>
+								<otherwise>
+									AND help_type = #{helpType}
+								</otherwise>
+							</choose>
+						</if>
+						ORDER BY help_reg_date
+					) H
+			)
+		ORDER BY rnum DESC
+	</select>
+
+	<select id="getHelp" parameterType="help" resultType="help">
+		SELECT
+		*
+		FROM help
+		WHERE help_id = #{helpId}
 	</select>
 
 	<insert id="insertHelp" parameterType="help">
-		INSERT INTO helps (help_id, help_type, help_title, help_content, help_reg_date)
-		VALUES((select nvl(max(help_id),0)+1 from helps),
-		#{helpType}, #{helpTitle}, #{helpContent}, sysdate)
+		INSERT INTO help
+		VALUES((SELECT NVL(MAX(help_id),0)+1 FROM help),
+		#{helpType}, #{helpTitle}, #{helpContent}, SYSDATE)
 	</insert>
 
 	<update id="updateHelp" parameterType="help">
-		UPDATE helps
+		UPDATE help
 		SET
 		help_type = #{helpType}, help_title = #{helpTitle}, help_content = #{helpContent}
 		WHERE
@@ -54,7 +60,7 @@
 	</update>
 
 	<delete id="deleteHelp" parameterType="help">
-		DELETE FROM helps WHERE
+		DELETE FROM help WHERE
 		help_id = #{helpId}
 	</delete>
 

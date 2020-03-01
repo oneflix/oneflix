@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ONEFLIX</title>
+  <title>ONeflix</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -58,7 +58,7 @@
                             <br>
                             <div class="buttons" style="float: right;">
                                 <button type="submit" class="btn btn-success">수정</button>
-                                <button type="button" class="btn btn-secondary" onclick="location.href='/actorListProc.mdo'">취소</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='/actorList.mdo'">취소</button>
                             </div><!-- /.buttons -->
                         </div> <!-- /.card-body .col-md-6 -->
 

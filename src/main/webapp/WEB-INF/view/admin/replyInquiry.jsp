@@ -10,30 +10,10 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- include libraries(jQuery, bootstrap) -->
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<!-- include summernote css/js-->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
-<!-- include summernote-ko-KR -->
-<script src="/admin/js/summernote-ko-KR.js"></script>
-<!-- Select2 -->
-<link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
-<link rel="stylesheet"
-	href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-<!-- Bootstrap4 Duallistbox -->
-<link rel="stylesheet"
-	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
    <div class="wrapper">
@@ -65,11 +45,8 @@
 						name="inquiryId" id="inquiryId" value="${inquiry.inquiryId}" />
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="inquiryType">문의타입</label> 
-						<select id="inquiryType"
-							name="inquiryType" class="form-control"
-							required="required" data-placeholder="Select a State"
-							style="width: 100%;">
-							<option value="category">카테고리 미분류</option>
+						<select id="inquiryType" name="inquiryType" class="form-control" required="required" data-placeholder="Select a State" style="width: 100%;">
+							<option value="all">카테고리 미분류</option>
 							<option value="payment">결제</option>
 							<option value="refund">해지/환불</option>
 							<option value="ticket">이용권/쿠폰</option>
@@ -81,8 +58,8 @@
 					</div>
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="memberEmail">고객이메일</label> <input type="text"
-							class="form-control" placeholder="이메일주소를 입력하세요" id="memberEmail"
-							name="memberEmail" value="${inquiry.memberEmail}">
+							class="form-control" placeholder="이메일주소를 입력하세요" id="email"
+							name="email" value="${inquiry.email}">
 					</div>
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="inquiryTitle">문의제목</label> <input type="text"
@@ -96,20 +73,20 @@
 					</div>
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="emailTitle">답변제목</label> <input type="text"
-							class="form-control" placeholder="제목을 입력하세요" id="emailTitle"
-							name="emailTitle">
+							class="form-control" placeholder="제목을 입력하세요" id="replyTitle"
+							name="replyTitle">
 					</div>
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="emailContent">답변내용</label>
 						<textarea class="form-control" placeholder="내용을 입력하세요"
-							id="emailContent" name="emailContent" style="height: 300px;"></textarea>
+							id="replyContent" name="replyContent" style="height: 300px;"></textarea>
 					</div>
 
 					<div class="buttons"
 						style="float: right; margin-top: 0; padding-bottom: 20px;">
 						<button type="submit" class="btn btn-success">보내기</button>
 						<button type="button" class="btn btn-secondary"
-							onclick="location.href='/getInquiryListProc.mdo'">취소</button>
+							onclick="location.href='/inquiryList.mdo'">취소</button>
 					</div>
 					<!-- /.buttons -->
 				</div>
@@ -125,28 +102,20 @@
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
 
-
-	<!-- Select2 -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
-
-	<script
-		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-	<!-- include summernote css/js-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
-
-	<!-- include summernote-ko-KR -->
+	<script src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 	<script src="admin/js/summernote-ko-KR.js"></script>
 
-
-	<!-- summernote -->
 	<script>
 		$(document).ready(function() {
-			$('#emailContent').summernote({
+			$('#replyContent').summernote({
 				height : 300,
 				maxHeight : null,
 				focus : true,
-				lang : 'ko-KR'
+				//lang : 'ko-KR'
 			});
 
 		});

@@ -13,7 +13,7 @@ public class InsertActorServiceImpl implements InsertActorService {
 	private ActorDAO actorDAO;
 
 	@Override
-	public void InsertActorService(ActorVO vo) {
+	public void insertActor(ActorVO vo) {
 		actorDAO.insertActor(vo);
 	}
 

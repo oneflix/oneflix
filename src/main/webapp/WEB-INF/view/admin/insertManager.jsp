@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ONEFLIX</title>
+  <title>ONeflix</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,7 +56,7 @@
                             </div>
                             
                             <div class="form-group mb-3">
-                                <label for="managerType">권한</label>
+                                <label for="managerType">등급</label>
                                 <select class="form-control" id="managerType" name="managerType">
                                 	<option value="0" selected>일반 관리자</option>
                                 	<option value="9">최고 관리자</option>
