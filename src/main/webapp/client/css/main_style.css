@@ -90,6 +90,8 @@ i {font-size: 20px; float: left;}
 
 .main-slider {position: relative; margin-bottom: 2vw;}
 .main-slider .swiper-wrapper {height: 13vw;}
+.main-slider .swiper-wrapper .movie-card{height: 13vw;}
+.swiper-slide:hover > .movie-card {transform: translateY(-13vw);}
 .main-slider .swiper-slide img {width: 100%; height: 80%;}
 .main-slider .swiper-slide .row p {font-size: 1vw; margin-top: -3px;}
 .main-slider .swiper-button-next {position: absolute; top: 50%; right: -40px;}
@@ -116,7 +118,9 @@ i {font-size: 20px; float: left;}
 
     .main > .row > .category {font-size: 1.7vw;}
     .main-slider .swiper-wrapper {height: 16vw;}
-    .main-slider .swiper-slide .row p {font-size: 1.3vw;}
+    .main-slider .swiper-wrapper .movie-card {height: 16vw;}
+    .swiper-slide:hover > .movie-card{transform: translateY(-16vw);}
+    .main-slider .swiper-slide .row > p {font-size: 1.3vw;}
 }
 
 @media (max-width: 768px) {
@@ -130,6 +134,8 @@ i {font-size: 20px; float: left;}
     .main {margin-top: -15vw;}
     .main > .row > .category {font-size: 1.9vw;}
     .main-slider .swiper-wrapper {height: 20vw;}
+    .main-slider .swiper-wrapper .movie-card {height: 20vw;}
+    .swiper-slide:hover > .movie-card{transform: translateY(-20vw);}
     .main-slider .swiper-slide .row p {font-size: 1.6vw;}
 }
 
@@ -150,6 +156,8 @@ i {font-size: 20px; float: left;}
     .main {padding: 20px 30px 0;}
     .main > .row > .category {font-size: 2.5vw;}
     .main-slider .swiper-wrapper {height: 28vw;}
+    .main-slider .swiper-wrapper .movie-card {height: 28vw;}
+    .swiper-slide:hover > .movie-card{transform: translateY(-28vw);}
     .main-slider .swiper-slide .row p {font-size: 2.2vw;}
     .main-slider .swiper-button-next {right: -30px;}
     .main-slider .swiper-button-prev { left: -30px;}
