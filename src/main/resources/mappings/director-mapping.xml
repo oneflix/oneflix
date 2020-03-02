@@ -5,7 +5,7 @@
 <mapper namespace="DirectorDAO">
 
 	<insert id="insertDirector" parameterType="director">
-		INSERT INTO director
+		INSERT INTO director(director_id, director_name, director_age)
 		VALUES((SELECT NVL(MAX(director_id),0)+1 FROM director), #{directorName}, #{directorAge})
 	</insert>
 

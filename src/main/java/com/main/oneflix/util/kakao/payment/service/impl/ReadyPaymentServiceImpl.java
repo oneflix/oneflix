@@ -3,7 +3,6 @@ package com.main.oneflix.util.kakao.payment.service.impl;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -12,17 +11,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.main.oneflix.sales.vo.SalesVO;
+import com.main.oneflix.util.factory.rest.RestTemplateFactory;
 import com.main.oneflix.util.kakao.KakaoConst;
 import com.main.oneflix.util.kakao.payment.service.ReadyPaymentService;
 
 @Service
 public class ReadyPaymentServiceImpl implements KakaoConst, ReadyPaymentService {
 
-	@Autowired
-	private RestTemplate restTemplate;
 	
 	@Override
 	public SalesVO readyPayment(SalesVO vo) {
+		RestTemplate restTemplate = RestTemplateFactory.getRestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", KAKAO_AUTH);
 		headers.add("Content-Type", CONTENT_TYPE);

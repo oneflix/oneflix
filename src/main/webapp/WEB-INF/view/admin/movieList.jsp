@@ -186,6 +186,7 @@
 	   						var html = "<div>" +
 										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goMovieDetail(\'" + data + "\')\">수정</button>" +
 										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-info\">상세보기</button>"
 									"</div>"
 	   						return html;
 	   					}}
