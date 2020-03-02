@@ -11,7 +11,6 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,8 +47,7 @@ public class LoginController {
 		return mav;
 	}
 
-
-	@RequestMapping(value="/login.do", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping("/login.do")
 	public ModelAndView login(ModelAndView mav, HttpSession session) {
 		//네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
@@ -101,7 +99,7 @@ public class LoginController {
 	  //연동까지 이미 돼있는 경우
 	  if(member != null) {
 		  //4.파싱 데이터 세션으로 저장
-		  session.setAttribute("loginMember",member); //세션 생성
+		  session.setAttribute("member",member); //세션 생성
 		  mav.setViewName("redirect:/homeProc.do");
 	  //가입이 안돼있는 경우=>회원가입 or 가입은 돼있지만 연동이 안된 경우=>로그인
 	  }else {
@@ -114,10 +112,13 @@ public class LoginController {
 	@RequestMapping("/connectSNSLoginProc.do")
 	public ModelAndView connectSNSLoginProc(MemberVO vo, ModelAndView mav,HttpSession session) {
 		MemberVO member = new MemberVO();
-		member = getMemberService.getMember(vo);
+		member.setEmail(vo.getEmail());
+		member = getMemberService.getMember(member);
+		mav.addObject("naver", vo.getNaver());
 		mav.addObject("result", "fail");
-		mav.setViewName("login");	
+		mav.setViewName("connectSNS");	
 			if ((member != null) && member.getPass().equals(vo.getPass())) {
+				member.setNaver(vo.getNaver());
 				updateMemberService.updateMember(member);
 				session.setAttribute("member",member);
 				mav.addObject("result", "success");

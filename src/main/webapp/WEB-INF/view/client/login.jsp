@@ -176,18 +176,6 @@
 			alert(JSON.stringfy(err));
 		}
 	}); */
-	
-	
-		//네이버 로그인
-		var naver_id_login = new naver_id_login("pML7geIoAzold42feHKn", "http://localhost:8080/naverLoginProc.do");
-		var state = naver_id_login.getUniqState();
-		
-	    naver_id_login.response_type="code";
-	    naver_id_login.setButton=("white",10,40);
-		naver_id_login.setDomain("http://localhost:8080/naverLogin.do");
-		naver_id_login.setState(state);
-//		naver_id_login.setPopup();
-		naver_id_login.init_naver_id_login();
 	</script>
 
 </body>
