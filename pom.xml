@@ -27,6 +27,13 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.11</version>
 		</dependency>
+
+		<!-- google -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-google</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
 		<!-- naver -->
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
@@ -45,6 +52,18 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.10.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.10.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.10.1</version>
 		</dependency>
 
 		<!-- GSON (카카오) -->

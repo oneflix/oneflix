@@ -5,10 +5,31 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-<context:component-scan base-package="com.main.oneflix.member.client.controller,
+	<context:component-scan
+		base-package="com.main.oneflix.member.client.controller,
 		                              com.main.oneflix.inquiry.client.controller,
 		                              com.main.oneflix.util.naver.login">
-</context:component-scan>
+	</context:component-scan>
 
-<bean id="naverLoginBO" class="com.main.oneflix.util.naver.login.NaverLoginBO" />
+	<bean id="naverLoginBO"
+		class="com.main.oneflix.util.naver.login.NaverLoginBO" />
+
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅 -->
+	<bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<constructor-arg
+			value="72367469990-ace2kifbu3c4rrei9si84in4ml98pv41.apps.googleusercontent.com" />
+		<constructor-arg value="bTczcv1KFMnrZZFmX9BwoYqz" />
+	</bean>
+	
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<bean id="googleOAuth2Parameters"
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<property name="scope"
+			value="https://www.googleapis.com/auth/plus.login" />
+		<property name="redirectUri"
+			value="http://localhost:8080/googleLoginProc.do" />
+	</bean>
+
 </beans>
