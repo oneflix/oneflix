@@ -117,10 +117,10 @@ public class KakaoLoginServiceImpl implements KakaoLoginService {
 			JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
 			String nick = properties.getAsJsonObject().get("nickname").getAsString();
-			String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+			String kakao = kakaoAccount.getAsJsonObject().get("email").getAsString();
 
 			member.setNick(nick);
-			member.setEmail(email);
+			member.setKakao(kakao);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

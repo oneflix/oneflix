@@ -18,7 +18,6 @@ public class MemberVO {
 	private String searchCert;
 	private String searchBan;
 	private Date joinDate;
-	
 	private String grant_type;
 	private String client_id;
 	private String client_secreat;

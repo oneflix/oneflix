@@ -83,6 +83,7 @@
     		</div>
 	</div>
 	<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
+	<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 
 
 	<footer id="footer">
