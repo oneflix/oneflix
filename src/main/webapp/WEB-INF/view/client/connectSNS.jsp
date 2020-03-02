@@ -57,9 +57,6 @@
 					<form class="login100-form validate-form" action="/connectSNSLoginProc.do"
 						method="post">
 
-						<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
-						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
-
 						<div class="wrap-input100 wrap-input100-top m-b-1">
 							<input class="input100" type="text" name="email" id="email"
 								autocomplete="off" placeholder="이메일">
@@ -80,6 +77,9 @@
 					   기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.</p>
 						<span class="join" OnClick="location.href='/join.do'">
 						아직 ONEFLIX 회원이 아니신가요? </span>
+
+						<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
+						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 					</form>
 				</div>
     		</div>

@@ -75,7 +75,7 @@ public class MemberController {
 		vo.setNick(newNick);
 		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);
-		session.setAttribute("member", vo);
+		session.setAttribute("loginMember", vo);
 		mav.setViewName("redirect:/getMemberProc.do");
 		return mav;
 	}

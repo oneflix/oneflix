@@ -356,6 +356,11 @@
 			}
 
 			var nextButtonClickableCount = Math.floor(reviewCount / 4);
+			alert(reviewListLength);
+			alert(reviewCount);
+			if (reviewCount % 4 == 0) {
+				nextButtonClickableCount--;
+			}
 			var prevButtonClickableCount = 0;
 			var nextButtonClickCount = 0;
 			if (nextButtonClickableCount == nextButtonClickCount) {

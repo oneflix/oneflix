@@ -18,7 +18,7 @@
       DELETE FROM member WHERE email = #{email}
    </delete>
    
-   <select id="getMember" resultType="member" parameterType="member">
+    <select id="getMember" resultType="member" parameterType="member">
       SELECT * FROM member
       WHERE 1=1
       <choose>

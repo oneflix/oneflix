@@ -24,7 +24,7 @@ public class KakaoLoginController {
 	private GetMemberService getMemberService;
 
 	@RequestMapping(value = "/kakaoLogin.do")
-	public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpSession session, ModelAndView mav) {
+		public ModelAndView kakaoLogin(MemberVO vo, @RequestParam("code") String code, HttpSession session, ModelAndView mav) {
 		HashMap<String, Object> token = kakaoLoginService.getKakaoAccessToken(code);
 		System.out.println(token);
 		MemberVO kakaoMember = kakaoLoginService.getKakaoUserInfo(token);
@@ -43,7 +43,10 @@ public class KakaoLoginController {
 		} else if (oneflixMember != null) {
 //	         TODO DB 사용자의 accessToken과 updateToken을 업데이트 하는 서비스 필요
 ///	         HashMap<String, Object> updateToken = clientInsertKaLoginService.updateKakaoAccessToken(clientCustomerVO);
-			session.setAttribute("loginMember", oneflixMember);
+			vo = getMemberService.getMember(oneflixMember);
+			
+			session.setAttribute("member", vo);
+			mav.addObject("member", vo);
 			mav.setViewName("redirect:homeProc.do");
 			return mav;
 			
