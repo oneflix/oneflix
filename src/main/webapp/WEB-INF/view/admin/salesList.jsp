@@ -84,7 +84,7 @@
 								<table id="salesTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>#</th>
+											<th style="width: 4vw;">#</th>
 											<th>이메일</th>
 											<th>이용권</th>
 											<th>가격</th>
@@ -169,7 +169,6 @@
     				sendData.startDate = selectDate[0];
     				sendData.endDate = selectDate[1];
     				sendData.searchEmail = searchEmail;
-    				console.log(sendData);
     			},
     			"dataSrc":function(response) {
     				totalSales = response.totalSales.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' })

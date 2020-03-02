@@ -5,9 +5,9 @@
 <mapper namespace="TicketDAO">
 
 	<insert id="insertTicket" parameterType="ticket">
-		INSERT INTO ticket (ticket_id, ticket_name, ticket_period, ticket_price, ticket_recommend, ticket_status)
-		VALUES((select nvl(max(ticket_id),0)+1 from ticket),#{ticketName},
-		#{ticketPeriod},#{ticketPrice},#{ticketRecommend},#{ticketStatus})
+		INSERT INTO ticket
+		VALUES((SELECT NVL(MAX(ticket_id), 0) + 1 FROM ticket),
+		#{ticketName}, #{ticketPeriod}, #{ticketPrice}, #{ticketStatus}, #{ticketRecommend} )
 	</insert>
 
 	<select id="getTicket" parameterType="ticket" resultType="ticket">
@@ -17,6 +17,7 @@
 
 	<resultMap type="ticket" id="ticketList">
 		<id property="ticketId" column="ticket_id" />
+		<result property="rnum" column="rnum" />
 		<result property="ticketName" column="ticket_name" />
 		<result property="ticketPeriod" column="ticket_period" />
 		<result property="ticketPrice" column="ticket_price" />
@@ -25,22 +26,26 @@
 	</resultMap>
 
 	<select id="getTicketList" resultMap="ticketList">
-		SELECT * FROM ticket WHERE 1=1
-		ORDER BY ticket_period
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, T.*
+				FROM (SELECT * 
+						FROM ticket
+						ORDER BY ticket_period DESC
+					) T
+			)
+		ORDER BY RNUM DESC
 	</select>
 	
 	<update id="updateTicket" parameterType="ticket">
 		UPDATE ticket
-		SET
-		ticket_name = #{ticketName}, ticket_period = #{ticketPeriod}, ticket_price = #{ticketPrice},
-		ticket_recommend = #{ticketRecommend}, ticket_status = #{ticketStatus}
-		WHERE
-		ticket_id = #{ticketId}
+		SET ticket_name = #{ticketName}, ticket_period = #{ticketPeriod}, ticket_price = #{ticketPrice},
+			ticket_status = #{ticketStatus}, ticket_recommend = #{ticketRecommend}
+		WHERE ticket_id = #{ticketId}
 	</update>
 
 	<delete id="deleteTicket" parameterType="ticket">
-		DELETE FROM ticket WHERE
-		ticket_Id = #{ticketId}
+		DELETE FROM ticket
+		WHERE ticket_Id = #{ticketId}
 	</delete>
 
 </mapper>

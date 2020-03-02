@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -52,52 +52,18 @@
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="ticketTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>#</th>
+											<th style="width: 4vw;">#</th>
 											<th>이용권명</th>
 											<th>기간</th>
 											<th>가격</th>
 											<th>상태</th>
 											<th>추천</th>
-											<th>관리</th>
+											<th style="width: 150px;">관리</th>
 										</tr>
 									</thead>
-									<tbody>
-									<c:forEach var="ticket" items="${ticketList}">
-										<tr>
-											<td>${ticket.ticketId}</td>
-											<td>${ticket.ticketName}</td>
-											<td>
-												<c:choose>
-													<c:when test="${ticket.ticketPeriod eq -1}">정기</c:when>
-													<c:otherwise>${ticket.ticketPeriod}일</c:otherwise>
-												</c:choose>
-											</td>
-											<td>
-												<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
-											</td>
-											<td>
-												<c:choose>
-													<c:when test="${ticket.ticketStatus eq 'Y'}">활성화</c:when>
-													<c:otherwise>비활성화</c:otherwise>
-												</c:choose>
-											<td>
-												<c:choose>
-													<c:when test="${ticket.ticketRecommend eq 'Y'}">추천</c:when>
-													<c:otherwise>비추천</c:otherwise>
-												</c:choose>
-											</td>
-											<td>
-												<div>
-													<button type="submit" class="btn btn-sm btn-primary" onclick="location.href='/getTicketProc.mdo?ticketId=${ticket.ticketId}'">수정</button>
-													<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${ticket.ticketId}')">삭제</button>
-												</div>
-											</td>
-										</tr>
-										</c:forEach>
-									</tbody>
 								</table>
 							</div>
 							<!-- /.card-body -->
@@ -118,15 +84,87 @@
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
 	<!-- ./wrapper -->
-	<script>
-		function deleteCheck(ticketId) {
-			var check = confirm("정말로 삭제하시겠습니까?");
-			if (check == true) {
-				document.location.href = "/deleteTicketProc.mdo?ticketId="
-						+ ticketId;
-			}
+<script>
+	var table;
+	
+    // Data Table
+    $(document).ready(function() {
+    	
+    	table = $('#ticketTable').DataTable({
+    		pageLength: 10,
+    		pagingType: "simple_numbers",
+    		lengthChange: false,
+    		info: false,
+    		responsive: true,
+    		autoWidth: false,
+    		processing: true,
+    		searching: false,
+    		ordering: true,
+    		order: [[0, 'desc']],
+    		language: {
+    			"processing": "잠시만 기다려주세요.",
+    			"paginate": {
+    				"previous": "이전",
+    				"next": "다음"
+    			}
+    		},
+    		ajax: {
+    			"type": "POST",
+    			"url": "/getTicketListProcAjax.mdo",
+    		},
+   			columns: [
+   				{data: "rnum"},
+   				{data: "ticketName"},
+   				{data: "ticketPeriod",
+   					render: function(data){
+   						if (data == -1) {
+   							return "정기";
+   						}
+   						return data + "일";
+   					}},
+   				{data: "ticketPrice",
+   					render: function(data){
+   						data = new Number(data);
+   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
+   						return data;
+   					}},
+   				{data: "ticketStatus",
+   					render: function(data){
+   						if (data == "Y") {
+   							return "활성화";
+   						}
+   						return "비활성화";
+   					}},
+   				{data: "ticketRecommend",
+	   				render: function(data){
+   						if (data == "Y") {
+   							return "추천";
+   						}
+   						return "일반";
+   					}},
+   				{data: "ticketId",
+   					render: function(data){
+   						var html = "<div>" +
+									"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goTicketDetail(\'" + data + "\')\">수정</button>" +
+									"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+								"</div>"
+   						return html;
+   					}}
+   			]
+    	});
+    	
+    });
+    function goTicketDetail(ticketId) {
+    	window.location.href = "/getTicketProc.mdo?ticketId=" + ticketId;
+    }
+
+	function deleteCheck(ticketId){
+		var check = confirm("정말로 삭제하시겠습니까?");
+		if(check == true){
+			window.location.href = "/deleteTicketProc.mdo?ticketId=" + ticketId;
 		}
-	</script>
+	};
+</script>
 
 </body>
 
