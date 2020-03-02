@@ -54,9 +54,11 @@
 							로그인 <span class="find-pass" OnClick="location.href='/findPass.do'">비밀번호를
 								잊어버리셨나요?</span>
 						</div>
-					<form class="login100-form validate-form" action="/loginProc.do"
-						method="post" onsubmit="return validate();">
+					<form class="login100-form validate-form" action="/connectSNSLoginProc.do"
+						method="post">
 
+						<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
+						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 
 						<div class="wrap-input100 wrap-input100-top m-b-1">
 							<input class="input100" type="text" name="email" id="email"
@@ -82,8 +84,6 @@
 				</div>
     		</div>
 	</div>
-	<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
-	<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 
 
 	<footer id="footer">
@@ -117,14 +117,6 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-	<script>
-		$(document).ready(function() {
-			var result = "${result}";
-			if (result == "success") {
-				alert("로그인 정보가 일치하지 않습니다.");
-			}
-		});
-	</script>
 
 </body>
 </html> 

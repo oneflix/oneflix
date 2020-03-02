@@ -15,7 +15,7 @@
    </insert>
    
    <update id="updateMember" parameterType="member">
-      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}
+      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, naver = #{naver}
       WHERE email = #{email}
    </update>
   
