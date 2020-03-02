@@ -59,6 +59,7 @@ public class LoginController {
 
 	@RequestMapping("/loginProc.do")
 	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session){
+		
 		MemberVO member = new MemberVO();
 		member = getMemberService.getMember(vo);
 		mav.addObject("result", "fail");

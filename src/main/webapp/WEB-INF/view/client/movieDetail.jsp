@@ -278,8 +278,8 @@
 																	${reviewList[i].reviewContent }</div>
 																<div class="like-container">
 																	<button class="like-button">
-																		<i class="far fa-thumbs-up like-icon"></i> <span
-																			class="like-count">${reviewList[i].likeCount}</span>
+																		<i id="thumbs" class="far fa-thumbs-up like-icon"></i> 
+																		<span class="like-count">${reviewList[i].likeCount}</span>
 																	</button>
 																</div>
 															</div>
@@ -448,6 +448,11 @@
 			  $(this).addClass('on').prevAll('span').addClass('on');
 			  return false;
 			}); */
+			
+			
+		function changeLikeCount() {
+				
+			}
 	</script>
 
 </body>

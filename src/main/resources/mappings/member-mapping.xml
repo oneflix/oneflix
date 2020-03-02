@@ -5,13 +5,13 @@
 <mapper namespace="MemberDAO">
    <insert id="insertMember" parameterType="member">
       INSERT INTO member (email, pass, nick, birth, member_age, gender, cert, ban)
-      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}) 
+      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban})
  	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
    </insert>
    
    <insert id="insertKakao" parameterType="member" >
-      INSERT INTO member (email, nick)
-      VALUES(#{email}, #{nick})
+      INSERT INTO member (nick, kakao)
+      VALUES(#{nick}, #{kakao})
    </insert>
    
    <update id="updateMember" parameterType="member">
@@ -22,8 +22,24 @@
    <delete id="deleteMember" parameterType="member">
       DELETE FROM member WHERE email = #{email}
    </delete>
+   
    <select id="getMember" resultType="member" parameterType="member">
-      SELECT * FROM member WHERE email = #{email}
+      SELECT * FROM member
+      WHERE 1=1
+      <choose>
+	      <when test="kakao != null">
+	      	AND kakao = #{kakao}
+	      </when>
+	      <when test="naver != null">
+	      	AND naver = #{naver}
+	      </when>
+	      <when test="google != null">
+	      	AND google = #{google}
+	      </when>
+	      <otherwise>
+	      	AND email = #{email}
+	      </otherwise>
+      </choose>
    </select>
    
    <resultMap type="member" id="memberList">
