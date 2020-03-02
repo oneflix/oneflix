@@ -5,5 +5,5 @@ import java.util.List;
 import com.main.oneflix.actor.vo.ActorVO;
 
 public interface GetActorListService {
-	public List<ActorVO> getActorListService(ActorVO vo);
+	public List<ActorVO> getActorList(ActorVO vo);
 }

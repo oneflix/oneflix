@@ -14,6 +14,7 @@ import com.main.oneflix.help.service.GetHelpService;
 import com.main.oneflix.help.service.InsertHelpService;
 import com.main.oneflix.help.service.UpdateHelpService;
 import com.main.oneflix.help.vo.HelpVO;
+import com.main.onflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class FAQController {
@@ -33,23 +34,21 @@ public class FAQController {
 	@Autowired
 	private GetHelpListService getHelpListService;
 
-	@RequestMapping("/getFAQListProc.mdo")
-	public ModelAndView getFAQListProc(HelpVO vo, ModelAndView mav) {
-		if (vo.getHelpType() == null) {
-			vo.setHelpType("faq");
-		};
-		List<HelpVO> FAQList = getHelpListService.getHelpList(vo);
-		mav.addObject("FAQ", vo);
-		mav.addObject("FAQList", FAQList);
+	@RequestMapping("/FAQList.mdo")
+	public ModelAndView FAQList(ModelAndView mav) {
 		mav.setViewName("FAQList");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/getFAQListProcAjax.mdo", produces = "application/json; charset=UTF-8")
+	@RequestMapping("/getFAQListProcAjax.mdo")
 	@ResponseBody
-	public List<HelpVO> getFAQListProcAjax(HelpVO vo) {
-		List<HelpVO> helpList = getHelpListService.getHelpList(vo);
-		return helpList;
+	public WrapperVO getFAQListProcAjax(HelpVO vo, ModelAndView mav) {
+		WrapperVO wrap = new WrapperVO();
+		List<HelpVO> FAQList = getHelpListService.getHelpList(vo);
+		wrap.setData(FAQList);
+		wrap.setRecordsTotal(FAQList.size());
+		wrap.setRecordsFiltered(FAQList.size());
+		return wrap;
 	}
 
 	@RequestMapping("/insertFAQ.mdo")
@@ -61,7 +60,7 @@ public class FAQController {
 	@RequestMapping("/insertFAQProc.mdo")
 	public ModelAndView insertFAQProc(HelpVO vo, ModelAndView mav) {
 		insertHelpService.insertHelp(vo);
-		mav.setViewName("redirect:/getFAQListProc.mdo");
+		mav.setViewName("redirect:/FAQList.mdo");
 		return mav;
 	}
 
@@ -76,14 +75,14 @@ public class FAQController {
 	@RequestMapping("/updateFAQProc.mdo")
 	public ModelAndView updateFAQProc(HelpVO vo, ModelAndView mav) {
 		updateHelpService.updateHelp(vo);
-		mav.setViewName("redirect:/getFAQListProc.mdo");
+		mav.setViewName("redirect:/FAQList.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteFAQProc.mdo")
 	public ModelAndView deleteFAQProc(HelpVO vo, ModelAndView mav) {
 		deleteHelpService.deleteHelp(vo);
-		mav.setViewName("redirect:/getFAQListProc.mdo");
+		mav.setViewName("redirect:/FAQList.mdo");
 		return mav;
 	}
 

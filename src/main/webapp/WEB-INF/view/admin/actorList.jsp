@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,24 +45,24 @@
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
 									style="float: left;" onclick="location.href='/insertActor.mdo'">+ 추가</button>
-								<form method="post" action="/actorListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
+								<div class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="searchActor"
+											<input type="text" name="searchActor" id="searchActor"
 												class="form-control float-right" placeholder="Search">
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button id="search-button" type="button" class="btn btn-default">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 							</div>
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="actorTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
 											<th style="width: 4vw;">#</th>
@@ -71,22 +71,6 @@
 											<th style="width: 150px;">관리</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="actor" items="${actorList}">
-											<tr>
-												<td>1</td>
-												<td>${actor.actorName}</td>
-												<td>${actor.actorAge}<td>
-													<div>
-														<button type="button" class="btn btn-sm btn-primary"
-															onclick="location.href='/getActorProc.mdo?actorId=${actor.actorId}'">수정</button>
-														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${actor.actorId}')">삭제</button>
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-									
-									</tbody>
 								</table>
 							</div>
 						</div>
@@ -105,12 +89,77 @@
 	</div>
 	<!-- ./wrapper -->
 	<script>
-		function deleteCheck(actorId) {
+		var table;
+		var searchActor;
+		
+	    $(document).ready(function() {
+	    	
+	    	table = $('#actorTable').DataTable({
+	    		pageLength: 10,
+	    		pagingType: "simple_numbers",
+	    		lengthChange: false,
+	    		info: false,
+	    		responsive: true,
+	    		autoWidth: false,
+	    		processing: true,
+	    		searching: false,
+	    		ordering: true,
+	    		order: [[0, 'desc']],
+	    		language: {
+	    			"processing": "잠시만 기다려주세요.",
+	    			"paginate": {
+	    				"previous": "이전",
+	    				"next": "다음"
+	    			}
+	    		},
+	    		ajax: {
+	    			"type": "POST",
+	    			"url": "/getActorListProcAjax.mdo",
+	    			"data": function(sendData) {
+	    				sendData.searchActor = searchActor;
+	    			} 
+	    		},
+	   			columns: [
+	   				{data: "rnum"},
+	   				{data: "actorName"},
+	   				{data: "actorAge",
+	   					render: function(data) {
+	   						return data + "세";
+	   					}},
+	   				{data: "actorId",
+	   					render: function(data){
+	   						var html = "<div>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goActorDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+									"</div>"
+	   						return html;
+	   					}}
+	   			]
+	    	});
+	    	
+	    });
+	    
+	    $('#search-button').click(function() {
+	    	searchActor = $('#searchActor').val();
+	    	table.ajax.reload();
+	    });
+	    
+	    $("#searchActor").keydown(function(key) {
+	        if (key.keyCode == 13) {
+	        	$('#search-button').trigger('click');
+	        }
+		});
+	    
+	    function goActorDetail(actorId) {
+	    	window.location.href = "/getActorProc.mdo?actorId=" + actorId;
+	    }
+	
+		function deleteCheck(actorId){
 			var check = confirm("정말로 삭제하시겠습니까?");
-			if (check == true) {
-				document.location.href = "/deleteActorProc.mdo?actorId=" + actorId;
+			if(check == true){
+				window.location.href = "/deleteActorProc.mdo?actorId=" + actorId;
 			}
-		}
+		};
 	</script>
 
 </body>

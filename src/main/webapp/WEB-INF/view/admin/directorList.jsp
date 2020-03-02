@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -43,33 +43,26 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<button type="button" class="btn btn-primary"
-									style="float: left;"
-									onclick="location.href='/insertDirector.mdo'">+ 추가</button>
-
-
-
-								<form class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
+								<button type="button" class="btn btn-primary" style="float: left;" onclick="location.href='/insertDirector.mdo'">+ 추가</button>
+								<div class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="searchDirectorName1"
+											<input type="text" name="searchDirector" id="searchDirector"
 												class="form-control float-right" placeholder="검색">
-
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button id="search-button" type="button" class="btn btn-default">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 
 							</div>
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="directorTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
 											<th style="width: 4vw;">#</th>
@@ -78,23 +71,6 @@
 											<th style="width: 150px;">관리</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="director" items="${directorList}">
-											<tr>
-												<td>${director.directorId }</td>
-												<td>${director.directorName }</td>
-												<td>${director.directorAge }</td>
-												<td>
-													<div>
-														<button type="button" class="btn btn-sm btn-primary"
-															onclick="location.href='getDirectorProc.mdo?directorId=${director.directorId}'">수정</button>
-														<button type="button" class="btn btn-sm btn-danger" 
-																onclick="delete_confirm('${director.directorId}')">삭제</button>
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
 								</table>
 							</div>
 							<!-- /.card-body -->
@@ -120,11 +96,74 @@
 	<!-- ./wrapper -->
 
 	<script>
-		function delete_confirm(address) { 
-			var result = confirm('정말로 삭제하시겠어요?');
-			if(result) { //yes 
-				location.href='/deleteDirectorProc.mdo?directorId='+address;
-			} else {} 
+		var table;
+		var searchDirector;
+		
+	    $(document).ready(function() {
+	    	table = $('#directorTable').DataTable({
+	    		pageLength: 10,
+	    		pagingType: "simple_numbers",
+	    		lengthChange: false,
+	    		info: false,
+	    		responsive: true,
+	    		autoWidth: false,
+	    		processing: true,
+	    		searching: false,
+	    		ordering: true,
+	    		order: [[0, 'desc']],
+	    		language: {
+	    			"processing": "잠시만 기다려주세요.",
+	    			"paginate": {
+	    				"previous": "이전",
+	    				"next": "다음"
+	    			}
+	    		},
+	    		ajax: {
+	    			"type": "POST",
+	    			"url": "/getDirectorListProcAjax.mdo",
+	    			"data": function(sendData) {
+	    				sendData.searchDirector = searchDirector;
+	    			} 
+	    		},
+	   			columns: [
+	   				{data: "rnum"},
+	   				{data: "directorName"},
+	   				{data: "directorAge",
+	   					render: function(data) {
+	   						return data + "세";
+	   					}},
+	   				{data: "directorId",
+	   					render: function(data){
+	   						var html = "<div>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goDirectorDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+									"</div>"
+	   						return html;
+	   					}}
+	   			]
+	    	});
+	    });
+	    
+	    $('#search-button').click(function() {
+	    	searchDirector = $('#searchDirector').val();
+	    	table.ajax.reload();
+	    });
+	    
+	    $("#searchDirector").keydown(function(key) {
+	        if (key.keyCode == 13) {
+	        	$('#search-button').trigger('click');
+	        }
+		});
+	    
+	    function goDirectorDetail(directorId) {
+	    	window.location.href = "/getDirectorProc.mdo?directorId=" + directorId;
+	    }
+	
+		function deleteCheck(directorId){
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if(check == true){
+				window.location.href = "/deleteDirectorProc.mdo?directorId=" + directorId;
+			}
 		};
 	</script>
 </body>

@@ -61,7 +61,7 @@
 										<c:otherwise>카테고리</c:otherwise>
 									</c:choose></td>
 								<td>${inquiry.inquiryTitle}</td>
-								<td><fmt:formatDate value="${inquiry.receiveDate}" pattern="yyyy-MM-dd"/></td>
+								<td><fmt:formatDate value="${inquiry.inquiryDate}" pattern="yyyy-MM-dd"/></td>
 								<c:if test="${empty inquiry.replyDate}">
 								<td>미답변</td>
 								</c:if>

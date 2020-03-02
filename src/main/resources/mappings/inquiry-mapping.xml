@@ -4,87 +4,94 @@
 
 <mapper namespace="InquiryDAO">
 
-	<select id="getInquiry" parameterType="inquiry"
-		resultType="inquiry">
-		SELECT * FROM inquiry WHERE inquiry_id=#{inquiryId}
-	</select>
-
 	<resultMap type="inquiry" id="inquiryList">
 		<id property="inquiryId" column="inquiry_id" />
+		<result property="rnum" column="rnum" />
 		<result property="inquiryType" column="inquiry_type" />
+		<result property="email" column="email" />
 		<result property="nick" column="nick" />
-		<result property="memberEmail" column="member_email" />
 		<result property="adminName" column="admin_name" />
 		<result property="adminEmail" column="admin_email" />
 		<result property="inquiryTitle" column="inquiry_title" />
 		<result property="inquiryContent" column="inquiry_content" />
-		<result property="emailTitle" column="email_title" />
-		<result property="emailContent" column="email_content" />
-		<result property="receiveDate" column="receive_date" />
+		<result property="replyTitle" column="reply_title" />
+		<result property="replyContent" column="reply_content" />
+		<result property="inquiryDate" column="inquiry_date" />
 		<result property="replyDate" column="reply_date" />
 	</resultMap>
 
 	<select id="getInquiryList" parameterType="inquiry" resultMap="inquiryList">
 		SELECT *
-		FROM (
-		SELECT ROWNUM RNUM, A.*
-		FROM (
-		SELECT *
-		FROM INQUIRY
-		ORDER
-		BY INQUIRY_ID DESC
-		) A
-		)
-		WHERE 1 = 1
-		
-		<if test="start != 0">
+		FROM (SELECT *
+				FROM (SELECT ROWNUM RNUM, I.* 
+					FROM (SELECT * 
+							FROM inquiry
+							WHERE 1 = 1
+							<if test="email != null">
+								AND email = #{email}
+							</if>
+							<if test="searchInquiryType != null and searchInquiryType != '' and searchInquiryType != 'all'">
+								AND inquiry_type = #{searchInquiryType}
+							</if>
+							<if test="searchInquiry != null and searchInquiry != ''">
+								<choose>
+									<when test="searchCondition == 'inquiry'">
+										AND (inquiry_title like '%' || #{searchInquiry} || '%' 
+										OR inquiry_content like '%' || #{searchInquiry} || '%')
+									</when>
+									<when test="searchCondition == 'member'">
+										AND email like '%' || #{searchInquiry} || '%'
+									</when>
+								</choose>
+							</if>
+							ORDER BY inquiry_date
+						) I
+					)
+			<choose>
+				<when test="start != 0 and end != 0">
+					ORDER BY RNUM
+				</when>
+				<otherwise>
+					ORDER BY RNUM DESC
+				</otherwise>
+			</choose>
+			)
+	WHERE 1 = 1
+	<if test="start != 0 and end != 0">
 		AND RNUM BETWEEN #{start} AND #{end}
-		</if>
-		<if test="searchInquiryType != null">
-			AND inquiry_type = #{searchInquiryType}
-		</if>
-		<if test="searchInquiry != null">
-			AND inquiry_title like '%' || #{searchInquiry} || '%' 
-			OR inquiry_content like '%' || #{searchInquiry} || '%'
-		</if>
-		<if test="searchMember != null">
-			AND member_email like '%' || #{searchMember} || '%'
-		</if>
-		ORDER BY inquiry_id DESC
+	</if>
+	</select>
+
+	<select id="getInquiry" parameterType="inquiry"
+		resultType="inquiry">
+		SELECT * FROM inquiry WHERE inquiry_id = #{inquiryId}
 	</select>
 
 	<insert id="insertInquiry" parameterType="inquiry">
 		INSERT INTO inquiry
-		(inquiry_id,inquiry_type,nick,member_email,admin_name,admin_email,
-		inquiry_title,inquiry_content,receive_date)
-		VALUES((select
-		NVL(max(inquiry_id),0)+1 from inquiry),
-		#{inquiryType},#{nick},#{memberEmail},#{adminName},#{adminEmail},
-		#{inquiryTitle},#{inquiryContent},SYSDATE)
+		(inquiry_id, inquiry_type, email, inquiry_title, inquiry_content, inquiry_date)
+		VALUES((SELECT NVL(MAX(inquiry_id),0)+1 FROM inquiry),
+		#{inquiryType}, #{email}, #{inquiryTitle}, #{inquiryContent}, SYSDATE)
 	</insert>
 
 	<update id="updateInquiry" parameterType="inquiry">
 		UPDATE inquiry
-		SET
-		inquiry_type=#{inquiryType},email_title=#{emailTitle},email_content=#{emailContent},reply_date=SYSDATE
-
-		WHERE
-		inquiry_id=#{inquiryId}
+		SET admin_email = #{adminEmail}, inquiry_type = #{inquiryType}, reply_title = #{replyTitle},
+			reply_content = #{replyContent}, reply_date = SYSDATE
+		WHERE inquiry_id = #{inquiryId}
 	</update>
 
 	<delete id="deleteInquiry" parameterType="inquiry">
 		DELETE FROM inquiry
-		WHERE
-		inquiry_id=#{inquiryId}
+		WHERE inquiry_id=#{inquiryId}
 	</delete>
 
-	<!-- 총 게시글 갯수 출력 -->
+	<!-- 총 게시글 개수 출력 -->
 	<select id="getCountInquiry" parameterType="inquiry" resultType="int">
-		SELECT COUNT(*) FROM
-		inquiry
+		SELECT COUNT(*) FROM inquiry
 		WHERE 1 = 1
-		<if test="memberEmail != null">
-			AND member_email = #{memberEmail}
+		<if test="email != null">
+			AND email = #{email}
 		</if>
 	</select>
 </mapper>

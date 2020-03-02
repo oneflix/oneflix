@@ -4,8 +4,6 @@ import java.util.Date;
 
 import org.json.simple.JSONObject;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -53,6 +51,7 @@ public class SalesVO {
 	private Date paymentDate;
 	private String startDate;
 	private String endDate;
+	private String searchSales;
 
 	public String getCid() {
 		return cid;
@@ -262,5 +261,12 @@ public class SalesVO {
 		this.endDate = endDate;
 	}
 
-	
+	public String getSearchEmail() {
+		return searchSales;
+	}
+
+	public void setSearchEmail(String searchEmail) {
+		this.searchSales = searchEmail;
+	}
+
 }
