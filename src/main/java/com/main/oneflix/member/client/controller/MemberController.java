@@ -38,11 +38,10 @@ public class MemberController {
 
 	@RequestMapping("/joinProc.do")
 	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
-
-		System.out.println(vo);
 		String kakao  = vo.getKakao();
-		System.out.println("kakao = " + kakao);
+		String naver = vo.getNaver();
 		vo.setKakao(kakao);
+		vo.setNaver(naver);
 		
 		// member 나이계산
 		int memberAge = 0;
@@ -89,7 +88,7 @@ public class MemberController {
 
 	@RequestMapping("/deleteMemberProc.do")
 	public ModelAndView deleteMember(HttpSession session, ModelAndView mav) {
-		MemberVO vo = (MemberVO) session.getAttribute("loginMember");
+		MemberVO vo = (MemberVO) session.getAttribute("member");
 		deleteMemberService.deleteMember(vo);
 		session.invalidate();
 		mav.addObject("result");

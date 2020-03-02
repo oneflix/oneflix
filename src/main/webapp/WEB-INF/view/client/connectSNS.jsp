@@ -80,8 +80,6 @@
 					   기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.</p>
 						<span class="join" OnClick="location.href='/join.do'">
 						아직 ONEFLIX 회원이 아니신가요? </span>
-							<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
-							<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 					</form>
 				</div>
     		</div>

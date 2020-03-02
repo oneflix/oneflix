@@ -10,7 +10,7 @@
    </insert>
 
   <update id="updateMember" parameterType="member">
-      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, naver=#{naver}
+      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
       WHERE email = #{email}
    </update>
   
@@ -22,13 +22,13 @@
       SELECT * FROM member
       WHERE 1=1
       <choose>
-	      <when test="kakao != null">
+	      <when test="kakao != null and kakao != ''">
 	      	AND kakao = #{kakao}
 	      </when>
-	      <when test="naver != null">
+	      <when test="naver != null and naver != ''">
 	      	AND naver = #{naver}
 	      </when>
-	      <when test="google != null">
+	      <when test="google != null and google != ''">
 	      	AND google = #{google}
 	      </when>
 	      <otherwise>

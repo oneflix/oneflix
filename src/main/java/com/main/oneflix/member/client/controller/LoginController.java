@@ -98,13 +98,11 @@ public class LoginController {
 	  MemberVO member = getMemberService.getMember(vo);
 	  //연동까지 이미 돼있는 경우
 	  if(member != null) {
-		  System.out.println("================>연동된경우:"+member.getNaver());
 		  //4.파싱 데이터 세션으로 저장
-		  session.setAttribute("loginMember",member); //세션 생성
+		  session.setAttribute("member",member); //세션 생성
 		  mav.setViewName("redirect:/homeProc.do");
 	  //가입이 안돼있는 경우=>회원가입 or 가입은 돼있지만 연동이 안된 경우=>로그인
 	  }else {
-		  System.out.println("================>연동안된경우:"+vo.getNaver());
 		  mav.addObject("member", vo);
 		  mav.setViewName("connectSNS");
 	  }
@@ -114,13 +112,15 @@ public class LoginController {
 	@RequestMapping("/connectSNSLoginProc.do")
 	public ModelAndView connectSNSLoginProc(MemberVO vo, ModelAndView mav,HttpSession session) {
 		MemberVO member = new MemberVO();
-		member = getMemberService.getMember(vo);
+		member.setEmail(vo.getEmail());
+		member = getMemberService.getMember(member);
 		mav.addObject("naver", vo.getNaver());
 		mav.addObject("result", "fail");
 		mav.setViewName("connectSNS");	
 			if ((member != null) && member.getPass().equals(vo.getPass())) {
+				member.setNaver(vo.getNaver());
 				updateMemberService.updateMember(member);
-				session.setAttribute("loginMember",member);
+				session.setAttribute("member",member);
 				mav.addObject("result", "success");
 				mav.setViewName("redirect:/homeProc.do");
 		}
