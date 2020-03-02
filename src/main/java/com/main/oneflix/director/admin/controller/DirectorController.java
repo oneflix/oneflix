@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.director.service.DeleteDirectorService;
@@ -13,6 +14,7 @@ import com.main.oneflix.director.service.GetDirectorService;
 import com.main.oneflix.director.service.InsertDirectorService;
 import com.main.oneflix.director.service.UpdateDirectorService;
 import com.main.oneflix.director.vo.DirectorVO;
+import com.main.onflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class DirectorController {
@@ -28,6 +30,22 @@ public class DirectorController {
 	@Autowired
 	GetDirectorListService getDirectorListService;
 	
+	@RequestMapping("/directorList.mdo")
+	public ModelAndView directorList(ModelAndView mav) {
+		mav.setViewName("directorList");
+		return mav;
+	}
+	
+	@RequestMapping("/getDirectorListProcAjax.mdo")
+	@ResponseBody
+	public WrapperVO getDirectorListProcAjax(DirectorVO vo, ModelAndView mav) {
+		WrapperVO wrap = new WrapperVO();
+		List<DirectorVO> DirectorList = getDirectorListService.getDirectorList(vo);
+		wrap.setData(DirectorList);
+		wrap.setRecordsTotal(DirectorList.size());
+		wrap.setRecordsFiltered(DirectorList.size());
+		return wrap;
+	}
 	
 	@RequestMapping("/insertDirector.mdo")
 	public ModelAndView insertDirector(DirectorVO vo, ModelAndView mav) {
@@ -38,21 +56,21 @@ public class DirectorController {
 	@RequestMapping("/insertDirectorProc.mdo")
 	public ModelAndView insertDirectorProc(DirectorVO vo, ModelAndView mav) {
 		insertDirectorService.insertDirector(vo);
-		mav.setViewName("redirect:/getDirectorListProc.mdo");
+		mav.setViewName("redirect:/directorList.mdo");
 		return mav;
 	}
 	
 	@RequestMapping("/updateDirectorProc.mdo")
 	public ModelAndView updateDirectorProc(DirectorVO vo, ModelAndView mav) {
 		updateDirectorService.updateDirector(vo);
-		mav.setViewName("redirect:/getDirectorListProc.mdo");
+		mav.setViewName("redirect:/directorList.mdo");
 		return mav;
 	}
 	
 	@RequestMapping("/deleteDirectorProc.mdo")
 	public ModelAndView deleteDirectorProc(DirectorVO vo, ModelAndView mav) {
 		deleteDirectorService.deleteDirector(vo);
-		mav.setViewName("redirect:/getDirectorListProc.mdo");
+		mav.setViewName("redirect:/directorList.mdo");
 		return mav;
 	}
 	
@@ -61,14 +79,6 @@ public class DirectorController {
 		vo = getDirectorService.getDirector(vo);
 		mav.addObject("director", vo);
 		mav.setViewName("updateDirector");
-		return mav;
-	}
-	
-	@RequestMapping("/getDirectorListProc.mdo")
-	public ModelAndView getDirectorListProc(DirectorVO vo, ModelAndView mav) {
-		List<DirectorVO> directorList = getDirectorListService.getDirectorList(vo);
-		mav.addObject("directorList", directorList);
-		mav.setViewName("directorList");
 		return mav;
 	}
 }

@@ -14,6 +14,7 @@ import com.main.oneflix.ticket.service.GetTicketService;
 import com.main.oneflix.ticket.service.InsertTicketService;
 import com.main.oneflix.ticket.service.UpdateTicketService;
 import com.main.oneflix.ticket.vo.TicketVO;
+import com.main.onflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class TicketController {
@@ -28,32 +29,36 @@ public class TicketController {
 	@Autowired
 	DeleteTicketService deleteTicketService;
 
+	@RequestMapping("/ticketList.mdo")
+	public ModelAndView ticketList(ModelAndView mav) {
+		mav.setViewName("ticketList");
+		return mav;
+	}
+
+	@RequestMapping("/getTicketListProcAjax.mdo")
+	@ResponseBody
+	public WrapperVO getTicketListProcAjax(TicketVO vo) {
+		WrapperVO wrap = new WrapperVO();
+		List<TicketVO> ticketList = getTicketListService.getTicketList(vo);
+		wrap.setData(ticketList);
+		wrap.setRecordsTotal(ticketList.size());
+		wrap.setRecordsFiltered(ticketList.size());
+		return wrap;
+	}
+
 	@RequestMapping("/insertTicket.mdo")
 	public ModelAndView insertTicket(ModelAndView mav) {
 		mav.setViewName("insertTicket");
 		return mav;
 	}
+
 	@RequestMapping("/insertTicketProc.mdo")
 	public ModelAndView insertTicketProc(TicketVO vo, ModelAndView mav) {
 		insertTicketService.insertTicket(vo);
 		mav.setViewName("redirect:/getTicketListProc.mdo");
 		return mav;
 	}
-	
-	@RequestMapping("/getTicketListProcAjax.mdo")
-	@ResponseBody
-	public List<TicketVO> getTicketListProcAjax(TicketVO vo) {
-		List<TicketVO> ticketList = getTicketListService.getTicketList(vo);
-		return ticketList;
-	}
-	
-	@RequestMapping("/getTicketListProc.mdo")
-	public ModelAndView getTicketListProc(TicketVO vo, ModelAndView mav) {
-		List<TicketVO> ticketList = getTicketListService.getTicketList(vo);
-		mav.addObject("ticketList", ticketList);
-		mav.setViewName("ticketList");
-		return mav;
-	}
+
 	@RequestMapping("/getTicketProc.mdo")
 	public ModelAndView getTicketProc(TicketVO vo, ModelAndView mav) {
 		vo = getTicketService.getTicket(vo);
@@ -61,12 +66,14 @@ public class TicketController {
 		mav.setViewName("updateTicket");
 		return mav;
 	}
+
 	@RequestMapping("/updateTicketProc.mdo")
 	public ModelAndView updateTicketProc(TicketVO vo, ModelAndView mav) {
 		updateTicketService.updateTicket(vo);
 		mav.setViewName("redirect:/getTicketListProc.mdo");
 		return mav;
 	}
+
 	@RequestMapping("/deleteTicketProc.mdo")
 	public ModelAndView deleteTicketProc(TicketVO vo, ModelAndView mav) {
 		deleteTicketService.deleteTicket(vo);

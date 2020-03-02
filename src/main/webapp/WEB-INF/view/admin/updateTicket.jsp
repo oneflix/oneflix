@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Select2 -->
@@ -45,9 +45,7 @@
 			</section>
 
 
-			<form action="/updateTicketProc.mdo" method="post" class="row" name="insertTicket"
-				onsubmit="return check()">
-
+			<form action="/updateTicketProc.mdo" method="post" class="row" name="insertTicket" onsubmit="return check()">
 				<input name="ticketId" type="hidden" value="${ticket.ticketId}" />
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -89,15 +87,15 @@
 							<div class="form-group">
 								<label>추천</label> 
 								<select class="form-control" id="ticketRecommend" name="ticketRecommend" required="required" data-placeholder="Select a State">
-									<option value="Y">YES</option>
-									<option value="N">NO</option>
+									<option value="Y">추천</option>
+									<option value="N">일반</option>
 								</select>
 							</div>
 
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">수정</button>
 								<button type="button" class="btn btn-secondary"
-									onclick="location.href='/getTicketListProc.mdo'">취소</button>
+									onclick="location.href='/ticketList.mdo'">취소</button>
 							</div>
 							<!-- /.buttons -->
 						</div>

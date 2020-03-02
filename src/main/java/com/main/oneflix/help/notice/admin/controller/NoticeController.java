@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.help.service.DeleteHelpService;
@@ -13,6 +14,7 @@ import com.main.oneflix.help.service.GetHelpService;
 import com.main.oneflix.help.service.InsertHelpService;
 import com.main.oneflix.help.service.UpdateHelpService;
 import com.main.oneflix.help.vo.HelpVO;
+import com.main.onflix.util.datatable.vo.WrapperVO;
 @Controller
 public class NoticeController {
 	@Autowired
@@ -30,13 +32,21 @@ public class NoticeController {
 	@Autowired
 	private GetHelpListService getHelpListService;
 	
-	@RequestMapping("/getNoticeListProc.mdo")
-	public ModelAndView getNoticeListProc(HelpVO vo, ModelAndView mav) {
-		vo.setHelpType("notice");
-		List<HelpVO> noticeList = getHelpListService.getHelpList(vo);
-		mav.addObject("noticeList", noticeList);
+	@RequestMapping("/noticeList.mdo")
+	public ModelAndView noticeList(ModelAndView mav) {
 		mav.setViewName("noticeList");
 		return mav;
+	}
+	
+	@RequestMapping("/getNoticeListProcAjax.mdo")
+	@ResponseBody
+	public WrapperVO getNoticeListProcAjax(HelpVO vo, ModelAndView mav) {
+		WrapperVO wrap = new WrapperVO();
+		List<HelpVO> noticeList = getHelpListService.getHelpList(vo);
+		wrap.setData(noticeList);
+		wrap.setRecordsTotal(noticeList.size());
+		wrap.setRecordsFiltered(noticeList.size());
+		return wrap;
 	}
 	
 	@RequestMapping("/insertNotice.mdo")
@@ -48,7 +58,7 @@ public class NoticeController {
 	@RequestMapping("/insertNoticeProc.mdo")
 	public ModelAndView insertNoticeProc(HelpVO vo, ModelAndView mav) {
 		insertHelpService.insertHelp(vo);
-		mav.setViewName("redirect:/getNoticeListProc.mdo");
+		mav.setViewName("redirect:/noticeList.mdo");
 		return mav;
 	}
 	
@@ -63,14 +73,14 @@ public class NoticeController {
 	@RequestMapping("/updateNoticeProc.mdo")
 	public ModelAndView updateNoticeProc(HelpVO vo, ModelAndView mav) {
 		updateHelpService.updateHelp(vo);
-		mav.setViewName("redirect:/getNoticeListProc.mdo");
+		mav.setViewName("redirect:/noticeList.mdo");
 		return mav;
 	}
 	
 	@RequestMapping("/deleteNoticeProc.mdo")
 	public ModelAndView deleteNoticeProc(HelpVO vo, ModelAndView mav) {
 		deleteHelpService.deleteHelp(vo);
-		mav.setViewName("redirect:/getNoticeListProc.mdo");
+		mav.setViewName("redirect:/noticeList.mdo");
 		return mav;
 	}
 	

@@ -5,36 +5,45 @@
 <mapper namespace="DirectorDAO">
 
 	<insert id="insertDirector" parameterType="director">
-		INSERT INTO director (director_id, director_name, director_age)
-		VALUES(#{directorId, jdbcType=NUMERIC}, #{directorName, jdbcType=VARCHAR}, #{directorAge, jdbcType=NUMERIC})
+		INSERT INTO director
+		VALUES((SELECT NVL(MAX(director_id),0)+1 FROM director), #{directorName}, #{directorAge})
 	</insert>
 
 	<update id="updateDirector" parameterType="director">
-		UPDATE director SET director_name=#{directorName, jdbcType=VARCHAR}, director_age=#{directorAge, jdbcType=NUMERIC} 
-		WHERE director_id=#{directorId, jdbcType=NUMERIC}
+		UPDATE director SET director_name = #{directorName}, director_age = #{directorAge} 
+		WHERE director_id = #{directorId}
 	</update>
 
 	<delete id="deleteDirector" parameterType="director">
 		DELETE FROM director 
-		WHERE director_id=#{directorId, jdbcType=NUMERIC}
+		WHERE director_id=#{directorId}
 	</delete>
 	
 	<select id="getDirector" parameterType="director" resultType="director">
 		SELECT * FROM director
-		WHERE director_id=#{directorId, jdbcType=NUMERIC}
+		WHERE director_id=#{directorId}
 	</select>
 	
 	<resultMap type="director" id="directorList">
 		<id property="directorId" column="director_id"/>
+		<result property="rnum" column="rnum"/>
 		<result property="directorName" column="director_name"/>
 		<result property="directorAge" column="director_age"/>
 	</resultMap>
 	
 	<select id="getDirectorList" parameterType="director" resultMap="directorList">
-		SELECT * FROM director
-		WHERE 1=1 
-		<if test="searchDirectorName!=null and !searchDirectorName.equals('')"> AND director_name LIKE '%'||#{searchDirectorName, jdbcType=VARCHAR}||'%' </if> 
-		ORDER BY director_id DESC
+		SELECT *
+		FROM (SELECT ROWNUM rnum, D.*
+				FROM (SELECT * 
+						FROM director
+						WHERE director_id != 0
+						<if test="searchDirector != null and searchDirector != ''">
+							AND director_name like '%'||#{searchDirector}||'%'
+						</if>
+						ORDER BY director_id
+					) D
+			)
+		ORDER BY rnum DESC
 	</select>
 
 </mapper>

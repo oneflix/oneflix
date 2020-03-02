@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,26 +41,19 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-							
-								<form action="/getMemberListProc.mdo" class="form-inline ml-3"
-									style="float: right; margin-top: 4px;">
-									<input id="searchAll" type="hidden" name="searchAll"/>
-									<input id="searchTicket" type="hidden" name="searchTicket"/>
-									<input id="secondCert" type="hidden" name="secondCert"/>
-									<input id="secondBan" type="hidden" name="secondBan"/>
+								<div class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="searchMember"
+											<input type="text" name="searchMember" id="searchMember"
 												class="form-control float-right" placeholder="이메일/닉네임 검색하기">
-
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button id="search-button" type="button" class="btn btn-default">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 								
 								<select id="ticket-category" name="searchTicket" class="second-category form-control form-control-sm select2bs4 display-none"
 									style="width: inherit; float: right; margin-top: 4px; margin-left: 2px;">
@@ -92,7 +85,7 @@
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="memberTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>#</th>
@@ -157,6 +150,73 @@
 
 	</div>
 	<!-- ./wrapper -->
+	<script>
+		var table;
+		var searchMember;
+		
+	    $(document).ready(function() {
+	    	table = $('#memberTable').DataTable({
+	    		pageLength: 10,
+	    		pagingType: "simple_numbers",
+	    		lengthChange: false,
+	    		info: false,
+	    		responsive: true,
+	    		autoWidth: false,
+	    		processing: true,
+	    		searching: false,
+	    		ordering: true,
+	    		order: [[0, 'desc']],
+	    		language: {
+	    			"processing": "잠시만 기다려주세요.",
+	    			"paginate": {
+	    				"previous": "이전",
+	    				"next": "다음"
+	    			}
+	    		},
+	    		ajax: {
+	    			"type": "POST",
+	    			"url": "/getMemberListProcAjax.mdo",
+	    			"data": function(sendData) {
+	    				sendData.searchMember = searchMember;
+	    			} 
+	    		},
+	   			columns: [
+	   				{data: "rnum"},
+	   				{data: "genre"},
+	   				{data: "genreId",
+	   					render: function(data){
+	   						var html = "<div>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goGenreDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+									"</div>"
+	   						return html;
+	   					}}
+	   			]
+	    	});
+	    });
+	    
+	    $('#search-button').click(function() {
+	    	searchGenre = $('#searchGenre').val();
+	    	table.ajax.reload();
+	    });
+	    
+	    $("#searchGenre").keydown(function(key) {
+	        if (key.keyCode == 13) {
+	        	$('#search-button').trigger('click');
+	        }
+		});
+	    
+	    function goGenreDetail(genreId) {
+	    	window.location.href = "/getGenreProc.mdo?genreId=" + genreId;
+	    }
+	
+		function deleteCheck(genreId){
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if(check == true){
+				window.location.href = "/deleteGenreProc.mdo?genreId=" + genreId;
+			}
+		};
+	</script>
 
 	<script>
 		function deleteCheck(email) {

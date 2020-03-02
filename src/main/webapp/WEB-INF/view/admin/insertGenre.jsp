@@ -9,14 +9,13 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script lang="javascript" src="admin/js/insertGenre.js"></script>
 </head>
 
-<body
-	class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 		<jsp:include page="${header_url}"></jsp:include>
 
@@ -34,13 +33,12 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/insertGenreProc.mdo" class="row" name="insertGenre" onsubmit="return writeCheck()">
+			<form action="/insertGenreProc.mdo" class="row">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
 					<div class="card card-info">
 						<div class="card-body pad">
-
 							<div class="form-group mb-3">
 								<label for="genre">장르명</label>
 								<input type="text" class="form-control" id="genre" name="genre">
@@ -49,7 +47,7 @@
 							<br>
 							<div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/getGenreListProc.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/genreList.mdo'">취소</button>
 							</div>
 						</div>
 					</div>
@@ -62,7 +60,6 @@
 
 	</div>
 	<!-- ./wrapper -->
-
 
 </body>
 

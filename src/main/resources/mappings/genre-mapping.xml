@@ -6,8 +6,7 @@
 
 	<insert id="insertGenre" parameterType="genre">
 		INSERT INTO genre
-		(genre_id, genre)
-		VALUES((select nvl(max(genre_id),0)+1 from genre),#{genre})
+		VALUES((select NVL(MAX(genre_id),0)+1 FROM genre), #{genre})
 	</insert>
 
 	<update id="updateGenre" parameterType="genre">
@@ -30,15 +29,23 @@
 
 	<resultMap type="genre" id="genreList">
 		<id property="genreId" column="genre_id" />
+		<result property="rnum" column="rnum" />
 		<result property="genre" column="genre" />
 	</resultMap>
 
 	<select id="getGenreList" resultMap="genreList">
-		SELECT * FROM genre WHERE 1=1
-		<if test="searchGenre != null">
-			AND genre like '%' || #{searchGenre} || '%' 
-		</if> 
-		ORDER BY genre_id ASC
+		SELECT *
+		FROM (SELECT ROWNUM rnum, G.*
+				FROM (SELECT * 
+						FROM genre
+						WHERE genre_id != 0
+						<if test="searchGenre != null and searchGenre != ''">
+							AND genre like '%'||#{searchGenre}||'%'
+						</if>
+						ORDER BY genre_id
+					) G
+			)
+		ORDER BY rnum DESC
 	</select>
 
 </mapper>

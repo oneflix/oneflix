@@ -1,12 +1,22 @@
 package com.main.oneflix.ticket.vo;
 
 public class TicketVO {
+
+	private int rnum;
 	private Integer ticketId;
 	private String ticketName;
 	private int ticketPeriod;
 	private int ticketPrice;
 	private String ticketRecommend;
 	private String ticketStatus;
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 
 	public Integer getTicketId() {
 		return ticketId;

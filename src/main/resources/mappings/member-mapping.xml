@@ -4,20 +4,37 @@
 
 <mapper namespace="MemberDAO">
    <insert id="insertMember" parameterType="member">
-      INSERT INTO member (email, pass, nick, birth, member_age, gender, cert, ban)
-      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}) 
+      INSERT INTO member (email, pass, nick, birth, member_age, gender, cert, ban, google, kakao, naver)
+      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
  	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
    </insert>
-   <update id="updateMember" parameterType="member">
-      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}
+
+  <update id="updateMember" parameterType="member">
+      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
       WHERE email = #{email}
    </update>
   
    <delete id="deleteMember" parameterType="member">
       DELETE FROM member WHERE email = #{email}
    </delete>
-   <select id="getMember" resultType="member" parameterType="member">
-      SELECT * FROM member WHERE email = #{email}
+   
+    <select id="getMember" resultType="member" parameterType="member">
+      SELECT * FROM member
+      WHERE 1=1
+      <choose>
+	      <when test="kakao != null and kakao != ''">
+	      	AND kakao = #{kakao}
+	      </when>
+	      <when test="naver != null and naver != ''">
+	      	AND naver = #{naver}
+	      </when>
+	      <when test="google != null and google != ''">
+	      	AND google = #{google}
+	      </when>
+	      <otherwise>
+	      	AND email = #{email}
+	      </otherwise>
+      </choose>
    </select>
    
    <resultMap type="member" id="memberList">

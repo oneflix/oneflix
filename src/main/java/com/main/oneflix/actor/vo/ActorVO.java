@@ -2,10 +2,19 @@ package com.main.oneflix.actor.vo;
 
 public class ActorVO {
 
+	private int rnum;
 	private Integer actorId;
 	private String actorName;
 	private int actorAge;
 	private String searchActor;
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 
 	public Integer getActorId() {
 		return actorId;

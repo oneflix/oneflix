@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
-
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ONEFLIX</title>
+  <title>ONeflix</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,7 +55,7 @@
                             </div>
                             
                             <div class="form-group mb-3">
-                                <label for="managerType">권한</label>
+                                <label for="managerType">등급</label>
                                 <select class="form-control" id="managerType" name="managerType">
                                 	<option value="0" <c:if test="${manager.managerType eq 0}"> selected </c:if>>일반 관리자</option>
                                 	<option value="9" <c:if test="${manager.managerType eq 9}"> selected </c:if>>최고 관리자</option>
@@ -67,7 +66,7 @@
                             <br>
                             <div class="buttons" style="float: right;">
                                 <button type="submit" class="btn btn-success">등록</button>
-                                <button type="button" class="btn btn-secondary" onclick="location.href='/managerListProc.mdo'">취소</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='/managerList.mdo'">취소</button>
                             </div><!-- /.buttons -->
                         </div> <!-- /.card-body .col-md-6 -->
 

@@ -1,14 +1,20 @@
 package com.main.oneflix.director.vo;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class DirectorVO {
 
+	private int rnum;
 	private Integer directorId;
 	private String directorName;
 	private int directorAge;
-	private String searchDirectorName;
+	private String searchDirector;
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 
 	public Integer getDirectorId() {
 		return directorId;
@@ -34,13 +40,12 @@ public class DirectorVO {
 		this.directorAge = directorAge;
 	}
 
-	public String getSearchDirectorName() {
-		return searchDirectorName;
+	public String getSearchDirector() {
+		return searchDirector;
 	}
 
-	public void setSearchDirectorName(String searchDirectorName) {
-		this.searchDirectorName = searchDirectorName;
+	public void setSearchDirector(String searchDirector) {
+		this.searchDirector = searchDirector;
 	}
-	
-	
+
 }
