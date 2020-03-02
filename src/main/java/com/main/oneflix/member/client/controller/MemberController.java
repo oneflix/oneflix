@@ -38,7 +38,12 @@ public class MemberController {
 
 	@RequestMapping("/joinProc.do")
 	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
+
 		System.out.println(vo);
+		String kakao  = vo.getKakao();
+		System.out.println("kakao = " + kakao);
+		vo.setKakao(kakao);
+		
 		// member 나이계산
 		int memberAge = 0;
 		String memberBirth = vo.getBirth();
@@ -48,10 +53,6 @@ public class MemberController {
 		vo.setMemberAge(memberAge);
 		insertMemberService.insertMember(vo);
 		
-		if(vo.getKakao() !=null) {
-			
-		};
-
 		mav.setViewName("login");
 		return mav;
 	}
