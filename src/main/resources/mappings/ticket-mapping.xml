@@ -30,6 +30,7 @@
 		FROM (SELECT ROWNUM RNUM, T.*
 				FROM (SELECT * 
 						FROM ticket
+						WHERE ticket_id != 0
 						ORDER BY ticket_period DESC
 					) T
 			)

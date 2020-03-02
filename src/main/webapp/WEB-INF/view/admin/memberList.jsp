@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
 <!DOCTYPE html>
@@ -85,7 +85,7 @@
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="meberTable" class="table table-bordered table-hover">
+								<table id="memberTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>#</th>
@@ -175,7 +175,7 @@
 	   						data = getFormatDate(data);
 	   						return data;
 	   					}},
-	   				{data: "memberId",
+	   				{data: "email",
 	   					render: function(data){
 	   						var html = "<div>" +
 										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goMemberDetail(\'" + data + "\')\">수정</button>" +
@@ -210,6 +210,17 @@
 	         });
 	    });
 	  	//--------------------------------
+	  	$('#select-category').change(function(){
+	  		$("#ticket-category").val(-9);
+	  		$("#cert-category").val('all');
+	  		$("#ban-category").val('all');
+	  		
+	  		searchTicket = $("#ticket-category").val();
+	  		searchCert = $("#cert-category").val();
+	  		searchBan = $("#ban-category").val();
+	  		table.ajax.reload();
+	  	});
+	  	
 	  	$('.second-category').change(function() {
 	  		searchTicket = $("#ticket-category").val();
 	  		searchCert = $("#cert-category").val();
@@ -218,7 +229,7 @@
 	  	});
 	  	
 	    $('#search-button').click(function() {
-	    	searchGenre = $('#searchMember').val();
+	    	searchMember = $('#searchMember').val();
 	    	table.ajax.reload();
 	    });
 	    
@@ -238,14 +249,14 @@
 			return year + '-' + month + '-' + day;
 		}
 	    
-	    function goMemberDetail(genreId) {
-	    	window.location.href = "/getMemberProc.mdo?memberId=" + memberId;
+	    function goMemberDetail(email) {
+	    	window.location.href = "/getMemberProc.mdo?email=" + email;
 	    }
 	
-		function deleteCheck(memberId){
+		function deleteCheck(email){
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if(check == true){
-				window.location.href = "/deleteMemberProc.mdo?memberId=" + memberId;
+				window.location.href = "/deleteMemberProc.mdo?email=" + email;
 			}
 		};
 	</script>
