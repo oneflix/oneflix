@@ -40,6 +40,7 @@ public class MemberController {
 	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
 		String kakao  = vo.getKakao();
 		String naver = vo.getNaver();
+		System.out.println("소셜연동 회원가입=====================>네이버메일:"+naver);
 		vo.setKakao(kakao);
 		vo.setNaver(naver);
 		
@@ -75,7 +76,7 @@ public class MemberController {
 		vo.setNick(newNick);
 		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);
-		session.setAttribute("loginMember", vo);
+		session.setAttribute("member", vo);
 		mav.setViewName("redirect:/getMemberProc.do");
 		return mav;
 	}
