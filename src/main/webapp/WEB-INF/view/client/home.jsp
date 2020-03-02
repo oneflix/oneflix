@@ -324,7 +324,7 @@
     function goMovieDetail(movieId) {
             location.href = "/getMovieDetailProc.do?movieId=" + movieId;
      }
-}
+
     
    </script>
 </body>

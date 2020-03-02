@@ -37,7 +37,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/joinProc.do")
-	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
+	public ModelAndView joinProc(MemberVO vo, ModelAndView mav) {
 		
 		System.out.println(vo);
 		String kakao  = vo.getKakao();
@@ -77,7 +77,7 @@ public class MemberController {
 		vo.setNick(newNick);
 		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);
-		session.setAttribute("member", vo);
+		session.setAttribute("loginMember", vo);
 		mav.setViewName("redirect:/getMemberProc.do");
 		return mav;
 	}
