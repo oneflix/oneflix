@@ -4,9 +4,9 @@
 
 <mapper namespace="MemberDAO">
    <insert id="insertMember" parameterType="member">
-      INSERT INTO member (email, pass, nick, birth, member_age, gender, cert, ban, google, kakao, naver)
-      VALUES(#{email}, #{pass}, #{nick},#{birth},#{memberAge}, #{gender}, #{cert}, #{ban}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
- 	<!-- VALUES(#{email, jdbcType=VARCHAR}, #{pass, jdbcType=VARCHAR}, #{nick, jdbcType=VARCHAR},#{birth, jdbcType=CHAR}, #{gender, jdbcType=CHAR},#{cert, jdbcType=CHAR})  -->
+      INSERT INTO member(email, pass, nick, birth, member_age, gender, cert, ban, join_date, ticket_id, google, kakao, naver)
+      VALUES(#{email}, #{pass}, #{nick}, #{birth}, #{memberAge}, #{gender}, #{cert}, #{ban}, SYSDATE, 0, 
+      #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
    </insert>
 
   <update id="updateMember" parameterType="member">
@@ -50,20 +50,20 @@
 
    <select id="getMemberList" resultMap="memberList" parameterType="member">
       SELECT * FROM member WHERE 1=1
-		<if test="searchMember != null">
-			AND email like '%' || #{searchMember} || '%'
-			OR nick like '%' || #{searchMember} || '%'
+		<if test="searchMember != null and searchMember =''">
+			AND (email like '%' || #{searchMember} || '%'
+			OR nick like '%' || #{searchMember} || '%')
 		</if> 
-		<if test="searchTicket != null">
+		<if test="searchTicket != null and searchTicket != '-9'">
 			AND ticket_id = #{searchTicket}
 		</if> 
-		<if test="searchCert != null">
+		<if test="searchCert != null and searchCert != 'all'">
 			AND cert = #{searchCert}
 		</if> 
-		<if test="searchBan != null">
+		<if test="searchBan != null and searchBan != 'all'">
 			AND ban = #{searchBan}
 		</if> 
-      ORDER BY email ASC
+      ORDER BY join_date DESC
    </select>
 	
 </mapper>

@@ -5,7 +5,7 @@
 <mapper namespace="GenreDAO">
 
 	<insert id="insertGenre" parameterType="genre">
-		INSERT INTO genre
+		INSERT INTO genre(genre_id, genre)
 		VALUES((select NVL(MAX(genre_id),0)+1 FROM genre), #{genre})
 	</insert>
 
@@ -35,17 +35,17 @@
 
 	<select id="getGenreList" resultMap="genreList">
 		SELECT *
-		FROM (SELECT ROWNUM rnum, G.*
+		FROM (SELECT ROWNUM RNUM, G.*
 				FROM (SELECT * 
 						FROM genre
 						WHERE genre_id != 0
 						<if test="searchGenre != null and searchGenre != ''">
 							AND genre like '%'||#{searchGenre}||'%'
 						</if>
-						ORDER BY genre_id
+						ORDER BY genre
 					) G
 			)
-		ORDER BY rnum DESC
+		ORDER BY RNUM
 	</select>
 
 </mapper>

@@ -51,7 +51,7 @@ public class MemberController {
 		String memberBirth = vo.getBirth();
 		int memberBirthYear = Integer.parseInt(memberBirth.substring(0, 4));
 		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-		memberAge = thisYear - memberBirthYear;
+		memberAge = thisYear - memberBirthYear + 1;
 		vo.setMemberAge(memberAge);
 		insertMemberService.insertMember(vo);
 		

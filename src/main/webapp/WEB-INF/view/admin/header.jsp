@@ -73,41 +73,41 @@
 				</a></li>
 
 
-				<li class="nav-item"><a href="/getMovieListProc.mdo"
+				<li class="nav-item"><a href="/movieList.mdo"
 					class="nav-link" id="movie"> <ion-icon name="film" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>영화</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getGenreListProc.mdo"
+				<li class="nav-item"><a href="/genreList.mdo"
 					class="nav-link" id="genre"> <ion-icon name="apps" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>장르</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getDirectorListProc.mdo"
+				<li class="nav-item"><a href="/directorList.mdo"
 					class="nav-link" id="director"> <ion-icon name="megaphone"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>감독</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getActorListProc.mdo"
+				<li class="nav-item"><a href="/actorList.mdo"
 					class="nav-link" id="actor"> <ion-icon name="glasses"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>배우</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getMemberListProc.mdo"
+				<li class="nav-item"><a href="/memberList.mdo"
 					class="nav-link" id="member"> <ion-icon name="people"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>회원</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getTicketListProc.mdo"
+				<li class="nav-item"><a href="/ticketList.mdo"
 					class="nav-link" id="ticket"> <ion-icon name="card"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>이용권</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getSalesListProc.mdo"
+				<li class="nav-item"><a href="/salesList.mdo"
 					class="nav-link" id="sales"> <ion-icon name="cash" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>판매</p>
 				</a></li>
@@ -120,21 +120,21 @@
 				</a>
 
 					<ul class="nav nav-treeview">
-						<li class="nav-item"><a href="/getNoticeListProc.mdo"
+						<li class="nav-item"><a href="/noticeList.mdo"
 							class="nav-link" id="notice">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
 									name="arrow-dropright" size="small"></ion-icon>
 								<p>공지사항</p>
 						</a></li>
 
-						<li class="nav-item"><a href="/getFAQListProc.mdo"
+						<li class="nav-item"><a href="/FAQList.mdo"
 							class="nav-link" id="faq">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
 									name="arrow-dropright" size="small"></ion-icon>
 								<p>FAQ</p>
 						</a></li>
 
-						<li class="nav-item"><a href="/getInquiryListProc.mdo"
+						<li class="nav-item"><a href="/inquiryList.mdo"
 							class="nav-link" id="inquiry">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
 									name="arrow-dropright" size="small"></ion-icon>
@@ -155,7 +155,7 @@
 				</a></li>
 
 				<li class="nav-item" id="manager-menu"><a
-					href="/getManagerListProc.mdo" class="nav-link" id="manager"> <ion-icon
+					href="/managerList.mdo" class="nav-link" id="manager"> <ion-icon
 							name="people" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>관리자</p>
 				</a></li>
@@ -189,7 +189,7 @@
 	</script>
 	<script>
 		$(function() {
-			// 슈퍼 관리자인지 아닌지
+			// 최고 관리자인지 아닌지
 			if ("${loginManager.managerType}" != 9) {
 				$('#manager-menu').hide();
 			}
