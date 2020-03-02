@@ -48,6 +48,7 @@ public class LoginController {
 		return mav;
 	}
 
+
 	@RequestMapping(value="/login.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView login(ModelAndView mav, HttpSession session) {
 		//네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
@@ -59,6 +60,7 @@ public class LoginController {
 
 	@RequestMapping("/loginProc.do")
 	public ModelAndView loginProc(MemberVO vo, ModelAndView mav,HttpSession session){
+		
 		MemberVO member = new MemberVO();
 		member = getMemberService.getMember(vo);
 		mav.addObject("result", "fail");

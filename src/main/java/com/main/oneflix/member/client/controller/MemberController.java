@@ -37,7 +37,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/joinProc.do")
-	public ModelAndView joinProc(MemberVO vo, ModelAndView mav) {
+	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
 		System.out.println(vo);
 		// member 나이계산
 		int memberAge = 0;
@@ -47,6 +47,10 @@ public class MemberController {
 		memberAge = thisYear - memberBirthYear;
 		vo.setMemberAge(memberAge);
 		insertMemberService.insertMember(vo);
+		
+		if(vo.getKakao() !=null) {
+			
+		};
 
 		mav.setViewName("login");
 		return mav;

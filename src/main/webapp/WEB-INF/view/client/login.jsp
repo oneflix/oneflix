@@ -97,11 +97,12 @@
 						  </div>
 							  
 						 <div class="social">
-							<a href="#" class="whiteA"> 
+							<a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="whiteA"> 
 							카카오로 로그인하기
 						  	</a>
 						  </div>
-						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
+						<div id="naver_id_login" class="social" style="text-align:center">
+							<a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
 						</div>
 					</form>
 				</div>
@@ -135,14 +136,15 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
+
+	<!-- KAKAO LOGIN -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
 	<!-- 네이버로그인 -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-	<script>
-	<!-- KAKAO LOGIN -->
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	
 	<!-- 네이버 로그인 -->
 	<script src="client/js/naverLogin.js"></script>
 
@@ -174,13 +176,18 @@
 			alert(JSON.stringfy(err));
 		}
 	}); */
-
-		$(document).ready(function() {
-			var result = "${result}";
-			if (result == "success") {
-				alert("로그인 정보가 일치하지 않습니다.");
-			}
-		});
+	
+	
+		//네이버 로그인
+		var naver_id_login = new naver_id_login("pML7geIoAzold42feHKn", "http://localhost:8080/naverLoginProc.do");
+		var state = naver_id_login.getUniqState();
+		
+	    naver_id_login.response_type="code";
+	    naver_id_login.setButton=("white",10,40);
+		naver_id_login.setDomain("http://localhost:8080/naverLogin.do");
+		naver_id_login.setState(state);
+//		naver_id_login.setPopup();
+		naver_id_login.init_naver_id_login();
 	</script>
 
 </body>
