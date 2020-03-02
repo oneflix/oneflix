@@ -389,6 +389,15 @@
     <script src="client/js/script.js"></script>
     <script src="client/js/ticket_modal.js"></script>
     <script type="text/javascript">
+<<<<<<< HEAD
+    function goMovieDetail(movieId) {
+            location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+     }
+
+    
+   </script>
+</body>
+=======
 		$('.swiper-button-next').click(function(){
 			$(this).next().css("display", "block");
 		});
@@ -397,6 +406,7 @@
 	    }
 	</script>
 	</body>
+>>>>>>> master
 
 </html>
 	
