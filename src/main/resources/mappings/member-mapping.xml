@@ -22,18 +22,18 @@
       SELECT * FROM member
       WHERE 1=1
       <choose>
-	      <when test="kakao != null and kakao != ''">
-	      	AND kakao = #{kakao}
-	      </when>
-	      <when test="naver != null and naver != ''">
-	      	AND naver = #{naver}
-	      </when>
-	      <when test="google != null and google != ''">
-	      	AND google = #{google}
-	      </when>
-	      <otherwise>
-	      	AND email = #{email}
-	      </otherwise>
+         <when test="kakao != null and kakao != ''">
+            AND kakao = #{kakao}
+         </when>
+         <when test="naver != null and naver != ''">
+            AND naver = #{naver}
+         </when>
+         <when test="google != null and google != ''">
+            AND google = #{google}
+         </when>
+         <otherwise>
+            AND email = #{email}
+         </otherwise>
       </choose>
    </select>
    

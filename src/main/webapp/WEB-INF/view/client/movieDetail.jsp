@@ -277,8 +277,8 @@
 																<div class="review-content">
 																	${reviewList[i].reviewContent }</div>
 																<div class="like-container">
-																	<button class="like-button">
-																		<i id="thumbs" class="far fa-thumbs-up like-icon"></i> 
+																	<button id="thumbs" class="like-button" onclick='like()'>
+																		<i id="like" class="far fa-thumbs-up like-icon"></i> 
 																		<span class="like-count">${reviewList[i].likeCount}</span>
 																	</button>
 																</div>
@@ -292,8 +292,8 @@
 																<div class="review-content">
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
-																	<button class="like-button">
-																		<i class="far fa-thumbs-up like-icon"></i> <span
+																	<button class="like-button" onclick='like()'>
+																		<i id="like" class="far fa-thumbs-up like-icon"></i> <span
 																			class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
@@ -455,9 +455,21 @@
 			}); */
 			
 			
-		function changeLikeCount() {
-				
+		function like(){
+			var thumbs = $('#like').prop("class");
+			
+			if(thumbs == 'far fa-thumbs-up like-icon'){
+				$("#like").removeClass();
+				//thumbs = $('#thumbs').children('i').prop("class");
+				//alert("removeClass();" + thumbs);
+				$("#like").addClass("fas fa-thumbs-up like-icon");
+				//thumbs = $('#like').children('i').prop("class");
+				//alert(thumbs);
+			}else if(thumbs == 'fas fa-thumbs-up like-icon'){
+				$("#like").removeClass();
+				$("#like").addClass("far fa-thumbs-up like-icon");
 			}
+		}
 	</script>
 
 </body>

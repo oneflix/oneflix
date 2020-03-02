@@ -44,10 +44,6 @@ public class MovieController {
 	@RequestMapping("/getMovieDetailProc.do")
 	public ModelAndView getMovieDetailProc(MovieVO vo, HttpSession session, ModelAndView mav) {
 		vo = getMovieService.getMovie(vo);
-		MemberVO mem = new MemberVO();
-		mem.setEmail("purple@mail.com");
-		session.setAttribute("member", mem);
-		// ^ session 받을때  지워도 되는 코드
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		ReviewVO myReview = new ReviewVO();
 		myReview.setEmail(member.getEmail());
