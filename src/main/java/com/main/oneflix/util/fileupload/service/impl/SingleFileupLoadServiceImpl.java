@@ -25,7 +25,7 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 			StringBuilder tmpPath = new StringBuilder("resources");
 			uuid = UUID.randomUUID().toString();
 			uuid = uuid.split("-")[0];
-			tmpPath.append("\\poster\\" + date + "\\" + uuid + ".png");
+			tmpPath.append("/poster/" + date + "/" + uuid + ".png");
 			tmpFile = new File(realPath + tmpPath.toString());
 		} while(tmpFile.exists());
 
@@ -33,9 +33,9 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 		for (MultipartFile file : fileList) {
 			StringBuilder uploadPath = new StringBuilder("resources");
 			String fileName = uuid;
-			
+
 			if (file.getName().equals("poster")) {
-				uploadPath.append("\\poster\\" + date);
+				uploadPath.append("/poster/" + date);
 				fileName += ".png";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
 				try {
@@ -45,10 +45,10 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				filePath.put("posterPath", uploadPath.toString() + "\\" + fileName);
+				filePath.put("posterPath", uploadPath.toString() + "/" + fileName);
 				
 			} else if (file.getName().equals("teaserVideo")) {
-				uploadPath.append("\\teaserVideo\\" + date);
+				uploadPath.append("/teaserVideo/" + date);
 				fileName += ".mp4";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
 				try {
@@ -58,10 +58,10 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				filePath.put("teaserVideoPath", uploadPath.toString() + "\\" + fileName);
+				filePath.put("teaserVideoPath", uploadPath.toString() + "/" + fileName);
 				
 			} else if (file.getName().equals("fullVideo")) {
-				uploadPath.append("\\fullVideo\\" + date);
+				uploadPath.append("/fullVideo/" + date);
 				fileName += ".mp4";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
 				try {
@@ -71,7 +71,7 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				filePath.put("fullVideoPath", uploadPath.toString() + "\\" + fileName);
+				filePath.put("fullVideoPath", uploadPath.toString() + "/" + fileName);
 			}
 			
 		}

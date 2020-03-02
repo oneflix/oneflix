@@ -62,8 +62,15 @@
 									</div>
 								</div>
 
+								<select id="searchCondition" class="form-control form-control-sm select2bs4"
+									style="width: 70px; float: right; margin-right: -10px; margin-top: 4px;">
+									<option value="movie" selected="selected">영화</option>
+									<option value="director">감독</option>
+									<option value="actor">배우</option>
+								</select>
+								
 								<select id="searchGenre" class="form-control form-control-sm select2bs4"
-									style="width: inherit; float: right; margin-top: 4px;">
+									style="width: inherit; float: right; margin-right: 5px; margin-top: 4px;">
 									<option value="0" selected="selected">모든 장르</option>
 									<c:forEach var="genre" items="${genreList}">
 										<option value="${genre.genreId}">${genre.genre}</option>
@@ -79,48 +86,13 @@
 											<th style="width: 4vw;">#</th>
 											<th>썸네일</th>
 											<th>제목</th>
-											<th>장르</th>
+											<th>장르1</th>
+											<th>장르2</th>
 											<th>상영시간</th>
 											<th>등록일</th>
 											<th style="width: 200px;">관리</th>
 										</tr>
 									</thead>
-									<tbody id="movieList-body">
-										<c:if test="${movieList.size() == 0}">
-											<tr>
-												<td colspan='7'>No data available in table</td>
-											</tr>
-										</c:if>
-										<c:forEach var="movie" items="${movieList}">
-											<tr>
-												<td><p>1</p></td>
-												<td><img src="${movie.posterPath}"/></td>
-												<td><p>${movie.movieTitle}</p></td>
-												<td><p>
-													<c:forEach var="genre" items="${genreList}">
-														<c:if test="${movie.genreId1 eq genre.genreId}">
-															${genre.genre}
-														</c:if>
-														<c:if test="${movie.genreId2 ne 0}">
-															<c:if test="${genre.genreId eq movie.genreId2}">
-																&nbsp;· ${genre.genre}
-															</c:if>
-														</c:if>
-													</c:forEach>
-													</p>
-												</td>
-												<td><p>${movie.duration}분</p></td>
-												<td><p><fmt:formatDate value="${movie.movieRegDate}" pattern="yyyy-MM-dd"/></p></td>
-												<td>
-													<div>
-														<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/getMovieProc.mdo?movieId=${movie.movieId}'">수정</button>
-														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${movie.movieId}')">삭제</button>
-														<button type="button" class="btn btn-sm btn-info">상세보기</button>
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
 								</table>
 							</div>
 							<!-- /.card-body -->
@@ -142,6 +114,7 @@
 		var table;
 		var searchGenre;
 		var searchMovie;
+		var searchCondition;
 		
 	    $(document).ready(function() {
 	    	
@@ -169,41 +142,82 @@
 	    			"data": function(sendData) {
 	    				sendData.searchGenre = searchGenre;
 	    				sendData.searchMovie = searchMovie;
+	    				sendData.searchCondition = searchCondition;
 	    			}
 	    		},
 	   			columns: [
-	   				{data: "rnum"},
-	   				{data: "email"},
-	   				{data: "ticketName"},
-	   				{data: "ticketPrice",
+	   				{data: "rnum",
 	   					render: function(data){
-	   						data = new Number(data);
-	   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
-	   						return data;
+	   						return "<p>" +data + "</p>" ;
 	   					}},
-	   				{data: "paymentDate",
+	   				{data: "posterPath",
+	   					render: function(data){
+	   						return "<img src='"+ data + "'>" ;
+	   					}},
+	   				{data: "movieTitle",
+	   					render: function(data){
+	   						return "<p>" +data + "</p>" ;
+	   					}},
+	   				{data: "genre1",
+	   					render: function(data){
+	   						if (data == null) {
+	   							data = "-"; 
+	   						}
+	   						return "<p>" +data + "</p>" ;
+	   					}},
+	   				{data: "genre2",
+	   					render: function(data){
+	   						if (data == null) {
+	   							data = "-"; 
+	   						}
+	   						return "<p>" +data + "</p>" ;
+	   					}},
+	   				{data: "duration",
+	   					render: function(data){
+	   						return "<p>" + data + "분</p>";
+	   					}},
+	   				{data: "movieRegDate",
 	   					render: function(data) {
 	   						data = getFormatDate(data);
-	   						return data;
+	   						return "<p>" +data + "</p>" ;
+	   					}},
+   					{data: "movieId",
+	   					render: function(data){
+	   						var html = "<div>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goMovieDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+									"</div>"
+	   						return html;
 	   					}}
 	   			]
 	    	});
 	    	
 	    });
 	    
-	    $('#reservation').change(function(){
-			selectDate = getStartEnd();
-			searchEmail = $('#searchEmail').val();
-			table.ajax.reload();
+	    $('#searchCondition').change(function(){
+	    	var txt;
+	    	if ($('#searchCondition').val() == 'movie') {
+	    		txt = "영화 제목 검색";
+	    	} else if ($('#searchCondition').val() == 'director') {
+	    		txt = "감독 검색";
+	    	} else if ($('#searchCondition').val() == 'actor') {
+	    		txt = "배우 검색";
+	    	}
+	    	$('#searchMovie').prop('placeholder', txt);
 	    });
 	    
-	    $('#search-button').click(function() {
-	    	selectDate = getStartEnd();
-	    	searchEmail = $('#searchEmail').val();
+	    $('#searchGenre').change(function(){
+	    	searchGenre = $('#searchGenre').val();
 	    	table.ajax.reload();
 	    });
 	    
-	    $("#searchEmail").keydown(function(key) {
+	    $('#search-button').click(function() {
+	    	searchCondition = $('#searchCondition').val();
+	    	searchMovie = $('#searchMovie').val();
+	    	table.ajax.reload();
+	    });
+	    
+	    $("#searchMovie").keydown(function(key) {
 	        if (key.keyCode == 13) {
 	        	$('#search-button').trigger('click');
 	        }
@@ -219,95 +233,18 @@
 			return year + '-' + month + '-' + day;
 		}
 	    
-	    function goManagerDetail(managerId) {
-	    	window.location.href = "/getManagerProc.mdo?managerId=" + managerId;
+	    function goMovieDetail(movieId) {
+	    	window.location.href = "/getMovieProc.mdo?movieId=" + movieId;
 	    }
 	
-		function deleteCheck(managerId){
+		function deleteCheck(movieId){
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if(check == true){
-				window.location.href = "/deleteManagerProc.mdo?managerId=" + managerId;
+				window.location.href = "/deleteMovieProc.mdo?movieId=" + movieId;
 			}
 		};
 	    
 	</script>
-	<script>
-		
-		// 마지막 select한 값 유지
-		$(function(){
-			$("#select-genre").val("${movie.searchGenre}").prop("selected", true);
-		});
-	
-		// 검색시 카테고리 갖고가기
-		function genreSet() {
-			var genre = $('#select-genre option:selected').val();
-			$('#searchGenre').val(genre);
-		};
-		
-		// 카테고리 선택 ajax
-		$('#select-genre').change(function(){
-			var genre = $('#select-genre option:selected').val();
-			var sendData = {"searchGenre": genre};
-			$.ajax({
-				type: 'POST',
-				url: "/getMovieListProcAjax.mdo",
-				data: sendData,
-				success: function(map) {
-					var movieList = map.movieList;
-					var genreList = map.genreList;
-					
-					$('#movieList-body > tr > td').remove();
-					if (movieList.length == 0) {
-						$('#movieList-body').append("<tr><td colspan='7'>No data available in table</td></tr>"); 
-					}
-					for (var i = 0; i < movieList.length; i++) {
-						var movie = movieList[i];
-						var regDate = new Date(movie.movieRegDate);
-						regDate = getFormatDate(regDate);
-						var movieGenre;
-						for (var j = 0; j < genreList.length; j++) {
-							var genre = genreList[j];
-							if (genre.genreId == movie.genreId1) {
-								movieGenre = genre.genre;
-							}
-							if (movie.genreId2 == 0) {
-								if (genre.genreId == movie.genreId2) {
-									movieGenre += " · " + genre.genre;
-								}
-							}
-						}
-						
-						$('#movieList-body').append(
-								"<tr>" +
-									"<td><div>" + 1 + "</div></td>" +
-									"<td><img src='" + movie.posterPath + "\'/></td>" +
-									"<td><div>" + movie.movieTitle + "</div></td>" +
-									"<td><div>" + movieGenre + "</div></td>" +
-									"<td><div>" + movie.duration + "분</div></td>" +
-									"<td><div>" + regDate + "</div></td>" +
-									"<td>" +
-										"<div>" +
-											"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"location.href=\'/getMovieProc.mdo?movieId=" + movie.movieId + "\'\">수정</button>" +
-											"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + movie.movieId + "\')\">삭제</button>" +
-											"<button type=\"button\" class=\"btn btn-sm btn-info\">상세보기</button>" +
-										"</div>" +
-									"</td>" +
-								"</tr>");	
-					}
-				}
-			});
-		});
-		
-		function getFormatDate(date) {
-			var year = date.getFullYear();
-			var month = (1 + date.getMonth());
-			month = month >= 10 ? month : '0' + month;
-			var day = date.getDate();
-			day = day >= 10 ? day : '0' + day;
-			return year + '-' + month + '-' + day;
-		}
-	</script>
-
 </body>
 
 </html>
