@@ -122,6 +122,7 @@
 						</div> -->
 						<input type="hidden" name="cert" value="N"/>
 						<input type="hidden" name="ban" value="N"/>
+						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 					</form>
 				</div>
 			</div>
