@@ -120,9 +120,13 @@
 								class="fa fa-keyboard-o"></i> KAKAO 계정으로 가입하기
 							</a>
 						</div> -->
+						
 						<input type="hidden" name="cert" value="N"/>
 						<input type="hidden" name="ban" value="N"/>
+						<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
 						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
+						<input type="hidden" id="google" name="google" value="${member.google}"/>
+
 					</form>
 				</div>
 			</div>
