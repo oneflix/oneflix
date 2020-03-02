@@ -31,14 +31,21 @@ public class MemberController {
 	GetInquiryListService getInquiryListService;
 
 	@RequestMapping("/join.do")
-	public ModelAndView join(ModelAndView mav) {
+	public ModelAndView join(MemberVO vo,ModelAndView mav) {
+		vo.setKakao(vo.getKakao());
+		vo.setNaver(vo.getNaver());
+		vo.setGoogle(vo.getGoogle());
+		mav.addObject("member", vo);
 		mav.setViewName("join");
 		return mav;
 	}
 
 	@RequestMapping("/joinProc.do")
 	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
-		System.out.println(vo);
+		vo.setKakao(vo.getKakao());
+		vo.setNaver(vo.getNaver());
+		vo.setGoogle(vo.getGoogle());
+		
 		// member 나이계산
 		int memberAge = 0;
 		String memberBirth = vo.getBirth();
@@ -48,10 +55,7 @@ public class MemberController {
 		vo.setMemberAge(memberAge);
 		insertMemberService.insertMember(vo);
 		
-		if(vo.getKakao() !=null) {
-			
-		};
-
+		mav.addObject("member", vo);
 		mav.setViewName("login");
 		return mav;
 	}
@@ -75,7 +79,7 @@ public class MemberController {
 		vo.setNick(newNick);
 		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);
-		session.setAttribute("member", vo);
+		session.setAttribute("loginMember", vo);
 		mav.setViewName("redirect:/getMemberProc.do");
 		return mav;
 	}
