@@ -97,11 +97,12 @@
 						  </div>
 							  
 						 <div class="social">
-							<a href="#" class="whiteA"> 
+							<a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="whiteA"> 
 							카카오로 로그인하기
 						  	</a>
 						  </div>
-						<div id="naver_id_login" class="social" style="text-align:center"><a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
+						<div id="naver_id_login" class="social" style="text-align:center">
+							<a class="whiteA" href="${url}">네이버로 로그인하기</a></div>
 						</div>
 					</form>
 				</div>
@@ -143,7 +144,7 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-	<script>
+	
 	<!-- 네이버 로그인 -->
 	<script src="client/js/naverLogin.js"></script>
 

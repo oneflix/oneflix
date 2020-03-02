@@ -15,44 +15,44 @@ import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.util.kakao.login.service.KakaoLoginService;
 
 @Controller
-public class KakaoLoginController{
-	
+public class KakaoLoginController {
+
 	@Autowired
-	   private KakaoLoginService kakaoLoginService;
+	private KakaoLoginService kakaoLoginService;
 
-	   @Autowired
-	   private GetMemberService getMemberService;
-//	   private ClientSelectLoginService clientSelectLoginService;
+	@Autowired
+	private GetMemberService getMemberService;
 
-	   @RequestMapping(value="/kakaoLogin.do")
-	   public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpSession session, ModelAndView mav) {
-	      HashMap<String, Object> token = kakaoLoginService.getKakaoAccessToken(code);
-	      System.out.println(token);
-	      MemberVO kakaoMember = kakaoLoginService.getKakaoUserInfo(token);
-	      MemberVO tempVO = getMemberService.getMember(kakaoMember);
-	      
-	      // 최초 카카오톡 로그인 시 DB에 사용자 정보 삽입(회원가입)과 로그인을 동시에 처리
-	      // else if = 최초 카카오톡 로그인이 아닌 경우 DB 조회 후 로그인만 처리 (AccessToken 갱신 포함)
-	      // else = 카카오톡 로그인 실패
-	      if (tempVO == null) {
-	         kakaoLoginService.insertKakao(kakaoMember);
-	         session.setAttribute("member", kakaoMember);
-	         mav.setViewName("redirect:/homeProc.do");
-	         
-	         return mav;
-//	      } else if(tempVO!=null && kakaoMember.getCustomerTbPassword()!=null) {
-////	         TODO DB 사용자의 accessToken과 updateToken을 업데이트 하는 서비스 필요
-////	         HashMap<String, Object> updateToken = clientInsertKaLoginService.updateKakaoAccessToken(clientCustomerVO);
-//	         session.setAttribute("customer", tempVO);
-//	         
-//	         return "redirect:/index.do";
-	      } else {
-	         mav.setViewName("login");
-	         return mav;
-	      }
-	   }
-	   
+	@RequestMapping(value = "/kakaoLogin.do")
+	public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpSession session, ModelAndView mav) {
+		HashMap<String, Object> token = kakaoLoginService.getKakaoAccessToken(code);
+		System.out.println(token);
+		MemberVO kakaoMember = kakaoLoginService.getKakaoUserInfo(token);
+		System.out.println(kakaoMember.getKakao() + " " + kakaoMember.getNick());
+		MemberVO oneflixMember = getMemberService.getMember(kakaoMember);
+
+		// 최초 카카오톡 로그인 시 DB에 사용자 정보 삽입(회원가입)과 로그인을 동시에 처리
+		// else if = 최초 카카오톡 로그인이 아닌 경우 DB 조회 후 로그인만 처리 (AccessToken 갱신 포함)
+		// else = 카카오톡 로그인 실패
+		if (oneflixMember == null) { //첫 소셜로그인
+//			kakaoLoginService.insertKakao(kakaoMember);
+			session.setAttribute("member", kakaoMember);
+			mav.setViewName("connectSNS");
+			return mav;
+			
+		} else if (oneflixMember != null) {
+//	         TODO DB 사용자의 accessToken과 updateToken을 업데이트 하는 서비스 필요
+///	         HashMap<String, Object> updateToken = clientInsertKaLoginService.updateKakaoAccessToken(clientCustomerVO);
+			session.setAttribute("member", oneflixMember);
+			mav.setViewName("redirect:homeProc.do");
+			return mav;
+			
+		} else {
+			mav.setViewName("login");
+			return mav;
+		}
 	}
+}
 
 //=============================================================================================================
 
@@ -144,4 +144,3 @@ public class KakaoLoginController{
 //		mav.setViewName("home");
 //		return mav;
 //	}
-
