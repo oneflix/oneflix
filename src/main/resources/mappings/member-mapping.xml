@@ -19,51 +19,70 @@
    </delete>
    
     <select id="getMember" resultType="member" parameterType="member">
-      SELECT * FROM member
-      WHERE 1=1
+      SELECT m.*, t.ticket_name, t.ticket_period
+      			<if test="ticketId != 0">
+	      			, s.payment_date 
+      			</if>
+      FROM member m, ticket t
+      			<if test="ticketId != 0">
+		      		, sales s
+      			</if>
+      WHERE m.ticket_id = t.ticket_id
+      		<if test="ticketId != 0">
+	      		AND  m.email = s.email AND s.sales_status = 'success'
+      		</if>
       <choose>
          <when test="kakao != null and kakao != ''">
-            AND kakao = #{kakao}
+            AND m.kakao = #{kakao}
          </when>
          <when test="naver != null and naver != ''">
-            AND naver = #{naver}
+            AND m.naver = #{naver}
          </when>
          <when test="google != null and google != ''">
-            AND google = #{google}
+            AND m.google = #{google}
          </when>
          <otherwise>
-            AND email = #{email}
+            AND m.email = #{email}
          </otherwise>
       </choose>
    </select>
    
    <resultMap type="member" id="memberList">
 		<id property="email" column="email" />
+		<result property="rnum" column="rnum" />
 		<result property="pass" column="pass" />
 		<result property="nick" column="nick" />
 		<result property="birth" column="birth" />
 		<result property="memberAge" column="member_age" />
 		<result property="gender" column="gender" />
 		<result property="cert" column="cert" />
+		<result property="ticketName" column="ticket_name" />
 	</resultMap>
   
 
    <select id="getMemberList" resultMap="memberList" parameterType="member">
-      SELECT * FROM member WHERE 1=1
-		<if test="searchMember != null and searchMember =''">
-			AND (email like '%' || #{searchMember} || '%'
-			OR nick like '%' || #{searchMember} || '%')
-		</if> 
-		<if test="searchTicket != null and searchTicket != '-9'">
-			AND ticket_id = #{searchTicket}
-		</if> 
-		<if test="searchCert != null and searchCert != 'all'">
-			AND cert = #{searchCert}
-		</if> 
-		<if test="searchBan != null and searchBan != 'all'">
-			AND ban = #{searchBan}
-		</if> 
-      ORDER BY join_date DESC
+      SELECT * 
+      FROM (SELECT ROWNUM RNUM, M.*
+      		 FROM (SELECT m.*, t.ticket_name
+      		 		FROM member m, ticket t
+      		 		WHERE m.ticket_id = t.ticket_id
+					<if test="searchMember != null and searchMember != ''">
+						AND (m.email like '%' || #{searchMember} || '%'
+							OR m.nick like '%' || #{searchMember} || '%')
+					</if> 
+					<if test="searchTicket != null and searchTicket != '-9'">
+						AND m.ticket_id = #{searchTicket}
+					</if> 
+					<if test="searchCert != null and searchCert != 'all'">
+						AND m.cert = #{searchCert}
+					</if> 
+					<if test="searchBan != null and searchBan != 'all'">
+						AND m.ban = #{searchBan}
+					</if>
+      				ORDER BY m.join_date
+      			) M
+      		)
+      	ORDER BY RNUM DESC
    </select>
 	
 </mapper>

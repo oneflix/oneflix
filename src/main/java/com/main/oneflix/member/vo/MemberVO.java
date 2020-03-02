@@ -3,6 +3,8 @@ package com.main.oneflix.member.vo;
 import java.util.Date;
 
 public class MemberVO {
+
+	private int rnum;
 	private String email;
 	private String pass;
 	private String nick;
@@ -10,6 +12,9 @@ public class MemberVO {
 	private String gender;
 	private int MemberAge;
 	private int ticketId;
+	private String ticketName;
+	private int ticketPeriod;
+	private Date paymentDate;
 	private String cert;
 	private String ban;
 	private String searchMember;
@@ -24,33 +29,17 @@ public class MemberVO {
 	private String redirect_uri;
 	private String code;
 	private String refresh_token;
-	
+
 	private String google;
 	private String kakao;
 	private String naver;
 
-	public String getGoogle() {
-		return google;
+	public int getRnum() {
+		return rnum;
 	}
 
-	public void setGoogle(String google) {
-		this.google = google;
-	}
-
-	public String getKakao() {
-		return kakao;
-	}
-
-	public void setKakao(String kakao) {
-		this.kakao = kakao;
-	}
-
-	public String getNaver() {
-		return naver;
-	}
-
-	public void setNaver(String naver) {
-		this.naver = naver;
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public String getEmail() {
@@ -107,6 +96,30 @@ public class MemberVO {
 
 	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
+	}
+
+	public String getTicketName() {
+		return ticketName;
+	}
+
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
+
+	public int getTicketPeriod() {
+		return ticketPeriod;
+	}
+
+	public void setTicketPeriod(int ticketPeriod) {
+		this.ticketPeriod = ticketPeriod;
+	}
+
+	public Date getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(Date paymentDate) {
+		this.paymentDate = paymentDate;
 	}
 
 	public String getCert() {
@@ -219,6 +232,30 @@ public class MemberVO {
 
 	public void setRefresh_token(String refresh_token) {
 		this.refresh_token = refresh_token;
+	}
+
+	public String getGoogle() {
+		return google;
+	}
+
+	public void setGoogle(String google) {
+		this.google = google;
+	}
+
+	public String getKakao() {
+		return kakao;
+	}
+
+	public void setKakao(String kakao) {
+		this.kakao = kakao;
+	}
+
+	public String getNaver() {
+		return naver;
+	}
+
+	public void setNaver(String naver) {
+		this.naver = naver;
 	}
 
 }
