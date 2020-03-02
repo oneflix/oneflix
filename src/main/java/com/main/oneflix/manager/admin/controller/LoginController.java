@@ -24,13 +24,20 @@ public class LoginController {
 
 	@RequestMapping("/loginProc.mdo")
 	public ModelAndView loginProc(ManagerVO vo, ModelAndView mav, HttpSession session) {
-		vo = getManagerService.getManager(vo);
-		String viewName = "";
+		ManagerVO manager = getManagerService.getManager(vo);
+		String viewName;
+		
+		mav.addObject("result", false);
 		if (vo == null) {
-			viewName = "login";
+			viewName = "redirect:/login.mdo";
 		} else {
-			session.setAttribute("loginManager", vo);
-			viewName = "redirect:/getDashboardProc.mdo";
+			if (vo.getManagerPass().equals(manager.getManagerPass())) {
+				session.setAttribute("loginManager", vo);
+				viewName = "redirect:/getDashboardProc.mdo";
+				mav.addObject("result", true);
+			} else {
+				viewName = "redirect:/login.mdo";
+			}
 		}
 		mav.setViewName(viewName);
 		return mav;
@@ -39,7 +46,7 @@ public class LoginController {
 	@RequestMapping("/logout.mdo")
 	public ModelAndView logout(ModelAndView mav, HttpSession session) {
 		session.invalidate();
-		mav.setViewName("login");
+		mav.setViewName("redirect:/login.mdo");
 		return mav;
 	}
 }

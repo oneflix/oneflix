@@ -5,7 +5,12 @@
 <mapper namespace="MovieDAO">
 
 	<select id="getMovie" parameterType="movie" resultType="movie">
-		SELECT * FROM movie WHERE movie_id=#{movieId}
+		SELECT m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
+				a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
+			FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
+			WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
+				AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
+				AND m.movie_id = #{movieId}
 	</select>
 
 	<resultMap type="movie" id="movieList">
@@ -23,6 +28,8 @@
 		<result property="actorId5" column="actor_id5" />
 		<result property="genreId1" column="genre_id1" />
 		<result property="genreId2" column="genre_id2" />
+		<result property="genre1" column="genre1" />
+		<result property="genre2" column="genre2" />
 		<result property="country" column="country" />
 		<result property="release" column="release" />
 		<result property="postPath" column="post_path" />
@@ -36,41 +43,60 @@
 	</resultMap>
 
 	<select id="getMovieList" resultMap="movieList">
-		SELECT * 
-			FROM (SELECT ROWNUM rnum, M.*
-				FROM (SELECT m.*
-					FROM movie m
-					WHERE 1 = 1
-					<choose>
-						<when test="movieType == 'main'">
-							AND main_check = 'Y'
-						</when>
-						<when test="movieType == 'new'">
-							AND movie_reg_date BETWEEN TRUNC(SYSDATE - 30) AND SYSDATE
-						</when>
-						<when test="movieType == 'popular'">
-							ORDER BY view_count 
-						</when>
-					</choose>
-				) M
-			)
+		SELECT *
+		FROM (SELECT ROWNUM rnum, M.* 
+				FROM (SELECT *
+						FROM (SELECT ROWNUM sub_rnum, m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
+									a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
+								FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
+								WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
+									AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
+									<if test="searchGenre != 0">
+										AND (genre_id1 = #{searchGenre} OR genre_id2 = #{searchGenre}) 
+									</if>
+									<if test="recommendGenre != 0">
+										AND (genre_id1 = #{recommendGenre} OR genre_id2 = #{recommendGenre})
+									</if>
+									<if test="searchMovie != null">
+										AND movie_title like '%' || #{searchMovie} || '%'
+									</if>
+									<choose>
+										<when test="movieType == 'main'">
+											AND m.main_check = 'Y'
+										</when>
+										<when test="movieType == 'new'">
+											AND m.movie_reg_date BETWEEN TRUNC(SYSDATE - 30) AND SYSDATE
+										</when>
+									</choose>
+									<choose>
+										<when test="movieType == 'popular' or searchOrder == 'popular'">
+											ORDER BY m.view_count DESC
+										</when>
+										<otherwise>
+											ORDER BY m.movie_reg_date DESC
+										</otherwise>
+									</choose>
+							)
+						WHERE 1 = 1
+						<if test="movieType == 'popular' or searchOrder == 'popular'">
+							<![CDATA[
+								AND sub_rnum <= 80
+							]]>
+							ORDER BY movie_score DESC			
+						</if>
+					) M
+			) 
 		WHERE 1 = 1
-		<if test="start != 0 and end != 0">
-			AND rnum BETWEEN #{start} AND #{end}				
-		</if> 
-		
-		<if test="searchGenre != 0">
-			AND genre_id1 = #{searchGenre} OR genre_id2 = #{searchGenre} 
-		</if>
-		<if test="searchMovie != null">
-			AND movie_title like '%' || #{searchMovie} || '%'
-		</if>
-		<if test="movieType == 'popular'">
-			<![CDATA[
-				AND rnum <= 80
-				ORDER BY movie_score
-			]]> 
-		</if>
+		<choose>
+			<when test="recommendGenre != 0">
+				<![CDATA[
+					AND rnum <= 100
+				]]>
+			</when>
+			<when test="start != 0 and end != 0">
+				AND rnum BETWEEN #{start} AND #{end}				
+			</when> 
+		</choose>
 	</select>
 
 	<insert id="insertMovie" parameterType="movie">

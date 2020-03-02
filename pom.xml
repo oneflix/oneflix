@@ -21,6 +21,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- naver -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
 		<!-- Simple JSON -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -34,6 +40,13 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.10.2</version>
 		</dependency>
+		
+		<!-- GSON (카카오) -->
+		 <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.8.5</version>
+      </dependency>
 
 		<!-- Javax Mail -->
 		<dependency>

@@ -14,7 +14,7 @@ public class UpdateActorServiceImpl implements UpdateActorService {
 	private ActorDAO actorDAO;
 
 	@Override
-	public void updateActorService(ActorVO vo) {
+	public void updateActor(ActorVO vo) {
 		actorDAO.updateActor(vo);
 	}
 

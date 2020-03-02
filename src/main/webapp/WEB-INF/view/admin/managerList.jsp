@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,58 +44,34 @@
 								<button type="button" class="btn btn-primary"
 									style="float: left;"
 									onclick="location.href='/insertManager.mdo'">+ 추가</button>
-
-
-
-								<form method="post" action="/managerListProc.mdo" class="form-inline ml-3" style="float: right; margin-top: 4px;">
+								<div class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="searchManager"
+											<input type="text" name="searchManager" id="searchManager"
 												class="form-control float-right" placeholder="Search">
 
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button id="search-button" type="button" class="btn btn-default">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 
 							</div>
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="managerTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>ID</th>
-											<th>TYPE</th>
-											<th>관리</th>
+											<th style="width: 4vw;">#</th>
+											<th>아이디</th>
+											<th>등급</th>
+											<th style="width: 150px;">관리</th>
 										</tr>
 									</thead>
-
-									<tbody>
-										<c:forEach var="manager" items="${managerList}">
-											<tr>
-												<td>1</td>
-												<td>${manager.managerId}</td>
-												<td><c:choose>
-														<c:when test="${manager.managerType eq 0}">일반 관리자</c:when>
-														<c:when test="${manager.managerType eq 9}">최고 관리자</c:when>
-													</c:choose></td>
-												<td>
-													<div>
-														<button type="button" class="btn btn-sm btn-primary"
-															onclick="location.href='/getManagerProc.mdo?managerId=${manager.managerId}'">수정</button>
-														<button type="button" class="btn btn-sm btn-danger" onclick="deleteCheck('${manager.managerId}')">삭제</button>
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-
 								</table>
 							</div>
 							<!-- /.card-body -->
@@ -119,12 +95,80 @@
 	<!-- ./wrapper -->
 
 	<script>
-		function deleteCheck(managerId) {
+		var table;
+		var searchManager;
+		
+	    $(document).ready(function() {
+	    	table = $('#managerTable').DataTable({
+	    		pageLength: 10,
+	    		pagingType: "simple_numbers",
+	    		lengthChange: false,
+	    		info: false,
+	    		responsive: true,
+	    		autoWidth: false,
+	    		processing: true,
+	    		searching: false,
+	    		ordering: true,
+	    		order: [[0, 'desc']],
+	    		language: {
+	    			"processing": "잠시만 기다려주세요.",
+	    			"paginate": {
+	    				"previous": "이전",
+	    				"next": "다음"
+	    			}
+	    		},
+	    		ajax: {
+	    			"type": "POST",
+	    			"url": "/getManagerListProcAjax.mdo",
+	    			"data": function(sendData) {
+	    				sendData.searchManager = searchManager;
+	    			} 
+	    		},
+	   			columns: [
+	   				{data: "rnum"},
+	   				{data: "managerId"},
+	   				{data: "managerType",
+	   					render: function(data){
+	   						switch (data) {
+	   						case 0:
+	   							return "일반 관리자";
+	   						case 9:
+	   							return "최고 관리자";
+	   						}
+	   					}},
+	   				{data: "managerId",
+	   					render: function(data){
+	   						var html = "<div>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goManagerDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
+									"</div>"
+	   						return html;
+	   					}}
+	   			]
+	    	});
+	    });
+	    
+	    $('#search-button').click(function() {
+	    	searchManager = $('#searchManager').val();
+	    	table.ajax.reload();
+	    });
+	    
+	    $("#searchManager").keydown(function(key) {
+	        if (key.keyCode == 13) {
+	        	$('#search-button').trigger('click');
+	        }
+		});
+	    
+	    function goManagerDetail(managerId) {
+	    	window.location.href = "/getManagerProc.mdo?managerId=" + managerId;
+	    }
+	
+		function deleteCheck(managerId){
 			var check = confirm("정말로 삭제하시겠습니까?");
-			if (check == true) {
-				document.location.href = "/deleteManagerProc.mdo?managerId=" + managerId;
+			if(check == true){
+				window.location.href = "/deleteManagerProc.mdo?managerId=" + managerId;
 			}
-		}
+		};
 	</script>
 
 </body>

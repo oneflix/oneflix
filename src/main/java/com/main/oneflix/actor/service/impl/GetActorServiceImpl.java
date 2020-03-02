@@ -13,7 +13,7 @@ public class GetActorServiceImpl implements GetActorService{
 	
 
 	@Override
-	public ActorVO getActorService(ActorVO vo) {
+	public ActorVO getActor(ActorVO vo) {
 		return actorDAO.getActor(vo);
 	}
 }

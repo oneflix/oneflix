@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -48,22 +48,21 @@
 							<div class="card-header">
 								<button type="button" class="btn btn-primary"
 									style="float: left;" onclick="location.href='/insertMovie.mdo'">+ 추가</button>
-								<form action="/getMovieListProc.mdo" method="post" class="form-inline ml-3" onsubmit="genreSet()" style="float: right; margin-top: 4px;">
-									<input type="hidden" name="searchGenre" id="searchGenre"/>
+								<div class="form-inline ml-3" style="float: right; margin-top: 4px;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 300px;">
-											<input type="text" name="searchMovie"
-												class="form-control float-right" placeholder="Search">
+											<input type="text" name="searchMovie" id="searchMovie"
+												class="form-control float-right" placeholder="영화 제목 검색">
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button id="search-button" type="button" class="btn btn-default">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 
-								<select id="select-genre" class="form-control form-control-sm select2bs4"
+								<select id="searchGenre" class="form-control form-control-sm select2bs4"
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option value="0" selected="selected">모든 장르</option>
 									<c:forEach var="genre" items="${genreList}">
@@ -74,16 +73,16 @@
 							<!-- /.card-header -->
 
 							<div class="card-body">
-								<table id="example2" class="table table-bordered table-hover">
+								<table id="movieTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width: 2vw;">#</th>
+											<th style="width: 4vw;">#</th>
 											<th>썸네일</th>
 											<th>제목</th>
 											<th>장르</th>
 											<th>상영시간</th>
 											<th>등록일</th>
-											<th>관리</th>
+											<th style="width: 200px;">관리</th>
 										</tr>
 									</thead>
 									<tbody id="movieList-body">
@@ -140,12 +139,99 @@
 	</div>
 	<!-- ./wrapper -->
 	<script>
-		function deleteCheck(movieId) {
-			var check = confirm("정말로 삭제하시겠습니까?");
-			if (check == true) {
-				document.location.href = "/deleteMovieProc.mdo?movieId=" + movieId;
-			}
+		var table;
+		var searchGenre;
+		var searchMovie;
+		
+	    $(document).ready(function() {
+	    	
+	    	table = $('#movieTable').DataTable({
+	    		pageLength: 10,
+	    		pagingType: "simple_numbers",
+	    		lengthChange: false,
+	    		info: false,
+	    		responsive: true,
+	    		autoWidth: false,
+	    		processing: true,
+	    		searching: false,
+	    		ordering: true,
+	    		order: [[0, 'desc']],
+	    		language: {
+	    			"processing": "잠시만 기다려주세요.",
+	    			"paginate": {
+	    				"previous": "이전",
+	    				"next": "다음"
+	    			}
+	    		},
+	    		ajax: {
+	    			"type": "POST",
+	    			"url": "/getMovieListProcAjax.mdo",
+	    			"data": function(sendData) {
+	    				sendData.searchGenre = searchGenre;
+	    				sendData.searchMovie = searchMovie;
+	    			}
+	    		},
+	   			columns: [
+	   				{data: "rnum"},
+	   				{data: "email"},
+	   				{data: "ticketName"},
+	   				{data: "ticketPrice",
+	   					render: function(data){
+	   						data = new Number(data);
+	   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
+	   						return data;
+	   					}},
+	   				{data: "paymentDate",
+	   					render: function(data) {
+	   						data = getFormatDate(data);
+	   						return data;
+	   					}}
+	   			]
+	    	});
+	    	
+	    });
+	    
+	    $('#reservation').change(function(){
+			selectDate = getStartEnd();
+			searchEmail = $('#searchEmail').val();
+			table.ajax.reload();
+	    });
+	    
+	    $('#search-button').click(function() {
+	    	selectDate = getStartEnd();
+	    	searchEmail = $('#searchEmail').val();
+	    	table.ajax.reload();
+	    });
+	    
+	    $("#searchEmail").keydown(function(key) {
+	        if (key.keyCode == 13) {
+	        	$('#search-button').trigger('click');
+	        }
+	    });
+	    
+	    function getFormatDate(date) {
+	    	var date = new Date(date);
+			var year = date.getFullYear();
+			var month = (1 + date.getMonth());
+			month = month >= 10 ? month : '0' + month;
+			var day = date.getDate();
+			day = day >= 10 ? day : '0' + day;
+			return year + '-' + month + '-' + day;
 		}
+	    
+	    function goManagerDetail(managerId) {
+	    	window.location.href = "/getManagerProc.mdo?managerId=" + managerId;
+	    }
+	
+		function deleteCheck(managerId){
+			var check = confirm("정말로 삭제하시겠습니까?");
+			if(check == true){
+				window.location.href = "/deleteManagerProc.mdo?managerId=" + managerId;
+			}
+		};
+	    
+	</script>
+	<script>
 		
 		// 마지막 select한 값 유지
 		$(function(){

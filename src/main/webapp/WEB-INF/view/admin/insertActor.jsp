@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -52,7 +52,7 @@
 							<br>
 							<div class="buttons" style="float: right;">
 								<button type="submit" class="btn btn-success">등록</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/actorListProc.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/actorList.mdo'">취소</button>
 							</div>
 						</div>
 					</div>
@@ -70,31 +70,6 @@
 
 	</div>
 	<!-- ./wrapper -->
-
-
-	
-	
-	<!-- Select2 -->
-	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
-	<!-- Bootstrap4 Duallistbox -->
-	<script
-		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
-	<script>
-		$(function() {
-			//Initialize Select2 Elements
-			$('.select2').select2()
-
-			//Initialize Select2 Elements
-			$('.select2bs4').select2({
-				theme : 'bootstrap4'
-			})
-
-			//Bootstrap Duallistbox
-			$('.duallistbox').bootstrapDualListbox()
-
-		})
-	</script>
 
 </body>
 

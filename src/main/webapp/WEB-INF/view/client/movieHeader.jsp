@@ -95,7 +95,7 @@
 								<div class="dropdown">
 									<button class="btn dropdown-toggle profile-button"
 										type="button" data-toggle="dropdown">
-										<span>왓챠플레이</span> <span class="caret"></span>
+										<span>${member.nick}님</span> <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu dropdown-menu-right profile-menu">
                                             <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>

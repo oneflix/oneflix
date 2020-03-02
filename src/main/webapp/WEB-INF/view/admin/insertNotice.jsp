@@ -10,15 +10,10 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- summernote -->
-<link rel="stylesheet"
-	href="admin/plugins/summernote/summernote-bs4.css">
 </head>
-
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -58,7 +53,7 @@
 			
 			        <div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
 			            <button type="submit" class="btn btn-success">등록</button>
-			            <button type="button" class="btn btn-secondary" onclick="location.href='/getNoticeListProc.mdo'">취소</button>
+			            <button type="button" class="btn btn-secondary" onclick="location.href='/noticeList.mdo'">취소</button>
 			        </div><!-- /.buttons -->
 			    </div><!--editorbody-->
 				<!-- /.wrapper -->
@@ -71,36 +66,6 @@
      ====================== -->
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
-
-	<!-- Select2 -->
-	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
-	<!-- Bootstrap4 Duallistbox -->
-	<script
-		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
-	<script>
-		$(function() {
-			//Initialize Select2 Elements
-			$('.select2').select2()
-
-			//Initialize Select2 Elements
-			$('.select2bs4').select2({
-				theme : 'bootstrap4'
-			})
-
-			//Bootstrap Duallistbox
-			$('.duallistbox').bootstrapDualListbox()
-
-		})
-	</script>
-	<!-- Summernote -->
-	<script src="admin/plugins/summernote/summernote-bs4.min.js"></script>
-	<script>
-		$(function() {
-			// Summernote
-			$('.textarea').summernote()
-		})
-	</script>
 
 </body>
 

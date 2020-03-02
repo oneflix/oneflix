@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script lang="javascript" src="admin/js/insertGenre.js"></script>
@@ -34,7 +34,7 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/updateGenreProc.mdo" method="post" class="row" name="insertGenre" onsubmit="return writeCheck()">
+			<form action="/updateGenreProc.mdo" method="post" class="row">
 			<input name="genreId" type="hidden" value="${genre.genreId}"/>
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -49,7 +49,7 @@
 							<br>
 							<div class="buttons" style="float: right; margin-top: 0; padding-bottom: 20px;">
 								<button type="submit" class="btn btn-success">수정</button>
-								<button type="button" class="btn btn-secondary" onclick="location.href='/getGenreListProc.mdo'">취소</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/genreList.mdo'">취소</button>
 							</div>
 						</div>
 					</div>
@@ -62,7 +62,6 @@
 
 	</div>
 	<!-- ./wrapper -->
-
 
 </body>
 
