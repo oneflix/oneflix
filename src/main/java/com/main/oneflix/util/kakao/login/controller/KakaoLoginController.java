@@ -24,7 +24,7 @@ public class KakaoLoginController {
 	private GetMemberService getMemberService;
 
 	@RequestMapping(value = "/kakaoLogin.do")
-	public ModelAndView kakaoLogin(MemberVO vo, @RequestParam("code") String code, HttpSession session, ModelAndView mav) {
+		public ModelAndView kakaoLogin(MemberVO vo, @RequestParam("code") String code, HttpSession session, ModelAndView mav) {
 		HashMap<String, Object> token = kakaoLoginService.getKakaoAccessToken(code);
 		System.out.println(token);
 		MemberVO kakaoMember = kakaoLoginService.getKakaoUserInfo(token);
