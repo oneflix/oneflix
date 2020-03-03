@@ -40,6 +40,9 @@ public class MovieController {
 	private GetReviewService getReviewService;
 	@Autowired
 	private GetTicketListService getTicketListService;
+	//리뷰좋아요
+	@Autowired
+	private GetReviewListService getReviewLikeService;
 	
 	@RequestMapping("/getMovieDetailProc.do")
 	public ModelAndView getMovieDetailProc(MovieVO vo, HttpSession session, ModelAndView mav) {

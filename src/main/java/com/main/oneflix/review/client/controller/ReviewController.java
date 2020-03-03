@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.oneflix.like.service.UpdateLikeCountService;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.review.service.DeleteReviewService;
 import com.main.oneflix.review.service.GetReviewListService;
@@ -26,6 +27,8 @@ public class ReviewController {
 	@Autowired
 	private UpdateReviewService updateReviewService;
 	@Autowired
+	private UpdateLikeCountService updateLikeCountService;
+	@Autowired
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
@@ -33,8 +36,9 @@ public class ReviewController {
 	private GetReviewService getReviewService;
 
 	@RequestMapping("/insertReviewProc.do")
-	public ModelAndView insertReviewProc(ReviewVO vo, ModelAndView mav) {
-		vo.setEmail("purple@mail.com");
+	public ModelAndView insertReviewProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo.setEmail(member.getEmail());
 		if(vo.getReviewId() != null) deleteReviewService.deleteReview(vo);
 		insertReviewService.insertReview(vo);
 		mav.addObject("movieId", vo.getMovieId());
@@ -61,8 +65,14 @@ public class ReviewController {
 	@ResponseBody
 	public void updateReviewProcAjax(ReviewVO vo) {
 		updateReviewService.updateReview(vo);
-		
 	}
+	
+	@RequestMapping("/updateReviewCountAjax.do")
+	@ResponseBody
+	public void updateLikeCountAjax(ReviewVO vo) {
+		updateLikeCountService.updateLikeCount(vo);
+	}
+	
 	 
 	@RequestMapping("/updateReviewProc.do")
 	public ModelAndView updateReviewProc(ReviewVO vo, ModelAndView mav) {
@@ -93,6 +103,7 @@ public class ReviewController {
 
 		return mav;
 	}
+	
 	
 	@RequestMapping("/getReviewListProcAjax.do")
 	@ResponseBody

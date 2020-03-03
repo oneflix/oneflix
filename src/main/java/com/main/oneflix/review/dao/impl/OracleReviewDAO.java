@@ -11,7 +11,7 @@ import com.main.oneflix.review.vo.ReviewVO;
 
 @Repository
 public class OracleReviewDAO implements ReviewDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -28,8 +28,14 @@ public class OracleReviewDAO implements ReviewDAO {
 	}
 
 	@Override
+	public void updateLikeCount(ReviewVO vo) {
+		sqlSessionTemplate.update("ReviewDAO.updateLikeCount", vo);
+
+	}
+
+	@Override
 	public void deleteReview(ReviewVO vo) {
-		sqlSessionTemplate.delete("ReviewDAO.deleteReview",vo);
+		sqlSessionTemplate.delete("ReviewDAO.deleteReview", vo);
 		System.out.println("ReviewDAO vo = " + vo.getReviewId());
 
 	}

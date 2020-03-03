@@ -33,7 +33,6 @@
       		</if>
       <choose>
          <when test="kakao != null and kakao != ''">
-
             AND m.kakao = #{kakao}
          </when>
          <when test="naver != null and naver != ''">

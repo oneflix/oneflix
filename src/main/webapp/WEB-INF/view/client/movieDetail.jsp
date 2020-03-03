@@ -277,8 +277,8 @@
 																<div class="review-content">
 																	${reviewList[i].reviewContent }</div>
 																<div class="like-container">
-																	<button id="thumbs" class="like-button" onclick='like()'>
-																		<i id="like" class="far fa-thumbs-up like-icon"></i> 
+																	<button id="thumbs" class="like-button">
+																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
 																		<span class="like-count">${reviewList[i].likeCount}</span>
 																	</button>
 																</div>
@@ -292,8 +292,8 @@
 																<div class="review-content">
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
-																	<button class="like-button" onclick='like()'>
-																		<i id="like" class="far fa-thumbs-up like-icon"></i> <span
+																	<button id="thumbs" class="like-button">
+																		<i id="like" class="fa-thumbs-up like-icon far"></i> <span
 																			class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
@@ -454,40 +454,43 @@
 			  return false;
 			}); */
 			
-			//다른 엄지 다 없어지고 하나만 동작
-		/* function like(){
-			var thumbs = $('.like-icon').prop("class");
 			
-			if(thumbs == 'far fa-thumbs-up like-icon'){
-				$(".like-icon").removeClass();
+	 //엄지 아이콘 변경
+		$('.like-button').click(function() {
+		var url;
+			
+		var thumbs = $(this).children('i').prop('class')
+		
+		var reviewId = $(this).children('i').prop('id');
+		var reviewLikeEmail = "${member.email}"
+		var sendData = {
+				"reviewId" : reviewId,
+				"reviewLikeEmail" : reviewLikeEmail,
+			};
+		
+		if(thumbs == 'fa-thumbs-up like-icon far'){
+			$(this).children('i').removeClass("far");
+			$(this).children('i').addClass("fas");
+			url = '/insertReviewLikeProc.do';
 
-				//thumbs = $('#thumbs').children('i').prop("class");
-				//alert("removeClass();" + thumbs);
-				$("#like").addClass("fas fa-thumbs-up like-icon");
-				//thumbs = $('#like').children('i').prop("class");
-				//alert(thumbs);
-			}else if(thumbs == 'fas fa-thumbs-up like-icon'){
-				$(".like-icon").removeClass();
-				$("#like").addClass("far fa-thumbs-up like-icon");
+		} else if(thumbs == 'fa-thumbs-up like-icon fas'){
+			$(this).children('i').removeClass("fas");
+			$(this).children('i').addClass("far");
+			url = '/deleteReviewLikeProc.do';
+		}
+		
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : sendData,
+			async : false,
+			success : function(response) {
+				result = response.result;
+
 			}
-		} */
-			
-			//엄지하나만 동작
-		 function like(){
-			var thumbs = $('#like').prop("class");
-			
-			if(thumbs == 'far fa-thumbs-up like-icon'){
-				$("#like").removeClass();
-				//thumbs = $('#thumbs').children('i').prop("class");
-				//alert("removeClass();" + thumbs);
-				$("#like").addClass("fas fa-thumbs-up like-icon");
-				//thumbs = $('#like').children('i').prop("class");
-				//alert(thumbs);
-			}else if(thumbs == 'fas fa-thumbs-up like-icon'){
-				$("#like").removeClass();
-				$("#like").addClass("far fa-thumbs-up like-icon");
-			}
-		} 
+		});
+	});
+		
 	</script>
 
 </body>
