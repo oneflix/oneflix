@@ -40,4 +40,9 @@ public class OracleMovieDAO implements MovieDAO {
 		return sqlSessionTemplate.selectList("MovieDAO.getMovieList", vo);
 	}
 
+	@Override
+	public int getCountMovie(MovieVO vo) {
+		return sqlSessionTemplate.selectOne("MovieDAO.getCountMovie", vo);
+	}
+
 }

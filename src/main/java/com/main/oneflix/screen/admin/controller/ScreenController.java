@@ -17,13 +17,13 @@ import com.main.oneflix.screen.vo.ScreenVO;
 public class ScreenController {
 	
 	@Autowired
-	InsertScreenService insertScreenService;
+	private InsertScreenService insertScreenService;
 	@Autowired
-	UpdateScreenService updateScreenService;
+	private UpdateScreenService updateScreenService;
 	@Autowired
-	DeleteScreenService deleteScreenService;
+	private DeleteScreenService deleteScreenService;
 	@Autowired
-	GetScreenListService getScreenListService;
+	private GetScreenListService getScreenListService;
 
 	
 	@RequestMapping("/insertScreenProc.mdo")

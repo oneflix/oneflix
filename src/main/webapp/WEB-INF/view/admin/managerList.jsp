@@ -66,10 +66,10 @@
 								<table id="managerTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width: 4vw;">#</th>
+											<th>#</th>
 											<th>아이디</th>
 											<th>등급</th>
-											<th style="width: 150px;">관리</th>
+											<th>관리</th>
 										</tr>
 									</thead>
 								</table>

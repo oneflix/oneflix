@@ -28,6 +28,7 @@ public class InquiryVO {
 	private String searchInquiryType;
 	private String searchCondition;
 	private String searchInquiry;
+	private String replyCheck;
 
 	public int getRnum() {
 		return rnum;
@@ -171,6 +172,14 @@ public class InquiryVO {
 
 	public void setSearchInquiry(String searchInquiry) {
 		this.searchInquiry = searchInquiry;
+	}
+
+	public String getReplyCheck() {
+		return replyCheck;
+	}
+
+	public void setReplyCheck(String replyCheck) {
+		this.replyCheck = replyCheck;
 	}
 
 }
