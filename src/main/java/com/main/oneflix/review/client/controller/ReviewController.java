@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.review.service.DeleteReviewService;
 import com.main.oneflix.review.service.GetReviewListService;
-import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.service.InsertReviewService;
 import com.main.oneflix.review.service.UpdateReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
@@ -29,25 +28,24 @@ public class ReviewController {
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
-	@Autowired
-	private GetReviewService getReviewService;
 
 	@RequestMapping("/insertReviewProc.do")
-	public ModelAndView insertReviewProc(ReviewVO vo, ModelAndView mav) {
-		vo.setEmail("purple@mail.com");
-		if(vo.getReviewId() != null) deleteReviewService.deleteReview(vo);
+	public ModelAndView insertReviewProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo.setEmail(member.getEmail());
+		if (vo.getReviewId() != null)
+			deleteReviewService.deleteReview(vo);
 		insertReviewService.insertReview(vo);
 		mav.addObject("movieId", vo.getMovieId());
 		mav.setViewName("redirect:/getMovieDetailProc.do");
 		return mav;
 	}
-	
+
 	@RequestMapping("/insertReviewProcAjax.do")
 	@ResponseBody
 	public void insertReviewProcAjax(ReviewVO vo) {
 		insertReviewService.insertReview(vo);
 	}
-	
 
 	@RequestMapping("/deleteReviewProc.do")
 	public ModelAndView deleteReviewProc(ReviewVO vo, ModelAndView mav) {
@@ -56,14 +54,14 @@ public class ReviewController {
 		mav.setViewName("redirect:/getMovieDetailProc.do");
 		return mav;
 	}
-	
+
 	@RequestMapping("/updateReviewProcAjax.do")
 	@ResponseBody
 	public void updateReviewProcAjax(ReviewVO vo) {
 		updateReviewService.updateReview(vo);
-		
 	}
-	 
+
+
 	@RequestMapping("/updateReviewProc.do")
 	public ModelAndView updateReviewProc(ReviewVO vo, ModelAndView mav) {
 		updateReviewService.updateReview(vo);
@@ -93,10 +91,10 @@ public class ReviewController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping("/getReviewListProcAjax.do")
 	@ResponseBody
-	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo){
+	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo) {
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
 		return reviewList;
 	}
