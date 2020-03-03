@@ -32,7 +32,6 @@ public class ScreenController {
 		System.out.println(vo.getScreenPageType());
 		System.out.println(vo.getScreenOrder());
 		System.out.println(vo.getScreenImgPath());
-		System.out.println(vo.getScreenImgFile());
 		System.out.println(vo.getScreenTitle());
 		System.out.println(vo.getScreenSubtitle());
 //		insertScreenService.insertScreen(vo);
@@ -46,11 +45,11 @@ public class ScreenController {
 		List<ScreenVO> oneflixScreenList = getScreenListService.getScreenList(vo);
 		
 		vo.setScreenPageType("d");
-		List<ScreenVO> deletedefenseScreenList = getScreenListService.getScreenList(vo);
+		List<ScreenVO> deleteDefenseScreenList = getScreenListService.getScreenList(vo);
 		
 		mav.addObject("oneflixScreenList", oneflixScreenList);
-		mav.addObject("deletedefenseScreenList", deletedefenseScreenList);
-		mav.setViewName("screen");
+		mav.addObject("deleteDefenseScreenList", deleteDefenseScreenList);
+		mav.setViewName("screenList");
 		return mav;
 	}
 }
