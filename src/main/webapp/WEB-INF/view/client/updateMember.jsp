@@ -11,12 +11,44 @@
     <title>ONeflix</title>
 
     <link rel="stylesheet" href="client/css/all.css">
+    <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
+	<link rel="stylesheet" type="text/css" href="client/css/ls-main.css">	
     <link rel="stylesheet" href="client/css/update_member.css">
+    <link rel="stylesheet" href="client/css/connectsns_modal.css">
 </head>
 
-<body>
+<body style="background: #fff;">
 
     <jsp:include page="${sidebar_url}"></jsp:include>
+    
+    <!-- The Modal -->
+	<div id="myModal" class="modal">
+		<div class="modal-container">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>소셜로그인 본인인증</h2>
+				<hr class="seperator">
+					<div class="wrapper">
+		            	<div class="social">
+		                     <a style="text-decoration:none" class="whiteA" href="${googleUrl}">
+		                     	구글로 로그인하기
+		                     </a>
+		                  </div>
+		                  <div class="social">
+		                     <a style="text-decoration:none" href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="whiteA"> 
+		                     	카카오로 로그인하기
+		                     </a>
+		                    </div>
+		                  <div id="naver_id_login" class="social" style="text-align:center">
+		                     <a style="text-decoration:none" class="whiteA" href="${naverUrl}">
+		                		네이버로 로그인하기
+		                     </a>
+		                  </div>
+                  </div>
+			</div>
+		</div><!-- modal container -->
+	</div>
 
     <div class="page-body" style="background-color: #ffffff; height: 97vh;">
         <section class="css-1vpi0so-Self-Self">
@@ -33,7 +65,7 @@
                             </div>
                             <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                 <div class="css-1bognut-ChangeSubscribeStatusBlock e1199ims5"><button
-                                        class=" css-wfgy93-Self e1ktu1gx0" type="button">본인인증하기</button></div>
+                                  id="sns-modal" class=" css-wfgy93-Self e1ktu1gx0" type="button">본인인증하기</button></div>
                             </div>
                         </div>
                     </li>
@@ -110,6 +142,10 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script src="client/js/update_member.js"></script>
+   <script src="client/js/connectsns_modal.js"></script>
+   	<!-- 네이버로그인 -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
    <script type="text/javascript">
       function validate() {

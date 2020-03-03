@@ -129,7 +129,7 @@ body, html {
   height: 15px;
   width: 15px;
   position: absolute;
-  content: '✔';
+  content: '�쐱';
   display: inline-block;
   font-size: 10px;
   text-align: center;
@@ -679,7 +679,6 @@ iframe {
   border:1px white;
   opacity: 1;
 }
-<<<<<<< HEAD
 .sectionA {
 	background-color: #141517;
 	background-size: cover;
