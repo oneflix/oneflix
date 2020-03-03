@@ -149,4 +149,7 @@
 		movie_id = #{movieId}
 	</delete>
 
+	<select id="getCountMovie" parameterType="movie" resultType="int">
+		SELECT COUNT(*) FROM movie
+	</select>
 </mapper>

@@ -78,7 +78,7 @@
 									style="width: inherit; float: right; margin-top: 4px;">
 									<option value="all" selected="selected">전체 보기</option>
 									<option value="ticket">이용권</option>
-									<option value="cert">본인인증여부</option>
+									<option value="cert">본인인증</option>
 									<option value="ban">계정상태</option>
 								</select>
 							</div>
@@ -93,10 +93,10 @@
 											<th>닉네임</th>
 											<th>나이</th>
 											<th>이용권</th>
-											<th>본인인증 여부</th>
+											<th>본인인증</th>
 											<th>계정상태</th>
 											<th>가입일</th>
-											<th class="th-width">관리</th>
+											<th>관리</th>
 										</tr>
 									</thead>
 								</table>

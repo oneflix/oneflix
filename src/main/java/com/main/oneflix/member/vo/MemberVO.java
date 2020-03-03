@@ -22,6 +22,7 @@ public class MemberVO {
 	private String searchTicket;
 	private String searchCert;
 	private String searchBan;
+	private int lastDate;
 	private Date joinDate;
 	private String grant_type;
 	private String client_id;
@@ -176,6 +177,14 @@ public class MemberVO {
 
 	public void setSearchBan(String searchBan) {
 		this.searchBan = searchBan;
+	}
+
+	public int getLastDate() {
+		return lastDate;
+	}
+
+	public void setLastDate(int lastDate) {
+		this.lastDate = lastDate;
 	}
 
 	public Date getJoinDate() {

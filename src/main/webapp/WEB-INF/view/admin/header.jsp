@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,7 +56,7 @@
 
 	<!-- 사이드바 -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
-		<a href="#" class="brand-link"> <img
+		<a href="/getDashboardProc.mdo" class="brand-link"> <img
 			src="admin/images/AdminLTELogo.png" alt="AdminLTE Logo"
 			class="brand-image img-circle elevation-3" style="opacity: .8">
 			<span class="brand-text font-weight-light">ONEFLIX</span>
@@ -112,7 +112,7 @@
 						<p>판매</p>
 				</a></li>
 
-				<li class="nav-item has-treeview"><a href="#" class="nav-link">
+				<li class="nav-item has-treeview"><a href="#" class="nav-link" id="help">
 						<ion-icon name="help-circle-outline" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>
 							고객센터 <i class="right fas fa-angle-left"></i>
@@ -142,7 +142,7 @@
 						</a></li>
 					</ul></li>
 
-				<li class="nav-item"><a href="/getScreenProc.mdo"
+				<li class="nav-item"><a href="/getScreenListProc.mdo"
 					class="nav-link" id="screen"> <ion-icon name="image"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>화면</p>
@@ -176,19 +176,6 @@
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script>
 		$(function() {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging" : true,
-				"lengthChange" : false,
-				"searching" : false,
-				"ordering" : true,
-				"info" : true,
-				"autoWidth" : false,
-			});
-		});
-	</script>
-	<script>
-		$(function() {
 			// 최고 관리자인지 아닌지
 			if ("${loginManager.managerType}" != 9) {
 				$('#manager-menu').hide();
@@ -201,8 +188,7 @@
 					$('#screen'), $('#analysis'), $('#manager') ];
 
 			var action = location.href.substr(
-					location.href.lastIndexOf('/') + 1, location.href
-							.lastIndexOf('.'));
+					location.href.lastIndexOf('/') + 1, location.href.lastIndexOf('.'));
 
 			if (action.toLowerCase().indexOf('dashboard') != -1) {
 				menu[0].addClass('active');
@@ -221,10 +207,13 @@
 			} else if (action.toLowerCase().indexOf('sales') != -1) {
 				menu[7].addClass('active');
 			} else if (action.toLowerCase().indexOf('notice') != -1) {
+				$('#help').addClass('active');
 				menu[8].addClass('active');
 			} else if (action.toLowerCase().indexOf('faq') != -1) {
+				$('#help').addClass('active');
 				menu[9].addClass('active');
 			} else if (action.toLowerCase().indexOf('inquiry') != -1) {
+				$('#help').addClass('active');
 				menu[10].addClass('active');
 			} else if (action.toLowerCase().indexOf('screen') != -1) {
 				menu[11].addClass('active');
