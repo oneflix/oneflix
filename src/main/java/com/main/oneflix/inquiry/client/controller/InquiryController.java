@@ -58,9 +58,7 @@ public class InquiryController {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		InquiryVO inquiry = new InquiryVO();
 		inquiry.setEmail(member.getEmail());
-		System.out.println("확인");
 		int total = getCountInquiryService.getCountInquiry(inquiry);
-		System.out.println("확인");
 		if (vo.getNowPage() == 0) {
 			vo.setNowPage(1);
 		}

@@ -11,7 +11,6 @@
 <title>ONeflix</title>
 <link rel="stylesheet" href="../admin/css/adminlte.min.css">
 <link rel="stylesheet" href="../admin/css/adminlte.css">
-<link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
 </head>
@@ -26,13 +25,14 @@
 			<p>나의 문의</p>
 			<br>
 			<br>
-			<button class="float-right" type="button" class="btn btn-sm btn-primary" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
+			<button type="button" class="inquiry" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
 		</div>
-		<div class="title">
-			<table class="table table-dark">
-				<thead class="thead-grey">
+	<div id="outter">
+		<div>
+			<table id="tablebody" class="table table-hover">
+				<thead class="detail">
 					<tr>
-						<td>문의제목</td>
+						<th>문의제목</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,9 +40,9 @@
 						<td>${inquiry.inquiryTitle}</td>
 					</tr>
 				</tbody>
-				<thead class="thead-grey">
+				<thead class="detail">
 					<tr>
-						<td>문의내용</td>
+						<th>문의내용</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,11 +52,11 @@
 				</tbody>
 			</table>
 			<br><br>
-			<div class="title">
-				<table class="table table-dark">
-				<thead class="thead-grey">
+			<div>
+				<table id="tablebody" class="table table-hover">
+				<thead class="detail">
 					<tr>
-						<td>답변제목</td>
+						<th>답변제목</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,18 +64,19 @@
 						<td>${inquiry.replyTitle}</td>
 					</tr>
 				</tbody>
-				<thead class="thead-grey">
+				<thead class="detail">
 					<tr>
-						<td>답변내용</td>
+						<th>답변내용</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="emailcontent">
 					<tr>
-						<td>${inquiry.replyContent}</td>
+						<td align="left">${inquiry.replyContent}</td>
 					</tr>
 				</tbody>
 				</table>
 			</div>
+		</div>
 		</div>
 	</div>
 

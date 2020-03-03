@@ -13,7 +13,6 @@
 
 <link rel="stylesheet" href="../admin/css/adminlte.min.css">
 <link rel="stylesheet" href="../admin/css/adminlte.css">
-<link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
 </head>
@@ -24,26 +23,23 @@
 	<div class="page-body">
 
 		<!-- 페이지 시작 -->
-		<div style="background-color: #080808;">
-			<p style="font-size: 25px;">나의 문의</p>
+		<div>
+			<p>나의 문의</p>
 		</div>
 		<div>
-			<button class="float-right" type="button"
-				class="btn btn-sm btn-primary"
-				onclick="location.href='/insertInquiry.do'"
-				style="float: right; margin-right: 1%; margin-bottom: 1%;">문의하기</button>
+			<button class="inquiry" type="button"
+			onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
 		<div id="outter">
-			<div style="background-color: #080808;">
-				<table class="table table-hover table-dark">
-					<thead class="thead-grey">
+			<div>
+				<table id="tablebody" class="table table-hover">
+					<thead>
 						<tr>
 							<th scope="col">문의번호</th>
 							<th scope="col">카테고리</th>
 							<th scope="col">제목</th>
 							<th scope="col">등록날짜</th>
 							<th scope="col">답변날짜</th>
-							<th scope="col">관리</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -68,9 +64,6 @@
 								<c:if test="${not empty inquiry.replyDate}" >
 								<td><fmt:formatDate value="${inquiry.replyDate}" pattern="yyyy-MM-dd"/></td>
 								</c:if>
-								<td><button class="float-right" type="button"
-										class="btn btn-sm btn-primary"
-										onClick="location.href='/getInquiryProc.do?inquiryId=${inquiry.inquiryId}'">상세보기</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -116,6 +109,20 @@
 		day = day >= 10 ? day : '0' + day;
 		return year + '-' + month + '-' + day;
 	}
+		 
+	    $("#tablebody tr").click(function(){     
+	 
+	        var str = ""
+	        var tdArr = new Array();    // 배열 선언
+	            
+	        // 현재 클릭된 Row(<tr>)
+	        var tr = $(this);
+	        var td = tr.children();
+			var inquiryId = td.eq(0).text();
+			window.location.href = "/getInquiryProc.do?inquiryId=" + inquiryId;
+	    });
+
+
 	</script>
 </body>
 
