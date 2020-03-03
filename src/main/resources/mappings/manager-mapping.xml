@@ -5,7 +5,8 @@
 <mapper namespace="ManagerDAO">
 
 	<insert id="insertManager" parameterType="manager">
-		INSERT INTO manager VALUES (#{managerId}, #{managerPass}, #{managerType}, SYSDATE)
+		INSERT INTO manager(manager_id, manager_pass, manager_type, manager_reg_date)
+		VALUES (#{managerId}, #{managerPass}, #{managerType}, SYSDATE)
 	</insert>
 	<update id="updateManager" parameterType="manager">
 		UPDATE manager SET

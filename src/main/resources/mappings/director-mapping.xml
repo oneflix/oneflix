@@ -5,7 +5,7 @@
 <mapper namespace="DirectorDAO">
 
 	<insert id="insertDirector" parameterType="director">
-		INSERT INTO director
+		INSERT INTO director(director_id, director_name, director_age)
 		VALUES((SELECT NVL(MAX(director_id),0)+1 FROM director), #{directorName}, #{directorAge})
 	</insert>
 
@@ -33,17 +33,17 @@
 	
 	<select id="getDirectorList" parameterType="director" resultMap="directorList">
 		SELECT *
-		FROM (SELECT ROWNUM rnum, D.*
+		FROM (SELECT ROWNUM RNUM, D.*
 				FROM (SELECT * 
 						FROM director
 						WHERE director_id != 0
 						<if test="searchDirector != null and searchDirector != ''">
 							AND director_name like '%'||#{searchDirector}||'%'
 						</if>
-						ORDER BY director_id
+						ORDER BY director_name
 					) D
 			)
-		ORDER BY rnum DESC
+		ORDER BY RNUM
 	</select>
 
 </mapper>

@@ -57,9 +57,6 @@ public class SalesController {
 		vo.setSalesId(makeSalesId());
 
 		// 유저 닉네임 셋팅
-		MemberVO mem = new MemberVO();
-		mem.setEmail("blue@mail.com");
-		session.setAttribute("member", mem);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		
@@ -128,7 +125,6 @@ public class SalesController {
 	
 	@RequestMapping("/paymentFailProc.do")
 	public ModelAndView paymentFailProc(SalesVO vo, ModelAndView mav) {
-		System.out.println("실패");
 		vo.setSalesStatus("ready");
 		deleteSalesService.deleteSales(vo);
 		mav.setViewName("paymentResult");

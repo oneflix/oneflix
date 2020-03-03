@@ -46,7 +46,7 @@
 	</select>
 
 	<insert id="insertHelp" parameterType="help">
-		INSERT INTO help
+		INSERT INTO help(help_id, help_type, help_title, help_content, help_reg_date)
 		VALUES((SELECT NVL(MAX(help_id),0)+1 FROM help),
 		#{helpType}, #{helpTitle}, #{helpContent}, SYSDATE)
 	</insert>

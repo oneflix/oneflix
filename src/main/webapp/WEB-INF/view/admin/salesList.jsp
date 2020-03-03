@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date"/>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
-<c:set var="year"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
 <fmt:setLocale value="ko_kr"/>
 <!DOCTYPE html>
 <html>
@@ -91,7 +89,6 @@
 											<th>결제일</th>
 										</tr>
 									</thead>
-									
 								</table>
 							</div>
 						</div>

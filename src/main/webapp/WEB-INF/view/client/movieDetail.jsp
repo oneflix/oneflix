@@ -460,6 +460,7 @@
 			
 			if(thumbs == 'far fa-thumbs-up like-icon'){
 				$(".like-icon").removeClass();
+
 				//thumbs = $('#thumbs').children('i').prop("class");
 				//alert("removeClass();" + thumbs);
 				$("#like").addClass("fas fa-thumbs-up like-icon");
