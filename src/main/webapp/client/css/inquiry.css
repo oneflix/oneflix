@@ -2,6 +2,12 @@
 html{
 	background-color:white;
 }
+<<<<<<< HEAD
+body, input, textarea, select, button, table {
+    font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
+}
+=======
+>>>>>>> master
 .reg{
 }
 .cancel{

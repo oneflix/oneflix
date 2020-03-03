@@ -60,12 +60,6 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping("/mypageHome.do")
-	public ModelAndView mypageHome(ModelAndView mav) {
-		mav.setViewName("mypageHome");
-		return mav;
-	}
-
 	@RequestMapping("/getMemberProc.do")
 	public ModelAndView getMemberProc(ModelAndView mav) {
 		mav.setViewName("updateMember");
