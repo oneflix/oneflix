@@ -12,7 +12,6 @@
 
 <link rel="stylesheet" href="../admin/css/adminlte.min.css">
 <link rel="stylesheet" href="../admin/css/adminlte.css">
-<link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
 
@@ -25,8 +24,8 @@
 	<div class="page-body">
 
 		<!-- 페이지 시작 -->
-		<div style="background-color: #080808;">
-			<p>문의하기</p>
+		<div>
+			<p style="background-color:white;">문의하기</p>
 			<br> <br>
 		</div>
 		<form action="/insertInquiryProc.do" method="POST" class="row"
@@ -35,7 +34,7 @@
 			<div class="editor-body" style="width: 80%; padding-left: 15%;">
 				<div class="form-group mb-3">
 					<input type="hidden" id="email" name="email" value="${member.email }" />
-					<label for="inquiryType">카테고리</label>
+					<label for="inquiryType"  style="color: black;">카테고리</label>
 					<select id="inquiryType" name="inquiryType"
 						class="form-control select2bs4" required="required"
 						data-placeholder="Select a State" style="width: 100%;">
@@ -50,20 +49,19 @@
 					</select>
 				</div>
 				<div class="form-group" style="padding-top: 2%;">
-					<label for="inquiryTitle">제목</label> <input type="text"
+					<label for="inquiryTitle" style="color: black;">제목</label> <input type="text"
 						class="form-control" placeholder="제목을 입력하세요" id="inquiryTitle"
 						name="inquiryTitle">
 				</div>
 				<div class="form-group" style="padding-top: 2%;">
-					<label for="inquiryContent">내용</label>
+					<label for="inquiryContent"  style="color: black;">내용</label>
 					<textarea class="form-control" placeholder="내용을 입력하세요"
 						id="inquiryContent" name="inquiryContent" style="height: 300px;"></textarea>
 				</div>
 
-				<div class="buttons"
-					style="float: right; margin-top: 0; padding-bottom: 20px;">
-					<button type="submit" class="btn btn-sm btn-primary reg">등록</button>
-					<button type="button" class="btn btn-sm btn-primary cancel"
+				<div style="display:flex; ;float: right; margin-top: 0; padding-bottom: 20px;">
+					<button type="submit" class="inquiry" style="width:80px;">등록</button>
+					<button type="button" class="inquiry" style="width:80px; margin-right:0;"
 						onclick="location.href='/getInquiryListProc.do'">취소</button>
 				</div>
 				<!-- /.buttons -->
