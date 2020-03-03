@@ -94,7 +94,9 @@ public class ReviewController {
 
 	@RequestMapping("/getReviewListProcAjax.do")
 	@ResponseBody
-	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo) {
+	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo, HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
 		return reviewList;
 	}
