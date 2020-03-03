@@ -93,5 +93,8 @@
 		<if test="email != null">
 			AND email = #{email}
 		</if>
+		<if test="replyCheck != null and replyCheck == 'noreply'">
+			AND reply_date IS NULL
+		</if>
 	</select>
 </mapper>

@@ -52,6 +52,7 @@ public class SalesVO {
 	private String startDate;
 	private String endDate;
 	private String searchSales;
+	private int lastDate;
 
 	public String getCid() {
 		return cid;
@@ -267,6 +268,22 @@ public class SalesVO {
 
 	public void setSearchEmail(String searchEmail) {
 		this.searchSales = searchEmail;
+	}
+
+	public String getSearchSales() {
+		return searchSales;
+	}
+
+	public void setSearchSales(String searchSales) {
+		this.searchSales = searchSales;
+	}
+
+	public int getLastDate() {
+		return lastDate;
+	}
+
+	public void setLastDate(int lastDate) {
+		this.lastDate = lastDate;
 	}
 
 }

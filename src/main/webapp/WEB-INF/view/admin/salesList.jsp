@@ -82,7 +82,7 @@
 								<table id="salesTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width: 4vw;">#</th>
+											<th>#</th>
 											<th>이메일</th>
 											<th>이용권</th>
 											<th>가격</th>
