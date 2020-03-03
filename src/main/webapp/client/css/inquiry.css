@@ -2,6 +2,9 @@
 html{
 	background-color:white;
 }
+body, input, textarea, select, button, table {
+    font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
+}
 .reg{
 }
 .cancel{
