@@ -6,13 +6,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan
-		base-package="com.main.oneflix.member.client.controller,
-		                              com.main.oneflix.inquiry.client.controller,
-		                              com.main.oneflix.util.naver.login">
+		base-package="com.main.oneflix.member.client.controller
+		              com.main.oneflix.inquiry.client.controller
+		              com.main.oneflix.util.naver.login
+		              com.main.oneflix.mypage.home.controller">
 	</context:component-scan>
 
-	<bean id="naverLoginBO"
-		class="com.main.oneflix.util.naver.login.NaverLoginBO" />
+	<bean id="naverLoginBO" class="com.main.oneflix.util.naver.login.NaverLoginBO" />
 
 	<!-- google Class Bean설정 추가 -->
 	<!-- 클라이언트ID와 보안비밀 세팅 -->

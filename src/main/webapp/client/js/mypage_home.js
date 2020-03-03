@@ -10,21 +10,22 @@ google.charts.load("current", { packages: ["corechart"] });
                 ['음악', 44],
                 ['범죄', 11],
             ]);
+            
 
             var view = new google.visualization.DataView(data);
             var options = {
                 slices: { 0: { color: '#9D8189' }, 1: { color: '#55828B' } },
                 align: 'center',
-                legendTextStyle: { color: '#FFF' },
-                chartArea: { height: '80%', width: '85%' },
-                pieHole: 0.4,
+                legendTextStyle: { color: '#080808'},
+                chartArea: { height: '83%', width: '95%' },
+                pieHole: 0.3,
                 bars: 'vertical',
-                height: 500,
-                width: '100%',
+                height: 390,
+                width: '130%',
                 bar: { groupWidth: "70%" },
-                legend: { position: "top", color: "#fff" },
+                legend: { position: "bottom", color: "#080808" },
                 isStacked: false,
-                backgroundColor: '#080808',
+                backgroundColor: '#fff;',
 
                 //    tooltip:{textStyle : {fontSize:12}, showColorCode : true},
                 animation: { //차트가 뿌려질때 실행될 애니메이션 효과
@@ -38,7 +39,7 @@ google.charts.load("current", { packages: ["corechart"] });
                         bold: true,
                         italic: true,
                         opacity: 0.8,
-                        color: '#ffffff'
+                        color: '#080808;'
                     }
 
                 }
