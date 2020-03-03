@@ -79,10 +79,22 @@
 					<if test="searchBan != null and searchBan != 'all'">
 						AND m.ban = #{searchBan}
 					</if>
+					<if test="lastDate != null and lastDate != '0'">
+						<choose>
+							<when test="lastDate == 30">
+								<![CDATA[
+									AND join_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
+								]]>
+							</when>
+						</choose>
+					</if>
       				ORDER BY m.join_date
       			) M
       		)
       	ORDER BY RNUM DESC
    </select>
 	
+	<select id="getCountMember" parameterType="member" resultType="int">
+		SELECT COUNT(*) FROM member 
+	</select>
 </mapper>

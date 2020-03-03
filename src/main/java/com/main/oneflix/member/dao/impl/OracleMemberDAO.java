@@ -52,4 +52,9 @@ public class OracleMemberDAO implements MemberDAO {
 	      sqlSessionTemplate.insert("MemberDAO.insertKakao", vo);
 	   }
 
+	@Override
+	public int getCountMember(MemberVO vo) {
+		return sqlSessionTemplate.selectOne("MemberDAO.getCountMember", vo);
+	}
+
 }

@@ -11,5 +11,6 @@ public interface MovieDAO {
 	void deleteMovie(MovieVO vo);
 	MovieVO getMovie(MovieVO vo);
 	List<MovieVO> getMovieList(MovieVO vo);
+	int getCountMovie(MovieVO vo);
 
 }
