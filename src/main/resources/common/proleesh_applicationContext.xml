@@ -8,5 +8,6 @@
 		base-package="com.main.oneflix.actor.dao.impl,
 					com.main.oneflix.actor.service.impl">
 	</context:component-scan>
+	
 
 </beans>

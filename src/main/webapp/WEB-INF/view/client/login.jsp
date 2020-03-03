@@ -90,8 +90,8 @@
 						<div class="wrapper">
 						<div class="guide">소셜 계정으로 로그인하기
 						 </div>
-						 <div class="social">
-							<a href="#" class="whiteA"> 
+						 <div class="social" id="btnJoinGoogle" style="text-align:center">
+							<a href="${google_url}" class="whiteA"> 
 							구글로 로그인하기
 						  	</a>
 						  </div>

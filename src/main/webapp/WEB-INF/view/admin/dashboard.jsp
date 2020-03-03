@@ -47,13 +47,13 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150<sup style="font-size: 20px">편</sup></h3>
+                  <h3>${movieList}<sup style="font-size: 20px">편</sup></h3>
                   <p>총 영화</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-film-marker"></i>
                 </div>
-                <a href="#" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/getMovieList.mdo" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -61,14 +61,14 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">명</sup></h3>
+                  <h3>${memberList}<sup style="font-size: 20px">명</sup></h3>
 
                   <p>총 회원수</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-ios-people"></i>
                 </div>
-                <a href="#" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/getMemberList.mdo" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -76,14 +76,14 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44<sup style="font-size: 20px">개</sup></h3>
+                  <h3>${inquiryList}<sup style="font-size: 20px">개</sup></h3>
 
                   <p>문의</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-email-unread"></i>
                 </div>
-                <a href="#" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/getInquiryList.mdo" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -91,14 +91,14 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65<sup style="font-size: 20px">￦</sup></h3>
+                  <h3>${salseList}<sup style="font-size: 20px">￦</sup></h3>
 
                   <p>일매출</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-cash"></i>
                 </div>
-                <a href="#" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/getSalesList.mdo" class="small-box-footer">자세히 <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -126,18 +126,8 @@
                     <tbody>
                       <tr>
                         <td>1</td>
-                        <td>aaa@gmail.com</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>bbb@gmail.com</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>ccc@gmail.com</td>
-                        <td>2020/02/02</td>
+                        <td>${member.email }</td>
+                        <td><p><fmt:formatDate value="${movie.movieRegDate}" pattern="yyyy-MM-dd"/></p></td>
                       </tr>
                     </tbody>
                   </table>
@@ -167,24 +157,16 @@
                     <tbody>
                       <tr>
                         <td>1</td>
-                        <td>aaa@gmail.com</td>
-                        <td>강아지</td>
-                        <td>정기권</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>bbb@gmail.com</td>
-                        <td>고양이</td>
-                        <td>60일권</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>ccc@gmail.com</td>
-                        <td>고슴이</td>
-                        <td>90일권</td>
-                        <td>2020/02/02</td>
+                        <td>${member.email }</td>
+                        <td>${member.nick }</td>
+                       <c:forEach var="j" begin="0" end="${ticketList.size() }" step="1">
+													<c:set var="ticket" value="${ticketList[j]}"/>
+													<c:if test="${ticket.ticketId eq member.ticketId}">
+													<c:set var="ticketName" value="${ticket.ticketName }"/>
+													<td>${ticketName}</td>
+													</c:if>
+												</c:forEach>
+                        <td><p><fmt:formatDate value="${movie.movieRegDate}" pattern="yyyy-MM-dd"/></p></td>
                       </tr>
                     </tbody>
                   </table>
@@ -214,32 +196,23 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>1</td>
-                        <td>(img)</td>
-                        <td>매드맥스:분도의도로</td>
-                        <td>액션</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>(img))</td>
-                        <td>나 홀로 집에</td>
-                        <td>코미디</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>(img)</td>
-                        <td>이터널 선샤인</td>
-                        <td>로맨스</td>
-                        <td>2020/02/02</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>(img)</td>
-                        <td>윌터의 상상은 현실이 된다</td>
-                        <td>드라마</td>
-                        <td>2020/02/02</td>
+                        <td><p>1</p></td>
+												<td><img src="${movie.posterPath}"/></td>
+												<td><p>${movie.movieTitle}</p></td>
+												<td><p>
+													<c:forEach var="genre" items="${genreList}">
+														<c:if test="${movie.genreId1 eq genre.genreId}">
+															${genre.genre}
+														</c:if>
+														<c:if test="${movie.genreId2 ne 0}">
+															<c:if test="${genre.genreId eq movie.genreId2}">
+																&nbsp;· ${genre.genre}
+															</c:if>
+														</c:if>
+													</c:forEach>
+													</p>
+												</td>
+												<td><p><fmt:formatDate value="${movie.movieRegDate}" pattern="yyyy-MM-dd"/></p></td>
                       </tr>
                     </tbody>
                   </table>
