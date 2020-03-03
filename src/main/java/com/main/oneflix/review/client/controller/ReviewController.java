@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.like.service.UpdateLikeCountService;
 import com.main.oneflix.like.vo.ReviewLikeVO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.review.service.DeleteReviewService;
@@ -28,8 +27,6 @@ public class ReviewController {
 	private InsertReviewService insertReviewService;
 	@Autowired
 	private UpdateReviewService updateReviewService;
-	@Autowired
-	private UpdateLikeCountService updateLikeCountService;
 	@Autowired
 	private DeleteReviewService deleteReviewService;
 	@Autowired
@@ -84,11 +81,11 @@ public class ReviewController {
 		if (reviewLike.getReviewLikeEmail() != null) {
 			likeCount = likeCount--;
 			vo.setLikeCount(likeCount);
-			updateLikeCountService.updateLikeCount(vo);
+			//updateLikeCountService.updateLikeCount(vo);
 		} else {
 			likeCount = likeCount++;
 			vo.setLikeCount(likeCount);
-			updateLikeCountService.updateLikeCount(vo);
+			//updateLikeCountService.updateLikeCount(vo);
 		}
 
 		return vo;
