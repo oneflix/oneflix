@@ -9,14 +9,16 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<style>
+	table {margin-bottom: 20px;}
+</style>
 </head>
 
 <body
-	class="hold-transition sidebar-mini layout-navbar-fixed custom-body">
+	class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
 		<!-- ====================== 
@@ -61,7 +63,7 @@
 																<td>
 																	<div class="custom-file">
 																		<input type="file" class="custom-file-input"
-																			id="non-members-page" name="screenImgFile" multiple
+																			id="non-members-page" name="oneflixScreenImgFile"
 																			value="${screen.screenImgPath }"> <label
 																			class="custom-file-label" for="non-members-page">파일
 																			선택</label>
@@ -74,13 +76,13 @@
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	id="screenTitle" name="screenTitle"
+																	id="oneflixScreenTitle" name="screenTitle"
 																	value="${screen.screenTitle }" required
 																	placeholder="Title" /></td>
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	id="subtitle" name="screenSubtitle"
+																	id="subtitle" name="oneflixScreenSubtitle"
 																	value="${screen.screenSubtitle }" required
 																	placeholder="SubTitle" /></td>
 															</tr>
@@ -95,7 +97,7 @@
 																<td>
 																	<div class="custom-file">
 																		<input type="file" class="custom-file-input"
-																			id="add-file" name="screenImgFile" multiple
+																			id="add-file" name="oneflixScreenImgFile"
 																			value="${screen.screenImgPath }"> <label
 																			class="custom-file-label" for="add-file">파일
 																			선택</label>
@@ -108,13 +110,13 @@
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	id="title" name="screenTitle"
+																	id="title" name="oneflixScreenTitle"
 																	value="${screen.screenTitle }" required
 																	placeholder="Title" /></td>
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	id="subtitle" name="screenSubtitle"
+																	id="subtitle" name="oneflixScreenSubtitle"
 																	value="${screen.screenSubtitle }" required
 																	placeholder="SubTitle" /></td>
 															</tr>
@@ -131,7 +133,7 @@
 													<td>
 														<div class="custom-file">
 															<input type="file" class="custom-file-input"
-																id="non-members-page" name="screenImgFile" multiple>
+																id="non-members-page" name="oneflixScreenImgFile">
 															<label class="custom-file-label" for="non-members-page">파일
 																선택</label>
 														</div>
@@ -143,11 +145,11 @@
 												</tr>
 												<tr>
 													<td><input type="text" class="form-control" id="title"
-														name="screenTitle" required placeholder="Title" /></td>
+														name="oneflixScreenTitle" required placeholder="Title" /></td>
 												</tr>
 												<tr>
 													<td><input type="text" class="form-control"
-														id="subtitle" name="screenSubtitle" required
+														id="subtitle" name="oneflixScreenSubtitle" required
 														placeholder="SubTitle" /></td>
 												</tr>
 											</tbody>
@@ -158,9 +160,8 @@
 											<tr>
 												<td>
 													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="add-file"
-															name="screenImgFile" multiple> <label
-															class="custom-file-label" for="add-file">파일 선택</label>
+														<input type="file" class="custom-file-input" id="add-file" name="oneflixScreenImgFile">
+														<label class="custom-file-label" for="add-file">파일 선택</label>
 													</div>
 												</td>
 												<td>&nbsp; <input type="button"
@@ -170,11 +171,11 @@
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control" id="title"
-													name="screenTitle" required placeholder="Title" /></td>
+													name="oneflixScreenTitle" required placeholder="Title" /></td>
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control"
-													id="subtitle" name="screenSubtitle" required
+													id="subtitle" name="oneflixScreenSubtitle" required
 													placeholder="SubTitle" /></td>
 											</tr>
 										</tbody>
@@ -202,9 +203,8 @@
 						<div class="card-body pad">
 							<div class="form-group mb-3">
 								<label>회원 탈퇴 페이지</label>
-								<c:if test="${!empty deletedefenseScreenList}">
-									<c:forEach var="screen" items="${deletedefenseScreenList }"
-										varStatus="status">
+								<c:if test="${!empty deleteDefenseScreenList}">
+									<c:forEach var="screen" items="${deleteDefenseScreenList }" varStatus="status">
 										<c:choose>
 											<c:when test="${status.first}">
 												<table class="custom-table-width">
@@ -213,7 +213,7 @@
 															<td>
 																<div class="custom-file">
 																	<input type="file" class="custom-file-input"
-																		id="non-members-page" name="screenImgFile"
+																		id="non-members-page" name="deleteDefenseScreenImgFile"
 																		value="${screen.screenImgPath }"> <label
 																		class="custom-file-label" for="non-members-page">파일
 																		선택</label>
@@ -226,13 +226,13 @@
 														</tr>
 														<tr>
 															<td><input type="text" class="form-control"
-																id="title" name="screenTitle"
+																id="title" name="deleteDefenseScreenTitle"
 																value="${screen.screenTitle }" required
 																placeholder="Title" /></td>
 														</tr>
 														<tr>
 															<td><input type="text" class="form-control"
-																id="subtitle" name="screenSubtitle"
+																id="subtitle" name="deleteDefenseScreenSubtitle"
 																value="${screen.screenSubtitle }" required
 																placeholder="SubTitle" /></td>
 														</tr>
@@ -246,7 +246,7 @@
 															<td>
 																<div class="custom-file">
 																	<input type="file" class="custom-file-input"
-																		id="add-file" name="screenImgFile"
+																		id="add-file" name="deleteDefenseScreenImgFile"
 																		value="${screen.screenImgPath }"> <label
 																		class="custom-file-label" for="add-file">파일 선택</label>
 																</div>
@@ -258,13 +258,13 @@
 														</tr>
 														<tr>
 															<td><input type="text" class="form-control"
-																id="title" name="screenTitle"
+																id="title" name="deleteDefenseScreenTitle"
 																value="${screen.screenTitle }" required
 																placeholder="Title" /></td>
 														</tr>
 														<tr>
 															<td><input type="text" class="form-control"
-																id="subtitle" name="screenSubtitle"
+																id="subtitle" name="deleteDefenseScreenSubtitle"
 																value="${screen.screenSubtitle }" required
 																placeholder="SubTitle" /></td>
 														</tr>
@@ -274,14 +274,14 @@
 										</c:choose>
 									</c:forEach>
 								</c:if>
-								<c:if test="${empty deletedefenseScreenList}">
+								<c:if test="${empty deleteDefenseScreenList}">
 									<table class="custom-table-width">
 										<tbody>
 											<tr>
 												<td>
 													<div class="custom-file">
 														<input type="file" class="custom-file-input"
-															id="non-members-page" name="screenImgFile"> <label
+															id="non-members-page" name="deleteDefenseScreenImgFile"> <label
 															class="custom-file-label" for="non-members-page">파일
 															선택</label>
 													</div>
@@ -293,11 +293,11 @@
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control" id="title"
-													name="title" required placeholder="Title" /></td>
+													name="deleteDefenseScreenTitle" required placeholder="Title" /></td>
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control"
-													id="subtitle" name="subtitle" required
+													id="subtitle" name="deleteDefenseScreenSubtitle" required
 													placeholder="SubTitle" /></td>
 											</tr>
 										</tbody>
@@ -309,7 +309,7 @@
 											<td>
 												<div class="custom-file">
 													<input type="file" class="custom-file-input" id="add-file"
-														name="screenImgFile"> <label
+														name="deleteDefenseScreenImgFile"> <label
 														class="custom-file-label" for="add-file">파일 선택</label>
 												</div>
 											</td>
@@ -320,11 +320,11 @@
 										</tr>
 										<tr>
 											<td><input type="text" class="form-control" id="title"
-												name="title" required placeholder="Title" /></td>
+												name="deleteDefenseScreenTitle" required placeholder="Title" /></td>
 										</tr>
 										<tr>
 											<td><input type="text" class="form-control"
-												id="subtitle" name="subtitle" required
+												id="subtitle" name="deleteDefenseScreenSubtitle" required
 												placeholder="SubTitle" /></td>
 										</tr>
 									</tbody>
