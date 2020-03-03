@@ -489,6 +489,17 @@
 
 			}
 		});
+		
+		$.ajax({
+			type : 'POST',
+			url : '/updateLikeCountAjax.do',
+			data : sendData,
+			async : false,
+			success : function(response) {
+				result = response.result;
+
+			}
+		});
 	});
 		
 	</script>

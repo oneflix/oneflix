@@ -11,6 +11,7 @@ public interface ReviewDAO {
 	void updateLikeCount(ReviewVO vo);
 	void deleteReview(ReviewVO vo);
 	ReviewVO getReview(ReviewVO vo);
+	ReviewVO getLikeCount(ReviewVO vo);
 	List<ReviewVO> getReviewList(ReviewVO vo);
 
 }

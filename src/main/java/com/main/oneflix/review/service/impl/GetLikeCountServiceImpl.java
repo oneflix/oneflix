@@ -1,21 +1,22 @@
-package com.main.oneflix.like.service.impl;
+package com.main.oneflix.review.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.main.oneflix.like.service.UpdateLikeCountService;
 import com.main.oneflix.review.dao.ReviewDAO;
+import com.main.oneflix.review.service.GetLikeCountService;
 import com.main.oneflix.review.vo.ReviewVO;
 
 @Service
-public class UpdateLikeCountServiceImpl implements UpdateLikeCountService {
+public class GetLikeCountServiceImpl implements GetLikeCountService {
 
 	@Autowired
 	private ReviewDAO reviewDAO;
 	
 	@Override
-	public void updateLikeCount(ReviewVO vo) {
-		reviewDAO.updateLikeCount(vo);
+	public ReviewVO getLikeCount(ReviewVO vo) {
+		return reviewDAO.getLikeCount(vo);
+		
 	}
 
 }

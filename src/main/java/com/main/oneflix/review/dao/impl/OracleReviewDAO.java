@@ -46,6 +46,11 @@ public class OracleReviewDAO implements ReviewDAO {
 	}
 
 	@Override
+	public ReviewVO getLikeCount(ReviewVO vo) {
+		return sqlSessionTemplate.selectOne("ReviewDAO.getLikeCount", vo);
+	}
+
+	@Override
 	public List<ReviewVO> getReviewList(ReviewVO vo) {
 		return sqlSessionTemplate.selectList("ReviewDAO.getReviewList", vo);
 	}

@@ -7,33 +7,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.main.oneflix.like.service.DeleteReviewLikeService;
-import com.main.oneflix.like.service.InsertReviewLikeService;
+import com.main.oneflix.like.service.DeleteAndUpdateReviewLikeService;
+import com.main.oneflix.like.service.InsertAndUpdateReviewLikeService;
 import com.main.oneflix.like.vo.ReviewLikeVO;
 import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.review.vo.ReviewVO;
 
 @Controller
 public class ReviewLikeController {
 	
 	@Autowired
-	private InsertReviewLikeService insertReviewLikeService;
+	private InsertAndUpdateReviewLikeService insertAndUpdateReviewLikeService;
 	@Autowired
-	private DeleteReviewLikeService deleteReviewLikeService;
+	private DeleteAndUpdateReviewLikeService deleteAndUpdateReviewLikeService;
 
 	
 	@RequestMapping("/insertReviewLikeProc.do")
 	@ResponseBody
-	public void insertReviewLikeProc(ReviewLikeVO vo, HttpSession session) {
-		insertReviewLikeService.insertReviewLike(vo);
+	public void insertReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, HttpSession session) {
+		insertAndUpdateReviewLikeService.insertAndUpdateReviewLike(reviewVO, reviewLikeVO);
 	}
 	
 	@RequestMapping("/deleteReviewLikeProc.do")
 	@ResponseBody
-	public void deleteReviewLikeProc(ReviewLikeVO vo, HttpSession session) {
+	public void deleteReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, HttpSession session) {
 		MemberVO member = new MemberVO();
 		member = (MemberVO) session.getAttribute("member");
-		vo.setReviewLikeEmail(member.getEmail());
-		deleteReviewLikeService.deleteReviewLike(vo);
+		reviewLikeVO.setReviewLikeEmail(member.getEmail());
+		deleteAndUpdateReviewLikeService.deleteAndUpdateReviewLike(reviewVO, reviewLikeVO);
 	}
 	
 //	@RequestMapping("/reviewLikePlusProcAjax.do")
