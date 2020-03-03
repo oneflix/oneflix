@@ -15,31 +15,63 @@ import com.main.oneflix.review.vo.ReviewVO;
 
 @Controller
 public class ReviewLikeController {
-	
+
 	@Autowired
 	private InsertAndUpdateReviewLikeService insertAndUpdateReviewLikeService;
 	@Autowired
 	private DeleteAndUpdateReviewLikeService deleteAndUpdateReviewLikeService;
 
-	
-	@RequestMapping("/insertReviewLikeProc.do")
+	@RequestMapping("/insertAndUpdateReviewLikeProc.do")
 	@ResponseBody
-	public void insertReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, HttpSession session) {
+	public ReviewVO insertAndUpdateReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, MemberVO memberVO,
+			HttpSession session) {
+		System.out.println("insertReviewLikeProc.ReviewVO : " + reviewVO);
+		System.out.println("insertReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
+		System.out.println("insertReviewLikeProc.reviewVO.getReviewId() : " + reviewVO.getReviewId());
+		System.out.println("insertReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
+		System.out.println("insertReviewLikeProc.ReviewLikeVO : " + reviewLikeVO);
+		System.out.println(
+				"insertReviewLikeProc.reviewLikeVO.getReviewLikeEmail() : " + reviewLikeVO.getReviewLikeEmail());
+
+		int likeCount = reviewVO.getLikeCount();
+//		if (reviewLikeVO.getReviewLikeEmail() != null) {
+//			likeCount--;
+//			reviewVO.setLikeCount(likeCount);
+//
+//		} else {
+//			likeCount++;
+//			reviewVO.setLikeCount(likeCount);
+//		}
+			likeCount++;
+			System.out.println("리뷰카운트증가함? : " + likeCount);
+			reviewVO.setLikeCount(likeCount);
+
 		insertAndUpdateReviewLikeService.insertAndUpdateReviewLike(reviewVO, reviewLikeVO);
+		return reviewVO;
+
 	}
-	
-	@RequestMapping("/deleteReviewLikeProc.do")
+
+	@RequestMapping("/deleteAndUpdateReviewLikeProc.do")
 	@ResponseBody
-	public void deleteReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, HttpSession session) {
-		MemberVO member = new MemberVO();
-		member = (MemberVO) session.getAttribute("member");
-		reviewLikeVO.setReviewLikeEmail(member.getEmail());
+	public ReviewVO deleteAndUpdateReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, HttpSession session) {
+		int likeCount = reviewVO.getLikeCount();
+		System.out.println("deleteReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
+		
+//		if (reviewLikeVO.getReviewLikeEmail() != null) {
+//			likeCount--;
+//			reviewVO.setLikeCount(likeCount);
+//
+//		} else {
+//			likeCount++;
+//			reviewVO.setLikeCount(likeCount);
+//		}
+		
+		likeCount--;
+		System.out.println("리뷰카운트감소함? : " + likeCount);
+		reviewVO.setLikeCount(likeCount);
+		
 		deleteAndUpdateReviewLikeService.deleteAndUpdateReviewLike(reviewVO, reviewLikeVO);
+		return reviewVO;
 	}
-	
-//	@RequestMapping("/reviewLikePlusProcAjax.do")
-//	@ResponseBody
-//	public ModelAndView reviewLikePlusAjax(ReviewLikeVO vo, ModelAndView mav) {
-//		insertReviewLikeService.insertReviewLike(vo);
-//	}
+
 }

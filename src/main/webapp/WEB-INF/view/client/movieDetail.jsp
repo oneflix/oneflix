@@ -279,7 +279,7 @@
 																<div class="like-container">
 																	<button id="thumbs" class="like-button">
 																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
-																		<span class="like-count">${reviewList[i].likeCount}</span>
+																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i].likeCount}</span>
 																	</button>
 																</div>
 															</div>
@@ -293,8 +293,8 @@
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
 																	<button id="thumbs" class="like-button">
-																		<i id="like" class="fa-thumbs-up like-icon far"></i> <span
-																			class="like-count">${reviewList[i+1].likeCount }</span>
+																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i>
+																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
 															</div>
@@ -462,21 +462,24 @@
 		var thumbs = $(this).children('i').prop('class')
 		
 		var reviewId = $(this).children('i').prop('id');
+		var likeCount = $(this).find('span').text();
+		alert(likeCount);
 		var reviewLikeEmail = "${member.email}"
 		var sendData = {
 				"reviewId" : reviewId,
+				"likeCount" : likeCount,
 				"reviewLikeEmail" : reviewLikeEmail,
 			};
 		
 		if(thumbs == 'fa-thumbs-up like-icon far'){
 			$(this).children('i').removeClass("far");
 			$(this).children('i').addClass("fas");
-			url = '/insertReviewLikeProc.do';
+			url = '/insertAndUpdateReviewLikeProc.do';
 
 		} else if(thumbs == 'fa-thumbs-up like-icon fas'){
 			$(this).children('i').removeClass("fas");
 			$(this).children('i').addClass("far");
-			url = '/deleteReviewLikeProc.do';
+			url = '/deleteAndUpdateReviewLikeProc.do';
 		}
 		
 		$.ajax({
@@ -486,20 +489,11 @@
 			async : false,
 			success : function(response) {
 				result = response.result;
+				$(this).find('span').text(response.likeCount);
 
 			}
 		});
 		
-		$.ajax({
-			type : 'POST',
-			url : '/updateLikeCountAjax.do',
-			data : sendData,
-			async : false,
-			success : function(response) {
-				result = response.result;
-
-			}
-		});
 	});
 		
 	</script>

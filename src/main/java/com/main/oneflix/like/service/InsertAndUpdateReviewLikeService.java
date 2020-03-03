@@ -5,7 +5,7 @@ import com.main.oneflix.review.vo.ReviewVO;
 
 public interface InsertAndUpdateReviewLikeService {
 
-	void insertAndUpdateReviewLike(ReviewVO reviewVO,ReviewLikeVO reviewLikeVO);
+	ReviewVO insertAndUpdateReviewLike(ReviewVO reviewVO,ReviewLikeVO reviewLikeVO);
 	
 	
 }

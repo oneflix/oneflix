@@ -18,9 +18,12 @@ public class DeleteAndUpdateReviewLikeServieceImpl implements DeleteAndUpdateRev
 	private ReviewLikeDAO reviewLikeDAO;
 
 	@Override
-	public void deleteAndUpdateReviewLike(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO) {
+	public ReviewVO deleteAndUpdateReviewLike(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO) {
 		reviewDAO.updateLikeCount(reviewVO);
+		reviewDAO.getLikeCount(reviewVO);
 		reviewLikeDAO.deleteReviewLike(reviewLikeVO);
+		
+		return reviewVO;
 
 	}
 

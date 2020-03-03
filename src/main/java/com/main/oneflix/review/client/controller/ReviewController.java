@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.like.vo.ReviewLikeVO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.review.service.DeleteReviewService;
-import com.main.oneflix.review.service.GetLikeCountService;
 import com.main.oneflix.review.service.GetReviewListService;
-import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.service.InsertReviewService;
 import com.main.oneflix.review.service.UpdateReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
@@ -31,10 +28,6 @@ public class ReviewController {
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
-	@Autowired
-	private GetReviewService getReviewService;
-	@Autowired
-	private GetLikeCountService getLikeCountService;
 
 	@RequestMapping("/insertReviewProc.do")
 	public ModelAndView insertReviewProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
@@ -68,28 +61,6 @@ public class ReviewController {
 		updateReviewService.updateReview(vo);
 	}
 
-	@RequestMapping("/updateReviewCountAjax.do")
-	@ResponseBody
-	public ReviewVO updateLikeCountAjax(ReviewVO vo, HttpSession session) {
-		ReviewLikeVO reviewLike = new ReviewLikeVO();
-		MemberVO member = new MemberVO();
-		ReviewVO reviewLikeCount = getLikeCountService.getLikeCount(vo);
-		int likeCount = reviewLikeCount.getLikeCount();
-		member = (MemberVO) session.getAttribute("member");
-
-		reviewLike.setReviewLikeEmail(member.getEmail());
-		if (reviewLike.getReviewLikeEmail() != null) {
-			likeCount = likeCount--;
-			vo.setLikeCount(likeCount);
-			//updateLikeCountService.updateLikeCount(vo);
-		} else {
-			likeCount = likeCount++;
-			vo.setLikeCount(likeCount);
-			//updateLikeCountService.updateLikeCount(vo);
-		}
-
-		return vo;
-	}
 
 	@RequestMapping("/updateReviewProc.do")
 	public ModelAndView updateReviewProc(ReviewVO vo, ModelAndView mav) {

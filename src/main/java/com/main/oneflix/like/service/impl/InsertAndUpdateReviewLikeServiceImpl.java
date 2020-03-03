@@ -19,10 +19,12 @@ public class InsertAndUpdateReviewLikeServiceImpl implements InsertAndUpdateRevi
 	
 
 	@Override
-	public void insertAndUpdateReviewLike(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO) {
+	public ReviewVO insertAndUpdateReviewLike(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO) {
 		reviewDAO.updateLikeCount(reviewVO);
+		reviewDAO.getLikeCount(reviewVO);
 		reviewLikeDAO.insertReviewLike(reviewLikeVO);
 		
+		return reviewVO;
 	}
 
 
