@@ -106,9 +106,19 @@
 									<div class="review-card">
 										<div class="card">
 											<div class="card-body">
-												<p class="card-title m-0" style="font-size: 14px; padding-left:8%">영화제목</p>
+												<p class="card-title m-0" style="font-size: 14px; padding-left:8%">영화제목1</p>
 												<div>
-													<p class="card-text">리뷰내용</p>
+													<p class="card-text">리뷰내용1</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="review-card">
+										<div class="card">
+											<div class="card-body">
+												<p class="card-title m-0" style="font-size: 14px; padding-left:8%">영화제목2</p>
+												<div>
+													<p class="card-text">리뷰내용2</p>
 												</div>
 											</div>
 										</div>
