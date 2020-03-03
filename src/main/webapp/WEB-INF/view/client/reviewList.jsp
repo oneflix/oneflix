@@ -55,7 +55,7 @@
                         <div class="post one-post" id="review">
                             <div class="user-block">
                                 <span class="username">
-                                    <a href="/getMovieDetailProc.do">${review.movieTitle }</a>
+                                    <a style="color:#080808;" onclick="goMovieDetail('${review.movieId}')">${review.movieTitle }</a>
 												<span class="my-rating">★ ${review.reviewScore }</span>
                                 </span>
                             </div> <!-- /.user-block -->
@@ -165,6 +165,10 @@
         }
         
     });
+    
+    function goMovieDetail(movieId) {
+        location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+	}
     
     </script>
 

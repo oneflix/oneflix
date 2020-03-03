@@ -22,12 +22,13 @@ p {
 a {
 	font-size: 30px;
 	color: #080808;
+	cursor: pointer;
 }
 
-a:hover {
+/* a:hover {
 	color: #666666 !important;
 	text-decoration: none;
-}
+} */
 
 .row {
 	background-color: #ffffff;
