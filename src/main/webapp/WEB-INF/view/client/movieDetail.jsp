@@ -277,9 +277,9 @@
 																<div class="review-content">
 																	${reviewList[i].reviewContent }</div>
 																<div class="like-container">
-																	<button id="thumbs" class="like-button" onclick='like()'>
-																		<i id="like" class="far fa-thumbs-up like-icon"></i> 
-																		<span class="like-count">${reviewList[i].likeCount}</span>
+																	<button id="thumbs" class="like-button">
+																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
+																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i].likeCount}</span>
 																	</button>
 																</div>
 															</div>
@@ -292,9 +292,9 @@
 																<div class="review-content">
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
-																	<button class="like-button" onclick='like()'>
-																		<i id="like" class="far fa-thumbs-up like-icon"></i> <span
-																			class="like-count">${reviewList[i+1].likeCount }</span>
+																	<button id="thumbs" class="like-button">
+																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i>
+																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
 															</div>
@@ -455,21 +455,47 @@
 			}); */
 			
 			
-		function like(){
-			var thumbs = $('#like').prop("class");
+	 //엄지 아이콘 변경
+		$('.like-button').click(function() {
+		var url;
 			
-			if(thumbs == 'far fa-thumbs-up like-icon'){
-				$("#like").removeClass();
-				//thumbs = $('#thumbs').children('i').prop("class");
-				//alert("removeClass();" + thumbs);
-				$("#like").addClass("fas fa-thumbs-up like-icon");
-				//thumbs = $('#like').children('i').prop("class");
-				//alert(thumbs);
-			}else if(thumbs == 'fas fa-thumbs-up like-icon'){
-				$("#like").removeClass();
-				$("#like").addClass("far fa-thumbs-up like-icon");
-			}
+		var thumbs = $(this).children('i').prop('class')
+		
+		var reviewId = $(this).children('i').prop('id');
+		var likeCount = $(this).find('span').text();
+		alert(likeCount);
+		var reviewLikeEmail = "${member.email}"
+		var sendData = {
+				"reviewId" : reviewId,
+				"likeCount" : likeCount,
+				"reviewLikeEmail" : reviewLikeEmail,
+			};
+		
+		if(thumbs == 'fa-thumbs-up like-icon far'){
+			$(this).children('i').removeClass("far");
+			$(this).children('i').addClass("fas");
+			url = '/insertAndUpdateReviewLikeProc.do';
+
+		} else if(thumbs == 'fa-thumbs-up like-icon fas'){
+			$(this).children('i').removeClass("fas");
+			$(this).children('i').addClass("far");
+			url = '/deleteAndUpdateReviewLikeProc.do';
 		}
+		
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : sendData,
+			async : false,
+			success : function(response) {
+				result = response.result;
+				$(this).find('span').text(response.likeCount);
+
+			}
+		});
+		
+	});
+		
 	</script>
 
 </body>
