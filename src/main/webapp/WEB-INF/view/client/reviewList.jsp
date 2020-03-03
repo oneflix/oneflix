@@ -44,9 +44,9 @@
 				<ul id="post">
 					<c:choose>
 						<c:when test="${fn:length(reviewList) == 0}">
-							<p>
+							<h5 class="nonReviewComent">
 								아직 작성하신 리뷰가 없습니다. 첫 리뷰를 작성해 보세요!
-								<p>
+								</h5>
                 
 						</c:when>
                 <c:otherwise>
