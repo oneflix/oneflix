@@ -454,8 +454,25 @@
 			  return false;
 			}); */
 			
+			//다른 엄지 다 없어지고 하나만 동작
+		/* function like(){
+			var thumbs = $('.like-icon').prop("class");
 			
-		function like(){
+			if(thumbs == 'far fa-thumbs-up like-icon'){
+				$(".like-icon").removeClass();
+				//thumbs = $('#thumbs').children('i').prop("class");
+				//alert("removeClass();" + thumbs);
+				$("#like").addClass("fas fa-thumbs-up like-icon");
+				//thumbs = $('#like').children('i').prop("class");
+				//alert(thumbs);
+			}else if(thumbs == 'fas fa-thumbs-up like-icon'){
+				$(".like-icon").removeClass();
+				$("#like").addClass("far fa-thumbs-up like-icon");
+			}
+		} */
+			
+			//엄지하나만 동작
+		 function like(){
 			var thumbs = $('#like').prop("class");
 			
 			if(thumbs == 'far fa-thumbs-up like-icon'){
@@ -469,7 +486,7 @@
 				$("#like").removeClass();
 				$("#like").addClass("far fa-thumbs-up like-icon");
 			}
-		}
+		} 
 	</script>
 
 </body>
