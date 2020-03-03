@@ -1,30 +1,96 @@
 @charset "UTF-8";
-
+html{
+	background-color:white;
+}
 .reg{
-	background-color: #218838;
-	border-color: #218838;
 }
 .cancel{
-	background-color: #6c757d;
-    border-color: #6c757d;
 }
 
 .title{
-	background-color: #080808;
 }
 
-.content{
-	background-color: #1a1919;
+table{
+	text-align: center;
 }
-.insert{
-	margin-right: 5%;
-	margin-bottom: 2%;
+.table table-hover{
+	text-algin: center;
 }
 
-tbody{
-	background-color: #1a1919;
+.page-body{
+	background-color: white;
 }
-.table-dark > tbody > tr > td > p {
-	background-color: #1a1919;
-	margin-top: 1.5%
+
+p{
+	font-size: 25px; 
+	margin-left: 5%;
+	color: black;
 }
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+  color: black;
+
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-top: 2px solid #dee2e6;
+    border-bottom: 2px solid #dee2e6;
+  }
+.detail{
+	vertical-align: bottom;
+    border-top: 2px solid #dee2e6;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #dee2e6;
+    
+}
+  
+.inquiry{
+	float: right;
+	color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 4px;
+    background-color: #22b99b;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    padding: 7px 11px;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: 700;
+    width: 110px;
+    padding: 13px 11px;
+    border: 0;
+    margin-right: 4.5%;
+    margin-bottom: 1.5%
+}
+.emailcontent tr td p{
+    font-size: 16px;
+    text-align: center;
+      vertical-align: top;
+      margin-left: 0;
+      margin-bottom: 0;
+  }
+.table tbody tr{
+    font-size: 16px;
+    text-align: center;
+      vertical-align: top;
+  }
