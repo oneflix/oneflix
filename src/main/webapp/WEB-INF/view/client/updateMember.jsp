@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" style="background: #fff;">
 
 <head>
     <meta charset="UTF-8">

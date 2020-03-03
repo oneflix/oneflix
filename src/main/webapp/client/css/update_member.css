@@ -186,3 +186,8 @@ input.css-5kai6j-StyledField[type="text"], input.css-5kai6j-StyledField[type="nu
 .e1199ims33{
     display: none;
 }
+input{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #d4d4d4;
+}

@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+html {
+	background-color: white;
+}
+body, input, textarea, select, button, table {
+    font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
+}
+p,span,h4{
+    color: #080808;
+}
+.page-body {
+	padding: 0 70px;
+	background-color: white;
+	text-align: center;
+    color: #080808;
+}
+.chart { 
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 5%
+}
+.info-box.sm-light {
+	color: #080808;
+    border-radius: 0.25rem;
+    background: #ffffff;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 80px;
+    padding: .5rem;
+    margin-bottom: 0;
+    position: relative;
+    box-shadow: none;
+    border: 1px solid #d4d4d4;
+}
+.info-box {
+   color: #080808;
+    border-radius: 0.25rem;
+    background: #ffffff;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 80px;
+    padding: .5rem;
+    margin-bottom: 0;
+    position: relative;
+    border: 1px solid #d4d4d4;
+}
+.card {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+    padding: 7px 11px;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    line-height: 21px;
+    padding: 4px 8px 5px 8px;
+    margin: 8px 0 0 0;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 0.5rem;
+    box-shadow: none;
+}
+.card-body{
+	box-shadow: none;
+    margin-bottom: 1rem;
+}
+.one{
+	margin-bottom:0;
+}

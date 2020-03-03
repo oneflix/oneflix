@@ -16,9 +16,6 @@
 <!-- DataTables -->
 <link rel="stylesheet"
 	href="../admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-<!-- Tempusdominus Bbootstrap 4 -->
-<link rel="stylesheet"
-	href="../admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
 <link rel="stylesheet"
 	href="../admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
@@ -28,23 +25,16 @@
 <!-- overlayScrollbars -->
 <link rel="stylesheet"
 	href="../admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-<!-- Daterange picker -->
-<link rel="stylesheet"
-	href="../admin/plugins/daterangepicker/daterangepicker.css">
 <!-- summernote -->
-<link rel="stylesheet"
-	href="../admin/plugins/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="../admin/plugins/summernote/summernote-bs4.css">
 <!-- Google Font: Source Sans Pro -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
-<link rel="stylesheet" href="../admin/css/custom.css">
-<link rel="stylesheet" href="client/css/reset.css">
-<link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/customBS.css">
 <link rel="stylesheet" href="client/css/swiper.css">
-<link rel="stylesheet" href="client/css/user.css">
 <link rel="stylesheet" href="client/css/all.css">
+<link rel="stylesheet" href="client/css/mypageHome.css">
 
 </head>
 
@@ -53,20 +43,22 @@
 	<!-- SIDE BAR -->
 	<jsp:include page="${sidebar_url}"></jsp:include>
 
-	<div class="page-body">
+	<div class="page-body" style="padding-top:0;">
 		<section class="mypage">
 			<div align="center">
 				<!--차트-->
-				<section class="col-lg-6">
-					<div class="card-body">
-						<div id="genre_chart" style="width: 100%; height: 500px;"></div>
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body chart">
+							<div id="genre_chart"></div>
+						</div>
 					</div>
-				</section>
+				</div>
 
 				<!--한줄 정의-->
 				<div class="col-lg-6">
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body" style="margin-bottom:0;">
 							<p class="card-text">
 								'%장르'를 좋아하는 '영화애호가'
 								<!--차트에서 가장 값큰 장르 / 명칭지정-->
@@ -76,7 +68,7 @@
 					<!--레포트 카드-->
 					<!-- Main content -->
 					<section class="content">
-						<div class="card">
+						<div class="card" style="margin-bottom:0;">
 							<div class="card-body">
 								<div class="row">
 									<div class="col-12 col-md-12 col-md-6 order-2 order-md-1">
@@ -85,7 +77,7 @@
 												<div class="info-box sm-light">
 													<div class="info-box-content">
 														<span class="info-box-text text-center">시청한 영화 수</span> <span
-															class="info-box-number text-center mb-0">110</span>
+															class="info-box-number text-center mb-0" style="margin-top:3%;">110</span>
 													</div>
 												</div>
 											</div>
@@ -93,7 +85,7 @@
 												<div class="info-box sm-light">
 													<div class="info-box-content">
 														<span class="info-box-text text-center">내 평균 별점</span> <span
-															class="info-box-number text-center mb-0">3.5</span>
+															class="info-box-number text-center mb-0" style="margin-top:3%;">3.5</span>
 													</div>
 												</div>
 											</div>
@@ -107,76 +99,15 @@
 					</section>
 
 					<!-- 내 리뷰 슬라이드 -->
-					<h5>내 리뷰</h5>
 					<div class="main-slider review-slider">
 						<div id="review-slider-container" class="swiper-container">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="review-card">
 										<div class="card">
-											<div class="card-header">
-												<h5 class="card-title m-0">영화제목</h5>
-												<div class="card-body">
-													<p class="card-text">리뷰내용</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="review-card">
-										<div class="card">
-											<div class="card-header">
-												<h5 class="card-title m-0">영화제목</h5>
-												<div class="card-body">
-													<p class="card-text">리뷰내용</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="review-card">
-										<div class="card">
-											<div class="card-header">
-												<h5 class="card-title m-0">영화제목</h5>
-												<div class="card-body">
-													<p class="card-text">리뷰내용</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="review-card">
-										<div class="card">
-											<div class="card-header">
-												<h5 class="card-title m-0">영화제목</h5>
-												<div class="card-body">
-													<p class="card-text">리뷰내용</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="review-card">
-										<div class="card">
-											<div class="card-header">
-												<h5 class="card-title m-0">영화제목</h5>
-												<div class="card-body">
-													<p class="card-text">리뷰내용</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="review-card">
-										<div class="card">
-											<div class="card-header">
-												<h5 class="card-title m-0">영화제목</h5>
-												<div class="card-body">
+											<div class="card-body">
+												<p class="card-title m-0" style="font-size: 14px; padding-left:8%">영화제목</p>
+												<div>
 													<p class="card-text">리뷰내용</p>
 												</div>
 											</div>
@@ -215,9 +146,6 @@
 	<script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 	<!-- jQuery Knob Chart -->
 	<script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
-	<!-- daterangepicker -->
-	<script src="../plugins/moment/moment.min.js"></script>
-	<script src="../plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- Tempusdominus Bootstrap 4 -->
 	<script
 		src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -238,16 +166,16 @@
 	<!-- page script -->
 	
 	<!-- Google Chart -->
-	<script type="text/javascript"
-		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<!--슬라이더-->
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="client/js/swiper.js"></script>
-
+	<!-- 구글차트 -->
 	<script src="client/js/mypage_home.js"></script>
+	<script src="client/js/swiper.js"></script>
 
 </body>
 
