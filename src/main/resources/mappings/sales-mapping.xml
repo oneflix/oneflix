@@ -23,7 +23,7 @@
 			FROM (SELECT ROWNUM rnum, S.*
 				FROM (SELECT s.*, t.ticket_name, t.ticket_price 
 					FROM sales s, ticket t
-					WHERE s.ticket_id = t.ticket_id AND s.sales_status = 'success'
+					WHERE s.ticket_id = t.ticket_id AND s.sales_status != 'ready'
 					<if test="startDate != null and startDate != 0 or endDate != null and endDate != 0">
 						AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 						AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
@@ -41,7 +41,7 @@
 						</choose>
 					</if>
 					<if test="email != null">
-						email = #{email}
+						AND email = #{email}
 					</if>
 					ORDER BY s.payment_date
 			 		) S
@@ -98,5 +98,14 @@
 					</when>
 				</choose>
 			</if>
+	</select>
+	
+	<!-- 총 게시글 개수 출력 -->
+	<select id="getCountSales" parameterType="sales" resultType="int">
+		SELECT COUNT(*) FROM inquiry
+		WHERE 1 = 1
+		<if test="email != null">
+			AND email = #{email}
+		</if>
 	</select>
 </mapper>

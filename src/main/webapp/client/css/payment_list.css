@@ -1,0 +1,92 @@
+html body{
+	background-color: #ffffff;
+}
+
+
+.page-body{
+    background-color: #fff;
+	width: 80vw; 
+	margin-left:10vw;
+}
+
+p{
+	font-size: 25px; 
+	margin-left: 5%;
+	color: black;
+}
+table{
+	text-align: center;
+}
+.table table-hover{
+	text-algin: center;
+}
+
+
+.thead-grey > tr,
+.thead-grey > th{
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+table-border-grey{
+    border-color: #ffffff;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  color: #080808;
+  background-color: #ffffff;
+}
+
+
+.table thead th {
+    vertical-align: bottom;
+    border-top: 2px solid #dee2e6;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+.card-header {color:#080808}
+.card {background-color: #ffffff;}
+.card-footer > ul > li > a {background-color: #ffffff; color: #080808; border: 1px solid #ffffff;}
+
+.btn-close{
+	display: none;
+    float: right;
+	color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 4px;
+    background-color: #22b99b;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    padding: 7px 11px;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: 700;
+    width: 150px;
+    padding: 13px 11px;
+    border: 0;
+    margin-right: 4.5%;
+    margin-bottom: 1.5%
+}
+
+.title .payment-table {
+	margin-left: 5%;
+	float: right;
+}

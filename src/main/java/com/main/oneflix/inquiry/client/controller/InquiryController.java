@@ -59,6 +59,7 @@ public class InquiryController {
 		InquiryVO inquiry = new InquiryVO();
 		inquiry.setEmail(member.getEmail());
 		int total = getCountInquiryService.getCountInquiry(inquiry);
+		System.out.println("inquityTotal : " + total);
 		if (vo.getNowPage() == 0) {
 			vo.setNowPage(1);
 		}
