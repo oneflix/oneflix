@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="client/css/connectsns_modal.css">
 </head>
 
-<body style="background: #fff;">
+<body style="background: #fff;padding-top:0;">
 
     <jsp:include page="${sidebar_url}"></jsp:include>
     
@@ -50,9 +50,9 @@
 		</div><!-- modal container -->
 	</div>
 
-    <div class="page-body" style="background-color: #ffffff; height: 97vh;">
-        <section class="css-1vpi0so-Self-Self">
-            <section class="css-34jiqc-Section e1199ims14">
+    <div class="page-body" style="background-color: #ffffff;">
+        <section class="css-1vpi0so-Self-Self" style="height:97vh;">
+            <section class="css-34jiqc-Section e1199ims14" style="height:23vh; margin-bottom:0;">
                 <h2 class="css-14w6zap-SectionHeader e1199ims15">본인인증</h2>
                 <ul class="css-gi4296-SettingListUl e1199ims20">
                     <li class="css-ar8roi-SettingList e1199ims17">
@@ -73,7 +73,7 @@
                 
             </section>
             <form name="update" action="/updateMemberProc.do" onsubmit="return validate()" method="post">
-                <section class="css-34jiqc-Section e1199ims14">
+                <section class="css-34jiqc-Section e1199ims14" style="height:48vh; margin-bottom:3vh; margin-top:3vh;">
                     <h2 class="css-14w6zap-SectionHeader e1199ims15">계정</h2>
                     <ul class="css-gi4296-SettingListUl e1199ims20">
                         <li class="css-ar8roi-SettingList e1199ims17">
@@ -134,7 +134,8 @@
                     
                 </section>
                         <div class="css-t5kw01-ChangeProfileButtonBlock e1199ims3">
-                            <button type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
+                            <button style="height:8vh; margin-bottom:2vh; margin-top:0;"
+                            type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
                         </div>
             </form>
         </section>
