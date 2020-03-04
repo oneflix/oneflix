@@ -30,15 +30,12 @@ public class ReviewController {
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
-	@Autowired
-	private GetReviewLikeListService getReviewLikeService;
 
 	@RequestMapping("/insertReviewProc.do")
 	public ModelAndView insertReviewProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
-		if (vo.getReviewId() != null)
-			deleteReviewService.deleteReview(vo);
+		if (vo.getReviewId() != null) deleteReviewService.deleteReview(vo);
 		insertReviewService.insertReview(vo);
 		mav.addObject("movieId", vo.getMovieId());
 		mav.setViewName("redirect:/getMovieDetailProc.do");

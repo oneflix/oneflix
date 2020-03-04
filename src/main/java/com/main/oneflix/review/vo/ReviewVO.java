@@ -10,7 +10,7 @@ public class ReviewVO {
 	private String email;
 	private String nick;
 	private String reviewContent;
-	private double reviewScore;
+	private Double reviewScore;
 	private int likeCount;
 	private Date reviewRegDate;
 	private int start;
