@@ -13,5 +13,7 @@ public interface ReviewDAO {
 	ReviewVO getReview(ReviewVO vo);
 	ReviewVO getLikeCount(ReviewVO vo);
 	List<ReviewVO> getReviewList(ReviewVO vo);
+	
+	double getAverageScore(ReviewVO vo);
 
 }

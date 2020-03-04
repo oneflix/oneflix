@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 html {
-	background-color: white;
+	background-color: #fff;
 }
 body, input, textarea, select, button, table {
     font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
@@ -11,7 +11,7 @@ p,span,h4{
 }
 .page-body {
 	padding: 0 70px;
-	background-color: white;
+	background-color: #fff;
 	text-align: center;
     color: #080808;
 }
@@ -55,7 +55,7 @@ p,span,h4{
     letter-spacing: -0.4px;
     line-height: 21px;
     box-sizing: border-box;
-    padding: 7px 11px;
+
     border: 1px solid #d4d4d4;
     border-radius: 3px;
     line-height: 21px;
@@ -64,6 +64,8 @@ p,span,h4{
     background-color: rgb(255, 255, 255);
     margin-bottom: 0.5rem;
     box-shadow: none;
+    
+    width: 56vw;
 }
 .card-body{
 	box-shadow: none;
@@ -71,4 +73,8 @@ p,span,h4{
 }
 .one{
 	margin-bottom:0;
+}
+.info-box-number{
+	font-size: 3.6vh;
+	
 }

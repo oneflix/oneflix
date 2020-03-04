@@ -1,3 +1,4 @@
+//구글차트
 google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
@@ -48,3 +49,25 @@ google.charts.load("current", { packages: ["corechart"] });
             chart.draw(view, options);
             window.addEventListener('resize', function () { chart.draw(data, options); }, false);
         }
+        
+        const createReviewSwiper = function(slideCount) {
+            var reviewSwiper = new Swiper('#review-slider-container', {
+                slidesPerView: slideCount,
+                spaceBetween: 3,
+                slidesPerGroup: slideCount,
+            
+                // loopFillGroupWithBlank: true,
+            
+                navigation: {
+                    nextEl: '#review-button-next',
+                    prevEl: '#review-button-prev'
+                },
+            
+                loop: true,
+                speed: 1000,
+            });
+        };
+
+        $(document).ready(function() {
+        	createReviewSwiper(2);
+        });
