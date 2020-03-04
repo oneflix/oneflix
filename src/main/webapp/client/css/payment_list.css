@@ -1,12 +1,12 @@
-html{
+html body{
 	background-color: #ffffff;
 }
 
 
 .page-body{
-    margin-top: 0 auto;
-    display: block;
-    background-color: #ffffff;
+    background-color: #fff;
+	width: 80vw; 
+	margin-left:10vw;
 }
 
 p{
@@ -54,6 +54,7 @@ table-border-grey{
 .card-footer > ul > li > a {background-color: #ffffff; color: #080808; border: 1px solid #ffffff;}
 
 .btn-close{
+	display: none;
     float: right;
 	color: #FFFFFF;
     font-size: 14px;
