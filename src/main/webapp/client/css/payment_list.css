@@ -1,18 +1,19 @@
-@charset "UTF-8";
 html{
-	background-color:white;
-}
-body, input, textarea, select, button, table {
-    font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
-}
-.reg{
-}
-.cancel{
+	background-color: #ffffff;
 }
 
-.title{
+
+.page-body{
+    margin-top: 0 auto;
+    display: block;
+    background-color: #ffffff;
 }
 
+p{
+	font-size: 25px; 
+	margin-left: 5%;
+	color: black;
+}
 table{
 	text-align: center;
 }
@@ -20,14 +21,15 @@ table{
 	text-algin: center;
 }
 
-.page-body{
-	background-color: white;
+
+.thead-grey > tr,
+.thead-grey > th{
+    background-color: #ffffff;
+    border-color: #ffffff;
 }
 
-p{
-	font-size: 25px; 
-	margin-left: 5%;
-	color: black;
+table-border-grey{
+    border-color: #ffffff;
 }
 
 .table th,
@@ -36,26 +38,23 @@ p{
   vertical-align: top;
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
-  text-align: center;
-  color: black;
-
+  color: #080808;
+  background-color: #ffffff;
 }
+
 
 .table thead th {
     vertical-align: bottom;
     border-top: 2px solid #dee2e6;
     border-bottom: 2px solid #dee2e6;
   }
-.detail{
-	vertical-align: bottom;
-    border-top: 2px solid #dee2e6;
-    border-bottom: 2px solid #dee2e6;
-    background-color: #dee2e6;
-    
-}
-  
-.inquiry{
-	float: right;
+
+.card-header {color:#080808}
+.card {background-color: #ffffff;}
+.card-footer > ul > li > a {background-color: #ffffff; color: #080808; border: 1px solid #ffffff;}
+
+.btn-close{
+    float: right;
 	color: #FFFFFF;
     font-size: 14px;
     font-weight: 700;
@@ -79,21 +78,14 @@ p{
     border-radius: 3px;
     font-size: 17px;
     font-weight: 700;
-    width: 110px;
+    width: 150px;
     padding: 13px 11px;
     border: 0;
     margin-right: 4.5%;
     margin-bottom: 1.5%
 }
-.emailcontent tr td p{
-    font-size: 16px;
-    text-align: center;
-      vertical-align: top;
-      margin-left: 0;
-      margin-bottom: 0;
-  }
-.table tbody tr{
-    font-size: 16px;
-    text-align: center;
-      vertical-align: top;
-  }
+
+.title .payment-table {
+	margin-left: 5%;
+	float: right;
+}

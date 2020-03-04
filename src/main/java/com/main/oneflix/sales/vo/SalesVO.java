@@ -53,6 +53,10 @@ public class SalesVO {
 	private String endDate;
 	private String searchSales;
 	private int lastDate;
+	
+	// 페이징
+	private int start;
+	private int end;
 
 	public String getCid() {
 		return cid;
@@ -285,5 +289,23 @@ public class SalesVO {
 	public void setLastDate(int lastDate) {
 		this.lastDate = lastDate;
 	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getEnd() {
+		return end;
+	}
+
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	
+	
 
 }

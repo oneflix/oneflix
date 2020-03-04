@@ -41,7 +41,7 @@
 						</choose>
 					</if>
 					<if test="email != null">
-						email = #{email}
+						AND email = #{email}
 					</if>
 					ORDER BY s.payment_date
 			 		) S
@@ -98,5 +98,14 @@
 					</when>
 				</choose>
 			</if>
+	</select>
+	
+	<!-- 총 게시글 개수 출력 -->
+	<select id="getCountSales" parameterType="sales" resultType="int">
+		SELECT COUNT(*) FROM inquiry
+		WHERE 1 = 1
+		<if test="email != null">
+			AND email = #{email}
+		</if>
 	</select>
 </mapper>
