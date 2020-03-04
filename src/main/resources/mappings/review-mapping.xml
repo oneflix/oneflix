@@ -46,6 +46,7 @@
 	</resultMap>
 	
 	<select id="getReviewList" resultMap="getReviewList">
+<<<<<<< HEAD
 		SELECT * 
 		FROM (SELECT ROWNUM rnum, R.* 
 				FROM (SELECT r.*, m.movie_title, mem.nick 
@@ -65,6 +66,7 @@
 			AND rnum BETWEEN #{start} AND #{end} 
 		</if>		
 		ORDER BY review_id DESC
+		</if>		
 	</select>
 
 	<delete id="deleteReview" parameterType="review">
