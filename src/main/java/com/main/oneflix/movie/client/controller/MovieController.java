@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.genre.service.GetGenreListService;
 import com.main.oneflix.genre.vo.GenreVO;
+import com.main.oneflix.like.service.GetReviewLikeListService;
+import com.main.oneflix.like.vo.ReviewLikeVO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.movie.service.GetMovieListService;
 import com.main.oneflix.movie.service.GetMovieService;
@@ -42,7 +44,7 @@ public class MovieController {
 	private GetTicketListService getTicketListService;
 	//리뷰좋아요
 	@Autowired
-	private GetReviewListService getReviewLikeService;
+	private GetReviewLikeListService getReviewLikeService;
 	
 	@RequestMapping("/getMovieDetailProc.do")
 	public ModelAndView getMovieDetailProc(MovieVO vo, HttpSession session, ModelAndView mav) {
@@ -55,7 +57,22 @@ public class MovieController {
 		ReviewVO review = new ReviewVO();
 		review.setMovieId(vo.getMovieId());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
+		ReviewLikeVO reviewLikeVO = new ReviewLikeVO();
+		reviewLikeVO.setMovieId(vo.getMovieId());
+		reviewLikeVO.setReviewLikeEmail(member.getEmail());
+		List<ReviewLikeVO> reviewLikeList = getReviewLikeService.getReviewLikeList(reviewLikeVO);
+
+		for(ReviewLikeVO reviewLike : reviewLikeList) {
+			System.out.println("=========================================");
+			System.out.println("reviewLike.getMovieId() : " + reviewLike.getMovieId());
+			System.out.println("reviewLike.getReviewId() : " + reviewLike.getReviewId());
+			System.out.println("reviewLike.getReviewLikeEmail() : " + reviewLike.getReviewLikeEmail());
+			System.out.println("reviewLike.getReviewLikeId() : " + reviewLike.getReviewLikeId());
+			System.out.println();
+		}
+		
 		mav.addObject("reviewList", reviewList);
+		mav.addObject("reviewLikeList", reviewLikeList);
 		mav.addObject("myReview", myReview);
 		mav.addObject("movie", vo);
 		mav.setViewName("movieDetail");

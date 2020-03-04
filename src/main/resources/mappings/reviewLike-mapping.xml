@@ -3,8 +3,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ReviewLikeDAO">
-
 	
+	<resultMap type="reviewLike" id="reviewLikeList">
+		<id property="reviewLikeId" column="review_like_id" />
+		<result property="reviewId" column="review_id" />
+		<result property="reviewLikeEmail" column="review_like_email" />
+	</resultMap>
+
+
+	<select id="getReviewLikeList" resultMap="reviewLikeList">
+		SELECT rl.*
+		FROM review_like rl, review r, movie m
+		WHERE rl.review_id = r.review_id AND r.movie_id = m.movie_id
+		AND rl.review_like_email like #{reviewLikeEmail} AND m.movie_id = #{movieId}
+	</select>
 
 	<insert id="insertReviewLike" parameterType="reviewLike">
 		INSERT INTO review_like (review_like_id, review_id, review_like_email)
