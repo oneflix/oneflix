@@ -10,7 +10,8 @@
 		com.main.oneflix.review.client.controller,
 		com.main.oneflix.movie.client.controller,
 		com.main.oneflix.util.kakao.login.controller,
-		com.main.oneflix.like.client.controller">
+		com.main.oneflix.like.client.controller,
+		com.main.oneflix.ticket.client.controller">
 	</context:component-scan>
 
 </beans>

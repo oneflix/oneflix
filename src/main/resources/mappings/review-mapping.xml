@@ -51,20 +51,23 @@
 	</resultMap>
 	
 	<select id="getReviewList" resultMap="getReviewList">
-		SELECT * FROM (SELECT ROWNUM rnum, R.* FROM
-		(SELECT r.*, m.movie_title, mem.nick FROM review r, movie m, member mem
-    	WHERE r.movie_id = m.movie_id AND r.email = mem.email
-    	<if test="email != null">
-		AND r.email = #{email}
-		</if>
-		<if test = "movieId != null">
-		AND r.movie_id = #{movieId}
-		</if>
-			) R
-		)
+		SELECT * 
+		FROM (SELECT ROWNUM rnum, R.* 
+				FROM (SELECT r.*, m.movie_title, mem.nick 
+						FROM review r, movie m, member mem
+    					WHERE r.movie_id = m.movie_id AND r.email = mem.email
+						<if test = "movieId != null">
+							AND r.movie_id = #{movieId}
+							ORDER BY like_count DESC
+						</if>
+					) R
+				)
 		WHERE 1=1
+    	<if test="email != null">
+			AND email = #{email}
+		</if>
 		<if test="start != 0 and end != 0">
-		AND rnum BETWEEN #{start} AND #{end} 
+			AND rnum BETWEEN #{start} AND #{end} 
 		</if>		
 		ORDER BY review_id DESC
 	</select>
