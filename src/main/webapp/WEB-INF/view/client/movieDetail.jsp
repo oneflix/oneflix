@@ -6,6 +6,7 @@
 <c:set var="header_url" value="/WEB-INF/view/client/movieHeader.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <c:set var="reviewListLength" value="${fn:length(reviewList)}"></c:set>
+<c:set var="reviewLikeListLength" value="${fn:length(reviewLikeList)}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -293,7 +294,7 @@
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
 																	<button id="thumbs" class="like-button">
-																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i>
+																		<i id="${reviewList[i+1].reviewId}" class="fa-thumbs-up like-icon far"></i>
 																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
@@ -332,9 +333,39 @@
 	<script>
 	var reviewScore;
 	var reviewContent;
+	var reviewListLength = "${reviewListLength}";
+	var reviewLikeListLength = "${reviewLikeListLength}";
 	
+	var reviewList = new Array();
+	<c:forEach items="${reviewList}" var="review">
+		var reviewListJson = new Object();
+		reviewListJson.reviewId = "${review.reviewId}";
+		reviewList.push(reviewListJson);
+	</c:forEach>
+	console.log("json : " + JSON.stringify(reviewList));
+	
+ 	var reviewLikeList = new Array();
+	<c:forEach items="${reviewLikeList}" var="reviewLike">
+		var reviewLikeListJson = new Object();
+		reviewLikeListJson.reviewId = "${reviewLike.reviewId}";
+		reviewLikeList.push(reviewLikeListJson);
+	</c:forEach> 
+	console.log("json : " + JSON.stringify(reviewLikeList));
+	
+
 	
 		$(document).ready(function() {
+			//session email이 좋아요 해놓은 리뷰 채워진 엄지로 세팅
+			 for (var i = 0; i < reviewListLength; i++){
+				for (var j = 0; j < reviewLikeListLength; j++){
+					if(reviewList[i].reviewId == reviewLikeList[j].reviewId){
+						$('#' + reviewList[i].reviewId).removeClass('far');
+						$('#' + reviewList[i].reviewId).addClass('fas');
+					}
+				}
+			}
+			
+			
 			reviewScore = "${myReview.reviewScore}";
 			reviewContent = $('#myReview').val();
 			if (reviewScore != null && reviewScore != 0) {
@@ -347,7 +378,6 @@
 
 			$('.genre-span').addClass('after');
 			$('.genre-span:last').removeClass('after');
-			var reviewListLength = "${reviewListLength}";
 			var reviewCount = 0;
 			for (var i = 0; i < reviewListLength; i++) {
 				if ("${reviewList[i].reviewContent}" != null) {
@@ -356,8 +386,6 @@
 			}
 
 			var nextButtonClickableCount = Math.floor(reviewCount / 4);
-			alert(reviewListLength);
-			alert(reviewCount);
 			if (reviewCount % 4 == 0) {
 				nextButtonClickableCount--;
 			}
@@ -393,7 +421,6 @@
 		function reviewCheck() {
 			var content = $("#myReview").val();
 			if (content == null || content == "" || reviewScore == null) {
-				alert(content + reviewScore);
 				return false;
 			}
 
@@ -401,7 +428,9 @@
 			return true;
 
 		};
-
+		
+		
+		//별점주기
 		$('.reviewScore').click(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
@@ -409,10 +438,8 @@
 			var url;
 
 			if (reviewScore == null || reviewScore == 0) {
-				alert("0일때");
 				url = "/insertReviewProcAjax.do";
 			} else {
-				alert("0아닐때");
 				url = "/updateReviewProcAjax.do";
 			}
 
@@ -434,12 +461,14 @@
 				async : false,
 				success : function(response) {
 					result = response.result;
+					
 
 				}
 			});
 
 		});
 
+		//리뷰삭제
 		function deleteCheck() {
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if (check == true) {
@@ -455,7 +484,7 @@
 			}); */
 			
 			
-	 //엄지 아이콘 변경
+	 	//좋아요 - 엄지 아이콘 변경, 카운트 변경
 		$('.like-button').click(function() {
 		var url;
 			
@@ -463,10 +492,11 @@
 		
 		var reviewId = $(this).children('i').prop('id');
 		var likeCount = $(this).find('span').text();
-		alert(likeCount);
 		var reviewLikeEmail = "${member.email}"
+		var movieId = "${movie.movieId}"
 		var sendData = {
 				"reviewId" : reviewId,
+				"movieId" : movieId,
 				"likeCount" : likeCount,
 				"reviewLikeEmail" : reviewLikeEmail,
 			};
@@ -474,13 +504,16 @@
 		if(thumbs == 'fa-thumbs-up like-icon far'){
 			$(this).children('i').removeClass("far");
 			$(this).children('i').addClass("fas");
+			$(this).children('span').html(Number(likeCount)+1);
 			url = '/insertAndUpdateReviewLikeProc.do';
 
 		} else if(thumbs == 'fa-thumbs-up like-icon fas'){
 			$(this).children('i').removeClass("fas");
 			$(this).children('i').addClass("far");
+			$(this).children('span').html(Number(likeCount)-1);
 			url = '/deleteAndUpdateReviewLikeProc.do';
 		}
+		
 		
 		$.ajax({
 			type : 'POST',
@@ -488,10 +521,8 @@
 			data : sendData,
 			async : false,
 			success : function(response) {
-				result = response.result;
-				$(this).find('span').text(response.likeCount);
-
-			}
+						result = response.result;
+				}
 		});
 		
 	});
