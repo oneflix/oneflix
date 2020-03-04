@@ -1,10 +1,11 @@
 @charset "UTF-8";
-html{
-	background-color:white;
+html,body{
+	background-color:#fff;
 }
 body, input, textarea, select, button, table {
     font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
 }
+
 .reg{
 }
 .cancel{
@@ -21,13 +22,15 @@ table{
 }
 
 .page-body{
-	background-color: white;
+	background-color: #fff;
+	width: 80vw; 
+	margin-left:10vw;
 }
 
 p{
 	font-size: 25px; 
 	margin-left: 5%;
-	color: black;
+	color: #080808;
 }
 
 .table th,
@@ -37,7 +40,7 @@ p{
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
   text-align: center;
-  color: black;
+  color: #080808;
 
 }
 

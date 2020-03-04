@@ -19,4 +19,9 @@ public class GetReviewServiceImpl implements GetReviewService {
 
 	}
 
+	@Override
+	public double getAverageScore(ReviewVO vo) {
+		return reviewDAO.getAverageScore(vo);
+	}
+
 }

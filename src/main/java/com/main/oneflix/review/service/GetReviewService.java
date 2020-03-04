@@ -5,5 +5,6 @@ import com.main.oneflix.review.vo.ReviewVO;
 public interface GetReviewService {
 	
 	ReviewVO getReview(ReviewVO vo);
+	double getAverageScore(ReviewVO vo);
 
 }

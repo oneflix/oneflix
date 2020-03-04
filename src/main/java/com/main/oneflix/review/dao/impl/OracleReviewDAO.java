@@ -55,4 +55,9 @@ public class OracleReviewDAO implements ReviewDAO {
 		return sqlSessionTemplate.selectList("ReviewDAO.getReviewList", vo);
 	}
 
+	@Override
+	public double getAverageScore(ReviewVO vo) {
+		return sqlSessionTemplate.selectOne("ReviewDAO.getAverageScore",vo);
+	}
+
 }
