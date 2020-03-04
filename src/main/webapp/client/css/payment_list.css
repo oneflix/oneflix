@@ -6,10 +6,8 @@ html body{
 .page-body{
     background-color: #fff;
 	width: 80vw; 
-	margin: 0 auto;
-	display: block;
+	margin-left:10vw;
 }
-
 
 p{
 	font-size: 25px; 
