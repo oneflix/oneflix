@@ -40,6 +40,9 @@
 							</when>
 						</choose>
 					</if>
+					<if test="email != null">
+						email = #{email}
+					</if>
 					ORDER BY s.payment_date
 			 		) S
 				)
