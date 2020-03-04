@@ -6,14 +6,17 @@ html body{
 .page-body{
     background-color: #fff;
 	width: 80vw; 
-	margin-left:10vw;
+	margin: 0 auto;
+	display: block;
 }
+
 
 p{
 	font-size: 25px; 
 	margin-left: 5%;
 	color: black;
 }
+
 table{
 	text-align: center;
 }

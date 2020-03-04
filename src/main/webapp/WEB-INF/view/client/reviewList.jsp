@@ -40,7 +40,10 @@
 				<button onclick="topFunction()" id="myBtn">
 					<i class="fas fa-angle-double-up"></i> TOP
 				</button>
-				<h4>내 리뷰 </h4>
+				
+				<div class="title" style="background-color: #fffff;">
+				<p class="p">내 리뷰 </p>
+				</div>
 				<ul id="post">
 					<c:choose>
 						<c:when test="${fn:length(reviewList) == 0}">
@@ -64,7 +67,7 @@
                             </p>
 
                             <p>
-                                <a href="#" class="link-black text-sm"><i
+                                <a class="link-black text-sm"><i
 													class="fas fa-thumbs-up mr-2"></i>
                                     <span class="my-thumbs-up">${review.likeCount }</span>
                                 </a>
@@ -135,6 +138,28 @@
              });
         	}
         	
+        /* 	<li>
+            <div class="post one-post" id="review">
+                <div class="user-block">
+                    <span class="username">
+                        <a style="color:#080808;" onclick="goMovieDetail('${review.movieId}')">${review.movieTitle }</a>
+									<span class="my-rating">★ ${review.reviewScore }</span>
+                    </span>
+                </div> <!-- /.user-block -->
+                <p class="my-review">
+                    ${review.reviewContent }
+                </p>
+
+                <p>
+                    <a href="#" class="link-black text-sm"><i
+										class="fas fa-thumbs-up mr-2"></i>
+                        <span class="my-thumbs-up">${review.likeCount }</span>
+                    </a>
+                </p>
+                <hr class="post-seperator">
+            </div>
+        </li> */
+        	
         	for (var i = 0; i < reviewList.length; i++){
         		var review = reviewList[i];
         		$('#post').append(
@@ -142,7 +167,7 @@
                         "<div class=\"post one-post\" id=\"review\">" + 
                             "<div class=\"user-block\">" + 
                                 "<span class=\"username\">" + 
-                                    "<a href=\"/getMovieDetailProc.do\">" + review.movieTitle + 
+                                    "<a style=\"color:#080808;\" onclick=\"goMovieDetail('" + review.movieId + "')\">" + review.movieTitle + 
                                     "</a>" + 
 									"<span class=\"my-rating\">★" + review.reviewScore + "</span>" +
                                 "</span>" + 
@@ -151,7 +176,7 @@
                                 review.reviewContent +
                             "</p>" + 
                             "<p>" +
-                                "<a href=\"#\" class=\"link-black text-sm\">" + 
+                                "<a class=\"link-black text-sm\">" + 
                             "<i class=\"fas fa-thumbs-up mr-2\"></i>" + 
                                     "<span class=\"my-thumbs-up\">" + review.likeCount + "</span>" + 
                                 "</a>" + 

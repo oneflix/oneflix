@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="client/css/all.css">
     <link rel="stylesheet" href="../admin/css/adminlte.min.css">
     <link rel="stylesheet" href="../admin/css/adminlte.css">
+    <link rel="stylesheet" href="client/css/update_member.css">
     <link rel="stylesheet" href="client/css/payment_list.css">
 </head>
 
@@ -25,6 +26,7 @@
 
     <div class="page-body">
         <!-- 이전 결제 내역 -->
+        
         <div class="title" style="background-color: #fffff;">
             <p>이용권</p><br><br>
             <button type="button" class="btn-close" id="ticket-modal">이용권추가구매</button>
