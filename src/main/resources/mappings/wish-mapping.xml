@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="WishDAO">
+
+	<insert id="insertWish" parameterType="wish">
+		INSERT INTO wish (wish_id, movie_id, email)
+		VALUES((select nvl(max(wish_id), 0)+1 from wish),#{movieId},#{email})
+	</insert>
+
+	<delete id="deleteWish" parameterType="wish">
+		DELETE FROM wish 
+		WHERE wish_id = #{wishId}
+	</delete>
+
+</mapper>
