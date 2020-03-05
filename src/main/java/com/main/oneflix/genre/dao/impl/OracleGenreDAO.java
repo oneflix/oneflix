@@ -42,6 +42,12 @@ public class OracleGenreDAO implements GenreDAO {
 		return sqlSessionTemplate.selectList("GenreDAO.getGenreList", vo);
 	}
 
+	@Override
+	public String getGenreName(GenreVO vo) {
+		return sqlSessionTemplate.selectOne("GenreDAO.getGenreName",vo);
+		
+	}
+
 	
 
 }

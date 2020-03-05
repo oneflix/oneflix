@@ -128,13 +128,14 @@
           </section><!-- mypage -->
 	</div><!-- page-body -->
 
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<!-- Google Chart -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!--슬라이더-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="client/js/bootstrap.js"></script>
-	<!-- 구글차트 -->
 	<script src="client/js/mypage_home.js"></script>
 	<script src="client/js/swiper.js"></script>
 	    <script type="text/javascript">
