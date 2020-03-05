@@ -1,19 +1,45 @@
 //구글차트
+var data;
+var mostWatched;
+var sentence = document.getElementById('sentence');
+var countWatch = document.getElementById('countWatch');
+var val = $("#countWatch").text();
+var nick;
+
 		google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
-                    var jsonData = $.ajax({
+                  var jsonData = $.ajax({
                         url: "/mypageHomeProcAjax.do",
                         dataType: "json",
                         async: false
                         }).responseText;
                     
                     // Create our data table out of JSON data loaded from server.
-                    var data = new google.visualization.DataTable(jsonData);
+                    data = new google.visualization.DataTable(jsonData);
 //                	var view = new google.visualization.DataView(data);  
- 
+            //많이 본 장르 얻기        
+            mostWatched = data.getValue(0,0);
+        	sentence.append(mostWatched);
+        	sentence.append("를 좋아하는 ");
+        	
+        	if( val <= 3 ){
+        		nick = "영알못!";
+        	}else if(val > 3 && val <= 5){
+        		nick = "영화초보!";
+        	}else if(val > 5 && val <= 10){
+                nick = "영화고수!";
+            }else if(val > 10 && val <= 20){
+            	nick = "영화매니아!";
+            }else if(val > 20 ){
+            	nick = "영화광!";
+            }
+                
+        	sentence.append(nick);
+            
             var options = {
                 slices: { 0: { color: '#9D8189' }, 1: { color: '#55828B' } },
+                responsive: true,
                 align: 'center',
                 legendTextStyle: { color: '#080808'},
                 chartArea: { height: '83%', width: '95%' },
@@ -52,8 +78,11 @@
  //           }   //END  success: function (result) {
 //        });     //END  $.ajax({
     };          //END  function drawChart()
+//    function settingSentence(){
+//
+//    	
+//    }
 
-	
 //슬라이더
         const createReviewSwiper = function(slideCount) {
             var reviewSwiper = new Swiper('#review-slider-container', {
