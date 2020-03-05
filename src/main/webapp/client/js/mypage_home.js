@@ -1,19 +1,18 @@
 //구글차트
-google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['장르', '편'],
-                ['액션', 11],
-                ['코미디', 22],
-                ['로맨스', 33],
-                ['애니메이션', 11],
-                ['음악', 44],
-                ['범죄', 11],
-            ]);
-            
 
-            var view = new google.visualization.DataView(data);
+		google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var jsonData = $.ajax({
+                        url: "/mypageHomeProcAjax.do",
+                        dataType: "json",
+                        async: false
+                        }).responseText;
+                    
+                    // Create our data table out of JSON data loaded from server.
+                    var data = new google.visualization.DataTable(jsonData);
+//                	var view = new google.visualization.DataView(data);  
+ 
             var options = {
                 slices: { 0: { color: '#9D8189' }, 1: { color: '#55828B' } },
                 align: 'center',
@@ -26,6 +25,7 @@ google.charts.load("current", { packages: ["corechart"] });
                 bar: { groupWidth: "70%" },
                 legend: { position: "bottom", color: "#080808" },
                 isStacked: false,
+                curveType: 'function',
                 backgroundColor: '#fff;',
 
                 //    tooltip:{textStyle : {fontSize:12}, showColorCode : true},
@@ -41,15 +41,21 @@ google.charts.load("current", { packages: ["corechart"] });
                         italic: true,
                         opacity: 0.8,
                         color: '#080808;'
-                    }
-
-                }
-            };
+                    	}
+                	}
+            	}; //옵션
+         // Create DataTable and add the array to it.
+            
             var chart = new google.visualization.PieChart(document.getElementById("genre_chart"));
-            chart.draw(view, options);
-            window.addEventListener('resize', function () { chart.draw(data, options); }, false);
-        }
-        
+            chart.draw(data, options);
+//            window.addEventListener('resize', function () { chart.draw(data, options); }, false);
+ 
+ //           }   //END  success: function (result) {
+//        });     //END  $.ajax({
+    };          //END  function drawChart()
+
+	
+//슬라이더
         const createReviewSwiper = function(slideCount) {
             var reviewSwiper = new Swiper('#review-slider-container', {
                 slidesPerView: slideCount,
