@@ -3,7 +3,8 @@ package com.main.oneflix.like.vo;
 public class ReviewLikeVO {
 
 	private int reviewLikeId;
-	private int reviewId;
+	private Integer reviewId;
+	private int movieId;
 	private String ReviewLikeEmail;
 
 	public int getReviewLikeId() {
@@ -14,12 +15,20 @@ public class ReviewLikeVO {
 		this.reviewLikeId = reviewLikeId;
 	}
 
-	public int getReviewId() {
+	public Integer getReviewId() {
 		return reviewId;
 	}
 
-	public void setReviewId(int reviewId) {
+	public void setReviewId(Integer reviewId) {
 		this.reviewId = reviewId;
+	}
+
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
 	}
 
 	public String getReviewLikeEmail() {
@@ -30,5 +39,4 @@ public class ReviewLikeVO {
 		ReviewLikeEmail = reviewLikeEmail;
 	}
 
-	
 }

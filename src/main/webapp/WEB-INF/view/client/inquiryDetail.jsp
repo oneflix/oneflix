@@ -15,17 +15,20 @@
 <link rel="stylesheet" href="client/css/inquiry.css">
 </head>
 
-<body>
+<body style="background-color:#fff;">
 
 	<!-- SIDE BAR -->
 	<jsp:include page="${sidebar_url}"></jsp:include>
 
-	<div class="page-body">
+	<div class="page-body" 	style="width: 70vw; margin-left:15vw;">
+		<div class="row">
+		<div class="col-12">
 		<div class="title">
 			<p>나의 문의</p>
 			<br>
 			<br>
-			<button type="button" class="inquiry" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
+			<button style="width:8vw; margin-left:86vw;margin-right:2.5vw;height:7vh;margin-top:4vh; margin-bottom:4vh;"
+			type="button" class="inquiry" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
 		</div>
 	<div id="outter">
 		<div>
@@ -61,7 +64,12 @@
 				</thead>
 				<tbody>
 					<tr>
+						<c:if test="${empty inquiry.replyTitle}">
+						<td>아직 답변이 작성되지 않았어요.</td>
+						</c:if>
+						<c:if test="${not empty inquiry.replyTitle}" >
 						<td>${inquiry.replyTitle}</td>
+						</c:if>
 					</tr>
 				</tbody>
 				<thead class="detail">
@@ -71,7 +79,12 @@
 				</thead>
 				<tbody class="emailcontent">
 					<tr>
-						<td align="left">${inquiry.replyContent}</td>
+						<c:if test="${empty inquiry.replyContent}">
+						<td>조금만 기다려주세요!</td>
+						</c:if>
+						<c:if test="${not empty inquiry.replyContent}" >
+						<td>${inquiry.replyContent}</td>
+						</c:if>
 					</tr>
 				</tbody>
 				</table>
@@ -79,6 +92,8 @@
 		</div>
 		</div>
 	</div>
+	</div>
+</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 

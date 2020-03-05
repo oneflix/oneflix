@@ -11,4 +11,5 @@ public interface GenreDAO {
 	void updateGenre(GenreVO vo);
 	GenreVO getGenre(GenreVO vo);
 	List<GenreVO> getGenreList(GenreVO vo);
+	String getGenreName(GenreVO vo);
 }

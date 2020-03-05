@@ -16,18 +16,19 @@
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
 </head>
-<body>
+<body style="background-color:#fff">
 
 	<jsp:include page="${sidebar_url}"></jsp:include>
 
-	<div class="page-body">
+	<div class="page-body" style="width:84vw; margin-left:8vw; height:94vh;">
 
 		<!-- 페이지 시작 -->
 		<div>
 			<p>나의 문의</p>
 		</div>
 		<div>
-			<button class="inquiry" type="button"
+			<button class="inquiry" type="button" 
+			style="width:8vw; margin-left:86vw;margin-right:2.5vw;height:7vh;margin-top:1vh; margin-bottom:4vh;"
 			onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
 		<div id="outter">

@@ -50,7 +50,7 @@
 						FROM (SELECT ROWNUM SUB_RNUM, SUB_M.*
 								FROM (SELECT m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
 											a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
-										FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
+										FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2, wish w
 										WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
 											AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
 											<if test="searchGenre != 0">
@@ -84,6 +84,9 @@
 												</when>
 												<when test="movieType == 'new'">
 													AND m.movie_reg_date BETWEEN TRUNC(SYSDATE - 30) AND SYSDATE
+												</when>
+												<when test="movieType == 'wish'">
+													AND w.movie_id = m.movie_id AND w.email like #{email}
 												</when>
 											</choose>
 											<choose>

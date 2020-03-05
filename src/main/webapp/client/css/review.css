@@ -1,7 +1,4 @@
-html{
-	background: #ffffff;
-}
-body {
+html body{
 	background: #ffffff;
 }
 
@@ -19,10 +16,20 @@ p {
 	color: #080808;
 }
 
+.p{
+	font-size: 25px; 
+	margin-left: 5%;
+	color: black;
+}
+
 a {
 	font-size: 30px;
 	color: #080808;
 	cursor: pointer;
+}
+
+p > a{
+	cursor: default;
 }
 
 /* a:hover {
@@ -38,7 +45,13 @@ a {
 .page-body {
 	background-color: #ffffff;
 	margin-left: 10vw;
-}
+} 
+
+/* .page-body{
+	background-color: #fff;
+	width: 80vw; 
+	margin-left:10vw;
+} */
 
 .my-review {
 	width: 60vw;

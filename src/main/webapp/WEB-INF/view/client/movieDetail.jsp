@@ -6,6 +6,8 @@
 <c:set var="header_url" value="/WEB-INF/view/client/movieHeader.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <c:set var="reviewListLength" value="${fn:length(reviewList)}"></c:set>
+<c:set var="reviewLikeListLength" value="${fn:length(reviewLikeList)}"></c:set>
+<c:set var="wishListLength" value="${fn:length(wishList)}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -135,18 +137,11 @@
                                                 </span>
                                                 <span style="display: block; float: right; margin-top: 3px;">재생</span>
                                             </a>
-											<button class="css-1yj07nv-SubButton e1jklz6e5">
-												<span class="SVGInline css-rv7z9k-SubButtonIcon e1jklz6e4"><svg
-														class="SVGInline-svg css-rv7z9k-SubButtonIcon-svg"
-														width="24" height="24" viewBox="0 0 24 24">
-                                                        <g fill="#FFF"
-															fill-rule="evenodd">
-                                                            <path
-															d="M3 11h18v2.5H3z"></path>
-                                                            <path
-															d="M13.25 3v18h-2.5V3z"></path>
-                                                        </g>
-                                                    </svg></span>보고싶어요
+											<button class="css-1yj07nv-SubButton e1jklz6e5 wishBtn">
+												<span class="SVGInline css-rv7z9k-SubButtonIcon e1jklz6e4 ">
+												<i class="fas fa-plus" style="font-size:2vw;"></i>
+                                                 </span>
+                                                 <span class="wish-comment">보고싶어요</span>
 											</button>
 										</div>
 										<div class="css-cwlpx1-RatingContainer e1vsnrt69">
@@ -186,7 +181,7 @@
 
 				<!-- 리뷰 -->
 				<section class="review-section">
-					<div sclass="css-pv0i3j-CommentsContainer e17lrvw510">
+					<div class="css-pv0i3j-CommentsContainer e17lrvw510">
 						<form id="reviewForm" method="post" action="/updateReviewProc.do" onsubmit="return reviewCheck()">
 							<input type="hidden" name="movieId" value="${movie.movieId}" />
 							<input type="hidden" name="reviewId" value="${myReview.reviewId}"/>
@@ -293,7 +288,7 @@
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
 																	<button id="thumbs" class="like-button">
-																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i>
+																		<i id="${reviewList[i+1].reviewId}" class="fa-thumbs-up like-icon far"></i>
 																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
@@ -330,11 +325,63 @@
 	<script src="client/js/detail.js"></script>
 
 	<script>
+	
+	//reivewList, reviewLikeList, wishList JSON타입으로 변환
 	var reviewScore;
 	var reviewContent;
+	var reviewListLength = "${reviewListLength}";
+	var reviewLikeListLength = "${reviewLikeListLength}";
+	var wishListLength = "${wishListLength}";
 	
+	var reviewList = new Array();
+	<c:forEach items="${reviewList}" var="review">
+		var reviewListJson = new Object();
+		reviewListJson.reviewId = "${review.reviewId}";
+		reviewList.push(reviewListJson);
+	</c:forEach>
+	console.log("json : " + JSON.stringify(reviewList));
+	
+ 	var reviewLikeList = new Array();
+	<c:forEach items="${reviewLikeList}" var="reviewLike">
+		var reviewLikeListJson = new Object();
+		reviewLikeListJson.reviewId = "${reviewLike.reviewId}";
+		reviewLikeList.push(reviewLikeListJson);
+	</c:forEach> 
+	console.log("json : " + JSON.stringify(reviewLikeList));
+	
+ 	var wishList = new Array();
+	<c:forEach items="${wishList}" var="wish">
+		var wishListJson = new Object();
+		wishListJson.movieId = "${wish.movieId}";
+		wishList.push(wishListJson);
+	</c:forEach> 
+	console.log("json : " + JSON.stringify(wishList));
+	//-----------------------------------------------------
+
 	
 		$(document).ready(function() {
+			//session email이 좋아요 해놓은 리뷰 채워진 엄지로 세팅
+			 for (var i = 0; i < reviewListLength; i++){
+				for (var j = 0; j < reviewLikeListLength; j++){
+					if(reviewList[i].reviewId == reviewLikeList[j].reviewId){
+						$('#' + reviewList[i].reviewId).removeClass('far');
+						$('#' + reviewList[i].reviewId).addClass('fas');
+					}
+				}
+			}
+			
+			//session email이 보고싶어요 해놓은 영화면 체크아이콘으로 세팅
+			 for (var i = 0; i < wishListLength; i++){
+				 if (wishList[i].movieId == "${movie.movieId}"){
+					 $('.wishBtn').find('i').removeClass("fa-plus");
+					 $('.wishBtn').find('i').addClass("fa-check");
+					 $('.wish-comment').css('color','rgb(252, 66, 106)');
+					 $('.wish-comment').css('opacity','1');
+					 return false;
+				 }
+			 }
+			
+			
 			reviewScore = "${myReview.reviewScore}";
 			reviewContent = $('#myReview').val();
 			if (reviewScore != null && reviewScore != 0) {
@@ -347,7 +394,6 @@
 
 			$('.genre-span').addClass('after');
 			$('.genre-span:last').removeClass('after');
-			var reviewListLength = "${reviewListLength}";
 			var reviewCount = 0;
 			for (var i = 0; i < reviewListLength; i++) {
 				if ("${reviewList[i].reviewContent}" != null) {
@@ -356,8 +402,6 @@
 			}
 
 			var nextButtonClickableCount = Math.floor(reviewCount / 4);
-			alert(reviewListLength);
-			alert(reviewCount);
 			if (reviewCount % 4 == 0) {
 				nextButtonClickableCount--;
 			}
@@ -391,9 +435,12 @@
 		});
 
 		function reviewCheck() {
+			if(clicked <= 0) {
+				alert("별점을 등록해주세요!");
+				return false;
+			}
 			var content = $("#myReview").val();
 			if (content == null || content == "" || reviewScore == null) {
-				alert(content + reviewScore);
 				return false;
 			}
 
@@ -401,20 +448,23 @@
 			return true;
 
 		};
-
+		
+		
+		//별점주기
+		var clicked = 0;
 		$('.reviewScore').click(function() {
+			clicked++;
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 
 			var url;
 
 			if (reviewScore == null || reviewScore == 0) {
-				alert("0일때");
 				url = "/insertReviewProcAjax.do";
 			} else {
-				alert("0아닐때");
 				url = "/updateReviewProcAjax.do";
 			}
+			
 
 			reviewScore = $(this).prop('id');
 			var movieId = "${movie.movieId}";
@@ -426,6 +476,7 @@
 				"email" : email,
 				"reviewId" : reviewId
 			};
+
 			var result;
 			$.ajax({
 				type : 'POST',
@@ -434,12 +485,14 @@
 				async : false,
 				success : function(response) {
 					result = response.result;
+					
 
 				}
 			});
 
 		});
 
+		//리뷰삭제
 		function deleteCheck() {
 			var check = confirm("정말로 삭제하시겠습니까?");
 			if (check == true) {
@@ -455,7 +508,7 @@
 			}); */
 			
 			
-	 //엄지 아이콘 변경
+	 	//좋아요 - 엄지 아이콘 변경, 카운트 변경
 		$('.like-button').click(function() {
 		var url;
 			
@@ -463,10 +516,11 @@
 		
 		var reviewId = $(this).children('i').prop('id');
 		var likeCount = $(this).find('span').text();
-		alert(likeCount);
 		var reviewLikeEmail = "${member.email}"
+		var movieId = "${movie.movieId}"
 		var sendData = {
 				"reviewId" : reviewId,
+				"movieId" : movieId,
 				"likeCount" : likeCount,
 				"reviewLikeEmail" : reviewLikeEmail,
 			};
@@ -474,13 +528,16 @@
 		if(thumbs == 'fa-thumbs-up like-icon far'){
 			$(this).children('i').removeClass("far");
 			$(this).children('i').addClass("fas");
+			$(this).children('span').html(Number(likeCount)+1);
 			url = '/insertAndUpdateReviewLikeProc.do';
 
 		} else if(thumbs == 'fa-thumbs-up like-icon fas'){
 			$(this).children('i').removeClass("fas");
 			$(this).children('i').addClass("far");
+			$(this).children('span').html(Number(likeCount)-1);
 			url = '/deleteAndUpdateReviewLikeProc.do';
 		}
+		
 		
 		$.ajax({
 			type : 'POST',
@@ -488,13 +545,51 @@
 			data : sendData,
 			async : false,
 			success : function(response) {
-				result = response.result;
-				$(this).find('span').text(response.likeCount);
-
-			}
+						result = response.result;
+				}
 		});
 		
 	});
+			
+		//보고싶어요 버튼 클릭 이벤트	
+		$('.wishBtn').click(function() {
+			var url;
+			
+			var wish = $(this).find('i').prop('class')
+			var email = "${member.email}"
+			var movieId = "${movie.movieId}"
+			var sendData = {
+					"email" : email,
+					"movieId" : movieId
+				};
+			
+			if(wish == 'fas fa-plus'){
+				$(this).find('i').removeClass("fa-plus");
+				$(this).find('i').addClass("fa-check");
+				$('.wish-comment').css('color','rgb(252, 66, 106)');
+				$('.wish-comment').css('opacity','1');
+				url = '/insertWishProcAjax.do';
+
+			} else if(wish == 'fas fa-check'){
+				$(this).find('i').removeClass("fa-check");
+				$(this).find('i').addClass("fa-plus");
+				$('.wish-comment').css('color','rgb(255, 255, 255)');
+				$('.wish-comment').css('opacity','0.5');
+				url = '/deleteWishProcAjax.do';
+			}
+			
+			
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : sendData,
+				async : false,
+				success : function(response) {
+							result = response.result;
+					}
+			});
+		});
+		
 		
 	</script>
 

@@ -14,7 +14,7 @@
 
 <body>
 	<header class="header">
-		<a href="#"><img class="header-logo"
+		<a href="/homeProc.do"><img class="header-logo"
 			src="client/images/oneflix_logo.png" /></a>
 		<div class="menu-button"
 			style="float: right; width: 30px; font-size: 30px; cursor: pointer"
@@ -23,7 +23,7 @@
 
 	<div id="mySidenav" class="sidenav">
 		<div class="logo-container">
-			<a href="redirect:/homeProc.do"><img class="side-logo"
+			<a href="/homeProc.do"><img class="side-logo"
 				src="client/images/oneflix_logo.png" /></a>
 			<hr>
 		</div>
@@ -34,7 +34,7 @@
 		</div>
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="/mypageHome.do">홈</a> <a href="#">내 영화</a> <a href="/getReviewListProc.do">내 리뷰</a> <a
-			href="#">이용권</a> <a href="/getMemberProc.do">내 정보</a> <a href="/getInquiryListProc.do">내 문의</a> <a href="/deleteDefense.do">탈퇴하기</a> <a
+			href="/getPaymentListProc.do">이용권</a> <a href="/getMemberProc.do">내 정보</a> <a href="/getInquiryListProc.do">내 문의</a> <a href="/deleteDefense.do">탈퇴하기</a> <a
 			href="/logout.do">로그아웃</a>
 	</div>
 
