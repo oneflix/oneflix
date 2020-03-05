@@ -6,8 +6,30 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<context:component-scan
 		base-package="com.main.oneflix.actor.dao.impl,
-					com.main.oneflix.actor.service.impl">
+					com.main.oneflix.actor.service.impl,
+					com.main.oneflix.alarm.dao.impl,
+					com.main.oneflix.alarm.service.impl
+					">
 	</context:component-scan>
+	<!-- 잡  -->
+    <bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref= "insertAlarmService" />
+        <property name="targetMethod" value="insertAlarm" />
+        <property name="concurrent" value="false" />
+    </bean>
+
+    <!-- 트리거-->
+    <bean id="Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="testJob" />
+        <property name="cronExpression" value="0/5 * * * * ?" />
+    </bean>
+
+    <!-- 스케줄러 -->
+    <bean id="Scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list><ref bean="Trigger" /></list>
+        </property>
+    </bean>
 
 	
 	

@@ -88,6 +88,11 @@
 												<when test="movieType == 'wish'">
 													AND w.movie_id = m.movie_id AND w.email like #{email}
 												</when>
+												<when test="movieType == 'alarm'">
+													<![CDATA[
+														AND m.movie_reg_date >= TRUNC(SYSDATE - 1)
+													]]>
+												</when>
 											</choose>
 											<choose>
 												<when test="movieType == 'popular' or searchOrder == 'popular'">
