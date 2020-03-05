@@ -11,7 +11,7 @@
 		com.main.oneflix.movie.client.controller,
 		com.main.oneflix.util.kakao.login.controller,
 		com.main.oneflix.like.client.controller,
-		com.main.oneflix.ticket.client.controller">
+		com.main.oneflix.wish.client.controller">
 	</context:component-scan>
 
 </beans>

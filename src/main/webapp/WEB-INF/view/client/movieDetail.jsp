@@ -187,7 +187,7 @@
 
 				<!-- 리뷰 -->
 				<section class="review-section">
-					<div sclass="css-pv0i3j-CommentsContainer e17lrvw510">
+					<div class="css-pv0i3j-CommentsContainer e17lrvw510">
 						<form id="reviewForm" method="post" action="/updateReviewProc.do" onsubmit="return reviewCheck()">
 							<input type="hidden" name="movieId" value="${movie.movieId}" />
 							<input type="hidden" name="reviewId" value="${myReview.reviewId}"/>
@@ -331,6 +331,8 @@
 	<script src="client/js/detail.js"></script>
 
 	<script>
+	
+	//reivewList, reviewLikeList JSON타입으로 변환
 	var reviewScore;
 	var reviewContent;
 	var reviewListLength = "${reviewListLength}";
@@ -351,7 +353,7 @@
 		reviewLikeList.push(reviewLikeListJson);
 	</c:forEach> 
 	console.log("json : " + JSON.stringify(reviewLikeList));
-	
+	//-----------------------------------------------------
 
 	
 		$(document).ready(function() {
@@ -419,6 +421,10 @@
 		});
 
 		function reviewCheck() {
+			if(clicked <= 0) {
+				alert("별점을 등록해주세요!");
+				return false;
+			}
 			var content = $("#myReview").val();
 			if (content == null || content == "" || reviewScore == null) {
 				return false;
@@ -431,7 +437,9 @@
 		
 		
 		//별점주기
+		var clicked = 0;
 		$('.reviewScore').click(function() {
+			clicked++;
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 
@@ -442,6 +450,7 @@
 			} else {
 				url = "/updateReviewProcAjax.do";
 			}
+			
 
 			reviewScore = $(this).prop('id');
 			var movieId = "${movie.movieId}";
@@ -453,6 +462,7 @@
 				"email" : email,
 				"reviewId" : reviewId
 			};
+
 			var result;
 			$.ajax({
 				type : 'POST',

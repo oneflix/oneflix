@@ -14,7 +14,7 @@
 
 <body>
 	<header class="header">
-		<a href="#"><img class="header-logo"
+		<a href="/homeProc.do"><img class="header-logo"
 			src="client/images/oneflix_logo.png" /></a>
 		<div class="menu-button"
 			style="float: right; width: 30px; font-size: 30px; cursor: pointer"
@@ -23,7 +23,7 @@
 
 	<div id="mySidenav" class="sidenav">
 		<div class="logo-container">
-			<a href="redirect:/homeProc.do"><img class="side-logo"
+			<a href="/homeProc.do"><img class="side-logo"
 				src="client/images/oneflix_logo.png" /></a>
 			<hr>
 		</div>

@@ -24,7 +24,6 @@ import com.main.oneflix.review.vo.ReviewVO;
 import com.main.oneflix.watch.service.GetCountWatchGenreService;
 import com.main.oneflix.watch.service.GetCountWatchService;
 import com.main.oneflix.watch.vo.WatchVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class MypageHomeController {
@@ -40,6 +39,7 @@ public class MypageHomeController {
 		@Autowired
 		private GetGenreService getGenreService;
 		@Autowired
+
 		private GetGenreListService getGenreListService;
 
 		@RequestMapping("/mypageHome.do")
@@ -50,6 +50,7 @@ public class MypageHomeController {
 		//총 시청영화수 뽑기
 		vo.setEmail(email);
 		vo.setCountWatch(getCountWatchService.getCountWatch(vo));
+
 		//평균별점구하기
 		ReviewVO review = new ReviewVO();
 		review.setEmail(email);
