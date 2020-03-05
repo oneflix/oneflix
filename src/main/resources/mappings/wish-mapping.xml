@@ -6,12 +6,12 @@
 
 	<insert id="insertWish" parameterType="wish">
 		INSERT INTO wish (wish_id, movie_id, email)
-		VALUES((select nvl(max(wish_id), 0)+1 from wish),#{movieId},#{email})
+		VALUES((SELECT nvl(max(wish_id), 0)+1 FROM wish), #{movieId}, #{email})
 	</insert>
 
 	<delete id="deleteWish" parameterType="wish">
 		DELETE FROM wish 
-		WHERE wish_id = #{wishId}
+		WHERE movie_id = #{movieId} AND email = #{email}
 	</delete>
 
 </mapper>
