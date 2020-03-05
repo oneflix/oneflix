@@ -47,15 +47,25 @@ public class MypageHomeController {
 		MemberVO member = new MemberVO();
 		member = (MemberVO) session.getAttribute("member");
 		String email = member.getEmail();
+		String nick = member.getNick();
+		
 		//총 시청영화수 뽑기
 		vo.setEmail(email);
 		vo.setCountWatch(getCountWatchService.getCountWatch(vo));
+		
+		//제일 많이본 장르 구하기 
+		GenreVO genre = new GenreVO();
+		 List<GenreVO> genreList = getGenreListService.getGenreList(genre);
+		 Map<Integer, Integer> orderWatchGenreList = 
+		 getCountWatchGenreService.getCountWatchGenre(vo, genreList);
 
 		//평균별점구하기
 		ReviewVO review = new ReviewVO();
 		review.setEmail(email);
 		double averageScore = getReviewService.getAverageScore(review);
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
+		
+		mav.addObject("nick", nick);
 		mav.addObject("averageScore", averageScore);
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("watch", vo);
@@ -95,9 +105,7 @@ public class MypageHomeController {
 		     //key: genreId value: watchCount
 			 Iterator<Map.Entry<Integer, Integer>> entries = orderWatchGenreList.entrySet().iterator();
 			 while (entries.hasNext()) {
-			    Map.Entry<Integer, Integer> entry = entries.next();
-			    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-			    
+			    Map.Entry<Integer, Integer> entry = entries.next();			    
 			    genre.setGenreId(entry.getKey());
 			    String genreName = getGenreService.getGenreName(genre);
 			    
@@ -121,7 +129,6 @@ public class MypageHomeController {
 			 data.put("cols", arrayCols);
 			 data.put("rows", arrayRows);
 
-			 System.out.println("jsonData"+data);
 			 return data;
 		}
 }
