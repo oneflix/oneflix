@@ -25,7 +25,7 @@ import com.main.oneflix.movie.service.GetMovieService;
 import com.main.oneflix.movie.service.InsertMovieService;
 import com.main.oneflix.movie.service.UpdateMovieService;
 import com.main.oneflix.movie.vo.MovieVO;
-import com.main.oneflix.util.fileupload.service.SingleFileuploadService;
+import com.main.oneflix.util.fileupload.service.MovieFileuploadService;
 import com.main.onflix.util.datatable.vo.WrapperVO;
 
 @Controller
@@ -56,7 +56,7 @@ public class MovieController {
 	private GetGenreListService getGenreListService;
 
 	@Autowired
-	private SingleFileuploadService singleFileuploadService;
+	private MovieFileuploadService movieFileuploadService;
 
 	@RequestMapping("/movieList.mdo")
 	public ModelAndView movieList(ModelAndView mav) {
@@ -100,7 +100,7 @@ public class MovieController {
 		fileList.add(vo.getTeaserVideo());
 		fileList.add(vo.getFullVideo());
 
-		Properties filePath = singleFileuploadService.uploadSingleFile(fileList, path);
+		Properties filePath = movieFileuploadService.movieFileupload(fileList, path);
 
 		vo.setPosterPath(filePath.getProperty("posterPath"));
 		vo.setTeaserVideoPath(filePath.getProperty("teaserVideoPath"));
@@ -143,7 +143,7 @@ public class MovieController {
 			fileList.add(vo.getFullVideo());
 		}
 
-		Properties filePath = singleFileuploadService.uploadSingleFile(fileList, path);
+		Properties filePath = movieFileuploadService.movieFileupload(fileList, path);
 		
 		if (filePath.getProperty("posterPath") != null) {
 			vo.setPosterPath(filePath.getProperty("posterPath"));
