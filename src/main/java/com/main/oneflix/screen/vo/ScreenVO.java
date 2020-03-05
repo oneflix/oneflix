@@ -2,38 +2,38 @@ package com.main.oneflix.screen.vo;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ScreenVO {
-	
-	private int screenId;
-	private String screenPageType;
+
+	private Integer screenId;
+	private String screenType;
 	private int screenOrder;
 	private String screenImgPath;
 	private String screenTitle;
 	private String screenSubtitle;
-	private List<MultipartFile> oneflixScreenImgFile;
-	private List<String> oneflixScreenTitle;
-	private List<String> oneflixScreenSubtitle;
-	private List<MultipartFile> deleteDefenseScreenImgFile;
-	private List<String> deleteDefenseScreenTitle;
-	private List<String> deleteDefenseScreenSubtitle;
 
-	public int getScreenId() {
+	private List<Integer> screenIdList;
+	private List<MultipartFile> screenImgFileList;
+	private List<String> screenImgPathList;
+	private List<String> screenTitleList;
+	private List<String> screenSubtitleList;
+	private List<String> screenStatusList;
+
+	public Integer getScreenId() {
 		return screenId;
 	}
 
-	public void setScreenId(int screenId) {
+	public void setScreenId(Integer screenId) {
 		this.screenId = screenId;
 	}
 
-	public String getScreenPageType() {
-		return screenPageType;
+	public String getScreenType() {
+		return screenType;
 	}
 
-	public void setScreenPageType(String screenPageType) {
-		this.screenPageType = screenPageType;
+	public void setScreenType(String screenType) {
+		this.screenType = screenType;
 	}
 
 	public int getScreenOrder() {
@@ -68,52 +68,52 @@ public class ScreenVO {
 		this.screenSubtitle = screenSubtitle;
 	}
 
-	public List<MultipartFile> getOneflixScreenImgFile() {
-		return oneflixScreenImgFile;
+	public List<Integer> getScreenIdList() {
+		return screenIdList;
 	}
 
-	public void setOneflixScreenImgFile(List<MultipartFile> oneflixScreenImgFile) {
-		this.oneflixScreenImgFile = oneflixScreenImgFile;
+	public void setScreenIdList(List<Integer> screenIdList) {
+		this.screenIdList = screenIdList;
 	}
 
-	public List<String> getOneflixScreenTitle() {
-		return oneflixScreenTitle;
+	public List<MultipartFile> getScreenImgFileList() {
+		return screenImgFileList;
 	}
 
-	public void setOneflixScreenTitle(List<String> oneflixScreenTitle) {
-		this.oneflixScreenTitle = oneflixScreenTitle;
+	public void setScreenImgFileList(List<MultipartFile> screenImgFileList) {
+		this.screenImgFileList = screenImgFileList;
 	}
 
-	public List<String> getOneflixScreenSubtitle() {
-		return oneflixScreenSubtitle;
+	public List<String> getScreenImgPathList() {
+		return screenImgPathList;
 	}
 
-	public void setOneflixScreenSubtitle(List<String> oneflixScreenSubtitle) {
-		this.oneflixScreenSubtitle = oneflixScreenSubtitle;
+	public void setScreenImgPathList(List<String> screenImgPathList) {
+		this.screenImgPathList = screenImgPathList;
 	}
 
-	public List<MultipartFile> getDeleteDefenseScreenImgFile() {
-		return deleteDefenseScreenImgFile;
+	public List<String> getScreenTitleList() {
+		return screenTitleList;
 	}
 
-	public void setDeleteDefenseScreenImgFile(List<MultipartFile> deleteDefenseScreenImgFile) {
-		this.deleteDefenseScreenImgFile = deleteDefenseScreenImgFile;
+	public void setScreenTitleList(List<String> screenTitleList) {
+		this.screenTitleList = screenTitleList;
 	}
 
-	public List<String> getDeleteDefenseScreenTitle() {
-		return deleteDefenseScreenTitle;
+	public List<String> getScreenSubtitleList() {
+		return screenSubtitleList;
 	}
 
-	public void setDeleteDefenseScreenTitle(List<String> deleteDefenseScreenTitle) {
-		this.deleteDefenseScreenTitle = deleteDefenseScreenTitle;
+	public void setScreenSubtitleList(List<String> screenSubtitleList) {
+		this.screenSubtitleList = screenSubtitleList;
 	}
 
-	public List<String> getDeleteDefenseScreenSubtitle() {
-		return deleteDefenseScreenSubtitle;
+	public List<String> getScreenStatusList() {
+		return screenStatusList;
 	}
 
-	public void setDeleteDefenseScreenSubtitle(List<String> deleteDefenseScreenSubtitle) {
-		this.deleteDefenseScreenSubtitle = deleteDefenseScreenSubtitle;
+	public void setScreenStatusList(List<String> screenStatusList) {
+		this.screenStatusList = screenStatusList;
 	}
 
 }

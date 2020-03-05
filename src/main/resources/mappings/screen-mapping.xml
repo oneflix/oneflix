@@ -4,28 +4,37 @@
 
 <mapper namespace="ScreenDAO">
 
-	<insert id="insertScreen" parameterType="screen">
-		INSERT INTO screen (screen_id, screen_page_type, screen_order, screen_img_path, screen_title, screen_subtitle)
-		VALUES(#{screenId, jdbcType=NUMERIC}, #{screenPageType, jdbcType=CHAR}, #{screenOrder, jdbcType=NUMERIC},
-				#{screenImgPath, jdbcType=VARCHAR}, #{screenTitle, jdbcType=VARCHAR}, #{screenSubtitle, jdbcType=VARCHAR},)
+	<insert id="insertScreen" parameterType="java.util.HashMap">
+		<foreach collection="newScreenList" item="screen" open="DECLARE BEGIN" close="; END;" separator=";">
+			INSERT INTO screen
+			VALUES((SELECT NVL(MAX(screen_id), 0) + 1 FROM screen),
+					#{screen.screenType}, #{screen.screenImgPath}, #{screen.screenTitle}, #{screen.screenSubtitle}
+					)
+		</foreach>
 	</insert>
 
-	<update id="updateScreen" parameterType="screen">
-		UPDATE screen SET screen_page_type=#{screenPageType, jdbcType=CHAR}, screen_order=#{screenOrder, jdbcType=NUMERIC},
-			screen_img_path=#{screenImgPath, jdbcType=VARCHAR}, screen_title=#{screenTitle, jdbcType=VARCHAR},
-			screen_subtitle=#{screenSubtitle, jdbcType=VARCHAR}
-		WHERE screen_id=#{screenId, jdbcType=NUMERIC}
+	<update id="updateScreen" parameterType="java.util.HashMap">
+		<foreach collection="newScreenList" item="screen" open="DECLARE BEGIN" close="; END;" separator=";">
+			UPDATE screen 
+			SET screen_title = #{screen.screenTitle}, screen_subtitle = #{screen.screenSubtitle} 
+				<if test="screen.screenImgPath != null">
+					, screen_img_path = #{screen.screenImgPath}
+				</if>
+			WHERE screen_id = #{screen.screenId}
+		</foreach>
 	</update>
 
 	<delete id="deleteScreen" parameterType="screen">
 		DELETE FROM screen 
-		WHERE screen_id=#{screenId, jdbcType=NUMERIC}
+		WHERE screen_type = #{screenType} AND
+		<foreach collection="screenIdList" item="screenId" open="(" close=")" separator="AND">
+			screen_id != #{screenId}
+		</foreach>
 	</delete>
 	
 	<resultMap type="screen" id="screenList">
 		<id property="screenId" column="screen_id"/>
-		<result property="screenPageType" column="screen_page_type"/>
-		<result property="screenOrder" column="screen_order"/>
+		<result property="screenType" column="screen_type"/>
 		<result property="screenImgPath" column="screen_img_path"/>
 		<result property="screenTitle" column="screen_title"/>
 		<result property="screenSubtitle" column="screen_subtitle"/>
@@ -33,14 +42,9 @@
 	
 	<select id="getScreenList" parameterType="screen" resultMap="screenList">
 		SELECT * FROM screen WHERE 1=1
-		<choose>
-			<when test='screenPageType.equals("o")'>
-				AND screen_page_type='o'
-			</when>
-			<when test='screenPageType.equals("d")'>
-				AND screen_page_type='d'
-			</when>
-		</choose>
-		ORDER BY screen_order ASC
+		<if test="screenType != null and screenType != ''">
+			AND screen_type like #{screenType}
+		</if>
+		ORDER BY screen_id
 	</select>
 </mapper>
