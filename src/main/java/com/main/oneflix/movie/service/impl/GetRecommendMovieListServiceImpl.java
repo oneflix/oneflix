@@ -26,12 +26,12 @@ public class GetRecommendMovieListServiceImpl implements GetRecommendMovieListSe
 	private WatchDAO watchDAO;
 	
 	@Override
-	public List<MovieVO> getRecommendMovieList(MovieVO vo, String email, List<GenreVO> genreList) {
+	public List<MovieVO> getRecommendMovieList(MovieVO vo, List<GenreVO> genreList) {
 		List<MovieVO> recommendMovieList = new ArrayList<MovieVO>();
 		
 		Map<Integer, Integer> unorderWatchGenreList = new HashMap<Integer, Integer>();
 		WatchVO watch = new WatchVO();
-		watch.setEmail(email);
+		watch.setEmail(vo.getEmail());
 		for (GenreVO genre : genreList) {
 			Integer genreId = genre.getGenreId();
 			 

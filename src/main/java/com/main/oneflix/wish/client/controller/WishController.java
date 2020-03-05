@@ -1,14 +1,10 @@
 package com.main.oneflix.wish.client.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.wish.service.DeleteWishService;
-import com.main.oneflix.wish.service.GetWishListService;
 import com.main.oneflix.wish.service.InsertWishService;
 import com.main.oneflix.wish.vo.WishVO;
 
@@ -19,8 +15,6 @@ public class WishController {
 	private InsertWishService insertWishService;
 	@Autowired
 	private DeleteWishService deleteWishServicel;
-	@Autowired
-	private GetWishListService getWishListService;
 	
 	@RequestMapping("/insertWishProcAjax.do")
 	public void insertWish(WishVO vo) {
@@ -30,12 +24,6 @@ public class WishController {
 	@RequestMapping("/deleteWishProcAjax.do")
 	public void deleteWish(WishVO vo) {
 		deleteWishServicel.deleteWish(vo);
-	}
-	
-	@RequestMapping("/getWishListProc.do")
-	public ModelAndView getWishList(WishVO vo, ModelAndView mav){
-		getWishListService.getWishList(vo);
-		return mav;
 	}
 
 }

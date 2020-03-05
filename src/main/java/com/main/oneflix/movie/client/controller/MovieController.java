@@ -24,6 +24,7 @@ import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
 import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.vo.TicketVO;
+import com.main.oneflix.wish.vo.WishVO;
 
 @Controller
 public class MovieController {
@@ -61,6 +62,9 @@ public class MovieController {
 		reviewLikeVO.setMovieId(vo.getMovieId());
 		reviewLikeVO.setReviewLikeEmail(member.getEmail());
 		List<ReviewLikeVO> reviewLikeList = getReviewLikeService.getReviewLikeList(reviewLikeVO);
+		vo.setEmail(member.getEmail());
+		vo.setMovieType("wish");
+		List<MovieVO> wishList = getMovieListService.getMovieList(vo);
 
 		for(ReviewLikeVO reviewLike : reviewLikeList) {
 			System.out.println("=========================================");
@@ -73,6 +77,7 @@ public class MovieController {
 		
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("reviewLikeList", reviewLikeList);
+		mav.addObject("wishList", wishList);
 		mav.addObject("myReview", myReview);
 		mav.addObject("movie", vo);
 		mav.setViewName("movieDetail");
@@ -85,12 +90,13 @@ public class MovieController {
 		vo.setStart(1);
 		vo.setEnd(20);
 		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		vo.setEmail(member.getEmail());
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
 		List<MovieVO> movieList;
 		if (vo.getSearchOrder().equals("recommend")) {
-			MemberVO member = (MemberVO)session.getAttribute("member");
-			movieList = getRecommedMovieListService.getRecommendMovieList(vo, member.getEmail(), genreList);
+			movieList = getRecommedMovieListService.getRecommendMovieList(vo, genreList);
 		} else {
 			movieList = getMovieListService.getMovieList(vo);
 		}
@@ -101,6 +107,7 @@ public class MovieController {
 		mav.addObject("movieList", movieList);
 		mav.addObject("genreList", genreList);
 		mav.addObject("ticketList", ticketList);
+		mav.addObject("member", member);
 		mav.setViewName("movieList");
 		return mav;
 	}

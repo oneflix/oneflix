@@ -45,7 +45,24 @@
 	                <i class="fas fa-angle-double-up"></i> TOP
 	            </button>
 	            <div class="select-container">
-	                <p>보고싶은 작품을 찾아보세요</p>
+	                <c:choose>
+	                <c:when test="${movieType eq 'wish' }">
+	                	<p>${member.nick }님이 보고싶어요한 작품</p>
+	                </c:when>
+	                <c:when test="${movieType eq 'new' }">
+	                	<p>새로 올라온 작품</p>
+	                </c:when>
+	                <c:when test="${movieType eq 'popular' }">
+	                	<p>원플릭스 최고 인기작</p>
+	                </c:when>
+	                <c:when test="${movieType eq 'watching' }">
+	                	<p>이어보기</p>
+	                </c:when>
+	                <c:when test="${searchOrder eq 'recommend'}">
+	                	<p>${member.nick }님을 위한 추천 작품</p>
+	                </c:when>
+	                <c:otherwise>
+	                	<p>보고싶은 작품을 찾아보세요</p>
 	                <div>
 	                    <select name="searchGenre" id="searchGenre">
 	                        <option value="0" selected>전체 장르</option>
@@ -59,6 +76,8 @@
 	                        <option value="recommend">추천 순</option>
 	                    </select>
 	                </div>
+	                </c:otherwise>
+	            </c:choose>
 	            </div>
 	        </section>
 	        <!-- 검색 결과가 없을 시 -->

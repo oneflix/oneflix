@@ -53,6 +53,7 @@ public class MovieVO {
 	private String searchOrder;
 	private int start;
 	private int end;
+	private String email;
 
 	public int getRnum() {
 		return rnum;
@@ -420,6 +421,14 @@ public class MovieVO {
 
 	public void setEnd(int end) {
 		this.end = end;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
