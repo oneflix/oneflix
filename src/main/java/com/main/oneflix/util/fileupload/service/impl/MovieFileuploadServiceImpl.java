@@ -10,24 +10,17 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.main.oneflix.util.fileupload.service.SingleFileuploadService;
+import com.main.oneflix.util.fileupload.service.MovieFileuploadService;
 
 @Service
-public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
+public class MovieFileuploadServiceImpl implements MovieFileuploadService {
 
 	@Override
-	public Properties uploadSingleFile(List<MultipartFile> fileList, String realPath) {
+	public Properties movieFileupload(List<MultipartFile> fileList, String realPath) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM");
 		String date = dateFormat.format(System.currentTimeMillis());
 		String uuid = "";
 		File tmpFile = null;
-		do {
-			StringBuilder tmpPath = new StringBuilder("resources");
-			uuid = UUID.randomUUID().toString();
-			uuid = uuid.split("-")[0];
-			tmpPath.append("/poster/" + date + "/" + uuid + ".png");
-			tmpFile = new File(realPath + tmpPath.toString());
-		} while(tmpFile.exists());
 
 		Properties filePath = new Properties();
 		for (MultipartFile file : fileList) {
@@ -35,6 +28,14 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 			String fileName = uuid;
 
 			if (file.getName().equals("poster")) {
+				do {
+					StringBuilder tmpPath = new StringBuilder("resources");
+					uuid = UUID.randomUUID().toString();
+					uuid = uuid.split("-")[0];
+					tmpPath.append("/poster/" + date + "/" + uuid + ".png");
+					tmpFile = new File(realPath + tmpPath.toString());
+				} while(tmpFile.exists());
+				
 				uploadPath.append("/poster/" + date);
 				fileName += ".png";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
@@ -48,6 +49,14 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 				filePath.put("posterPath", uploadPath.toString() + "/" + fileName);
 				
 			} else if (file.getName().equals("teaserVideo")) {
+				do {
+					StringBuilder tmpPath = new StringBuilder("resources");
+					uuid = UUID.randomUUID().toString();
+					uuid = uuid.split("-")[0];
+					tmpPath.append("/teaserVideo/" + date + "/" + uuid + ".mp4");
+					tmpFile = new File(realPath + tmpPath.toString());
+				} while(tmpFile.exists());
+				
 				uploadPath.append("/teaserVideo/" + date);
 				fileName += ".mp4";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
@@ -61,6 +70,14 @@ public class SingleFileupLoadServiceImpl implements SingleFileuploadService {
 				filePath.put("teaserVideoPath", uploadPath.toString() + "/" + fileName);
 				
 			} else if (file.getName().equals("fullVideo")) {
+				do {
+					StringBuilder tmpPath = new StringBuilder("resources");
+					uuid = UUID.randomUUID().toString();
+					uuid = uuid.split("-")[0];
+					tmpPath.append("/fullVideo/" + date + "/" + uuid + ".mp4");
+					tmpFile = new File(realPath + tmpPath.toString());
+				} while(tmpFile.exists());
+				
 				uploadPath.append("/fullVideo/" + date);
 				fileName += ".mp4";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
