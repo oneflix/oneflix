@@ -10,7 +10,8 @@
 			com.main.oneflix.movie.dao.impl, com.main.oneflix.movie.service.impl,
 			com.main.oneflix.review.dao.impl, com.main.oneflix.review.service.impl,
 			com.main.oneflix.util.kakao.login.service.impl, com.main.oneflix.like.dao.impl,
-			com.main.oneflix.like.service.impl">
+			com.main.oneflix.like.service.impl, com.main.oneflix.wish.dao.impl,
+			com.main.oneflix.wish.service.impl">
 	</context:component-scan>
 
 </beans>

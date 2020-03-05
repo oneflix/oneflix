@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<typeAlias type="com.main.oneflix.review.vo.ReviewVO" alias="review"/>
 		<typeAlias type="com.main.oneflix.like.vo.ReviewLikeVO" alias="reviewLike"/>
 		<typeAlias type="com.main.oneflix.watch.vo.WatchVO" alias="watch"/>
+		<typeAlias type="com.main.oneflix.wish.vo.WishVO" alias="wish"/>
 	</typeAliases>
 	
 	<mappers>
@@ -39,5 +40,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<mapper resource="mappings/review-mapping.xml"/>
 		<mapper resource="mappings/reviewLike-mapping.xml"/>
 		<mapper resource="mappings/watch-mapping.xml"/>
+		<mapper resource="mappings/wish-mapping.xml"/>
 	</mappers>
 </configuration>
