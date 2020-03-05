@@ -7,6 +7,7 @@
 <c:set var="footer_url" value="/WEB-INF/view/client/movieFooter.jsp"></c:set>
 <c:set var="reviewListLength" value="${fn:length(reviewList)}"></c:set>
 <c:set var="reviewLikeListLength" value="${fn:length(reviewLikeList)}"></c:set>
+<c:set var="wishListLength" value="${fn:length(wishList)}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -136,18 +137,11 @@
                                                 </span>
                                                 <span style="display: block; float: right; margin-top: 3px;">재생</span>
                                             </a>
-											<button class="css-1yj07nv-SubButton e1jklz6e5">
-												<span class="SVGInline css-rv7z9k-SubButtonIcon e1jklz6e4"><svg
-														class="SVGInline-svg css-rv7z9k-SubButtonIcon-svg"
-														width="24" height="24" viewBox="0 0 24 24">
-                                                        <g fill="#FFF"
-															fill-rule="evenodd">
-                                                            <path
-															d="M3 11h18v2.5H3z"></path>
-                                                            <path
-															d="M13.25 3v18h-2.5V3z"></path>
-                                                        </g>
-                                                    </svg></span>보고싶어요
+											<button class="css-1yj07nv-SubButton e1jklz6e5 wishBtn">
+												<span class="SVGInline css-rv7z9k-SubButtonIcon e1jklz6e4 ">
+												<i class="fas fa-plus" style="font-size:2vw;"></i>
+                                                 </span>
+                                                 <span class="wish-comment">보고싶어요</span>
 											</button>
 										</div>
 										<div class="css-cwlpx1-RatingContainer e1vsnrt69">
@@ -332,11 +326,12 @@
 
 	<script>
 	
-	//reivewList, reviewLikeList JSON타입으로 변환
+	//reivewList, reviewLikeList, wishList JSON타입으로 변환
 	var reviewScore;
 	var reviewContent;
 	var reviewListLength = "${reviewListLength}";
 	var reviewLikeListLength = "${reviewLikeListLength}";
+	var wishListLength = "${wishListLength}";
 	
 	var reviewList = new Array();
 	<c:forEach items="${reviewList}" var="review">
@@ -353,6 +348,14 @@
 		reviewLikeList.push(reviewLikeListJson);
 	</c:forEach> 
 	console.log("json : " + JSON.stringify(reviewLikeList));
+	
+ 	var wishList = new Array();
+	<c:forEach items="${wishList}" var="wish">
+		var wishListJson = new Object();
+		wishListJson.movieId = "${wish.movieId}";
+		wishList.push(wishListJson);
+	</c:forEach> 
+	console.log("json : " + JSON.stringify(wishList));
 	//-----------------------------------------------------
 
 	
@@ -366,6 +369,17 @@
 					}
 				}
 			}
+			
+			//session email이 보고싶어요 해놓은 영화면 체크아이콘으로 세팅
+			 for (var i = 0; i < wishListLength; i++){
+				 if (wishList[i].movieId == "${movie.movieId}"){
+					 $('.wishBtn').find('i').removeClass("fa-plus");
+					 $('.wishBtn').find('i').addClass("fa-check");
+					 $('.wish-comment').css('color','rgb(252, 66, 106)');
+					 $('.wish-comment').css('opacity','1');
+					 return false;
+				 }
+			 }
 			
 			
 			reviewScore = "${myReview.reviewScore}";
@@ -536,6 +550,46 @@
 		});
 		
 	});
+			
+		//보고싶어요 버튼 클릭 이벤트	
+		$('.wishBtn').click(function() {
+			var url;
+			
+			var wish = $(this).find('i').prop('class')
+			var email = "${member.email}"
+			var movieId = "${movie.movieId}"
+			var sendData = {
+					"email" : email,
+					"movieId" : movieId
+				};
+			
+			if(wish == 'fas fa-plus'){
+				$(this).find('i').removeClass("fa-plus");
+				$(this).find('i').addClass("fa-check");
+				$('.wish-comment').css('color','rgb(252, 66, 106)');
+				$('.wish-comment').css('opacity','1');
+				url = '/insertWishProcAjax.do';
+
+			} else if(wish == 'fas fa-check'){
+				$(this).find('i').removeClass("fa-check");
+				$(this).find('i').addClass("fa-plus");
+				$('.wish-comment').css('color','rgb(255, 255, 255)');
+				$('.wish-comment').css('opacity','0.5');
+				url = '/deleteWishProcAjax.do';
+			}
+			
+			
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : sendData,
+				async : false,
+				success : function(response) {
+							result = response.result;
+					}
+			});
+		});
+		
 		
 	</script>
 

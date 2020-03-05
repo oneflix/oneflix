@@ -36,7 +36,7 @@ var nick;
             }
                 
         	sentence.append(nick);
-            
+
             var options = {
                 slices: { 0: { color: '#9D8189' }, 1: { color: '#55828B' } },
                 responsive: true,
@@ -82,6 +82,7 @@ var nick;
 //
 //    	
 //    }
+
 
 //슬라이더
         const createReviewSwiper = function(slideCount) {

@@ -58,7 +58,6 @@ public class MypageHomeController {
 		 List<GenreVO> genreList = getGenreListService.getGenreList(genre);
 		 Map<Integer, Integer> orderWatchGenreList = 
 		 getCountWatchGenreService.getCountWatchGenre(vo, genreList);
-		
 
 		//평균별점구하기
 		ReviewVO review = new ReviewVO();
@@ -106,11 +105,7 @@ public class MypageHomeController {
 		     //key: genreId value: watchCount
 			 Iterator<Map.Entry<Integer, Integer>> entries = orderWatchGenreList.entrySet().iterator();
 			 while (entries.hasNext()) {
-			    Map.Entry<Integer, Integer> entry = entries.next();
-			    int maxKey=entry.getKey().MAX_VALUE;
-			    genre.setGenreId(maxKey);
-			    String maxGenreName = getGenreService.getGenreName(genre);
-			    
+			    Map.Entry<Integer, Integer> entry = entries.next();			    
 			    genre.setGenreId(entry.getKey());
 			    String genreName = getGenreService.getGenreName(genre);
 			    
@@ -133,6 +128,7 @@ public class MypageHomeController {
 			    }
 			 data.put("cols", arrayCols);
 			 data.put("rows", arrayRows);
+
 			 return data;
 		}
 }

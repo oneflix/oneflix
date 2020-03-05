@@ -7,5 +7,5 @@ import com.main.oneflix.movie.vo.MovieVO;
 
 public interface GetRecommendMovieListService {
 
-	List<MovieVO> getRecommendMovieList(MovieVO vo, String email, List<GenreVO> genreList);
+	List<MovieVO> getRecommendMovieList(MovieVO vo, List<GenreVO> genreList);
 }
