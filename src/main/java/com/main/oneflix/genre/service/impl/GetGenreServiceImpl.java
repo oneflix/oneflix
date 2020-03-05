@@ -18,10 +18,5 @@ public class GetGenreServiceImpl implements GetGenreService {
 		return genreDAO.getGenre(vo);
 
 	}
-	@Override
-	public String getGenreName(GenreVO vo) {
-		return genreDAO.getGenreName(vo);
-		
-	}
 
 }

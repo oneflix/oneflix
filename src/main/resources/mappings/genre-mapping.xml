@@ -26,11 +26,6 @@
 		SELECT *
 		FROM genre WHERE genre_id = #{genreId}
 	</select>
-	
-	<select id="getGenreName" parameterType="genre" resultType="String">
-		SELECT genre
-		FROM genre WHERE genre_id = #{genreId}
-	</select>
 
 	<resultMap type="genre" id="genreList">
 		<id property="genreId" column="genre_id" />
