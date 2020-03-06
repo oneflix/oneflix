@@ -148,11 +148,23 @@
 											<span class="css-14sesuo-RatingText e1vsnrt610">이미 본
 												작품인가요?</span>
 											<div class="e1vsnrt64 css-1cp7z2d-Self-StarRating e1a0u7o30">
-												<div class="css-pjw7sn-StarsContainer eee1">
+											<div class="starRev">
+												<span id="0.5" class="starR1 reviewScore"></span> 
+												<span id="1.0" class="starR2 reviewScore"></span>
+												<span id="1.5" class="starR1 reviewScore"></span> 
+												<span id="2.0" class="starR2 reviewScore"></span>
+												<span id="2.5" class="starR1 reviewScore"></span> 
+												<span id="3.0" class="starR2 reviewScore"></span>
+												<span id="3.5" class="starR1 reviewScore"></span> 
+												<span id="4.0" class="starR2 reviewScore"></span>
+												<span id="4.5" class="starR1 reviewScore"></span> 
+												<span id="5.0" class="starR2 reviewScore"></span>
+											</div>
+												<!-- <div class="css-pjw7sn-StarsContainer eee1">
 													<div style="color: rgb(255, 255, 255);">☆☆☆☆☆</div>
 													<div class="css-1g8zxed-ActiveStars eee2"
 														style="color: rgb(255, 255, 255); width: 0%;">★★★★★</div>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
@@ -381,13 +393,36 @@
 				 }
 			 }
 			
-			
+			//session email이 준 별점,리뷰 세팅
 			reviewScore = "${myReview.reviewScore}";
 			reviewContent = $('#myReview').val();
 			if (reviewScore != null && reviewScore != 0) {
 				var star = document.getElementById(reviewScore);
 				$(star).addClass('on').prevAll('span').addClass('on');
 			}
+			
+			if($(star).prop('id') == '0.5'){
+				$('.e1vsnrt610').text('최악이에요!');
+			}else if($(star).prop('id') == '1.0'){
+				$('.e1vsnrt610').text('싫어요');
+			}else if($(star).prop('id') == '1.5'){
+				$('.e1vsnrt610').text('재미없어요');
+			}else if($(star).prop('id') == '2.0'){
+				$('.e1vsnrt610').text('별로예요');
+			}else if($(star).prop('id') == '2.5'){
+				$('.e1vsnrt610').text('부족해요');
+			}else if($(star).prop('id') == '3.0'){
+				$('.e1vsnrt610').text('보통이에요');
+			}else if($(star).prop('id') == '3.5'){
+				$('.e1vsnrt610').text('볼만해요');
+			}else if($(star).prop('id') == '4.0'){
+				$('.e1vsnrt610').text('재미있어요');
+			}else if($(star).prop('id') == '4.5'){
+				$('.e1vsnrt610').text('훌륭해요');
+			}else if($(star).prop('id') == '5.0'){
+				$('.e1vsnrt610').text('최고예요!');
+			}
+			//--------------------------------
 
 			$('.actorName-span').addClass('after');
 			$('.actorName-span:last').removeClass('after');
@@ -452,10 +487,32 @@
 		
 		//별점주기
 		var clicked = 0;
-		$('.reviewScore').click(function() {
+		$('.reviewScore').on("click",(function() {
 			clicked++;
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
+			
+			if($(this).prop('id') == '0.5'){
+				$('.e1vsnrt610').text('최악이에요!');
+			}else if($(this).prop('id') == '1.0'){
+				$('.e1vsnrt610').text('싫어요');
+			}else if($(this).prop('id') == '1.5'){
+				$('.e1vsnrt610').text('재미없어요');
+			}else if($(this).prop('id') == '2.0'){
+				$('.e1vsnrt610').text('별로예요');
+			}else if($(this).prop('id') == '2.5'){
+				$('.e1vsnrt610').text('부족해요');
+			}else if($(this).prop('id') == '3.0'){
+				$('.e1vsnrt610').text('보통이에요');
+			}else if($(this).prop('id') == '3.5'){
+				$('.e1vsnrt610').text('볼만해요');
+			}else if($(this).prop('id') == '4.0'){
+				$('.e1vsnrt610').text('재미있어요');
+			}else if($(this).prop('id') == '4.5'){
+				$('.e1vsnrt610').text('훌륭해요');
+			}else if($(this).prop('id') == '5.0'){
+				$('.e1vsnrt610').text('최고예요!');
+			}
 
 			var url;
 
@@ -490,7 +547,7 @@
 				}
 			});
 
-		});
+		}));
 
 		//리뷰삭제
 		function deleteCheck() {
