@@ -25,7 +25,6 @@ public class MovieFileuploadServiceImpl implements MovieFileuploadService {
 		Properties filePath = new Properties();
 		for (MultipartFile file : fileList) {
 			StringBuilder uploadPath = new StringBuilder("resources");
-			String fileName = uuid;
 
 			if (file.getName().equals("poster")) {
 				do {
@@ -36,6 +35,7 @@ public class MovieFileuploadServiceImpl implements MovieFileuploadService {
 					tmpFile = new File(realPath + tmpPath.toString());
 				} while(tmpFile.exists());
 				
+				String fileName = uuid;
 				uploadPath.append("/poster/" + date);
 				fileName += ".png";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
@@ -57,6 +57,7 @@ public class MovieFileuploadServiceImpl implements MovieFileuploadService {
 					tmpFile = new File(realPath + tmpPath.toString());
 				} while(tmpFile.exists());
 				
+				String fileName = uuid;
 				uploadPath.append("/teaserVideo/" + date);
 				fileName += ".mp4";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
@@ -78,6 +79,7 @@ public class MovieFileuploadServiceImpl implements MovieFileuploadService {
 					tmpFile = new File(realPath + tmpPath.toString());
 				} while(tmpFile.exists());
 				
+				String fileName = uuid;
 				uploadPath.append("/fullVideo/" + date);
 				fileName += ".mp4";
 				File uploadFile = new File(realPath + uploadPath.toString(), fileName);
