@@ -53,7 +53,7 @@
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body" style="margin-bottom:0;">
-							<p id="sentence" class="card-text" style="font-size: 2.6vh;">
+							<p id="sentence" class="card-text" style="font-size: 1.6vw;">
 							${nick}님은 
 							</p>
 						</div>

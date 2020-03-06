@@ -25,14 +25,14 @@
 		<div class="logo-container">
 			<a href="/homeProc.do"><img class="side-logo"
 				src="client/images/oneflix_logo.png" /></a>
-			<hr>
 		</div>
-		<div class="profile-container" style="padding-top: 0; padding-left: 40px;">
-			<div>
+		<hr>
+		<div class="profile-container" style="padding: 0 20px;">
+			<div style="display: flex;">
 			<i class="fas fa-user-circle"></i>
-			<span class="user-name" style="color: #fff;">${member.nick}</span>
+			<span class="user-name" style="padding-left: 10px; flex: 1; color: #fff;">${member.nick}</span>
 			</div>
-			<span class="ticket-type" style="padding-bottom: 0;">
+			<span class="ticket-type" style="float: right; padding-bottom: 0;">
 				<c:choose>
 					<c:when test="${member.ticketId eq 0}">
 						이용권 없음					
