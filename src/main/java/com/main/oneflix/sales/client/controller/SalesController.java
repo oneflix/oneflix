@@ -23,6 +23,7 @@ import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.service.GetTicketService;
 import com.main.oneflix.ticket.vo.TicketVO;
 import com.main.oneflix.util.kakao.payment.service.ApprovePaymentService;
+import com.main.oneflix.util.kakao.payment.service.InactiveSubscriptionService;
 import com.main.oneflix.util.kakao.payment.service.ReadyPaymentService;
 import com.main.oneflix.util.paging.service.PagingService;
 import com.main.oneflix.util.paging.vo.PagingVO;
@@ -34,6 +35,8 @@ public class SalesController {
 	private ReadyPaymentService readyPaymentService;
 	@Autowired
 	private ApprovePaymentService approvePaymentService;
+	@Autowired
+	private InactiveSubscriptionService inactiveSubscriptionService;
 	@Autowired
 	private GetSalesService getSalesService;
 	@Autowired
@@ -61,8 +64,8 @@ public class SalesController {
 		sales.setEmail(member.getEmail());
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
 		List<SalesVO> paymentList = getSalesListService.getSalesList(sales);
+		
 		int total = getCountSalesService.getCountSales(sales);
-		System.out.println("salesTotal : " + total);
 		if (vo.getNowPage() == 0) {
 			vo.setNowPage(1);
 		}
@@ -128,11 +131,12 @@ public class SalesController {
 		// sales_status가 ready인 행을 검색하기 위해 셋팅
 		vo.setSalesStatus("ready");
 		vo = getSalesService.getSales(vo);
-		
+		Integer ticketId = vo.getTicketId();
 		// 찾아온 vo에 pg_token 셋팅
 		vo.setPg_token(pg_token);
 		vo = approvePaymentService.approvePayment(vo);
 		
+		vo.setTicketId(ticketId);
 		// sales_status success로 업데이트 및 나머지 값 업데이트
 		vo.setSalesStatus("success");
 		updateSalesService.updateSales(vo);
@@ -168,6 +172,15 @@ public class SalesController {
 		vo.setSalesStatus("ready");
 		deleteSalesService.deleteSales(vo);
 		mav.setViewName("paymentResult");
+		return mav;
+	}
+	
+	@RequestMapping("/inactiveSubscriptionProc.do")
+	public ModelAndView inactiveSubscriptionProc(SalesVO vo, ModelAndView mav) {
+		
+		SalesVO response = inactiveSubscriptionService.inactivate(vo);
+		System.out.println(response.getStatus());
+		mav.setViewName("redirect:/getPaymentListProc.do");
 		return mav;
 	}
 	

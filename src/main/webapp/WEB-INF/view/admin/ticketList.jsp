@@ -117,9 +117,6 @@
    				{data: "ticketName"},
    				{data: "ticketPeriod",
    					render: function(data){
-   						if (data == -1) {
-   							return "정기";
-   						}
    						return data + "일";
    					}},
    				{data: "ticketPrice",

@@ -36,6 +36,10 @@ public class SalesVO {
 	private JSONObject card_info;
 	private Date approved_at;
 
+	// kakaopay inactive response
+	private String status;
+	private Date inactivated_at;
+
 	// sales column
 //	private String cid;
 //	private String tid;
@@ -47,13 +51,15 @@ public class SalesVO {
 	private Integer ticketId;
 	private String ticketName;
 	private String ticketPrice;
+	private int ticketPeriod;
 	private String salesStatus;
 	private Date paymentDate;
+	private Date expiryDate;
 	private String startDate;
 	private String endDate;
 	private String searchSales;
 	private int lastDate;
-	
+
 	// 페이징
 	private int start;
 	private int end;
@@ -186,6 +192,22 @@ public class SalesVO {
 		this.approved_at = approved_at;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getInactivated_at() {
+		return inactivated_at;
+	}
+
+	public void setInactivated_at(Date inactivated_at) {
+		this.inactivated_at = inactivated_at;
+	}
+
 	public int getRnum() {
 		return rnum;
 	}
@@ -234,6 +256,14 @@ public class SalesVO {
 		this.ticketPrice = ticketPrice;
 	}
 
+	public int getTicketPeriod() {
+		return ticketPeriod;
+	}
+
+	public void setTicketPeriod(int ticketPeriod) {
+		this.ticketPeriod = ticketPeriod;
+	}
+
 	public String getSalesStatus() {
 		return salesStatus;
 	}
@@ -248,6 +278,14 @@ public class SalesVO {
 
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public String getStartDate() {
@@ -305,7 +343,5 @@ public class SalesVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-	
-	
 
 }
