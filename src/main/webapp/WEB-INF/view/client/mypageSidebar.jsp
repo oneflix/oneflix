@@ -52,7 +52,7 @@
 		<a href="/getMemberProc.do">내 정보</a>
 		<a href="/getInquiryListProc.do">내 문의</a>
 		<a href="/getHelpListProc.do">고객센터</a>
-		<a href="/deleteDefense.do">탈퇴하기</a>
+		<a href="/deactivate.do">탈퇴하기</a>
 		<a href="/logout.do">로그아웃</a>
 	</div>
 
