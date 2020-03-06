@@ -4,168 +4,168 @@
 
 <mapper namespace="MovieDAO">
 
-	<select id="getMovie" parameterType="movie" resultType="movie">
-		SELECT m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
-				a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
-			FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
-			WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
-				AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
-				AND m.movie_id = #{movieId}
-	</select>
+   <select id="getMovie" parameterType="movie" resultType="movie">
+      SELECT m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
+            a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
+         FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
+         WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
+            AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
+            AND m.movie_id = #{movieId}
+   </select>
 
-	<resultMap type="movie" id="movieList">
-		<id property="movieId" column="movie_id" />
-		<result property="rnum" column="rnum" />
-		<result property="movieTitle" column="movie_title" />
-		<result property="movieScore" column="movie_score" />
-		<result property="rating" column="rating" />
-		<result property="duration" column="duration" />
-		<result property="summary" column="summary" />
-		<result property="directId" column="direct_id" />
-		<result property="actorId1" column="actor_id1" />
-		<result property="actorId2" column="actor_id2" />
-		<result property="actorId3" column="actor_id3" />
-		<result property="actorId4" column="actor_id4" />
-		<result property="actorId5" column="actor_id5" />
-		<result property="genreId1" column="genre_id1" />
-		<result property="genreId2" column="genre_id2" />
-		<result property="genre1" column="genre1" />
-		<result property="genre2" column="genre2" />
-		<result property="country" column="country" />
-		<result property="release" column="release" />
-		<result property="postPath" column="post_path" />
-		<result property="teaserVideoPath" column="teaser_video_path" />
-		<result property="fullVideoPath" column="full_video_path" />
-		<result property="viewCount" column="view_count" />
-		<result property="mainCheck" column="main_check" />
-		<result property="movieStatus" column="movie_status" />
-		<result property="movieRegDate" column="movie_reg_date" />
-		<result property="movieSubtitle" column="movie_subtitle" />
-	</resultMap>
+   <resultMap type="movie" id="movieList">
+      <id property="movieId" column="movie_id" />
+      <result property="rnum" column="rnum" />
+      <result property="movieTitle" column="movie_title" />
+      <result property="movieScore" column="movie_score" />
+      <result property="rating" column="rating" />
+      <result property="duration" column="duration" />
+      <result property="summary" column="summary" />
+      <result property="directId" column="direct_id" />
+      <result property="actorId1" column="actor_id1" />
+      <result property="actorId2" column="actor_id2" />
+      <result property="actorId3" column="actor_id3" />
+      <result property="actorId4" column="actor_id4" />
+      <result property="actorId5" column="actor_id5" />
+      <result property="genreId1" column="genre_id1" />
+      <result property="genreId2" column="genre_id2" />
+      <result property="genre1" column="genre1" />
+      <result property="genre2" column="genre2" />
+      <result property="country" column="country" />
+      <result property="release" column="release" />
+      <result property="postPath" column="post_path" />
+      <result property="teaserVideoPath" column="teaser_video_path" />
+      <result property="fullVideoPath" column="full_video_path" />
+      <result property="viewCount" column="view_count" />
+      <result property="mainCheck" column="main_check" />
+      <result property="movieStatus" column="movie_status" />
+      <result property="movieRegDate" column="movie_reg_date" />
+      <result property="movieSubtitle" column="movie_subtitle" />
+   </resultMap>
 
-	<select id="getMovieList" resultMap="movieList">
-		SELECT *
-		FROM (SELECT ROWNUM rnum, M.* 
-				FROM (SELECT *
-						FROM (SELECT ROWNUM SUB_RNUM, SUB_M.*
-								FROM (SELECT m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
-											a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
-										FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
-											<if test="movieType == 'wish'">
-												, wish w
-											</if>
-										WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
-											AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
-											<if test="searchGenre != 0">
-												AND (m.genre_id1 = #{searchGenre} OR m.genre_id2 = #{searchGenre}) 
-											</if>
-											<if test="recommendGenre != 0">
-												AND (m.genre_id1 = #{recommendGenre} OR m.genre_id2 = #{recommendGenre})
-											</if>
-											<choose>
-												<when test="searchCondition == 'director'">
-													<if test="searchMovie != null and searchMovie != ''">
-														AND d.director_name like '%' || #{searchMovie} || '%'
-													</if>
-												</when>
-												<when test="searchCondition == 'actor'">
-													<if test="searchMovie != null and searchMovie != ''">
-														AND (a1.actor_name like '%' || #{searchMovie} || '%' OR a2.actor_name like '%' || #{searchMovie} || '%'
-															 OR a3.actor_name like '%' || #{searchMovie} || '%' OR a4.actor_name like '%' || #{searchMovie} || '%'
-															 OR a5.actor_name like '%' || #{searchMovie} || '%')
-													</if>
-												</when>
-												<otherwise>
-													<if test="searchMovie != null and searchMovie != ''">
-														AND m.movie_title like '%' || #{searchMovie} || '%'
-													</if>
-												</otherwise>
-											</choose>
-											<choose>
-												<when test="movieType == 'main'">
-													AND m.main_check = 'Y'
-												</when>
-												<when test="movieType == 'new'">
-													AND m.movie_reg_date BETWEEN TRUNC(SYSDATE - 30) AND SYSDATE
-												</when>
-												<when test="movieType == 'wish'">
-													AND w.movie_id = m.movie_id AND w.email like #{email}
-												</when>
-												<when test="movieType == 'alarm'">
-													<![CDATA[
-														AND m.movie_reg_date >= TRUNC(SYSDATE - 1)
-													]]>
-												</when>
-											</choose>
-											<choose>
-												<when test="movieType == 'popular' or searchOrder == 'popular'">
-													ORDER BY m.view_count DESC
-												</when>
-												<otherwise>
-													ORDER BY m.movie_reg_date
-												</otherwise>
-											</choose>
-									) SUB_M
-							)
-						WHERE 1 = 1
-						<if test="movieType == 'popular' or searchOrder == 'popular'">
-							<![CDATA[
-								AND sub_rnum <= 80
-							]]>
-							ORDER BY movie_score			
-						</if>
-					) M
-			) 
-		WHERE 1 = 1
-		<choose>
-			<when test="recommendGenre != 0">
-				<![CDATA[
-					AND rnum <= 100
-				]]>
-			</when>
-			<when test="start != 0 and end != 0">
-				AND rnum BETWEEN #{start} AND #{end}				
-			</when> 
-		</choose>
-		ORDER BY RNUM DESC
-	</select>
+   <select id="getMovieList" resultMap="movieList">
+      SELECT *
+      FROM (SELECT ROWNUM rnum, M.* 
+            FROM (SELECT *
+                  FROM (SELECT ROWNUM SUB_RNUM, SUB_M.*
+                        FROM (SELECT m.*, d.director_name, a1.actor_name actor_name1, a2.actor_name actor_name2, a3.actor_name actor_name3,
+                                 a4.actor_name actor_name4, a5.actor_name actor_name5, g1.genre genre1, g2.genre genre2
+                              FROM movie m, director d, actor a1, actor a2, actor a3, actor a4, actor a5, genre g1, genre g2
+                                 <if test="movieType == 'wish'">
+                                    , wish w
+                                 </if>
+                              WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
+                                 AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
+                                 <if test="searchGenre != 0">
+                                    AND (m.genre_id1 = #{searchGenre} OR m.genre_id2 = #{searchGenre}) 
+                                 </if>
+                                 <if test="recommendGenre != 0">
+                                    AND (m.genre_id1 = #{recommendGenre} OR m.genre_id2 = #{recommendGenre})
+                                 </if>
+                                 <choose>
+                                    <when test="searchCondition == 'director'">
+                                       <if test="searchMovie != null and searchMovie != ''">
+                                          AND d.director_name like '%' || #{searchMovie} || '%'
+                                       </if>
+                                    </when>
+                                    <when test="searchCondition == 'actor'">
+                                       <if test="searchMovie != null and searchMovie != ''">
+                                          AND (a1.actor_name like '%' || #{searchMovie} || '%' OR a2.actor_name like '%' || #{searchMovie} || '%'
+                                              OR a3.actor_name like '%' || #{searchMovie} || '%' OR a4.actor_name like '%' || #{searchMovie} || '%'
+                                              OR a5.actor_name like '%' || #{searchMovie} || '%')
+                                       </if>
+                                    </when>
+                                    <otherwise>
+                                       <if test="searchMovie != null and searchMovie != ''">
+                                          AND m.movie_title like '%' || #{searchMovie} || '%'
+                                       </if>
+                                    </otherwise>
+                                 </choose>
+                                 <choose>
+                                    <when test="movieType == 'main'">
+                                       AND m.main_check = 'Y'
+                                    </when>
+                                    <when test="movieType == 'new'">
+                                       AND m.movie_reg_date BETWEEN TRUNC(SYSDATE - 30) AND SYSDATE
+                                    </when>
+                                    <when test="movieType == 'wish'">
+                                       AND w.movie_id = m.movie_id AND w.email like #{email}
+                                    </when>
+                                    <when test="movieType == 'alarm'">
+                                       <![CDATA[
+                                          AND m.movie_reg_date >= TRUNC(SYSDATE - 1)
+                                       ]]>
+                                    </when>
+                                 </choose>
+                                 <choose>
+                                    <when test="movieType == 'popular' or searchOrder == 'popular'">
+                                       ORDER BY m.view_count DESC
+                                    </when>
+                                    <otherwise>
+                                       ORDER BY m.movie_reg_date
+                                    </otherwise>
+                                 </choose>
+                           ) SUB_M
+                     )
+                  WHERE 1 = 1
+                  <if test="movieType == 'popular' or searchOrder == 'popular'">
+                     <![CDATA[
+                        AND sub_rnum <= 80
+                     ]]>
+                     ORDER BY movie_score         
+                  </if>
+               ) M
+         ) 
+      WHERE 1 = 1
+      <choose>
+         <when test="recommendGenre != 0">
+            <![CDATA[
+               AND rnum <= 100
+            ]]>
+         </when>
+         <when test="start != 0 and end != 0">
+            AND rnum BETWEEN #{start} AND #{end}            
+         </when> 
+      </choose>
+      ORDER BY RNUM DESC
+   </select>
 
-	<insert id="insertMovie" parameterType="movie">
-		INSERT INTO movie
-		(movie_id, movie_title, rating, duration, summary, director_id,
-		actor_id1, actor_id2, actor_id3, actor_id4, actor_id5, genre_id1, genre_id2,
-		country, release, poster_path, teaser_video_path, full_video_path,
-		movie_status, main_check, movie_subtitle, movie_reg_date)
-		VALUES((select nvl(max(movie_id), 0)+1 from movie),
-		#{movieTitle}, #{rating}, #{duration}, #{summary}, #{directorId},
-		#{actorId1}, #{actorId2}, #{actorId3}, #{actorId4}, #{actorId5}, #{genreId1}, #{genreId2},
-		#{country}, #{release}, #{posterPath}, #{teaserVideoPath}, #{fullVideoPath},
-		#{movieStatus}, #{mainCheck}, #{movieSubtitle, jdbcType=VARCHAR}, SYSDATE)
-	</insert>
+   <insert id="insertMovie" parameterType="movie">
+      INSERT INTO movie
+      (movie_id, movie_title, rating, duration, summary, director_id,
+      actor_id1, actor_id2, actor_id3, actor_id4, actor_id5, genre_id1, genre_id2,
+      country, release, poster_path, teaser_video_path, full_video_path,
+      movie_status, main_check, movie_subtitle, movie_reg_date)
+      VALUES((select nvl(max(movie_id), 0)+1 from movie),
+      #{movieTitle}, #{rating}, #{duration}, #{summary}, #{directorId},
+      #{actorId1}, #{actorId2}, #{actorId3}, #{actorId4}, #{actorId5}, #{genreId1}, #{genreId2},
+      #{country}, #{release}, #{posterPath}, #{teaserVideoPath}, #{fullVideoPath},
+      #{movieStatus}, #{mainCheck}, #{movieSubtitle, jdbcType=VARCHAR}, SYSDATE)
+   </insert>
 
-	<update id="updateMovie" parameterType="movie">
-		UPDATE movie
-		SET
-		movie_title = #{movieTitle}, teaser_video_path = #{teaserVideoPath}, full_video_path = #{fullVideoPath},
-		poster_path = #{posterPath}, duration = #{duration}, summary = #{summary}, director_id = #{directorId},
-		actor_id1 = #{actorId1}, actor_id2 = #{actorId2}, actor_id3 = #{actorId3}, actor_id4 = #{actorId4}, actor_id5 = #{actorId5},
-		genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, release = #{release},
-		movie_status = #{movieStatus}, main_check = #{mainCheck}, movie_subtitle = #{movieSubtitle, jdbcType=VARCHAR}  
-		WHERE
-		movie_id = #{movieId}
-	</update>
+   <update id="updateMovie" parameterType="movie">
+      UPDATE movie
+      SET
+      movie_title = #{movieTitle}, teaser_video_path = #{teaserVideoPath}, full_video_path = #{fullVideoPath},
+      poster_path = #{posterPath}, duration = #{duration}, summary = #{summary}, director_id = #{directorId},
+      actor_id1 = #{actorId1}, actor_id2 = #{actorId2}, actor_id3 = #{actorId3}, actor_id4 = #{actorId4}, actor_id5 = #{actorId5},
+      genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, release = #{release},
+      movie_status = #{movieStatus}, main_check = #{mainCheck}, movie_subtitle = #{movieSubtitle, jdbcType=VARCHAR}  
+      WHERE
+      movie_id = #{movieId}
+   </update>
 
-	<delete id="deleteMovie" parameterType="movie">
-		DELETE FROM movie WHERE
-		movie_id = #{movieId}
-	</delete>
+   <delete id="deleteMovie" parameterType="movie">
+      DELETE FROM movie WHERE
+      movie_id = #{movieId}
+   </delete>
 
-	<select id="getCountMovie" parameterType="movie" resultType="int">
-		SELECT COUNT(*) FROM movie
-		<if test="movieType == 'alarm'">
-			<![CDATA[
-				AND m.movie_reg_date >= TRUNC(SYSDATE - 1)
-			]]>
-		</if>
+   <select id="getCountMovie" parameterType="movie" resultType="int">
+      SELECT COUNT(*) FROM movie
+      <if test="movieType == 'alarm'">
+         <![CDATA[
+            AND m.movie_reg_date >= TRUNC(SYSDATE - 1)
+         ]]>
+      </if>
 </select>
 </mapper>
