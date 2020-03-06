@@ -149,8 +149,6 @@
 												작품인가요?</span>
 											<div class="e1vsnrt64 css-1cp7z2d-Self-StarRating e1a0u7o30">
 											<div class="starRev">
-<<<<<<< HEAD
-												<span id="1" class="starR1 posterScore"></span> 
 												<span id="2" class="starR2 posterScore"></span>
 												<span id="3" class="starR1 posterScore"></span> 
 												<span id="4" class="starR2 posterScore"></span>
@@ -160,18 +158,6 @@
 												<span id="8" class="starR2 posterScore"></span>
 												<span id="9" class="starR1 posterScore"></span> 
 												<span id="10" class="starR2 posterScore"></span>
-=======
-												<span id="0.5" class="starR1 reviewScore"></span> 
-												<span id="1.0" class="starR2 reviewScore"></span>
-												<span id="1.5" class="starR1 reviewScore"></span> 
-												<span id="2.0" class="starR2 reviewScore"></span>
-												<span id="2.5" class="starR1 reviewScore"></span> 
-												<span id="3.0" class="starR2 reviewScore"></span>
-												<span id="3.5" class="starR1 reviewScore"></span> 
-												<span id="4.0" class="starR2 reviewScore"></span>
-												<span id="4.5" class="starR1 reviewScore"></span> 
-												<span id="5.0" class="starR2 reviewScore"></span>
->>>>>>> master
 											</div>
 												<!-- <div class="css-pjw7sn-StarsContainer eee1">
 													<div style="color: rgb(255, 255, 255);">☆☆☆☆☆</div>
