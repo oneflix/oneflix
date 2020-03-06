@@ -149,7 +149,6 @@
 												작품인가요?</span>
 											<div class="e1vsnrt64 css-1cp7z2d-Self-StarRating e1a0u7o30">
 											<div class="starRev">
-												<span id="1" class="starR1 posterScore"></span> 
 												<span id="2" class="starR2 posterScore"></span>
 												<span id="3" class="starR1 posterScore"></span> 
 												<span id="4" class="starR2 posterScore"></span>

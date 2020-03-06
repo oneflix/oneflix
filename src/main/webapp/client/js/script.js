@@ -55,6 +55,7 @@ const createPopularSwiper = function(slideCount) {
         spaceBetween: 5,
         slidesPerGroup: slideCount,
     
+        allowTouchMove: false,
         // loopFillGroupWithBlank: true,
         navigation: {
             nextEl: '#popular-button-next',
@@ -74,6 +75,7 @@ const createRecommendSwiper = function(slideCount) {
     
         // loopFillGroupWithBlank: true,
     
+        allowTouchMove: false,
         navigation: {
             nextEl: '#recommend-button-next',
             prevEl: '#recommend-button-prev'
@@ -92,6 +94,7 @@ const createNewSwiper = function(slideCount) {
     
         // loopFillGroupWithBlank: true,
     
+        allowTouchMove: false,
         navigation: {
             nextEl: '#new-button-next',
             prevEl: '#new-button-prev'
@@ -110,6 +113,7 @@ const createRecentSwiper = function(slideCount) {
     
         // loopFillGroupWithBlank: true,
     
+        allowTouchMove: false,
         navigation: {
             nextEl: '#recent-button-next',
             prevEl: '#recent-button-prev'
