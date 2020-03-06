@@ -51,6 +51,7 @@
             <button style="border-radius: 31px; padding: .25rem .5rem; font-size: .875rem; line-height: 1.5;" 
             type="button" class="btn btn-sm btn-light login-button"
                onclick="location.href='join.do'">
+
                회원가입</button>
          </div>
       </div>
