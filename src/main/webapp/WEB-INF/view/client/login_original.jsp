@@ -36,89 +36,93 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
-<link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
 </head>
 
 <body>
-<div id="root">
-	<div class="css-urf8br-Self e19xg79h0">
-		<nav class="css-srrekc-Gnb e19xg79h2">
-			 <a href="/oneflix.do"><img class="header-logo" style="margin-top: 3vh;"
-               src="client/images/oneflix_logo.png"></a>
-				<ul class="css-7cp7ve-LeftNav e19xg79h4"></ul>
-				<ul class="css-k2rcg7-RightNav e19xg79h12">
-					<li class="css-1p3rvqx-RightNavButtonBlock e19xg79h13">
-						<a class="css-xqxb62-ButtonLink-RightNavButtonLink e19xg79h14" href="/join.do">회원가입</a>
-					</li>
-				</ul>
-		</nav>
-	<main class="css-1a4c3t1-Main e19xg79h5">
-	<div src="https://images.watcha.net/updatable_images/2130/original/1cfd5170d7adbe8a8fdd06e33181429a18099965.jpg" 
-	class="css-9e7b81-Self el4vci00">
 
-     <main class="css-1494bd8-Self edt52et0">
-     	<div class="css-9tzvq5-Inner edt52et4">
-     		<div class="css-122phix-SignInFormLabel edt52et5">
-     			<span class="css-1o4b3ai-SignInFormLabelTitle edt52et6">로그인</span>
-     				<a class="css-1h9xpgj-FindPasswordLink edt52et3" href="/findPass.do">
-     				비밀번호를 잊어버리셨나요?</a>
-			</div>
-     <form action="/loginProc.do" method="post" onsubmit="return validate();">
-     	<div class="css-n7c9r1-Self eu52ful0">
-     		<input name="email" id="email" placeholder="이메일을 입력해주세요" style="font-size:14px;"
-     		class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" 
-     		type="email" value="">
-   		</div>
-   		<div class="css-1q1k87-Self eu52ful0">
-     		<input name="pass" id="pass" placeholder="비밀번호 (6자 이상)" style="font-size:14px;"
-     		class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" 
-     		type="password" value="">
-   		</div>
-   		<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-   		<button type="submit" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
-   		</div>
-	</form>
-		<div class="css-tssyq1-LoginBlock edt52et1">
-		<p class="css-18x4yp2-SignInMessage edt52et2" style="margin-bottom: 2vh;">
-		소셜 계정으로 로그인하기</p>
-                   <div class="css-11fv0pd-Button">
-                     <a class="css-11fv0pd-Button" href="${googleUrl}">
-                     	구글로 로그인하기
+
+
+   <div class="limiter">
+      <div class="header">
+         <div class="nav">
+            <a href="#"><img class="header-logo"
+               src="client/images/oneflix_logo.png"></a>
+            <button type="button" class="btn btn-sm btn-light login-button"
+               onsubmit="return validate()" onclick="location.href='join.do'">
+               회원가입</button>
+         </div>
+      </div>
+
+
+      <div class="container-login100 sectionA">
+
+         <div>
+
+            <div class="wrap-login100 p-t-20 p-b-30">
+
+               <form class="login100-form validate-form" action="/loginProc.do"
+                  method="post" onsubmit="return validate();">
+                  <div class="login-label">
+                     로그인 <span class="find-pass" OnClick="location.href='/findPass.do'">비밀번호를
+                        잊어버리셨나요?</span>
+                  </div>
+
+
+                  <div class="wrap-input100 wrap-input100-top m-b-1">
+                     <input class="input100" type="text" name="email" id="email"
+                        autocomplete="off" placeholder="이메일">
+                     ::after
+                  </div>
+
+                  <div class="wrap-input100 wrap-input100-bottom m-b-20">
+                     <span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
+                     </span> <input class="input100" type="password" name="pass" id="pass"
+                        placeholder="비밀번호">
+                        ::after
+                  </div>
+
+                  <div class="container-login100-form-btn">
+                     <button class="login100-form-btn" type="submit">로그인</button>
+                  </div>
+
+                  <hr class="seperator">
+
+
+                  <div class="wrapper">
+                  <div class="guide">소셜 계정으로 로그인하기
+                   </div>
+                   <div class="social">
+                     <a class="whiteA" href="${googleUrl}">
+                     구글로 로그인하기
                        </a>
                     </div>
                        
-                   <div class="css-11fv0pd-Button">
-                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button"> 
-                   		  카카오로 로그인하기
+                   <div class="social">
+                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="whiteA"> 
+                     카카오로 로그인하기
                        </a>
                     </div>
-                  <div id="naver_id_login" class="css-11fv0pd-Button" style="text-align:center">
-                     <a class="css-11fv0pd-Button" href="${naverUrl}">
-                   		  네이버로 로그인하기
+                  <div id="naver_id_login" class="social" style="text-align:center">
+                     <a class="whiteA" href="${naverUrl}">
+                     네이버로 로그인하기
                      </a>
+                     </div>
                   </div>
-           		</div>
-      		  </div>
-       		</main>
-       		<footer class="css-eexbuk-Self e16ogtil0">
-       		<span class="css-j4zj9u-Contact e16ogtil1">
-       		<em><a href="/help.do">고객센터(이용 및 결제 문의)</a>
-       		</em>&nbsp;&nbsp;<a href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
-       		</span><br>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <footer id="footer">
+
+      <p>
          <strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
          reserved.
-       		</footer>
-   			</div>
-   			</main>
-   			</div>
-   		<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
-  	</div>
- 
-  	
-  
+      </p>
 
-
+   </footer>
 
 
    <!--===============================================================================================-->
