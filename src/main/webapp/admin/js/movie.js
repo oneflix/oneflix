@@ -43,7 +43,6 @@ function setFileInfo() {
 	video.preload = 'metadata';
 
 	video.src = URL.createObjectURL(myVideo);
-	;
 
 	video.onloadedmetadata = function() {
 		window.URL.revokeObjectURL(video.src);
