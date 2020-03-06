@@ -35,6 +35,8 @@ public class MemberVO {
 	private String kakao;
 	private String naver;
 
+	private String updateType;
+
 	public int getRnum() {
 		return rnum;
 	}
@@ -265,6 +267,14 @@ public class MemberVO {
 
 	public void setNaver(String naver) {
 		this.naver = naver;
+	}
+
+	public String getUpdateType() {
+		return updateType;
+	}
+
+	public void setUpdateType(String updateType) {
+		this.updateType = updateType;
 	}
 
 }

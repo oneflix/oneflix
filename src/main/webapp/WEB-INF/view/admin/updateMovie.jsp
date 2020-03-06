@@ -182,7 +182,7 @@
 								
 								<div class="form-group mb-3">
 									<label for="movieSubtitle">부연 설명</label>
-										<input type="text" class="form-control" id="movieSubtitle" name="movieTitle"
+										<input type="text" class="form-control" id="movieSubtitle" name="movieSubtitle"
 											value="${movie.movieSubtitle}">
 								</div>
 
