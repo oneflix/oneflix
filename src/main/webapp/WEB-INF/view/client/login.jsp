@@ -50,7 +50,8 @@
                src="client/images/oneflix_logo.png"></a>
             <button style="border-radius: 31px; padding: .25rem .5rem; font-size: .875rem; line-height: 1.5;" 
             type="button" class="btn btn-sm btn-light login-button"
-               onsubmit="return validate()" onclick="location.href='join.do'">
+               onclick="location.href='join.do'">
+
                회원가입</button>
          </div>
       </div>
