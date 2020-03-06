@@ -65,8 +65,7 @@
 									</h3>
 								</div>
 								<div class="card-body">
-									<div id="product-user-chart"
-										style="width: 100%; height: 500px;"></div>
+									<div id="product-user-chart" style="width: 100%; height: 500px;"></div>
 								</div>
 								<!-- /.card-body-->
 							</div>
@@ -115,10 +114,8 @@
 									</h3>
 								</div>
 								<div class="row">
-									<div class="col-lg-6" id="movie-ranking-cumulates"
-										style="width: 100%; height: auto;"></div>
-									<div class="col-lg-6" id="movie-ranking-recently"
-										style="width: 100%; height: auto;"></div>
+									<div class="col-lg-6" id="movie-ranking-cumulates" style="width: 100%; height: auto;"></div>
+									<div class="col-lg-6" id="movie-ranking-recently" style="width: 100%; height: auto;"></div>
 								</div>
 								<!-- /.card-body-->
 							</div>
