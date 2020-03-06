@@ -15,14 +15,14 @@
 
 	<select id="getHelpList" resultMap="helpList" parameterType="help">
 		SELECT * 
-		FROM (SELECT ROWNUM rnum, H.*
+		FROM (SELECT ROWNUM RNUM, H.*
 				FROM (SELECT *
 						FROM help
 						WHERE 1 = 1
 						<if test="searchHelp != null and searchHelp != ''">
 							AND help_title like '%'|| #{searchHelp}||'%'
 						</if>
-						<if test="helpType != null and helpType != ''">
+						<if test="helpType != null and helpType != '' and helpType != 'all'">
 							<choose>
 								<when test='helpType == "faq"'>
 									AND help_type != 'notice'
@@ -35,7 +35,7 @@
 						ORDER BY help_reg_date
 					) H
 			)
-		ORDER BY rnum DESC
+		ORDER BY RNUM DESC
 	</select>
 
 	<select id="getHelp" parameterType="help" resultType="help">
