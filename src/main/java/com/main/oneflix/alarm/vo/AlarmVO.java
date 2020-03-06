@@ -1,5 +1,6 @@
 package com.main.oneflix.alarm.vo;
 
+
 import java.sql.Date;
 
 public class AlarmVO {
@@ -8,6 +9,7 @@ public class AlarmVO {
 	private String email;
 	private Date sendDate;
 	private String readCheck;
+
 	public int getAlarmId() {
 		return alarmId;
 	}
