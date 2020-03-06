@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<typeAlias type="com.main.oneflix.like.vo.ReviewLikeVO" alias="reviewLike"/>
 		<typeAlias type="com.main.oneflix.watch.vo.WatchVO" alias="watch"/>
 		<typeAlias type="com.main.oneflix.wish.vo.WishVO" alias="wish"/>
+		<typeAlias type="com.main.oneflix.alarm.vo.AlarmVO" alias="alarm"/>
 	</typeAliases>
 	
 	<mappers>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,20 +9,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONeflix</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/help.css">
-<style type="text/css">
-.notice-list {
-	display: none;
-}
-</style>
+
 </head>
 
 <body>
 
+	<!-- SIDE BAR -->
+	<jsp:include page="${sidebar_url}"></jsp:include>
 
 	<div class="page-body">
 
@@ -30,7 +29,7 @@
 			<div class="notice-container">
 				<h2 class="help-label">공지사항</h2>
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'n' }">
+					<c:if test="${help.helpType eq 'notice'}">
 						<div class="notice-list">
 							<button class="accordion">${help.helpTitle }</button>
 							<div class="panel">
@@ -52,13 +51,13 @@
 			<div class="tab">
 				<button class="tablinks" onclick="openCity(event, 'faq-faq')"
 					id="defaultOpen">자주 묻는 질문</button>
-				<button class="tablinks" onclick="openCity(event, 'faq-pay')">결제</button>
+				<button class="tablinks" onclick="openCity(event, 'faq-payment')">결제</button>
 				<button class="tablinks" onclick="openCity(event, 'faq-refund')">해지/환불</button>
-				<button class="tablinks" onclick="openCity(event, 'faq-membership')">이용권/쿠폰</button>
+				<button class="tablinks" onclick="openCity(event, 'faq-ticket')">이용권/쿠폰</button>
 				<button class="tablinks" onclick="openCity(event, 'faq-account')">로그인/계정
 					관리</button>
 				<button class="tablinks" onclick="openCity(event, 'faq-contents')">콘텐츠</button>
-				<button class="tablinks" onclick="openCity(event, 'faq-play')">재생
+				<button class="tablinks" onclick="openCity(event, 'faq-video')">재생
 					문의</button>
 				<button class="tablinks" onclick="openCity(event, 'faq-service')">서비스
 					문의</button>
@@ -67,7 +66,7 @@
 
 			<div id="faq-faq" class=" tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f1' }">
+					<c:if test="${help.helpType eq 'faq' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -76,9 +75,9 @@
 				</c:forEach>
 			</div>
 
-			<div id="faq-pay" class="tabcontent">
+			<div id="faq-payment" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f2' }">
+					<c:if test="${help.helpType eq 'payment' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -89,7 +88,7 @@
 
 			<div id="faq-refund" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f3' }">
+					<c:if test="${help.helpType eq 'refund' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -98,9 +97,9 @@
 				</c:forEach>
 			</div>
 
-			<div id="faq-membership" class="tabcontent">
+			<div id="faq-ticket" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f4' }">
+					<c:if test="${help.helpType eq 'ticket' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -111,7 +110,7 @@
 
 			<div id="faq-account" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f5' }">
+					<c:if test="${help.helpType eq 'account' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -122,7 +121,7 @@
 
 			<div id="faq-contents" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f6' }">
+					<c:if test="${help.helpType eq 'contents' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -131,9 +130,9 @@
 				</c:forEach>
 			</div>
 
-			<div id="faq-play" class="tabcontent">
+			<div id="faq-video" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f7' }">
+					<c:if test="${help.helpType eq 'video' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -144,7 +143,7 @@
 
 			<div id="faq-service" class="tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'f8' }">
+					<c:if test="${help.helpType eq 'service' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<p>${help.helpContent }</p>
@@ -206,5 +205,11 @@
 	</script>
 
 </body>
-
+<style type="text/css">
+body {background: #fff;}
+.page-body {color: #000;}
+.notice-list {
+	display: none;
+}
+</style>
 </html>

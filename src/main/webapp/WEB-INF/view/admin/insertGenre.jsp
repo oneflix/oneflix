@@ -12,7 +12,7 @@
 <title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script lang="javascript" src="admin/js/insertGenre.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -61,6 +61,7 @@
 	</div>
 	<!-- ./wrapper -->
 
+	<script src="admin/js/insertGenre.js"></script>
 </body>
 
 </html>

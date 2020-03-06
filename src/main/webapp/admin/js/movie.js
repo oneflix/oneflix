@@ -34,7 +34,7 @@ $('#genreList').change(function() {
 //상영시간 구하기
 window.URL = window.URL || window.webkitURL;
 
-document.getElementById('fullVideo').onchange = setFileInfo;
+document.getElementById('full-video').onchange = setFileInfo;
 
 function setFileInfo() {
 	var myVideo = this.files[0];
@@ -43,7 +43,6 @@ function setFileInfo() {
 	video.preload = 'metadata';
 
 	video.src = URL.createObjectURL(myVideo);
-	;
 
 	video.onloadedmetadata = function() {
 		window.URL.revokeObjectURL(video.src);

@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONeflix</title>
-    
+	<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">    
     <!-- style -->
     <link rel="stylesheet" href="client/css/reset.css">
     <link rel="stylesheet" href="client/css/all.css">
@@ -198,7 +198,7 @@
                                     <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
                                     <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
                                     <li><div class="divider"></div></li>
-                                    <li><div><a href="#">고객센터</a></div></li>
+                                    <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
                                     <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
                                     <li><div><a href="/logout.do">로그아웃</a></div></li>
                                 </ul>
@@ -231,7 +231,7 @@
                                         <ul class="dropdown-menu dropdown-menu-right profile-menu">
                                             <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
                                             <li><div class="divider"></div></li>
-                                            <li><div><a href="#">고객센터</a></div></li>
+                                            <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
                                             <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
                                             <li><div><a href="/logout.do">로그아웃</a></div></li>
                                         </ul>
@@ -246,7 +246,7 @@
                         <div class="swiper-wrapper">
                         <c:forEach var="main" items="${mainMovieList }">
                             <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
-                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath};">
+                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath});">
 	                            <div class="row">
 	                                <h2>${main.movieTitle }</h2>
 	                                <p>${main.movieSubtitle }</p>
