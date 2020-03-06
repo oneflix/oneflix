@@ -22,7 +22,7 @@
 	        <ul class="clearfix">
 	            <li><a href="#">이용약관</a></li>
 	            <li>&nbsp;|&nbsp;</li>
-	            <li><a href="#">고객센터</a></li>
+	            <li><a href="/getHelpListProc.do">고객센터</a></li>
 	        </ul>
 	        <p><strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights reserved.</p>
 	    </div>
