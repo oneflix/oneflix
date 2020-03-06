@@ -21,6 +21,8 @@ const createWatchingSwiper = function(slideCount) {
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,
+        
+        allowTouchMove: false,
         navigation: {
             nextEl: '#watching-button-next',
             prevEl: '#watching-button-prev'
@@ -39,6 +41,8 @@ const createWatchedSwiper = function(slideCount) {
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,
+        
+        allowTouchMove: false,
         navigation: {
             nextEl: '#watched-button-next',
             prevEl: '#watched-button-prev'
@@ -57,6 +61,8 @@ const createRatingSwiper = function(slideCount) {
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,
+        
+        allowTouchMove: false,
         navigation: {
             nextEl: '#rating-button-next',
             prevEl: '#rating-button-prev'
