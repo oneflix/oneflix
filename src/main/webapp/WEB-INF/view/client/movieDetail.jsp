@@ -149,16 +149,16 @@
 												작품인가요?</span>
 											<div class="e1vsnrt64 css-1cp7z2d-Self-StarRating e1a0u7o30">
 											<div class="starRev">
-												<span id="0.5" class="starR1 reviewScore"></span> 
-												<span id="1.0" class="starR2 reviewScore"></span>
-												<span id="1.5" class="starR1 reviewScore"></span> 
-												<span id="2.0" class="starR2 reviewScore"></span>
-												<span id="2.5" class="starR1 reviewScore"></span> 
-												<span id="3.0" class="starR2 reviewScore"></span>
-												<span id="3.5" class="starR1 reviewScore"></span> 
-												<span id="4.0" class="starR2 reviewScore"></span>
-												<span id="4.5" class="starR1 reviewScore"></span> 
-												<span id="5.0" class="starR2 reviewScore"></span>
+												<span id="1" class="starR1 posterScore"></span> 
+												<span id="2" class="starR2 posterScore"></span>
+												<span id="3" class="starR1 posterScore"></span> 
+												<span id="4" class="starR2 posterScore"></span>
+												<span id="5" class="starR1 posterScore"></span> 
+												<span id="6" class="starR2 posterScore"></span>
+												<span id="7" class="starR1 posterScore"></span> 
+												<span id="8" class="starR2 posterScore"></span>
+												<span id="9" class="starR1 posterScore"></span> 
+												<span id="10" class="starR2 posterScore"></span>
 											</div>
 												<!-- <div class="css-pjw7sn-StarsContainer eee1">
 													<div style="color: rgb(255, 255, 255);">☆☆☆☆☆</div>
@@ -340,6 +340,7 @@
 	
 	//reivewList, reviewLikeList, wishList JSON타입으로 변환
 	var reviewScore;
+	var posterScore;
 	var reviewContent;
 	var reviewListLength = "${reviewListLength}";
 	var reviewLikeListLength = "${reviewLikeListLength}";
@@ -395,10 +396,25 @@
 			
 			//session email이 준 별점,리뷰 세팅
 			reviewScore = "${myReview.reviewScore}";
+			alert(reviewScore);
+			switch(reviewScore){
+			case '0.5' : posterScore = '1'; break;
+			case '1.0' : posterScore = '2'; break;
+			case '1.5' : posterScore = '3'; break;
+			case '2.0' : posterScore = '4'; break;
+			case '2.5' : posterScore = '5'; break;
+			case '3.0' : posterScore = '6'; break;
+			case '3.5' : posterScore = '7'; break;
+			case '4.0' : posterScore = '8'; break;
+			case '4.5' : posterScore = '9'; break;
+			case '5.0' : posterScore = '10'; break;
+			}
 			reviewContent = $('#myReview').val();
 			if (reviewScore != null && reviewScore != 0) {
 				var star = document.getElementById(reviewScore);
+				var Pstar = document.getElementById(posterScore);
 				$(star).addClass('on').prevAll('span').addClass('on');
+				$(Pstar).addClass('on').prevAll('span').addClass('on');
 			}
 			
 			if($(star).prop('id') == '0.5'){
@@ -470,7 +486,9 @@
 		});
 
 		function reviewCheck() {
-			if(clicked <= 0) {
+			var star = document.getElementById(reviewScore);
+			var Fstar = parseFloat(star);
+			if(clicked <= 0 && Fstar < 0.5 ) {
 				alert("별점을 등록해주세요!");
 				return false;
 			}
@@ -485,7 +503,7 @@
 		};
 		
 		
-		//별점주기
+		//리뷰 부분 별점주기
 		var clicked = 0;
 		$('.reviewScore').on("click",(function() {
 			clicked++;
@@ -516,7 +534,7 @@
 
 			var url;
 
-			if (reviewScore == null || reviewScore == 0) {
+			if (reviewScore == null || reviewScore == 0 && reviewContent == null || reviewContent == '') {
 				url = "/insertReviewProcAjax.do";
 			} else {
 				url = "/updateReviewProcAjax.do";
@@ -524,6 +542,84 @@
 			
 
 			reviewScore = $(this).prop('id');
+			var movieId = "${movie.movieId}";
+			var email = "${member.email}"
+			var reviewId = "${myReview.reviewId}"
+			var sendData = {
+				"reviewScore" : reviewScore,
+				"movieId" : movieId,
+				"email" : email,
+				"reviewId" : reviewId
+			};
+
+			var result;
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : sendData,
+				async : false,
+				success : function(response) {
+					result = response.result;
+					
+
+				}
+			});
+
+		}));
+		
+		//포스터 부분 별점주기
+		var clicked = 0;
+		$('.posterScore').on("click",(function() {
+			clicked++;
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+			
+			if($(this).prop('id') == '1'){
+				$('.e1vsnrt610').text('최악이에요!');
+			}else if($(this).prop('id') == '2'){
+				$('.e1vsnrt610').text('싫어요');
+			}else if($(this).prop('id') == '3'){
+				$('.e1vsnrt610').text('재미없어요');
+			}else if($(this).prop('id') == '4'){
+				$('.e1vsnrt610').text('별로예요');
+			}else if($(this).prop('id') == '5'){
+				$('.e1vsnrt610').text('부족해요');
+			}else if($(this).prop('id') == '6'){
+				$('.e1vsnrt610').text('보통이에요');
+			}else if($(this).prop('id') == '7'){
+				$('.e1vsnrt610').text('볼만해요');
+			}else if($(this).prop('id') == '8'){
+				$('.e1vsnrt610').text('재미있어요');
+			}else if($(this).prop('id') == '9'){
+				$('.e1vsnrt610').text('훌륭해요');
+			}else if($(this).prop('id') == '10'){
+				$('.e1vsnrt610').text('최고예요!');
+			}
+
+			var url;
+
+			if (reviewScore == null || reviewScore == 0 && reviewContent == null || reviewContent == '') {
+				url = "/insertReviewProcAjax.do";
+			} else {
+				url = "/updateReviewProcAjax.do";
+			}
+			
+
+			posterScore = $(this).prop('id');
+			
+			switch(posterScore){
+			case '1' : reviewScore = '0.5'; break;
+			case '2' : reviewScore = '1.0'; break;
+			case '3' : reviewScore = '1.5'; break;
+			case '4' : reviewScore = '2.0'; break;
+			case '5' : reviewScore = '2.5'; break;
+			case '6' : reviewScore = '3.0'; break;
+			case '7' : reviewScore = '3.5'; break;
+			case '8' : reviewScore = '4.0'; break;
+			case '9' : reviewScore = '4.5'; break;
+			case '10' : reviewScore = '5.0'; break;
+			}
+			
 			var movieId = "${movie.movieId}";
 			var email = "${member.email}"
 			var reviewId = "${myReview.reviewId}"
