@@ -22,9 +22,6 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
 
-    <!-- ====================== 
-            ADD headr 
-     ====================== -->
      <jsp:include page="${header_url}"></jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
@@ -190,9 +187,6 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- ====================== 
-            ADD Footer
-    ====================== -->
     <jsp:include page="${footer_url}"></jsp:include>
 
   </div>
