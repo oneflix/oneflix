@@ -5,7 +5,7 @@
         .header {padding: 20px 30px 0 30px; height: 85px; display: none; background-color: #080808;}
         .header > a > .header-logo {width: 120px;}
 
-        .sidenav {height: 100%; width: 165px; position: fixed; z-index: 1; top: 0; left: 0; padding-top: 10px;
+        .sidenav {height: 100%; width: 165px; position: fixed; z-index: 1; top: 0; left: 0; padding-top: 30px;
             background-color: #080808;}
         .sidenav > .logo-container {padding-left: 20px;}
         .sidenav > .logo-container > a > .side-logo {width: 120px;}
@@ -25,7 +25,7 @@
         .menu-button {color: #dedede; display: none; transition: 0.2s;}
         .menu-button:hover {color: #e50914;}
 
-        .page-body {padding-left: 163px; color: #dedede; padding-top: 20px;}
+        .page-body {padding-left: 163px; color: #dedede; padding-top: 50px;}
 
         @media (max-width: 768px) {
             .header {display: block;}

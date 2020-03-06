@@ -61,7 +61,7 @@
 								<label for="title">기간</label> <select class="form-control"
 									id="ticketPeriod" name="ticketPeriod" required="required"
 									data-placeholder="Select a State">
-									<option value=-1>정기권</option>
+									<option value="30">정기권</option>
 									<option value="30">30</option>
 									<option value="60">60</option>
 									<option value="90">90</option>

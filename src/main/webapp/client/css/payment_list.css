@@ -68,7 +68,7 @@ table-border-grey{
     width: 100%;
     padding: 10px 14px;
     border-radius: 4px;
-    background-color: #22b99b;
+    background-color: #DC3545;
     font-size: 14px;
     font-weight: 400;
     -webkit-letter-spacing: -0.4px;
@@ -83,7 +83,7 @@ table-border-grey{
     width: 150px;
     padding: 13px 11px;
     border: 0;
-    margin-right: 4.5%;
+    margin-right: 0;
     margin-bottom: 1.5%
 }
 
