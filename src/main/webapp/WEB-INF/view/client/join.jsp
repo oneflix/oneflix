@@ -56,7 +56,8 @@
 			<div class="nav">
 				<a href="#"><img class="header-logo"
 					src="client/images/oneflix_logo.png"></a>
-				<button type="button" class="btn btn-sm btn-light login-button">
+				<button style="border-radius: 31px; padding: .25rem .5rem; font-size: .875rem; line-height: 1.5;" 
+				type="button" class="btn btn-sm btn-light login-button">
 					로그인</button>
 			</div>
 		</div>
