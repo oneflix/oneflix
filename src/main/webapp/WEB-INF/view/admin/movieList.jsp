@@ -155,6 +155,7 @@
 	   					}},
 	   				{data: "movieTitle",
 	   					render: function(data){
+	   						console.log(data);
 	   						return "<p>" +data + "</p>" ;
 	   					}},
 	   				{data: "genre1",
