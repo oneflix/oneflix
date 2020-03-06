@@ -5,7 +5,7 @@ import java.util.Properties;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface SingleFileuploadService {
+public interface MovieFileuploadService {
 
-	Properties uploadSingleFile(List<MultipartFile> fileList, String path);
+	Properties movieFileupload(List<MultipartFile> fileList, String path);
 }

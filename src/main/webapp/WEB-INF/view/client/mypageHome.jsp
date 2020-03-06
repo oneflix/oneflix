@@ -53,9 +53,8 @@
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body" style="margin-bottom:0;">
-							<p class="card-text" style="font-size: 2.6vh;">
-								'%장르'를 좋아하는 '영화애호가'
-								<!--차트에서 가장 값큰 장르 / 명칭지정-->
+							<p id="sentence" class="card-text" style="font-size: 2.6vh;">
+							${nick}님은 
 							</p>
 						</div>
 					</div>
@@ -71,7 +70,7 @@
 												<div class="info-box sm-light">
 													<div class="info-box-content">
 														<span class="info-box-text text-center">시청한 영화 수</span> 
-														<span class="info-box-number text-center mb-0" 
+														<span class="info-box-number text-center mb-0" id="countWatch"
 														style="margin-top:1vh;">${watch.countWatch}</span>
 													</div>
 												</div>
@@ -101,7 +100,7 @@
 									                    <div id="review-slider-container" class="swiper-container">
 									                        <div class="swiper-wrapper">
 									                           <c:forEach var="review" items="${reviewList }">
-									                            <div  class="swiper-slide" onclick="goReviewDetail('${review.reviewId}')">
+									                            <div  class="swiper-slide" onclick="goMovieDetail('${review.movieId}')">
 									                            	<div class="review-card">
 									                            		<div class="card" style="width:25vw; height:32vh;">
 									                            			<div class="card-body">
@@ -142,9 +141,11 @@
 		$('.swiper-button-next').click(function(){
 			$(this).next().css("display", "block");
 		});
-	    function goReviewDetail(reviewId) {
-	            location.href = "/getReviewDetailProc.do?reviewId=" + reviewId;
-	    }
+
+	    function goMovieDetail(movieId) {
+	        location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+		}
+	    
 	</script>
 
 </body>
