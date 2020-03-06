@@ -151,8 +151,8 @@
 									<label>Full Video</label>
 									<div class="custom-file">
 										<input type="file" name="fullVideo" class="custom-file-input"
-											required="required" id="full-video"> <label
-											class="custom-file-label" for="full-video">파일 선택</label>
+											required="required" id="fullVideo"> <label
+											class="custom-file-label" for="fullVideo">파일 선택</label>
 									</div>
 								</div>
 
