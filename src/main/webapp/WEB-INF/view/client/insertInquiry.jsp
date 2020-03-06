@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONeflix</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <link rel="stylesheet" href="../admin/css/adminlte.min.css">
 <link rel="stylesheet" href="../admin/css/adminlte.css">
 <link rel="stylesheet" href="client/css/all.css">

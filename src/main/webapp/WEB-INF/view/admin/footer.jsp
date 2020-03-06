@@ -8,13 +8,12 @@
 <title>ONEFLIX</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 </head>
 <body>
 
 	<footer class="main-footer">
 		<div class="float-right d-none d-sm-block">
-			<b>Version</b> 3.0.3-pre
 		</div>
 		<strong>Copyright &copy; 2019-2020 <a
 			href="http://adminlte.io">ONeflix</a>.

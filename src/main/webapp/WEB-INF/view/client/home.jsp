@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONeflix</title>
-    
+	<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">    
     <!-- style -->
     <link rel="stylesheet" href="client/css/reset.css">
     <link rel="stylesheet" href="client/css/all.css">
@@ -246,7 +246,7 @@
                         <div class="swiper-wrapper">
                         <c:forEach var="main" items="${mainMovieList }">
                             <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
-                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath};">
+                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath});">
 	                            <div class="row">
 	                                <h2>${main.movieTitle }</h2>
 	                                <p>${main.movieSubtitle }</p>
