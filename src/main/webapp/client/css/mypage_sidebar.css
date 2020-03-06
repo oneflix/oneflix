@@ -1,9 +1,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
         body {font-family: "Noto Sans KR",'Nanum Gothic', 'Malgun Gothic', sans-serif; margin: 0 auto; padding: 0; background-color: #080808;}
-        hr {width: 115px; border: 1px solid #1a1919;}
+        hr {width: 135px; border: 1px solid #1a1919; margin: 8px 14px;}
         i {color: #f1f1f1; font-size: 25px;}
 
-        .header {padding: 20px 30px 0 30px; height: 85px; display: none; background-color: #080808;}
+        .header {padding: 20px 30px 0 30px; height: 75px; display: none; background-color: #080808;}
         .header > a > .header-logo {width: 120px;}
 
         .sidenav {height: 100%; width: 165px; position: fixed; z-index: 1; top: 0; left: 0; padding-top: 30px;
