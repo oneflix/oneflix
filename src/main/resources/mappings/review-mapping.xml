@@ -13,7 +13,7 @@
 	
 	<update id="updateReview" parameterType="review">
 		UPDATE review
-		SET review_content = #{reviewContent}, review_score = #{reviewScore}
+		SET review_content = #{reviewContent, jdbcType=VARCHAR}, review_score = #{reviewScore}
 		WHERE
 		email = #{email} AND movie_id = #{movieId}
 	</update>
