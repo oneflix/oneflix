@@ -107,10 +107,10 @@ public class MypageHomeController {
 			 while (entries.hasNext()) {
 			    Map.Entry<Integer, Integer> entry = entries.next();			    
 			    genre.setGenreId(entry.getKey());
-			    String genreName = getGenreService.getGenreName(genre);
+			    genre = getGenreService.getGenre(genre);
 			    
 			 	JSONObject legend = new JSONObject();
-			    legend.put("v", genreName);
+			    legend.put("v", genre.getGenre());
 			    legend.put("f", null);
 
 			    JSONObject value = new JSONObject();

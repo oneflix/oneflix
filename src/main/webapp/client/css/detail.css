@@ -575,3 +575,25 @@ video {border: 0; outline: none;}
 .starR1.on{background-position:0 0; color: #fff;}
 .starR2.on{background-position:-15px 0; color: #fff;}
 
+
+.starR1-sm{
+    background: url('../images/icons/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2-sm{
+    background: url('../images/icons/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1-sm.on{background-position:0 0; color: #fff;}
+.starR2-sm.on{background-position:-15px 0; color: #fff;}
+
