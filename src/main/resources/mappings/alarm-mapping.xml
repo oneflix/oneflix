@@ -4,6 +4,26 @@
 
 <mapper namespace="#package.#mapperinterfacename">
 
+<<<<<<< HEAD
+	<insert id="insertAlarm" parameterType="java.util.HashMap">
+		INSERT INTO alarm (alarmType,email,sendDate,readCheck)
+		<foreach collection="emailList" item="alarm"
+			open="DECLARE BEGIN" close="; END;" separator=";">
+			VALUES((SELECT
+			NVL(MAX(alarm_id), 0) + 1 FROM alarm),
+			#{alarm.alarmType},#{alarm.email},#{alarm.sendDate},#{alarm.readCheck})
+		</foreach>
+	</insert>
+
+	<resultMap type="alarm" id="alarmList">
+		<id property="alarmId" column="alarm_id"></id>
+		<result property="alarmType" column="alarm_type" />
+		<result property="email" column="email" />
+		<result property="sendDate" column="send_date" />
+		<result property="readCheck" column="read_check" />
+	</resultMap>
+</mapper>
+=======
 	<insert id="insertAlarm" parameterType="alarm">
 	
 		INSERT INTO alarm
@@ -12,3 +32,4 @@
 	</insert>
 
 </mapper>
+>>>>>>> master
