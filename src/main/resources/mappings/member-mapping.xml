@@ -41,7 +41,7 @@
 		</if>
 		WHERE m.ticket_id = t.ticket_id
 		<if test="ticketId != 0">
-			AND m.email = s.email AND s.sales_status = 'success'
+			AND m.email = s.email AND (s.sales_status like 'success' OR s.sales_status like 'inactive')
 		</if>
 		<choose>
 			<when test="kakao != null and kakao != ''">

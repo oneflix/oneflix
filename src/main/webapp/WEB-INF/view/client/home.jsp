@@ -42,7 +42,7 @@
     	.swiper-slide > .hidden-card > {position: relative;}
     	.swiper-slide > .hidden-card > img {opacity: 0.3; position: absolute}
     	.swiper-slide > .hidden-card > .movie-mini-box {position: relative; height: 100%;}
-    	.movie-mini-box > button {cursor: pointer; position: absolute; top: 30%; border: none; background: rgba(0,0,0,0);}
+    	.movie-mini-box > button {cursor: pointer; position: absolute; top: 30%; border: none; background: rgba(0,0,0,0); outline: none;}
     	.movie-mini-box > .play-button {display: flex; width: 70%; left: 10px;}
     	.movie-mini-box > .play-button > .play-button-img {margin-right: 10px;}
     	.movie-mini-box > .play-button > .info-box {flex: 1;}
@@ -155,7 +155,7 @@
 
     <div id="wrap">
         <header id="header">
-            <div id="root">
+            <div class="ticket-header" id="root">
                 <div class="css-1tumwum-Self">
                     <div class="css-1926epj-Self e1wyxeas0">
                         <p class="css-kodeqh-Title e1wyxeas6">모든 작품, 무제한 감상하세요. 마음에 들지 않으면 클릭 1번으로 언제든 해지할 수 있어요.
@@ -482,6 +482,14 @@
     <script src="client/js/script.js"></script>
     <script src="client/js/ticket_modal.js"></script>
     <script type="text/javascript">
+    	$(document).ready(function(){
+    		var purchasedTicket = "${member.ticketId}";
+    		alert(purchasedTicket);
+    		if (purchasedTicket != 0) {
+    			$('.ticket-header').css('display', 'none');
+    		}
+    	});
+    
 		$('.swiper-button-next').click(function(){
 			$(this).next().css("display", "block");
 		});
