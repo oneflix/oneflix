@@ -198,7 +198,9 @@
 		$('.info-button').mouseleave(function(){
 			$(this).children('img').prop('src','client/images/icons/info.png');
 		});
-		
+		function goWatchMovie(movieId) {
+			window.location.href = "#?movieId=" + movieId;
+		}
 		function goMovieDetail(movieId) {
 			window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
 		}
