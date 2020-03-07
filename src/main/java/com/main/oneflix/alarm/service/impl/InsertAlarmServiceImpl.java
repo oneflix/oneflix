@@ -36,16 +36,6 @@ public class InsertAlarmServiceImpl implements InsertAlarmService {
 		}
 		Map<String, List<String>> map = new HashMap<>();
 		map.put("emailList", emailList);
-<<<<<<< HEAD
-
-=======
->>>>>>> master
-		
-
-<<<<<<< HEAD
-=======
-		
 	}
 
->>>>>>> master
 }
