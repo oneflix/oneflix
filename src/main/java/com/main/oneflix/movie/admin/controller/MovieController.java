@@ -25,8 +25,8 @@ import com.main.oneflix.movie.service.GetMovieService;
 import com.main.oneflix.movie.service.InsertMovieService;
 import com.main.oneflix.movie.service.UpdateMovieService;
 import com.main.oneflix.movie.vo.MovieVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 import com.main.oneflix.util.fileupload.service.MovieFileuploadService;
-import com.main.onflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class MovieController {

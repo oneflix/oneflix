@@ -14,7 +14,7 @@ import com.main.oneflix.ticket.service.GetTicketService;
 import com.main.oneflix.ticket.service.InsertTicketService;
 import com.main.oneflix.ticket.service.UpdateTicketService;
 import com.main.oneflix.ticket.vo.TicketVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class TicketController {
