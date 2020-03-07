@@ -160,17 +160,6 @@
       movie_id = #{movieId}
    </delete>
 
-<<<<<<< HEAD
-	<select id="getCountMovie" parameterType="movie" resultType="int">
-		SELECT COUNT(*) FROM movie
-		<if test="movieType == 'alarm'">
-			<![CDATA[
-				AND m.movie_reg_date >= TRUNC(SYSDATE - 1)
-			]]>
-		</if>
-</select>
-</mapper>
-=======
    <select id="getCountMovie" parameterType="movie" resultType="int">
       SELECT COUNT(*) FROM movie
       <if test="movieType == 'alarm'">
@@ -180,4 +169,3 @@
       </if>
 </select>
 </mapper>
->>>>>>> master
