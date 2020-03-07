@@ -14,7 +14,7 @@ import com.main.oneflix.genre.service.GetGenreService;
 import com.main.oneflix.genre.service.InsertGenreService;
 import com.main.oneflix.genre.service.UpdateGenreService;
 import com.main.oneflix.genre.vo.GenreVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class GenreController {

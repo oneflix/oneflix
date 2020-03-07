@@ -1,4 +1,4 @@
-package com.main.onflix.util.datatable.vo;
+package com.main.oneflix.util.datatable.vo;
 
 import java.util.List;
 
