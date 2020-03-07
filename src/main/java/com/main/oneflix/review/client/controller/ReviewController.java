@@ -73,6 +73,7 @@ public class ReviewController {
 
 	@RequestMapping("/getReviewListProc.do")
 	public ModelAndView getReviewListProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
+		System.out.println("reivewListProc");
 		vo.setStart(1);
 		vo.setEnd(10);
 		MemberVO member = (MemberVO) session.getAttribute("member");
@@ -80,6 +81,7 @@ public class ReviewController {
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
 		for (ReviewVO review : reviewList) {
 			System.out.println("======================================");
+			System.out.println("email = " + vo.getEmail());
 			System.out.println("reviewId = " + review.getReviewId());
 			System.out.println("movieTitle = " + review.getMovieTitle());
 			System.out.println("reviewContent = " + review.getReviewContent());
@@ -96,9 +98,13 @@ public class ReviewController {
 	@RequestMapping("/getReviewListProcAjax.do")
 	@ResponseBody
 	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo, HttpSession session) {
+		
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
+//		for (ReviewVO review : reviewList) {
+//			System.out.println(review.getReviewContent());
+//		}
 		return reviewList;
 	}
 
