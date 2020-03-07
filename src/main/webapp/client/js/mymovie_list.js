@@ -17,70 +17,58 @@ const createWatchingSwiper = function(slideCount) {
     var watchingSwiper = new Swiper('#watching-slider-container', {
     
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
-        // loopFillGroupWithBlank: true,
-        
-        allowTouchMove: false,
         navigation: {
             nextEl: '#watching-button-next',
             prevEl: '#watching-button-prev'
         },
     
-        loop: true,
-        speed: 500,
+        speed: 1000,
     });
 };
 
 const createWatchedSwiper = function(slideCount) {
-    var Watched = new Swiper('#watched-slider-container', {
+    var watchedSwiper = new Swiper('#watched-slider-container', {
     
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
-        // loopFillGroupWithBlank: true,
-        
-        allowTouchMove: false,
         navigation: {
             nextEl: '#watched-button-next',
             prevEl: '#watched-button-prev'
         },
     
-        loop: true,
-        speed: 500,
+        speed: 1000,
     });
 };
 
-const createRatingSwiper = function(slideCount) {
-    var ratingSwiper = new Swiper('#rating-slider-container', {
+const createRatedSwiper = function(slideCount) {
+    var ratedSwiper = new Swiper('#rated-slider-container', {
     
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
-        // loopFillGroupWithBlank: true,
-        
-        allowTouchMove: false,
         navigation: {
-            nextEl: '#rating-button-next',
-            prevEl: '#rating-button-prev'
+            nextEl: '#rated-button-next',
+            prevEl: '#rated-button-prev'
         },
     
-        loop: true,
-        speed: 500,
+        speed: 1000,
     });
 };
 
 $(document).ready(function() {
     createWatchingSwiper(calcSlideCount());
     createWatchedSwiper(calcSlideCount());
-    createRatingSwiper(calcSlideCount());
+    createRatedSwiper(calcSlideCount());
 });
 
 $(window).resize(function() {
     createWatchingSwiper(calcSlideCount());
     createWatchedSwiper(calcSlideCount());
-    createRatingSwiper(calcSlideCount());
+    createRatedSwiper(calcSlideCount());
 });

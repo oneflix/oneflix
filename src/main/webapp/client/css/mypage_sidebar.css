@@ -30,6 +30,7 @@
 
         @media (max-width: 768px) {
             .header {display: block;}
+            .sidenav {display: none;}
             .sidenav .closebtn {display: block;}
             .menu-button {display: block;}
             .page-body {padding-left: 35px;}

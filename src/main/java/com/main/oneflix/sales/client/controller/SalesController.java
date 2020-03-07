@@ -14,7 +14,7 @@ import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.service.DeleteSalesService;
 import com.main.oneflix.sales.service.GetSalesService;
 import com.main.oneflix.sales.service.InsertSalesService;
-import com.main.oneflix.sales.service.UpdateSalesService;
+import com.main.oneflix.sales.service.TicketSalesService;
 import com.main.oneflix.sales.vo.SalesVO;
 import com.main.oneflix.ticket.service.GetTicketService;
 import com.main.oneflix.ticket.vo.TicketVO;
@@ -36,7 +36,7 @@ public class SalesController {
 	@Autowired
 	private InsertSalesService insertSalesService;
 	@Autowired
-	private UpdateSalesService updateSalesService;
+	private TicketSalesService ticketSalesService;
 	@Autowired
 	private DeleteSalesService deleteSalesService;
 	@Autowired
@@ -51,7 +51,7 @@ public class SalesController {
 		ticket = getTicketService.getTicket(ticket);
 
 		// 정기권 이라면
-		if (ticket.getTicketPeriod() == -1) {
+		if (ticket.getTicketName().equals("정기권")) {
 			vo.setCid("subscription");
 		} else { // 기간제이면
 			vo.setCid("single");
@@ -79,7 +79,6 @@ public class SalesController {
 //		vo.setPayment_method_type("CARD");
 		
 		SalesVO response = (readyPaymentService.readyPayment(vo));
-		System.out.println(vo.getEmail());
 		insertSalesService.insertSales(vo);
 		return response;
 	}
@@ -92,14 +91,16 @@ public class SalesController {
 		vo.setSalesStatus("ready");
 		vo = getSalesService.getSales(vo);
 		Integer ticketId = vo.getTicketId();
+		String email = vo.getEmail();
 		// 찾아온 vo에 pg_token 셋팅
 		vo.setPg_token(pg_token);
 		vo = approvePaymentService.approvePayment(vo);
 		
 		vo.setTicketId(ticketId);
+		vo.setEmail(email);
 		// sales_status success로 업데이트 및 나머지 값 업데이트
 		vo.setSalesStatus("success");
-		updateSalesService.updateSales(vo);
+		ticketSalesService.sellTicket(vo);
 		
 		mav.setViewName("redirect:/paymentSuccessProc.do?email=" + vo.getEmail());
 		return mav;
