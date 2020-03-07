@@ -101,9 +101,10 @@
        		</main>
        		<footer class="css-eexbuk-Self e16ogtil0">
        		<span class="css-j4zj9u-Contact e16ogtil1">
-       		<em><a href="/help.do">고객센터(이용 및 결제 문의)</a>
-       		</em>&nbsp;&nbsp;<a href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
-       		</span><br>
+       		<em><a style="font-size: 0.8333333333333334vw; line-height: 0;" href="/help.do">고객센터(이용 및 결제 문의)</a>
+       		</em>&nbsp;&nbsp;<a style="font-size: 0.8333333333333334vw; line-height: 0;" href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
+       		</span>
+       		<br>
          <strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
          reserved.
        		</footer>
