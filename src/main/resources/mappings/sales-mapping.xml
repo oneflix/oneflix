@@ -89,8 +89,8 @@
 		SELECT NVL(SUM(t.ticket_price),0)
 		FROM sales s, ticket t
 		WHERE s.ticket_id = t.ticket_id
-		AND s.sales_status = 'success'
-			<if test="startDate != null and startDate != 0 or endDate != null and endDate != 0">
+		AND s.sales_status != 'ready'
+			<if test="startDate != null and startDate != 0 and endDate != null and endDate != 0">
 				AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 				AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
 			</if>
@@ -104,12 +104,12 @@
 							AND payment_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
 						]]>
 					</when>
-					<when test="movieType == 'sales'">
-						<![CDATA[
-							AND expiry_date >= TRUNC(SYSDATE - 1)
-						]]>
-					</when>
 				</choose>
+			</if>
+			<if test="salesStatus == 'expired'">
+				<![CDATA[
+					AND expiry_date >= TRUNC(SYSDATE - 1)
+				]]>
 			</if>
 	</select>
 	
@@ -121,4 +121,5 @@
 			AND email = #{email}
 		</if>
 	</select>
+	
 </mapper>
