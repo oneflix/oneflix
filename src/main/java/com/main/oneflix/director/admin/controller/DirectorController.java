@@ -14,7 +14,7 @@ import com.main.oneflix.director.service.GetDirectorService;
 import com.main.oneflix.director.service.InsertDirectorService;
 import com.main.oneflix.director.service.UpdateDirectorService;
 import com.main.oneflix.director.vo.DirectorVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class DirectorController {

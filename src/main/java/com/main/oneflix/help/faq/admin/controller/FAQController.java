@@ -14,7 +14,7 @@ import com.main.oneflix.help.service.GetHelpService;
 import com.main.oneflix.help.service.InsertHelpService;
 import com.main.oneflix.help.service.UpdateHelpService;
 import com.main.oneflix.help.vo.HelpVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class FAQController {
