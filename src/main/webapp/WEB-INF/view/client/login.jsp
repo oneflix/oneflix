@@ -36,6 +36,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
+<link rel="stylesheet" type="text/css" href="client/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
 </head>
@@ -54,8 +55,7 @@
 				</ul>
 		</nav>
 	<main class="css-1a4c3t1-Main e19xg79h5">
-	<div src="https://images.watcha.net/updatable_images/2130/original/1cfd5170d7adbe8a8fdd06e33181429a18099965.jpg" 
-	class="css-9e7b81-Self el4vci00">
+	<div src="#" class="css-9e7b81-Self el4vci00">
 
      <main class="css-1494bd8-Self edt52et0">
      	<div class="css-9tzvq5-Inner edt52et4">
@@ -65,19 +65,17 @@
      				비밀번호를 잊어버리셨나요?</a>
 			</div>
      <form action="/loginProc.do" method="post" onsubmit="return validate();">
-     	<div class="css-n7c9r1-Self eu52ful0">
-     		<input name="email" id="email" placeholder="이메일을 입력해주세요" style="font-size:14px;"
-     		class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" 
-     		type="email" value="">
-   		</div>
-   		<div class="css-1q1k87-Self eu52ful0">
-     		<input name="pass" id="pass" placeholder="비밀번호 (6자 이상)" style="font-size:14px;"
-     		class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" 
-     		type="password" value="">
-   		</div>
-   		<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-   		<button type="submit" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
-   		</div>
+     <div class="css-unatsl-Self eu52ful0">
+     <input id="email" name="email" placeholder="이메일을 입력해주세요" 
+     class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
+     </div>
+     <div class="css-unatsl-Self eu52ful0">
+     <input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
+     class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
+     </div>
+<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
+<button type="submit" id="loginBtn" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
+</div>
 	</form>
 		<div class="css-tssyq1-LoginBlock edt52et1">
 		<p class="css-18x4yp2-SignInMessage edt52et2" style="margin-bottom: 2vh;">
@@ -115,12 +113,6 @@
    		<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
   	</div>
  
-  	
-  
-
-
-
-
    <!--===============================================================================================-->
    <script src="client/vendor/jquery/jquery-3.2.1.min.js"></script>
    <!--===============================================================================================-->
@@ -137,6 +129,7 @@
    <script src="client/vendor/countdowntime/countdowntime.js"></script>
    <!--===============================================================================================-->
    <script src="client/js/ls-main.js"></script>
+   	<script src="client/js/arrayfill.js"></script>
 
    <!-- KAKAO LOGIN -->
    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>

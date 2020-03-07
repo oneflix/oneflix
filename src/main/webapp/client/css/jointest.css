@@ -1,0 +1,586 @@
+html, body {
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
+    font-weight: 400;
+    color: white;
+    height: 100%;
+    background: rgb(20, 21, 23);
+    padding: 0px;
+    margin: 0px;
+}
+html {
+    line-height: normal;
+}
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+html {
+    display: block;
+    color: -internal-root-color;
+}
+head {
+    display: none;
+}
+#root {
+    width: 100%;
+    height: 100%;
+}
+ol, ul {
+    list-style-type: none;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+a:-webkit-any-link {
+    cursor: pointer;
+}
+div {
+    display: block;
+}
+main {
+    display: block;
+}
+body {
+    margin: 0;
+}
+/*nav*/
+nav {
+    display: block;
+}
+.css-7cp7ve-LeftNav {
+    float: left;
+    padding-left: 33px;
+}
+.css-k2rcg7-RightNav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    right: -11px;
+    float: right;
+}
+.css-xqxb62-ButtonLink-RightNavButtonLink {
+    display: inline-block;
+    background-color: #121218;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 4px;
+    background: #fff;
+    color: #121218;
+    font-size: 13px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.3px;
+    -moz-letter-spacing: -0.3px;
+    -ms-letter-spacing: -0.3px;
+    letter-spacing: -0.3px;
+    padding: 5px 18px 6px;
+    border-radius: 40px;
+    margin: 23px 0 0;
+}
+.css-1a4c3t1-Main {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: #141517;
+}
+.css-9e7b81-Self {
+    height: 100vh;
+}
+.css-9e7b81-Self::before {
+    content: "";
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 500ms ease 0s;
+}
+.css-urf8br-Self {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    padding: 0px 0 0;
+}
+.css-srrekc-Gnb {
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    font-size: 14px;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    width: 100%;
+    height: 72px;
+    padding: 0 4%;
+}
+/*-------------------------------------*/
+.css-1494bd8-Self {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+.css-9tzvq5-Inner {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 300px;
+}
+.css-d3y7ny-LabelTitle {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 0px 0px 14px;
+}
+/*-------------폼시작------------*/
+form {
+    display: block;
+    margin-top: 0em;
+}
+input {
+    -webkit-writing-mode: horizontal-tb;
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: -internal-light-dark-color(white, black);
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 0px;
+}
+/*-------------폼입력------------*/
+.css-unatsl-Self {
+    position: relative;
+    width: 100%;
+}
+.css-n7c9r1-Self {
+    position: relative;
+    width: 100%;
+}
+.css-n7c9r1-Self::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    bottom: auto;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiP…ExMSBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) no-repeat;
+}
+.css-1q1k87-Self {
+    position: relative;
+    width: 100%;
+}
+.css-1q1k87-Self::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    bottom: auto;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiP…g4OSBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) no-repeat;
+}
+input, textarea, select, button {
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
+}
+button, input, optgroup, select, textarea {
+    line-height: normal;
+}
+input:focus {
+    outline-offset: -2px;
+}
+/*이름입력*/
+input.css-sg09fs-StyledField-NameField[type="text"] {
+    font-size: 16px;
+    -webkit-letter-spacing: -0.5px;
+    -moz-letter-spacing: -0.5px;
+    -ms-letter-spacing: -0.5px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+    border-color: rgba(154,151,161,0.2);
+}
+input.css-sg09fs-StyledField-NameField[type="text"]:focus {
+    border-color: rgba(154,151,161,0.2);
+}
+input.css-sg09fs-StyledField-NameField[type="email"], input.css-sg09fs-StyledField-NameField[type="number"], input.css-sg09fs-StyledField-NameField[type="password"], input.css-sg09fs-StyledField-NameField[type="search"], input.css-sg09fs-StyledField-NameField[type="tel"], input.css-sg09fs-StyledField-NameField[type="text"] {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border-width: 1px 0px 0.5px;
+}
+.css-sg09fs-StyledField-NameField {
+    width: 100%;
+    padding: 10px 44px 10px 14px;
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+/*이메일 입력*/
+input.css-11i8u80-StyledField-EmailField[type="email"] {
+    font-size: 16px;
+    -webkit-letter-spacing: -0.5px;
+    -moz-letter-spacing: -0.5px;
+    -ms-letter-spacing: -0.5px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+    border-color: rgba(154,151,161,0.2);
+}
+input.css-11i8u80-StyledField-EmailField[type="email"]:focus {
+    border-color: rgba(154,151,161,0.2);
+}
+input.css-11i8u80-StyledField-EmailField[type="email"], input.css-11i8u80-StyledField-EmailField[type="number"], input.css-11i8u80-StyledField-EmailField[type="password"], input.css-11i8u80-StyledField-EmailField[type="search"], input.css-11i8u80-StyledField-EmailField[type="tel"], input.css-11i8u80-StyledField-EmailField[type="text"] {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border-top-width: 0.5px;
+    border-bottom-width: 0.5px;
+}
+.css-11i8u80-StyledField-EmailField {
+    width: 100%;
+    padding: 10px 44px 10px 14px;
+    border-radius: 0;
+}
+/*--------------------비밀번호입력----------------------------*/
+input[type="password" i] {
+    -webkit-text-security: disc !important;
+}
+input.css-1ivms9u-StyledField-PasswordField[type="password"] {
+    font-size: 16px;
+    -webkit-letter-spacing: -0.5px;
+    -moz-letter-spacing: -0.5px;
+    -ms-letter-spacing: -0.5px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+    border-color: rgba(154,151,161,0.2);
+}
+input.css-1ivms9u-StyledField-PasswordField[type="password"]:focus {
+    border-color: rgba(154,151,161,0.2);
+}
+
+input.css-1ivms9u-StyledField-PasswordField[type="email"], input.css-1ivms9u-StyledField-PasswordField[type="number"], input.css-1ivms9u-StyledField-PasswordField[type="password"], input.css-1ivms9u-StyledField-PasswordField[type="search"], input.css-1ivms9u-StyledField-PasswordField[type="tel"], input.css-1ivms9u-StyledField-PasswordField[type="text"] {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border-top-width: 0.5px;
+    border-bottom-width: 1px;
+}
+.css-1ivms9u-StyledField-PasswordField {
+    width: 100%;
+    padding: 10px 44px 10px 14px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="text"]:focus {
+    outline: none;
+}
+/*약관동의*/
+.css-qqrmg3-Legals {
+    margin: 16px 0 0;
+}
+.css-5v9mdr-LegalFieldBlock {
+    margin: 6px 0;
+}
+.css-1b4fwr1-AgreeAllLegal {
+    display: block;
+    position: relative;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    padding: 0 0 0 0;
+    cursor: pointer;
+}
+.css-15jxlui-Checkbox {
+    display: inline-block;
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+}
+.css-15jxlui-Checkbox:focus::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    width: 12px;
+    height: 12px;
+    background-color: #e50914;
+}
+.css-54idcc-Checkbox {
+    display: inline-block;
+    position: absolute;
+    bottom: 1px;
+    left: 0px;
+    width: 14px;
+    height: 14px;
+    background: #e50914;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e50914;
+    border-image: initial;
+    border-radius: 50%;
+}
+.css-54idcc-Checkbox:focus::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 12px;
+    height: 12px;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' fill-rule='evenodd' d='M9.41 17.26a.744.744 0 0 1-.53-.22L4.05 12.212a.749.749 0 1 1 1.06-1.06l4.298 4.297 9.48-9.48A.75.75 0 1 1 19.95 7.03L9.94 17.04a.744.744 0 0 1-.53.22'/%3E%3C/svg%3E") center center / contain no-repeat;
+}
+.css-1k9uma7-Self {
+    display: block;
+    position: relative;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    padding: 0 0 0;
+    cursor: pointer;
+}
+.css-3ivnsa-StyledField {
+    position: absolute;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.css-c1816u-LegalLink {
+    color: rgba(255,255,255,0.7);
+}
+.css-5v9mdr-LegalFieldBlock {
+    margin: 6px 0;
+}
+/*완료버튼*/
+.css-10mrhk1-SubmitButtonBlock {
+    width: 100%;
+    margin: 16px 0 14px;
+}
+.css-vklyy4-RoundedButton-SignSubmitButton:disabled {
+    opacity: 0.3;
+}
+.css-vklyy4-RoundedButton-SignSubmitButton {
+    background-color: #e50914;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.1px;
+    -moz-letter-spacing: -0.1px;
+    -ms-letter-spacing: -0.1px;
+    letter-spacing: -0.1px;
+    line-height: 51px;
+    text-align: center;
+    width: 100%;
+    height: 52px;
+    border-radius: 40px;
+    font-size: 16px;
+    line-height: 47px;
+    height: 48px;
+}
+input, textarea, select, button {
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
+}
+input[type="button"], input[type="submit"], button {
+    cursor: pointer;
+    -webkit-appearance: initial;
+    border-width: 0px;
+    border-style: none;
+    border-color: transparent;
+    border-image: initial;
+    outline: none 0px;
+    background: none;
+    padding: 0px;
+}
+button:disabled {
+    color: -internal-light-dark-color(graytext, rgb(170, 170, 170));
+}
+/*footer*/
+.css-eexbuk-Self {
+    position: absolute;
+    right: 0;
+    bottom: 1.3888888888888888vw;
+    left: 0;
+    z-index: 100;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8333333333333334vw;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.034722222222222224vw;
+    -moz-letter-spacing: -0.034722222222222224vw;
+    -ms-letter-spacing: -0.034722222222222224vw;
+    letter-spacing: -0.034722222222222224vw;
+    text-align: center;
+    padding: 0 3.4722222222222223vw;
+}
+.css-j4zj9u-Contact {
+    color: rgba(255,255,255,0.7);
+    white-space: pre-line;
+}
+.css-j4zj9u-Contact > em {
+    font-weight: 700;
+}
+em {
+    font-style: normal;
+}
+.css-8emhun-BackScreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.74);
+}
+/*input */
+
+.gender-radio{
+  float: right;
+  margin-right: 80px;
+  margin-top: 10px;
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 2px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 14.5px;
+  width: 14.5px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-left: 1.8px;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+  border-radius: 50%;
+  
+}
+.option-input:hover {
+  background: #bdc3c7;
+}
+
+.option-input:checked::before {
+  height: 14.8px;
+  width: 14.8px;
+  position: absolute;
+  content: '1';
+  display: inline-block;
+  font-size: 10px;
+  text-align: center;
+  line-height: 15px;
+  background: #bdc3c7;
+  border-radius: 50%;
+}
+
+.option-input:checked::after {
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  background: rgb(252, 66, 106);
+}
+
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+.checkbox-container{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

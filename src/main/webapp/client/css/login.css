@@ -1,32 +1,4 @@
-
-.css-1494bd8-Self {
-    display: flex;
-    position: relative;
-    z-index: 1;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    height: 100%;
-    overflow: hidden;
-}
-*, ::before, ::after {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-*, ::before, ::after {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-html, body {
-    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
-    font-weight: 400;
-    color: white;
-    height: 100%;
-    background: rgb(20, 21, 23);
-    padding: 0px;
-    margin: 0px;
+element.style {
 }
 html, body {
     font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
@@ -41,20 +13,58 @@ html {
     line-height: normal;
 }
 html {
-    line-height: 1.15;
     -webkit-text-size-adjust: 100%;
 }
 *, ::before, ::after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
 }
-user agent stylesheet
 html {
+    display: block;
     color: -internal-root-color;
+}
+head {
+    display: none;
 }
 #root {
     width: 100%;
     height: 100%;
+}
+div {
+    display: block;
+}
+ol, ul {
+    list-style-type: none;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+a:-webkit-any-link {
+    cursor: pointer;
 }
 .css-urf8br-Self {
     display: -webkit-box;
@@ -67,27 +77,11 @@ html {
     height: 100%;
     padding: 0px 0 0;
 }
-.css-srrekc-Gnb {
-    position: fixed;
-    top: 0;
-    z-index: 500;
-    font-size: 14px;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
-    letter-spacing: -0.4px;
-    width: 100%;
-    height: 72px;
-    padding: 0 4%;
-}
 .css-1a4c3t1-Main {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
     background: #141517;
-}
-main {
-    display: block;
 }
 .css-9e7b81-Self {
     height: 100vh;
@@ -104,216 +98,32 @@ main {
     height: 100%;
     overflow: hidden;
 }
-.css-9tzvq5-Inner {
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-    width: 300px;
-}
-.css-122phix-SignInFormLabel {
-    display: flex;
-    align-items: flex-start;
-    margin: 0px 0px 14px;
-}
-.css-1o4b3ai-SignInFormLabelTitle {
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    flex: 1 1 0%;
-}
-.css-1h9xpgj-FindPasswordLink {
-    color: rgb(255, 255, 255);
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: -0.4px;
-    opacity: 0.5;
-    padding: 4px 0px 0px;
-}
-a {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-}
-a {
-    background-color: transparent;
-}
-.css-1q1k87-Self {
-    position: relative;
-    width: 100%;
-}
-*, ::before, ::after {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-user agent stylesheet
-div {
-    display: block;
-}
-input.css-1og2nh1-StyledField-EmailField[type="email"] {
-    font-size: 16px;
-    letter-spacing: -0.5px;
-    line-height: normal;
-    border-color: rgba(154, 151, 161, 0.2);
-}
-input.css-1og2nh1-StyledField-EmailField[type="email"], input.css-1og2nh1-StyledField-EmailField[type="number"], input.css-1og2nh1-StyledField-EmailField[type="password"], input.css-1og2nh1-StyledField-EmailField[type="search"], input.css-1og2nh1-StyledField-EmailField[type="tel"], input.css-1og2nh1-StyledField-EmailField[type="text"] {
-    color: rgb(51, 51, 51);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    border-width: 1px 1px 0px;
-    border-style: solid;
-    border-color: rgb(212, 212, 212);
-    border-image: initial;
-}
-.css-1og2nh1-StyledField-EmailField {
-    width: 100%;
-    padding: 10px 44px 10px 14px;
-    border-radius: 4px 4px 0px 0px;
-}
-<style>
-input, textarea, select, button {
-    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
-}
-<style>
-button, input, optgroup, select, textarea {
-    line-height: normal;
-}
-button, input {
-    overflow: visible;
-}
-button, input, optgroup, select, textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
-.css-unatsl-Self {
-    position: relative;
-    width: 100%;
-}
-input.css-1727o8c-StyledField-PasswordField[type="password"] {
-    font-size: 16px;
-    letter-spacing: -0.5px;
-    line-height: normal;
-    border-top-width: 1px;
-    border-color: rgba(154, 151, 161, 0.2);
-}
-.css-cmoq9h-SubmitButtonBlock {
-    width: 100%;
-    padding: 0px 0px 21px;
-    border-bottom: 1px solid rgba(154, 151, 161, 0.2);
-    margin: 16px 0px 0px;
-}
-.css-tssyq1-LoginBlock {
-    padding: 15px 0px 0px;
-}
-.css-eexbuk-Self {
-    position: absolute;
-    right: 0;
-    bottom: 1.3888888888888888vw;
-    left: 0;
-    z-index: 100;
-    color: rgba(255,255,255,0.3);
-    font-size: 0.8333333333333334vw;
-    font-weight: 400;
-    -webkit-letter-spacing: -0.034722222222222224vw;
-    -moz-letter-spacing: -0.034722222222222224vw;
-    -ms-letter-spacing: -0.034722222222222224vw;
-    letter-spacing: -0.034722222222222224vw;
-    text-align: center;
-    padding: 0 3.4722222222222223vw;
-}
-.css-j4zj9u-Contact {
-    color: rgba(255,255,255,0.7);
-    white-space: pre-line;
-}
-.css-8emhun-BackScreen {
-    display: none;
+/*nav*/
+.css-srrekc-Gnb {
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: rgba(0,0,0,0.74);
-}
-
-element.style {
-}
-.css-vklyy4-RoundedButton-SignSubmitButton:disabled {
-    opacity: 0.3;
-}
-.css-vklyy4-RoundedButton-SignSubmitButton {
-    background-color: #e50914;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    letter-spacing: -0.1px;
-    text-align: center;
+    z-index: 500;
+    font-size: 14px;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
     width: 100%;
-    font-size: 16px;
-    line-height: 47px;
-    height: 48px;
-    border-radius: 40px;
+    height: 72px;
+    padding: 0 4% 0 0;
 }
-button, [type="button"], [type="reset"], [type="submit"] {
-    -webkit-appearance: button;
+.css-7cp7ve-LeftNav {
+    float: left;
+    padding-left: 33px;
 }
-<style>
-input, textarea, select, button {
-    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
-}
-input[type="button"], input[type="submit"], button {
-    cursor: pointer;
-    -webkit-appearance: initial;
-    border-width: 0px;
-    border-style: none;
-    border-color: transparent;
-    border-image: initial;
-    outline: none 0px;
-    background: none;
-    padding: 0px;
-}
-button, input, optgroup, select, textarea {
-    line-height: normal;
-}
-button, select {
-    text-transform: none;
-}
-button, input {
-    overflow: visible;
-}
-button, input, optgroup, select, textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
-button:disabled {
-    color: -internal-light-dark-color(graytext, rgb(170, 170, 170));
-}
-button {
-    -webkit-appearance: button;
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    color: buttontext;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: center;
-    align-items: flex-start;
-    cursor: default;
-    background-color: buttonface;
-    box-sizing: border-box;
-    margin: 0em;
-    font: 400 13.3333px Arial;
-    padding: 1px 6px;
-    border-style: outset;
-    border-color: buttonface;
-    border-image: initial;
+.css-k2rcg7-RightNav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    right: -11px;
+    float: right;
 }
 .css-xqxb62-ButtonLink-RightNavButtonLink {
     display: inline-block;
@@ -341,46 +151,7 @@ button {
     border-radius: 40px;
     margin: 23px 0 0;
 }
-a {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-}
-a {
-    background-color: transparent;
-}
-*, ::before, ::after {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-li {
-    text-align: -webkit-match-parent;
-}
-ol, ul {
-    list-style-type: none;
-    margin-block-end: 0px;
-    margin-block-start: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0px;
-    padding: 0px;
-    margin: 0px;
-}
-ul {
-    list-style-type: disc;
-}
-.css-srrekc-Gnb {
-    position: fixed;
-    top: 0;
-    z-index: 500;
-    font-size: 14px;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
-    letter-spacing: -0.4px;
-    width: 100%;
-    height: 72px;
-    padding: 0 4%;
-}
+/*-------------폼상단------------*/
 .css-9tzvq5-Inner {
     display: flex;
     flex-direction: column;
@@ -388,53 +159,71 @@ ul {
     justify-content: center;
     width: 300px;
 }
-.css-1oiean3-Logo {
-    position: relative;
-    z-index: 10001;
-    float: left;
-    background-size: 173px 26px;
-    width: 173px;
-    height: 72px;
-}
-.css-1og2nh1-StyledField-EmailField {
-    width: 100%;
-    padding: 10px 44px 10px 14px;
-    border-radius: 4px 4px 0px 0px;
-}
-.css-1727o8c-StyledField-PasswordField {
-    width: 100%;
-    padding: 10px 44px 10px 14px;
-    border-radius: 0px 0px 4px 4px;
-}
-.css-7cp7ve-LeftNav {
-    float: left;
-    padding-left: 33px;
-}
-.css-k2rcg7-RightNav {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+.css-122phix-SignInFormLabel {
     display: flex;
-    position: relative;
-    right: -11px;
-    float: right;
+    align-items: flex-start;
+    margin: 0px 0px 14px;
 }
-ol, ul {
-    list-style-type: none;
-    margin-block-end: 0px;
-    margin-block-start: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0px;
-    padding: 0px;
-    margin: 0px;
+.css-1o4b3ai-SignInFormLabelTitle {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    flex: 1 1 0%;
+}
+.css-1h9xpgj-FindPasswordLink {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    opacity: 0.5;
+    padding: 4px 0px 0px;
+}
+form {
+    display: block;
+    margin-top: 0em;
+}
+.css-9e7b81-Self::before {
+    content: "";
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 500ms ease 0s;
+}
+.css-n7c9r1-Self::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    bottom: auto;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiP…ExMSBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) no-repeat;
+}
+/*폼입력*/
+.css-1q1k87-Self {
+    position: relative;
+    width: 100%;
+}
+input, textarea, select, button {
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
+}
+button, input, optgroup, select, textarea {
+    line-height: normal;
 }
 
-button, [type="button"], [type="reset"], [type="submit"] {
-    /* -webkit-appearance: button; */
+input:focus {
+    outline-offset: -2px;
 }
+
 input {
-    -webkit-writing-mode: horizontal-tb !important;
+    -webkit-writing-mode: horizontal-tb;
     text-rendering: auto;
     color: -internal-light-dark-color(black, white);
     letter-spacing: normal;
@@ -449,15 +238,128 @@ input {
     -webkit-rtl-ordering: logical;
     cursor: text;
     margin: 0em;
-    font: 400 13.3333px Arial;
     padding: 1px 0px;
+}
+.css-unatsl-Self {
+    position: relative;
+    width: 100%;
+}
+input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="text"]:focus {
+    outline: none;
+}
+/*이메일 입력*/
+input.css-1og2nh1-StyledField-EmailField[type="email"]:focus {
+    border-color: rgba(154, 151, 161, 0.2) !important;
+}
+input.css-1og2nh1-StyledField-EmailField[type="email"] {
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+    border-color: rgba(154, 151, 161, 0.2) !important;
+}
+input.css-1og2nh1-StyledField-EmailField[type="email"], input.css-1og2nh1-StyledField-EmailField[type="number"], input.css-1og2nh1-StyledField-EmailField[type="password"], input.css-1og2nh1-StyledField-EmailField[type="search"], input.css-1og2nh1-StyledField-EmailField[type="tel"], input.css-1og2nh1-StyledField-EmailField[type="text"] {
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border-width: 1px 1px 0.5px;
+    border-style: solid;
+    border-color: rgb(212, 212, 212);
+}
+.css-1og2nh1-StyledField-EmailField {
+    width: 100%;
+    padding: 10px 44px 10px 14px;
+    border-radius: 4px 4px 0px 0px;
+}
+/*비밀번호*/
+input.css-1727o8c-StyledField-PasswordField[type="password"]:focus {
+    border-color: rgba(154, 151, 161, 0.2) !important;
+}
+input.css-1727o8c-StyledField-PasswordField[type="password"] {
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+    border-top-width: 1px;
+    border-color: rgba(154, 151, 161, 0.2) !important;
+}
+input.css-1727o8c-StyledField-PasswordField[type="email"], input.css-1727o8c-StyledField-PasswordField[type="number"], input.css-1727o8c-StyledField-PasswordField[type="password"], input.css-1727o8c-StyledField-PasswordField[type="search"], input.css-1727o8c-StyledField-PasswordField[type="tel"], input.css-1727o8c-StyledField-PasswordField[type="text"] {
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border-width: 0.5px 1px 1px;
+    border-style: solid;
+    border-color: rgb(212, 212, 212);
+}
+.css-1727o8c-StyledField-PasswordField {
+    width: 100%;
+    padding: 10px 44px 10px 14px;
+    border-radius: 0px 0px 4px 4px;
+}
+/*버튼*/
+button:disabled {
+    color: -internal-light-dark-color(graytext, rgb(170, 170, 170));
+}
+button {
+    -webkit-appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: buttonface;
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
     border-width: 2px;
-    border-style: inset;
-    border-color: initial;
+    border-style: outset;
+    border-color: buttonface;
     border-image: initial;
 }
+input[type="button"], input[type="submit"], button {
+    cursor: pointer;
+    -webkit-appearance: initial;
+    border-style: none;
+    outline: none 0px;
+    background: none;
+    padding: 0px;
+}
+button, [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+.css-cmoq9h-SubmitButtonBlock {
+    width: 100%;
+    padding: 0px 0px 21px;
+    border-bottom: 1px solid rgba(154, 151, 161, 0.2);
+    margin: 16px 0px 0px;
+}
+.css-vklyy4-RoundedButton-SignSubmitButton:disabled {
+    opacity: 0.3;
+}
+.css-vklyy4-RoundedButton-SignSubmitButton {
+    background-color: #e50914;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    letter-spacing: -0.1px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    line-height: 47px;
+    height: 48px;
+    border-radius: 40px;
+}
+/*소셜 로그인*/
 .css-11fv0pd-Button {
     background-color: #080808;
+    opacity: 0.68;
     color: #FFFFFF;
     font-size: 15px;
     font-weight: 700;
@@ -473,6 +375,13 @@ input {
     background-size: 20px 20px;
     margin-bottom: 2vh;
 }
+.css-11fv0pd-Button:hover {
+    opacity: 1;
+    color: #FFFFFF;
+}
+.css-tssyq1-LoginBlock {
+    padding: 15px 0px 0px;
+}
 .css-18x4yp2-SignInMessage {
     color: #d5d4d7;
     font-size: 12px;
@@ -482,48 +391,49 @@ input {
     letter-spacing: -0.4px;
     margin-bottom: 13px;
 }
+/*footer*/
+.css-eexbuk-Self {
+    position: absolute;
+    right: 0;
+    bottom: 1.3888888888888888vw;
+    left: 0;
+    z-index: 100;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8333333333333334vw;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.034722222222222224vw;
+    -moz-letter-spacing: -0.034722222222222224vw;
+    -ms-letter-spacing: -0.034722222222222224vw;
+    letter-spacing: -0.034722222222222224vw;
+    text-align: center;
+    padding: 0 3.4722222222222223vw;
+}
+.css-j4zj9u-Contact {
+    color: rgba(255,255,255,0.7);
+    white-space: pre-line;
+}
 .css-j4zj9u-Contact > em {
     font-weight: 700;
 }
 em {
     font-style: normal;
 }
-.css-eexbuk-Self {
-    position: absolute;
+.css-8emhun-BackScreen {
+    display: none;
+    position: fixed;
+    top: 0;
     right: 0;
-    bottom: 1.3888888888888888vw;
+    bottom: 0;
     left: 0;
-    z-index: 100;
-    color: rgba(255,255,255,0.3);
-    font-size: 0.8333333333333334vw;
-    font-weight: 400;
-    -webkit-letter-spacing: -0.034722222222222224vw;
-    -moz-letter-spacing: -0.034722222222222224vw;
-    -ms-letter-spacing: -0.034722222222222224vw;
-    letter-spacing: -0.034722222222222224vw;
-    text-align: center;
-    padding: 0 3.4722222222222223vw;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.74);
 }
-footer {
-    display: block;
+.logindetail{
+	float: right;
+    margin: 10px 0px 30px 0px;
+    font-size: 10px;
+    font-weight: lighter;
+    opacity: 0.6;
+    color: white;
 }
-.css-j4zj9u-Contact {
-    color: rgba(255,255,255,0.7);
-    white-space: pre-line;
-}
-.css-eexbuk-Self {
-    position: absolute;
-    right: 0;
-    bottom: 1.3888888888888888vw;
-    left: 0;
-    z-index: 100;
-    color: rgba(255,255,255,0.3);
-    font-size: 0.8333333333333334vw;
-    font-weight: 400;
-    -webkit-letter-spacing: -0.034722222222222224vw;
-    -moz-letter-spacing: -0.034722222222222224vw;
-    -ms-letter-spacing: -0.034722222222222224vw;
-    letter-spacing: -0.034722222222222224vw;
-    text-align: center;
-    padding: 0 3.4722222222222223vw;
-}
+

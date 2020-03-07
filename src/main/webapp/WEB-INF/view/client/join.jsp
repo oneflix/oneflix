@@ -36,114 +36,95 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
+<link rel="stylesheet" type="text/css" href="client/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="client/css/join.css">
 <!--===============================================================================================-->
-<style>
-.sectionA {
-	background-color: #141517;
-	background-size: cover;
-	background-position: center;
-}
-</style>
-
 </head>
-
 <body>
-
-
-
-	<div class="limiter">
-		<div class="header">
-			<div class="nav">
-				<a href="#"><img class="header-logo"
-					src="client/images/oneflix_logo.png"></a>
-				<button type="button" class="btn btn-sm btn-light login-button">
-					로그인</button>
-			</div>
-		</div>
-
-		<div class="container-login100 sectionA">
-
-			<div>
-
-				<div class="wrap-login100 p-t-20 p-b-30">
-
-					<form action="/joinProc.do" name="join" method="post" onsubmit="return validate();" class="login100-form validate-form">
-						<div class="login-label">회원가입</div>
-
-						<div class="wrap-input100 wrap-input100-top textfield-border">
-							<input class="input100" type="text" id="email" name="email"
-								autocomplete="off" placeholder="이메일">
+<div id="root">
+	<div class="css-urf8br-Self e19xg79h0">
+		<nav class="css-srrekc-Gnb e19xg79h2">
+			 <a href="/oneflix.do"><img class="header-logo" style="margin-top: 3vh;"
+               src="client/images/oneflix_logo.png"></a>
+				<ul class="css-7cp7ve-LeftNav e19xg79h4"></ul>
+				<ul class="css-k2rcg7-RightNav e19xg79h12">
+					<li class="css-1p3rvqx-RightNavButtonBlock e19xg79h13">
+						<a class="css-xqxb62-ButtonLink-RightNavButtonLink e19xg79h14" href="/login.do">로그인</a>
+					</li>
+				</ul>
+		</nav>
+	<main class="css-1a4c3t1-Main e19xg79h5">
+	<div src="#" class="css-9e7b81-Self el4vci00">
+	<main class="css-1494bd8-Self e1h3r44e0">
+		<div class="css-9tzvq5-Inner e1h3r44e1">
+			<div class="css-d3y7ny-LabelTitle e1h3r44e2">회원 가입</div>
+				<form>
+				<div class="css-1q1k87-Self eu52ful0">
+				<input type="email" value="" id="email" name="email" placeholder="이메일을 입력해주세요" class="e1jdphjt1 css-11i8u80-StyledField-EmailField eu52ful1" autocomplete="off">
+				</div>
+				<div class="css-unatsl-Self eu52ful0">
+				<input type="password" value="" id="pass" name="pass" placeholder="비밀번호 (4자 이상)" class="e1jdphjt4 css-1ivms9u-StyledField-PasswordField eu52ful1" autocomplete="off">
+				</div>
+				<div class="css-1q1k87-Self eu52ful0">
+				<input type="text" value="" id="nick" name="nick" placeholder="닉네임" autofocus="" class="e1jdphjt3 css-sg09fs-StyledField-NickField eu52ful1" autocomplete="off">
+				</div>
+				<div class="css-1q1k87-Self eu52ful0">
+				<input type="number" value="" name="name" placeholder="생년월일 (숫자 8자리)" autofocus="" class="e1jdphjt3 css-sg09fs-StyledField-BirthField eu52ful1" autocomplete="off">
+				</div>
+				<div class="css-1q1k87-Self eu52ful0">
+					<div class="css-sg09fs-StyledField-GenderField eu52ful1 label-padding">
+					<label style="margin: 0; color: #666666;">성별</label>
+						<label style="margin: 0px 0px 0px 25px; color: #666666;">
+						<input class="option-input radio" id="gender" name="gender" value="F" type="radio"/>여성
+						</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<label style="margin: 0; color: #666666;"> 
+						<input class="option-input radio" name="gender" value="M" type="radio"/>남성
+						</label>
+					</div>
+				</div>
+				<div class="css-qqrmg3-Legals e1jdphjt9">
+					<div class="css-5v9mdr-LegalFieldBlock e1jdphjt8">
+						<div class="css-1b4fwr1-AgreeAllLegal e1jdphjt0">
+						<label class="css-1k9uma7-Self ejrezr20" for="terms">
+						<input name="terms" id="terms" type="checkbox" class="option-input css-3ivnsa-StyledField ejrezr22" value="false">
+							전체 약관에 동의합니다</label>
 						</div>
-						<div class="wrap-input100 textfield-border">
-							<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
-							</span> <input class="input100" type="password" id="pass" name="pass"
-								placeholder="비밀번호">
+					</div>
+						<div class="checkbox-container css-5v9mdr-LegalFieldBlock e1jdphjt8">
+							<label class="css-1k9uma7-Self ejrezr20" for="terms[0]">
+							<input name="terms[0]" id="terms[0]" type="checkbox" class="option-input css-3ivnsa-StyledField ejrezr22" value="false">
+							<button type="button" class="css-c1816u-LegalLink e1jdphjt7">ONEFLIX 서비스 이용약관</button>에 동의합니다. (필수)</label>
 						</div>
-						<div class="wrap-input100 textfield-border">
-							<input class="input100" type="text" id="nick" name="nick"
-								autocomplete="off" placeholder="닉네임">
+						<div class="checkbox-container css-5v9mdr-LegalFieldBlock e1jdphjt8">
+							<label class="css-1k9uma7-Self ejrezr20" for="terms[2]">
+							<input name="terms[2]" id="terms[2]" type="checkbox" class="option-input checkbox css-3ivnsa-StyledField ejrezr22" value="false">
+							<button type="button" class="css-c1816u-LegalLink e1jdphjt7">개인정보 취급 방침</button>에 동의합니다. (필수)</label>
 						</div>
-						<div class="wrap-input100 textfield-border">
-							<input class="input100" type="text" id="birth" name="birth"
-								autocomplete="off" maxlength="8" placeholder="생년월일 (숫자로만 8자리)">
-						</div>
-						<div class="wrap-input100 wrap-input100-bottom m-b-16 height">
-
-							<label class="label-padding">성별</label>
-							<div class="gender-radio">
-								<label> <input class="option-input radio" id="gender" name="gender"
-									value="F" type="radio" />여성
-								</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
-									class="option-input radio" name="gender" value="M" type="radio" />남성
-								</label>
-							</div>
-						</div>
-
-						<div class="checkbox-container">
-							<label class="checkbox-label"> <input type="checkbox"
-								class="option-input checkbox" name="checkAgree" /> <span class="terms"
-								OnClick="window.open('#');">ONEFLIX 서비스 이용약관</span>에 동의합니다.
-							</label>
-						</div>
-
-						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit">회원가입</button>
-						</div>
-
-						<hr class="seperator">
-
-
-						<!-- <div>
-							<a href="#" class="btn-login-with m-b-10"> <i
-								class="fa fa-google"></i> Google 계정으로 가입하기
-							</a> <a href="#" class="btn-login-with m-b-10"> <i
-								class="fa fa-keyboard-o"></i> KAKAO 계정으로 가입하기
-							</a>
-						</div> -->
-						
+				</div>
+					<div class="css-10mrhk1-SubmitButtonBlock e1jdphjt6">
+					<button type="submit" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">가입 완료</button>
+					</div>
 						<input type="hidden" name="cert" value="N"/>
 						<input type="hidden" name="ban" value="N"/>
 						<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
 						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
 						<input type="hidden" id="google" name="google" value="${member.google}"/>
-
-					</form>
-				</div>
+				</form>
 			</div>
-			
-		</div>
-	</div>
-
-	<footer id="footer">
-
-		<p>
-			<strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
-			reserved.
-		</p>
-
-	</footer>
-
-
+       		<footer class="css-eexbuk-Self e16ogtil0">
+       		<span class="css-j4zj9u-Contact e16ogtil1">
+       		<em><a href="/help.do">고객센터(이용 및 결제 문의)</a>
+       		</em>&nbsp;&nbsp;<a href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
+       		</span><br>
+         <strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
+         reserved.
+       		</footer>
+       		</main>
+       	</div>
+     </main>
+     <div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
+  </div>
+</div>
 	<!--===============================================================================================-->
 	<script src="client/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -160,6 +141,7 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
+	<script src="client/js/arrayfill.js"></script>
 	<script type="text/javascript">
 	   function validate() {
 	       var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
