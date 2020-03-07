@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
-
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
+<c:set var="year"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,12 @@
 <title>ONeflix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
+<!-- Select2 -->
+<link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
+<link rel="stylesheet"
+	href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -43,10 +51,25 @@
 					<div class="row">
 						<section class="col-lg-6">
 							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
+								<div style="display: flex;" class="card-header">
+									<h3 class="card-title"
+										style="width: 60px; margin-top: 10px; margin-right: 20px;">
 										<i class="far fa-chart-bar"></i> 매출
 									</h3>
+									<select id="actorList" name="actorList"
+										class="form-control select2bs4" required="required"
+										multiple="multiple" data-placeholder="날짜 선택" style="flex: 1;">
+										<c:forEach var="actor" items="${actorList}">
+											<option value="${actor.actorId }">${actor.actorName }</option>
+										</c:forEach>
+									</select>
+									<div style="margin-left: 20px;" class="button-box">
+										<div style="display: flex; margin-top: 5px;"
+											class="button-box">
+											<button style="width: 60px; margin-right: 5px;">연간</button>
+											<button style="width: 60px;">월간</button>
+										</div>
+									</div>
 								</div>
 								<div class="card-body">
 									<div id="sales-chart" style="width: inherit; height: auto;"></div>
@@ -55,6 +78,7 @@
 							</div>
 							<!-- /.card -->
 						</section>
+						<!-- /.card -->
 						<!-- /.card -->
 
 						<section class="col-lg-6">
@@ -139,34 +163,82 @@
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Select2 -->
+	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
+	<!-- Bootstrap4 Duallistbox -->
+	<script src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+ 
+ 
+ 
  <script type="text/javascript">
-  $(function () {
-    // $("#example1").DataTable();
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-    $('#example3').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
+ 
+ $(function() {
+		//Initialize Select2 Elements
+		$('.select2').select2()
+
+		//Initialize Select2 Elements
+		$('.select2bs4').select2({
+			theme : 'bootstrap4'
+		})
+		//Bootstrap Duallistbox
+		$('.duallistbox').bootstrapDualListbox()
+	});
+ 
+</script>
+
+
+<script type="text/javascript">
+//매출 차트
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ["월", "원" ,{role:"annotation"} ],
+        ["1월", 2462, 2462],
+        ["2월", 1499,1499],
+        ["3월", 1895, 1895],
+        ["4월", 1322, 1322],
+        ["5월", 980, 980],
+        ["6월", 872, 872],
+        ["7월", 4569, 4569],
+        ["8월", 12285, 12285],
+        ["9월", 13362, 13362],
+        ["10월", 15523, 15523],
+        ["11월", 15569, 15569],
+        ["12월", 15883, 15883],
+    ]);
+
+    var view = new google.visualization.DataView(data);
+    var options = {
+      series: {0: { color: '#FF4242' }},
+      align:'center',
+      chartArea:{ height:'90%', width:'85%'},
+      height :500,
+      width :'100%',
+      bars: 'vertical',
+      height :500,
+      width :'100%',
+      bar: {groupWidth: "70%"},
+      legend: { position: "none" },
+      isStacked: false,
+      animation : {
+          startup: true,
+          duration: 1000,
+          easing: 'in'
+          },
+      annotations: {
+              textStyle: {
+              fontSize: 15,
+              bold: true,
+              italic: true,
+              opacity: 0.8
+                 }
+            }
+    };
+    var chart = new google.visualization.LineChart(document.getElementById("sales-chart"));
+    chart.draw(view, options);
+    window.addEventListener('resize', function() { chart.draw(data, options); }, false);
+}
 </script>
 
 
@@ -262,7 +334,8 @@
 </script>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
+	
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -350,59 +423,6 @@
 }
 </script>
 
-
-	<script type="text/javascript">
-  google.charts.load("current", {packages:["corechart"]});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ["월", "원" ,{role:"annotation"} ],
-        ["1월", 2462, 2462],
-        ["2월", 1499,1499],
-        ["3월", 1895, 1895],
-        ["4월", 1322, 1322],
-        ["5월", 980, 980],
-        ["6월", 872, 872],
-        ["7월", 4569, 4569],
-        ["8월", 12285, 12285],
-        ["9월", 13362, 13362],
-        ["10월", 15523, 15523],
-        ["11월", 15569, 15569],
-        ["12월", 15883, 15883],
-    ]);
-
-    var view = new google.visualization.DataView(data);
-    var options = {
-      series: {0: { color: '#FF4242' }},
-      align:'center',
-      chartArea:{ height:'90%', width:'85%'},
-      height :500,
-      width :'100%',
-      bars: 'vertical',
-      height :500,
-      width :'100%',
-      bar: {groupWidth: "70%"},
-      legend: { position: "none" },
-      isStacked: false,
-      animation : {
-          startup: true,
-          duration: 1000,
-          easing: 'in'
-          },
-      annotations: {
-              textStyle: {
-              fontSize: 15,
-              bold: true,
-              italic: true,
-              opacity: 0.8
-                 }
-            }
-    };
-    var chart = new google.visualization.LineChart(document.getElementById("sales-chart"));
-    chart.draw(view, options);
-    window.addEventListener('resize', function() { chart.draw(data, options); }, false);
-}
-</script>
 
 
 	<script type="text/javascript">
