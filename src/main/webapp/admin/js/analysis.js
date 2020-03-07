@@ -1,189 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 
-<c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONeflix</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
-</head>
-<body class="hold-transition sidebar-mini">
-	<div class="wrapper">
-	
-		<jsp:include page="${header_url}"></jsp:include>
+//성별분포차트
+var genderData;
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">분석</h1>
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-				</div>
-				<!-- /.container-fluid -->
-			</div>
-			<!-- /.content-header -->
-
-			<!-- Main content -->
-			<section class="content">
-				<div class="container-fluid">
-
-					<!-- Main row -->
-					<div class="row">
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 매출
-									</h3>
-								</div>
-								<div class="card-body">
-									<div id="sales-chart" style="width: inherit; height: auto;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
-
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 상품 이용자 수
-									</h3>
-								</div>
-								<div class="card-body">
-									<div id="product-user-chart" style="width: 100%; height: 500px;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
-
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 성별 회원 분포
-									</h3>
-								</div>
-								<div class="card-body">
-									<div id="gender_chart" style="width: 100%; height: 500px;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
-
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 연령별 회원 분포
-									</h3>
-								</div>
-								<div class="card-body">
-									<div id="member-age" style="width: 100%;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
-
-
-						<section class="col-lg-12">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 영화 랭킹 TOP-5
-									</h3>
-								</div>
-								<div class="row">
-									<div class="col-lg-6" id="movie-ranking-cumulates" style="width: 100%; height: auto;"></div>
-									<div class="col-lg-6" id="movie-ranking-recently" style="width: 100%; height: auto;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
-
-					</div>
-					<!-- /.row (main row) -->
-				</div>
-				<!-- /.container-fluid -->
-			</section>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-
-		<jsp:include page="${footer_url}"></jsp:include>
-	</div>
-	<!-- ./wrapper -->
-	<!-- Google Chart -->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
- <script type="text/javascript">
-  $(function () {
-    // $("#example1").DataTable();
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-    $('#example3').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
-</script>
-
-
-<script type="text/javascript">
-	
-
-  google.charts.load('current', {packages:['corechart']});
+  google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
-  
   function drawChart() {
-   		var data = $.ajax({
+   		var genderJson = $.ajax({
     	url : "/getAnalysisProcAjax.mdo",
     	dataType: "json",
     	async: false
     }).responseText;
 
-   	genderData = new google.visualization.DataTable(data);
+   	genderData = new google.visualization.DataTable(genderJson);
    	
     var options = {
       slices: {0: { color: '#9D8189' }, 1:{ color: '#55828B'}},
@@ -212,12 +40,10 @@
     };
     var chart = new google.visualization.PieChart(document.getElementById("gender_chart"));
     chart.draw(genderData, options);
-    window.addEventListener('resize', function() { chart.draw(data, options); }, false);
+    //window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
-</script>
 
 
-	<script type="text/javascript">
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -259,10 +85,8 @@
     chart.draw(view, options);
     window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
-</script>
 
 
-	<script type="text/javascript">
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -304,10 +128,7 @@
     chart.draw(view, options);
     window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
-</script>
 
-
-	<script type="text/javascript">
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -348,10 +169,8 @@
     chart.draw(view, options);
     window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
-</script>
 
 
-	<script type="text/javascript">
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -402,10 +221,8 @@
     chart.draw(view, options);
     window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
-</script>
 
 
-	<script type="text/javascript">
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -457,10 +274,3 @@
     chart.draw(view, options);
     window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
-</script>
-
-
-
-
-</body>
-</html>

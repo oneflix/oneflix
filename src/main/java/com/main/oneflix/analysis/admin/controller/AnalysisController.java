@@ -1,5 +1,6 @@
 package com.main.oneflix.analysis.admin.controller;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
@@ -38,12 +39,15 @@ public class AnalysisController {
 	}
 
 	@RequestMapping("/getAnalysisProcAjax.mdo")
-	public JSONObject getAnalysisListProcAjax(MemberVO memberVO, MovieVO movieVO) {
-		// 성별데이터
+	public JSONObject getAnalysisProcAjax(MemberVO memberVO, MovieVO movieVO) {
+		System.out.println("/getAnalysisProcAjax.mdo 요청 받음");
+		// 최종으로 넘길 데이터
+		// JSONArray analysisDatas = new JSONArray();
+
+		// ==================성별데이터========================
 		Map<String, Integer> genderMap = getCountGenderService.getCountGender(memberVO);
 
-		// 최종으로 넘길 데이터
-		JSONObject data = new JSONObject();
+		JSONObject genderData = new JSONObject();
 
 		// col 추가
 		JSONObject col1 = new JSONObject();
@@ -51,12 +55,50 @@ public class AnalysisController {
 		// 위의 컬럼을 담을 배열
 		JSONArray arrayCols = new JSONArray();
 		JSONArray arrayRows = new JSONArray();
-		col1.put("type", "string"); //여성,남성
-		col2.put("type", "number"); //수
+		col1.put("type", "string"); // 여성,남성
+		col2.put("type", "number"); // 수
 		arrayCols.add(col1);
 		arrayCols.add(col2);
 
-		return data;
+		System.out.println("arrayCols.get(0)" + arrayCols.get(0));
+		System.out.println("arrayCols.get(1)" + arrayCols.get(1));
+
+		// map을 json으로
+		// map에서 key와 Value 뽑아서 Row 추가하기
+		// key: genreId value: watchCount
+		Iterator<Map.Entry<String, Integer>> entries = genderMap.entrySet().iterator();
+		while (entries.hasNext()) {
+			System.out.println("Iterator while문 들어옴");
+			Map.Entry<String, Integer> entry = entries.next();
+			System.out.println("entry : " + entry);
+			
+			JSONObject legend = new JSONObject();
+			legend.put("v", entry.getKey());
+			legend.put("f", null);
+
+			JSONObject value = new JSONObject();
+			value.put("v", entry.getValue());
+			value.put("f", null);
+
+			JSONArray cValueArray = new JSONArray();
+			cValueArray.add(legend);
+			cValueArray.add(value);
+
+			JSONObject cValueObject = new JSONObject();
+			cValueObject.put("c", cValueArray);
+
+			arrayRows.add(cValueObject);
+		}
+		genderData.put("cols", arrayCols);
+		genderData.put("rows", arrayRows);
+
+		// ==================/성별데이터========================
+
+		// analysisDatas.add(genderData); //성별 JSONObj
+
+		System.out.println("genderData : " + genderData);
+
+		return genderData;
 	}
 
 }
