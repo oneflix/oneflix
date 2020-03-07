@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 html {
 	background-color: #fff;
 }
@@ -18,7 +18,7 @@ p,span,h4{
 .chart { 
 	margin-bottom: 0;
 	padding-top: 0;
-	padding-bottom: 5%
+	padding-bottom: 5%;
 }
 .info-box.sm-light {
 	color: #080808;
@@ -75,6 +75,6 @@ p,span,h4{
 	margin-bottom:0;
 }
 .info-box-number{
-	font-size: 3.6vh;
+	font-size: 1.8vw;
 	
 }

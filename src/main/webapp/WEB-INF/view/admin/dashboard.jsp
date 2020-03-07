@@ -12,6 +12,7 @@
   <title>ONeflix</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
   <style>
   	#movieTable td{height: 90px;}
 	#movieTable img {width: 160px; height: 90px;}
@@ -22,9 +23,6 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
 
-    <!-- ====================== 
-            ADD headr 
-     ====================== -->
      <jsp:include page="${header_url}"></jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
@@ -190,9 +188,6 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- ====================== 
-            ADD Footer
-    ====================== -->
     <jsp:include page="${footer_url}"></jsp:include>
 
   </div>

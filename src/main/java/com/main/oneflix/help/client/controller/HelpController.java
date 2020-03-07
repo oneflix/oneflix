@@ -11,7 +11,7 @@ import com.main.oneflix.help.service.GetHelpListService;
 import com.main.oneflix.help.vo.HelpVO;
 
 @Controller
-public class NoticeController {
+public class HelpController {
 	
 	@Autowired
 	private GetHelpListService getHelpListService;

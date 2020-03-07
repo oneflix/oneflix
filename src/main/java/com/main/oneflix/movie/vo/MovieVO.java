@@ -51,6 +51,7 @@ public class MovieVO {
 	private String searchMovie;
 	private String movieType;
 	private String searchOrder;
+	private String onlyViewCount;
 	private int start;
 	private int end;
 	private String email;
@@ -405,6 +406,14 @@ public class MovieVO {
 
 	public void setSearchOrder(String searchOrder) {
 		this.searchOrder = searchOrder;
+	}
+
+	public String getOnlyViewCount() {
+		return onlyViewCount;
+	}
+
+	public void setOnlyViewCount(String onlyViewCount) {
+		this.onlyViewCount = onlyViewCount;
 	}
 
 	public int getStart() {

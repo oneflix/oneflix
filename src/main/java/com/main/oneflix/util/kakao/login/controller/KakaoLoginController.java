@@ -41,8 +41,6 @@ public class KakaoLoginController {
 			return mav;
 			
 		} else if (oneflixMember != null) {
-//	         TODO DB 사용자의 accessToken과 updateToken을 업데이트 하는 서비스 필요
-///	         HashMap<String, Object> updateToken = clientInsertKaLoginService.updateKakaoAccessToken(clientCustomerVO);
 			vo = getMemberService.getMember(oneflixMember);
 			
 			session.setAttribute("member", vo);

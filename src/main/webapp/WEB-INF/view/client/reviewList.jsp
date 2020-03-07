@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONeflix</title>
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="admin/plugins/fontawesome-free/css/all.min.css">

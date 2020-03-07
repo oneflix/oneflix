@@ -13,8 +13,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>ONeflix</title>
-<!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 <!-- Select2 -->
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
@@ -182,7 +182,7 @@
 								
 								<div class="form-group mb-3">
 									<label for="movieSubtitle">부연 설명</label>
-										<input type="text" class="form-control" id="movieSubtitle" name="movieTitle"
+										<input type="text" class="form-control" id="movieSubtitle" name="movieSubtitle"
 											value="${movie.movieSubtitle}">
 								</div>
 

@@ -70,6 +70,7 @@ public class MemberController {
 	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick,
 			@RequestParam("newPass") String newPass, HttpSession session, ModelAndView mav) {
 		MemberVO vo = (MemberVO) session.getAttribute("member");
+		vo.setUpdateType("info");
 		vo.setNick(newNick);
 		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);
