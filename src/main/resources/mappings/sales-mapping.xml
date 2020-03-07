@@ -104,6 +104,11 @@
 							AND payment_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
 						]]>
 					</when>
+					<when test="movieType == 'sales'">
+						<![CDATA[
+							AND expiry_date >= TRUNC(SYSDATE - 1)
+						]]>
+					</when>
 				</choose>
 			</if>
 	</select>
