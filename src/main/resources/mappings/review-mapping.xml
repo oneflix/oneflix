@@ -64,7 +64,7 @@
 							ORDER BY like_count DESC
 						</if>
 						<if test="email != null">
-							AND email = #{email}
+							AND r.email = #{email}
 							ORDER BY r.review_id DESC
 						</if>
 					) R
