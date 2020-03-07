@@ -23,6 +23,7 @@ public class TicketSalesServiceImpl implements TicketSalesService {
 		salesDAO.updateSales(vo);
 		
 		MemberVO member = new MemberVO();
+		member.setEmail(vo.getEmail());
 		member.setUpdateType("sales");
 		member.setTicketId(vo.getTicketId());
 		memberDAO.updateMember(member);

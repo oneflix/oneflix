@@ -73,7 +73,7 @@ i {font-size: 20px; float: left;}
 /* 헤더 슬라이드 */
 .header-slider {position: absolute; top: 0; width: 100%; height: 100%; z-index: 0;}
 .header-slider .swiper-container {position: relative; width: 100%; height: 100%;}
-.header-slider > .swiper-container > .swiper-wrapper > .swiper-slide {background-size: cover;} 
+.header-slider > .swiper-container > .swiper-wrapper > .swiper-slide {cursor: pointer; background-size: cover;} 
 .header-slider .swiper-container .row {position: absolute; top: 30%; left: 50px;  color: #fff;} 
 .header-slider .swiper-container .row h2 {font-size: 5vw; letter-spacing: 0.005em;}
 .header-slider .swiper-container .row p {font-size: 2vw; padding-left: 0.8vw;}
@@ -182,7 +182,7 @@ i {font-size: 20px; float: left;}
     .main-slider .swiper-button-prev { left: -30px;}
 
 	.movie-mini-box > .play-button > .play-button-img {width: 4.6vw;}
-    .movie-mini-box > .play-button > .info-box > p {font-size: 1.6vw;}
+    .movie-mini-box > .play-button > .info-box > p {font-size: 1.9vw;}
     .movie-mini-box > .info-button > .info-button-img {width: 4.6vw;}
 
     .footer_info {padding: 40px 30px;}

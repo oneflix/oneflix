@@ -32,8 +32,18 @@
     	.swiper-container:hover .swiper-button-prev {opacity: 1;}
     	.main-slider:hover .swiper-button-next,
     	.main-slider:hover .swiper-button-prev {opacity: 1;}
+    	
+    	.swiper-slide > .movie-card {transition: transform 1s ease; }
+    	.swiper-slide > .hidden-card > {position: relative;}
+    	.swiper-slide > .hidden-card > img {opacity: 0.3; position: absolute}
+    	.swiper-slide > .hidden-card > .movie-mini-box {position: relative; height: 100%;}
+    	.movie-mini-box > button {cursor: pointer; position: absolute; top: 30%; border: none; background: rgba(0,0,0,0); outline: none;}
+    	.movie-mini-box > .play-button {display: flex; width: 70%; left: 5px;}
+    	.movie-mini-box > .play-button > .play-button-img {margin-right: 3px;}
+    	.movie-mini-box > .play-button > .info-box {flex: 1;}
+    	.movie-mini-box > .play-button > .info-box > p {margin: 0; text-align: left;}
+    	.movie-mini-box > .info-button {right: 5px;}
     </style>
-
 </head>
 
 <body>
@@ -45,49 +55,50 @@
 		<div class="main">
 			<div class="row">
 				<span class="category">이어보기</span>
-				<span class="more" onclick="location.href='#'">더보기 <i class="fas fa-angle-right"></i></span>
+				<span class="more" onclick="location.href='/getMovieListProc.do?movieType=watching'">더보기 <i class="fas fa-angle-right"></i></span>
 			</div>
-			
 
 			<div class="main-slider watching-slider">
 				<div id="watching-slider-container" class="swiper-container">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<img src="client/images/avengers.jpg">
-							<div class="row">
-								<p>어벤져스</p>
+						<c:forEach var="watchingMovie" items="${watchingMovieList}">
+							<div class="swiper-slide">
+								<div class="movie-box movie-card">
+	                                <img src="${watchingMovie.posterPath }">
+									<div class="row">
+		                                <p>${watchingMovie.movieTitle }</p>
+	                                </div>
+	                            </div>
+	                            <div class="hidden-card movie-card">
+	                            	<img src="${watchingMovie.posterPath}"/>
+	                            	<div class="movie-mini-box">
+	                            		<button class="play-button" onclick="goWatchMovie('${watchingMovie.movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${watchingMovie.movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${watchingMovie.rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${watchingMovie.rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${watchingMovie.rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${watchingMovie.duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${watchingMovie.movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
+	                            	</div>
+	                            </div>
 							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/eternal_sunshine.jpg">
-							<div class="row">
-								<p>이터널 선샤인</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/green_book.jpg">
-							<div class="row">
-								<p>그린북</p>
-							</div>
-						</div>
-						<div id="test" class="swiper-slide">
-							<img src="client/images/avengers.jpg">
-							<div class="row">
-								<p>어벤져스</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/eternal_sunshine.jpg">
-							<div class="row">
-								<p>이터널 선샤인</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/green_book.jpg">
-							<div class="row">
-								<p>그린북</p>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				<div id="watching-button-next" class="swiper-button-next"></div>
@@ -97,48 +108,50 @@
 			<!-- 다음 슬라이드 -->
 			<div class="row">
 				<span class="category">시청 완료한 작품</span>
-				<span class="more" onclick="location.href='#'">더보기 <i class="fas fa-angle-right"></i></span>
+				<span class="more" onclick="location.href='/getMovieListProc.do?movieType=watching'">더보기 <i class="fas fa-angle-right"></i></span>
 			</div>
 			
 			<div class="main-slider watched-slider">
 				<div id="watched-slider-container" class="swiper-container">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<img src="client/images/avengers.jpg">
-							<div class="row">
-								<p>어벤져스</p>
+						<c:forEach var="watchedMovie" items="${watchedMovieList}">
+							<div class="swiper-slide">
+								<div class="movie-box movie-card">
+	                                <img src="${watchedMovie.posterPath }">
+									<div class="row">
+		                                <p>${watchedMovie.movieTitle }</p>
+	                                </div>
+	                            </div>
+	                            <div class="hidden-card movie-card">
+	                            	<img src="${watchedMovie.posterPath}"/>
+	                            	<div class="movie-mini-box">
+	                            		<button class="play-button" onclick="goWatchMovie('${watchedMovie.movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${watchedMovie.movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${watchedMovie.rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${watchedMovie.rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${watchedMovie.rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${watchedMovie.duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${watchedMovie.movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
+	                            	</div>
+	                            </div>
 							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/eternal_sunshine.jpg">
-							<div class="row">
-								<p>이터널 선샤인</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/green_book.jpg">
-							<div class="row">
-								<p>그린북</p>
-							</div>
-						</div>
-						<div id="test" class="swiper-slide">
-							<img src="client/images/avengers.jpg">
-							<div class="row">
-								<p>어벤져스</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/eternal_sunshine.jpg">
-							<div class="row">
-								<p>이터널 선샤인</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/green_book.jpg">
-							<div class="row">
-								<p>그린북</p>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				<div id="watched-button-next" class="swiper-button-next"></div>
@@ -148,52 +161,54 @@
 			<!-- 다음 슬라이드 -->
 			<div class="row">
 				<span class="category">평가한 작품</span>
-				<span class="more" onclick="location.href='#'">더보기 <i class="fas fa-angle-right"></i></span>
+				<span class="more" onclick="location.href='/getMovieListProc.do?movieType=rated'">더보기 <i class="fas fa-angle-right"></i></span>
 			</div>
 			
-			<div class="main-slider rating-slider">
-				<div id="rating-slider-container" class="swiper-container">
+			<div class="main-slider rated-slider">
+				<div id="rated-slider-container" class="swiper-container">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<img src="client/images/avengers.jpg">
-							<div class="row">
-								<p>어벤져스</p>
+						<c:forEach var="ratedMovie" items="${ratedMovieList}">
+							<div class="swiper-slide">
+								<div class="movie-box movie-card">
+	                                <img src="${ratedMovie.posterPath }">
+									<div class="row">
+		                                <p>${ratedMovie.movieTitle }</p>
+	                                </div>
+	                            </div>
+	                            <div class="hidden-card movie-card">
+	                            	<img src="${ratedMovie.posterPath}"/>
+	                            	<div class="movie-mini-box">
+	                            		<button class="play-button" onclick="goWatchMovie('${ratedMovie.movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${ratedMovie.movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${ratedMovie.rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${ratedMovie.rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${ratedMovie.rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${ratedMovie.duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${ratedMovie.movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
+	                            	</div>
+	                            </div>
 							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/eternal_sunshine.jpg">
-							<div class="row">
-								<p>이터널 선샤인</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/green_book.jpg">
-							<div class="row">
-								<p>그린북</p>
-							</div>
-						</div>
-						<div id="test" class="swiper-slide">
-							<img src="client/images/avengers.jpg">
-							<div class="row">
-								<p>어벤져스</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/eternal_sunshine.jpg">
-							<div class="row">
-								<p>이터널 선샤인</p>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<img src="client/images/green_book.jpg">
-							<div class="row">
-								<p>그린북</p>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
-				<div id="rating-button-next" class="swiper-button-next"></div>
-				<div id="rating-button-prev" class="swiper-button-prev"></div>
+				<div id="rated-button-next" class="swiper-button-next"></div>
+				<div id="rated-button-prev" class="swiper-button-prev"></div>
 			</div>
 		</div> <!-- main -->
 	</div> <!-- page-body -->
@@ -208,9 +223,26 @@
 	$('.swiper-button-next').click(function(){
 		$(this).next().css("display", "block");
 	});
-	function goMovieDetail(movieId) {
-	        location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+	
+	$('.play-button').mouseenter(function(){
+		$(this).children('img').prop('src','client/images/icons/play_hover.png');
+	});
+	$('.play-button').mouseleave(function(){
+		$(this).children('img').prop('src','client/images/icons/play.png');
+	});
+	
+	$('.info-button').mouseenter(function(){
+		$(this).children('img').prop('src','client/images/icons/info_hover.png');
+	});
+	$('.info-button').mouseleave(function(){
+		$(this).children('img').prop('src','client/images/icons/info.png');
+	});
+	function goWatchMovie(movieId) {
+		window.location.href = "#?movieId=" + movieId;
 	}
+    function goMovieDetail(movieId) {
+   		window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+    }
 	</script>
 </body>
 <link rel="stylesheet" href="client/css/mymovie_list.css">
