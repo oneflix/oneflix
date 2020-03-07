@@ -83,7 +83,7 @@
                    <div class="css-11fv0pd-Button">
                      <a class="css-11fv0pd-Button" href="${googleUrl}">
                      	구글로 로그인하기
-                       </a>
+                     </a>
                     </div>
                        
                    <div class="css-11fv0pd-Button">
@@ -177,3 +177,4 @@
 </body>
 
 </html>
+

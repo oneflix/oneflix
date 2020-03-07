@@ -15,7 +15,7 @@ import com.main.oneflix.member.service.UpdateMemberService;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.vo.TicketVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class MemberController {

@@ -13,8 +13,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>ONeflix</title>
-<!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 <!-- Select2 -->
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
@@ -151,8 +151,8 @@
 									<label>Full Video</label>
 									<div class="custom-file">
 										<input type="file" name="fullVideo" class="custom-file-input"
-											required="required" id="full-video"> <label
-											class="custom-file-label" for="full-video">파일 선택</label>
+											required="required" id="fullVideo"> <label
+											class="custom-file-label" for="fullVideo">파일 선택</label>
 									</div>
 								</div>
 

@@ -16,11 +16,12 @@
 		<result property="ticketPrice" column="ticket_price" />
 		<result property="salesStatus" column="sales_status" />
 		<result property="paymentDate" column="payment_date" />
+		<result property="expiryDate" column="expiry_date" />
 	</resultMap>
 
 	<select id="getSalesList" parameterType="sales" resultMap="salesList">
 		SELECT * 
-			FROM (SELECT ROWNUM rnum, S.*
+			FROM (SELECT ROWNUM RNUM, S.*
 				FROM (SELECT s.*, t.ticket_name, t.ticket_price 
 					FROM sales s, ticket t
 					WHERE s.ticket_id = t.ticket_id AND s.sales_status != 'ready'
@@ -46,7 +47,7 @@
 					ORDER BY s.payment_date
 			 		) S
 				)
-			ORDER BY rnum DESC
+			ORDER BY RNUM DESC
 	</select>
 
 	<select id="getSales" parameterType="sales" resultType="sales">
@@ -68,8 +69,15 @@
 	</insert>
 	
 	<update id="updateSales" parameterType="sales">
+		<selectKey resultType="int" keyProperty="ticketPeriod" order="BEFORE">
+			SELECT ticket_period FROM ticket WHERE ticket_id = #{ticketId}
+		</selectKey>
 		UPDATE sales SET
-		sid = #{sid, jdbcType=VARCHAR}, sales_status = #{salesStatus}, payment_date = SYSDATE
+		sales_status = #{salesStatus}
+		<if test="salesStatus != 'inactive'">
+			,sid = #{sid, jdbcType=VARCHAR}, payment_date = SYSDATE
+			,expiry_date = SYSDATE + #{ticketPeriod}
+		</if>
 		WHERE sales_id = #{salesId}
 	</update>
 	
@@ -81,8 +89,8 @@
 		SELECT NVL(SUM(t.ticket_price),0)
 		FROM sales s, ticket t
 		WHERE s.ticket_id = t.ticket_id
-		AND s.sales_status = 'success'
-			<if test="startDate != null and startDate != 0 or endDate != null and endDate != 0">
+		AND s.sales_status != 'ready'
+			<if test="startDate != null and startDate != 0 and endDate != null and endDate != 0">
 				AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 				AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
 			</if>
@@ -98,14 +106,20 @@
 					</when>
 				</choose>
 			</if>
+			<if test="salesStatus == 'expired'">
+				<![CDATA[
+					AND expiry_date >= TRUNC(SYSDATE - 1)
+				]]>
+			</if>
 	</select>
 	
 	<!-- 총 게시글 개수 출력 -->
 	<select id="getCountSales" parameterType="sales" resultType="int">
-		SELECT COUNT(*) FROM inquiry
+		SELECT COUNT(*) FROM sales
 		WHERE 1 = 1
 		<if test="email != null">
 			AND email = #{email}
 		</if>
 	</select>
+	
 </mapper>

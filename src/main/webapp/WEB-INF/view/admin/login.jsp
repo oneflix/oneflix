@@ -12,8 +12,8 @@
 <meta name="author" content="Creativeitem" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title></title>
-
+<title>ONeflix</title>
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 <link rel="stylesheet" type="text/css"
 	href="admin/assets/backend/login/plugins-css.css" />
 <link rel="stylesheet" type="text/css"

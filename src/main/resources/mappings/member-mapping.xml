@@ -3,51 +3,63 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MemberDAO">
-   <insert id="insertMember" parameterType="member">
-      INSERT INTO member(email, pass, nick, birth, member_age, gender, cert, ban, join_date, ticket_id, google, kakao, naver)
-      VALUES(#{email}, #{pass}, #{nick}, #{birth}, #{memberAge}, #{gender}, #{cert}, #{ban}, SYSDATE, 0, 
-      #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
-   </insert>
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO member(email, pass, nick, birth, member_age, gender, cert, ban,
+		join_date, ticket_id, google, kakao, naver)
+		VALUES(#{email}, #{pass}, #{nick}, #{birth}, #{memberAge}, #{gender}, #{cert}, #{ban},
+		SYSDATE, 0,
+		#{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver,
+		jdbcType=VARCHAR})
+	</insert>
 
-  <update id="updateMember" parameterType="member">
-      UPDATE member SET pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
-      WHERE email = #{email}
-   </update>
-  
-   <delete id="deleteMember" parameterType="member">
-      DELETE FROM member WHERE email = #{email}
-   </delete>
-   
-    <select id="getMember" resultType="member" parameterType="member">
-      SELECT m.*, t.ticket_name, t.ticket_period
-      			<if test="ticketId != 0">
-	      			, s.payment_date 
-      			</if>
-      FROM member m, ticket t
-      			<if test="ticketId != 0">
-		      		, sales s
-      			</if>
-      WHERE m.ticket_id = t.ticket_id
-      		<if test="ticketId != 0">
-	      		AND  m.email = s.email AND s.sales_status = 'success'
-      		</if>
-      <choose>
-         <when test="kakao != null and kakao != ''">
-            AND m.kakao = #{kakao}
-         </when>
-         <when test="naver != null and naver != ''">
-            AND m.naver = #{naver}
-         </when>
-         <when test="google != null and google != ''">
-            AND m.google = #{google}
-         </when>
-         <otherwise>
-            AND m.email = #{email}
-         </otherwise>
-      </choose>
-   </select>
-   
-   <resultMap type="member" id="memberList">
+	<update id="updateMember" parameterType="member">
+		UPDATE member SET
+		<choose>
+			<when test="updateType == 'info'">
+				pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
+			</when>
+			<when test="updateType == 'sales'">
+				ticket_id = #{ticketId}
+			</when>
+		</choose>
+		WHERE email = #{email}
+	</update>
+
+	<delete id="deleteMember" parameterType="member">
+		DELETE FROM member WHERE email = #{email}
+	</delete>
+
+	<select id="getMember" resultType="member"
+		parameterType="member">
+		SELECT m.*, t.ticket_name, t.ticket_period
+		<if test="ticketId != 0">
+			, s.payment_date
+		</if>
+		FROM member m, ticket t
+		<if test="ticketId != 0">
+			, sales s
+		</if>
+		WHERE m.ticket_id = t.ticket_id
+		<if test="ticketId != 0">
+			AND m.email = s.email AND (s.sales_status like 'success' OR s.sales_status like 'inactive')
+		</if>
+		<choose>
+			<when test="kakao != null and kakao != ''">
+				AND m.kakao = #{kakao}
+			</when>
+			<when test="naver != null and naver != ''">
+				AND m.naver = #{naver}
+			</when>
+			<when test="google != null and google != ''">
+				AND m.google = #{google}
+			</when>
+			<otherwise>
+				AND m.email = #{email}
+			</otherwise>
+		</choose>
+	</select>
+
+	<resultMap type="member" id="memberList">
 		<id property="email" column="email" />
 		<result property="rnum" column="rnum" />
 		<result property="pass" column="pass" />
@@ -58,43 +70,45 @@
 		<result property="cert" column="cert" />
 		<result property="ticketName" column="ticket_name" />
 	</resultMap>
-  
 
-   <select id="getMemberList" resultMap="memberList" parameterType="member">
-      SELECT * 
-      FROM (SELECT ROWNUM RNUM, M.*
-      		 FROM (SELECT m.*, t.ticket_name
-      		 		FROM member m, ticket t
-      		 		WHERE m.ticket_id = t.ticket_id
-					<if test="searchMember != null and searchMember != ''">
-						AND (m.email like '%' || #{searchMember} || '%'
-							OR m.nick like '%' || #{searchMember} || '%')
-					</if> 
-					<if test="searchTicket != null and searchTicket != '-9'">
-						AND m.ticket_id = #{searchTicket}
-					</if> 
-					<if test="searchCert != null and searchCert != 'all'">
-						AND m.cert = #{searchCert}
-					</if> 
-					<if test="searchBan != null and searchBan != 'all'">
-						AND m.ban = #{searchBan}
-					</if>
-					<if test="lastDate != null and lastDate != '0'">
-						<choose>
-							<when test="lastDate == 30">
+
+	<select id="getMemberList" resultMap="memberList"
+		parameterType="member">
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, M.*
+		FROM (SELECT m.*, t.ticket_name
+		FROM member m, ticket t
+		WHERE m.ticket_id = t.ticket_id
+		<if test="searchMember != null and searchMember != ''">
+			AND (m.email like '%' || #{searchMember} || '%'
+			OR m.nick like '%' || #{searchMember} || '%')
+		</if>
+		<if test="searchTicket != null and searchTicket != '-9'">
+			AND m.ticket_id = #{searchTicket}
+		</if>
+		<if test="searchCert != null and searchCert != 'all'">
+			AND m.cert = #{searchCert}
+		</if>
+		<if test="searchBan != null and searchBan != 'all'">
+			AND m.ban = #{searchBan}
+		</if>
+		<if test="lastDate != null and lastDate != '0'">
+			<choose>
+				<when test="lastDate == 30">
 								<![CDATA[
 									AND join_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
 								]]>
-							</when>
-						</choose>
-					</if>
-      				ORDER BY m.join_date
-      			) M
-      		)
-      	ORDER BY RNUM DESC
-   </select>
-	
-	<select id="getCountMember" parameterType="member" resultType="int">
-		SELECT COUNT(*) FROM member 
+				</when>
+			</choose>
+		</if>
+		ORDER BY m.join_date
+		) M
+		)
+		ORDER BY RNUM DESC
+	</select>
+
+	<select id="getCountMember" parameterType="member"
+		resultType="int">
+		SELECT COUNT(*) FROM member
 	</select>
 </mapper>

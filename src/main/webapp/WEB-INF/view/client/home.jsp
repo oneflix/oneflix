@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONeflix</title>
-    
+	<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">    
     <!-- style -->
     <link rel="stylesheet" href="client/css/reset.css">
     <link rel="stylesheet" href="client/css/all.css">
@@ -38,11 +38,16 @@
     	.swiper-container:hover .swiper-button-prev {opacity: 1;}
     	.main-slider:hover .swiper-button-next,
     	.main-slider:hover .swiper-button-prev {opacity: 1;}
-    	.swiper-slide {cursor: pointer;}
     	.swiper-slide > .movie-card {transition: transform 1s ease; }
     	.swiper-slide > .hidden-card > {position: relative;}
     	.swiper-slide > .hidden-card > img {opacity: 0.3; position: absolute}
-    	.swiper-slide > .hidden-card > .movie-mini-box {position: fixed;}
+    	.swiper-slide > .hidden-card > .movie-mini-box {position: relative; height: 100%;}
+    	.movie-mini-box > button {cursor: pointer; position: absolute; top: 30%; border: none; background: rgba(0,0,0,0); outline: none;}
+    	.movie-mini-box > .play-button {display: flex; width: 70%; left: 10px;}
+    	.movie-mini-box > .play-button > .play-button-img {margin-right: 10px;}
+    	.movie-mini-box > .play-button > .info-box {flex: 1;}
+    	.movie-mini-box > .play-button > .info-box > p {text-align: left;}
+    	.movie-mini-box > .info-button {right: 10px;}
     </style>
 
 </head>
@@ -64,7 +69,7 @@
 								<p class="ticket-category">추천</p>
 							</div><br>
 							<c:forEach var="ticket" items="${ticketList}">
-								<c:if test="${ticket.ticketPeriod eq -1}">
+								<c:if test="${ticket.ticketName eq '정기권'}">
 									<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
 								</c:if>
 								<c:if test="${ticket.ticketStatus eq 'Y' && ticket.ticketRecommend eq 'Y'}">
@@ -74,7 +79,7 @@
 										<span style="float: right;">
 											<fmt:formatNumber type="currency" value="${ticket.ticketPrice}"/>
 										</span>
-										<c:if test="${ticket.ticketPeriod ne -1}">
+										<c:if test="${ticket.ticketName ne '정기권'}">
 											<span style="float: right;" class="ticket-origin-price">
 												<fmt:formatNumber type="currency" value="${originPrice * ticket.ticketPeriod / 30}"/>
 											</span>
@@ -150,7 +155,7 @@
 
     <div id="wrap">
         <header id="header">
-            <div id="root">
+            <div class="ticket-header" id="root">
                 <div class="css-1tumwum-Self">
                     <div class="css-1926epj-Self e1wyxeas0">
                         <p class="css-kodeqh-Title e1wyxeas6">모든 작품, 무제한 감상하세요. 마음에 들지 않으면 클릭 1번으로 언제든 해지할 수 있어요.
@@ -198,7 +203,7 @@
                                     <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
                                     <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
                                     <li><div class="divider"></div></li>
-                                    <li><div><a href="#">고객센터</a></div></li>
+                                    <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
                                     <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
                                     <li><div><a href="/logout.do">로그아웃</a></div></li>
                                 </ul>
@@ -231,7 +236,7 @@
                                         <ul class="dropdown-menu dropdown-menu-right profile-menu">
                                             <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
                                             <li><div class="divider"></div></li>
-                                            <li><div><a href="#">고객센터</a></div></li>
+                                            <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
                                             <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
                                             <li><div><a href="/logout.do">로그아웃</a></div></li>
                                         </ul>
@@ -246,7 +251,7 @@
                         <div class="swiper-wrapper">
                         <c:forEach var="main" items="${mainMovieList }">
                             <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
-                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath};">
+                											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath});">
 	                            <div class="row">
 	                                <h2>${main.movieTitle }</h2>
 	                                <p>${main.movieSubtitle }</p>
@@ -271,7 +276,7 @@
                     <div id="popular-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
                         <c:forEach var="i" begin="0" end="30">
-                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${popularMovieList[i].movieId}">
+                            <div class="swiper-slide">
                             	<div class="movie-box movie-card">
 	                                <img src="${popularMovieList[i].posterPath }">
 									<div class="row">
@@ -281,7 +286,29 @@
 	                            <div class="hidden-card movie-card">
 	                            	<img src="${popularMovieList[i].posterPath}"/>
 	                            	<div class="movie-mini-box">
-	                            		<p>${popularMovieList[i].summary}</p>
+	                            		<button class="play-button" onclick="goWatchMovie('${popularMovieList[i].movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${popularMovieList[i].movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${popularMovieList[i].rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${popularMovieList[i].rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${popularMovieList[i].rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${popularMovieList[i].duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${popularMovieList[i].movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
 	                            	</div>
 	                            </div>
                             </div>
@@ -300,7 +327,7 @@
                     <div id="recommend-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
                         <c:forEach var="i" begin="0" end="30">
-                            <div class="swiper-slide" onclick="location.href='/getMovieDetailProc.do?movieId=' + ${recommendMovieList[i].movieId}">
+                            <div class="swiper-slide">
                             	<div class="movie-box movie-card">
 	                                <img src="${recommendMovieList[i].posterPath }">
 									<div class="row">
@@ -310,7 +337,29 @@
                                 <div class="hidden-card movie-card">
                                 	<img src="${recommendMovieList[i].posterPath}">
                                 	<div class="movie-mini-box">
-		                            	<p>${recommendMovieList[i].summary}</p>
+                                		<button class="play-button" onclick="goWatchMovie('${recommendMovieList[i].movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${recommendMovieList[i].movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${recommendMovieList[i].rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${recommendMovieList[i].rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${recommendMovieList[i].rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${recommendMovieList[i].duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${recommendMovieList[i].movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
                                 	</div>
 	                            </div>
                             </div>
@@ -329,7 +378,7 @@
                     <div id="new-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
                         <c:forEach var="newMovie" items="${newMovieList }">
-                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                            <div class="swiper-slide">
                             	<div class="movie-box movie-card">
 	                                <img src="${newMovie.posterPath }">
 									<div class="row">
@@ -339,7 +388,29 @@
                                 <div class="hidden-card movie-card">
                                 	<img src="${newMovie.posterPath}"/>
                                 	<div class="movie-mini-box">
-		                            	<p>${newMovie.summary}</p>
+		                            	<button class="play-button" onclick="goWatchMovie('${newMovie.movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${newMovie.movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${newMovie.rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${newMovie.rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${newMovie.rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${newMovie.duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${newMovie.movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
                                 	</div>
 	                            </div>
 	                        </div>
@@ -358,7 +429,7 @@
                     <div id="recent-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
                            <c:forEach var="newMovie" items="${newMovieList }">
-                            <div class="swiper-slide" onclick="goMovieDetail('${newMovie.movieId}')">
+                            <div class="swiper-slide">
                             	<div class="movie-box movie-card">
 	                                <img src="${newMovie.posterPath }">
 									<div class="row">
@@ -368,7 +439,29 @@
                                 <div class="hidden-card movie-card">
                                 	<img src="${newMovie.posterPath}">
                                 	<div class="movie-mini-box">
-		                            	<p>${newMovie.summary}</p>
+		                            	<button class="play-button" onclick="goWatchMovie('${newMovie.movieId}')">
+	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
+	                            			<div class="info-box">
+		                            			<p>${newMovie.movieTitle}</p>
+		                            			<p>
+			                            			<c:choose>
+				                            			<c:when test="${newMovie.rating eq 'all'}">
+				                            				전체
+				                            			</c:when>
+			                            				<c:when test="${newMovie.rating eq '19'}">
+			                            					청불
+			                            				</c:when>
+			                            				<c:otherwise>
+			                            					${newMovie.rating}세	
+			                            				</c:otherwise>
+			                            			</c:choose>
+			                            			 · ${newMovie.duration}분
+		                            			 </p>
+	                            			</div>
+	                            		</button>
+	                            		<button class="info-button" onclick="goMovieDetail('${newMovie.movieId}')">
+	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
+	                            		</button>
                                 	</div>
 	                            </div>
 	                         </div>
@@ -389,11 +482,36 @@
     <script src="client/js/script.js"></script>
     <script src="client/js/ticket_modal.js"></script>
     <script type="text/javascript">
+    	$(document).ready(function(){
+    		var purchasedTicket = "${member.ticketId}";
+    		alert(purchasedTicket);
+    		if (purchasedTicket != 0) {
+    			$('.ticket-header').css('display', 'none');
+    		}
+    	});
+    
 		$('.swiper-button-next').click(function(){
 			$(this).next().css("display", "block");
 		});
+		
+		$('.play-button').mouseenter(function(){
+			$(this).children('img').prop('src','client/images/icons/play_hover.png');
+		});
+		$('.play-button').mouseleave(function(){
+			$(this).children('img').prop('src','client/images/icons/play.png');
+		});
+		
+		$('.info-button').mouseenter(function(){
+			$(this).children('img').prop('src','client/images/icons/info_hover.png');
+		});
+		$('.info-button').mouseleave(function(){
+			$(this).children('img').prop('src','client/images/icons/info.png');
+		});
+		function goWatchMovie(movieId) {
+			window.location.href = "#?movieId=" + movieId;
+		}
 	    function goMovieDetail(movieId) {
-	            location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+	   		window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
 	    }
 	</script>
 	

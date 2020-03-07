@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
+<c:set var="recentSales" value="${paymentList[0]}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONeflix</title>
-
+	<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
     <link rel="stylesheet" href="client/css/all.css">
     <link rel="stylesheet" href="../admin/css/adminlte.min.css">
     <link rel="stylesheet" href="../admin/css/adminlte.css">
@@ -27,7 +28,7 @@
         <!-- 이전 결제 내역 -->
         <div class="title" style="background-color: #fffff;">
             <p>이용권</p><br><br>
-            <button type="button" class="btn-close" id="ticket-modal">이용권추가구매</button>
+            <button type="button" class="btn-close" id="ticket-termination">이용권 해지</button>
         </div>
         
         <div class="table table-hover" style="background-color: #ffffff;">
@@ -48,10 +49,13 @@
 	                        <td>
 	                        <c:choose>
 	                        	<c:when test="${payment.salesStatus  == 'success' }">
-	                        	이용중
+	                        		이용중
+	                        	</c:when>
+	                        	<c:when test="${payment.salesStatus == 'inactive' }">
+		                        	이용중(정기결제 해지)
 	                        	</c:when>
 	                        	<c:when test="${payment.salesStatus == 'expired' }">
-	                        	종료
+	                        		종료
 	                        	</c:when>
 	                        </c:choose>
 	                        </td>
@@ -62,7 +66,9 @@
 	                        <td>
 	                        <fmt:formatDate value="${payment.paymentDate }" pattern="yyyy-MM-dd"/>
 	                        </td>
-	                        <td>${payment.endDate }</td> <!-- date format -->
+	                        <td>
+	                        <fmt:formatDate value="${payment.expiryDate }" pattern="yyyy-MM-dd"/>
+	                        </td>
 	                    </tr>
                     </c:forEach>
                 </tbody>
@@ -101,7 +107,29 @@
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
+	<script>
+		var salesId;
+		var cid;
+		var sid;
+		$(document).ready(function(){
+			ticketName = "${recentSales.ticketName}";
+			salesStatus = "${recentSales.salesStatus}";
+			
+			if (ticketName == '정기권' && salesStatus == 'success') {
+				$('#ticket-termination').css('display', 'block');
+				salesId = "${recentSales.salesId}";
+				cid = "${recentSales.cid}";
+				sid = "${recentSales.sid}";
+			}
+		});
+		
+		$('#ticket-termination').click(function(){
+			var check = confirm("정말로 해지하시겠습니까?");
+			if(check == true){
+				window.location.href = "/inactiveSubscriptionProc.do?salesId=" + salesId + "&cid=" + cid + "&sid=" + sid;
+			}
+		});
+	</script>
 
 </body>
 

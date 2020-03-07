@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONeflix</title>
+    <link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
     <link rel="stylesheet" href="client/css/reset.css">
     <link rel="stylesheet" href="client/css/customBS.css">
     <link rel="stylesheet" href="client/css/swiper.css">
@@ -27,12 +28,28 @@
 			}
 		}
     	.movie-box {cursor: pointer; display: none;}
+    	.hidden-card {display: none;}
     	.opacity-animation {animation: slide-up 0.4s ease;}
 		#myBtn {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; font-size: 18px; border: none;
 		  outline: none; background-color: red; color: white; cursor: pointer; padding: 15px; border-radius: 4px;}
 		#myBtn:hover {background-color: #555;}
 		.no-result {height: 350px; padding-top: 100px; color: #fff; 
 				font-size: 22px; text-align: center; display: none;}
+		
+		.movie-box:hover .movie-card {transform: translateY(0);}
+		.movie-box:hover .normal-card {display: none;}
+		.movie-box:hover .hidden-card {display: block;}
+		
+		.hidden-card > {position: relative;}
+    	.hidden-card > img {opacity: 0.3; position: absolute}
+		.hidden-card > .movie-mini-box {position: relative; height: 100%;}
+    	.movie-mini-box > button {cursor: pointer; position: absolute; top: 30%; border: none; background: rgba(0,0,0,0); outline: none;}
+    	.movie-mini-box > .play-button {display: flex; width: 70%; left: 10px;}
+    	.movie-mini-box > .play-button > .play-button-img {margin-right: 10px;}
+    	.movie-mini-box > .play-button > .info-box {flex: 1;}
+    	.movie-mini-box > .play-button > .info-box > p {text-align: left;}
+    	.movie-mini-box > .info-button {right: 10px;}
+    	
 	</style>
 </head>
 <body>
@@ -88,10 +105,42 @@
 	        </section>
 	        <section class="grid-wrapper">
 	        	<c:forEach var="movie" items="${movieList}">
-		            <div class="movie-box" onclick="goMovieDetail('${movie.movieId}')">
-		            	<img src="${movie.posterPath}"/>
-		            	<p>${movie.movieTitle}</p>
-		            </div>
+		            <div class="movie-box">
+		            	<div class="normal-card movie-card">
+			            	<img src="${movie.posterPath}"/>
+			            	<p>${movie.movieTitle}</p>
+		            	</div>
+						<div class="hidden-card movie-card">
+							<img src="${movie.posterPath}">
+							<div class="movie-mini-box">
+								<button class="play-button"
+									onclick="goWatchMovie('${movie.movieId}')">
+									<img class="play-button-img" src="client/images/icons/play.png" />
+									<div class="info-box">
+										<p>${movie.movieTitle}</p>
+										<p>
+											<c:choose>
+												<c:when test="${movie.rating eq 'all'}">
+                            				전체
+                            			</c:when>
+												<c:when test="${movie.rating eq '19'}">
+                           					청불
+                           				</c:when>
+												<c:otherwise>
+                           					${movie.rating}세	
+                           				</c:otherwise>
+											</c:choose>
+											· ${movie.duration}분
+										</p>
+									</div>
+								</button>
+								<button class="info-button"
+									onclick="goMovieDetail('${movie.movieId}')">
+									<img class="info-button-img" src="client/images/icons/info.png" />
+								</button>
+							</div>
+						</div>
+					</div>
 	        	</c:forEach>
 	        </section>
 	    </div>
@@ -136,6 +185,22 @@
 			window.location.href = "/getMovieListProc.do?searchGenre=" + searchGenre + "&searchOrder=" + searchOrder;
 		});
 		
+		$('.play-button').mouseenter(function(){
+			$(this).children('img').prop('src','client/images/icons/play_hover.png');
+		});
+		$('.play-button').mouseleave(function(){
+			$(this).children('img').prop('src','client/images/icons/play.png');
+		});
+		
+		$('.info-button').mouseenter(function(){
+			$(this).children('img').prop('src','client/images/icons/info_hover.png');
+		});
+		$('.info-button').mouseleave(function(){
+			$(this).children('img').prop('src','client/images/icons/info.png');
+		});
+		function goWatchMovie(movieId) {
+			window.location.href = "#?movieId=" + movieId;
+		}
 		function goMovieDetail(movieId) {
 			window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;
 		}
@@ -167,11 +232,39 @@
 		                	
 	                    for (var i = 0; i < movieList.length; i++) {
 	                    	var movie = movieList[i];
+	                    	var rating;
+	                    	switch (movie.rating) {
+	                    	case 'all' :
+	                    		rating = '전체';
+	                    		break;
+	                    	case '19' :
+	                    		rating = '청불';
+	                    		break;
+	                    	default :
+	                    		rating = movie.rating + "세";
+	                    	}
 	                    	$('.grid-wrapper').append(
-	                    		"<div class=\"movie-box\" onclick=\"goMovieDetail(\'" + movie.movieId + "\')\">" +
-	        		            	"<img src=\"" + movie.posterPath + "\"/>" +
-	        		            	"<p>" + movie.movieTitle + "</p>" +
-	        		            "</div>");
+	                    			"<div class=\"movie-box\">" +
+	        		            	"<div class=\"normal-card movie-card\">" +
+	        			            	"<img src=\"" + movie.posterPath + "\"/>" +
+	        			            	"<p>" + movie.movieTitle + "</p>" +
+	        		            	"</div>" +
+	        						"<div class=\"hidden-card movie-card\">" +
+	        							"<img src=\"" + movie.posterPath + "\">" +
+	        							"<div class=\"movie-mini-box\">" +
+	        								"<button class=\"play-button\" onclick=\"goWatchMovie(\'" + movie.movieId + "\')\">" +
+	        									"<img class=\"play-button-img\" src=\"client/images/icons/play.png\" />" +
+	        									"<div class=\"info-box\">" +
+	        										"<p>" + movie.movieTitle + "</p>" +
+	        										"<p>" + rating + " · " + movie.duration + "분" + "</p>" +
+	        									"</div>" +
+	        								"</button>" +
+	        								"<button class=\"info-button\" onclick=\"goMovieDetail(\'" + movie.movieId + "\')\">" +
+	        									"<img class=\"info-button-img\" src=\"client/images/icons/info.png\" />" +
+	        								"</button>" +
+	        							"</div>" +
+	        						"</div>" +
+	        					"</div>");
 						}
 			    	}
 				}

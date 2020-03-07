@@ -1,7 +1,6 @@
 package com.main.oneflix.sales.client.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,19 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.service.DeleteSalesService;
-import com.main.oneflix.sales.service.GetCountSalesService;
-import com.main.oneflix.sales.service.GetSalesListService;
 import com.main.oneflix.sales.service.GetSalesService;
 import com.main.oneflix.sales.service.InsertSalesService;
-import com.main.oneflix.sales.service.UpdateSalesService;
+import com.main.oneflix.sales.service.TicketSalesService;
 import com.main.oneflix.sales.vo.SalesVO;
-import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.service.GetTicketService;
 import com.main.oneflix.ticket.vo.TicketVO;
 import com.main.oneflix.util.kakao.payment.service.ApprovePaymentService;
+import com.main.oneflix.util.kakao.payment.service.InactiveSubscriptionService;
 import com.main.oneflix.util.kakao.payment.service.ReadyPaymentService;
-import com.main.oneflix.util.paging.service.PagingService;
-import com.main.oneflix.util.paging.vo.PagingVO;
 
 @Controller
 public class SalesController {
@@ -35,49 +30,17 @@ public class SalesController {
 	@Autowired
 	private ApprovePaymentService approvePaymentService;
 	@Autowired
+	private InactiveSubscriptionService inactiveSubscriptionService;
+	@Autowired
 	private GetSalesService getSalesService;
 	@Autowired
 	private InsertSalesService insertSalesService;
 	@Autowired
-	private UpdateSalesService updateSalesService;
+	private TicketSalesService ticketSalesService;
 	@Autowired
 	private DeleteSalesService deleteSalesService;
 	@Autowired
 	private GetTicketService getTicketService;
-	@Autowired
-	private GetSalesListService getSalesListService;
-	@Autowired
-	private GetTicketListService getTicketListService;
-	@Autowired
-	private GetCountSalesService getCountSalesService;
-	@Autowired
-	private PagingService pagingService;
-	
-	//유저 이용권 페이지
-	@RequestMapping("/getPaymentListProc.do")
-	public ModelAndView getPaymentListProc(PagingVO vo, HttpSession session, ModelAndView mav) {
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		SalesVO sales = new SalesVO();
-		sales.setEmail(member.getEmail());
-		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
-		List<SalesVO> paymentList = getSalesListService.getSalesList(sales);
-		int total = getCountSalesService.getCountSales(sales);
-		System.out.println("salesTotal : " + total);
-		if (vo.getNowPage() == 0) {
-			vo.setNowPage(1);
-		}
-		vo.setTotal(total);
-		vo = pagingService.buildPaging(vo);
-
-		sales.setStart(vo.getStart());
-		sales.setEnd(vo.getEnd());
-		
-		mav.addObject("paging", vo);
-		mav.addObject("paymentList", paymentList);
-		mav.addObject("ticketList", ticketList);
-		mav.setViewName("paymentList");
-		return mav;
-	}
 
 	@RequestMapping("/paymentRequestProc.do")
 	@ResponseBody
@@ -88,7 +51,7 @@ public class SalesController {
 		ticket = getTicketService.getTicket(ticket);
 
 		// 정기권 이라면
-		if (ticket.getTicketPeriod() == -1) {
+		if (ticket.getTicketName().equals("정기권")) {
 			vo.setCid("subscription");
 		} else { // 기간제이면
 			vo.setCid("single");
@@ -116,7 +79,6 @@ public class SalesController {
 //		vo.setPayment_method_type("CARD");
 		
 		SalesVO response = (readyPaymentService.readyPayment(vo));
-		System.out.println(vo.getEmail());
 		insertSalesService.insertSales(vo);
 		return response;
 	}
@@ -128,14 +90,17 @@ public class SalesController {
 		// sales_status가 ready인 행을 검색하기 위해 셋팅
 		vo.setSalesStatus("ready");
 		vo = getSalesService.getSales(vo);
-		
+		Integer ticketId = vo.getTicketId();
+		String email = vo.getEmail();
 		// 찾아온 vo에 pg_token 셋팅
 		vo.setPg_token(pg_token);
 		vo = approvePaymentService.approvePayment(vo);
 		
+		vo.setTicketId(ticketId);
+		vo.setEmail(email);
 		// sales_status success로 업데이트 및 나머지 값 업데이트
 		vo.setSalesStatus("success");
-		updateSalesService.updateSales(vo);
+		ticketSalesService.sellTicket(vo);
 		
 		mav.setViewName("redirect:/paymentSuccessProc.do?email=" + vo.getEmail());
 		return mav;
@@ -168,6 +133,15 @@ public class SalesController {
 		vo.setSalesStatus("ready");
 		deleteSalesService.deleteSales(vo);
 		mav.setViewName("paymentResult");
+		return mav;
+	}
+	
+	@RequestMapping("/inactiveSubscriptionProc.do")
+	public ModelAndView inactiveSubscriptionProc(SalesVO vo, ModelAndView mav) {
+		
+		SalesVO response = inactiveSubscriptionService.inactivate(vo);
+		System.out.println(response.getStatus());
+		mav.setViewName("redirect:/getPaymentListProc.do");
 		return mav;
 	}
 	
