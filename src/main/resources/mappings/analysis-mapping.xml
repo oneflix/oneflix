@@ -2,21 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="SalesDAO">
+<mapper namespace="AnalysisDAO">
 
-	<select id="analysisSalesYear" parameterType="sales" resultType="java.util.List">
-		SELECT
-		SUM(t.ticket_price) as count,
-		to_char(payment_date,'YYYY') as payment_date
-		FROM sales, ticket t
-		WHERE <![CDATA[
-		payment_date >= #{startDate}
-		AND payment_date < #{endDate}
-		]]>
-		GROUP BY to_char(payment_date, 'YYYY');
+	<select id="analysisSalesYear" parameterType="sales" resultType="int">
+		SELECT NVL(SUM(t.ticket_price),0)
+		FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id
+		AND s.sales_status != 'ready'
+        AND s.payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+        AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 	</select>
 	
-	<select id="analysisSalesMonth" parameterType="sales" resultMap="java.util.List">
+	<select id="analysisSalesMonth" parameterType="sales" resultType="java.util.List">
 		SELECT
 		SUM(t.ticket_price) as count,
 		to_char(payment_date,'YYYY-MM') as payment_date
@@ -25,7 +22,11 @@
 		payment_date >= #{startDate}
 		AND payment_date < #{endDate}
 		]]>
-		GROUP BY to_char(payment_date, 'YYYY-MM');
+		GROUP BY to_char(payment_date, 'YYYY-MM')
 	</select>
+	
+	<resultMap type="java.util.HashMap" id="salesMonthList">
+		<id column="count" property="count"/>
+	</resultMap>
 
 </mapper>

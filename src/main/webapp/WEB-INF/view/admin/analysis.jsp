@@ -333,13 +333,16 @@
          $('#salesDate > option').each(function(){
         	    if(this.selected){
         	    	yearList.push($(this).val());
-         			alert(yearList);
         	    }
         	   });
          
          var sendData = {'salesButton' : salesButton, 'yearList': yearList};
          var response = requestSalesData(sendData);
          // 위에서 응답 받은 결과 가공해야 함
+         for(var i=0; i<yearList.length; i++){
+	         console.log(response[yearList[i]]);
+        	 
+         }
          var chart;
          var data;
 
