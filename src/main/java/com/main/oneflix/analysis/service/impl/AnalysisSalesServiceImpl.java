@@ -19,8 +19,7 @@ public class AnalysisSalesServiceImpl implements AnalysisSalesService{
 	private SalesDAO salesDAO;
 
 	@Override
-	public Map<String, Object> analysisSales(Map<String, Object> map) {
-		Map<String, Object> salesMap = new HashMap<String, Object>();
+	public List<Integer> analysisSales(Map<String, Object> map) {
 		String salesButton = (String) map.get("salesButton");
 		@SuppressWarnings("unchecked")
 		List<String> yearList = (List<String>) map.get("yearList");
@@ -40,12 +39,13 @@ public class AnalysisSalesServiceImpl implements AnalysisSalesService{
 				salesList.addAll(salesDAO.analysisSalesMonth(map));
 			}
 		}
-		for(int i = 0; i<salesList.size(); i++) {
-			int year = Integer.parseInt(sales.getStartDate());
-			salesMap.put(Integer.toString(year+i),salesList.get(i));
-		}
+		/*
+		 * for(int i = 0; i<salesList.size(); i++) { int year =
+		 * Integer.parseInt(sales.getStartDate());
+		 * salesMap.put(Integer.toString(year+i),salesList.get(i)); }
+		 */
 		
-		return salesMap;
+		return salesList;
 	}
 
 }

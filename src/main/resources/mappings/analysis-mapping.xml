@@ -16,7 +16,7 @@
 		GROUP BY to_char(payment_date, 'YYYY');
 	</select>
 	
-	<select id="analysisSalesMonth" parameterType="sales" resultMap="salesList">
+	<select id="analysisSalesMonth" parameterType="sales" resultMap="java.util.List">
 		SELECT
 		SUM(t.ticket_price) as count,
 		to_char(payment_date,'YYYY-MM') as payment_date
@@ -27,21 +27,5 @@
 		]]>
 		GROUP BY to_char(payment_date, 'YYYY-MM');
 	</select>
-
-	<resultMap type="sales" id="salesList">
-		<id property="salesId" column="sales_id" />
-		<result property="rnum" column="rnum" />
-		<result property="cid" column="cid" />
-		<result property="tid" column="tid" />
-		<result property="sid" column="sid" />
-		<result property="email" column="email" />
-		<result property="ticketId" column="ticket_id" />
-		<result property="ticketName" column="ticket_name" />
-		<result property="ticketPrice" column="ticket_price" />
-		<result property="salesStatus" column="sales_status" />
-		<result property="paymentDate" column="payment_date" />
-		<result property="expiryDate" column="expiry_date" />
-	</resultMap>
-
 
 </mapper>
