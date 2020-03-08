@@ -51,14 +51,6 @@ public class OracleSalesDAO implements SalesDAO {
 		return sqlSessionTemplate.selectOne("SalesDAO.getCountSales", vo);
 	}
 
-	@Override
-	public List<Integer> analysisSalesYear(Map<String, Object> map) {
-		return sqlSessionTemplate.selectOne("SalesDAO.analysisSaleseYear", map);
-	}
 
-	@Override
-	public List<Integer> analysisSalesMonth(Map<String, Object> map) {
-		return sqlSessionTemplate.selectList("SalesDAO.analysisSalesMonth", map);
-	}
 
 }

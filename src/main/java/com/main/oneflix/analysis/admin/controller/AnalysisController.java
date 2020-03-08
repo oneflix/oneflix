@@ -44,42 +44,9 @@ public class AnalysisController {
 	@RequestMapping("/getAnalysisSalesProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> getAnalysisSalesProcAjax(@RequestBody HashMap<String, Object> map) {
-		System.out.println("/getAnalysisSalesProcAjax.mdo 요청 받음");
-		// 최종으로 넘길 데이터
-		// JSONArray analysisDatas = new JSONArray();
-		Map<String, Object> mapmap = analysisSalesService.analysisSales(map);
-		System.out.println(mapmap);
-		System.out.println(map);
-		System.out.println(map.get("salesButton"));
-		System.out.println(map.get("yearList"));
-		List<String> list = (List<String>) map.get("yearList");
-		for(String year : list) {
-			System.out.println(year);
-		}
+		return analysisSalesService.analysisSales(map);
+	}
 		
-//		System.out.println(salesButton);
-//		for(String year : yearList) {
-//			System.out.println(year);
-//		}
-//		
-//		// ==================매출데이터========================
-//		
-//		SalesVO salesVO = new SalesVO();
-//		List<Integer> totalSalesList = new ArrayList<Integer>();
-//		for (int i = 0; i<yearList.size(); i++) {
-//			salesVO.setStartDate(yearList.get(i) + "0101");
-//			salesVO.setStartDate(yearList.get(i) + "1231");
-//			totalSalesList.add(getTotalSalesService.getTotalSales(salesVO));
-//		}
-//		
-//		for (int i = 0; i<yearList.size(); i++) {
-//			salesVO.setStartDate(yearList.get(i) + "01");
-//			salesVO.setStartDate(yearList.get(i) + "31");
-//			totalSalesList.add(getTotalSalesService.getTotalSales(salesVO));
-//		}
-		
-		
-		// ==================/매출데이터========================
 		
 		
 		// ==================구독자데이터========================
@@ -198,7 +165,6 @@ public class AnalysisController {
 //
 //		System.out.println("genderData : " + genderData);
 
-		return null;
-	}
+
 
 }
