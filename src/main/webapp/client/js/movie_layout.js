@@ -6,7 +6,6 @@ $(window).scroll(function(){
 
 // 클릭 이벤트
 $('.bell-button').click(function(){
-    $('.badge').empty();
     $('.bell-menu').show();
 });
 

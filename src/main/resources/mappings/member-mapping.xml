@@ -95,9 +95,9 @@
 		<if test="lastDate != null and lastDate != '0'">
 			<choose>
 				<when test="lastDate == 30">
-								<![CDATA[
-									AND join_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
-								]]>
+					<![CDATA[
+						AND join_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
+					]]>
 				</when>
 			</choose>
 		</if>

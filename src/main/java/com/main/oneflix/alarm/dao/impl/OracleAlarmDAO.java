@@ -1,6 +1,7 @@
 package com.main.oneflix.alarm.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class OracleAlarmDAO implements AlarmDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	@Override
-	public void insertAlarm(AlarmVO vo) {
-		sqlSessionTemplate.insert("AlarmDAO.insertAlarm",vo);
+	public void insertMovieAlarm(Map<String, List<AlarmVO>> map) {
+		sqlSessionTemplate.insert("AlarmDAO.insertMovieAlarm", map);
 	}
 
 	@Override
