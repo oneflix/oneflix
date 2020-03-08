@@ -10,7 +10,7 @@
 					com.main.oneflix.alarm.dao.impl,
 					com.main.oneflix.alarm.service.impl,
 					com.main.oneflix.sales.service.impl,
-					com.mian.oneflix.sales.dao.impl">
+					com.main.oneflix.sales.dao.impl">
 	</context:component-scan>
 	<!-- 잡  -->
     <bean id="mainJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
