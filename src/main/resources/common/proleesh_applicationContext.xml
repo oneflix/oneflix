@@ -43,7 +43,7 @@
     <!-- Screen 트리거-->
     <bean id="screenTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="screenJob" />
-        <property name="cronExpression" value="0/5 * * * * ?" />
+        <property name="cronExpression" value="0 0 3 * * ?" />
     </bean>
 
     <!-- Screen 스케줄러 -->
