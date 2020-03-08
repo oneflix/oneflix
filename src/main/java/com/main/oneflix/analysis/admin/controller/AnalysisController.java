@@ -47,7 +47,7 @@ public class AnalysisController {
 		System.out.println("/getAnalysisSalesProcAjax.mdo 요청 받음");
 		// 최종으로 넘길 데이터
 		// JSONArray analysisDatas = new JSONArray();
-		Map<String, Object> mapmap = analysisSalesService.analysisSales(map);
+		List<Integer> mapmap = analysisSalesService.analysisSales(map);
 		System.out.println(mapmap);
 		System.out.println(map);
 		System.out.println(map.get("salesButton"));

@@ -1,9 +1,10 @@
 package com.main.oneflix.analysis.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface AnalysisSalesService {
 	
-	Map<String, Object> analysisSales(Map<String, Object> map);
+	List<Integer> analysisSales(Map<String, Object> map);
 
 }
