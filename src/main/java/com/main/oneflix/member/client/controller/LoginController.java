@@ -185,9 +185,10 @@ public class LoginController {
 		mav.setViewName("connectSNS");
 		if ((member != null) && member.getPass().equals(vo.getPass())) {
 			member.setNaver(vo.getNaver());
+			vo.setUpdateType("info");
 			updateMemberService.updateMember(member);
 			session.setAttribute("member", member);
-			mav.addObject("result", "success");
+			mav.addObject("connectResult", "success");
 			mav.setViewName("redirect:/homeProc.do");
 		}
 		return mav;

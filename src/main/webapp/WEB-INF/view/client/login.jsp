@@ -67,14 +67,14 @@
      <form action="/loginProc.do" method="post" onsubmit="return validate();">
      <div class="css-unatsl-Self eu52ful0">
      <input id="email" name="email" placeholder="이메일을 입력해주세요" 
-     class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
+     class="oneflix-input e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
      </div>
      <div class="css-unatsl-Self eu52ful0">
      <input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
-     class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
+     class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      </div>
 <div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-<button type="submit" id="loginBtn" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
+<button type="submit" id="loginBtn" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
 </div>
 	</form>
 		<div class="css-tssyq1-LoginBlock edt52et1">
@@ -146,38 +146,48 @@
 
    <script>
    $(document).ready(function(){
+	    $("#loginBtn").attr('disabled', 'true');
+	    var emailCheck = false;
+	    var passCheck = false;
+	    
+	    var joinResult = "${joinResult}";
+	    if (joinResult == "success") {
+    	alert("회원가입이 완료되었습니다.");
+		} 
+	    
 	    var result = "${result}";
   	    if (result == "fail") {
         alert("로그인 정보가 일치하지 않습니다.");
-   } 
-	   $("#loginBtn").attr('disabled', 'true');
-	   var emailCheck = false;
-	   var passCheck = false;
-	   $("#email").keyup(function(){
-		   var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		   var email = $("#email").val();
- 		   if(email.length != 0){
-		       $("#email").parent('div').attr('class','css-1q1k87-Self');
- 			   if(re.test(email) == true){
- 			       $("#email").parent('div').attr('class','css-n7c9r1-Self');
- 			       emailCheck = true;
- 			   }
-		   } 
-	   });
-	   $("#pass").keyup(function(){
-	       var re2 = /^[a-zA-Z0-9]{4,12}$/ 
-		   var pass = $("#pass").val();
- 		   if(pass.length != 0){
-		       $("#pass").parent('div').attr('class','css-1q1k87-Self');
- 			   if(re2.test(pass) == true){
- 			       $("#pass").parent('div').attr('class','css-n7c9r1-Self');
- 			       passCheck = true;
- 			   }
-		   } 
-		   if(emailCheck == passCheck == true){
-			   $("#loginBtn").removeAttr('disabled');
-		   }
-	   });
+ 	    } 
+	    $('.oneflix-input').keyup(function(){
+	       var re;
+	       var target = $(this).val();
+	       
+	       if ($(this).prop('id') == 'email') {
+	          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	          emailCheck = false;
+	       } else {
+	          re = /^[a-zA-Z0-9]{4,12}$/;
+	          passCheck = false;
+	       }
+	       if (target.length != 0) {
+	          $(this).parent('div').attr('class','css-1q1k87-Self');
+	          if (re.test(target) == true) {
+	             $(this).parent('div').attr('class','css-n7c9r1-Self');
+	             
+	             if ($(this).prop('id') == 'email') {
+	                emailCheck = true;
+	             } else {
+	                passCheck = true;
+	             }
+	          }
+	       }
+	         if(emailCheck == true && passCheck == true){
+	           $("#loginBtn").prop('disabled', false);
+	        } else {
+	           $("#loginBtn").prop('disabled', true);
+	        }
+	    });//KEY EVENT
 });
    
    //카카오로그인
