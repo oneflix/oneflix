@@ -44,12 +44,12 @@ public class GetCountAgeServiceImpl implements GetCountAgeService{
 		}
 		
 		Map<String, Integer> ageMap = new HashMap<String, Integer>();
-		ageMap.put("teen", teen);
-		ageMap.put("twenty", twenty);
-		ageMap.put("thirty", thirty);
-		ageMap.put("fourty", fourty);
-		ageMap.put("fifty", fifty);
-		ageMap.put("sixty", sixty);
+		ageMap.put("10대", teen);
+		ageMap.put("20대", twenty);
+		ageMap.put("30대", thirty);
+		ageMap.put("40대", fourty);
+		ageMap.put("50대", fifty);
+		ageMap.put("60대 이상", sixty);
 		
 		return ageMap;
 	}

@@ -51,23 +51,27 @@
 					<div class="row">
 						<section class="col-lg-6">
 							<div class="card card-outline">
-								<div style="display: flex;" class="card-header">
+								<div class="card-header" style="display: flex;">
 									<h3 class="card-title"
 										style="width: 60px; margin-top: 10px; margin-right: 20px;">
 										<i class="far fa-chart-bar"></i> 매출
 									</h3>
-									<select id="actorList" name="actorList"
-										class="form-control select2bs4" required="required"
-										multiple="multiple" data-placeholder="날짜 선택" style="flex: 1;">
-										<c:forEach var="actor" items="${actorList}">
-											<option value="${actor.actorId }">${actor.actorName }</option>
-										</c:forEach>
+									<select id="salesDate" name="dateList"
+										class="form-control select2bs4 dateList" required="required"
+										multiple="multiple" data-placeholder="날짜 선택"
+										style="width: 20vw;">
+										<option value="2021">2021</option>
+										<option value="2022">2022</option>
+										<option value="2023">2023</option>
+										<option value="2024">2024</option>
 									</select>
-									<div style="margin-left: 20px;" class="button-box">
-										<div style="display: flex; margin-top: 5px;"
-											class="button-box">
-											<button style="width: 60px; margin-right: 5px;">연간</button>
-											<button style="width: 60px;">월간</button>
+
+									<div style="flex: 1; margin-left: 20px;" class="button-box">
+										<div style="float: right; display: flex;" class="button-box">
+											<button id="salesYear" class="btn btn-info sales-button"
+												style="width: 60px; margin-right: 5px;">연간</button>
+											<button id="saelsMontsh" class="btn btn-info sales-button"
+												style="width: 60px;">월간</button>
 										</div>
 									</div>
 								</div>
@@ -79,7 +83,6 @@
 							<!-- /.card -->
 						</section>
 						<!-- /.card -->
-						<!-- /.card -->
 
 						<section class="col-lg-6">
 							<div class="card card-outline">
@@ -89,7 +92,8 @@
 									</h3>
 								</div>
 								<div class="card-body">
-									<div id="product-user-chart" style="width: 100%; height: 500px;"></div>
+									<div id="product-user-chart"
+										style="width: 100%; height: 500px;"></div>
 								</div>
 								<!-- /.card-body-->
 							</div>
@@ -138,8 +142,10 @@
 									</h3>
 								</div>
 								<div class="row">
-									<div class="col-lg-6" id="movie-ranking-cumulates" style="width: 100%; height: auto;"></div>
-									<div class="col-lg-6" id="movie-ranking-recently" style="width: 100%; height: auto;"></div>
+									<div class="col-lg-6" id="movie-ranking-cumulates"
+										style="width: 100%; height: auto;"></div>
+									<div class="col-lg-6" id="movie-ranking-recently"
+										style="width: 100%; height: auto;"></div>
 								</div>
 								<!-- /.card-body-->
 							</div>
@@ -168,6 +174,37 @@
 	<!-- Bootstrap4 Duallistbox -->
 	<script src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
  
+ 
+ <script type="text/javascript">
+      $(document).ready(function() {
+         var today = new Date();
+         var launchingDate = new Date('2020-01-01');
+         var subtractionDate = ((today.getTime() - launchingDate.getTime())/ (1000*60*60*24*365));
+         for (var i = 0; i <= subtractionDate; i++) {
+            var date = today.getFullYear() - i;
+            $('.dateList').append("<option value=\'" + date+ "\'>" + date + "년</option>");
+         }
+         $('.dateList option:eq(0)').prop('selected', true);
+         $('#salesYear').css('background-color', '#138496').css('border-color', '#117a8b');
+      });
+      
+      var salesButton;
+      $('.sales-button').click(function(){
+         $('.sales-button').css('background-color', '#17a2b8').css('border-color', '#17a2b8');
+         $(this).css('background-color', '#138496').css('border-color', '#117a8b');
+         if ($(this).prop('id') == 'salesYear') {
+            salesButton = 'year';
+         } else {
+            salesButton = 'month';
+         }
+      });
+      
+      
+     $('#salesMonth').click(function () {
+    	 $('.dateList option:eq(0)').prop('selected', true);
+	});
+      
+   </script>
  
  
  <script type="text/javascript">
