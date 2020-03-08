@@ -13,7 +13,6 @@
         AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 	</select>
 	
-<<<<<<< HEAD
 	<select id="analysisSalesMonth" parameterType="sales" resultMap="salesMonthList">
       SELECT
       SUM(t.ticket_price) total_sales,
@@ -30,22 +29,5 @@
       <id column="payment_date" property="paymentDate"/>
       <result column="total_sales" property="totalSales"/>
    </resultMap>
-=======
-	<select id="analysisSalesMonth" parameterType="sales" resultType="java.util.List">
-		SELECT
-		SUM(t.ticket_price) as count,
-		to_char(payment_date,'YYYY-MM') as payment_date
-		FROM sales
-		WHERE <![CDATA[
-		payment_date >= #{startDate}
-		AND payment_date < #{endDate}
-		]]>
-		GROUP BY to_char(payment_date, 'YYYY-MM')
-	</select>
-	
-	<resultMap type="java.util.HashMap" id="salesMonthList">
-		<id column="count" property="count"/>
-	</resultMap>
->>>>>>> master
 
 </mapper>
