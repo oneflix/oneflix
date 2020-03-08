@@ -59,19 +59,19 @@
 		<div class="css-9tzvq5-Inner e1h3r44e1">
 			<div class="css-d3y7ny-LabelTitle e1h3r44e2">회원 가입</div>
 				<form>
-				<div class="css-1q1k87-Self eu52ful0">
+				<div class="css-unatsl-Self eu52ful0">
 				<input type="email" value="" id="email" name="email" placeholder="이메일을 입력해주세요" class="e1jdphjt1 css-11i8u80-StyledField-EmailField eu52ful1" autocomplete="off">
 				</div>
 				<div class="css-unatsl-Self eu52ful0">
 				<input type="password" value="" id="pass" name="pass" placeholder="비밀번호 (4자 이상)" class="e1jdphjt4 css-1ivms9u-StyledField-PasswordField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-1q1k87-Self eu52ful0">
+				<div class="css-unatsl-Self eu52ful0">
 				<input type="text" value="" id="nick" name="nick" placeholder="닉네임" autofocus="" class="e1jdphjt3 css-sg09fs-StyledField-NickField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-1q1k87-Self eu52ful0">
+				<div class="css-unatsl-Self eu52ful0">
 				<input type="number" value="" name="name" placeholder="생년월일 (숫자 8자리)" autofocus="" class="e1jdphjt3 css-sg09fs-StyledField-BirthField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-1q1k87-Self eu52ful0">
+				<div class="css-unatsl-Self eu52ful0">
 					<div class="css-sg09fs-StyledField-GenderField eu52ful1 label-padding">
 					<label style="margin: 0; color: #666666;">성별</label>
 						<label style="margin: 0px 0px 0px 25px; color: #666666;">
@@ -141,7 +141,6 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
-	<script src="client/js/arrayfill.js"></script>
 	<script type="text/javascript">
 	   function validate() {
 	       var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;

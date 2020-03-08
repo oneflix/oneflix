@@ -130,7 +130,6 @@
    <script src="client/vendor/countdowntime/countdowntime.js"></script>
    <!--===============================================================================================-->
    <script src="client/js/ls-main.js"></script>
-   	<script src="client/js/arrayfill.js"></script>
 
    <!-- KAKAO LOGIN -->
    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -147,12 +146,39 @@
 
    <script>
    $(document).ready(function(){
-       var result = "${result}";
-       if (result == "fail") {
-            alert("로그인 정보가 일치하지 않습니다.");
-       }
-   });
-   
+	    var result = "${result}";
+  	    if (result == "fail") {
+        alert("로그인 정보가 일치하지 않습니다.");
+   } 
+	   $("#loginBtn").attr('disabled', 'true');
+	   var emailCheck = false;
+	   var passCheck = false;
+	   $("#email").keyup(function(){
+		   var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		   var email = $("#email").val();
+ 		   if(email.length != 0){
+		       $("#email").parent('div').attr('class','css-1q1k87-Self');
+ 			   if(re.test(email) == true){
+ 			       $("#email").parent('div').attr('class','css-n7c9r1-Self');
+ 			       emailCheck = true;
+ 			   }
+		   } 
+	   });
+	   $("#pass").keyup(function(){
+	       var re2 = /^[a-zA-Z0-9]{4,12}$/ 
+		   var pass = $("#pass").val();
+ 		   if(pass.length != 0){
+		       $("#pass").parent('div').attr('class','css-1q1k87-Self');
+ 			   if(re2.test(pass) == true){
+ 			       $("#pass").parent('div').attr('class','css-n7c9r1-Self');
+ 			       passCheck = true;
+ 			   }
+		   } 
+		   if(emailCheck == passCheck == true){
+			   $("#loginBtn").removeAttr('disabled');
+		   }
+	   });
+});
    
    //카카오로그인
    /* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
