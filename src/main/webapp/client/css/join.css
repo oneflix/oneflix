@@ -217,6 +217,7 @@ input {
     position: relative;
     width: 100%;
 }
+/*checkTrue*/
 .css-n7c9r1-Self::after {
     content: "";
     display: inline-block;
@@ -227,12 +228,13 @@ input {
     width: 20px;
     height: 20px;
     margin-top: -10px;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiP¡¦ExMSBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) no-repeat;
+	background-image: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 20 20' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com --%3E%3Ctitle%3EIcons / Settings / Valid%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Icons-/-Settings-/-Valid' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='check-circle-f' fill='%233CAAFF' fill-rule='nonzero'%3E%3Cpath d='M10,19.9988889 C4.50055556,19.9988889 0.00111111111,15.4988889 0.00111111111,9.99944444 C0.00111111111,4.50111111 4.50055556,0.00111111111 10,0.00111111111 C15.4994444,0.00111111111 19.9988889,4.50111111 19.9988889,9.99944444 C19.9988889,15.4988889 15.4994444,19.9988889 10,19.9988889 L10,19.9988889 Z M13.3977778,6.11055556 L8.11944444,11.2961111 L6.04666667,9.26 L4.44388889,10.8344444 L8.11944444,14.445 L9.72222222,12.8705556 L15.0005556,7.68555556 L13.3977778,6.11055556 L13.3977778,6.11055556 Z M8.11944444,11.2961111 L8.11944444,11.2961111 L9.72222222,12.8705556 L8.11944444,11.2961111 L8.11944444,11.2961111 Z' id='Shape'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 .css-1q1k87-Self {
     position: relative;
     width: 100%;
 }
+/*checkFalse*/
 .css-1q1k87-Self::after {
     content: "";
     display: inline-block;
@@ -243,7 +245,7 @@ input {
     width: 20px;
     height: 20px;
     margin-top: -10px;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiP¡¦g4OSBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 20 20' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com --%3E%3Ctitle%3EIcons / Settings / Invalid%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Icons-/-Settings-/-Invalid' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='x-circle-f' fill='%23DB4241' fill-rule='nonzero'%3E%3Cpath d='M17.0705556,17.07 C13.1816667,20.9588889 6.81833333,20.9588889 2.92944444,17.07 C-0.958888889,13.1816667 -0.958888889,6.81833333 2.92944444,2.92944444 C6.81833333,-0.958888889 13.1816667,-0.958888889 17.07,2.92944444 C20.9588889,6.81833333 20.9588889,13.1816667 17.0705556,17.07 L17.0705556,17.07 Z M13.8938889,7.66388889 L12.3361111,6.10611111 L10,8.44277778 L7.66388889,6.10611111 L6.10666667,7.66388889 L8.44277778,10 L6.10666667,12.3361111 L7.66388889,13.8938889 L10,11.5572222 L12.3361111,13.8938889 L13.8938889,12.3361111 L11.5572222,10 L13.8938889,7.66388889 L13.8938889,7.66388889 Z' id='Shape'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 input, textarea, select, button {
     font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
