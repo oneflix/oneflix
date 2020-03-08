@@ -28,5 +28,4 @@
 		GROUP BY to_char(payment_date, 'YYYY-MM');
 	</select>
 
-
 </mapper>
