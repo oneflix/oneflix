@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SalesDAO">
+
+	<select id="analysisSalesYear" parameterType="sales" resultType="java.util.List">
+		SELECT
+		SUM(t.ticket_price) as count,
+		to_char(payment_date,'YYYY') as payment_date
+		FROM sales, ticket t
+		WHERE <![CDATA[
+		payment_date >= #{startDate}
+		AND payment_date < #{endDate}
+		]]>
+		GROUP BY to_char(payment_date, 'YYYY');
+	</select>
+	
+	<select id="analysisSalesMonth" parameterType="sales" resultMap="java.util.List">
+		SELECT
+		SUM(t.ticket_price) as count,
+		to_char(payment_date,'YYYY-MM') as payment_date
+		FROM sales
+		WHERE <![CDATA[
+		payment_date >= #{startDate}
+		AND payment_date < #{endDate}
+		]]>
+		GROUP BY to_char(payment_date, 'YYYY-MM');
+	</select>
+
+</mapper>

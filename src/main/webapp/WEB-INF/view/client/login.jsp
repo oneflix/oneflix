@@ -67,14 +67,14 @@
      <form action="/loginProc.do" method="post" onsubmit="return validate();">
      <div class="css-unatsl-Self eu52ful0">
      <input id="email" name="email" placeholder="이메일을 입력해주세요" 
-     class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
+     class="oneflix-input e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
      </div>
      <div class="css-unatsl-Self eu52ful0">
      <input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
-     class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
+     class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      </div>
 <div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-<button type="submit" id="loginBtn" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
+<button type="submit" id="loginBtn" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
 </div>
 	</form>
 		<div class="css-tssyq1-LoginBlock edt52et1">
@@ -86,8 +86,8 @@
                      </a>
                     </div>
                        
-                   <div class="css-11fv0pd-Button">
-                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button"> 
+                   <div id="kakao_login" class="css-11fv0pd-Button">
+                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
                    		  카카오로 로그인하기
                        </a>
                     </div>
@@ -130,7 +130,6 @@
    <script src="client/vendor/countdowntime/countdowntime.js"></script>
    <!--===============================================================================================-->
    <script src="client/js/ls-main.js"></script>
-   	<script src="client/js/arrayfill.js"></script>
 
    <!-- KAKAO LOGIN -->
    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -147,12 +146,49 @@
 
    <script>
    $(document).ready(function(){
-       var result = "${result}";
-       if (result == "fail") {
-            alert("로그인 정보가 일치하지 않습니다.");
-       }
-   });
-   
+	    $("#loginBtn").attr('disabled', 'true');
+	    var emailCheck = false;
+	    var passCheck = false;
+	    
+	    var joinResult = "${joinResult}";
+	    if (joinResult == "success") {
+    	alert("회원가입이 완료되었습니다.");
+		} 
+	    
+	    var result = "${result}";
+  	    if (result == "fail") {
+        alert("로그인 정보가 일치하지 않습니다.");
+ 	    } 
+	    $('.oneflix-input').keyup(function(){
+	       var re;
+	       var target = $(this).val();
+	       
+	       if ($(this).prop('id') == 'email') {
+	          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	          emailCheck = false;
+	       } else {
+	          re = /^[a-zA-Z0-9]{4,12}$/;
+	          passCheck = false;
+	       }
+	       if (target.length != 0) {
+	          $(this).parent('div').attr('class','css-1q1k87-Self');
+	          if (re.test(target) == true) {
+	             $(this).parent('div').attr('class','css-n7c9r1-Self');
+	             
+	             if ($(this).prop('id') == 'email') {
+	                emailCheck = true;
+	             } else {
+	                passCheck = true;
+	             }
+	          }
+	       }
+	         if(emailCheck == true && passCheck == true){
+	           $("#loginBtn").prop('disabled', false);
+	        } else {
+	           $("#loginBtn").prop('disabled', true);
+	        }
+	    });//KEY EVENT
+});
    
    //카카오로그인
    /* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
@@ -173,7 +209,49 @@
          alert(JSON.stringfy(err));
       }
    }); */
-   </script>
+   
+  //다른 계정으로 로그인하기 버튼
+/*    function loginForm() {
+   Kakao.Auth.loginForm({
+   	success : function(authObj) {
+   		Kakao.API.request({
+   			url : '/v1/user/me',
+   			success : function(res) {
+   				
+   				 json형태로 출력되는 로그인 정보들을 변수에 담는다.
+   				var email = JSON.stringify(res.kaccount_email);
+   				var access_token = JSON.stringify(authObj.access_token);
+   				
+   						$(function() {
+   							
+   							로그인 정보들을 input 태그의 value 에 담는다.
+   							$('#email').val(email);
+   							$('#access_token').val(access_token);
+   							
+   							서브밋 한다.
+   							 var form = document.getElementById("kakao-login");  
+   							
+   							
+   							
+   							  form.submit();
+   						});
+   			}
+   	});
+   			
+   	
+   },
+   	fail : function(error) {
+   		alert(JSON.stringify(error));
+   		alert("로그인 실패!");
+   	}
+   });
+   };
+   function form_submit() {
+   var form = document.getElementById("kakao-login");  
+   form.submit();
+   };
+ */
+   </script> -->
 
 </body>
 

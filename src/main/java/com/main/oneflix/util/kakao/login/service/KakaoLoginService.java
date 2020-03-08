@@ -16,4 +16,7 @@ public interface KakaoLoginService {
 
 	// Access Token 갱신용
 	public HashMap<String, Object> updateKakaoAccessToken(MemberVO vo);
+	
+	//로그아웃
+	public HashMap<String, Object> kakaoLogout(String authorize_code);
 }

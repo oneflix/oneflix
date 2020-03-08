@@ -58,27 +58,27 @@
 	<main class="css-1494bd8-Self e1h3r44e0">
 		<div class="css-9tzvq5-Inner e1h3r44e1">
 			<div class="css-d3y7ny-LabelTitle e1h3r44e2">회원 가입</div>
-				<form>
-				<div class="css-1q1k87-Self eu52ful0">
-				<input type="email" value="" id="email" name="email" placeholder="이메일을 입력해주세요" class="e1jdphjt1 css-11i8u80-StyledField-EmailField eu52ful1" autocomplete="off">
+				<form class="joinForm" action="/joinProc.do" method="post" onsubmit="return validate();">
+				<div class="css-unatsl-Self eu52ful0">
+				<input type="email" value="" id="email" name="email" placeholder="이메일을 입력해주세요" class="oneflix-input e1jdphjt1 css-11i8u80-StyledField-EmailField eu52ful1" autocomplete="off">
 				</div>
 				<div class="css-unatsl-Self eu52ful0">
-				<input type="password" value="" id="pass" name="pass" placeholder="비밀번호 (4자 이상)" class="e1jdphjt4 css-1ivms9u-StyledField-PasswordField eu52ful1" autocomplete="off">
+				<input type="password" value="" id="pass" name="pass" placeholder="비밀번호 (4자 이상)" class="oneflix-input e1jdphjt4 css-1ivms9u-StyledField-PasswordField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-1q1k87-Self eu52ful0">
-				<input type="text" value="" id="nick" name="nick" placeholder="닉네임" autofocus="" class="e1jdphjt3 css-sg09fs-StyledField-NickField eu52ful1" autocomplete="off">
+				<div class="css-unatsl-Self eu52ful0">
+				<input type="text" value="" id="nick" name="nick" placeholder="닉네임" autofocus="" class="oneflix-input e1jdphjt3 css-sg09fs-StyledField-NickField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-1q1k87-Self eu52ful0">
-				<input type="number" value="" name="name" placeholder="생년월일 (숫자 8자리)" autofocus="" class="e1jdphjt3 css-sg09fs-StyledField-BirthField eu52ful1" autocomplete="off">
+				<div class="css-unatsl-Self eu52ful0">
+				<input type="number" value="" id="birth" name="birth" placeholder="생년월일 (숫자 8자리)" autofocus="" class="oneflix-input e1jdphjt3 css-sg09fs-StyledField-BirthField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-1q1k87-Self eu52ful0">
+				<div class="css-unatsl-Self eu52ful0">
 					<div class="css-sg09fs-StyledField-GenderField eu52ful1 label-padding">
 					<label style="margin: 0; color: #666666;">성별</label>
 						<label style="margin: 0px 0px 0px 25px; color: #666666;">
-						<input class="option-input radio" id="gender" name="gender" value="F" type="radio"/>여성
+						<input class="oneflix-radio option-input radio" id="female" name="gender" value="F" type="radio"/>여성
 						</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						<label style="margin: 0; color: #666666;"> 
-						<input class="option-input radio" name="gender" value="M" type="radio"/>남성
+						<input class="oneflix-radio option-input radio" id="male" name="gender" value="M" type="radio"/>남성
 						</label>
 					</div>
 				</div>
@@ -86,23 +86,23 @@
 					<div class="css-5v9mdr-LegalFieldBlock e1jdphjt8">
 						<div class="css-1b4fwr1-AgreeAllLegal e1jdphjt0">
 						<label class="css-1k9uma7-Self ejrezr20" for="terms">
-						<input name="terms" id="terms" type="checkbox" class="option-input css-3ivnsa-StyledField ejrezr22" value="false">
+						<input name="allAgree" id="allAgree" type="checkbox" class="oneflix-term option-input css-3ivnsa-StyledField ejrezr22" value="false">
 							전체 약관에 동의합니다</label>
 						</div>
 					</div>
 						<div class="checkbox-container css-5v9mdr-LegalFieldBlock e1jdphjt8">
 							<label class="css-1k9uma7-Self ejrezr20" for="terms[0]">
-							<input name="terms[0]" id="terms[0]" type="checkbox" class="option-input css-3ivnsa-StyledField ejrezr22" value="false">
+							<input name="term" id="term[1]" type="checkbox" class="oneflix-term checkOp option-input css-3ivnsa-StyledField ejrezr22" value="false">
 							<button type="button" class="css-c1816u-LegalLink e1jdphjt7">ONEFLIX 서비스 이용약관</button>에 동의합니다. (필수)</label>
 						</div>
 						<div class="checkbox-container css-5v9mdr-LegalFieldBlock e1jdphjt8">
 							<label class="css-1k9uma7-Self ejrezr20" for="terms[2]">
-							<input name="terms[2]" id="terms[2]" type="checkbox" class="option-input checkbox css-3ivnsa-StyledField ejrezr22" value="false">
+							<input name="term" id="term[2]" type="checkbox" class="oneflix-term checkOp option-input checkbox css-3ivnsa-StyledField ejrezr22" value="false">
 							<button type="button" class="css-c1816u-LegalLink e1jdphjt7">개인정보 취급 방침</button>에 동의합니다. (필수)</label>
 						</div>
 				</div>
 					<div class="css-10mrhk1-SubmitButtonBlock e1jdphjt6">
-					<button type="submit" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">가입 완료</button>
+					<button type="submit" id="joinBtn" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">가입 완료</button>
 					</div>
 						<input type="hidden" name="cert" value="N"/>
 						<input type="hidden" name="ban" value="N"/>
@@ -141,68 +141,114 @@
 	<script src="client/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
-	<script src="client/js/arrayfill.js"></script>
 	<script type="text/javascript">
-	   function validate() {
-	       var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	       var re2 = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
-	       var re3 =/^[0-9]{8}$/ //생년월일 체크
-	       var email = document.getElementById("email");
-	       var pass = document.getElementById("pass");
-	       var nick = document.getElementById("nick");
-		   var birth = document.getElementById("birth");
-		   
-	       if(email.value=="") {
-	           alert("이메일을 입력해 주세요");
-	           email.focus();
-	           return false;
-	       }
-	       if(!check(re,email,"적합하지 않은 이메일 형식입니다.")) {
-	           return false;
-	       }
-	       if(!check(re2,pass,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
-	           return false;
-	       }
-	       if(join.nick.value=="") {
-	           alert("닉네임을 입력해 주세요");
-	           join.nick.focus();
-	           return false;
-	       }
-	       if(!check(re2,nick,"닉네임 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
-	           return false;
-	       }
-	       if(join.birth.value=="") {
-	           alert("생년월일을 입력해 주세요");
-	           birth.focus();
-	           return false;
-	       }
+	    var emailCheck = false;
+	    var passCheck = false;
+	    var nickCheck = false;
+	    var birthCheck = false;
+	    var genderCheck = false;
+	    var agreeCheck = false;
+	$(document).ready(function(){
+	    $("#joinBtn").attr('disabled', 'true');
+	    
+	    $('.oneflix-input').keyup(function(){
+	       var re;
+	       var target = $(this).val();
+	       
+	       if ($(this).prop('id') == 'email') {
+	          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	          emailCheck = false;
+	       } else if($(this).prop('id') == 'pass'){
+	          re = /^[a-zA-Z0-9]{4,12}$/;
+	          passCheck = false;
+	       } else if($(this).prop('id') == 'nick'){
+		          re = /^[a-zA-Z0-9]{4,12}$/;
+		          nickCheck = false;
+		   } else {
+		          re = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		          birthCheck = false;
+		   }
+	       if (target.length != 0) {
+	          $(this).parent('div').attr('class','css-1q1k87-Self');
+	          if (re.test(target) == true) {
+	             $(this).parent('div').attr('class','css-n7c9r1-Self');
+	             
+	             if ($(this).prop('id') == 'email') {
+	                emailCheck = true;
+	             } else if ($(this).prop('id') == 'pass') {
+		            passCheck = true;
+	             } else if ($(this).prop('id') == 'nick') {
+		            nickCheck = true;
+	             } else {
+	            	 birthCheck = true;
+            	}
+             }
+          }
+	       if(emailCheck == true && passCheck == true && nickCheck == true && birthCheck == true
+ 	    		   && genderCheck == true && agreeCheck == true){
+   	           $("#joinBtn").prop('disabled', false);
+   	        } else {
+   	           $("#joinBtn").prop('disabled', true);
+   	        }
+    }); //key event
+    
+    //약관동의
+     $("#allAgree").click(function(){
+    		if($("#allAgree").prop("checked")) { 
+ 				$(".oneflix-term").prop("checked",true); 
+ 				agreeCheck = true; 
+  			} else if(!$("#allAgree").prop("checked")){ 
+		 		 $(".oneflix-term").prop("checked",false); 
+		 		agreeCheck = false; 
+  			}
+    	     if(emailCheck == true && passCheck == true && nickCheck == true && birthCheck == true
+   	    		   && genderCheck == true && agreeCheck == true){
+     	           $("#joinBtn").prop('disabled', false);
+     	        } else {
+     	           $("#joinBtn").prop('disabled', true);
+     	        }
+     });
+     $(".checkOp").click(function(){
+    	if($("input:checkbox[name=term]").length != $("input:checkbox[name=term]:checked").length){
+    		$("#allAgree").prop("checked",false); 
+    		agreeCheck = false; 
+    	} else {
+    		$("#allAgree").prop("checked",true); 
+    		agreeCheck = true; 
+    	}
+        if(emailCheck == true && passCheck == true && nickCheck == true && birthCheck == true
+	    		   && genderCheck == true && agreeCheck == true){
+	           $("#joinBtn").prop('disabled', false);
+	        } else {
+	           $("#joinBtn").prop('disabled', true);
+	        }
+ 	 });
+     
+    //성별 선택 
+    $('.oneflix-radio').click(function(){
+    		genderCheck = false;
+    		$(".oneflix-radio").attr('checked', false);
+    		var male = $('#male').is(":checked");
+    		var female = $('#female').is(":checked");
+    		if(male){
+       			 $('#male').prop('checked', true);
+       			 $('#female').prop('checked', false);
+       			 genderCheck = true;
+    		 }else if(female){
+       			 $('#male').prop('checked', false);
+       			 $('#female').prop('checked', true);
+       			 genderCheck = true;
+    		 }
+    	     if(emailCheck == true && passCheck == true && nickCheck == true && birthCheck == true
+   	    		   && genderCheck == true && agreeCheck == true){
+     	           $("#joinBtn").prop('disabled', false);
+     	        } else {
+     	           $("#joinBtn").prop('disabled', true);
+     	        }
+    }); //radio 
+	});
 
-	       if(!check(re3, birth, "생년월일은 8자리 숫자로만 입력해주세요.")) {
-	           return false;
-	       }
-	       if( !($('input:radio[name=gender]').is(":checked")) ){
-		        alert('성별을 선택해주세요.');
-		        $('#gender').focus();
-		        return false;
-	    	}
-	       if( !($('input:checkbox[name=checkAgree]').is(":checked")) ){
-		        alert('이용약관에 동의하지 않으셨습니다. 이용약관에 동의해주세요.');
-		        $('#checkAgree').focus();
-		        return false;
-	    	}
-	       alert("회원가입이 완료되었습니다.");
-	   }
-	   function check(re, what, message) {
-	       if(re.test(what.value)) {
-	           return true;
-	       }
-	       alert(message);
-	       what.value = "";
-	       what.focus();
-	       //return false;
-	   }
 </script>
 
 </body>
-
 </html>

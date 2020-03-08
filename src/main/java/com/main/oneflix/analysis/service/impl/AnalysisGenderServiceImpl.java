@@ -7,12 +7,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.main.oneflix.analysis.service.GetCountGenderService;
+import com.main.oneflix.analysis.service.AnalysisGenderService;
 import com.main.oneflix.member.dao.MemberDAO;
 import com.main.oneflix.member.vo.MemberVO;
 
 @Service
-public class GetCountGenderServiceImpl implements GetCountGenderService {
+public class AnalysisGenderServiceImpl implements AnalysisGenderService {
 	
 	@Autowired
 	private MemberDAO memberDAO;

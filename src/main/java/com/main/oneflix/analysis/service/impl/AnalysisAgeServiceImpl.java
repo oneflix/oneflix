@@ -7,12 +7,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.main.oneflix.analysis.service.GetCountAgeService;
+import com.main.oneflix.analysis.service.AnalysisAgeService;
 import com.main.oneflix.member.dao.MemberDAO;
 import com.main.oneflix.member.vo.MemberVO;
 
 @Service
-public class GetCountAgeServiceImpl implements GetCountAgeService{
+public class AnalysisAgeServiceImpl implements AnalysisAgeService{
 	
 	@Autowired
 	private MemberDAO memberDAO;
@@ -44,12 +44,12 @@ public class GetCountAgeServiceImpl implements GetCountAgeService{
 		}
 		
 		Map<String, Integer> ageMap = new HashMap<String, Integer>();
-		ageMap.put("teen", teen);
-		ageMap.put("twenty", twenty);
-		ageMap.put("thirty", thirty);
-		ageMap.put("fourty", fourty);
-		ageMap.put("fifty", fifty);
-		ageMap.put("sixty", sixty);
+		ageMap.put("10대", teen);
+		ageMap.put("20대", twenty);
+		ageMap.put("30대", thirty);
+		ageMap.put("40대", fourty);
+		ageMap.put("50대", fifty);
+		ageMap.put("60대 이상", sixty);
 		
 		return ageMap;
 	}
