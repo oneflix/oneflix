@@ -59,32 +59,30 @@
      			<span class="css-1o4b3ai-SignInFormLabelTitle edt52et6">로그인</span>
      				<a class="css-1h9xpgj-FindPasswordLink edt52et3" href="/findPass.do">
      				비밀번호를 잊어버리셨나요?</a>
-	</div>
-					<form action="/loginProc.do" method="post"
-						onsubmit="return validate();">
-						<div class="css-unatsl-Self eu52ful0">
-							<input name="email" placeholder="이메일을 입력해주세요"
-								class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1"
-								autocomplete="off" type="email" value="">
-						</div>
-						<div class="css-unatsl-Self eu52ful0">
-							<input name="password" placeholder="비밀번호 (6자 이상)"
-								class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1"
-								autocomplete="off" type="password" value="">
-						</div>
-						<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-							<button type="submit" disabled=""
-							class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
-						</div>
-						<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3" style="border: 0; margin-top: 0;">
-						<p style="margin: 21px 0px 21px; padding-left: 15px;" 
-						class="css-cmoq9h-SubmitButtonBlock e19dfl4j3 logindetail">
-							소셜로그인 성공!<br> 기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.
-						</p>
-						<span class="css-cmoq9h-SubmitButtonBlock e19dfl4j3 join" 
-						style="margin-top: 0; padding-left: 41px;"
-						onClick="SNSJoin()">아직 ONEFLIX 회원이 아니신가요?</span> 
-						</div>
+			</div>
+     <form action="/connectSNSLoginProc.do" method="post" onsubmit="return validate();">
+     	<div class="css-unatsl-Self eu52ful0">
+     		<input id="email" name="email" placeholder="이메일을 입력해주세요" 
+     		class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
+     	</div>
+     	<div class="css-unatsl-Self eu52ful0">
+     		<input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
+    	 	class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
+     	</div>
+		<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
+			<button type="submit" id="loginBtn" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
+		</div>
+
+		<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3" style="border: 0; margin-top: 0;">
+			<p style="margin: 21px 0px 21px; padding-left: 15px;" 
+			class="css-cmoq9h-SubmitButtonBlock e19dfl4j3 logindetail">
+				소셜로그인 성공!<br> 기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.
+			</p>
+			<span class="css-cmoq9h-SubmitButtonBlock e19dfl4j3 join" 
+			style="margin-top: 0; padding-left: 41px;"
+			onClick="SNSJoin()">아직 ONEFLIX 회원이 아니신가요?
+			</span> 
+		</div>
 						<input type="hidden" id="naver" name="naver" value="${member.naver}"/> 
 						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/> 
 						<input type="hidden" id="google" name="google" value="${member.google}"/>
@@ -126,18 +124,46 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript">
+   $(document).ready(function(){
+		    var result = "${result}";
+	  	    if (result == "fail") {
+	        alert("로그인 정보가 일치하지 않습니다.");
+	   } 
+		   $("#loginBtn").attr('disabled', 'true');
+		   var emailCheck = false;
+		   var passCheck = false;
+		   $("#email").keyup(function(){
+			   var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			   var email = $("#email").val();
+	 		   if(email.length != 0){
+			       $("#email").parent('div').attr('class','css-1q1k87-Self');
+	 			   if(re.test(email) == true){
+	 			       $("#email").parent('div').attr('class','css-n7c9r1-Self');
+	 			       emailCheck = true;
+	 			   }
+			   } 
+		   });
+		   $("#pass").keyup(function(){
+		       var re2 = /^[a-zA-Z0-9]{4,12}$/ 
+			   var pass = $("#pass").val();
+	 		   if(pass.length != 0){
+			       $("#pass").parent('div').attr('class','css-1q1k87-Self');
+	 			   if(re2.test(pass) == true){
+	 			       $("#pass").parent('div').attr('class','css-n7c9r1-Self');
+	 			       passCheck = true;
+	 			   }
+			   } 
+			   if(emailCheck == passCheck == true){
+				   $("#loginBtn").removeAttr('disabled');
+			   }
+		   });
+	});
 	function SNSJoin(){
 /* 		   var kakao = document.getElementById("kakao");
 		   var naver = document.getElementById("naver");
 		   var google = document.getElementById("google"); */
            window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}" + "&google=" + "${member.google}";
         };
-   $(document).ready(function(){
-       var result = "${result}";
-       if (result == "fail") {
-            alert("로그인 정보가 일치하지 않습니다.");
-       }
-   });
    
    
    //카카오로그인
