@@ -164,8 +164,6 @@
 	    	memberCheck = res.memberCheck;
 	    	mailCheck = res.mailCheck;
 	    	nickCheck = res.nickCheck;
-	    	
-	    	alert(memberCheck+":"+memberCheck.value());
 	    },
 	     error : function(){
 	        alert("ajax error");
@@ -180,6 +178,8 @@
 		} else if(nickCheck == "fail") {
 			$("#target").after("<div class='css-102eby1-ErrorMessage e1jdphjt2'>이미 존재하는 닉네임 입니다.</div>");
 			return false;
+		} else if(!(memberCheck == "success")){
+			return false;
 		}
     }
 	    var emailCheck = false;
@@ -192,6 +192,8 @@
 	    $("#joinBtn").attr('disabled', 'true');
 	    
 	    $('.oneflix-input').keyup(function(){
+	       $('div.css-102eby1-ErrorMessage').remove();
+	       val = false;
 	       var re;
 	       var target = $(this).val();
 	       
