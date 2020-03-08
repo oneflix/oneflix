@@ -28,7 +28,7 @@ public class KakaoLoginController {
 		HashMap<String, Object> token = kakaoLoginService.getKakaoAccessToken(code);
 		System.out.println(token);
 		MemberVO kakaoMember = kakaoLoginService.getKakaoUserInfo(token);
-		System.out.println(kakaoMember.getKakao() + " " + kakaoMember.getNick());
+		System.out.println(kakaoMember.getKakao());
 		MemberVO oneflixMember = getMemberService.getMember(kakaoMember);
 
 		// 최초 카카오톡 로그인 시 DB에 사용자 정보 삽입(회원가입)과 로그인을 동시에 처리
@@ -50,5 +50,6 @@ public class KakaoLoginController {
 			
 		}
 	}
+	
 }
 

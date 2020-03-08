@@ -42,6 +42,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService {
 			// POST 요청을 위해 기본값이 false인 setDoOutput을 true로
 			conn.setRequestMethod("POST");
 			conn.setDoOutput(true);
+			conn.setUseCaches(false);
 
 			// POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -174,6 +175,44 @@ public class KakaoLoginServiceImpl implements KakaoLoginService {
 			e.printStackTrace();
 		}
 
+		return token;
+	}
+
+	@Override
+	public HashMap<String, Object> kakaoLogout(String authorize_code) {
+		HashMap<String, Object> token = new HashMap<String, Object>();
+		String reqURL = "https://kapi.kakao.com//v1/user/logout";
+
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			// POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+
+			// 결과 코드가 200이라면 성공
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode : " + responseCode);
+
+			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line = "";
+			String result = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+
+			// Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+
+			token.put("accessToken", element.getAsJsonObject().get("access_token").getAsString());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return token;
 	}
 }
