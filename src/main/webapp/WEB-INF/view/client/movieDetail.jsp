@@ -29,6 +29,8 @@
     .swiper-button-prev {opacity: 0; transition: opacity 0.5s ease-in-out;}
     .swiper-container:hover .swiper-button-next,
     .swiper-container:hover .swiper-button-prev {opacity: 0.35;}
+    
+    .e1jklz6e3{cursor:pointer;}
 </style>
 </head>
 
@@ -121,7 +123,7 @@
 										</ul>
 										<div
 											class="e1vsnrt61 css-7s5tof-Self-ContentActionButtons e1jklz6e0">
-											<a class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
+											<a href="/moviePlay.do" class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
 												aria-label="재생">
 												<span style="margin-top: 3px;" class="SVGInline css-10748d4-MainButtonIcon e1jklz6e2">
 													<svg class="SVGInline-svg css-10748d4-MainButtonIcon- e1jklz6e2-svg"

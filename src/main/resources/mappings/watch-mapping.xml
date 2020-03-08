@@ -3,7 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="WatchDAO">
-
+	
+	<insert id="insertWatch" parameterType="watch">
+		INSERT INTO watch
+		VALUES((SELECT NVL(MAX(watch_id),0)+1 FROM watch), #{email}, #{movieId}, SYSDATE, #{viewPoint})
+	</insert>
+	
 	<select id="getCountWatchGenre" parameterType="watch" resultType="int">
 		SELECT NVL(COUNT(*),0) 
 		FROM (SELECT w.*, m.genre_id1, m.genre_id2
