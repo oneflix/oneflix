@@ -118,5 +118,5 @@ public class MovieController {
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
 		return movieList;
 	}
-
+	
 }
