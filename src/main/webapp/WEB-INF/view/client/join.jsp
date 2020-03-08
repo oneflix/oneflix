@@ -71,7 +71,7 @@
 				<div class="css-unatsl-Self eu52ful0">
 				<input type="number" value="" id="birth" name="birth" placeholder="생년월일 (숫자 8자리)" autofocus="" class="oneflix-input e1jdphjt3 css-sg09fs-StyledField-BirthField eu52ful1" autocomplete="off">
 				</div>
-				<div class="css-unatsl-Self eu52ful0">
+				<div id="target" class="css-unatsl-Self eu52ful0">
 					<div class="css-sg09fs-StyledField-GenderField eu52ful1 label-padding">
 					<label style="margin: 0; color: #666666;">성별</label>
 						<label style="margin: 0px 0px 0px 25px; color: #666666;">
@@ -142,6 +142,46 @@
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
 	<script type="text/javascript">
+    function validate(){
+    	var data = {};
+    	var email = $('#email').val();
+    	var nick = $('#nick').val();
+
+    	data.email = email;
+    	data.nick = nick;
+    	
+    	var memberCheck;
+    	var mailCheck;
+    	var nickCheck;
+    	
+	$.ajax({
+		url: "/memberCheckProcAjax.do?",
+	    type: "POST",
+	    dataType : "json",
+	    async:false,
+	    data: data,
+	    success:function(res){
+	    	memberCheck = res.memberCheck;
+	    	mailCheck = res.mailCheck;
+	    	nickCheck = res.nickCheck;
+	    },
+	     error : function(){
+	        alert("ajax error");
+	    }
+	});
+		if(memberCheck == "fail"){
+			$("#target").after("<div class='css-102eby1-ErrorMessage e1jdphjt2'>이메일과 닉네임이 이미 존재합니다.</div>");
+			return false;
+		} else if(mailCheck == "fail") {
+			$("#target").after("<div class='css-102eby1-ErrorMessage e1jdphjt2'>이미 존재하는 이메일 입니다.</div>");
+			return false;
+		} else if(nickCheck == "fail") {
+			$("#target").after("<div class='css-102eby1-ErrorMessage e1jdphjt2'>이미 존재하는 닉네임 입니다.</div>");
+			return false;
+		} else if(!(memberCheck == "success")){
+			return false;
+		}
+    }
 	    var emailCheck = false;
 	    var passCheck = false;
 	    var nickCheck = false;
@@ -152,6 +192,8 @@
 	    $("#joinBtn").attr('disabled', 'true');
 	    
 	    $('.oneflix-input').keyup(function(){
+	       $('div.css-102eby1-ErrorMessage').remove();
+	       val = false;
 	       var re;
 	       var target = $(this).val();
 	       
