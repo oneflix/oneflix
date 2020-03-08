@@ -9,17 +9,13 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
-<!-- Tell the browser to be responsive to screen width -->
+<title>ONeflix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-
-		<!-- ====================== 
-            ADD headr 
-     ====================== -->
+	
 		<jsp:include page="${header_url}"></jsp:include>
 
 		<!-- Content Wrapper. Contains page content -->
@@ -69,8 +65,7 @@
 									</h3>
 								</div>
 								<div class="card-body">
-									<div id="product-user-chart"
-										style="width: 100%; height: 500px;"></div>
+									<div id="product-user-chart" style="width: 100%; height: 500px;"></div>
 								</div>
 								<!-- /.card-body-->
 							</div>
@@ -119,10 +114,8 @@
 									</h3>
 								</div>
 								<div class="row">
-									<div class="col-lg-6" id="movie-ranking-cumulates"
-										style="width: 100%; height: auto;"></div>
-									<div class="col-lg-6" id="movie-ranking-recently"
-										style="width: 100%; height: auto;"></div>
+									<div class="col-lg-6" id="movie-ranking-cumulates" style="width: 100%; height: auto;"></div>
+									<div class="col-lg-6" id="movie-ranking-recently" style="width: 100%; height: auto;"></div>
 								</div>
 								<!-- /.card-body-->
 							</div>
@@ -139,48 +132,14 @@
 		</div>
 		<!-- /.content-wrapper -->
 
-		<!-- ====================== 
-            ADD Footer
-     ====================== -->
 		<jsp:include page="${footer_url}"></jsp:include>
 	</div>
 	<!-- ./wrapper -->
-
-
-	<!-- jQuery UI 1.11.4 -->
-	<script src="admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-	<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-	<!-- ChartJS -->
-	<script src="admin/plugins/chart.js/Chart.min.js"></script>
-	<!-- Sparkline -->
-	<script src="admin/plugins/sparklines/sparkline.js"></script>
-	<!-- JQVMap -->
-	<script src="admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-	<script src="admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-	<!-- jQuery Knob Chart -->
-	<script src="admin/plugins/jquery-knob/jquery.knob.min.js"></script>
-	<!-- daterangepicker -->
-	<script src="admin/plugins/moment/moment.min.js"></script>
-	<script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
-	<!-- Tempusdominus Bootstrap 4 -->
-	<script
-		src="admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-	<!-- Summernote -->
-	<script src="admin/plugins/summernote/summernote-bs4.min.js"></script>
-	<!-- overlayScrollbars -->
-	<script
-		src="admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="admin/js/adminlte.js"></script>
-	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="admin/js/dashboard.js"></script>
 	<!-- Google Chart -->
-	<script type="text/javascript"
-		src="https://www.gstatic.com/charts/loader.js"></script>
-	<script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script type="text/javascript">
   $(function () {
     // $("#example1").DataTable();
     $('#example1').DataTable({
@@ -211,17 +170,21 @@
 </script>
 
 
-	<script type="text/javascript">
-  google.charts.load("current", {packages:["corechart"]});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-           ['성별','명'],
-           ['Woman', 45899],
-           ['Man', 56221]
-    ]);
+<script type="text/javascript">
+	
 
-    var view = new google.visualization.DataView(data);
+  google.charts.load('current', {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  function drawChart() {
+   		var data = $.ajax({
+    	url : "/getAnalysisProcAjax.mdo",
+    	dataType: "json",
+    	async: false
+    }).responseText;
+
+   	genderData = new google.visualization.DataTable(data);
+   	
     var options = {
       slices: {0: { color: '#9D8189' }, 1:{ color: '#55828B'}},
       align:'center',
@@ -248,7 +211,7 @@
             }
     };
     var chart = new google.visualization.PieChart(document.getElementById("gender_chart"));
-    chart.draw(view, options);
+    chart.draw(genderData, options);
     window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 }
 </script>

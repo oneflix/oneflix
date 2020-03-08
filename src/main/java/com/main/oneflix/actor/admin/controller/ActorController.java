@@ -14,7 +14,7 @@ import com.main.oneflix.actor.service.GetActorService;
 import com.main.oneflix.actor.service.InsertActorService;
 import com.main.oneflix.actor.service.UpdateActorService;
 import com.main.oneflix.actor.vo.ActorVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class ActorController {

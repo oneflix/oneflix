@@ -73,7 +73,7 @@ i {font-size: 20px; float: left;}
 /* 헤더 슬라이드 */
 .header-slider {position: absolute; top: 0; width: 100%; height: 100%; z-index: 0;}
 .header-slider .swiper-container {position: relative; width: 100%; height: 100%;}
-.header-slider > .swiper-container > .swiper-wrapper > .swiper-slide {background-size: cover;} 
+.header-slider > .swiper-container > .swiper-wrapper > .swiper-slide {cursor: pointer; background-size: cover;} 
 .header-slider .swiper-container .row {position: absolute; top: 30%; left: 50px;  color: #fff;} 
 .header-slider .swiper-container .row h2 {font-size: 5vw; letter-spacing: 0.005em;}
 .header-slider .swiper-container .row p {font-size: 2vw; padding-left: 0.8vw;}
@@ -89,13 +89,17 @@ i {font-size: 20px; float: left;}
 .main > .row > .more > i {font-size: 1vw; float: right; margin-top: 5px; margin-left: 5px;}
 
 .main-slider {position: relative; margin-bottom: 2vw;}
-.main-slider .swiper-wrapper {height: 13vw;}
-.main-slider .swiper-wrapper .movie-card{height: 13vw;}
-.swiper-slide:hover > .movie-card {transform: translateY(-13vw);}
+.main-slider .swiper-wrapper {height: 11vw;}
+.main-slider .swiper-wrapper .movie-card{height: 100%;}
+.swiper-slide:hover > .movie-card {transform: translateY(-11vw);}
 .main-slider .swiper-slide img {width: 100%; height: 80%;}
 .main-slider .swiper-slide .row p {font-size: 1vw; margin-top: -3px;}
 .main-slider .swiper-button-next {position: absolute; top: 50%; right: -40px;}
 .main-slider .swiper-button-prev {position: absolute; top: 50%; left: -40px;}
+
+.movie-mini-box > .play-button > .play-button-img {width: 2.5vw;}
+.movie-mini-box > .play-button > .info-box > p {font-size: 1vw;}
+.movie-mini-box > .info-button > .info-button-img {width: 2.5vw;}
 
 /* footer */
 .footer_info {padding: 40px 60px;}
@@ -104,6 +108,16 @@ i {font-size: 20px; float: left;}
 .footer_info ul {clear: both;;}
 .footer_info ul li {float: left;}
 .footer_info p {margin-top: 5px;}
+
+@media (max-width: 1240px) {
+    .main-slider .swiper-wrapper {height: 13vw;}
+    .swiper-slide:hover > .movie-card{transform: translateY(-13vw);}
+    .main-slider .swiper-slide .row > p {font-size: 1.2vw;}
+    
+    .movie-mini-box > .play-button > .play-button-img {width: 2.7vw;}
+    .movie-mini-box > .play-button > .info-box > p {font-size: 1.2vw;}
+    .movie-mini-box > .info-button > .info-button-img {width: 2.7vw;}
+}
 
 @media (max-width: 960px) {
     .container .navs .logo {margin-top: 3px;}
@@ -118,9 +132,12 @@ i {font-size: 20px; float: left;}
 
     .main > .row > .category {font-size: 1.7vw;}
     .main-slider .swiper-wrapper {height: 16vw;}
-    .main-slider .swiper-wrapper .movie-card {height: 16vw;}
     .swiper-slide:hover > .movie-card{transform: translateY(-16vw);}
     .main-slider .swiper-slide .row > p {font-size: 1.3vw;}
+    
+    .movie-mini-box > .play-button > .play-button-img {width: 3.1vw;}
+    .movie-mini-box > .play-button > .info-box > p {font-size: 1.3vw;}
+    .movie-mini-box > .info-button > .info-button-img {width: 3.1vw;}
 }
 
 @media (max-width: 768px) {
@@ -134,9 +151,12 @@ i {font-size: 20px; float: left;}
     .main {margin-top: -15vw;}
     .main > .row > .category {font-size: 1.9vw;}
     .main-slider .swiper-wrapper {height: 20vw;}
-    .main-slider .swiper-wrapper .movie-card {height: 20vw;}
     .swiper-slide:hover > .movie-card{transform: translateY(-20vw);}
     .main-slider .swiper-slide .row p {font-size: 1.6vw;}
+    
+    .movie-mini-box > .play-button > .play-button-img {width: 3.8vw;}
+    .movie-mini-box > .play-button > .info-box > p {font-size: 1.6vw;}
+    .movie-mini-box > .info-button > .info-button-img {width: 3.8vw;}
 }
 
 @media (max-width: 640px) {
@@ -156,11 +176,14 @@ i {font-size: 20px; float: left;}
     .main {padding: 20px 30px 0;}
     .main > .row > .category {font-size: 2.5vw;}
     .main-slider .swiper-wrapper {height: 28vw;}
-    .main-slider .swiper-wrapper .movie-card {height: 28vw;}
     .swiper-slide:hover > .movie-card{transform: translateY(-28vw);}
     .main-slider .swiper-slide .row p {font-size: 2.2vw;}
     .main-slider .swiper-button-next {right: -30px;}
     .main-slider .swiper-button-prev { left: -30px;}
+
+	.movie-mini-box > .play-button > .play-button-img {width: 4.6vw;}
+    .movie-mini-box > .play-button > .info-box > p {font-size: 1.9vw;}
+    .movie-mini-box > .info-button > .info-button-img {width: 4.6vw;}
 
     .footer_info {padding: 40px 30px;}
 }

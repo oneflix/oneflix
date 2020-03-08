@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date"/>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
-<c:set var="year"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
 <fmt:setLocale value="ko_kr"/>
 <!DOCTYPE html>
 <html>
@@ -14,8 +12,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>ONeflix</title>
-<!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 <style>
 	.total-sales:read-only {background: #fff;}
 </style>
@@ -84,14 +82,13 @@
 								<table id="salesTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width: 4vw;">#</th>
+											<th>#</th>
 											<th>이메일</th>
 											<th>이용권</th>
 											<th>가격</th>
 											<th>결제일</th>
 										</tr>
 									</thead>
-									
 								</table>
 							</div>
 						</div>

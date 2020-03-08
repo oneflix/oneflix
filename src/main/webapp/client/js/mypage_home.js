@@ -1,30 +1,57 @@
-google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['장르', '편'],
-                ['액션', 11],
-                ['코미디', 22],
-                ['로맨스', 33],
-                ['애니메이션', 11],
-                ['음악', 44],
-                ['범죄', 11],
-            ]);
+//구글차트
+var data;
+var mostWatched;
+var sentence = document.getElementById('sentence');
+var countWatch = document.getElementById('countWatch');
+var val = $("#countWatch").text();
+var nick;
 
-            var view = new google.visualization.DataView(data);
+		google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                  var jsonData = $.ajax({
+                        url: "/mypageHomeProcAjax.do",
+                        dataType: "json",
+                        async: false
+                        }).responseText;
+                    
+                    // Create our data table out of JSON data loaded from server.
+                    data = new google.visualization.DataTable(jsonData);
+//                	var view = new google.visualization.DataView(data);  
+            //많이 본 장르 얻기        
+            mostWatched = data.getValue(0,0);
+        	sentence.append(mostWatched);
+        	sentence.append("를 좋아하는 ");
+        	
+        	if( val <= 3 ){
+        		nick = "영알못!";
+        	}else if(val > 3 && val <= 5){
+        		nick = "영화초보!";
+        	}else if(val > 5 && val <= 10){
+                nick = "영화고수!";
+            }else if(val > 10 && val <= 20){
+            	nick = "영화매니아!";
+            }else if(val > 20 ){
+            	nick = "영화광!";
+            }
+                
+        	sentence.append(nick);
+
             var options = {
                 slices: { 0: { color: '#9D8189' }, 1: { color: '#55828B' } },
+                responsive: true,
                 align: 'center',
-                legendTextStyle: { color: '#FFF' },
-                chartArea: { height: '80%', width: '85%' },
-                pieHole: 0.4,
+                legendTextStyle: { color: '#080808'},
+                chartArea: { height: '83%', width: '95%' },
+                pieHole: 0.3,
                 bars: 'vertical',
-                height: 500,
-                width: '100%',
+                height: 390,
+                width: '130%',
                 bar: { groupWidth: "70%" },
-                legend: { position: "top", color: "#fff" },
+                legend: { position: "bottom", color: "#080808" },
                 isStacked: false,
-                backgroundColor: '#080808',
+                curveType: 'function',
+                backgroundColor: '#fff;',
 
                 //    tooltip:{textStyle : {fontSize:12}, showColorCode : true},
                 animation: { //차트가 뿌려질때 실행될 애니메이션 효과
@@ -38,12 +65,44 @@ google.charts.load("current", { packages: ["corechart"] });
                         bold: true,
                         italic: true,
                         opacity: 0.8,
-                        color: '#ffffff'
-                    }
-
-                }
-            };
+                        color: '#080808;'
+                    	}
+                	}
+            	}; //옵션
+         // Create DataTable and add the array to it.
+            
             var chart = new google.visualization.PieChart(document.getElementById("genre_chart"));
-            chart.draw(view, options);
-            window.addEventListener('resize', function () { chart.draw(data, options); }, false);
-        }
+            chart.draw(data, options);
+//            window.addEventListener('resize', function () { chart.draw(data, options); }, false);
+ 
+ //           }   //END  success: function (result) {
+//        });     //END  $.ajax({
+    };          //END  function drawChart()
+//    function settingSentence(){
+//
+//    	
+//    }
+
+
+//슬라이더
+        const createReviewSwiper = function(slideCount) {
+            var reviewSwiper = new Swiper('#review-slider-container', {
+                slidesPerView: slideCount,
+                spaceBetween: 3,
+                slidesPerGroup: slideCount,
+            
+                // loopFillGroupWithBlank: true,
+            
+                navigation: {
+                    nextEl: '#review-button-next',
+                    prevEl: '#review-button-prev'
+                },
+            
+                loop: true,
+                speed: 1000,
+            });
+        };
+
+        $(document).ready(function() {
+        	createReviewSwiper(2);
+        });

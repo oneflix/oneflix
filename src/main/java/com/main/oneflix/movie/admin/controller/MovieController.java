@@ -1,9 +1,7 @@
 package com.main.oneflix.movie.admin.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpSession;
@@ -11,10 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.actor.service.GetActorListService;
@@ -29,7 +25,8 @@ import com.main.oneflix.movie.service.GetMovieService;
 import com.main.oneflix.movie.service.InsertMovieService;
 import com.main.oneflix.movie.service.UpdateMovieService;
 import com.main.oneflix.movie.vo.MovieVO;
-import com.main.oneflix.util.fileupload.service.SingleFileuploadService;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.fileupload.service.MovieFileuploadService;
 
 @Controller
 public class MovieController {
@@ -59,30 +56,26 @@ public class MovieController {
 	private GetGenreListService getGenreListService;
 
 	@Autowired
-	private SingleFileuploadService singleFileuploadService;
+	private MovieFileuploadService movieFileuploadService;
 
-	@RequestMapping("/getMovieListProc.mdo")
-	public ModelAndView getMovieListProc(MovieVO vo, ModelAndView mav) {
-		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
+	@RequestMapping("/movieList.mdo")
+	public ModelAndView movieList(ModelAndView mav) {
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
-		mav.addObject("movie", vo);
-		mav.addObject("movieList", movieList);
 		mav.addObject("genreList", genreList);
 		mav.setViewName("movieList");
 		return mav;
 	}
-	
+
 	@RequestMapping("/getMovieListProcAjax.mdo")
 	@ResponseBody
-	public Map<String, Object> getMovieListProcAjax(MovieVO vo) {
+	public WrapperVO getMovieListProcAjax(MovieVO vo) {
+		WrapperVO wrap = new WrapperVO();
 		List<MovieVO> movieList = getMovieListService.getMovieList(vo);
-		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("movieList", movieList);
-		map.put("genreList", genreList);
-		return map;
+		wrap.setData(movieList);
+		wrap.setRecordsTotal(movieList.size());
+		wrap.setRecordsFiltered(movieList.size());
+		return wrap;
 	}
-	
 
 	@RequestMapping("/insertMovie.mdo")
 	public ModelAndView insertMovie(ModelAndView mav) {
@@ -106,8 +99,8 @@ public class MovieController {
 		fileList.add(vo.getPoster());
 		fileList.add(vo.getTeaserVideo());
 		fileList.add(vo.getFullVideo());
-		
-		Properties filePath = singleFileuploadService.uploadSingleFile(fileList, path);
+
+		Properties filePath = movieFileuploadService.movieFileupload(fileList, path);
 
 		vo.setPosterPath(filePath.getProperty("posterPath"));
 		vo.setTeaserVideoPath(filePath.getProperty("teaserVideoPath"));
@@ -115,7 +108,7 @@ public class MovieController {
 
 		insertMovieService.insertMovie(vo);
 
-		mav.setViewName("redirect:/getMovieListProc.mdo");
+		mav.setViewName("redirect:/movieList.mdo");
 
 		return mav;
 	}
@@ -137,23 +130,34 @@ public class MovieController {
 	@RequestMapping("/updateMovieProc.mdo")
 	public ModelAndView updateMovieProc(MovieVO vo, HttpSession session, ModelAndView mav) {
 
-//		 fileuploadService 구현해야함
 		String path = session.getServletContext().getRealPath("/");
 		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
-		
-		if (vo.getPosterPath().equals("")) {
+
+		if (vo.getPosterPath().equals("change")) {
 			fileList.add(vo.getPoster());
 		}
-		if (vo.getTeaserVideoPath().equals("")) {
+		if (vo.getTeaserVideoPath().equals("change")) {
 			fileList.add(vo.getTeaserVideo());
 		}
-		if (vo.getFullVideoPath().equals("")) {
+		if (vo.getFullVideoPath().equals("change")) {
 			fileList.add(vo.getFullVideo());
 		}
+
+		Properties filePath = movieFileuploadService.movieFileupload(fileList, path);
 		
-		singleFileuploadService.uploadSingleFile(fileList, path);
+		if (filePath.getProperty("posterPath") != null) {
+			vo.setPosterPath(filePath.getProperty("posterPath"));
+			
+		} else if (filePath.getProperty("teaserVideoPath") != null) {
+			vo.setTeaserVideoPath(filePath.getProperty("teaserVideoPath"));
+			
+		} else if (filePath.getProperty("fullVideoPath") != null) {
+			vo.setFullVideoPath(filePath.getProperty("fullVideoPath"));
+		}
+		
 		updateMovieService.updateMovie(vo);
-		mav.setViewName("redirect:/getMovieListProc.mdo");
+
+		mav.setViewName("redirect:/movieList.mdo");
 
 		return mav;
 	}
@@ -161,7 +165,7 @@ public class MovieController {
 	@RequestMapping("/deleteMovieProc.mdo")
 	public ModelAndView deleteMovieProc(MovieVO vo, ModelAndView mav) {
 		deleteMovieService.deleteMovie(vo);
-		mav.setViewName("redirect:/getMovieListProc.mdo");
+		mav.setViewName("redirect:/movieList.mdo");
 		return mav;
 	}
 }

@@ -14,7 +14,7 @@
 <title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -83,13 +83,13 @@
 								<table id="inquiryTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width: 4vw;">#</th>
+											<th>#</th>
 											<th>카테고리</th>
 											<th>고객 이메일</th>
 											<th>문의 제목</th>
 											<th>문의 날짜</th>
 											<th>답변 날짜</th>
-											<th style="width: 150px;">관리</th>
+											<th>관리</th>
 										</tr>
 									</thead>
 								</table>

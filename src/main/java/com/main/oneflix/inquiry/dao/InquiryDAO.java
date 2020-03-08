@@ -5,11 +5,11 @@ import java.util.List;
 import com.main.oneflix.inquiry.vo.InquiryVO;
 
 public interface InquiryDAO {
-	public void insertInquiry(InquiryVO vo);
-	public InquiryVO getInquiry(InquiryVO vo);
-	public List<InquiryVO> getInquiryList(InquiryVO vo);
-	public void updateInquiry(InquiryVO vo);
-	public int getCountInquiry(InquiryVO vo);
-	public void deleteInquiry(InquiryVO vo);
+	void insertInquiry(InquiryVO vo);
+	InquiryVO getInquiry(InquiryVO vo);
+	List<InquiryVO> getInquiryList(InquiryVO vo);
+	void updateInquiry(InquiryVO vo);
+	int getCountInquiry(InquiryVO vo);
+	void deleteInquiry(InquiryVO vo);
 
 }

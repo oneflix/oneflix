@@ -18,6 +18,4 @@
 			com.main.oneflix.watch.service.impl">
 	</context:component-scan>
 	
-	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>
-	
 </beans>

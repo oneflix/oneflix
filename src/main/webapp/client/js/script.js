@@ -52,7 +52,7 @@ const createPopularSwiper = function(slideCount) {
     var popularSwiper = new Swiper('#popular-slider-container', {
     
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,
@@ -69,7 +69,7 @@ const createPopularSwiper = function(slideCount) {
 const createRecommendSwiper = function(slideCount) {
     var recommendSwiper = new Swiper('#recommend-slider-container', {
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,
@@ -87,7 +87,7 @@ const createRecommendSwiper = function(slideCount) {
 const createNewSwiper = function(slideCount) {
     var newSwiper = new Swiper('#new-slider-container', {
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,
@@ -105,7 +105,7 @@ const createNewSwiper = function(slideCount) {
 const createRecentSwiper = function(slideCount) {
     var recentSwiper = new Swiper('#recent-slider-container', {
         slidesPerView: slideCount,
-        spaceBetween: 5,
+        spaceBetween: 8,
         slidesPerGroup: slideCount,
     
         // loopFillGroupWithBlank: true,

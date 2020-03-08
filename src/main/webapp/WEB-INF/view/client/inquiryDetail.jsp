@@ -9,30 +9,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONeflix</title>
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <link rel="stylesheet" href="../admin/css/adminlte.min.css">
 <link rel="stylesheet" href="../admin/css/adminlte.css">
-<link rel="stylesheet" href="client/css/membership.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
 </head>
 
-<body>
+<body style="background-color:#fff;">
 
 	<!-- SIDE BAR -->
 	<jsp:include page="${sidebar_url}"></jsp:include>
 
-	<div class="page-body">
+	<div class="page-body" 	style="width: 70vw; margin-left:15vw;">
+		<div class="row">
+		<div class="col-12">
 		<div class="title">
 			<p>나의 문의</p>
 			<br>
 			<br>
-			<button class="float-right" type="button" class="btn btn-sm btn-primary" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
+			<button style="width:8vw; margin-left:86vw;margin-right:2.5vw;height:7vh;margin-top:4vh; margin-bottom:4vh;"
+			type="button" class="inquiry" onClick="location.href='/getInquiryListProc.do'">목록보기</button>
 		</div>
-		<div class="title">
-			<table class="table table-dark">
-				<thead class="thead-grey">
+	<div id="outter">
+		<div>
+			<table id="tablebody" class="table table-hover">
+				<thead class="detail">
 					<tr>
-						<td>문의제목</td>
+						<th>문의제목</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,9 +44,9 @@
 						<td>${inquiry.inquiryTitle}</td>
 					</tr>
 				</tbody>
-				<thead class="thead-grey">
+				<thead class="detail">
 					<tr>
-						<td>문의내용</td>
+						<th>문의내용</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,32 +56,45 @@
 				</tbody>
 			</table>
 			<br><br>
-			<div class="title">
-				<table class="table table-dark">
-				<thead class="thead-grey">
+			<div>
+				<table id="tablebody" class="table table-hover">
+				<thead class="detail">
 					<tr>
-						<td>답변제목</td>
+						<th>답변제목</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
+						<c:if test="${empty inquiry.replyTitle}">
+						<td>아직 답변이 작성되지 않았어요.</td>
+						</c:if>
+						<c:if test="${not empty inquiry.replyTitle}" >
 						<td>${inquiry.replyTitle}</td>
+						</c:if>
 					</tr>
 				</tbody>
-				<thead class="thead-grey">
+				<thead class="detail">
 					<tr>
-						<td>답변내용</td>
+						<th>답변내용</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="emailcontent">
 					<tr>
+						<c:if test="${empty inquiry.replyContent}">
+						<td>조금만 기다려주세요!</td>
+						</c:if>
+						<c:if test="${not empty inquiry.replyContent}" >
 						<td>${inquiry.replyContent}</td>
+						</c:if>
 					</tr>
 				</tbody>
 				</table>
 			</div>
 		</div>
+		</div>
 	</div>
+	</div>
+</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 

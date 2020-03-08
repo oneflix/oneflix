@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MovieVO {
 
+	private int rnum;
 	private Integer movieId;
 	private String movieTitle;
 	private double movieScore;
@@ -46,11 +47,22 @@ public class MovieVO {
 	private List<Integer> genreList;
 	private int searchGenre;
 	private int recommendGenre;
+	private String searchCondition;
 	private String searchMovie;
 	private String movieType;
 	private String searchOrder;
+	private String onlyViewCount;
 	private int start;
 	private int end;
+	private String email;
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 
 	public Integer getMovieId() {
 		return movieId;
@@ -364,6 +376,14 @@ public class MovieVO {
 		this.recommendGenre = recommendGenre;
 	}
 
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
 	public String getSearchMovie() {
 		return searchMovie;
 	}
@@ -388,6 +408,14 @@ public class MovieVO {
 		this.searchOrder = searchOrder;
 	}
 
+	public String getOnlyViewCount() {
+		return onlyViewCount;
+	}
+
+	public void setOnlyViewCount(String onlyViewCount) {
+		this.onlyViewCount = onlyViewCount;
+	}
+
 	public int getStart() {
 		return start;
 	}
@@ -402,6 +430,14 @@ public class MovieVO {
 
 	public void setEnd(int end) {
 		this.end = end;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

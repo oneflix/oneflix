@@ -13,6 +13,16 @@ public class WatchVO {
 
 	// 조건을 담기 위한 필드
 	private Integer genreId;
+	
+	private int countWatch;
+	
+	public int getCountWatch() {
+		return countWatch;
+	}
+
+	public void setCountWatch(int countWatch) {
+		this.countWatch = countWatch;
+	}
 
 	public Integer getWatchId() {
 		return watchId;

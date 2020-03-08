@@ -13,7 +13,7 @@
 <title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -65,10 +65,10 @@
 								<table id="actorTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width: 4vw;">#</th>
+											<th>#</th>
 											<th>이름</th>
 											<th>나이</th>
-											<th style="width: 150px;">관리</th>
+											<th>관리</th>
 										</tr>
 									</thead>
 								</table>
