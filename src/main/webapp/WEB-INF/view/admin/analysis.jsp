@@ -313,11 +313,13 @@
       });
       
       function requestSalesData(sendData) {
+    	 alert(sendData);
          var response;
          $.ajax({
             type: 'POST',
             url: '/getAnalysisSalesProcAjax.mdo',
-            data: sendData,
+            data: JSON.stringify(sendData),
+            contentType: "application/json",
             async: false,
             success: function(res){
                response = res;
@@ -335,7 +337,7 @@
         	    }
         	   });
          
-         var sendData; 
+         var sendData = {'salesButton' : salesButton, 'yearList': yearList};
          var response = requestSalesData(sendData);
          // 위에서 응답 받은 결과 가공해야 함
          var chart;

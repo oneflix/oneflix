@@ -244,10 +244,10 @@ public class LoginController {
 	@RequestMapping("/logout.do")
 	public ModelAndView logout(MemberVO vo, @RequestParam("code") String code, ModelAndView mav, HttpSession session) {
 		
-		if(vo.getKakao() != null) {
-			HashMap<String, Object> token = kakaoLoginService.kakaoLogout(code);
-			System.out.println(token);
-		}
+		/*
+		 * if(vo.getKakao() != null) { HashMap<String, Object> token =
+		 * kakaoLoginService.kakaoLogout(code); System.out.println(token); }
+		 */
 		session.invalidate();
 		mav.setViewName("oneflix");
 		return mav;

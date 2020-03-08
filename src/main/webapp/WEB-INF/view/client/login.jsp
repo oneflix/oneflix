@@ -200,25 +200,25 @@
       }
    }); */
    
- //다른 계정으로 로그인하기 버튼
-   function loginForm() {
+  //다른 계정으로 로그인하기 버튼
+/*    function loginForm() {
    Kakao.Auth.loginForm({
    	success : function(authObj) {
    		Kakao.API.request({
    			url : '/v1/user/me',
    			success : function(res) {
    				
-   				// json형태로 출력되는 로그인 정보들을 변수에 담는다.
+   				 json형태로 출력되는 로그인 정보들을 변수에 담는다.
    				var email = JSON.stringify(res.kaccount_email);
    				var access_token = JSON.stringify(authObj.access_token);
    				
    						$(function() {
    							
-   							//로그인 정보들을 input 태그의 value 에 담는다.
+   							로그인 정보들을 input 태그의 value 에 담는다.
    							$('#email').val(email);
    							$('#access_token').val(access_token);
    							
-   							//서브밋 한다.
+   							서브밋 한다.
    							 var form = document.getElementById("kakao-login");  
    							
    							
@@ -240,8 +240,8 @@
    var form = document.getElementById("kakao-login");  
    form.submit();
    };
-
-   </script>
+ */
+   </script> -->
 
 </body>
 

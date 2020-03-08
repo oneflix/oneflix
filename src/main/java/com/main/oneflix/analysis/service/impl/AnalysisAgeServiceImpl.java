@@ -7,12 +7,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.main.oneflix.analysis.service.GetCountAgeService;
+import com.main.oneflix.analysis.service.AnalysisAgeService;
 import com.main.oneflix.member.dao.MemberDAO;
 import com.main.oneflix.member.vo.MemberVO;
 
 @Service
-public class GetCountAgeServiceImpl implements GetCountAgeService{
+public class AnalysisAgeServiceImpl implements AnalysisAgeService{
 	
 	@Autowired
 	private MemberDAO memberDAO;
