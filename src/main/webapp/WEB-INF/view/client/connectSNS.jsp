@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,92 +11,100 @@
 <link rel="icon" type="image/png" href="client/images/icons/favicon.ico" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/vendor/bootstrap/css/bootstrap.min.css">
+   href="client/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+   href="client/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+   href="client/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/vendor/animate/animate.css">
+   href="client/vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/vendor/css-hamburgers/hamburgers.min.css">
+   href="client/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/vendor/animsition/css/animsition.min.css">
+   href="client/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/vendor/select2/select2.min.css">
+   href="client/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="client/vendor/daterangepicker/daterangepicker.css">
+   href="client/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
+<link rel="stylesheet" type="text/css" href="client/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
 </head>
+
 <body>
+<div id="root">
+	<div class="css-urf8br-Self e19xg79h0">
+		<nav class="css-srrekc-Gnb e19xg79h2">
+			 <a href="/oneflix.do"><img class="header-logo" style="margin-top: 3vh;"
+               src="client/images/oneflix_logo.png"></a>
+				<ul class="css-7cp7ve-LeftNav e19xg79h4"></ul>
+				<ul class="css-k2rcg7-RightNav e19xg79h12"></ul>
+		</nav>
+	<main class="css-1a4c3t1-Main e19xg79h5">
+	<div src="#" class="css-9e7b81-Self el4vci00">
 
-	<div class="limiter">
-		<div class="header">
-			<div class="nav">
-				<a href="#"><img class="header-logo"
-					src="client/images/oneflix_logo.png"></a>
-			</div>
-		</div>
-		<div class="container-login100 sectionA" >
-
-				<div class="wrap-login100 p-t-20 p-b-30">
-						<div class="login-label">
-							로그인 <span class="find-pass" OnClick="location.href='/findPass.do'">비밀번호를
-								잊어버리셨나요?</span>
+     <main class="css-1494bd8-Self edt52et0">
+     	<div class="css-9tzvq5-Inner edt52et4">
+     		<div class="css-122phix-SignInFormLabel edt52et5">
+     			<span class="css-1o4b3ai-SignInFormLabelTitle edt52et6">로그인</span>
+     				<a class="css-1h9xpgj-FindPasswordLink edt52et3" href="/findPass.do">
+     				비밀번호를 잊어버리셨나요?</a>
+	</div>
+					<form action="/loginProc.do" method="post"
+						onsubmit="return validate();">
+						<div class="css-unatsl-Self eu52ful0">
+							<input name="email" placeholder="이메일을 입력해주세요"
+								class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1"
+								autocomplete="off" type="email" value="">
 						</div>
-					<form class="login100-form validate-form" action="/connectSNSLoginProc.do"
-						method="post">
-
-						<div class="wrap-input100 wrap-input100-top m-b-1">
-							<input class="input100" type="text" name="email" id="email"
-								autocomplete="off" placeholder="이메일">
+						<div class="css-unatsl-Self eu52ful0">
+							<input name="password" placeholder="비밀번호 (6자 이상)"
+								class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1"
+								autocomplete="off" type="password" value="">
 						</div>
-
-						<div class="wrap-input100 wrap-input100-bottom m-b-20">
-							<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
-							</span> <input class="input100" type="password" name="pass" id="pass"
-								placeholder="비밀번호">
+						<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
+							<button type="submit" disabled=""
+							class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
 						</div>
-
-						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit">로그인</button>
+						<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3" style="border: 0; margin-top: 0;">
+						<p style="margin: 21px 0px 21px; padding-left: 15px;" 
+						class="css-cmoq9h-SubmitButtonBlock e19dfl4j3 logindetail">
+							소셜로그인 성공!<br> 기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.
+						</p>
+						<span class="css-cmoq9h-SubmitButtonBlock e19dfl4j3 join" 
+						style="margin-top: 0; padding-left: 41px;"
+						onClick="SNSJoin()">아직 ONEFLIX 회원이 아니신가요?</span> 
 						</div>
-
-						<hr class="seperator">
-											<p class="logindetail">소셜로그인 성공!<br>
-					   기존 회원이시라면 계정연동을 위해 한번 더 로그인해주세요.</p>
-						<span class="join" OnClick="SNSJoin()">
-						아직 ONEFLIX 회원이 아니신가요? </span>
-
-						<input type="hidden" id="naver" name="naver" value="${member.naver}"/>
-						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/>
+						<input type="hidden" id="naver" name="naver" value="${member.naver}"/> 
+						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/> 
 						<input type="hidden" id="google" name="google" value="${member.google}"/>
 					</form>
 				</div>
-    		</div>
-	</div>
-
-
-	<footer id="footer">
-
-		<p>
-			<strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
-			reserved.
-		</p>
-
-	</footer>
-
-
+       		</main>
+     		<footer class="css-eexbuk-Self e16ogtil0">
+       		<span class="css-j4zj9u-Contact e16ogtil1">
+       		<em><a style="font-size: 0.8333333333333334vw; line-height: 0;" href="/help.do">고객센터(이용 및 결제 문의)</a>
+       		</em>&nbsp;&nbsp;<a style="font-size: 0.8333333333333334vw; line-height: 0;" href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
+       		</span><br>
+         <strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
+         reserved.
+       		</footer>
+   			</div>
+   			</main>
+   			</div>
+   		<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
+  	</div>
+ 
 	<!--===============================================================================================-->
 	<script src="client/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -124,9 +132,35 @@
 		   var google = document.getElementById("google"); */
            window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}" + "&google=" + "${member.google}";
         };
-	
-	</script>
+   $(document).ready(function(){
+       var result = "${result}";
+       if (result == "fail") {
+            alert("로그인 정보가 일치하지 않습니다.");
+       }
+   });
+   
+   
+   //카카오로그인
+   /* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
+   Kakao.Auth.createLoginButton({
+      container:'#kakao-login-btn',
+      success : function(authObj){
+         Kakao.API.request({
+            url:'/v2/user/me',
+            success: function(res){
+               alert(JSON.stringfy(res));
+            },
+            fail: function(error){
+               alert(JSON.stringfy(error));
+            }
+         });
+      },
+      fail: function(error){
+         alert(JSON.stringfy(err));
+      }
+   }); */
+   </script>
 
 </body>
-</html> 
 
+</html>
