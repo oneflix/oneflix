@@ -9,21 +9,20 @@
 					com.main.oneflix.actor.service.impl,
 					com.main.oneflix.alarm.dao.impl,
 					com.main.oneflix.alarm.service.impl,
-					com.main.oneflix.alarm,
 					com.main.oneflix.sales.service.impl,
 					com.mian.oneflix.sales.dao.impl">
 	</context:component-scan>
 	<!-- 잡  -->
     <bean id="mainJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref= "alarmService" />
-        <property name="targetMethod" value="insertAlarm" />
+        <property name="targetObject" ref= "insertMovieAlarmServiceImpl" />
+        <property name="targetMethod" value="insertMovieAlarm" />
         <property name="concurrent" value="false" />
     </bean>
 
     <!-- 트리거-->
     <bean id="mainTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="mainJob" />
-        <property name="cronExpression" value="0/5 * * * * ?" />
+        <property name="cronExpression" value="0 0 3 * * ?" />
     </bean>
 
     <!-- 스케줄러 -->
@@ -33,7 +32,8 @@
         </property>
     </bean>
 	<!-- ========================================================================================================== -->
-		<!-- screen 잡  -->
+
+			<!-- screen 잡  -->
     <bean id="screenJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref= "salesService" />
         <property name="targetMethod" value="insertSales" />
@@ -52,5 +52,4 @@
             <list><ref bean="screenTrigger" /></list>
         </property>
     </bean>
-
 </beans>

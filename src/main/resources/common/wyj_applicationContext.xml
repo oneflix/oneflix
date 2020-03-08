@@ -11,8 +11,6 @@
 			com.main.oneflix.help.dao.impl
 			com.main.oneflix.help.service.impl
 			com.main.oneflix.util.fileupload.service.impl
-			com.main.oneflix.sales.dao.impl
-			com.main.oneflix.sales.service.impl
 			com.main.oneflix.util.kakao.payment.service.impl
 			com.main.oneflix.watch.dao.impl
 			com.main.oneflix.watch.service.impl">

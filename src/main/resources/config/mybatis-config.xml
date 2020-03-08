@@ -42,5 +42,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<mapper resource="mappings/reviewLike-mapping.xml"/>
 		<mapper resource="mappings/watch-mapping.xml"/>
 		<mapper resource="mappings/wish-mapping.xml"/>
+		<mapper resource="mappings/alarm-mapping.xml"/>
 	</mappers>
 </configuration>

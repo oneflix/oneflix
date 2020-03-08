@@ -213,14 +213,16 @@
                             <ul class="clearfix">
                                 <li><a href="/getMovieListProc.do?movieType=wish">보고싶어요</a></li>
                                 <li>
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="height: 43px;">
                                         <button class="btn dropdown-toggle bell-button" type="button"
                                             data-toggle="dropdown">
-                                            <i class="far fa-bell"></i><span class="badge">12</span>
+                                            <i class="far fa-bell"></i><span class="badge bell-badge">${totalAlarmCount}</span>
                                         </button>
                                         <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
                                         <ul class="dropdown-menu bell-menu">
-                                            <li><div><a href="/getMovieListProc.do?movieType=new">새로 올라온 작품</a></div></li>
+                                            <li><div><a href="/getMovieListProc.do?movieType=new">
+                                            	<span>새로 올라온 작품</span>
+                                            	<span class="badge movie-badge">${newMovieAlarmCount}</span></a></div></li>
                                             <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
                                         </ul>
                                     </div>

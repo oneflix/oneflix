@@ -766,12 +766,8 @@
     pointer-events: none;
   }
   .badge {
-    position: relative;
-    top: -11px;
-    left: -9px;
     min-width: 10px;
     padding: 3px 5px;
-    margin-right: -22px;
     font-size: 5px;
     font-weight: bold;
     line-height: 1;
@@ -781,6 +777,12 @@
     vertical-align: baseline;
     background-color: rgb(155, 41, 41);
     border-radius: 10px;
+  }
+  .bell-badge {
+    position: relative;
+    top: -11px;
+    left: -9px;
+    margin-right: -22px;
   }
   .badge:empty {
     display: none;
