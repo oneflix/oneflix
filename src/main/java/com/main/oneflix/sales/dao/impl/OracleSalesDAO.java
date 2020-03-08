@@ -1,6 +1,7 @@
 package com.main.oneflix.sales.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import com.main.oneflix.sales.vo.SalesVO;
 
 @Repository
 public class OracleSalesDAO implements SalesDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -49,5 +50,15 @@ public class OracleSalesDAO implements SalesDAO {
 	public int getCountSales(SalesVO vo) {
 		return sqlSessionTemplate.selectOne("SalesDAO.getCountSales", vo);
 	}
-	
+
+	@Override
+	public List<Integer> analysisSalesYear(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("SalesDAO.analysisSaleseYear", map);
+	}
+
+	@Override
+	public List<Integer> analysisSalesMonth(Map<String, Object> map) {
+		return sqlSessionTemplate.selectList("SalesDAO.analysisSalesMonth", map);
+	}
+
 }

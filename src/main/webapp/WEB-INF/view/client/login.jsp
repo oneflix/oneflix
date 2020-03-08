@@ -86,8 +86,8 @@
                      </a>
                     </div>
                        
-                   <div class="css-11fv0pd-Button">
-                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button"> 
+                   <div id="kakao_login" class="css-11fv0pd-Button">
+                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
                    		  카카오로 로그인하기
                        </a>
                     </div>
@@ -209,7 +209,49 @@
          alert(JSON.stringfy(err));
       }
    }); */
-   </script>
+   
+  //다른 계정으로 로그인하기 버튼
+/*    function loginForm() {
+   Kakao.Auth.loginForm({
+   	success : function(authObj) {
+   		Kakao.API.request({
+   			url : '/v1/user/me',
+   			success : function(res) {
+   				
+   				 json형태로 출력되는 로그인 정보들을 변수에 담는다.
+   				var email = JSON.stringify(res.kaccount_email);
+   				var access_token = JSON.stringify(authObj.access_token);
+   				
+   						$(function() {
+   							
+   							로그인 정보들을 input 태그의 value 에 담는다.
+   							$('#email').val(email);
+   							$('#access_token').val(access_token);
+   							
+   							서브밋 한다.
+   							 var form = document.getElementById("kakao-login");  
+   							
+   							
+   							
+   							  form.submit();
+   						});
+   			}
+   	});
+   			
+   	
+   },
+   	fail : function(error) {
+   		alert(JSON.stringify(error));
+   		alert("로그인 실패!");
+   	}
+   });
+   };
+   function form_submit() {
+   var form = document.getElementById("kakao-login");  
+   form.submit();
+   };
+ */
+   </script> -->
 
 </body>
 

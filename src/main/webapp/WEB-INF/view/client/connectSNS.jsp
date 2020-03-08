@@ -129,7 +129,6 @@
 		    $("#loginBtn").attr('disabled', 'true');
 		    var emailCheck = false;
 		    var passCheck = false;
-		    
 		    var result = "${result}";
 	  	    if (result == "fail") {
 	        alert("로그인 정보가 일치하지 않습니다.");

@@ -5,23 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.main.oneflix.analysis.service.GetCountPopularMovieService;
+import com.main.oneflix.analysis.service.AnalysisViewCountService;
 import com.main.oneflix.movie.dao.MovieDAO;
 import com.main.oneflix.movie.vo.MovieVO;
 
 @Service
-public class GetCountPopularMovieServiceImpl implements GetCountPopularMovieService {
+public class AnalysisViewCountServiceImpl implements AnalysisViewCountService {
 	
 	@Autowired
 	private MovieDAO movieDAO;
-
+	
 	@Override
-	public List<MovieVO> getCountPopularMovieList(MovieVO vo) {
+	public List<MovieVO> getCountViewMovieList(MovieVO vo) {
+		vo.setOnlyViewCount("only");
 		vo.setMovieType("popular");
-		List<MovieVO> countPopularMovieList = movieDAO.getMovieList(vo);
+		List<MovieVO> countViewMovieList = movieDAO.getMovieList(vo);
 		
 		
-		return countPopularMovieList;
+		return countViewMovieList;
 	}
 
 	

@@ -1,12 +1,11 @@
 package com.main.oneflix.analysis.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.main.oneflix.movie.vo.MovieVO;
 
-public interface GetCountViewService {
+public interface AnalysisPopularMovieService {
 	
-	List<MovieVO> getCountViewMovieList(MovieVO vo);
+	List<MovieVO> getCountPopularMovieList(MovieVO vo);
 
 }

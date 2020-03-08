@@ -1,6 +1,7 @@
 package com.main.oneflix.member.client.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +34,7 @@ import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.screen.service.GetScreenListService;
 import com.main.oneflix.screen.vo.ScreenVO;
 import com.main.oneflix.util.email.service.EmailService;
+import com.main.oneflix.util.kakao.login.service.KakaoLoginService;
 import com.main.oneflix.util.naver.login.NaverLoginBO;
 
 @Controller
@@ -40,6 +42,10 @@ public class LoginController {
 	
 	@Autowired
 	private GetScreenListService getScreenListService;
+	
+	// 카카오 로그인
+	@Autowired
+	private KakaoLoginService kakaoLoginService;
 	
 	// 네이버 로그인
 	@Autowired
@@ -237,7 +243,12 @@ public class LoginController {
 	}
 
 	@RequestMapping("/logout.do")
-	public ModelAndView logout(MemberVO vo, ModelAndView mav, HttpSession session) {
+	public ModelAndView logout(MemberVO vo, @RequestParam("code") String code, ModelAndView mav, HttpSession session) {
+		
+		/*
+		 * if(vo.getKakao() != null) { HashMap<String, Object> token =
+		 * kakaoLoginService.kakaoLogout(code); System.out.println(token); }
+		 */
 		session.invalidate();
 		mav.setViewName("oneflix");
 		return mav;
