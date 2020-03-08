@@ -423,7 +423,7 @@ input.css-sg09fs-StyledField-GenderField[type="button"], input.css-sg09fs-Styled
     border: 1px solid rgba(255,255,255,0.5);
     border-radius: 50%;
 }
-.css-15jxlui-Checkbox:focus::after {
+.css-15jxlui-Checkbox::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -448,7 +448,7 @@ input.css-sg09fs-StyledField-GenderField[type="button"], input.css-sg09fs-Styled
     border-image: initial;
     border-radius: 50%;
 }
-.css-54idcc-Checkbox:focus::after {
+.css-54idcc-Checkbox::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -630,6 +630,15 @@ em {
 }
 .option-input.radio::after {
   border-radius: 50%;
+}
+
+.css-102eby1-ErrorMessage {
+    color: #e50914;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    text-align: center;
+    padding: 15px 0px 0px;
 }
 
 

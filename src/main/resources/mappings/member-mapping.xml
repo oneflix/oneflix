@@ -53,6 +53,9 @@
 			<when test="google != null and google != ''">
 				AND m.google = #{google}
 			</when>
+			<when test="nick != null and nick != ''">
+				AND m.nick = #{nick}
+			</when>
 			<otherwise>
 				AND m.email = #{email}
 			</otherwise>

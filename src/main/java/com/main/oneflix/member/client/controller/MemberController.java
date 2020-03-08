@@ -1,18 +1,24 @@
 package com.main.oneflix.member.client.controller;
 
 import java.util.Calendar;
+import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.InsertInquiryService;
 import com.main.oneflix.member.service.DeleteMemberService;
+import com.main.oneflix.member.service.GetMemberService;
 import com.main.oneflix.member.service.InsertMemberService;
 import com.main.oneflix.member.service.UpdateMemberService;
 import com.main.oneflix.member.vo.MemberVO;
@@ -21,6 +27,8 @@ import com.main.oneflix.member.vo.MemberVO;
 public class MemberController {
 	@Autowired
 	InsertMemberService insertMemberService;
+	@Autowired
+	GetMemberService getMemberService;
 	@Autowired
 	UpdateMemberService updateMemberService;
 	@Autowired
@@ -65,6 +73,30 @@ public class MemberController {
 	public ModelAndView getMemberProc(ModelAndView mav) {
 		mav.setViewName("updateMember");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/memberCheckProcAjax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Properties memberCheckProcAjax(@RequestParam("email") String email, @RequestParam("nick") String nick) {
+		MemberVO memberEmail = new MemberVO();
+		memberEmail.setEmail(email);
+		MemberVO memberNick = new MemberVO();
+		memberNick.setNick(nick);
+		
+		memberEmail = getMemberService.getMember(memberEmail);
+		memberNick = getMemberService.getMember(memberNick);
+		System.out.println("memberEmail"+memberEmail);
+		Properties checkResult = new Properties();
+			if(memberEmail != null && memberNick != null) {
+				checkResult.put("memberCheck", "fail");
+			} else if (memberEmail != null) {
+				checkResult.put("emailCheck", "fail");
+			} else if (memberNick != null) {
+				checkResult.put("nickCheck", "fail");
+			} else {
+				checkResult.put("memberCheck", "success");
+			}
+		return checkResult;
 	}
 
 	@RequestMapping("/updateMemberProc.do")
