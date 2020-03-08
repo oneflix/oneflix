@@ -8,6 +8,6 @@ import com.main.oneflix.sales.vo.SalesVO;
 public interface AnalysisDAO {
 	
 	Integer analysisSalesYear(SalesVO vo);
-	List<Map<String, Integer>> analysisSalesMonth(SalesVO vo);
+	List<Map<String, Object>> analysisSalesMonth(SalesVO vo);
 
 }

@@ -344,30 +344,37 @@
         	 
          }
          var chart;
-         var data;
+         var data = new google.visualization.DataTable();
+      
+         
 
          if (salesButton == 'year') {
             chart = new google.visualization.ColumnChart(document.getElementById("sales-chart"));
             
-            data = google.visualization.arrayToDataTable([ [ "월", "원", {
-               role : "annotation"
-            } ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-                  [ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-                  [ "5월", 980, 980 ], [ "6월", 872, 872 ],
-                  [ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-                  [ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-                  [ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
+         data.addColumn('string', '년');
+         data.addColumn('number', '원');
+         data.addColumn({type:'number', role:'annotation'});
+         for(var i=0; i<yearList.length; i++){
+        	 data.addRow([
+        		 	yearList[i]+"년", response[yearList[i]], response[yearList[i]]
+        		 ]);
+         }
+           
          } else {
+        	console.log(response[yearList[0]][0].paymentDate);
             chart = new google.visualization.LineChart(document.getElementById("sales-chart"));
-
-            data = google.visualization.arrayToDataTable([ [ "월", "원", {
-               role : "annotation"
-            } ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-                  [ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-                  [ "5월", 980, 980 ], [ "6월", 872, 872 ],
-                  [ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-                  [ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-                  [ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
+            
+            data.addColumn('string', '월');
+            for(var i=0; i<yearList.length; i++){
+            	data.addColumn('number', yearList[i]+"년");
+         }
+            data.addColumn({type:'number', role:'annotation'});
+            
+            for(var i=0; i<yearList.length; i++){
+           	 data.addRow([
+           		 	response[yearList[i]]+"월", response[yearList[i]], response[yearList[i]]
+           		 ]);
+         	}
          }
 
          var view = new google.visualization.DataView(data);

@@ -13,6 +13,24 @@
         AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 	</select>
 	
+<<<<<<< HEAD
+	<select id="analysisSalesMonth" parameterType="sales" resultMap="salesMonthList">
+      SELECT
+      SUM(t.ticket_price) total_sales,
+      TO_CHAR(s.payment_date,'fmMM') payment_date
+      FROM sales s, ticket t
+      WHERE s.ticket_id = t.ticket_id
+      AND s.payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+      AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+      GROUP BY TO_CHAR(s.payment_date, 'fmMM')
+      ORDER BY payment_date
+   </select>
+   
+   <resultMap type="java.util.HashMap" id="salesMonthList">
+      <id column="payment_date" property="paymentDate"/>
+      <result column="total_sales" property="totalSales"/>
+   </resultMap>
+=======
 	<select id="analysisSalesMonth" parameterType="sales" resultType="java.util.List">
 		SELECT
 		SUM(t.ticket_price) as count,
@@ -28,5 +46,6 @@
 	<resultMap type="java.util.HashMap" id="salesMonthList">
 		<id column="count" property="count"/>
 	</resultMap>
+>>>>>>> master
 
 </mapper>
