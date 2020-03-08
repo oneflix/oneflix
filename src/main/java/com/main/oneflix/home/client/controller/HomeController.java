@@ -33,6 +33,7 @@ public class HomeController {
 	@RequestMapping("/homeProc.do")
 	public ModelAndView homeProc(MovieVO vo, ModelAndView mav, HttpSession session) {
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo.setEmail(member.getEmail());
 		// 값 셋팅하기
 		vo.setMovieType("main");		
 		List<MovieVO> mainMovieList = getMovieListService.getMovieList(vo);
@@ -44,7 +45,7 @@ public class HomeController {
 		// 따라서 위에 setMovieType 순서 중요
 		vo.setSearchOrder("recommend");
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
-		List<MovieVO> recommendMovieList = getRecommendMovieListService.getRecommendMovieList(vo, member.getEmail(), genreList);
+		List<MovieVO> recommendMovieList = getRecommendMovieListService.getRecommendMovieList(vo, genreList);
 		
 		mav.addObject("mainMovieList", mainMovieList);
 		mav.addObject("newMovieList", newMovieList);

@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONeflix</title>
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="admin/plugins/fontawesome-free/css/all.min.css">
@@ -26,6 +27,7 @@
 <link rel="stylesheet" href="admin/css/adminlte.css">
 <link rel="stylesheet" href="client/css/review.css">
 
+
 </head>
 
 <body>
@@ -39,13 +41,16 @@
 				<button onclick="topFunction()" id="myBtn">
 					<i class="fas fa-angle-double-up"></i> TOP
 				</button>
-				<h4>내 리뷰 </h4>
+				
+				<div class="title" style="background-color: #fffff;">
+				<p class="p">내 리뷰 </p>
+				</div>
 				<ul id="post">
 					<c:choose>
 						<c:when test="${fn:length(reviewList) == 0}">
-							<p>
+							<h5 class="nonReviewComent">
 								아직 작성하신 리뷰가 없습니다. 첫 리뷰를 작성해 보세요!
-								<p>
+								</h5>
                 
 						</c:when>
                 <c:otherwise>
@@ -54,7 +59,7 @@
                         <div class="post one-post" id="review">
                             <div class="user-block">
                                 <span class="username">
-                                    <a href="/getMovieDetailProc.do">${review.movieTitle }</a>
+                                    <a style="color:#080808;" onclick="goMovieDetail('${review.movieId}')">${review.movieTitle }</a>
 												<span class="my-rating">★ ${review.reviewScore }</span>
                                 </span>
                             </div> <!-- /.user-block -->
@@ -63,7 +68,7 @@
                             </p>
 
                             <p>
-                                <a href="#" class="link-black text-sm"><i
+                                <a class="link-black text-sm"><i
 													class="fas fa-thumbs-up mr-2"></i>
                                     <span class="my-thumbs-up">${review.likeCount }</span>
                                 </a>
@@ -134,6 +139,28 @@
              });
         	}
         	
+        /* 	<li>
+            <div class="post one-post" id="review">
+                <div class="user-block">
+                    <span class="username">
+                        <a style="color:#080808;" onclick="goMovieDetail('${review.movieId}')">${review.movieTitle }</a>
+									<span class="my-rating">★ ${review.reviewScore }</span>
+                    </span>
+                </div> <!-- /.user-block -->
+                <p class="my-review">
+                    ${review.reviewContent }
+                </p>
+
+                <p>
+                    <a href="#" class="link-black text-sm"><i
+										class="fas fa-thumbs-up mr-2"></i>
+                        <span class="my-thumbs-up">${review.likeCount }</span>
+                    </a>
+                </p>
+                <hr class="post-seperator">
+            </div>
+        </li> */
+        	
         	for (var i = 0; i < reviewList.length; i++){
         		var review = reviewList[i];
         		$('#post').append(
@@ -141,7 +168,7 @@
                         "<div class=\"post one-post\" id=\"review\">" + 
                             "<div class=\"user-block\">" + 
                                 "<span class=\"username\">" + 
-                                    "<a href=\"/getMovieDetailProc.do\">" + review.movieTitle + 
+                                    "<a style=\"color:#080808;\" onclick=\"goMovieDetail('" + review.movieId + "')\">" + review.movieTitle + 
                                     "</a>" + 
 									"<span class=\"my-rating\">★" + review.reviewScore + "</span>" +
                                 "</span>" + 
@@ -150,7 +177,7 @@
                                 review.reviewContent +
                             "</p>" + 
                             "<p>" +
-                                "<a href=\"#\" class=\"link-black text-sm\">" + 
+                                "<a class=\"link-black text-sm\">" + 
                             "<i class=\"fas fa-thumbs-up mr-2\"></i>" + 
                                     "<span class=\"my-thumbs-up\">" + review.likeCount + "</span>" + 
                                 "</a>" + 
@@ -164,6 +191,10 @@
         }
         
     });
+    
+    function goMovieDetail(movieId) {
+        location.href = "/getMovieDetailProc.do?movieId=" + movieId;
+	}
     
     </script>
 

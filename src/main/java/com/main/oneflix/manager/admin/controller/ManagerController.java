@@ -14,7 +14,7 @@ import com.main.oneflix.manager.service.GetManagerService;
 import com.main.oneflix.manager.service.InsertManagerService;
 import com.main.oneflix.manager.service.UpdateManagerService;
 import com.main.oneflix.manager.vo.ManagerVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class ManagerController {

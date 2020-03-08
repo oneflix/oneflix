@@ -242,27 +242,67 @@ main {
     align-items: center;
     color: rgb(255, 255, 255);
     margin-right: 0.9375vw;
-    opacity: 0.5;
     font-size: 1.25vw;
     font-weight: 700;
     letter-spacing: -0.03125vw;
     line-height: 1.79687vw;
     padding: 0.625vw 0.3125vw 0.625vw 0.234375vw;
     border: 0;
+    cursor: pointer;
 }
-/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 찜 버튼*/
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 보고싶어요 버튼 (보고싶어요 전) */
 .css-rv7z9k-SubButtonIcon {
     display: inline-block;
     width: 1.875vw;
     height: 1.875vw;
     margin-right: 0.390625vw;
 }
+
+/* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 보고싶어요 버튼 (보고싶어요 후)*/
+.css-13wmxyl-SubButton-SubButton {
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-right: 0.9375vw;
+    font-size: 1.25vw;
+    font-weight: 700;
+    letter-spacing: -0.03125vw;
+    line-height: 1.79687vw;
+    color: rgb(252, 66, 106);
+    opacity: 1;
+    padding: 0.625vw 0.3125vw 0.625vw 0.234375vw;
+}
+
+.wishBtn{
+	outline: none;
+}
+
+.wish-comment{
+	color: rgb(255, 255, 255);
+	opacity: 0.5;
+}
+
+
+.fa-check{
+	color: rgb(252, 66, 106);
+	opacity: 1;
+}
+
+.fa-plus{
+	color: rgb(255, 255, 255);
+	opacity: 0.5;
+}
+
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 찜 버튼*/
 .css-rv7z9k-SubButtonIcon svg {
     display: block;
     width: 100%;
     height: 100%;
 }
+
+
 /* 영화 정보 포스터 전체 틀 -> 영화 정보 -> 별점 라인*/
 .css-cwlpx1-RatingContainer {
     display: flex;
@@ -534,4 +574,26 @@ video {border: 0; outline: none;}
 }
 .starR1.on{background-position:0 0; color: #fff;}
 .starR2.on{background-position:-15px 0; color: #fff;}
+
+
+.starR1-sm{
+    background: url('../images/icons/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2-sm{
+    background: url('../images/icons/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1-sm.on{background-position:0 0; color: #fff;}
+.starR2-sm.on{background-position:-15px 0; color: #fff;}
 

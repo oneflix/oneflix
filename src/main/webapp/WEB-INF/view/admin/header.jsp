@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONEFLIX</title>
+<title>ONeflix</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,7 +56,7 @@
 
 	<!-- 사이드바 -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
-		<a href="#" class="brand-link"> <img
+		<a href="/getDashboardProc.mdo" class="brand-link"> <img
 			src="admin/images/AdminLTELogo.png" alt="AdminLTE Logo"
 			class="brand-image img-circle elevation-3" style="opacity: .8">
 			<span class="brand-text font-weight-light">ONEFLIX</span>
@@ -73,46 +73,46 @@
 				</a></li>
 
 
-				<li class="nav-item"><a href="/getMovieListProc.mdo"
+				<li class="nav-item"><a href="/movieList.mdo"
 					class="nav-link" id="movie"> <ion-icon name="film" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>영화</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getGenreListProc.mdo"
+				<li class="nav-item"><a href="/genreList.mdo"
 					class="nav-link" id="genre"> <ion-icon name="apps" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>장르</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getDirectorListProc.mdo"
+				<li class="nav-item"><a href="/directorList.mdo"
 					class="nav-link" id="director"> <ion-icon name="megaphone"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>감독</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getActorListProc.mdo"
+				<li class="nav-item"><a href="/actorList.mdo"
 					class="nav-link" id="actor"> <ion-icon name="glasses"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>배우</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getMemberListProc.mdo"
+				<li class="nav-item"><a href="/memberList.mdo"
 					class="nav-link" id="member"> <ion-icon name="people"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>회원</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getTicketListProc.mdo"
+				<li class="nav-item"><a href="/ticketList.mdo"
 					class="nav-link" id="ticket"> <ion-icon name="card"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>이용권</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getSalesListProc.mdo"
+				<li class="nav-item"><a href="/salesList.mdo"
 					class="nav-link" id="sales"> <ion-icon name="cash" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>판매</p>
 				</a></li>
 
-				<li class="nav-item has-treeview"><a href="#" class="nav-link">
+				<li class="nav-item has-treeview"><a href="#" class="nav-link" id="help">
 						<ion-icon name="help-circle-outline" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>
 							고객센터 <i class="right fas fa-angle-left"></i>
@@ -120,21 +120,21 @@
 				</a>
 
 					<ul class="nav nav-treeview">
-						<li class="nav-item"><a href="/getNoticeListProc.mdo"
+						<li class="nav-item"><a href="/noticeList.mdo"
 							class="nav-link" id="notice">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
 									name="arrow-dropright" size="small"></ion-icon>
 								<p>공지사항</p>
 						</a></li>
 
-						<li class="nav-item"><a href="/getFAQListProc.mdo"
+						<li class="nav-item"><a href="/FAQList.mdo"
 							class="nav-link" id="faq">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
 									name="arrow-dropright" size="small"></ion-icon>
 								<p>FAQ</p>
 						</a></li>
 
-						<li class="nav-item"><a href="/getInquiryListProc.mdo"
+						<li class="nav-item"><a href="/inquiryList.mdo"
 							class="nav-link" id="inquiry">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
 									name="arrow-dropright" size="small"></ion-icon>
@@ -142,7 +142,7 @@
 						</a></li>
 					</ul></li>
 
-				<li class="nav-item"><a href="/getScreenProc.mdo"
+				<li class="nav-item"><a href="/getScreenListProc.mdo"
 					class="nav-link" id="screen"> <ion-icon name="image"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>화면</p>
@@ -155,7 +155,7 @@
 				</a></li>
 
 				<li class="nav-item" id="manager-menu"><a
-					href="/getManagerListProc.mdo" class="nav-link" id="manager"> <ion-icon
+					href="/managerList.mdo" class="nav-link" id="manager"> <ion-icon
 							name="people" size="small"></ion-icon>&nbsp;&nbsp;
 						<p>관리자</p>
 				</a></li>
@@ -176,20 +176,7 @@
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script>
 		$(function() {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging" : true,
-				"lengthChange" : false,
-				"searching" : false,
-				"ordering" : true,
-				"info" : true,
-				"autoWidth" : false,
-			});
-		});
-	</script>
-	<script>
-		$(function() {
-			// 슈퍼 관리자인지 아닌지
+			// 최고 관리자인지 아닌지
 			if ("${loginManager.managerType}" != 9) {
 				$('#manager-menu').hide();
 			}
@@ -201,8 +188,7 @@
 					$('#screen'), $('#analysis'), $('#manager') ];
 
 			var action = location.href.substr(
-					location.href.lastIndexOf('/') + 1, location.href
-							.lastIndexOf('.'));
+					location.href.lastIndexOf('/') + 1, location.href.lastIndexOf('.'));
 
 			if (action.toLowerCase().indexOf('dashboard') != -1) {
 				menu[0].addClass('active');
@@ -221,10 +207,13 @@
 			} else if (action.toLowerCase().indexOf('sales') != -1) {
 				menu[7].addClass('active');
 			} else if (action.toLowerCase().indexOf('notice') != -1) {
+				$('#help').addClass('active');
 				menu[8].addClass('active');
 			} else if (action.toLowerCase().indexOf('faq') != -1) {
+				$('#help').addClass('active');
 				menu[9].addClass('active');
 			} else if (action.toLowerCase().indexOf('inquiry') != -1) {
+				$('#help').addClass('active');
 				menu[10].addClass('active');
 			} else if (action.toLowerCase().indexOf('screen') != -1) {
 				menu[11].addClass('active');

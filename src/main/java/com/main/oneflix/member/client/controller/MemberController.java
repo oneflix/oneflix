@@ -51,18 +51,12 @@ public class MemberController {
 		String memberBirth = vo.getBirth();
 		int memberBirthYear = Integer.parseInt(memberBirth.substring(0, 4));
 		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-		memberAge = thisYear - memberBirthYear;
+		memberAge = thisYear - memberBirthYear + 1;
 		vo.setMemberAge(memberAge);
 		insertMemberService.insertMember(vo);
 		
 		mav.addObject("member", vo);
 		mav.setViewName("login");
-		return mav;
-	}
-
-	@RequestMapping("/mypageHome.do")
-	public ModelAndView mypageHome(ModelAndView mav) {
-		mav.setViewName("mypageHome");
 		return mav;
 	}
 
@@ -76,6 +70,7 @@ public class MemberController {
 	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick,
 			@RequestParam("newPass") String newPass, HttpSession session, ModelAndView mav) {
 		MemberVO vo = (MemberVO) session.getAttribute("member");
+		vo.setUpdateType("info");
 		vo.setNick(newNick);
 		vo.setPass(newPass);
 		updateMemberService.updateMember(vo);

@@ -17,6 +17,11 @@ public class OracleWatchDAO implements WatchDAO {
 	public int getCountWatchGenre(WatchVO vo) {
 		return sqlSessionTemplate.selectOne("WatchDAO.getCountWatchGenre", vo);
 	}
+
+	@Override
+	public int getCountWatch(WatchVO vo) {
+		return sqlSessionTemplate.selectOne("WatchDAO.getCountWatch",vo);
+	}
 	
 	
 }

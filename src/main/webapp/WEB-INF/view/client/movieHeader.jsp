@@ -16,7 +16,7 @@
 </head>
 <body>
 	<header id="header">
-		<div id="root">
+		<div class="ticket-header" style="display: none;" id="root">
 			<div class="css-1tumwum-Self">
 				<div class="css-1926epj-Self e1wyxeas0">
 					<p class="css-kodeqh-Title e1wyxeas6">모든 작품, 무제한 감상하세요. 마음에 들지
@@ -67,7 +67,7 @@
 	                            <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
 	                            <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
 	                            <li><div class="divider"></div></li>
-	                            <li><div><a href="#">고객센터</a></div></li>
+	                            <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
 	                            <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
 	                            <li><div><a href="/logout.do">로그아웃</a></div></li>
 	                        </ul>
@@ -100,7 +100,7 @@
 									<ul class="dropdown-menu dropdown-menu-right profile-menu">
                                             <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
                                             <li><div class="divider"></div></li>
-                                            <li><div><a href="#">고객센터</a></div></li>
+                                            <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
                                             <li><div><a href="/getInquiryListProc.do">1:1 문의</a></div></li>
                                             <li><div><a href="/logout.do">로그아웃</a></div></li>
                                         </ul>
@@ -217,5 +217,13 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="client/js/movie_layout.js"></script>
 	<script src="client/js/ticket_modal.js"></script>
+	<script>
+		$(document).ready(function(){
+			var purchasedTicket = "${member.ticketId}";
+			if (purchasedTicket == 0) {
+				$('.ticket-header').css('display', 'block');
+			}
+		});
+	</script>
 </body>
 </html>

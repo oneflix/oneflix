@@ -12,4 +12,5 @@ public interface SalesDAO {
 	void updateSales(SalesVO vo);
 	void deleteSales(SalesVO vo);
 	int getTotalSales(SalesVO vo);
+	int getCountSales(SalesVO vo);
 }

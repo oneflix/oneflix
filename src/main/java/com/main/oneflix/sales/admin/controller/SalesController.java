@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.main.oneflix.sales.service.GetSalesListService;
 import com.main.oneflix.sales.service.GetTotalSalesService;
 import com.main.oneflix.sales.vo.SalesVO;
-import com.main.onflix.util.datatable.vo.WrapperVO;
+import com.main.oneflix.util.datatable.vo.WrapperVO;
 
 @Controller
 public class SalesController {

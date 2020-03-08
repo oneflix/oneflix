@@ -1,6 +1,7 @@
 package com.main.oneflix.screen.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ public class OracleScreenDAO implements ScreenDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public void insertScreen(ScreenVO vo) {
-		sqlSessionTemplate.insert("ScreenDAO.insertScreen", vo);
+	public void insertScreen(Map<String, List<ScreenVO>> map) {
+		sqlSessionTemplate.insert("ScreenDAO.insertScreen", map);
 	}
 
 	@Override
-	public void updateScreen(ScreenVO vo) {
-		sqlSessionTemplate.update("ScreenDAO.updateScreen", vo);
+	public void updateScreen(Map<String, List<ScreenVO>> map) {
+		sqlSessionTemplate.update("ScreenDAO.updateScreen", map);
 	}
 
 	@Override

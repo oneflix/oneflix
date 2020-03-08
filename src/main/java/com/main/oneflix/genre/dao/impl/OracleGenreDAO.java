@@ -41,7 +41,6 @@ public class OracleGenreDAO implements GenreDAO {
 	public List<GenreVO> getGenreList(GenreVO vo) {
 		return sqlSessionTemplate.selectList("GenreDAO.getGenreList", vo);
 	}
-
 	
 
 }

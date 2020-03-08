@@ -1,4 +1,4 @@
-body {
+html body{
 	background: #ffffff;
 }
 
@@ -8,6 +8,7 @@ li {
 
 h4 {
 	margin-left: 40px;
+	color: #080808;
 }
 
 p {
@@ -15,15 +16,26 @@ p {
 	color: #080808;
 }
 
+.p{
+	font-size: 25px; 
+	margin-left: 5%;
+	color: black;
+}
+
 a {
 	font-size: 30px;
 	color: #080808;
+	cursor: pointer;
 }
 
-a:hover {
+p > a{
+	cursor: default;
+}
+
+/* a:hover {
 	color: #666666 !important;
 	text-decoration: none;
-}
+} */
 
 .row {
 	background-color: #ffffff;
@@ -33,7 +45,13 @@ a:hover {
 .page-body {
 	background-color: #ffffff;
 	margin-left: 10vw;
-}
+} 
+
+/* .page-body{
+	background-color: #fff;
+	width: 80vw; 
+	margin-left:10vw;
+} */
 
 .my-review {
 	width: 60vw;
@@ -62,6 +80,14 @@ a:hover {
 	color: #080808;
 }
 
+.fa-angle-double-up:before{
+	color: #22b99b;
+}
+
+.fa-thumbs-up{
+	color: #080808;
+}
+
 #myBtn {
 	display: none;
 	position: fixed;
@@ -72,8 +98,8 @@ a:hover {
 	font-weight: bold;
 	outline: none;
 	border: none;
-	background-color: #ffffff;
-	color: #f3f3f3;
+	background-color: #ffffff00;
+	color: #22b99b;
 	cursor: pointer;
 	padding: 15px;
 	border-radius: 60px;
@@ -82,11 +108,11 @@ a:hover {
 	/* border-color: #f3f3f3; */
 }
 
-#myBtn:hover {
-	color: #e50914;
+/* #myBtn:hover {
+	color: #22b99b;
 }
+ */
 
-</
 .post {
 	margin-top: 70px;
 }
@@ -119,4 +145,10 @@ a:hover {
 .col-12 {
 	margin-top: 50px;
 	width: 80%;
+	background-color: #ffffff;
+}
+
+.nonReviewComent{
+	color: #080808;
+	font-weight: bold;
 }

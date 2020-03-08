@@ -2,6 +2,8 @@ package com.main.oneflix.screen.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,45 +14,45 @@ import com.main.oneflix.screen.service.GetScreenListService;
 import com.main.oneflix.screen.service.InsertScreenService;
 import com.main.oneflix.screen.service.UpdateScreenService;
 import com.main.oneflix.screen.vo.ScreenVO;
+import com.main.oneflix.util.fileupload.service.ScreenFileuploadService;
 
 @Controller
 public class ScreenController {
 	
 	@Autowired
-	InsertScreenService insertScreenService;
+	private GetScreenListService getScreenListService;
 	@Autowired
-	UpdateScreenService updateScreenService;
+	private InsertScreenService insertScreenService;
 	@Autowired
-	DeleteScreenService deleteScreenService;
+	private UpdateScreenService updateScreenService;
 	@Autowired
-	GetScreenListService getScreenListService;
+	private DeleteScreenService deleteScreenService;
+	@Autowired
+	private ScreenFileuploadService screenFileuploadService;
 
+	@RequestMapping("/getScreenListProc.mdo")
+	public ModelAndView getScreenListProc(ScreenVO vo, ModelAndView mav) {
+		vo.setScreenType("oneflix");
+		List<ScreenVO> oneflixScreenList = getScreenListService.getScreenList(vo);
+		vo.setScreenType("deactivate");
+		List<ScreenVO> deactivateScreenList = getScreenListService.getScreenList(vo);
+		mav.addObject("oneflixScreenList", oneflixScreenList);
+		mav.addObject("deactivateScreenList", deactivateScreenList);
+		mav.setViewName("screenList");
+		return mav;
+	}
 	
-	@RequestMapping("/insertScreenProc.mdo")
-	public ModelAndView insertScreenProc(ScreenVO vo, ModelAndView mav) {
-		System.out.println(vo.getScreenId());
-		System.out.println(vo.getScreenPageType());
-		System.out.println(vo.getScreenOrder());
-		System.out.println(vo.getScreenImgPath());
-		System.out.println(vo.getScreenImgFile());
-		System.out.println(vo.getScreenTitle());
-		System.out.println(vo.getScreenSubtitle());
-//		insertScreenService.insertScreen(vo);
+	@RequestMapping("/modifyScreenProc.mdo")
+	public ModelAndView modifyScreenProc(ScreenVO vo, HttpSession session, ModelAndView mav) {
+		String realPath = session.getServletContext().getRealPath("/");
+		List<String> filePathList = screenFileuploadService.screenFileupload(vo, realPath);
+
+		deleteScreenService.deleteScreen(vo);
+		updateScreenService.updateScreen(vo, filePathList);
+		insertScreenService.insertScreen(vo, filePathList);
+		
 		mav.setViewName("redirect:/getScreenListProc.mdo");
 		return mav;
 	}
-	
-	@RequestMapping("/getScreenListProc.mdo")
-	public ModelAndView getScreenListProc(ScreenVO vo, ModelAndView mav) {
-		vo.setScreenPageType("o");
-		List<ScreenVO> oneflixScreenList = getScreenListService.getScreenList(vo);
-		
-		vo.setScreenPageType("d");
-		List<ScreenVO> deletedefenseScreenList = getScreenListService.getScreenList(vo);
-		
-		mav.addObject("oneflixScreenList", oneflixScreenList);
-		mav.addObject("deletedefenseScreenList", deletedefenseScreenList);
-		mav.setViewName("screen");
-		return mav;
-	}
+
 }

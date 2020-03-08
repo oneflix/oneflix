@@ -5,7 +5,7 @@
 <mapper namespace="TicketDAO">
 
 	<insert id="insertTicket" parameterType="ticket">
-		INSERT INTO ticket
+		INSERT INTO ticket(ticket_id, ticket_name, ticket_period, ticket_price, ticket_status, ticket_recommend)
 		VALUES((SELECT NVL(MAX(ticket_id), 0) + 1 FROM ticket),
 		#{ticketName}, #{ticketPeriod}, #{ticketPrice}, #{ticketStatus}, #{ticketRecommend} )
 	</insert>
@@ -30,6 +30,7 @@
 		FROM (SELECT ROWNUM RNUM, T.*
 				FROM (SELECT * 
 						FROM ticket
+						WHERE ticket_id != 0
 						ORDER BY ticket_period DESC
 					) T
 			)
