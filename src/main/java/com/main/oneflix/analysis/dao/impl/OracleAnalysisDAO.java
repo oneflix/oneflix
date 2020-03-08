@@ -22,7 +22,7 @@ public class OracleAnalysisDAO implements AnalysisDAO {
 	}
 
 	@Override
-	public List<Map<String, Integer>> analysisSalesMonth(SalesVO vo) {
+	public List<Map<String, Object>> analysisSalesMonth(SalesVO vo) {
 		return sqlSessionTemplate.selectList("AnalysisDAO.analysisSalesMonth", vo);
 	}
 
