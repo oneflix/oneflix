@@ -483,6 +483,11 @@
     <script src="client/js/ticket_modal.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+    	    var connectResult = "${connectResult}";
+    	    if (connectResult == "success") {
+        	alert("계정연동이 완료되었습니다.");
+    		} 
+    	    
     		var purchasedTicket = "${member.ticketId}";
     		alert(purchasedTicket);
     		if (purchasedTicket != 0) {

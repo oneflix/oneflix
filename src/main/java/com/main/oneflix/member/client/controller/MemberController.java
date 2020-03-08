@@ -55,6 +55,7 @@ public class MemberController {
 		vo.setMemberAge(memberAge);
 		insertMemberService.insertMember(vo);
 		
+		mav.addObject("joinResult", "success");
 		mav.addObject("member", vo);
 		mav.setViewName("login");
 		return mav;
