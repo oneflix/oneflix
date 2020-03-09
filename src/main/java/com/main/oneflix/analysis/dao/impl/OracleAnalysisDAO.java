@@ -42,8 +42,8 @@ public class OracleAnalysisDAO implements AnalysisDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> analysisSubscriberTicket(Map<String, String> map) {
-		return sqlSessionTemplate.selectList("AnalysisDAO.analysisSubscriberTicket", map);
+	public List<Map<String, Object>> analysisSubscriberTicket(SalesVO vo) {
+		return sqlSessionTemplate.selectList("AnalysisDAO.analysisSubscriberTicket", vo);
 	}
 
 
