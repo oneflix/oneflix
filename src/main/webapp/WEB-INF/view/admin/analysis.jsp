@@ -103,23 +103,23 @@
                            </h3>
                            <br><br>
                            <div class="sendData-box">
-                              <select id="productUserDate" name="dateList"
+                              <select id="subscriberDate" name="dateList"
                                  class="form-control select2bs4 dateList"
                                  multiple="multiple" data-placeholder="날짜 선택">
                               </select>
    
                               <div class="button-box-container">
                                  <div class="button-box">
-                                    <button type="button" id="productUserYear"
-                                       class="btn btn-info analysis-year-button product-user-button">연간</button>
+                                    <button type="button" id="subscriberYear"
+                                       class="btn btn-info analysis-year-button subscriber-button">연간</button>
                                     <button type="button" id="productUserMonth"
-                                       class="btn btn-info analysis-month-button product-user-button">월간</button>
+                                       class="btn btn-info analysis-month-button subscriber-button">상품별</button>
                                  </div>
                               </div>
                            </div>
                         </div>
                         <div class="card-body">
-                           <div id="product-user-chart"
+                           <div id="subscriber-chart"
                               style="width: 100%; height: 500px;"></div>
                         </div>
                         <!-- /.card-body-->
@@ -242,7 +242,7 @@
 	<script type="text/javascript">
 		// sales setting
 		var salesButton;
-		var productUserButton;
+		var subscriberButton;
 		var genderButton
 		var memberAgeButton
 
@@ -268,14 +268,14 @@
 										+ "년</option>");
 					}
 					$('#salesDate option:first').prop('selected', true);
-					$('#productUserDate option:first').prop('selected', true);
+					$('#subscriberDate option:first').prop('selected', true);
 					$('#genderDate option:first').prop('selected', true);
 					$('#memberAgeDate option:first').prop('selected', true);
 
 					$('.analysis-year-button').prop('disabled', true);
 					salesButton = 'year';
 					genderButton = 'year';
-					productUserButton = 'year';
+					subscriberButton = 'year';
 					memberAgeButton = 'year';
 				});
 
@@ -284,7 +284,7 @@
 			packages : [ "corechart" ]
 		});
 		google.charts.setOnLoadCallback(drawSalesChart);
-		google.charts.setOnLoadCallback(drawProductUserChart);
+		google.charts.setOnLoadCallback(drawSubscriberChart);
 		google.charts.setOnLoadCallback(drawGenderChart);
 		google.charts.setOnLoadCallback(drawMemberAgeChart);
 		google.charts.setOnLoadCallback(drawMovieViewCountChart);
@@ -295,8 +295,8 @@
 			case 'salesDate':
 				drawSalesChart();
 				break;
-			case 'productUserDate':
-				drawProductUserChart();
+			case 'subscriberDate':
+				drawSubscriberChart();
 				break;
 			case 'genderDate':
 				drawGenderChart();
@@ -431,18 +431,50 @@
 			}, false);
 		} // sales Chart End
 
-		// product user
-		function drawProductUserChart() {
-			var data = google.visualization.arrayToDataTable([ [ "월", "명", {
-				role : "annotation"
-			} ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-					[ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-					[ "5월", 980, 980 ], [ "6월", 872, 872 ],
-					[ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-					[ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-					[ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
-
-			var view = new google.visualization.DataView(data);
+		// subscriber chart start
+		$('.subscriber-button').click(function() {
+			$('.subscriber').prop('disaled', false);
+			$(this).prop('disabled', true);
+			if($(this).prop('id') == 'subscriberYear'){
+				subscriberButton = 'year';
+			}else{
+				subscriberButton = 'ticket';
+			}
+			drawSubscriberChart();
+		});
+		
+		function requestSubscriberData(sendData) {
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/analysisSubscriberProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
+					response = res;
+				}
+			});
+			return response;
+		}
+		
+		function drawSubscriberChart() {
+			var yearList = new Array();
+			$('#subscriberDate > option').each(function() {
+				if(this.selected){
+					yearList.push($(this).val());
+				}
+			});
+			
+			var sendData = {
+				'subscriberButton' : subscriberButton,
+				'yearlist' : yearList
+			}
+			
+			var response = requestSubscriberData(sendData);
+			
+			var chart;
+			var data = new google.visualization.DataTable();
 			var options = {
 				series : {
 					0 : {
@@ -481,6 +513,36 @@
 					}
 				}
 			};
+			
+			
+			if(salesButton == 'year'){
+				chart = new google.visualization.ColumnChart(document.getElementById("subscriber-chart"));
+				options.legend = "none";
+				
+				data.addColumn('string', '년');
+				data.addColumn('number', '명');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
+				
+				for(var i = 0; i < yearList.lengh; i++){
+					data.addRow([
+						yearList[i] + "년", response[yearList[i]], response[yearList[i]]
+					]);
+				}
+			} else{ //상품별
+				chart = new google.visualization.PieChart(document.getElementById("subcsriber-chart"));
+				options.legned = "top";
+				
+				data.addColumn('string', ''); //이용권
+				for(var i = 0; i < yearList.length; i++){
+					data.addColumn('string', yearList[i])
+				}
+				
+				for(var i = 0; i < )
+			}
+			
 			var chart = new google.visualization.LineChart(document
 					.getElementById("product-user-chart"));
 			chart.draw(view, options);
@@ -488,6 +550,7 @@
 				chart.draw(data, options);
 			}, false);
 		}
+
 
 		// gender Chart Start
 		$('.gender-button').click(function() {
