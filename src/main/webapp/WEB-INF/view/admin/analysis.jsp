@@ -361,6 +361,9 @@
 					height : '90%',
 					width : '85%'
 				},
+				legend : {
+					position : "top"
+				},
 				height : 500,
 				width : '100%',
 				bars : 'vertical',
@@ -373,7 +376,7 @@
 				animation : {
 					startup : true,
 					duration : 1000,
-					easing : 'in'
+					easing : 'linear'
 				},
 				annotations : {
 					textStyle : {
@@ -406,8 +409,6 @@
 				chart = new google.visualization.LineChart(document
 						.getElementById("sales-chart"));
 
-				options.legend = "top";
-
 				data.addColumn('string', '월');
 				for (var i = 0; i < yearList.length; i++) {
 					data.addColumn('number', yearList[i] + "년");
@@ -431,6 +432,8 @@
 			}, false);
 		} // sales Chart End
 
+		
+		
 		// subscriber chart start
 		$('.subscriber-button').click(function() {
 			$('.subscriber-button').prop('disabled', false);
@@ -468,7 +471,7 @@
 			
 			var sendData = {
 				'subscriberButton' : subscriberButton,
-				'yearlist' : yearList
+				'yearList' : yearList
 			}
 			
 			var response = requestSubscriberData(sendData);
@@ -476,46 +479,38 @@
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
-				series : {
-					0 : {
-						color : '#4A7C9F'
+					series : { 0 : {color : '#FF4242'}},
+					align : 'center',
+					chartArea : {
+						height : '90%',
+						width : '85%'
+					},
+					height : 500,
+					width : '100%',
+					bars : 'vertical',
+					height : 500,
+					width : '100%',
+					bar : {
+						groupWidth : "70%"
+					},
+					isStacked : false,
+					animation : {
+						startup : true,
+						duration : 1000,
+						easing : 'linear'
+					},
+					annotations : {
+						textStyle : {
+							fontSize : 15,
+							bold : true,
+							italic : true,
+							opacity : 0.8
+						}
 					}
-				},
-				align : 'center',
-				chartArea : {
-					height : '90%',
-					width : '85%'
-				},
-				height : 500,
-				width : '100%',
-				bars : 'vertical',
-				height : 500,
-				width : '100%',
-				bar : {
-					groupWidth : "70%"
-				},
-				legend : {
-					position : "none"
-				},
-				isStacked : false,
-				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-				animation : {
-					startup : true,
-					duration : 1000,
-					easing : 'in'
-				},
-				annotations : {
-					textStyle : {
-						fontSize : 15,
-						bold : true,
-						italic : true,
-						opacity : 0.8
-					}
-				}
-			};
+				};
 			
 			
-			if(salesButton == 'year'){
+			if(subscriberButton == 'year'){ //1개 이상 년의 전체 구독자 컬럼차트
 				chart = new google.visualization.ColumnChart(document.getElementById("subscriber-chart"));
 				options.legend = "none";
 				
@@ -526,28 +521,63 @@
 					role : 'annotation'
 				});
 				
-				for(var i = 0; i < yearList.lengh; i++){
+				
+				for(var i = 0; i < yearList.length; i++){
 					data.addRow([
 						yearList[i] + "년", response[yearList[i]], response[yearList[i]]
 					]);
 				}
-			} else{ //상품별
-				chart = new google.visualization.PieChart(document.getElementById("subcsriber-chart"));
-				options.legned = "top";
 				
-				data.addColumn('string', ''); //이용권
-				for(var i = 0; i < yearList.length; i++){
-					data.addColumn('string', yearList[i])
+			} else{ //1개년의 이용권별 구독자 파이차트
+				chart = new google.visualization.PieChart(document.getElementById("subscriber-chart"));
+				var options = {
+						series : {
+							0 : { color : '#DC3912' },
+							1 : { color : '#3366CC' }
+						},
+						align : 'center',
+						chartArea : {
+							height : '80%',
+							width : '85%'
+						},
+						pieHole : 0.4,
+						pieSliceText : 'value',
+						pieSliceTextStyle : {fontSize: 20},
+						height : 500,
+						width : '100%',
+						bar : { groupWidth : "70%" },
+						legend : {
+							position : "labeled",
+							alignment : "center",
+							textStyle: {bold: true,
+										fontSize: 15},
+						},
+						isStacked : true,
+						tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+					};
+				
+				data.addColumn('string', '');
+				data.addColumn('number', '명');
+				
+				for(var i = 0; i < response[yearList].length; i++){
+					var ticketArray = new Array();
+					for(var j = 0; j <yearList.length; j++){
+						ticketArray.push(response[yearList[j]][i].ticketName, response[yearList[j]][i].count);
+						console.log(ticketArray);
+					}
+					data.addRow(ticketArray);
+					console.log(data);
 				}
 				
 			}
+			
 			
 			var view = new google.visualization.DataView(data);
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
-		}
+		} //subscriber Chart End
 
 
 		// gender Chart Start
@@ -596,12 +626,8 @@
 
 			var options = {
 				series : {
-					0 : {
-						color : '#DC3912'
-					},
-					1 : {
-						color : '#3366CC'
-					}
+					0 : { color : '#DC3912' },
+					1 : { color : '#3366CC' }
 				},
 				align : 'center',
 				chartArea : {
@@ -612,12 +638,8 @@
 				bars : 'vertical',
 				height : 500,
 				width : '100%',
-				bar : {
-					groupWidth : "70%"
-				},
-				legend : {
-					position : "top"
-				},
+				bar : { groupWidth : "70%" },
+				legend : { position : "top" },
 				isStacked : true,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
@@ -644,7 +666,15 @@
 
 				data.addColumn('string', '성별');
 				data.addColumn('number', '여성');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
 				data.addColumn('number', '남성');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
 				
 				for (var i = 0; i < yearList.length; i++) {
 					if (response[yearList[i]].length == 0) {
@@ -658,8 +688,8 @@
 						}
 						continue;
 					}
-					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count,
-							response[yearList[i]][1].count ]);
+					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count, response[yearList[i]][0].count,
+							response[yearList[i]][1].count, response[yearList[i]][1].count ]);
 				}
 
 			} else {
