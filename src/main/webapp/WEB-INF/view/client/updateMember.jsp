@@ -14,42 +14,12 @@
     <link rel="stylesheet" type="text/css" href="client/css/ls-util.css">
 	<link rel="stylesheet" type="text/css" href="client/css/ls-main.css">	
     <link rel="stylesheet" href="client/css/update_member.css">
-    <link rel="stylesheet" href="client/css/connectsns_modal.css">
 </head>
 
 <body style="background: #fff;padding-top:0;">
 
     <jsp:include page="${sidebar_url}"></jsp:include>
     
-    <!-- The Modal -->
-	<div id="myModal" class="modal">
-		<div class="modal-container">
-			<!-- Modal content -->
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<h2>소셜로그인 본인인증</h2>
-				<hr class="seperator">
-					<div class="wrapper">
-		            	<div class="social">
-		                     <a style="text-decoration:none" class="whiteA" href="${googleUrl}">
-		                     	구글로 로그인하기
-		                     </a>
-		                  </div>
-		                  <div class="social">
-		                     <a style="text-decoration:none" href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="whiteA"> 
-		                     	카카오로 로그인하기
-		                     </a>
-		                    </div>
-		                  <div id="naver_id_login" class="social" style="text-align:center">
-		                     <a style="text-decoration:none" class="whiteA" href="${naverUrl}">
-		                		네이버로 로그인하기
-		                     </a>
-		                  </div>
-                  </div>
-			</div>
-		</div><!-- modal container -->
-	</div>
-
     <div class="page-body" style="background-color: #ffffff;">
         <section class="css-1vpi0so-Self-Self" style="height:97vh;">
             <section class="css-34jiqc-Section e1199ims14" style="height:23vh; margin-bottom:0;">
@@ -60,12 +30,18 @@
                         <div class="css-18xcnb7-SettingListContent e1199ims18">
                             <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                 <div class="css-ht5cer-SubscribeStatus e1199ims26">
-                                    <div class="css-1a5vbj5-SubscribeStatusText e1199ims27" id="cert">${member.cert}</div>
+                                   <c:if test="${member.cert eq 'Y'}" >
+                                    <div class="css-1a5vbj5-SubscribeStatusText e1199ims27" id="cert">인증완료</div>
+                                   </c:if>
+                                     <c:if test="${member.cert eq 'N'}" >
+                                    <div class="css-1a5vbj5-SubscribeStatusText e1199ims27" id="cert">미인증</div>
+                                   </c:if>
                                 </div>
                             </div>
                             <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                 <div class="css-1bognut-ChangeSubscribeStatusBlock e1199ims5"><button
-                                  id="sns-modal" class=" css-wfgy93-Self e1ktu1gx0" type="button">본인인증하기</button></div>
+                                  onClick="location.href='/certMailProcAjax.do'"
+                                  id="certBtn" class="css-wfgy93-Self e1ktu1gx0" type="button">본인인증하기</button></div>
                             </div>
                         </div>
                     </li>
@@ -135,7 +111,7 @@
                 </section>
                         <div class="css-t5kw01-ChangeProfileButtonBlock e1199ims3">
                             <button style="height:8vh; margin-bottom:2vh; margin-top:0;"
-                            type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
+                            type="submit" onClick="location.href='/nickCheckProcAjax.do'" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
                         </div>
             </form>
         </section>
@@ -143,12 +119,38 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script src="client/js/update_member.js"></script>
-   <script src="client/js/connectsns_modal.js"></script>
    	<!-- 네이버로그인 -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
    <script type="text/javascript">
+   $(document).ready(function() {
+	   var memberCert = "${member.cert}"
+	   if(memberCert == 'Y'){
+		   $('#certBtn').remove();
+	   }
+      var certMailResult ="${certMailResult}"
+      
+      if(certMailResult == "success" ){
+    	  alert("본인인증메일 전송 완료")
+      } else if(certMailResult == "fail" ){
+    	  alert("해당 계정의 메일이 유효한지 확인해주세요.")
+      }
+      
+      
+    	$.ajax({
+    		url: "/certMailProcAjax.do",
+    	    type: "POST",
+    	    dataType : "json",
+    	    async:false,
+    	    data: data,
+    	    success:function(res){
+    	    	alert("ajax success")
+    	    },
+    	     error : function(){
+    	        alert("ajax error");
+    	    }
+    	});
+   		  
       function validate() {
          var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
          var newNick = document.getElementById("newNick");
@@ -158,13 +160,13 @@
          var newPassConfirm = document.getElementById("newPassConfirm");
          var updateNickCheck = true;
          var updatePassCheck = true;
-
+         
+ 
          //닉네임 변경할때
          if (newNick.value != "") {
             if (!check(re, newNick, "닉네임은 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
                return false;
             }
-
             if (passConfirm.value != "${member.pass}") {
                alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
                update.passConfirm.focus();
@@ -187,27 +189,46 @@
                update.newPass.focus();
                return false;
             }
-
          } else {
             updatePassCheck = false;
          }
+         var data = {};
+
+     	data.newNick = newNick.value;
+     	
+  	$.ajax({
+  		url: "/nickCheckProcAjax.do",
+  	    type: "POST",
+  	    dataType : "json",
+  	    async:false,
+  	    data: data,
+  	    success:function(res){
+  	    	newNickCheck = res.newNickCheck;
+  	    },
+  	     error : function(){
+  	        alert("ajax error");
+  	    }
+  	});
+  		if(newNickCheck == "fail"){
+  			alert("이미 존재하는 닉네임입니다.");
+  			return false;
+  		}
          
          //변경사항 없이 저장할때 
          if (!updateNickCheck && !updatePassCheck) {
             alert("변경할 사항을 입력해 주세요.");
             return false;
             
-         } else {
             if (!updateNickCheck) {
                newNick.value = "${member.nick}";
             }
             if (!updatePassCheck) {
                newPass.value = "${member.pass}";
             }
+            
             alert("정보수정이 완료되었습니다.");
             return true;
          }
-
       }
       function check(re, what, message) {
          if (re.test(what.value)) {
@@ -218,6 +239,7 @@
          what.focus();
          return false;
       }
+      });
    </script>
    
 </body>
