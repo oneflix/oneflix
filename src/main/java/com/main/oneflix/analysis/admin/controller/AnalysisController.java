@@ -35,8 +35,8 @@ public class AnalysisController {
 	@Autowired
 	private AnalysisSalesService analysisSalesService;
 
-	@RequestMapping("/getAnalysisProc.mdo")
-	public ModelAndView getAnalysisListProc(ModelAndView mav) {
+	@RequestMapping("/analysis.mdo")
+	public ModelAndView analysis(ModelAndView mav) {
 		mav.setViewName("analysis");
 		return mav;
 	}
@@ -48,127 +48,14 @@ public class AnalysisController {
 		return analysisSalesService.analysisSales(map);
 	}
 	
-	
-	
+	@RequestMapping("/getAnalysisGenderProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> getAnalysisGenderProcAjax(@RequestBody HashMap<String, Object> map) {
+		return analysisGenderService.analysisGender(map);
+	}
 		
 		
 		
-		// ==================구독자데이터========================
-		// ==================/구독자데이터========================
-
-		
-		
-		
-//		// ==================성별데이터========================
-//		Map<String, Integer> genderMap = getCountGenderService.getCountGender(memberVO);
-//
-//		JSONObject genderData = new JSONObject();
-//
-//		// col 추가
-//		JSONObject genderCol1 = new JSONObject();
-//		JSONObject genderCol2 = new JSONObject();
-//		// 위의 컬럼을 담을 배열
-//		JSONArray genderCols = new JSONArray();
-//		JSONArray genderRows = new JSONArray();
-//		genderCol1.put("type", "string"); // 여성,남성
-//		genderCol2.put("type", "number"); // 수
-//		genderCols.add(genderCol1);
-//		genderCols.add(genderCol2);
-//
-//		System.out.println("arrayCols.get(0)" + genderCols.get(0));
-//		System.out.println("arrayCols.get(1)" + genderCols.get(1));
-//
-//		// map을 json으로
-//		// map에서 key와 Value 뽑아서 Row 추가하기
-//		// key: genreId value: watchCount
-//		Iterator<Map.Entry<String, Integer>> genderEntry = genderMap.entrySet().iterator();
-//		while (genderEntry.hasNext()) {
-//			System.out.println("Iterator while문 들어옴");
-//			Map.Entry<String, Integer> gender = genderEntry.next();
-//			System.out.println("entry : " + gender);
-//			
-//			JSONObject genderLegend = new JSONObject();
-//			genderLegend.put("v", gender.getKey());
-//			genderLegend.put("f", null);
-//
-//			JSONObject genderValue = new JSONObject();
-//			genderValue.put("v", gender.getValue());
-//			genderValue.put("f", null);
-//
-//			JSONArray cGenderValueArray = new JSONArray();
-//			cGenderValueArray.add(genderLegend);
-//			cGenderValueArray.add(genderValue);
-//
-//			JSONObject cGenderValueObject = new JSONObject();
-//			cGenderValueObject.put("c", cGenderValueArray);
-//
-//			genderRows.add(cGenderValueObject);
-//		}
-//		genderData.put("genderCols", genderCols);
-//		genderData.put("genderRows", genderRows);
-//
-//		// ==================/성별데이터========================
-//
-//		
-//		// ==================연령데이터========================
-//		Map<String, Integer> ageMap = getCountAgeService.getCountAge(memberVO);
-//		
-//		JSONObject ageData = new JSONObject();
-//
-//		// col 추가
-//		JSONObject ageCol1 = new JSONObject();
-//		JSONObject ageCol2 = new JSONObject();
-//		// 위의 컬럼을 담을 배열
-//		JSONArray ageCols = new JSONArray();
-//		JSONArray ageRows = new JSONArray();
-//		ageCol1.put("type", "string"); // 여성,남성
-//		ageCol2.put("type", "number"); // 수
-//		ageCols.add(ageCol1);
-//		ageCols.add(ageCol2);
-//
-//		// map을 json으로
-//		// map에서 key와 Value 뽑아서 Row 추가하기
-//		// key: genreId value: watchCount
-//		Iterator<Map.Entry<String, Integer>> ageEntries = ageMap.entrySet().iterator();
-//		while (ageEntries.hasNext()) {
-//			System.out.println("Iterator while문 들어옴");
-//			Map.Entry<String, Integer> age = ageEntries.next();
-//			System.out.println("entry : " + age);
-//			
-//			JSONObject ageLegend = new JSONObject();
-//			ageLegend.put("v", age.getKey());
-//			ageLegend.put("f", null);
-//
-//			JSONObject ageValue = new JSONObject();
-//			ageValue.put("v", age.getValue());
-//			ageValue.put("f", null);
-//
-//			JSONArray cAgeValueArray = new JSONArray();
-//			cAgeValueArray.add(ageLegend);
-//			cAgeValueArray.add(ageValue);
-//
-//			JSONObject cAgeValueObject = new JSONObject();
-//			cAgeValueObject.put("c", cAgeValueArray);
-//
-//			ageRows.add(cAgeValueObject);
-//		}
-//		ageData.put("cols", ageCols);
-//		ageData.put("rows", ageRows);
-//		
-//		// ==================/연령데이터========================
-//		
-//		// ==================누적조회순영화데이터========================
-//		
-//		// ==================/누적조회순영화데이터========================
-//		
-//		// ==================30일내 인기영화 데이터========================
-//		// ==================/30일내 인기영화 데이터========================
-//		
-//		
-//		// analysisDatas.add(genderData); //성별 JSONObj
-//
-//		System.out.println("genderData : " + genderData);
-
 
 
 }

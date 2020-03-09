@@ -6,5 +6,5 @@ import com.main.oneflix.member.vo.MemberVO;
 
 public interface AnalysisGenderService {
 
-	Map<String, Integer> getCountGender(MemberVO vo);
+	Map<String, Object> analysisGender(Map<String, Object> map);
 }
