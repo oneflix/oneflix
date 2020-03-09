@@ -15,7 +15,7 @@
 
 	<select id="analysisSalesMonth" parameterType="sales" resultMap="salesMonthList">
 		SELECT
-		SUM(t.ticket_price) total_sales,
+		NVL(SUM(t.ticket_price), 0) total_sales,
 		TO_CHAR(s.payment_date,'fmMM') payment_date
 		FROM sales s, ticket t
 		WHERE s.ticket_id = t.ticket_id
@@ -30,19 +30,30 @@
 		<result column="total_sales" property="totalSales" />
 	</resultMap>
 
-	<select id="analysisGenderYear" parameterType="java.util.HashMap" resultMap="genderYearList">
+	<select id="analysisGenderYear" parameterType="java.util.HashMap" resultMap="genderList">
 		SELECT
-		COUNT(*) count, gender gender
+		NVL(COUNT(*), 0) count, gender
 		FROM member
 		WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 		GROUP BY gender
 		ORDER BY gender
 	</select>
+	
+	<select id="analysisGenderMonth" parameterType="java.util.HashMap" resultMap="genderList">
+		SELECT
+		NVL(COUNT(*), 0) count, gender, TO_CHAR(join_date,'FMMM') join_date
+		FROM member
+		WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		GROUP BY gender, TO_CHAR(join_date, 'FMMM')
+		ORDER BY join_date, gender
+	</select>
 
-	<resultMap type="java.util.HashMap" id="genderYearList">
+	<resultMap type="java.util.HashMap" id="genderList">
 		<id column="count" property="count" />
 		<result column="gender" property="gender" />
+		<result column="join_date" property="joinDate" />
 	</resultMap>
 	
 	<select id="analysisSubscriberTicket" parameterType="java.util.HashMap" resultMap="SubscriberTicketList">
