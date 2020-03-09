@@ -1,6 +1,8 @@
 package com.main.oneflix.analysis.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,28 @@ public class AnalysisSubscriberServiceImpl implements AnalysisSubscriberService 
 	@Override
 	public Map<String, Object> analysisSubscriberService(Map<String, Object> map) {
 		Map<String, Object> response = new HashMap<String, Object>();
+		String subscriberButton = (String) map.get("subscriberButton");
+		@SuppressWarnings("unchecked")
+		List<String> yearList = (List<String>) map.get("yearList");
+		SalesVO sales = new SalesVO();
 		
+		if(subscriberButton.equals("year")) {
+			for(String year : yearList) {
+				sales.setStartDate(year+"0101");
+				String yearPlusOne = Integer.toString(Integer.parseInt(year) + 1);
+				sales.setEndDate(yearPlusOne+"0101");
+				response.put(year, analysisDAO.analysisSubscriberYear(sales));
+			}
+		}else {
+			System.out.println(map);
+			for(String year : yearList) {
+				sales.setStartDate(year + "0101");
+				String yearPlusOne = Integer.toString(Integer.parseInt(year) + 1);
+				sales.setEndDate(yearPlusOne + "0101");
+				List<Map<String, Object>> tmpList = new ArrayList<Map<String,Object>>();
+				
+			}
+		}
 		return response;
 	}
 
