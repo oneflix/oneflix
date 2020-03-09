@@ -376,7 +376,7 @@
 				animation : {
 					startup : true,
 					duration : 1000,
-					easing : 'in'
+					easing : 'linear'
 				},
 				annotations : {
 					textStyle : {
@@ -479,11 +479,7 @@
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
-					series : {
-						0 : {
-							color : '#FF4242'
-						}
-					},
+					series : { 0 : {color : '#FF4242'}},
 					align : 'center',
 					chartArea : {
 						height : '90%',
@@ -501,7 +497,7 @@
 					animation : {
 						startup : true,
 						duration : 1000,
-						easing : 'in'
+						easing : 'linear'
 					},
 					annotations : {
 						textStyle : {
@@ -536,12 +532,8 @@
 				chart = new google.visualization.PieChart(document.getElementById("subscriber-chart"));
 				var options = {
 						series : {
-							0 : {
-								color : '#DC3912'
-							},
-							1 : {
-								color : '#3366CC'
-							}
+							0 : { color : '#DC3912' },
+							1 : { color : '#3366CC' }
 						},
 						align : 'center',
 						chartArea : {
@@ -553,9 +545,7 @@
 						pieSliceTextStyle : {fontSize: 20},
 						height : 500,
 						width : '100%',
-						bar : {
-							groupWidth : "70%"
-						},
+						bar : { groupWidth : "70%" },
 						legend : {
 							position : "labeled",
 							alignment : "center",
@@ -580,6 +570,7 @@
 				}
 				
 			}
+			
 			
 			var view = new google.visualization.DataView(data);
 			chart.draw(view, options);
@@ -635,12 +626,8 @@
 
 			var options = {
 				series : {
-					0 : {
-						color : '#DC3912'
-					},
-					1 : {
-						color : '#3366CC'
-					}
+					0 : { color : '#DC3912' },
+					1 : { color : '#3366CC' }
 				},
 				align : 'center',
 				chartArea : {
@@ -651,12 +638,8 @@
 				bars : 'vertical',
 				height : 500,
 				width : '100%',
-				bar : {
-					groupWidth : "70%"
-				},
-				legend : {
-					position : "top"
-				},
+				bar : { groupWidth : "70%" },
+				legend : { position : "top" },
 				isStacked : true,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
@@ -683,7 +666,15 @@
 
 				data.addColumn('string', '성별');
 				data.addColumn('number', '여성');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
 				data.addColumn('number', '남성');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
 				
 				for (var i = 0; i < yearList.length; i++) {
 					if (response[yearList[i]].length == 0) {
@@ -697,8 +688,8 @@
 						}
 						continue;
 					}
-					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count,
-							response[yearList[i]][1].count ]);
+					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count, response[yearList[i]][0].count,
+							response[yearList[i]][1].count, response[yearList[i]][1].count ]);
 				}
 
 			} else {
