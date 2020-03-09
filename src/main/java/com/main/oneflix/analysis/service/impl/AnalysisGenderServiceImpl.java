@@ -76,7 +76,6 @@ public class AnalysisGenderServiceImpl implements AnalysisGenderService {
 				response.put(year, tmpList);
 			}
 		}
-
 		return response;
 	}
 
