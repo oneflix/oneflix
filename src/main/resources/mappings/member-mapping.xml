@@ -16,7 +16,7 @@
 		UPDATE member SET
 		<choose>
 			<when test="updateType == 'info'">
-				pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
+				pass = #{pass}, nick = #{nick}, cert = #{cert, jdbcType=CHAR}, ban = #{ban, jdbcType=CHAR}, google = #{google, jdbcType=VARCHAR}, kakao = #{kakao, jdbcType=VARCHAR}, naver = #{naver, jdbcType=VARCHAR}
 			</when>
 			<when test="updateType == 'sales'">
 				ticket_id = #{ticketId}

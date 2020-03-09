@@ -154,11 +154,17 @@
 	    if (joinResult == "success") {
     	alert("회원가입이 완료되었습니다.");
 		} 
+	    var findPassResult = "${findPassResult}";
+	    if (findPassResult == "success") {
+    	alert("임시비밀번호 메일 전송이 완료되었습니다.");
+		} 
 	    
 	    var result = "${result}";
   	    if (result == "fail") {
         alert("로그인 정보가 일치하지 않습니다.");
  	    } 
+  	    
+  	    var find
 	    $('.oneflix-input').keyup(function(){
 	       var re;
 	       var target = $(this).val();

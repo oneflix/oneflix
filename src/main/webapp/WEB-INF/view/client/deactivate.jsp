@@ -27,20 +27,35 @@
             <div class="css-or2n4s-ButtonBlock earddrg1">
             <button class="css-cop6tv-Button-PrimaryButton-PreferButton emsidu90" onClick="location.href='/homeProc.do'">안할래요</button></div>
             <div class="css-or2n4s-ButtonBlock earddrg1">
-            <button class="css-f1keza-Button-PrimaryButton-DispreferButton e88vrt90" onClick="deleteConfirm()">탈퇴하기</button></div>
+            <button class="css-f1keza-Button-PrimaryButton-DispreferButton e88vrt90" onClick="location.href='/deactivateMailProcAjax.do'">탈퇴하기</button></div>
         </div>
     </footer>
 <script type="text/javascript">
-function deleteConfirm(){
-	var result = "${result}";
-	var check = confirm("정말로 탈퇴하시겠습니까?");
-	if (check == true) {
-		document.location.href = "/deleteMemberProc.do"
-		if(result != null){
-			alert("탈퇴처리가 완료되었습니다.")
-		}
-		}
-	}
+$(document).ready(function() {
+   var deactivateMailResult ="${deactivateMailResult}"
+   
+   if(deactivateMailResult == "success" ){
+ 	  alert("가입된 이메일로 탈퇴메일을 보내드렸습니다.")
+   } else if(certMailResult == "fail" ){
+ 	  alert("해당 계정의 메일이 유효한지 확인해주세요.")
+   }
+   
+   
+ 	$.ajax({
+ 		url: "/deactivateMailProcAjax.do",
+ 	    type: "POST",
+ 	    dataType : "json",
+ 	    async:false,
+ 	    data: data,
+ 	    success:function(res){
+ 	    	alert("ajax success")
+ 	    },
+ 	     error : function(){
+ 	        alert("ajax error");
+ 	    }
+ 	});
+});
+		  
 </script>
 </body>
 </html>

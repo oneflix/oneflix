@@ -3,6 +3,7 @@ package com.main.oneflix.member.client.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +24,9 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -191,7 +194,7 @@ public class LoginController {
 		mav.setViewName("connectSNS");
 		if ((member != null) && member.getPass().equals(vo.getPass())) {
 			member.setNaver(vo.getNaver());
-			vo.setUpdateType("info");
+			member.setUpdateType("info");
 			updateMemberService.updateMember(member);
 			session.setAttribute("member", member);
 			mav.addObject("connectResult", "success");
@@ -206,7 +209,6 @@ public class LoginController {
 		mav.setViewName("findPass");
 		return mav;
 	}
-
 	@RequestMapping("/findPassProc.do")
 	public ModelAndView findPassProc(MemberVO vo, ModelAndView mav,
 			@RequestParam("findPassEmail") String findPassEmail) {
@@ -220,23 +222,30 @@ public class LoginController {
 			try {
 				InquiryVO inquiry = new InquiryVO();
 				inquiry.setEmail(findPassEmail);
-				inquiry.setReplyTitle("[ONeflix] 새로운 비밀번호를 설정해주세요.");
-				inquiry.setReplyContent("임시 비밀번호는 [" + tempPass + "] 입니다. <br> 로그인 후 비밀번호를 재설정 해주세요. "
-						+ "<br> <a href='http://localhost:8080/login.do'>ONEFLIX로 이동하기</a>");
+				inquiry.setReplyTitle("[ONEFLIX] 새로운 비밀번호를 설정해주세요.");
+				inquiry.setReplyContent(
+						"<h2><strong>새 비밀번호 설정</strong></h2>\r\n" + 
+						"<p>안녕하세요, ONEFLIX입니다.</p>\r\n" + 
+						"<p>임시비밀번호는 ["+tempPass+"]입니다.<br/>로그인 후 새 비밀번호를 설정해주세요.</p>\r\n" + 
+						"<p><a href=\"http://localhost:8080/login.do\">ONEFLIX로 가기</a></p>\r\n" + 
+						"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
+						"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
+
 				emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
+				vo.setUpdateType("info");
 				vo.setPass(tempPass);
 				updateMemberService.updateMember(vo);
-				mav.addObject("result", "success");
+				mav.addObject("findPassResult", "success");
 				mav.setViewName("login");
 				return mav;
 			} catch (Exception e) {
 				e.printStackTrace();
-				mav.addObject("result", "fail");
+				mav.addObject("findPassResult", "fail");
 				mav.setViewName("findPass");
 				return mav;
 			}
 		} else {
-			mav.addObject("result", "check");
+			mav.addObject("findPassResult", "check");
 			mav.setViewName("findPass");
 			return mav;
 		}

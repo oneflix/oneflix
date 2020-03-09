@@ -155,7 +155,7 @@
     	var nickCheck;
     	
 	$.ajax({
-		url: "/memberCheckProcAjax.do?",
+		url: "/memberCheckProcAjax.do",
 	    type: "POST",
 	    dataType : "json",
 	    async:false,
@@ -193,7 +193,6 @@
 	    
 	    $('.oneflix-input').keyup(function(){
 	       $('div.css-102eby1-ErrorMessage').remove();
-	       val = false;
 	       var re;
 	       var target = $(this).val();
 	       
