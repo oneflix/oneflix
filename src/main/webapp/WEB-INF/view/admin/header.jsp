@@ -148,7 +148,7 @@
 						<p>화면</p>
 				</a></li>
 
-				<li class="nav-item"><a href="/getAnalysisProc.mdo"
+				<li class="nav-item"><a href="/analysis.mdo"
 					class="nav-link" id="analysis"> <ion-icon name="pie"
 							size="small"></ion-icon>&nbsp;&nbsp;
 						<p>분석</p>

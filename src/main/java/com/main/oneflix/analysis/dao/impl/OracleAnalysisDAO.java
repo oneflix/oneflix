@@ -26,4 +26,25 @@ public class OracleAnalysisDAO implements AnalysisDAO {
 		return sqlSessionTemplate.selectList("AnalysisDAO.analysisSalesMonth", vo);
 	}
 
+	@Override
+	public List<Map<String, Object>> analysisGenderYear(Map<String, String> map) {
+		return sqlSessionTemplate.selectList("AnalysisDAO.analysisGenderYear", map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> analysisGenderMonth(Map<String, String> map) {
+		return sqlSessionTemplate.selectList("AnalysisDAO.analysisGenderMonth", map);
+	}
+
+	@Override
+	public Integer analysisSubscriberYear(SalesVO vo) {
+		return sqlSessionTemplate.selectOne("AnalysisDAO.analysisSubscriberYear", vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> analysisSubscriberTicket(Map<String, String> map) {
+		return sqlSessionTemplate.selectList("AnalysisDAO.analysisSubscriberTicket", map);
+	}
+
+
 }

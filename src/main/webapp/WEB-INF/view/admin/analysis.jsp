@@ -103,23 +103,23 @@
                            </h3>
                            <br><br>
                            <div class="sendData-box">
-                              <select id="productUserDate" name="dateList"
+                              <select id="subscriberDate" name="dateList"
                                  class="form-control select2bs4 dateList"
                                  multiple="multiple" data-placeholder="날짜 선택">
                               </select>
    
                               <div class="button-box-container">
                                  <div class="button-box">
-                                    <button type="button" id="productUserYear"
-                                       class="btn btn-info analysis-year-button product-user-button">연간</button>
-                                    <button type="button" id="productUserMonth"
-                                       class="btn btn-info analysis-month-button product-user-button">월간</button>
+                                    <button type="button" id="subscriberYear"
+                                       class="btn btn-info analysis-year-button subscriber-button">연간</button>
+                                    <button type="button" id="subscriberTicket"
+                                       class="btn btn-info analysis-month-button subscriber-button">상품별</button>
                                  </div>
                               </div>
                            </div>
                         </div>
                         <div class="card-body">
-                           <div id="product-user-chart"
+                           <div id="subscriber-chart"
                               style="width: 100%; height: 500px;"></div>
                         </div>
                         <!-- /.card-body-->
@@ -239,349 +239,623 @@
    <!-- bs-custom-file-input -->
    <script
       src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-   <script type="text/javascript">
-   
-      // sales setting
-      var salesButton;
-      var productUserButton;
-      var genderButton
-      var memberAgeButton
-      
-      $(document).ready(function() {
-         //Initialize Select2 Elements
-         $('.select2').select2();
-         //Initialize Select2 Elements
-         $('.select2bs4').select2({theme : 'bootstrap4'});
-         //Bootstrap Duallistbox
-         $('.duallistbox').bootstrapDualListbox();
+	<script type="text/javascript">
+		// sales setting
+		var salesButton;
+		var subscriberButton;
+		var genderButton
+		var memberAgeButton
 
-         var today = new Date();
-         var launchingDate = new Date('2015-01-01');
-         var subtractionDate = ((today.getTime() - launchingDate.getTime())/ (1000*60*60*24*365));
-         for (var i = 0; i <= subtractionDate; i++) {
-            var date = today.getFullYear() - i;
-            $('.dateList').append("<option value=\'" + date+ "\'>" + date + "년</option>");
-         }
-         $('#salesDate option:first').prop('selected', true);
-         $('#productUserDate option:first').prop('selected', true);
-         $('#genderDate option:first').prop('selected', true);
-         $('#memberAgeDate option:first').prop('selected', true);
-         
-         $('.analysis-year-button').prop('disabled', true);
-         salesButton = 'year';
-         genderButton = 'year';
-         productUserButton = 'year';
-         memberAgeButton = 'year';
-      });
-      
-      // Google chart
-      google.charts.load("current", {packages : [ "corechart" ]});
-      google.charts.setOnLoadCallback(drawSalesChart);
-      google.charts.setOnLoadCallback(drawProductUserChart);
-      google.charts.setOnLoadCallback(drawGenderChart);
-      google.charts.setOnLoadCallback(drawMemberAgeChart);
-      google.charts.setOnLoadCallback(drawMovieViewCountChart);
-      google.charts.setOnLoadCallback(drawMovieRecentlyChart);
+		$(document).ready(
+				function() {
+					//Initialize Select2 Elements
+					$('.select2').select2();
+					//Initialize Select2 Elements
+					$('.select2bs4').select2({
+						theme : 'bootstrap4'
+					});
+					//Bootstrap Duallistbox
+					$('.duallistbox').bootstrapDualListbox();
 
-      $('.dateList').change(function(){
-         switch ($(this).prop('id')) {
-         case 'salesDate' :
-            drawSalesChart();
-            break;
-         case 'productUserDate' :
-            drawProductUserChart();
-            break;
-         case 'genderDate' :
-            drawGenderChart();
-            break;
-         case 'memberAgeDate' :
-            drawMemberAgeChart();
-            break;
-         }
-      });
-      
-      // sales Chart Start      
-      $('.sales-button').click(function(){
-         $('.sales-button').prop('disabled', false);
-         $(this).prop('disabled', true);
-         if ($(this).prop('id') == 'salesYear') {
-            salesButton = 'year';
-         } else {
-            salesButton = 'month';
-         }
-         drawSalesChart();
-      });
-      
-      function requestSalesData(sendData) {
-    	 alert(sendData);
-         var response;
-         $.ajax({
-            type: 'POST',
-            url: '/getAnalysisSalesProcAjax.mdo',
-            data: JSON.stringify(sendData),
-            contentType: "application/json",
-            async: false,
-            success: function(res){
-               response = res;
-            }
-         });
-         return response;
-      }
+					var today = new Date();
+					var launchingDate = new Date('2015-01-01');
+					var subtractionDate = ((today.getTime() - launchingDate
+							.getTime()) / (1000 * 60 * 60 * 24 * 365));
+					for (var i = 0; i <= subtractionDate; i++) {
+						var date = today.getFullYear() - i;
+						$('.dateList').append(
+								"<option value=\'" + date+ "\'>" + date
+										+ "년</option>");
+					}
+					$('#salesDate option:first').prop('selected', true);
+					$('#subscriberDate option:first').prop('selected', true);
+					$('#genderDate option:first').prop('selected', true);
+					$('#memberAgeDate option:first').prop('selected', true);
 
-      function drawSalesChart() {
-         var yearList = new Array();
-         $('#salesDate > option').each(function(){
-        	    if(this.selected){
-        	    	yearList.push($(this).val());
-        	    }
-        	   });
-         
-         var sendData = {'salesButton' : salesButton, 'yearList': yearList};
-         var response = requestSalesData(sendData);
-         // 위에서 응답 받은 결과 가공해야 함
-         for(var i=0; i<yearList.length; i++){
-	         console.log(response[yearList[i]]);
-        	 
-         }
-         var chart;
-         var data = new google.visualization.DataTable();
-      
-         
+					$('.analysis-year-button').prop('disabled', true);
+					salesButton = 'year';
+					genderButton = 'year';
+					subscriberButton = 'year';
+					memberAgeButton = 'year';
+				});
 
-         if (salesButton == 'year') {
-            chart = new google.visualization.ColumnChart(document.getElementById("sales-chart"));
-            
-         data.addColumn('string', '년');
-         data.addColumn('number', '원');
-         data.addColumn({type:'number', role:'annotation'});
-         for(var i=0; i<yearList.length; i++){
-        	 data.addRow([
-        		 	yearList[i]+"년", response[yearList[i]], response[yearList[i]]
-        		 ]);
-         }
-           
-         } else {
-        	console.log(response[yearList[0]][0].paymentDate);
-            chart = new google.visualization.LineChart(document.getElementById("sales-chart"));
-            
-            data.addColumn('string', '월');
-            for(var i=0; i<yearList.length; i++){
-            	data.addColumn('number', yearList[i]+"년");
-         }
-            data.addColumn({type:'number', role:'annotation'});
-            
-            for(var i=0; i<yearList.length; i++){
-           	 data.addRow([
-           		 	response[yearList[i]]+"월", response[yearList[i]], response[yearList[i]]
-           		 ]);
-         	}
-         }
+		// Google chart
+		google.charts.load("current", {
+			packages : [ "corechart" ]
+		});
+		google.charts.setOnLoadCallback(drawSalesChart);
+		google.charts.setOnLoadCallback(drawSubscriberChart);
+		google.charts.setOnLoadCallback(drawGenderChart);
+		google.charts.setOnLoadCallback(drawMemberAgeChart);
+		google.charts.setOnLoadCallback(drawMovieViewCountChart);
+		google.charts.setOnLoadCallback(drawMovieRecentlyChart);
 
-         var view = new google.visualization.DataView(data);
-         var options = {
-            series: {0: {color: '#FF4242'}},
-            align: 'center',
-            chartArea: {height: '90%', width: '85%'},
-            height: 500,
-            width: '100%',
-            bars: 'vertical',
-            height: 500,
-            width: '100%',
-            bar: {groupWidth : "70%"},
-            legend: {position: "none"},
-            isStacked: false,
-            animation: {startup : true, duration : 1000, easing : 'in'},
-            annotations: {textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}}
-         };
-         
-         chart.draw(view, options);
-         window.addEventListener('resize', function() {
-            chart.draw(data, options);
-         }, false);
-      } // sales Chart End
+		$('.dateList').change(function() {
+			switch ($(this).prop('id')) {
+			case 'salesDate':
+				drawSalesChart();
+				break;
+			case 'subscriberDate':
+				drawSubscriberChart();
+				break;
+			case 'genderDate':
+				drawGenderChart();
+				break;
+			case 'memberAgeDate':
+				drawMemberAgeChart();
+				break;
+			}
+		});
 
-      // product user
-      function drawProductUserChart() {
-         var data = google.visualization.arrayToDataTable([ [ "월", "명", {
-            role : "annotation"
-         } ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-               [ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-               [ "5월", 980, 980 ], [ "6월", 872, 872 ],
-               [ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-               [ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-               [ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
+		// sales Chart Start      
+		$('.sales-button').click(function() {
+			$('.sales-button').prop('disabled', false);
+			$(this).prop('disabled', true);
+			if ($(this).prop('id') == 'salesYear') {
+				salesButton = 'year';
+			} else {
+				salesButton = 'month';
+			}
+			drawSalesChart();
+		});
 
-         var view = new google.visualization.DataView(data);
-         var options = {
-            series: {0: {color: '#4A7C9F'}},
-            align: 'center',
-            chartArea: {height: '90%', width: '85%'},
-            height: 500,
-            width: '100%',
-            bars: 'vertical',
-            height: 500,
-            width: '100%',
-            bar: {groupWidth: "70%"},
-            legend: {position: "none"},
-            isStacked: false,
-            //tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-            animation: {startup: true, duration: 1000, easing: 'in'},
-            annotations: {
-               textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
-            }
-         };
-         var chart = new google.visualization.LineChart(document.getElementById("product-user-chart"));
-         chart.draw(view, options);
-         window.addEventListener('resize', function() {
-            chart.draw(data, options);
-         }, false);
-      }
-      
-      // gender
-      function drawGenderChart() {
-         var data = $.ajax({
-            url : "/getAnalysisProcAjax.mdo",
-            dataType : "json",
-            async : false
-         }).responseText;
+		function requestSalesData(sendData) {
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/getAnalysisSalesProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
+					response = res;
+				}
+			});
+			return response;
+		}
 
-         genderData = new google.visualization.DataTable(data);
+		function drawSalesChart() {
+			var yearList = new Array();
+			$('#salesDate > option').each(function() {
+				if (this.selected) {
+					yearList.push($(this).val());
+				}
+			});
 
-         var options = {
-            slices: {0: {color: '#9D8189'}, 1: {color: '#55828B'}},
-            align: 'center',
-            chartArea: {height: '80%', width: '85%'},
-            pieHole: 0.4,
-            bars: 'vertical',
-            height: 500,
-            width: '100%',
-            bar: {groupWidth: "70%"},
-            legend: {position: "top"},
-            isStacked: false,
-            //tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-            //차트가 뿌려질때 실행될 애니메이션 효과
-            animation: {startup: true, duration: 1000, easing: 'linear'},
-            annotations: {
-               textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
-            }
-         };
-         var chart = new google.visualization.PieChart(document.getElementById("gender-chart"));
-         chart.draw(genderData, options);
-         window.addEventListener('resize', function() {
-            chart.draw(data, options);
-         }, false);
-      }
+			var sendData = {
+				'salesButton' : salesButton,
+				'yearList' : yearList
+			};
+			var response = requestSalesData(sendData);
 
-      // member age
-      function drawMemberAgeChart() {
-         var data = google.visualization.arrayToDataTable([ [ "연령대", "명", {
-            role : "style"
-         }, {
-            role : "annotation"
-         } ], [ "10대", 2462, "color:#E1E6EE;", 2462 ],
-               [ "20대", 1499, "color:#B5C1D5;", 1499 ],
-               [ "30대", 1895, "color:#889BB9;", 1895 ],
-               [ "40대", 1322, "color:#5F779E;", 1322 ],
-               [ "50대", 980, "color:#405D8D;", 980 ],
-               [ "60대 이상", 872, "color:#33507F;", 872 ] ]);
+			var chart;
+			var data = new google.visualization.DataTable();
+			var options = {
+				series : {
+					0 : {
+						color : '#FF4242'
+					}
+				},
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "70%"
+				},
+				isStacked : false,
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'in'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
 
-         var view = new google.visualization.DataView(data);
-         var options = {
-            align: 'center',
-            chartArea: {height: '90%', width: '85%'},
-            height: 500,
-            width: '100%',
-            bar: {groupWidth: "65%"},
-            legend: {position: "none"},
-            isStacked: false,
-            //tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-            //차트가 뿌려질때 실행될 애니메이션 효과
-            animation: {startup: true, duration: 1000, easing: 'linear'},
-            annotations: {
-               textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
-            }
-         };
-         var chart = new google.visualization.ColumnChart(document.getElementById("member-age-chart"));
-         chart.draw(view, options);
-         window.addEventListener('resize', function() {
-            chart.draw(data, options);
-         }, false);
-      }
-      
-      // movie view count
-      function drawMovieViewCountChart() {
-         var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
-            role : "style"
-         }, {
-            role : "annotation"
-         } ], [ "영화1", 2462, "color:#9D8189;", 2462 ],
-               [ "영화2", 2044, "color:#A88B93;", 2044 ],
-               [ "영화3", 1895, "color:#BA9EA6;", 1895 ],
-               [ "영화4", 1322, "color:#C4ACB3;", 1322 ],
-               [ "영화5", 980, "color:#E2D0D7;", 980 ], ]);
+			if (salesButton == 'year') {
+				chart = new google.visualization.ColumnChart(document
+						.getElementById("sales-chart"));
 
-         var view = new google.visualization.DataView(data);
-         var options = {
-            title: '누적 조회수 순위',
-            align: 'center',
-            chartArea: {height: '70%', width: '80%'},
-            bars: 'vertical',
-            height: 500,
-            width: '100%',
-            bar: {groupWidth: "65%"},
-            legend: {position: "none"},
-            isStacked : false,
-            //tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-            //차트가 뿌려질때 실행될 애니메이션 효과
-            animation: {startup: true, duration: 1000, easing: 'linear'},
-            annotations: {
-               textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
-            }
-         };
-         var chart = new google.visualization.BarChart(document.getElementById("movie-view-count-chart"));
-         chart.draw(view, options);
-         window.addEventListener('resize', function() {
-            chart.draw(data, options);
-         }, false);
-      }
+				options.legend = "none";
 
-      // movie recently
-      function drawMovieRecentlyChart() {
-         var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
-            role : "style"
-         }, {
-            role : "annotation"
-         } ], [ "영화1", 2462, "color:#4A747C;", 2462 ],
-               [ "영화2", 2044, "color:#5C848C;", 2044 ],
-               [ "영화3", 1895, "color:6B939B;", 1895 ],
-               [ "영화4", 1322, "color:#82A6AD;", 1322 ],
-               [ "영화5", 980, "color:#9EBBC1;", 980 ], ]);
+				data.addColumn('string', '년');
+				data.addColumn('number', '원');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
+				for (var i = 0; i < yearList.length; i++) {
+					data.addRow([ yearList[i] + "년", response[yearList[i]],
+							response[yearList[i]] ]);
+				}
 
-         var view = new google.visualization.DataView(data);
-         var options = {
-            title: '최근 30일내 인기 영화',
-            align: 'center',
-            chartArea: {height: '70%', width: '80%'},
-            bars: 'vertical',
-            height: 500,
-            width: '100%',
-            bar: {groupWidth: "65%"},
-            legend: {position: "none"},
-            isStacked: false,
-            //tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-            //차트가 뿌려질때 실행될 애니메이션 효과
-            animation: {startup: true, duration: 1000, easing: 'linear'},
-            annotations: {
-               textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
-            }
-         };
-         var chart = new google.visualization.BarChart(document.getElementById("movie-recently-chart"));
-         chart.draw(view, options);
-         window.addEventListener('resize', function() {
-            chart.draw(data, options);
-         }, false);
-      }
-   </script>
+			} else {
+				chart = new google.visualization.LineChart(document
+						.getElementById("sales-chart"));
+
+				options.legend = "top";
+
+				data.addColumn('string', '월');
+				for (var i = 0; i < yearList.length; i++) {
+					data.addColumn('number', yearList[i] + "년");
+				}
+
+				for (var i = 0; i < 12; i++) {
+					var monthArray = new Array();
+					monthArray.push((i + 1) + "월");
+					for (var j = 0; j < yearList.length; j++) {
+						monthArray.push(response[yearList[j]][i].totalSales);
+					}
+					data.addRow(monthArray);
+				}
+			}
+
+			var view = new google.visualization.DataView(data);
+
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		} // sales Chart End
+
+		// subscriber chart start
+		$('.subscriber-button').click(function() {
+			$('.subscriber-button').prop('disabled', false);
+			$(this).prop('disabled', true);
+			if($(this).prop('id') == 'subscriberYear'){
+				subscriberButton = 'year';
+			}else{
+				subscriberButton = 'ticket';
+			}
+			drawSubscriberChart();
+		});
+		
+		function requestSubscriberData(sendData) {
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/analysisSubscriberProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
+					response = res;
+				}
+			});
+			return response;
+		}
+		
+		function drawSubscriberChart() {
+			var yearList = new Array();
+			$('#subscriberDate > option').each(function() {
+				if(this.selected){
+					yearList.push($(this).val());
+				}
+			});
+			
+			var sendData = {
+				'subscriberButton' : subscriberButton,
+				'yearlist' : yearList
+			}
+			
+			var response = requestSubscriberData(sendData);
+			
+			var chart;
+			var data = new google.visualization.DataTable();
+			var options = {
+				series : {
+					0 : {
+						color : '#4A7C9F'
+					}
+				},
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "70%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
+				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'in'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
+			
+			
+			if(salesButton == 'year'){
+				chart = new google.visualization.ColumnChart(document.getElementById("subscriber-chart"));
+				options.legend = "none";
+				
+				data.addColumn('string', '년');
+				data.addColumn('number', '명');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
+				
+				for(var i = 0; i < yearList.lengh; i++){
+					data.addRow([
+						yearList[i] + "년", response[yearList[i]], response[yearList[i]]
+					]);
+				}
+			} else{ //상품별
+				chart = new google.visualization.PieChart(document.getElementById("subcsriber-chart"));
+				options.legned = "top";
+				
+				data.addColumn('string', ''); //이용권
+				for(var i = 0; i < yearList.length; i++){
+					data.addColumn('string', yearList[i])
+				}
+				
+			}
+			
+			var view = new google.visualization.DataView(data);
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
+
+
+		// gender Chart Start
+		$('.gender-button').click(function() {
+			$('.gender-button').prop('disabled', false);
+			$(this).prop('disabled', true);
+			if ($(this).prop('id') == 'genderYear') {
+				genderButton = 'year';
+			} else {
+				genderButton = 'month';
+			}
+			drawGenderChart();
+		});
+
+		function requestGenderData(sendData) {
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/getAnalysisGenderProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
+					response = res;
+				}
+			});
+			return response;
+		}
+		
+		function drawGenderChart() {
+			var yearList = new Array();
+			$('#genderDate > option').each(function() {
+				if (this.selected) {
+					yearList.push($(this).val());
+				}
+			});
+			
+			var sendData = {
+					'genderButton' : genderButton,
+					'yearList' : yearList
+				};
+			var response = requestGenderData(sendData);
+			
+			var chart;
+			var data = new google.visualization.DataTable();
+
+			var options = {
+				series : {
+					0 : {
+						color : '#DC3912'
+					},
+					1 : {
+						color : '#3366CC'
+					}
+				},
+				align : 'center',
+				chartArea : {
+					height : '80%',
+					width : '85%'
+				},
+				pieHole : 0.4,
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "70%"
+				},
+				legend : {
+					position : "top"
+				},
+				isStacked : true,
+				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+				//차트가 뿌려질때 실행될 애니메이션 효과
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
+			
+			if (genderButton == 'year') {
+				chart = new google.visualization.ColumnChart(document
+						.getElementById("gender-chart"));
+
+				options.legend = "none";
+
+				data.addColumn('string', '성별');
+				data.addColumn('number', '여성');
+				data.addColumn('number', '남성');
+				
+				for (var i = 0; i < yearList.length; i++) {
+					if (response[yearList[i]].length == 0) {
+						data.addRow([ yearList[i] + "년", 0, 0 ]);
+						continue;
+					} else if (response[yearList[i]].length == 1) {
+						if (response[yearList[i]][0].gender == 'F') {
+							data.addRow([ yearList[i] + "년", response[yearList[i]][0].count, 0 ]);
+						} else {
+							data.addRow([ yearList[i] + "년", 0, response[yearList[i]][1].count ]);
+						}
+						continue;
+					}
+					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count,
+							response[yearList[i]][1].count ]);
+				}
+
+			} else {
+				chart = new google.visualization.LineChart(document.getElementById("gender-chart"));
+
+				options.legend = "top";
+
+				data.addColumn('string', '월');
+				data.addColumn('number', "여성");
+				data.addColumn('number', "남성");
+
+				for (var i = 0; i < 12; i++) {
+					if (response[yearList[0]][i].length == 0) {
+						data.addRow([ (i + 1) + "월", 0, 0 ]);
+						continue;
+					} else if (response[yearList[0]][i].length == 1) {
+						if (response[yearList[0]][i][0].gender == 'F') {
+							data.addRow([ (i + 1) + "월", response[yearList[0]][i][0].count, 0 ]);
+						} else {
+							data.addRow([ (i + 1) + "월", 0, response[yearList[0]][i][1].count ]);
+						}
+						continue;
+					}
+					data.addRow([(i + 1) + "월", response[yearList[0]][i][0].count, response[yearList[0]][i][1].count ]);
+				}
+			}
+
+			var view = new google.visualization.DataView(data);
+			
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
+
+		// member age
+		function drawMemberAgeChart() {
+			var data = google.visualization.arrayToDataTable([ [ "연령대", "명", {
+				role : "style"
+			}, {
+				role : "annotation"
+			} ], [ "10대", 2462, "color:#E1E6EE;", 2462 ],
+					[ "20대", 1499, "color:#B5C1D5;", 1499 ],
+					[ "30대", 1895, "color:#889BB9;", 1895 ],
+					[ "40대", 1322, "color:#5F779E;", 1322 ],
+					[ "50대", 980, "color:#405D8D;", 980 ],
+					[ "60대 이상", 872, "color:#33507F;", 872 ] ]);
+
+			var view = new google.visualization.DataView(data);
+			var options = {
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
+				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+				//차트가 뿌려질때 실행될 애니메이션 효과
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById("member-age-chart"));
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
+
+		// movie view count
+		function drawMovieViewCountChart() {
+			var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
+				role : "style"
+			}, {
+				role : "annotation"
+			} ], [ "영화1", 2462, "color:#9D8189;", 2462 ],
+					[ "영화2", 2044, "color:#A88B93;", 2044 ],
+					[ "영화3", 1895, "color:#BA9EA6;", 1895 ],
+					[ "영화4", 1322, "color:#C4ACB3;", 1322 ],
+					[ "영화5", 980, "color:#E2D0D7;", 980 ], ]);
+
+			var view = new google.visualization.DataView(data);
+			var options = {
+				title : '누적 조회수 순위',
+				align : 'center',
+				chartArea : {
+					height : '70%',
+					width : '80%'
+				},
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
+				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+				//차트가 뿌려질때 실행될 애니메이션 효과
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
+			var chart = new google.visualization.BarChart(document
+					.getElementById("movie-view-count-chart"));
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
+
+		// movie recently
+		function drawMovieRecentlyChart() {
+			var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
+				role : "style"
+			}, {
+				role : "annotation"
+			} ], [ "영화1", 2462, "color:#4A747C;", 2462 ],
+					[ "영화2", 2044, "color:#5C848C;", 2044 ],
+					[ "영화3", 1895, "color:6B939B;", 1895 ],
+					[ "영화4", 1322, "color:#82A6AD;", 1322 ],
+					[ "영화5", 980, "color:#9EBBC1;", 980 ], ]);
+
+			var view = new google.visualization.DataView(data);
+			var options = {
+				title : '최근 30일내 인기 영화',
+				align : 'center',
+				chartArea : {
+					height : '70%',
+					width : '80%'
+				},
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
+				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+				//차트가 뿌려질때 실행될 애니메이션 효과
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
+			var chart = new google.visualization.BarChart(document
+					.getElementById("movie-recently-chart"));
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
+	</script>
 </body>
 <style>
 .btn-info:disabled {

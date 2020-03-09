@@ -1,9 +1,9 @@
 package com.main.oneflix.analysis.service;
 
-import com.main.oneflix.sales.vo.SalesVO;
+import java.util.Map;
 
 public interface AnalysisSubscriberService {
 	
-	int getCountSubscriberService(SalesVO vo);
+	Map<String, Object> analysisSubscriberService(Map<String, Object> map);
 
 }
