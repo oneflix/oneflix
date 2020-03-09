@@ -1,9 +1,7 @@
 package com.main.oneflix.member.client.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -24,9 +22,7 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -37,7 +33,6 @@ import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.screen.service.GetScreenListService;
 import com.main.oneflix.screen.vo.ScreenVO;
 import com.main.oneflix.util.email.service.EmailService;
-import com.main.oneflix.util.kakao.login.service.KakaoLoginService;
 import com.main.oneflix.util.naver.login.NaverLoginBO;
 
 @Controller
@@ -45,10 +40,6 @@ public class LoginController {
 	
 	@Autowired
 	private GetScreenListService getScreenListService;
-	
-	// 카카오 로그인
-	@Autowired
-	private KakaoLoginService kakaoLoginService;
 	
 	// 네이버 로그인
 	@Autowired
@@ -252,14 +243,14 @@ public class LoginController {
 	}
 
 	@RequestMapping("/logout.do")
-	public ModelAndView logout(MemberVO vo, @RequestParam("code") String code, ModelAndView mav, HttpSession session) {
+	public ModelAndView logout(MemberVO vo, @RequestParam(value = "code", required = false) String code, ModelAndView mav, HttpSession session) {
 		
 		/*
 		 * if(vo.getKakao() != null) { HashMap<String, Object> token =
 		 * kakaoLoginService.kakaoLogout(code); System.out.println(token); }
 		 */
 		session.invalidate();
-		mav.setViewName("oneflix");
+		mav.setViewName("redirect:/oneflix.do");
 		return mav;
 	}
 
