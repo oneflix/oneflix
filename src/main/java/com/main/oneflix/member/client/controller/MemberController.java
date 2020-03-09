@@ -1,17 +1,14 @@
 package com.main.oneflix.member.client.controller;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Properties;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +20,8 @@ import com.main.oneflix.member.service.GetMemberService;
 import com.main.oneflix.member.service.InsertMemberService;
 import com.main.oneflix.member.service.UpdateMemberService;
 import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.screen.service.GetScreenListService;
+import com.main.oneflix.screen.vo.ScreenVO;
 import com.main.oneflix.util.email.service.EmailService;
 
 @Controller
@@ -41,6 +40,8 @@ public class MemberController {
 	GetInquiryListService getInquiryListService;
 	@Autowired
 	EmailService emailService;
+	@Autowired
+	private GetScreenListService getScreenListService;
 
 	@RequestMapping("/join.do")
 	public ModelAndView join(MemberVO vo,ModelAndView mav) {
@@ -53,7 +54,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/joinProc.do")
-	public ModelAndView joinProc(MemberVO vo, HttpSession session, ModelAndView mav) {
+	public ModelAndView joinProc(MemberVO vo, ModelAndView mav) {
 		vo.setKakao(vo.getKakao());
 		vo.setNaver(vo.getNaver());
 		vo.setGoogle(vo.getGoogle());
@@ -74,85 +75,69 @@ public class MemberController {
 	}
 	@RequestMapping("/getMemberProc.do")
 	public ModelAndView getMemberProc(ModelAndView mav) {
-		
 		mav.setViewName("updateMember");
 		return mav;
 	}
 	@RequestMapping("/certMailProcAjax.do")
 	@ResponseBody
-	public ModelAndView certMail(HttpSession session,ModelAndView mav) {
-		MemberVO vo = new MemberVO();
-		vo = (MemberVO) session.getAttribute("member");
-		
+	public String certMail(MemberVO vo) {
 		try {
 			InquiryVO inquiry = new InquiryVO();
 			inquiry.setEmail(vo.getEmail());
 			inquiry.setReplyTitle("[ONEFLIX] 계정 이메일 주소를 인증해주세요");
 			inquiry.setReplyContent("<h2><strong>계정 인증</strong></h2>\r\n" + 
 					"<p>"+vo.getNick()+"님 안녕하세요.</p>\r\n" + 
-					"<p>원플릭스 계정 보호를 위해 이메일 인증이 필요합니다.<br/>이메일 인증 완료를 위해 아래 버튼을 눌러주세요.</p>\r\n" + 
-					"<p><a href=\"http://localhost:8080/updateCertProc.do?email="+vo.getEmail()+"\">ONEFLIX로 가기</a></p>\r\n" + 
+					"<p>원플릭스 계정 보호를 위해 이메일 인증이 필요합니다.<br/>이메일 인증 완료를 위해 아래 버튼을 눌러주세요.</p>" +
+					"<br>" +
+					"<p>" +
+						"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/updateCertProc.do?email=" + vo.getEmail() + "\">" +
+							"<button type=\"button\" style=\"width: 150px; height: 80px; color: #FFF; background: #080808\">ONEFLIX로 가기</button>" + 
+						"</a>" +
+					"</p>" +
+					"<br>" + 
 					"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
 					"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
 			emailService.sendEmail(inquiry);
-			mav.addObject("certMailResult","success");
-			mav.setViewName("redirect:/getMemberProc.do");
+			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
-			mav.addObject("certMailResult","fail");
-			mav.setViewName("redirect:/getMemberProc.do");
+			return "fail";
 		}
-		return mav;
 	}
 	@RequestMapping("/updateCertProc.do")
-	public ModelAndView updateCertProc(ModelAndView mav,HttpServletRequest request) {
-		String email = (String) request.getParameter("email");
+	public ModelAndView updateCertProc(MemberVO vo, ModelAndView mav, HttpSession session) {
 		String cert = "Y";
-		MemberVO vo = new MemberVO();
-		vo.setEmail(email);
 		vo = getMemberService.getMember(vo);
 		vo.setCert(cert);
 		vo.setUpdateType("info");
 		updateMemberService.updateMember(vo);
-		
+		session.setAttribute("member", vo);
 		mav.addObject("certConfirmResult", "success");
 		mav.setViewName("certConfirm");
 		return mav;
 	}
 	@RequestMapping("/updateMemberProc.do")
-	public ModelAndView updateMemberProc(@RequestParam("newNick") String newNick,
-			@RequestParam("newPass") String newPass, HttpSession session, ModelAndView mav) {
-		MemberVO vo = (MemberVO) session.getAttribute("member");
-		vo.setUpdateType("info");
-		if(newNick == null || newNick.equals("")) {
-			newNick = vo.getNick();
-		} else if (newPass == null || newPass.equals("")) {
-			newPass = vo.getPass();
-		}
-		vo.setNick(newNick);
-		vo.setPass(newPass);
-		updateMemberService.updateMember(vo);
-		session.setAttribute("member", vo);
+	public ModelAndView updateMemberProc(MemberVO vo, HttpSession session, ModelAndView mav) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		member.setUpdateType("info");
+		member.setNick(vo.getNewNick());
+		member.setPass(vo.getNewPass());
+		updateMemberService.updateMember(member);
+		session.setAttribute("member", member);
 		mav.setViewName("redirect:/getMemberProc.do");
 		return mav;
 	}
-	@RequestMapping(value = "/nickCheckProcAjax.do", method = RequestMethod.POST)
+	@RequestMapping("/nickCheckProcAjax.do")
 	@ResponseBody
-	public Properties nickCheckProcAjax(HttpSession session, @RequestParam("newNick") String newNick) {
-		MemberVO memberNick = new MemberVO();
-		memberNick.setNick(newNick);
-		memberNick = getMemberService.getMember(memberNick);
-		
-		MemberVO vo = new MemberVO();
-		vo = (MemberVO) session.getAttribute("member");
-		
-		Properties checkResult = new Properties();
-		if(memberNick != null) {
-			checkResult.put("newNickCheck", "fail");
+	public String nickCheckProcAjax(MemberVO vo) {
+		vo.setNick(vo.getNewNick());
+		vo = getMemberService.getMember(vo);
+		if(vo != null) {
+			return "fail";
 		}
-		return checkResult;
+		return "success";
 	}
-	@RequestMapping(value = "/memberCheckProcAjax.do", method = RequestMethod.POST)
+	@RequestMapping("/memberCheckProcAjax.do")
 	@ResponseBody
 	public Properties memberCheckProcAjax(MemberVO vo) {
 		MemberVO memberEmail = new MemberVO();
@@ -176,15 +161,17 @@ public class MemberController {
 	}
 
 	@RequestMapping("/deactivate.do")
-	public ModelAndView deleteDefense(ModelAndView mav) {
+	public ModelAndView deactivate(ModelAndView mav) {
+		ScreenVO screen = new ScreenVO();
+		screen.setScreenType("deactivate");
+		List<ScreenVO> screenList = getScreenListService.getScreenList(screen);
+		mav.addObject("screenList", screenList);
 		mav.setViewName("deactivate");
 		return mav;
 	}
 	@RequestMapping("/deactivateMailProcAjax.do")
 	@ResponseBody
-	public ModelAndView deactivateMail(HttpSession session,ModelAndView mav) {
-		MemberVO vo = new MemberVO();
-		vo = (MemberVO) session.getAttribute("member");
+	public String deactivateMail(MemberVO vo) {
 		
 		try {
 			InquiryVO inquiry = new InquiryVO();
@@ -197,20 +184,15 @@ public class MemberController {
 					"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
 					"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
 			emailService.sendEmail(inquiry);
-			mav.addObject("deactivateMailResult","success");
-			mav.setViewName("redirect:/deactivate.do");
+			return "success";
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			mav.addObject("deactivateMailResult","fail");
-			mav.setViewName("redirect:/deactivate.do");
+			return "fail";
 		}
-		return mav;
 	}
 	@RequestMapping("/deleteMemberProc.do")
-	public ModelAndView deleteMemberProc(ModelAndView mav,HttpServletRequest request,HttpSession session) {
-		String email = (String) request.getParameter("email");
-		MemberVO vo = new MemberVO();
-		vo.setEmail(email);
+	public ModelAndView deleteMemberProc(MemberVO vo, ModelAndView mav, HttpSession session) {
 		vo = getMemberService.getMember(vo);
 		deleteMemberService.deleteMember(vo);
 		session.invalidate();
