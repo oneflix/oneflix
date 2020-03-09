@@ -15,7 +15,6 @@ public class GetAlarmListServiceImpl implements GetAlarmListService{
 	@Autowired
 	private AlarmDAO alarmDAO;
 	
-	
 	@Override
 	public List<AlarmVO> getAlarmList(AlarmVO vo) {
 		return alarmDAO.getAlarmList(vo);
