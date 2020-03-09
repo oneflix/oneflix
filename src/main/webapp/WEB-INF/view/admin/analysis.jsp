@@ -112,7 +112,11 @@
                                  <div class="button-box">
                                     <button type="button" id="subscriberYear"
                                        class="btn btn-info analysis-year-button subscriber-button">연간</button>
+<<<<<<< HEAD
+                                    <button type="button" id="subscriberTicket"
+=======
                                     <button type="button" id="productUserMonth"
+>>>>>>> master
                                        class="btn btn-info analysis-month-button subscriber-button">상품별</button>
                                  </div>
                               </div>
@@ -433,7 +437,7 @@
 
 		// subscriber chart start
 		$('.subscriber-button').click(function() {
-			$('.subscriber').prop('disaled', false);
+			$('.subscriber-button').prop('disabled', false);
 			$(this).prop('disabled', true);
 			if($(this).prop('id') == 'subscriberYear'){
 				subscriberButton = 'year';
@@ -540,11 +544,19 @@
 					data.addColumn('string', yearList[i])
 				}
 				
+<<<<<<< HEAD
+				
+			}
+			
+			var view = new google.visualization.DataView(data);
+
+=======
 				for(var i = 0; i < )
 			}
 			
 			var chart = new google.visualization.LineChart(document
 					.getElementById("product-user-chart"));
+>>>>>>> master
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
