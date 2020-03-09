@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
 <c:set var="year">
-	<fmt:formatDate value="${now}" pattern="yyyy" />
+   <fmt:formatDate value="${now}" pattern="yyyy" />
 </c:set>
 <!DOCTYPE html>
 <html>
@@ -16,14 +16,14 @@
 <title>ONeflix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon"
-	href="admin/images/icons/favicon.ico">
+   href="admin/images/icons/favicon.ico">
 <!-- Select2 -->
 <link rel="stylesheet" href="admin/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
-	href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+   href="admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet"
-	href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+   href="admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 <style>
 .card-header > .card-title {margin-top: 10px;}
 .sendData-box {display: flex;}
@@ -35,247 +35,254 @@
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
-	<div class="wrapper">
+   <div class="wrapper">
 
-		<jsp:include page="${header_url}"></jsp:include>
+      <jsp:include page="${header_url}"></jsp:include>
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">분석</h1>
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-				</div>
-				<!-- /.container-fluid -->
-			</div>
-			<!-- /.content-header -->
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <div class="content-header">
+            <div class="container-fluid">
+               <div class="row mb-2">
+                  <div class="col-sm-6">
+                     <h1 class="m-0 text-dark">분석</h1>
+                  </div>
+                  <!-- /.col -->
+               </div>
+               <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+         </div>
+         <!-- /.content-header -->
 
-			<!-- Main content -->
-			<section class="content">
-				<div class="container-fluid">
+         <!-- Main content -->
+         <section class="content">
+            <div class="container-fluid">
 
-					<!-- Main row -->
-					<div class="row">
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 매출
-									</h3>
-									<br><br>
-									<div class="sendData-box">
-										<select id="salesDate" name="dateList"
-											class="form-control select2bs4 dateList"
-											multiple="multiple" data-placeholder="날짜 선택">
-										</select>
+               <!-- Main row -->
+               <div class="row">
+                  <section class="col-lg-6">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 매출
+                           </h3>
+                           <br><br>
+                           <div class="sendData-box">
+                              <select id="salesDate" name="dateList"
+                                 class="form-control select2bs4 dateList"
+                                 multiple="multiple" data-placeholder="날짜 선택">
+                              </select>
 
-										<div class="button-box-container">
-											<div class="button-box">
-												<button type="button" id="salesYear"
-													class="btn btn-info analysis-year-button sales-button">연간</button>
-												<button type="button" id="saelsMonth"
-													class="btn btn-info analysis-month-button sales-button">월간</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div id="sales-chart" style="width: inherit; height: auto;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
-						<!-- /.card -->
+                              <div class="button-box-container">
+                                 <div class="button-box">
+                                    <button type="button" id="salesYear"
+                                       class="btn btn-info analysis-year-button sales-button">연간</button>
+                                    <button type="button" id="saelsMonth"
+                                       class="btn btn-info analysis-month-button sales-button">월간</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-body">
+                           <div id="sales-chart" style="width: inherit; height: auto;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
+                  <!-- /.card -->
 
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 상품 이용자 수
-									</h3>
-									<br><br>
-									<div class="sendData-box">
-										<select id="productUserDate" name="dateList"
-											class="form-control select2bs4 dateList"
-											multiple="multiple" data-placeholder="날짜 선택">
-										</select>
-	
-										<div class="button-box-container">
-											<div class="button-box">
-												<button type="button" id="productUserYear"
-													class="btn btn-info analysis-year-button product-user-button">연간</button>
-												<button type="button" id="productUserMonth"
-													class="btn btn-info analysis-month-button product-user-button">월간</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div id="product-user-chart"
-										style="width: 100%; height: 500px;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
+                  <section class="col-lg-6">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 상품 이용자 수
+                           </h3>
+                           <br><br>
+                           <div class="sendData-box">
+                              <select id="subscriberDate" name="dateList"
+                                 class="form-control select2bs4 dateList"
+                                 multiple="multiple" data-placeholder="날짜 선택">
+                              </select>
+   
+                              <div class="button-box-container">
+                                 <div class="button-box">
+                                    <button type="button" id="subscriberYear"
+                                       class="btn btn-info analysis-year-button subscriber-button">연간</button>
+                                    <button type="button" id="subscriberTicekt"
+                                       class="btn btn-info analysis-month-button subscriber-button">상품별</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-body">
+                           <div id="subscriber-chart"
+                              style="width: 100%; height: 500px;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
 
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 성별 회원 분포
-									</h3>
-									<br><br>
-									<div class="sendData-box">
-										<select id="genderDate" name="dateList"
-											class="form-control select2bs4 dateList"
-											multiple="multiple" data-placeholder="날짜 선택">
-										</select>
-	
-										<div class="button-box-container">
-											<div class="button-box">
-												<button type="button" id="genderYear"
-													class="btn btn-info analysis-year-button gender-button">연간</button>
-												<button type="button" id="genderMonth"
-													class="btn btn-info analysis-month-button gender-button">월간</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div id="gender-chart" style="width: 100%; height: 500px;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
+                  <section class="col-lg-6">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 성별 회원 분포
+                           </h3>
+                           <br><br>
+                           <div class="sendData-box">
+                              <select id="genderDate" name="dateList"
+                                 class="form-control select2bs4 dateList"
+                                 multiple="multiple" data-placeholder="날짜 선택">
+                              </select>
+   
+                              <div class="button-box-container">
+                                 <div class="button-box">
+                                    <button type="button" id="genderYear"
+                                       class="btn btn-info analysis-year-button gender-button">연간</button>
+                                    <button type="button" id="genderMonth"
+                                       class="btn btn-info analysis-month-button gender-button">월간</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-body">
+                           <div id="gender-chart" style="width: 100%; height: 500px;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
 
-						<section class="col-lg-6">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 연령별 회원 분포
-									</h3>
-									<br><br>
-									<div class="sendData-box">
-										<select id="memberAgeDate" name="dateList"
-											class="form-control select2bs4 dateList"
-											multiple="multiple" data-placeholder="날짜 선택">
-										</select>
-	
-										<div class="button-box-container">
-											<div class="button-box">
-												<button type="button" id="memberAgeYear"
-													class="btn btn-info analysis-year-button member-age-button">연간</button>
-												<button type="button" id="memberAgeMonth"
-													class="btn btn-info analysis-month-button member-age-button">월간</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div id="member-age-chart" style="width: 100%;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
+                  <section class="col-lg-6">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 연령별 회원 분포
+                           </h3>
+                           <br><br>
+                           <div class="sendData-box">
+                              <select id="memberAgeDate" name="dateList"
+                                 class="form-control select2bs4 dateList"
+                                 multiple="multiple" data-placeholder="날짜 선택">
+                              </select>
+   
+                              <div class="button-box-container">
+                                 <div class="button-box">
+                                    <button type="button" id="memberAgeYear"
+                                       class="btn btn-info analysis-year-button member-age-button">연간</button>
+                                    <button type="button" id="memberAgeMonth"
+                                       class="btn btn-info analysis-month-button member-age-button">월간</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-body">
+                           <div id="member-age-chart" style="width: 100%;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
 
 
-						<section class="col-lg-12">
-							<div class="card card-outline">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="far fa-chart-bar"></i> 영화 랭킹 TOP-5
-									</h3>
-								</div>
-								<div class="row">
-									<div class="col-lg-6" id="movie-view-count-chart"
-										style="width: 100%; height: auto;"></div>
-									<div class="col-lg-6" id="movie-recently-chart"
-										style="width: 100%; height: auto;"></div>
-								</div>
-								<!-- /.card-body-->
-							</div>
-							<!-- /.card -->
-						</section>
-						<!-- /.card -->
+                  <section class="col-lg-12">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 영화 랭킹 TOP-5
+                           </h3>
+                        </div>
+                        <div class="row">
+                           <div class="col-lg-6" id="movie-view-count-chart"
+                              style="width: 100%; height: auto;"></div>
+                           <div class="col-lg-6" id="movie-recently-chart"
+                              style="width: 100%; height: auto;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
 
-					</div>
-					<!-- /.row (main row) -->
-				</div>
-				<!-- /.container-fluid -->
-			</section>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
+               </div>
+               <!-- /.row (main row) -->
+            </div>
+            <!-- /.container-fluid -->
+         </section>
+         <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
 
-		<jsp:include page="${footer_url}"></jsp:include>
-	</div>
-	<!-- ./wrapper -->
-	<!-- Google Chart -->
-	<script type="text/javascript"
-		src="https://www.gstatic.com/charts/loader.js"></script>
-	<!--Load the AJAX API-->
-	<script type="text/javascript"
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <jsp:include page="${footer_url}"></jsp:include>
+   </div>
+   <!-- ./wrapper -->
+   <!-- Google Chart -->
+   <script type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"></script>
+   <!--Load the AJAX API-->
+   <script type="text/javascript"
+      src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-	<!-- Select2 -->
-	<script src="admin/plugins/select2/js/select2.full.min.js"></script>
-	<!-- Bootstrap4 Duallistbox -->
-	<script
-		src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-	<!-- bs-custom-file-input -->
-	<script
-		src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+   <!-- Select2 -->
+   <script src="admin/plugins/select2/js/select2.full.min.js"></script>
+   <!-- Bootstrap4 Duallistbox -->
+   <script
+      src="admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+   <!-- bs-custom-file-input -->
+   <script
+      src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script type="text/javascript">
-	
 		// sales setting
 		var salesButton;
-		var productUserButton;
+		var subscriberButton;
 		var genderButton
 		var memberAgeButton
-		
-		$(document).ready(function() {
-			//Initialize Select2 Elements
-			$('.select2').select2();
-			//Initialize Select2 Elements
-			$('.select2bs4').select2({theme : 'bootstrap4'});
-			//Bootstrap Duallistbox
-			$('.duallistbox').bootstrapDualListbox();
 
-			var today = new Date();
-			var launchingDate = new Date('2020-01-01');
-			var subtractionDate = ((today.getTime() - launchingDate.getTime())/ (1000*60*60*24*365));
-			for (var i = 0; i <= subtractionDate; i++) {
-				var date = today.getFullYear() - i;
-				$('.dateList').append("<option value=\'" + date+ "\'>" + date + "년</option>");
-			}
-			$('#salesDate option:first').prop('selected', true);
-			$('#productUserDate option:first').prop('selected', true);
-			$('#genderDate option:first').prop('selected', true);
-			$('#memberAgeDate option:first').prop('selected', true);
-			
-			$('.analysis-year-button').prop('disabled', true);
-			salesButton = 'year';
-			genderButton = 'year';
-			productUserButton = 'year';
-			memberAgeButton = 'year';
-		});
-		
+		$(document).ready(
+				function() {
+					//Initialize Select2 Elements
+					$('.select2').select2();
+					//Initialize Select2 Elements
+					$('.select2bs4').select2({
+						theme : 'bootstrap4'
+					});
+					//Bootstrap Duallistbox
+					$('.duallistbox').bootstrapDualListbox();
+
+					var today = new Date();
+					var launchingDate = new Date('2015-01-01');
+					var subtractionDate = ((today.getTime() - launchingDate
+							.getTime()) / (1000 * 60 * 60 * 24 * 365));
+					for (var i = 0; i <= subtractionDate; i++) {
+						var date = today.getFullYear() - i;
+						$('.dateList').append(
+								"<option value=\'" + date+ "\'>" + date
+										+ "년</option>");
+					}
+					$('#salesDate option:first').prop('selected', true);
+					$('#productUserDate option:first').prop('selected', true);
+					$('#genderDate option:first').prop('selected', true);
+					$('#memberAgeDate option:first').prop('selected', true);
+
+					$('.analysis-year-button').prop('disabled', true);
+					salesButton = 'year';
+					genderButton = 'year';
+					productUserButton = 'year';
+					memberAgeButton = 'year';
+				});
+
 		// Google chart
-		google.charts.load("current", {packages : [ "corechart" ]});
+		google.charts.load("current", {
+			packages : [ "corechart" ]
+		});
 		google.charts.setOnLoadCallback(drawSalesChart);
 		google.charts.setOnLoadCallback(drawProductUserChart);
 		google.charts.setOnLoadCallback(drawGenderChart);
@@ -283,25 +290,25 @@
 		google.charts.setOnLoadCallback(drawMovieViewCountChart);
 		google.charts.setOnLoadCallback(drawMovieRecentlyChart);
 
-		$('.dateList').change(function(){
+		$('.dateList').change(function() {
 			switch ($(this).prop('id')) {
-			case 'salesDate' :
+			case 'salesDate':
 				drawSalesChart();
 				break;
-			case 'productUserDate' :
+			case 'productUserDate':
 				drawProductUserChart();
 				break;
-			case 'genderDate' :
+			case 'genderDate':
 				drawGenderChart();
 				break;
-			case 'memberAgeDate' :
+			case 'memberAgeDate':
 				drawMemberAgeChart();
 				break;
 			}
 		});
-		
-		// sales Chart Start		
-		$('.sales-button').click(function(){
+
+		// sales Chart Start      
+		$('.sales-button').click(function() {
 			$('.sales-button').prop('disabled', false);
 			$(this).prop('disabled', true);
 			if ($(this).prop('id') == 'salesYear') {
@@ -311,15 +318,16 @@
 			}
 			drawSalesChart();
 		});
-		
+
 		function requestSalesData(sendData) {
 			var response;
 			$.ajax({
-				type: 'POST',
-				url: '/getAnalysisSalesProcAjax.mdo',
-				data: sendData,
-				async: false,
-				success: function(res){
+				type : 'POST',
+				url : '/getAnalysisSalesProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
 					response = res;
 				}
 			});
@@ -327,127 +335,347 @@
 		}
 
 		function drawSalesChart() {
-			// ajax로 보낼 데이터 셋팅하기
-			var sendData; 
+			var yearList = new Array();
+			$('#salesDate > option').each(function() {
+				if (this.selected) {
+					yearList.push($(this).val());
+				}
+			});
+
+			var sendData = {
+				'salesButton' : salesButton,
+				'yearList' : yearList
+			};
 			var response = requestSalesData(sendData);
-			// 위에서 응답 받은 결과 가공해야 함
+
 			var chart;
-			var data;
+			var data = new google.visualization.DataTable();
+			var options = {
+				series : {
+					0 : {
+						color : '#FF4242'
+					}
+				},
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "70%"
+				},
+				isStacked : false,
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'in'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
 
 			if (salesButton == 'year') {
-				chart = new google.visualization.ColumnChart(document.getElementById("sales-chart"));
-				
-				data = google.visualization.arrayToDataTable([ [ "월", "원", {
-					role : "annotation"
-				} ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-						[ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-						[ "5월", 980, 980 ], [ "6월", 872, 872 ],
-						[ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-						[ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-						[ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
-			} else {
-				chart = new google.visualization.LineChart(document.getElementById("sales-chart"));
+				chart = new google.visualization.ColumnChart(document
+						.getElementById("sales-chart"));
 
-				data = google.visualization.arrayToDataTable([ [ "월", "원", {
-					role : "annotation"
-				} ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-						[ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-						[ "5월", 980, 980 ], [ "6월", 872, 872 ],
-						[ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-						[ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-						[ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
+				options.legend = "none";
+
+				data.addColumn('string', '년');
+				data.addColumn('number', '원');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
+				for (var i = 0; i < yearList.length; i++) {
+					data.addRow([ yearList[i] + "년", response[yearList[i]],
+							response[yearList[i]] ]);
+				}
+
+			} else {
+				chart = new google.visualization.LineChart(document
+						.getElementById("sales-chart"));
+
+				options.legend = "top";
+
+				data.addColumn('string', '월');
+				for (var i = 0; i < yearList.length; i++) {
+					data.addColumn('number', yearList[i] + "년");
+				}
+
+				for (var i = 0; i < 12; i++) {
+					var monthArray = new Array();
+					monthArray.push((i + 1) + "월");
+					for (var j = 0; j < yearList.length; j++) {
+						monthArray.push(response[yearList[j]][i].totalSales);
+					}
+					data.addRow(monthArray);
+				}
 			}
 
 			var view = new google.visualization.DataView(data);
-			var options = {
-				series: {0: {color: '#FF4242'}},
-				align: 'center',
-				chartArea: {height: '90%', width: '85%'},
-				height: 500,
-				width: '100%',
-				bars: 'vertical',
-				height: 500,
-				width: '100%',
-				bar: {groupWidth : "70%"},
-				legend: {position: "none"},
-				isStacked: false,
-				animation: {startup : true, duration : 1000, easing : 'in'},
-				annotations: {textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}}
-			};
-			
+
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		} // sales Chart End
 
-		// product user
-		function drawProductUserChart() {
-			var data = google.visualization.arrayToDataTable([ [ "월", "명", {
-				role : "annotation"
-			} ], [ "1월", 2462, 2462 ], [ "2월", 1499, 1499 ],
-					[ "3월", 1895, 1895 ], [ "4월", 1322, 1322 ],
-					[ "5월", 980, 980 ], [ "6월", 872, 872 ],
-					[ "7월", 4569, 4569 ], [ "8월", 12285, 12285 ],
-					[ "9월", 13362, 13362 ], [ "10월", 15523, 15523 ],
-					[ "11월", 15569, 15569 ], [ "12월", 15883, 15883 ], ]);
-
-			var view = new google.visualization.DataView(data);
+		// subscriber chart start
+		$('.subscriber-button').click(function() {
+			$('.subscriber').prop('disaled', false);
+			$(this).prop('disabled', true);
+			if($(this).prop('id') == 'subscriberYear'){
+				subscriberButton = 'year';
+			}else{
+				subscriberButton = 'ticket';
+			}
+			drawSubscriberChart();
+		});
+		
+		function requestSubscriberData(sendData) {
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/analysisSubscriberProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
+					response = res;
+				}
+			});
+			return response;
+		}
+		
+		function drawSubscriberChart() {
+			var yearList = new Array();
+			$('#subscriberDate > option').each(function() {
+				if(this.selected){
+					yearList.push($(this).val());
+				}
+			});
+			
+			var sendData = {
+				'subscriberButton' : subscriberButton,
+				'yearlist' : yearList
+			}
+			
+			var response = requestSubscriberData(sendData);
+			
+			var chart;
+			var data = new google.visualization.DataTable();
 			var options = {
-				series: {0: {color: '#4A7C9F'}},
-				align: 'center',
-				chartArea: {height: '90%', width: '85%'},
-				height: 500,
-				width: '100%',
-				bars: 'vertical',
-				height: 500,
-				width: '100%',
-				bar: {groupWidth: "70%"},
-				legend: {position: "none"},
-				isStacked: false,
+				series : {
+					0 : {
+						color : '#4A7C9F'
+					}
+				},
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "70%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-				animation: {startup: true, duration: 1000, easing: 'in'},
-				annotations: {
-					textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'in'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
 				}
 			};
-			var chart = new google.visualization.LineChart(document.getElementById("product-user-chart"));
+			
+			
+			if(salesButton == 'year'){
+				chart = new google.visualization.ColumnChart(document.getElementById("subscriber-chart"));
+				options.legend = "none";
+				
+				data.addColumn('string', '년');
+				data.addColumn('number', '명');
+				data.addColumn({
+					type : 'number',
+					role : 'annotation'
+				});
+				
+				for(var i = 0; i < yearList.lengh; i++){
+					data.addRow([
+						yearList[i] + "년", response[yearList[i]], response[yearList[i]]
+					]);
+				}
+			} else{ //상품별
+				chart = new google.visualization.PieChart(document.getElementById("subcsriber-chart"));
+				options.legned = "top";
+				
+				data.addColumn('string', ''); //이용권
+				for(var i = 0; i < yearList.length; i++){
+					data.addColumn('string', yearList[i])
+				}
+				
+				for(var i = 0; i < )
+			}
+			
+			var chart = new google.visualization.LineChart(document
+					.getElementById("product-user-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		}
-		
-		// gender
-		function drawGenderChart() {
-			var data = $.ajax({
-				url : "/getAnalysisProcAjax.mdo",
-				dataType : "json",
-				async : false
-			}).responseText;
 
-			genderData = new google.visualization.DataTable(data);
+		// gender Chart Start
+		$('.gender-button').click(function() {
+			$('.gender-button').prop('disabled', false);
+			$(this).prop('disabled', true);
+			if ($(this).prop('id') == 'genderYear') {
+				genderButton = 'year';
+			} else {
+				genderButton = 'month';
+			}
+			drawGenderChart();
+		});
+
+		function requestGenderData(sendData) {
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/getAnalysisGenderProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res) {
+					response = res;
+				}
+			});
+			return response;
+		}
+		
+		function drawGenderChart() {
+			var yearList = new Array();
+			$('#genderDate > option').each(function() {
+				if (this.selected) {
+					yearList.push($(this).val());
+				}
+			});
+			
+			var sendData = {
+					'genderButton' : genderButton,
+					'yearList' : yearList
+				};
+			var response = requestGenderData(sendData);
+			
+			var chart;
+			var data = new google.visualization.DataTable();
 
 			var options = {
-				slices: {0: {color: '#9D8189'}, 1: {color: '#55828B'}},
-				align: 'center',
-				chartArea: {height: '80%', width: '85%'},
-				pieHole: 0.4,
-				bars: 'vertical',
-				height: 500,
-				width: '100%',
-				bar: {groupWidth: "70%"},
-				legend: {position: "top"},
-				isStacked: false,
+				slices : {
+					0 : {
+						color : '#9D8189'
+					},
+					1 : {
+						color : '#55828B'
+					}
+				},
+				align : 'center',
+				chartArea : {
+					height : '80%',
+					width : '85%'
+				},
+				pieHole : 0.4,
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "70%"
+				},
+				legend : {
+					position : "top"
+				},
+				isStacked : true,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
-				animation: {startup: true, duration: 1000, easing: 'linear'},
-				annotations: {
-					textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
 				}
 			};
-			var chart = new google.visualization.PieChart(document.getElementById("gender-chart"));
-			chart.draw(genderData, options);
+			
+			if (genderButton == 'year') {
+				chart = new google.visualization.ColumnChart(document
+						.getElementById("gender-chart"));
+
+				options.legend = "none";
+
+				data.addColumn('string', '성별');
+				data.addColumn('number', '여성');
+				data.addColumn('number', '남성');
+				
+				for (var i = 0; i < yearList.length; i++) {
+					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count,
+							response[yearList[i]][1].count ]);
+				}
+
+			} else {
+				chart = new google.visualization.LineChart(document
+						.getElementById("gender-chart"));
+
+				options.legend = "top";
+
+				data.addColumn('string', '월');
+				for (var i = 0; i < yearList.length; i++) {
+					data.addColumn('number', yearList[i] + "년");
+				}
+
+				for (var i = 0; i < 12; i++) {
+					var monthArray = new Array();
+					monthArray.push((i + 1) + "월");
+					for (var j = 0; j < yearList.length; j++) {
+						monthArray.push(response[yearList[j]][i].totalSales);
+					}
+					data.addRow(monthArray);
+				}
+			}
+
+			var view = new google.visualization.DataView(data);
+			
+			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
@@ -468,27 +696,44 @@
 
 			var view = new google.visualization.DataView(data);
 			var options = {
-				align: 'center',
-				chartArea: {height: '90%', width: '85%'},
-				height: 500,
-				width: '100%',
-				bar: {groupWidth: "65%"},
-				legend: {position: "none"},
-				isStacked: false,
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
-				animation: {startup: true, duration: 1000, easing: 'linear'},
-				annotations: {
-					textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
 				}
 			};
-			var chart = new google.visualization.ColumnChart(document.getElementById("member-age-chart"));
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById("member-age-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		}
-		
+
 		// movie view count
 		function drawMovieViewCountChart() {
 			var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
@@ -503,23 +748,40 @@
 
 			var view = new google.visualization.DataView(data);
 			var options = {
-				title: '누적 조회수 순위',
-				align: 'center',
-				chartArea: {height: '70%', width: '80%'},
-				bars: 'vertical',
-				height: 500,
-				width: '100%',
-				bar: {groupWidth: "65%"},
-				legend: {position: "none"},
+				title : '누적 조회수 순위',
+				align : 'center',
+				chartArea : {
+					height : '70%',
+					width : '80%'
+				},
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
 				isStacked : false,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
-				animation: {startup: true, duration: 1000, easing: 'linear'},
-				annotations: {
-					textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
 				}
 			};
-			var chart = new google.visualization.BarChart(document.getElementById("movie-view-count-chart"));
+			var chart = new google.visualization.BarChart(document
+					.getElementById("movie-view-count-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -540,23 +802,40 @@
 
 			var view = new google.visualization.DataView(data);
 			var options = {
-				title: '최근 30일내 인기 영화',
-				align: 'center',
-				chartArea: {height: '70%', width: '80%'},
-				bars: 'vertical',
-				height: 500,
-				width: '100%',
-				bar: {groupWidth: "65%"},
-				legend: {position: "none"},
-				isStacked: false,
+				title : '최근 30일내 인기 영화',
+				align : 'center',
+				chartArea : {
+					height : '70%',
+					width : '80%'
+				},
+				bars : 'vertical',
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
-				animation: {startup: true, duration: 1000, easing: 'linear'},
-				annotations: {
-					textStyle: {fontSize: 15, bold: true, italic: true, opacity: 0.8}
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
 				}
 			};
-			var chart = new google.visualization.BarChart(document.getElementById("movie-recently-chart"));
+			var chart = new google.visualization.BarChart(document
+					.getElementById("movie-recently-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -566,9 +845,9 @@
 </body>
 <style>
 .btn-info:disabled {
-	background-color: #138496;
-	border-color: #117a8b;
-	opacity: 1;
+   background-color: #138496;
+   border-color: #117a8b;
+   opacity: 1;
 }
 </style>
 </html>

@@ -41,7 +41,6 @@ public class AnalysisController {
 		return mav;
 	}
 
-	//매출분석
 	@RequestMapping("/getAnalysisSalesProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> getAnalysisSalesProcAjax(@RequestBody HashMap<String, Object> map) {
@@ -52,6 +51,12 @@ public class AnalysisController {
 	@ResponseBody
 	public Map<String, Object> getAnalysisGenderProcAjax(@RequestBody HashMap<String, Object> map) {
 		return analysisGenderService.analysisGender(map);
+	}
+	
+	@RequestMapping("/analysisSubscriberProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisSubscriberService.analysisSubscriberService(map);
 	}
 		
 		
