@@ -540,7 +540,6 @@
 					data.addColumn('string', yearList[i])
 				}
 				
-				
 			}
 			
 			var view = new google.visualization.DataView(data);
