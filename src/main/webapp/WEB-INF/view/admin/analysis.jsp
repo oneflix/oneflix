@@ -534,12 +534,12 @@
 			var data = new google.visualization.DataTable();
 
 			var options = {
-				slices : {
+				series : {
 					0 : {
-						color : '#9D8189'
+						color : '#DC3912'
 					},
 					1 : {
-						color : '#55828B'
+						color : '#3366CC'
 					}
 				},
 				align : 'center',
@@ -586,28 +586,43 @@
 				data.addColumn('number', '남성');
 				
 				for (var i = 0; i < yearList.length; i++) {
+					if (response[yearList[i]].length == 0) {
+						data.addRow([ yearList[i] + "년", 0, 0 ]);
+						continue;
+					} else if (response[yearList[i]].length == 1) {
+						if (response[yearList[i]][0].gender == 'F') {
+							data.addRow([ yearList[i] + "년", response[yearList[i]][0].count, 0 ]);
+						} else {
+							data.addRow([ yearList[i] + "년", 0, response[yearList[i]][1].count ]);
+						}
+						continue;
+					}
 					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count,
 							response[yearList[i]][1].count ]);
 				}
 
 			} else {
-				chart = new google.visualization.LineChart(document
-						.getElementById("gender-chart"));
+				chart = new google.visualization.LineChart(document.getElementById("gender-chart"));
 
 				options.legend = "top";
 
 				data.addColumn('string', '월');
-				for (var i = 0; i < yearList.length; i++) {
-					data.addColumn('number', yearList[i] + "년");
-				}
+				data.addColumn('number', "여성");
+				data.addColumn('number', "남성");
 
 				for (var i = 0; i < 12; i++) {
-					var monthArray = new Array();
-					monthArray.push((i + 1) + "월");
-					for (var j = 0; j < yearList.length; j++) {
-						monthArray.push(response[yearList[j]][i].totalSales);
+					if (response[yearList[0]][i].length == 0) {
+						data.addRow([ (i + 1) + "월", 0, 0 ]);
+						continue;
+					} else if (response[yearList[0]][i].length == 1) {
+						if (response[yearList[0]][i][0].gender == 'F') {
+							data.addRow([ (i + 1) + "월", response[yearList[0]][i][0].count, 0 ]);
+						} else {
+							data.addRow([ (i + 1) + "월", 0, response[yearList[0]][i][1].count ]);
+						}
+						continue;
 					}
-					data.addRow(monthArray);
+					data.addRow([(i + 1) + "월", response[yearList[0]][i][0].count, response[yearList[0]][i][1].count ]);
 				}
 			}
 
