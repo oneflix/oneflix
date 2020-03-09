@@ -55,4 +55,21 @@
 		<result column="gender" property="gender" />
 		<result column="join_date" property="joinDate" />
 	</resultMap>
+	
+	<select id="analysisSubscriberTicket" parameterType="java.util.HashMap" resultMap="SubscriberTicketList">
+		SELECT NVL(COUNT(*),0) count,
+			t.ticket_name ticket_name
+		FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id
+		AND payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+							AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		GROUP BY t.ticket_id, t.ticket_name;
+	</select>
+	
+	<select id="analysisSubscriberYear" parameterType="sales" resultMap="int">
+		SELECT NVL(count(*),0) count
+		FROM sales
+		WHERE payment_date payment_date BETWEEN TO_DATE(#{startDate}||'000000','YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+	</select>
 </mapper>

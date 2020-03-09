@@ -52,6 +52,12 @@ public class AnalysisController {
 	public Map<String, Object> getAnalysisGenderProcAjax(@RequestBody HashMap<String, Object> map) {
 		return analysisGenderService.analysisGender(map);
 	}
+	
+	@RequestMapping("/analysisSubscriberProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisSubscriberService.analysisSubscriberService(map);
+	}
 		
 		
 		
