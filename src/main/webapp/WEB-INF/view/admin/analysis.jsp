@@ -581,7 +581,6 @@
 				
 			}
 			
-			
 			var view = new google.visualization.DataView(data);
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {

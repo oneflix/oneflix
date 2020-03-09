@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="client/images/icons/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
    href="client/vendor/bootstrap/css/bootstrap.min.css">
@@ -55,7 +55,7 @@
 				</ul>
 		</nav>
 	<main class="css-1a4c3t1-Main e19xg79h5">
-	<div src="#" class="css-9e7b81-Self el4vci00">
+	<div class="css-9e7b81-Self el4vci00">
 
      <main class="css-1494bd8-Self edt52et0">
      	<div class="css-9tzvq5-Inner edt52et4">
@@ -74,7 +74,7 @@
      class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      </div>
 <div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-<button type="submit" id="loginBtn" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
+<button type="submit" id="loginBtn" disabled class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
 </div>
 	</form>
 		<div class="css-tssyq1-LoginBlock edt52et1">
@@ -111,7 +111,7 @@
    			</div>
    			</main>
    			</div>
-   		<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
+   		<div class="css-8emhun-BackScreen e1rl100y0"></div>
   	</div>
  
    <!--===============================================================================================-->
@@ -154,11 +154,17 @@
 	    if (joinResult == "success") {
     	alert("회원가입이 완료되었습니다.");
 		} 
+	    var findPassResult = "${findPassResult}";
+	    if (findPassResult == "success") {
+    	alert("임시비밀번호 메일 전송이 완료되었습니다.");
+		} 
 	    
 	    var result = "${result}";
   	    if (result == "fail") {
         alert("로그인 정보가 일치하지 않습니다.");
  	    } 
+  	    
+  	    var find
 	    $('.oneflix-input').keyup(function(){
 	       var re;
 	       var target = $(this).val();
