@@ -6,17 +6,27 @@
 
 	<insert id="insertMovieAlarm" parameterType="java.util.HashMap">
 		<foreach collection="newAlarmList" item="alarm" open="DECLARE BEGIN" close="; END;" separator=";">
-			INSERT INTO alarm (alarm_id, alarm_type, email, send_date, read_check, alarm_count)
+			INSERT INTO alarm (alarm_id, alarm_type, email, send_date, alarm_count)
 			VALUES((SELECT NVL(MAX(alarm_id), 0) + 1 FROM alarm),
-			'movie', #{alarm.email}, SYSDATE, 'n', #{alarm.alarmCount})
+			'movie', #{alarm.email}, SYSDATE, #{alarm.alarmCount})
 		</foreach>
 	</insert>
+	
+	<delete id="deleteAlarm" parameterType="alarm">
+		DELETE FROM alarm
+		WHERE alarm_type = #{alarmType} AND email = #{email}
+	</delete>
 
-	<resultMap type="alarm" id="alarmList">
-		<id property="alarmId" column="alarm_id"></id>
-		<result property="alarmType" column="alarm_type" />
-		<result property="email" column="email" />
-		<result property="sendDate" column="send_date" />
-		<result property="readCheck" column="read_check" />
+	<resultMap type="java.util.HashMap" id="totalAlarmCountList">
+		<id column="alarm_type" property="alarmType"/>
+		<result javaType="int" column="alarm_count" property="alarmCount"/>
 	</resultMap>
+	
+	<select id="getTotalAlarmCount" parameterType="member" resultMap="totalAlarmCountList">
+		SELECT NVL(SUM(alarm_count), 0) alarm_count, alarm_type
+		FROM alarm
+		WHERE email = #{email}
+		GROUP BY alarm_type
+		ORDER BY alarm_type
+	</select>
 </mapper>

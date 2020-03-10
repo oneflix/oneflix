@@ -20,7 +20,6 @@ import com.main.oneflix.genre.vo.GenreVO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.review.service.GetAverageScoreService;
 import com.main.oneflix.review.service.GetReviewListService;
-import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
 import com.main.oneflix.watch.service.GetCountWatchGenreService;
 import com.main.oneflix.watch.service.GetCountWatchService;

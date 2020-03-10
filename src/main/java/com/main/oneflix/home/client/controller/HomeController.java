@@ -1,6 +1,7 @@
 package com.main.oneflix.home.client.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.oneflix.alarm.service.GetTotalAlarmCountService;
 import com.main.oneflix.genre.service.GetGenreListService;
 import com.main.oneflix.genre.vo.GenreVO;
 import com.main.oneflix.member.vo.MemberVO;
@@ -29,10 +31,19 @@ public class HomeController {
 	private GetGenreListService getGenreListService;
 	@Autowired
 	private GetTicketListService getTicketListService;
+	@Autowired
+	private GetTotalAlarmCountService getTotalAlarmCountService;
 	
 	@RequestMapping("/homeProc.do")
 	public ModelAndView homeProc(MovieVO vo, ModelAndView mav, HttpSession session) {
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		if (session.getAttribute("totalAlarmCount") == null) {
+			Map<String, Integer> totalAlarmCount = getTotalAlarmCountService.getTotalAlarmCount(member);
+			session.setAttribute("movieAlarmCount", totalAlarmCount.get("movie"));
+			session.setAttribute("replyAlarmCount", totalAlarmCount.get("reply"));
+		}
+		
 		vo.setEmail(member.getEmail());
 		// 값 셋팅하기
 		vo.setMovieType("main");		

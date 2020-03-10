@@ -217,14 +217,33 @@
                                     <div class="dropdown" style="height: 43px;">
                                         <button class="btn dropdown-toggle bell-button" type="button"
                                             data-toggle="dropdown">
-                                            <i class="far fa-bell"></i><span class="badge bell-badge">${totalAlarmCount}</span>
+                                            <i class="far fa-bell"></i>
+                                            <c:if test="${movieAlarmCount + replyAlarmCount ne 0}">
+                                            	<span class="badge bell-badge">${movieAlarmCount + replyAlarmCount}</span>
+                                            </c:if>
                                         </button>
                                         <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
                                         <ul class="dropdown-menu bell-menu">
-                                            <li><div><a href="/getMovieListProc.do?movieType=new">
-                                            	<span>새로 올라온 작품</span>
-                                            	<span class="badge movie-badge">${newMovieAlarmCount}</span></a></div></li>
-                                            <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
+                                            <li class="alarm-li">
+                                            	<div>
+	                                            	<a>
+		                                            	<span>새로 올라온 작품</span>
+		                                            	<c:if test="${movieAlarmCount ne 0}">
+		                                            		<span id="movie-alarm" class="badge alarm-badge">${movieAlarmCount}</span>
+		                                            	</c:if>
+	                                            	</a>
+                                            	</div>
+                                            </li>
+                                            <li class="alarm-li">
+                                            	<div>
+                                            		<a>
+		                                            	<span>답변 알림</span>
+		                                            	<c:if test="${replyAlarmCount ne 0}">
+				                                            <span id="reply-alarm" class="badge alarm-badge">${replyAlarmCount}</span>
+		    											</c:if>
+		    										</a>
+                                            	</div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
@@ -515,6 +534,27 @@
 		$('.info-button').mouseleave(function(){
 			$(this).children('img').prop('src','client/images/icons/info.png');
 		});
+		
+		$('.alarm-li').click(function(){
+			if ($('.alarm-li').find('.alarm-badge').length != 0) {
+				var email = "${member.email}";
+				var alarmType = $('.alarm-li').find('.alarm-badge').prop('id');
+				alarmType = alarmType.split('-')[0];
+				var sendData = {'alarmType': alarmType, 'email': email};
+				$.ajax({
+					type: 'POST',
+					url: '/deleteAlarmProcAjax.do'
+					data: sendData
+				});
+				
+				if (alarmType == 'movie') {
+					window.location.href = '/getMovieListProc.do?movieType=new';
+				} else {
+					window.location.href = '/inquiryList.do';
+				}
+			}
+		});
+		
 		function goWatchMovie(movieId) {
 			window.location.href = "#?movieId=" + movieId;
 		}
