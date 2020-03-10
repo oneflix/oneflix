@@ -69,7 +69,8 @@
                                         <div class="css-unatsl-Self eu52ful0">
                                            <input id="newNick" name="newNick"
                                                 placeholder="닉네임을 입력해주세요." autocomplete="off"
-                                                class="css-5kai6j-StyledField eu52ful1" type="nick"></div>
+                                                class="css-5kai6j-StyledField eu52ful1" type="nick">
+                                                </div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims33 next-form">
