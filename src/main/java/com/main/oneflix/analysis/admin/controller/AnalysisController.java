@@ -18,6 +18,7 @@ import com.main.oneflix.analysis.service.AnalysisMovieRankService;
 import com.main.oneflix.analysis.service.AnalysisSalesService;
 import com.main.oneflix.analysis.service.AnalysisSubscriberService;
 
+
 @Controller
 public class AnalysisController {
 
