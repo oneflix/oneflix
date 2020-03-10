@@ -50,7 +50,6 @@
 		</section>
 	</c:forEach>
 
-
 	<footer class="css-1m3aned-CancelFooter earddrg3">
 		그래도 탈퇴하시려면 아래 버튼을 눌러주세요.<br>다시 만날 날을 기다릴게요.
 		<div class="css-121bqo8-CancelButtons earddrg2">

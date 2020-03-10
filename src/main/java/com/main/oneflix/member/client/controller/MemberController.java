@@ -47,7 +47,6 @@ public class MemberController {
 	public ModelAndView join(MemberVO vo,ModelAndView mav) {
 		vo.setKakao(vo.getKakao());
 		vo.setNaver(vo.getNaver());
-		vo.setGoogle(vo.getGoogle());
 		mav.addObject("member", vo);
 		mav.setViewName("join");
 		return mav;
@@ -57,7 +56,6 @@ public class MemberController {
 	public ModelAndView joinProc(MemberVO vo, ModelAndView mav) {
 		vo.setKakao(vo.getKakao());
 		vo.setNaver(vo.getNaver());
-		vo.setGoogle(vo.getGoogle());
 		
 		// member 나이계산
 		int memberAge = 0;
@@ -75,6 +73,7 @@ public class MemberController {
 	}
 	@RequestMapping("/getMemberProc.do")
 	public ModelAndView getMemberProc(ModelAndView mav) {
+		
 		mav.setViewName("updateMember");
 		return mav;
 	}
@@ -172,7 +171,6 @@ public class MemberController {
 	@RequestMapping("/deactivateMailProcAjax.do")
 	@ResponseBody
 	public String deactivateMail(MemberVO vo) {
-		
 		try {
 			InquiryVO inquiry = new InquiryVO();
 			inquiry.setEmail(vo.getEmail());
@@ -185,7 +183,6 @@ public class MemberController {
 					"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
 			emailService.sendEmail(inquiry);
 			return "success";
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "fail";
