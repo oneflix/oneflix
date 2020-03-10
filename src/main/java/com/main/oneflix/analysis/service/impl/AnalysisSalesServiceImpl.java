@@ -24,7 +24,6 @@ public class AnalysisSalesServiceImpl implements AnalysisSalesService{
 		String salesButton = (String) map.get("salesButton");
 		@SuppressWarnings("unchecked")
 		List<String> yearList = (List<String>) map.get("yearList");
-
 		SalesVO sales = new SalesVO();
 		if(salesButton.equals("year")) {
 			for(String year : yearList) {

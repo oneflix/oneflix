@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import com.main.oneflix.member.dao.MemberDAO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.movie.vo.MovieVO;
-import com.main.oneflix.sales.dao.SalesDAO;
 import com.main.oneflix.sales.service.ExpiryCheckService;
-import com.main.oneflix.sales.vo.SalesVO;
 
 @Service
 public class ExpiryCheckServiceImpl implements ExpiryCheckService {

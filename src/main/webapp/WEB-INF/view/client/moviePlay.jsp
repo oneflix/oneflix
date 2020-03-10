@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width">
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <style>
 body {
 	background-color: rgb(0, 0, 0);
