@@ -1,6 +1,8 @@
 package com.main.oneflix.sales.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +21,11 @@ public class ExpiryCheckServiceImpl implements ExpiryCheckService {
 		
 	@Override
 	public void expiryCheck() {
-		
 		List<String> expiryEmailList = salesDAO.expiryCheck();
 		salesDAO.updateExpiry();
-		
-		
-		
-
+		Map<String, List<String>> map = new HashMap<>();
+		map.put("emailList", expiryEmailList);
+		memberDAO.updateTicketExpiry(map);
 	}
 
 }

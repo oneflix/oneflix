@@ -2,6 +2,7 @@ package com.main.oneflix.member.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.main.oneflix.member.vo.MemberVO;
 
@@ -18,5 +19,6 @@ public interface MemberDAO {
 	//카카오아이디집어넣기 
 	void insertKakao(MemberVO vo);
 
+	void updateTicketExpiry(Map<String, List<String>> map);
 
 }
