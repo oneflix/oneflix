@@ -25,18 +25,12 @@
         <property name="cronExpression" value="0 0 3 * * ?" />
     </bean>
 
-    <!-- 스케줄러 -->
-    <bean id="mainScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="triggers">
-            <list><ref bean="mainTrigger" /></list>
-        </property>
-    </bean>
 	<!-- ========================================================================================================== -->
 
 			<!-- screen 잡  -->
     <bean id="screenJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref= "salesService" />
-        <property name="targetMethod" value="insertSales" />
+        <property name="targetObject" ref= "expiryCheckServiceImpl" />
+        <property name="targetMethod" value="expiryCheck" />
         <property name="concurrent" value="false" />
     </bean>
 
@@ -46,10 +40,15 @@
         <property name="cronExpression" value="0 0 3 * * ?" />
     </bean>
 
-    <!-- Screen 스케줄러 -->
-    <bean id="screenScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+ 	<!-- 스케줄러 -->
+    <bean id="mainScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
-            <list><ref bean="screenTrigger" /></list>
+            <list>
+            	<ref bean="mainTrigger" />
+            	<ref bean="screenTrigger" />
+            </list>
         </property>
     </bean>
+
 </beans>

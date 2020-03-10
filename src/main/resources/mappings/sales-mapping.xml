@@ -106,11 +106,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="salesStatus == 'expired'">
-				<![CDATA[
-					AND expiry_date >= TRUNC(SYSDATE - 1)
-				]]>
-			</if>
+
 	</select>
 	
 	<!-- 총 게시글 개수 출력 -->
@@ -120,6 +116,15 @@
 		<if test="email != null">
 			AND email = #{email}
 		</if>
+	</select>
+	
+ 	<select id="expiryCheck" parameterType="sales" resultType="int">
+		SELECT email FROM sales
+		WHERE
+		expiry_date = TRUNC(SYSDATE - 1)
+		UPDATE sales_status = 'expired',
+		AND email = #{email}
+		AND ticket_id => 0
 	</select>
 	
 </mapper>

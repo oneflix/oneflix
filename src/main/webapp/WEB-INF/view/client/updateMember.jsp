@@ -92,7 +92,8 @@
                                         <div class="css-unatsl-Self eu52ful0">
                                            <input id="newNick" name="newNick"
                                                 placeholder="닉네임을 입력해주세요." autocomplete="off"
-                                                class="css-5kai6j-StyledField eu52ful1" type="nick"></div>
+                                                class="css-5kai6j-StyledField eu52ful1" type="nick">
+                                                </div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims33 next-form">
@@ -147,6 +148,11 @@
    	<!-- 네이버로그인 -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
+
+
 
    <script type="text/javascript">
       function validate() {
