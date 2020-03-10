@@ -1,7 +1,6 @@
 package com.main.oneflix.analysis.admin.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.analysis.service.AnalysisAgeService;
 import com.main.oneflix.analysis.service.AnalysisGenderService;
+import com.main.oneflix.analysis.service.AnalysisGenreCountService;
+import com.main.oneflix.analysis.service.AnalysisGenreRankService;
+import com.main.oneflix.analysis.service.AnalysisMovieRankService;
 import com.main.oneflix.analysis.service.AnalysisPopularMovieService;
 import com.main.oneflix.analysis.service.AnalysisSalesService;
 import com.main.oneflix.analysis.service.AnalysisSubscriberService;
 import com.main.oneflix.analysis.service.AnalysisViewCountService;
-import com.main.oneflix.sales.service.GetTotalSalesService;
 
 @Controller
 public class AnalysisController {
@@ -34,6 +35,12 @@ public class AnalysisController {
 	private AnalysisSubscriberService analysisSubscriberService;
 	@Autowired
 	private AnalysisSalesService analysisSalesService;
+	@Autowired
+	private AnalysisMovieRankService analysisMovieRankService;
+	@Autowired
+	private AnalysisGenreRankService analysisGenreRankService;
+	@Autowired
+	private AnalysisGenreCountService analysisGenreCountService;
 
 	@RequestMapping("/analysis.mdo")
 	public ModelAndView analysis(ModelAndView mav) {
@@ -58,7 +65,25 @@ public class AnalysisController {
 	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisSubscriberService.analysisSubscriberService(map);
 	}
-		
+/*	
+	@RequestMapping("/analysisMovieRankProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisMovieRankProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisMovieRankService.analysisMovieRank(map);
+	}
+	
+	@RequestMapping("/analysisGenreRankProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisGenreRankProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisGenreRankService.analysisGenreRank(map);
+	}
+	
+	@RequestMapping("/analysisGenreCountProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisGenreCountProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisGenreCountService.analysisGenreCount(map);
+	}
+*/		
 		
 		
 
