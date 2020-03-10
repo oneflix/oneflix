@@ -784,6 +784,10 @@
     left: -9px;
     margin-right: -22px;
   }
+  .alarm-badge {
+  	float: right;
+  	margin-right: 10px;
+  }
   .badge:empty {
     display: none;
   }

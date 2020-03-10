@@ -9,7 +9,8 @@
 		base-package="com.main.oneflix.payment.client.controller
 			com.main.oneflix.home.client.controller
 			com.main.oneflix.sales.client.controller
-			com.main.oneflix.mypage.movie.controller">
+			com.main.oneflix.mypage.movie.controller
+			com.main.oneflix.alarm.client.controller">
 	</context:component-scan>
 
 </beans>
