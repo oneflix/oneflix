@@ -47,7 +47,6 @@ public class MemberController {
 	public ModelAndView join(MemberVO vo,ModelAndView mav) {
 		vo.setKakao(vo.getKakao());
 		vo.setNaver(vo.getNaver());
-		vo.setGoogle(vo.getGoogle());
 		mav.addObject("member", vo);
 		mav.setViewName("join");
 		return mav;
@@ -57,7 +56,6 @@ public class MemberController {
 	public ModelAndView joinProc(MemberVO vo, ModelAndView mav) {
 		vo.setKakao(vo.getKakao());
 		vo.setNaver(vo.getNaver());
-		vo.setGoogle(vo.getGoogle());
 		
 		// member 나이계산
 		int memberAge = 0;

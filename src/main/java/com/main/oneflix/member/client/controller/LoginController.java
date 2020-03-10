@@ -49,12 +49,6 @@ public class LoginController {
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 
-	// 구글 로그인
-	@Autowired
-	private GoogleConnectionFactory googleConnectionFactory;
-	@Autowired
-	private OAuth2Parameters googleOAuth2Parameters;
-
 	@Autowired
 	private GetMemberService getMemberService;
 	@Autowired
@@ -76,12 +70,8 @@ public class LoginController {
 	public ModelAndView login(ModelAndView mav, HttpSession session) {
 		// 네이버아이디 인증 URL 생성
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		// 구글아이디 인증 URL 생성
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		String googleAuthUrl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 
 		mav.addObject("naverUrl", naverAuthUrl);
-		mav.addObject("googleUrl", googleAuthUrl);
 		mav.setViewName("login");
 		return mav;
 	}
@@ -140,43 +130,6 @@ public class LoginController {
 		return mav;
 	}
 
-	@RequestMapping("/googleLoginProc.do")
-	public ModelAndView googleLoginProc(ModelAndView mav, @RequestParam String code, HttpSession session) {
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(),
-				null);
-
-		String accessToken = accessGrant.getAccessToken();
-		Long expireTime = accessGrant.getExpireTime();
-		if (expireTime != null && expireTime < System.currentTimeMillis()) {
-			accessToken = accessGrant.getRefreshToken();
-			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
-		}
-		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
-		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-
-		PlusOperations plusOperations = google.plusOperations();
-		Person profile = plusOperations.getGoogleProfile();
-
-		// 받아온 데이터 처리
-		String googleEmail = profile.getAccountEmail();
-		MemberVO vo = new MemberVO();
-		vo.setGoogle(googleEmail);
-		// google메일로 찾기
-		MemberVO member = getMemberService.getMember(vo);
-		// 연동까지 이미 돼있는 경우
-		if (member != null) {
-			// 4.파싱 데이터 세션으로 저장
-			session.setAttribute("member", member); // 세션 생성
-			mav.setViewName("redirect:/homeProc.do");
-			// 가입이 안돼있는 경우=>회원가입 or 가입은 돼있지만 연동이 안된 경우=>로그인
-		} else {
-			mav.addObject("member", vo);
-			mav.setViewName("connectSNS");
-		}
-		return mav;
-	}
-
 	// 소셜 연동하기
 	@RequestMapping("/connectSNSLoginProc.do")
 	public ModelAndView connectSNSLoginProc(MemberVO vo, ModelAndView mav, HttpSession session) {
@@ -217,14 +170,18 @@ public class LoginController {
 				InquiryVO inquiry = new InquiryVO();
 				inquiry.setEmail(findPassEmail);
 				inquiry.setReplyTitle("[ONEFLIX] 새로운 비밀번호를 설정해주세요.");
-				inquiry.setReplyContent(
-						"<h2><strong>새 비밀번호 설정</strong></h2>\r\n" + 
-						"<p>안녕하세요, ONEFLIX입니다.</p>\r\n" + 
-						"<p>임시비밀번호는 ["+tempPass+"]입니다.<br/>로그인 후 새 비밀번호를 설정해주세요.</p>\r\n" + 
-						"<p><a href=\"http://localhost:8080/login.do\">ONEFLIX로 가기</a></p>\r\n" + 
+				inquiry.setReplyContent("<h2><strong>새 비밀번호 설정</strong></h2>\r\n" + 
+						"<p>"+vo.getNick()+"님 안녕하세요.</p>\r\n" + 
+						"<p>임시비밀번호는 ["+tempPass+"]입니다.<br/>로그인 후 새 비밀번호를 설정해주세요.</p>" +
+						"<br>" +
+						"<p>" +
+							"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/login.do\">" +
+								"<button type=\"button\" style=\"width: 150px; height: 80px; color: #FFF; background: #080808\">ONEFLIX로 가기</button>" + 
+							"</a>" +
+						"</p>" +
+						"<br>" + 
 						"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
 						"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
-
 				emailService.sendEmail(inquiry); // vo (메일관련 정보)를 sendMail에 저장함
 				vo.setUpdateType("info");
 				vo.setPass(tempPass);
