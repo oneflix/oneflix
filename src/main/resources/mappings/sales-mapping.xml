@@ -125,13 +125,18 @@
  	<select id="expiryCheck" resultMap="expiryEmailList">
 		SELECT email FROM sales
 		WHERE sales_status != 'expired'
-		expiry_date = TRUNC(SYSDATE - 1)
+			<![CDATA[
+				AND expiry_date >= TRUNC(SYSDATE - 1)
+			]]>
 	</select>
 	
 	<update id="updateExpiry">
 		UPDATE sales SET
 		sales_status = 'expired'
-		WHERE expiry_date = TRUNC(SYSDATE - 1)
+		WHERE 
+		<![CDATA[
+			expiry_date >= TRUNC(SYSDATE - 1)
+		]]>
 	</update>
 	
 </mapper>
