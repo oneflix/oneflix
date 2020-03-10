@@ -36,6 +36,8 @@ public class MemberVO {
 	private String naver;
 
 	private String updateType;
+	private String newNick;
+	private String newPass;
 
 	public int getRnum() {
 		return rnum;
@@ -275,6 +277,22 @@ public class MemberVO {
 
 	public void setUpdateType(String updateType) {
 		this.updateType = updateType;
+	}
+
+	public String getNewNick() {
+		return newNick;
+	}
+
+	public void setNewNick(String newNick) {
+		this.newNick = newNick;
+	}
+
+	public String getNewPass() {
+		return newPass;
+	}
+
+	public void setNewPass(String newPass) {
+		this.newPass = newPass;
 	}
 
 }

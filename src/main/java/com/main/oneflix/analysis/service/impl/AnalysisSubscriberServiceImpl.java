@@ -20,6 +20,7 @@ public class AnalysisSubscriberServiceImpl implements AnalysisSubscriberService 
 
 	@Override
 	public Map<String, Object> analysisSubscriberService(Map<String, Object> map) {
+		System.out.println("map : " + map);
 		Map<String, Object> response = new HashMap<String, Object>();
 		String subscriberButton = (String) map.get("subscriberButton");
 		@SuppressWarnings("unchecked")
@@ -40,9 +41,12 @@ public class AnalysisSubscriberServiceImpl implements AnalysisSubscriberService 
 				String yearPlusOne = Integer.toString(Integer.parseInt(year) + 1);
 				sales.setEndDate(yearPlusOne + "0101");
 				List<Map<String, Object>> tmpList = new ArrayList<Map<String,Object>>();
-				
+				tmpList = analysisDAO.analysisSubscriberTicket(sales);
+				System.out.println("tmpList : " + tmpList);
+				response.put(year, tmpList);
 			}
 		}
+		System.out.println("response : " + response);
 		return response;
 	}
 

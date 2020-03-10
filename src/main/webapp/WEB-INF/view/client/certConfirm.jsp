@@ -7,6 +7,7 @@
 <title>ONEFLIX</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!--===============================================================================================-->
 <style type="text/css">
 html {
@@ -183,7 +184,7 @@ h2 {
     	<h2 class="css-11oxl1h-Header el4vhyk4">이메일 인증 완료</h2>
     	<div class="css-1hltgl-Body el4vhyk1">이메일 인증을 완료했습니다</div></div>
     	<div class="css-1l6szhg-Buttons el4vhyk3">
-    	<button onClick="location.href='/oneflix.do'" class="css-1oikitj-Button el4vhyk2">닫기</button>
+    	<button onclick="self.close()" class="css-1oikitj-Button el4vhyk2">닫기</button>
     	</div></div></div></div></div>
     	
 <script type="text/javascript">    	

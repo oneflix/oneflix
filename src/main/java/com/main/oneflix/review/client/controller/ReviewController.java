@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.like.service.GetReviewLikeListService;
-import com.main.oneflix.like.vo.ReviewLikeVO;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.review.service.DeleteReviewService;
 import com.main.oneflix.review.service.GetReviewListService;
@@ -73,7 +71,6 @@ public class ReviewController {
 
 	@RequestMapping("/getReviewListProc.do")
 	public ModelAndView getReviewListProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
-		System.out.println("reivewListProc");
 		vo.setStart(1);
 		vo.setEnd(10);
 		MemberVO member = (MemberVO) session.getAttribute("member");
