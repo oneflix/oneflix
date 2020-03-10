@@ -10,8 +10,7 @@
 			com.main.oneflix.dashboard.admin.controller
 			com.main.oneflix.help.notice.admin.controller
 			com.main.oneflix.help.faq.admin.controller
-			com.main.oneflix.sales.admin.controller
-			com.main.oneflix.alarm.controller">
+			com.main.oneflix.sales.admin.controller">
 	</context:component-scan>
 
 </beans>

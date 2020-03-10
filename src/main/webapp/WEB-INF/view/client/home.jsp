@@ -201,7 +201,6 @@
                                 </button>
                                 <ul class="dropdown-menu hamburger-menu">
                                     <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
-                                    <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
                                     <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
                                     <li><div class="divider"></div></li>
                                     <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
@@ -228,9 +227,7 @@
                                             	<div>
 	                                            	<a>
 		                                            	<span>새로 올라온 작품</span>
-		                                            	<c:if test="${movieAlarmCount ne 0}">
-		                                            		<span id="movie-alarm" class="badge alarm-badge">${movieAlarmCount}</span>
-		                                            	</c:if>
+		                                            	<span id="movie-alarm" class="badge alarm-badge">${movieAlarmCount}</span>
 	                                            	</a>
                                             	</div>
                                             </li>
@@ -238,9 +235,7 @@
                                             	<div>
                                             		<a>
 		                                            	<span>답변 알림</span>
-		                                            	<c:if test="${replyAlarmCount ne 0}">
-				                                            <span id="reply-alarm" class="badge alarm-badge">${replyAlarmCount}</span>
-		    											</c:if>
+				                                        <span id="reply-alarm" class="badge alarm-badge">${replyAlarmCount}</span>
 		    										</a>
                                             	</div>
                                             </li>
@@ -515,6 +510,16 @@
     		if (purchasedTicket != 0) {
     			$('.ticket-header').css('display', 'none');
     		}
+    		
+    		var movieAlarmCount = "${movieAlarmCount}";
+    		var replyAlarmCount = "${replyAlarmCount}";
+    		
+    		if (movieAlarmCount == 0) {
+    			$('#movie-alarm').empty();
+    		}
+    		if (replyAlarmCount == 0) {
+    			$('#reply-alarm').empty();
+    		}
     	});
     
 		$('.swiper-button-next').click(function(){
@@ -536,23 +541,26 @@
 		});
 		
 		$('.alarm-li').click(function(){
-			if ($('.alarm-li').find('.alarm-badge').length != 0) {
+			var alarmType = $(this).find('.alarm-badge').prop('id');
+			alarmType = alarmType.split('-')[0];
+			
+			if ($(this).find('.alarm-badge').is(':not(:empty)')) {
 				var email = "${member.email}";
-				var alarmType = $('.alarm-li').find('.alarm-badge').prop('id');
-				alarmType = alarmType.split('-')[0];
 				var sendData = {'alarmType': alarmType, 'email': email};
 				$.ajax({
 					type: 'POST',
-					url: '/deleteAlarmProcAjax.do'
+					url: '/deleteAlarmProcAjax.do',
+					async: false,
 					data: sendData
 				});
-				
-				if (alarmType == 'movie') {
-					window.location.href = '/getMovieListProc.do?movieType=new';
-				} else {
-					window.location.href = '/inquiryList.do';
-				}
 			}
+			
+			if (alarmType == 'movie') {
+				window.location.href = '/getMovieListProc.do?movieType=new';
+			} else {
+				window.location.href = '/getInquiryListProc.do';
+			}
+			
 		});
 		
 		function goWatchMovie(movieId) {

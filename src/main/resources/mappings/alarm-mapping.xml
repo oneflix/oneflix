@@ -22,7 +22,7 @@
 		<result javaType="int" column="alarm_count" property="alarmCount"/>
 	</resultMap>
 	
-	<select id="getTotalAlarmCount" parameterType="member" resultMap="totalAlarmCountList">
+	<select id="getTotalAlarmCount" parameterType="string" resultMap="totalAlarmCountList">
 		SELECT NVL(SUM(alarm_count), 0) alarm_count, alarm_type
 		FROM alarm
 		WHERE email = #{email}

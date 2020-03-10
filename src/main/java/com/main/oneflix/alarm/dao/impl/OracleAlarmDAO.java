@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.main.oneflix.alarm.dao.AlarmDAO;
 import com.main.oneflix.alarm.vo.AlarmVO;
-import com.main.oneflix.member.vo.MemberVO;
 
 @Repository
 public class OracleAlarmDAO implements AlarmDAO {
@@ -23,13 +22,8 @@ public class OracleAlarmDAO implements AlarmDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> getTotalAlarmCount(MemberVO vo) {
-		return sqlSessionTemplate.selectList("AlarmDAO.getTotalAlarmCount", vo);
-	}
-
-	@Override
-	public void updateAlarm(AlarmVO vo) {
-		sqlSessionTemplate.update("AlarmDAO.updateAlarm", vo);
+	public List<Map<String, Object>> getTotalAlarmCount(String email) {
+		return sqlSessionTemplate.selectList("AlarmDAO.getTotalAlarmCount", email);
 	}
 
 	@Override

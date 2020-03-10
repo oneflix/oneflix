@@ -39,7 +39,7 @@ public class HomeController {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		
 		if (session.getAttribute("totalAlarmCount") == null) {
-			Map<String, Integer> totalAlarmCount = getTotalAlarmCountService.getTotalAlarmCount(member);
+			Map<String, Integer> totalAlarmCount = getTotalAlarmCountService.getTotalAlarmCount(member.getEmail());
 			session.setAttribute("movieAlarmCount", totalAlarmCount.get("movie"));
 			session.setAttribute("replyAlarmCount", totalAlarmCount.get("reply"));
 		}

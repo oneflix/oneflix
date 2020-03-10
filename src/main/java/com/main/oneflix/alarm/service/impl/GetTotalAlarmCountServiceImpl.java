@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.main.oneflix.alarm.dao.AlarmDAO;
 import com.main.oneflix.alarm.service.GetTotalAlarmCountService;
-import com.main.oneflix.member.vo.MemberVO;
 
 @Service
 public class GetTotalAlarmCountServiceImpl implements GetTotalAlarmCountService {
@@ -18,10 +17,9 @@ public class GetTotalAlarmCountServiceImpl implements GetTotalAlarmCountService 
 	private AlarmDAO alarmDAO;
 	
 	@Override
-	public Map<String, Integer> getTotalAlarmCount(MemberVO vo) {
-		List<Map<String, Object>> totalAlarmCountList = alarmDAO.getTotalAlarmCount(vo);
+	public Map<String, Integer> getTotalAlarmCount(String email) {
+		List<Map<String, Object>> totalAlarmCountList = alarmDAO.getTotalAlarmCount(email);
 		Map<String, Integer> totalAlarmCount = new HashMap<>();
-		System.out.println(totalAlarmCountList);
 		for (Map<String, Object> alarm : totalAlarmCountList) {
 			totalAlarmCount.put((String)alarm.get("alarmType"), (int)alarm.get("alarmCount"));
 		}
@@ -31,7 +29,6 @@ public class GetTotalAlarmCountServiceImpl implements GetTotalAlarmCountService 
 		if (totalAlarmCount.get("reply") == null) {
 			totalAlarmCount.put("reply", 0);
 		}
-		System.out.println(totalAlarmCount);
 		return totalAlarmCount;
 	}
 
