@@ -118,13 +118,20 @@
 		</if>
 	</select>
 	
- 	<select id="expiryCheck" parameterType="sales" resultType="int">
+	<resultMap type="string" id="expiryEmailList">
+		<id column="email" property="email"></id>
+	</resultMap>
+	
+ 	<select id="expiryCheck" resultMap="expiryEmailList">
 		SELECT email FROM sales
-		WHERE
+		WHERE sales_status != 'expired'
 		expiry_date = TRUNC(SYSDATE - 1)
-		UPDATE sales_status = 'expired',
-		AND email = #{email}
-		AND ticket_id => 0
 	</select>
+	
+	<update id="updateExpiry">
+		UPDATE sales SET
+		sales_status = 'expired'
+		WHERE expiry_date = TRUNC(SYSDATE - 1)
+	</update>
 	
 </mapper>
