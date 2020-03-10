@@ -84,11 +84,6 @@
 		<div class="css-tssyq1-LoginBlock edt52et1">
 		<p class="css-18x4yp2-SignInMessage edt52et2" style="margin-bottom: 2vh;">
 		소셜 계정으로 로그인하기</p>
-                   <div class="css-11fv0pd-Button">
-                     <a class="css-11fv0pd-Button" href="${googleUrl}">
-                     	구글로 로그인하기
-                     </a>
-                    </div>
                        
                    <div id="kakao_login" class="css-11fv0pd-Button">
                      <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
