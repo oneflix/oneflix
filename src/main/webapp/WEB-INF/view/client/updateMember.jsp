@@ -112,7 +112,7 @@
                 </section>
                         <div class="css-t5kw01-ChangeProfileButtonBlock e1199ims3">
                             <button style="height:8vh; margin-bottom:2vh; margin-top:0;"
-                            type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
+                            type="submit" onClick="location.href='/nickCheckProcAjax.do'" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
                         </div>
             </form>
         </section>

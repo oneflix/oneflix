@@ -86,7 +86,6 @@
 						<input type="hidden" name="cert" value="Y"/>
 						<input type="hidden" id="naver" name="naver" value="${member.naver}"/> 
 						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/> 
-						<input type="hidden" id="google" name="google" value="${member.google}"/>
 					</form>
 				</div>
        		</main>
@@ -167,8 +166,8 @@
 		function SNSJoin(){
 /* 		   var kakao = document.getElementById("kakao");
 		   var naver = document.getElementById("naver");
-		   var google = document.getElementById("google"); */
-           window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}" + "&google=" + "${member.google}";
+		   */
+           window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}";
         };
    
    
