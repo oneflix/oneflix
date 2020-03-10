@@ -7,6 +7,9 @@
 <title>ONEFLIX</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- 구글 로그인 -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="구글API아이디.apps.googleusercontent.com">
 <!--===============================================================================================-->
 <link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!--===============================================================================================-->
@@ -39,6 +42,7 @@
 <link rel="stylesheet" type="text/css" href="client/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
+
 </head>
 
 <body>
@@ -141,9 +145,6 @@
    <!-- 네이버 로그인 -->
    <script src="client/js/naverLogin.js"></script>
    
-   <!-- 구글 로그인 -->
-   <script src="https://apis.google.com/js/platform.js" async defer></script>
-
    <script>
    $(document).ready(function(){
 	    $("#loginBtn").attr('disabled', 'true');

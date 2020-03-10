@@ -218,6 +218,38 @@
             <!-- /.container-fluid -->
          </section>
          <!-- /.content -->
+         
+                     <section class="col-lg-12">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 컨텐츠 장르별 분포
+                           </h3>
+                           <br><br>
+                           <div class="sendData-box">
+                              <select id="movieGenreDate" name="dateList"
+                                 class="form-control select2bs4 dateList"
+                                 multiple="multiple" data-placeholder="날짜 선택">
+                              </select>
+   
+                              <div class="button-box-container">
+                                 <div class="button-box">
+                                    <button type="button" id="movieGenreYear"
+                                       class="btn btn-info analysis-year-button movie-genre-button">연간</button>
+                                    <button type="button" id="movieGenreYear"
+                                       class="btn btn-info analysis-month-button movie-genre-button">월간</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-body">
+                           <div id="movie-genre-chart" style="width: 100%;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
       </div>
       <!-- /.content-wrapper -->
 
