@@ -15,10 +15,9 @@ import com.main.oneflix.analysis.service.AnalysisGenderService;
 import com.main.oneflix.analysis.service.AnalysisGenreCountService;
 import com.main.oneflix.analysis.service.AnalysisGenreRankService;
 import com.main.oneflix.analysis.service.AnalysisMovieRankService;
-import com.main.oneflix.analysis.service.AnalysisPopularMovieService;
 import com.main.oneflix.analysis.service.AnalysisSalesService;
 import com.main.oneflix.analysis.service.AnalysisSubscriberService;
-import com.main.oneflix.analysis.service.AnalysisViewCountService;
+
 
 @Controller
 public class AnalysisController {
@@ -27,10 +26,6 @@ public class AnalysisController {
 	private AnalysisAgeService analysisAgeService;
 	@Autowired
 	private AnalysisGenderService analysisGenderService;
-	@Autowired
-	private AnalysisPopularMovieService analysisPopularMovieService;
-	@Autowired
-	private AnalysisViewCountService analysisViewCountService;
 	@Autowired
 	private AnalysisSubscriberService analysisSubscriberService;
 	@Autowired
