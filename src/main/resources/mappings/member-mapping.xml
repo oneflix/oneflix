@@ -115,7 +115,9 @@
 			UPDATE member SET
 			ticket_id = 0
 			WHERE 
+
 		<foreach collection="emailList" item="email"  open="(" close=")" separator="AND">
+
 			email = #{email}
 		</foreach>
 	</update>

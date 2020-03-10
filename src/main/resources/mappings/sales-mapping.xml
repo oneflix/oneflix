@@ -125,6 +125,7 @@
  	<select id="expiryCheck" resultMap="expiryEmailList">
 		SELECT email FROM sales
 		WHERE sales_status != 'expired'
+
 			<![CDATA[
 				AND expiry_date >= TRUNC(SYSDATE - 1)
 			]]>
