@@ -110,4 +110,15 @@
 		resultType="int">
 		SELECT COUNT(*) FROM member
 	</select>
+	
+	<update id="updateTicketExpiry" parameterType="java.util.HashMap">
+			UPDATE member SET
+			ticket_id = 0
+			WHERE 
+
+		<foreach collection="emailList" item="email"  open="(" close=")" separator="AND">
+
+			email = #{email}
+		</foreach>
+	</update>
 </mapper>

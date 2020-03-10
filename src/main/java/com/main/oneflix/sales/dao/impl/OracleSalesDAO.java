@@ -1,7 +1,6 @@
 package com.main.oneflix.sales.dao.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +50,14 @@ public class OracleSalesDAO implements SalesDAO {
 		return sqlSessionTemplate.selectOne("SalesDAO.getCountSales", vo);
 	}
 
+	@Override
+	public List<String> expiryCheck() {
+		return sqlSessionTemplate.selectList("SalesDAO.expiryCheck");
+	}
 
+	@Override
+	public void updateExpiry() {
+		sqlSessionTemplate.update("SalesDAO.updateExpiry");
+	}
 
 }

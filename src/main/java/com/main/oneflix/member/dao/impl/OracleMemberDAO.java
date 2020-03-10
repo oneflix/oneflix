@@ -1,6 +1,7 @@
 package com.main.oneflix.member.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,11 @@ public class OracleMemberDAO implements MemberDAO {
 	@Override
 	public int getCountMember(MemberVO vo) {
 		return sqlSessionTemplate.selectOne("MemberDAO.getCountMember", vo);
+	}
+
+	@Override
+	public void updateTicketExpiry(Map<String, List<String>> map) {
+		sqlSessionTemplate.update("MemberDAO.updateTicketExpiry", map);
 	}
 
 }
