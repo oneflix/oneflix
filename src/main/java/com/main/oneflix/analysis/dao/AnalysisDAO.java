@@ -13,4 +13,11 @@ public interface AnalysisDAO {
 	Integer analysisSubscriberYear(SalesVO vo);
 	List<Map<String, Object>> analysisSubscriberTicket(SalesVO vo);
 	List<Map<String, Object>> analysisGenderMonth(Map<String, String> map);
+	
+	List<Map<String, Object>> analysisWatchMoiveCountMonth(Map<String,String>map);
+	List<Map<String, Object>> analysisWatchGenreCountMonth(Map<String,String>map);
+	List<Map<String, Object>> analysisWatchMovieCountYear(Map<String,String>map);
+	List<Map<String, Object>> analysisWatchGenreCountYear(Map<String,String>map);
+	
+	
 }

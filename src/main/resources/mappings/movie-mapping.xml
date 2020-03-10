@@ -185,5 +185,5 @@
             AND movie_reg_date >= TRUNC(SYSDATE - 1)
          ]]>
       </if>
-</select>
+   </select>
 </mapper>
