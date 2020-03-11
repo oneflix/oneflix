@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface AnalysisSubscriberService {
 	
-	Map<String, Object> analysisSubscriberService(Map<String, Object> map);
+	Map<String, Object> analysisSubscriber(Map<String, Object> map);
 
 }

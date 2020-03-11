@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.analysis.service.AnalysisAgeService;
 import com.main.oneflix.analysis.service.AnalysisGenderService;
 import com.main.oneflix.analysis.service.AnalysisGenreCountService;
 import com.main.oneflix.analysis.service.AnalysisGenreRankService;
+import com.main.oneflix.analysis.service.AnalysisMemberAgeService;
 import com.main.oneflix.analysis.service.AnalysisMovieRankService;
 import com.main.oneflix.analysis.service.AnalysisSalesService;
 import com.main.oneflix.analysis.service.AnalysisSubscriberService;
@@ -23,13 +23,13 @@ import com.main.oneflix.analysis.service.AnalysisSubscriberService;
 public class AnalysisController {
 
 	@Autowired
-	private AnalysisAgeService analysisAgeService;
-	@Autowired
 	private AnalysisGenderService analysisGenderService;
 	@Autowired
 	private AnalysisSubscriberService analysisSubscriberService;
 	@Autowired
 	private AnalysisSalesService analysisSalesService;
+	@Autowired
+	private AnalysisMemberAgeService analysisMemberAgeService; 
 	@Autowired
 	private AnalysisMovieRankService analysisMovieRankService;
 	@Autowired
@@ -58,7 +58,13 @@ public class AnalysisController {
 	@RequestMapping("/analysisSubscriberProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
-		return analysisSubscriberService.analysisSubscriberService(map);
+		return analysisSubscriberService.analysisSubscriber(map);
+	}
+	
+	@RequestMapping("/analysisMemberAgeProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisMemberAgeProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisMemberAgeService.analysisMemberAge(map);
 	}
 /*	
 	@RequestMapping("/analysisMovieRankProcAjax.mdo")
