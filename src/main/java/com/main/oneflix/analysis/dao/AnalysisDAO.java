@@ -16,9 +16,9 @@ public interface AnalysisDAO {
 	List<Map<String, Object>> analysisMemberAgeYear(Map<String, String> map);
 	List<Map<String, Object>> analysisMemberAgeMonth(Map<String, String> map);
 	
-	List<Map<String, Object>> analysisMovieRankMonth(Map<String,String>map);
-	List<Map<String, Object>> analysisMovieRankYear(Map<String,String>map);
-	List<Map<String, Object>> analysisGenreRankMonth(Map<String,String>map);
-	List<Map<String, Object>> analysisGenreRankYear(Map<String,String>map);
+	List<Map<String, Object>> analysisMovieRankingMonth(Map<String,String>map);
+	List<Map<String, Object>> analysisMovieRankingYear(Map<String,String>map);
+	List<Map<String, Object>> analysisGenreRankingMonth(Map<String,String>map);
+	List<Map<String, Object>> analysisGenreRankingYear(Map<String,String>map);
 	List<Map<String, Object>> analysisGenreCount(Map<String, Object> map);
 }
