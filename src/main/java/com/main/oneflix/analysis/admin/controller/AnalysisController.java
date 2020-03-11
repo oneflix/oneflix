@@ -36,7 +36,6 @@ public class AnalysisController {
 	private AnalysisGenreRankingService analysisGenreRankingService;
     @Autowired 
 	private AnalysisGenreCountService analysisGenreCountService;
-	 
 
 	@RequestMapping("/analysis.mdo")
 	public ModelAndView analysis(ModelAndView mav) {

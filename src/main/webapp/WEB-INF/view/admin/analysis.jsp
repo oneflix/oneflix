@@ -1055,6 +1055,7 @@
 					monthList.push($(this).val());
 				}
 			});
+<<<<<<< HEAD
 
 			var sendData = {
  				'rankingSelect' : rankingSelect,
@@ -1063,6 +1064,16 @@
 			};
 			var response = requestSalesData(sendData);
 
+=======
+
+			var sendData = {
+ 				'rankingSelect' : rankingSelect,
+				'yearList' : yearList,
+				'monthList' : monthList
+			};
+			var response = requestSalesData(sendData);
+
+>>>>>>> master
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
