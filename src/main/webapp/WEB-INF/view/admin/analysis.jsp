@@ -199,6 +199,30 @@
                            <h3 class="card-title">
                               <i class="far fa-chart-bar"></i> 영화 랭킹 TOP-5
                            </h3>
+                           <br><br>
+                           <div style="width:fit-to-content" class="button-box-container">
+                                 <div class="button-box">
+                             <div class="sendData-box">
+                              <select style="width:8vw;" id="rankYear" name="dateList"
+                                 class="form-control select2bs4 dateList"
+                                 data-placeholder="년">
+                              </select>
+                              <select style="width:7vw;" id="rankMonth" name="monthList"
+                                 class="form-control select2bs4 monthList"
+                                 data-placeholder="월">
+                              </select>
+   
+<!--                               <div class="button-box-container">
+                                 <div class="button-box">
+                                    <button type="button" id="memberAgeYear"
+                                       class="btn btn-info analysis-year-button member-age-button">연간</button>
+                                    <button type="button" id="memberAgeMonth"
+                                       class="btn btn-info analysis-month-button member-age-button">월간</button>
+                                 </div>
+                              </div> -->
+                           </div>
+                        </div>
+                        </div>
                         </div>
                         <div class="row">
                            <div class="col-lg-6" id="movie-view-count-chart"
@@ -228,7 +252,7 @@
                            <br><br>
                         </div>
                         <div class="card-body">
-                           <div id="movie-genre-chart" style="width: 100%;"></div>
+                           <div id="content-genre-chart" style="width: 100%;"></div>
                         </div>
                         <!-- /.card-body-->
                      </div>
@@ -284,6 +308,14 @@
 								"<option value=\'" + date+ "\'>" + date
 										+ "년</option>");
 					}
+					for(var i = 1; i <= 12; i++){
+						var month = i;
+						$('.monthList').append(
+								"<option value=\'" + month+ "\'>" + month
+										+ "월</option>");
+						}
+					$('.monthList').prepend("<option value=\'none\'selected >전체</option>");
+					
 					$('#salesDate option:first').prop('selected', true);
 					$('#subscriberDate option:first').prop('selected', true);
 					$('#genderDate option:first').prop('selected', true);
@@ -306,6 +338,7 @@
 		google.charts.setOnLoadCallback(drawMemberAgeChart);
 		google.charts.setOnLoadCallback(drawMovieViewCountChart);
 		google.charts.setOnLoadCallback(drawMovieRecentlyChart);
+		google.charts.setOnLoadCallback(drawContentsGenreChart);
 
 		$('.dateList').change(function() {
 			switch ($(this).prop('id')) {
@@ -902,6 +935,59 @@
 				chart.draw(data, options);
 			}, false);
 		}
+		// Contents Genre
+		function drawContentsGenreChart() {
+			var data = google.visualization.arrayToDataTable([ [ "장르", "편", {
+				role : "style"
+			}, {
+				role : "annotation"
+			} ], [ "로맨스", 2462, "color:#E1E6EE;", 2462 ],
+					[ "범죄", 1499, "color:#B5C1D5;", 1499 ],
+					[ "스릴러", 1895, "color:#889BB9;", 1895 ],
+					[ "코미디", 1322, "color:#5F779E;", 1322 ],
+					[ "액션", 980, "color:#405D8D;", 980 ],
+					[ "호러", 872, "color:#33507F;", 872 ] ]);
+
+			var view = new google.visualization.DataView(data);
+			var options = {
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bar : {
+					groupWidth : "65%"
+				},
+				legend : {
+					position : "none"
+				},
+				isStacked : false,
+				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+				//차트가 뿌려질때 실행될 애니메이션 효과
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 15,
+						bold : true,
+						italic : true,
+						opacity : 0.8
+					}
+				}
+			};
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById("content-genre-chart"));
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
+
 	</script>
 </body>
 <style>
