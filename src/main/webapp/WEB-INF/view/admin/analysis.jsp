@@ -330,10 +330,6 @@
 
 		// Google chart
 		google.charts.load("current", {packages : [ "corechart" ]});
-<<<<<<< HEAD
-=======
-		google.charts.load('current', {'packages':['bar']});
->>>>>>> master
 		google.charts.setOnLoadCallback(drawSalesChart);
 		google.charts.setOnLoadCallback(drawSubscriberChart);
 		google.charts.setOnLoadCallback(drawGenderChart);
@@ -942,38 +938,8 @@
 					[ "영화4", 1322, "color:#C4ACB3;", 1322 ],
 					[ "영화5", 980, "color:#E2D0D7;", 980 ], ]);
 
-		function requestMemberAgeData(sendData) {
-			var response;
-			$.ajax({
-				type : 'POST',
-				url : '/analysisMemberAgeProcAjax.mdo',
-				data : JSON.stringify(sendData),
-				contentType : "application/json",
-				async : false,
-				success : function(res) {
-					response = res;
-				}
-			});
-			return response;
-		}
-		
-		function drawMemberAgeChart() {
-			var yearList = new Array();
-			$('#memberAgeDate > option').each(function() {
-				if(this.selected){
-					yearList.push($(this).val());
-				}
-			});
 			
-			var sendData = {
-				'memberAgeButton' : memberAgeButton,
-				'yearList' : yearList
-			}
-			
-			var response = requestMemberAgeData(sendData);
-			
-			var chart;
-			var data = new google.visualization.DataTable();
+			var view = new google.visualization.DataView(data);
 			var options = {
 				title : '누적 조회수 순위',
 				align : 'center',
@@ -1120,6 +1086,7 @@
 				chart.draw(data, options);
 			}, false);
 		}
+		
 
 	</script>
 </body>
