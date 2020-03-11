@@ -7,11 +7,8 @@ import java.util.Map;
 import com.main.oneflix.alarm.vo.AlarmVO;
 
 public interface AlarmDAO {
-	public void insertMovieAlarm(Map<String, List<AlarmVO>> map);
-	public AlarmVO getAlarm(AlarmVO vo);
-	public List<AlarmVO> getAlarmList(AlarmVO vo);
-	public void updateAlarm(AlarmVO vo);
-	public void deleteAlarm(AlarmVO vo);
+	void insertMovieAlarm(Map<String, List<AlarmVO>> map);
+	List<Map<String, Object>> getTotalAlarmCount(String email);
+	void deleteAlarm(AlarmVO vo);
 	
-
 }
