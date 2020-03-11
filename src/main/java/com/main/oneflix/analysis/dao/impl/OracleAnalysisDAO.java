@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.main.oneflix.analysis.dao.AnalysisDAO;
+import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.vo.SalesVO;
 
 @Repository
@@ -44,6 +45,16 @@ public class OracleAnalysisDAO implements AnalysisDAO {
 	@Override
 	public List<Map<String, Object>> analysisSubscriberTicket(SalesVO vo) {
 		return sqlSessionTemplate.selectList("AnalysisDAO.analysisSubscriberTicket", vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> analysisMemberAgeYear(Map<String, String> map) {
+		return sqlSessionTemplate.selectList("AnalysisDAO.analysisMemberAgeYear", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> analysisMemberAgeMonth(Map<String, String> map) {
+		return sqlSessionTemplate.selectList("AnalysisDAO.analysisMemberAgeMonth", map);
 	}
 
 

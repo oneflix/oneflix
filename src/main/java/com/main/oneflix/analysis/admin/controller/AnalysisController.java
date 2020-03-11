@@ -1,7 +1,6 @@
 package com.main.oneflix.analysis.admin.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.analysis.service.AnalysisAgeService;
 import com.main.oneflix.analysis.service.AnalysisGenderService;
+import com.main.oneflix.analysis.service.AnalysisMemberAgeService;
 import com.main.oneflix.analysis.service.AnalysisPopularMovieService;
 import com.main.oneflix.analysis.service.AnalysisSalesService;
 import com.main.oneflix.analysis.service.AnalysisSubscriberService;
 import com.main.oneflix.analysis.service.AnalysisViewCountService;
-import com.main.oneflix.sales.service.GetTotalSalesService;
 
 @Controller
 public class AnalysisController {
 
-	@Autowired
-	private AnalysisAgeService analysisAgeService;
 	@Autowired
 	private AnalysisGenderService analysisGenderService;
 	@Autowired
@@ -34,6 +30,8 @@ public class AnalysisController {
 	private AnalysisSubscriberService analysisSubscriberService;
 	@Autowired
 	private AnalysisSalesService analysisSalesService;
+	@Autowired
+	private AnalysisMemberAgeService analysisMemberAgeService; 
 
 	@RequestMapping("/analysis.mdo")
 	public ModelAndView analysis(ModelAndView mav) {
@@ -56,9 +54,14 @@ public class AnalysisController {
 	@RequestMapping("/analysisSubscriberProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
-		return analysisSubscriberService.analysisSubscriberService(map);
+		return analysisSubscriberService.analysisSubscriber(map);
 	}
-		
+	
+	@RequestMapping("/analysisMemberAgeProcAjax.mdo")
+	@ResponseBody
+	public Map<String, Object> analysisMemberAgeProcAjax(@RequestBody HashMap<String, Object> map){
+		return analysisMemberAgeService.analysisMemberAge(map);
+	}
 		
 		
 

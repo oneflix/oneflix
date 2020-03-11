@@ -3,6 +3,7 @@ package com.main.oneflix.analysis.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.vo.SalesVO;
 
 public interface AnalysisDAO {
@@ -13,4 +14,6 @@ public interface AnalysisDAO {
 	Integer analysisSubscriberYear(SalesVO vo);
 	List<Map<String, Object>> analysisSubscriberTicket(SalesVO vo);
 	List<Map<String, Object>> analysisGenderMonth(Map<String, String> map);
+	List<Map<String, Object>> analysisMemberAgeYear(Map<String, String> map);
+	List<Map<String, Object>> analysisMemberAgeMonth(Map<String, String> map);
 }

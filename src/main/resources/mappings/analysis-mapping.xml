@@ -77,4 +77,34 @@
 		WHERE payment_date BETWEEN TO_DATE(#{startDate}||'000000','YYYYMMDDHH24MISS')
 		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 	</select>
+	
+	<select id="analysisMemberAgeYear" parameterType="java.util.HashMap" resultMap="memberAgeList">
+		SELECT
+		NVL(COUNT(*), 0) count, ages member_age
+		FROM (SELECT FLOOR(member_age/10)*10 ages FROM member
+                WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+                AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+                )
+		GROUP BY ages
+        ORDER BY ages
+	</select>
+	
+	<select id="analysisMemberAgeMonth" parameterType="java.util.HashMap" resultMap="memberAgeList">
+		SELECT
+		NVL(COUNT(*), 0) count, ages member_age, TO_CHAR(join_date,'FMMM') join_date
+		FROM (SELECT email, floor(member_age/10)*10 ages FROM member
+                WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+                AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+                ) a, member
+        where a.email = member.email
+		GROUP BY ages, TO_CHAR(join_date,'FMMM')
+        ORDER BY ages
+	</select>
+
+	<resultMap type="java.util.HashMap" id="memberAgeList">
+		<id column="count" property="count" javaType="int"/>
+		<result column="member_age" property="memberAge" javaType="string"/>
+		<result column="join_date" property="joinDate" />
+	</resultMap>
+	
 </mapper>
