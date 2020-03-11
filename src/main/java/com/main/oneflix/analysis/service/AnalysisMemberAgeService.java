@@ -4,8 +4,8 @@ import java.util.Map;
 
 import com.main.oneflix.member.vo.MemberVO;
 
-public interface AnalysisAgeService {
+public interface AnalysisMemberAgeService {
 	
-	Map<String, Integer> getCountAge(MemberVO vo);
+	Map<String, Object> analysisMemberAge(Map<String, Object> map);
 
 }
