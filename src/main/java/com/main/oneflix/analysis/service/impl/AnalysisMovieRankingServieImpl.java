@@ -39,8 +39,8 @@ public class AnalysisMovieRankingServieImpl implements AnalysisMovieRankingServi
 				for(String month : monthList) {
 					if (Integer.parseInt(month) < 10) {
 						month = "0"+ month;
+						dbMap.put("startDate", (year + month + "01"));
 					}
-				dbMap.put("startDate", (year + month + "01"));
 				if (Integer.parseInt(month) == 9) {
 						dbMap.put("endDate", (year + "1001"));
 					} else if (Integer.parseInt(month) == 12) {

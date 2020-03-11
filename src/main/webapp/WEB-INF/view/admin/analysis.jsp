@@ -1108,17 +1108,22 @@
 		}
 		// GenreCount
 		function drawGenreCountChart() {
-			var data = google.visualization.arrayToDataTable([ [ "장르", "편", {
-				role : "style"
-			}, {
-				role : "annotation"
-			} ], [ "로맨스", 2462, "color:#E1E6EE;", 2462 ],
-					[ "범죄", 1499, "color:#B5C1D5;", 1499 ],
-					[ "스릴러", 1895, "color:#889BB9;", 1895 ],
-					[ "코미디", 1322, "color:#5F779E;", 1322 ],
-					[ "액션", 980, "color:#405D8D;", 980 ],
-					[ "호러", 872, "color:#33507F;", 872 ] ]);
-
+				var response = requestSubscriberData(sendData);
+				var response;
+				$.ajax({
+					type : 'POST',
+					url : '/analysisGenreRankingProcAjax.mdo',
+					data : JSON.stringify(sendData),
+					contentType : "application/json",
+					async : false,
+					success : function(res) {
+						response = res;
+					}
+				});
+				return response;
+				
+				var chart;
+				var data = new google.visualization.DataTable();
 			var view = new google.visualization.DataView(data);
 			var options = {
 				align : 'center',

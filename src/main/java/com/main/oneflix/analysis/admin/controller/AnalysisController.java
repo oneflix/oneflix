@@ -34,9 +34,9 @@ public class AnalysisController {
 	private AnalysisMovieRankingService analysisMovieRankingService;
 	@Autowired
 	private AnalysisGenreRankingService analysisGenreRankingService;
-    /* @Autowired 
-	 * private AnalysisGenreCountService analysisGenreCountService;
-	 */
+    @Autowired 
+	private AnalysisGenreCountService analysisGenreCountService;
+	 
 
 	@RequestMapping("/analysis.mdo")
 	public ModelAndView analysis(ModelAndView mav) {
@@ -79,13 +79,12 @@ public class AnalysisController {
 	public Map<String, Object> analysisGenreRankingProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisGenreRankingService.analysisGenreRanking(map);
 	}
-/*	
+
 	@RequestMapping("/analysisGenreCountProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> analysisGenreCountProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisGenreCountService.analysisGenreCount(map);
-	}
-*/		
+	}		
 		
 		
 
