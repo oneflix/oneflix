@@ -98,13 +98,13 @@
                 ) a, member
         where a.email = member.email
 		GROUP BY ages, TO_CHAR(join_date,'FMMM')
-        ORDER BY ages
+        ORDER BY join_date
 	</select>
 
 	<resultMap type="java.util.HashMap" id="memberAgeList">
 		<id column="count" property="count" javaType="int"/>
-		<result column="member_age" property="memberAge" javaType="string"/>
-		<result column="join_date" property="joinDate" />
+		<result column="member_age" property="memberAge" javaType="int"/>
+		<result column="join_date" property="joinDate" javaType="int"/>
 	</resultMap>
 	
 	

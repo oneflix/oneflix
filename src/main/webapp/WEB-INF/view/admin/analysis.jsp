@@ -313,6 +313,7 @@
 								"<option value=\'" + year+ "\'>" + year
 										+ "년</option>");
 					}
+
 					for(var i = 1; i <= 12; i++){
 						var month = i;
 						$('.monthList').append(
@@ -336,7 +337,6 @@
 
 		// Google chart
 		google.charts.load("current", {packages : [ "corechart" ]});
-		google.charts.load('current', {'packages':['bar']});
 		google.charts.setOnLoadCallback(drawSalesChart);
 		google.charts.setOnLoadCallback(drawSubscriberChart);
 		google.charts.setOnLoadCallback(drawGenderChart);
@@ -344,6 +344,7 @@
 		google.charts.setOnLoadCallback(drawMovieRankingChart);
 		google.charts.setOnLoadCallback(drawGenreRankingChart);
 		google.charts.setOnLoadCallback(drawGenreCountChart);
+
 
 		$('.dateList').change(function() {
 			switch ($(this).prop('id')) {
@@ -834,6 +835,7 @@
 						height : '90%',
 						width : '85%'
 					},
+					legend: "top",
 					height : 500,
 					width : '100%',
 					bars : 'vertical',
@@ -859,37 +861,47 @@
 				};
 			
 			if(memberAgeButton == 'year'){ 
-				console.log(response);
-				chart = new google.charts.Bar(document.getElementById("member-age-chart"));
-				options.legend = "none";
+				chart = new google.visualization.ColumnChart(document.getElementById("member-age-chart"));
 				
 				data.addColumn('string', "년")
 				data.addColumn('number', '10대');
+				data.addColumn({type: 'number', role: "annotation"});
 				data.addColumn('number', '20대');
+				data.addColumn({type: 'number', role: "annotation"});
 				data.addColumn('number', '30대');
+				data.addColumn({type: 'number', role: "annotation"});
 				data.addColumn('number', '40대');
+				data.addColumn({type: 'number', role: "annotation"});
 				data.addColumn('number', '50대');
+				data.addColumn({type: 'number', role: "annotation"});
 				data.addColumn('number', '60대 이상');
+				data.addColumn({type: 'number', role: "annotation"});
 				
 				for(var i = 0; i < yearList.length; i++){
 					if(response[yearList[i]].length == 0){
-						data.addRow([yearList[i] + "년", 0, 0, 0, 0, 0, 0]);
+						data.addRow([yearList[i] + "년", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 						continue;
 					}else{
-						var tmpArray = [yearList[i] + "년", 0, 0, 0, 0, 0, 0];
+						var tmpArray = [yearList[i] + "년", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 						for (var j = 0; j < response[yearList[i]].length; j++) {
 				               if (response[yearList[i]][j].memberAge == '10') {
 				                  tmpArray.splice(1, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '20') {
 				                  tmpArray.splice(2, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '30') {
+				               } else if (response[yearList[i]][j].memberAge == '20') {
 				                  tmpArray.splice(3, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '40') {
 				                  tmpArray.splice(4, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '50') {
+				               } else if (response[yearList[i]][j].memberAge == '30') {
 				                  tmpArray.splice(5, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '60') {
 				                  tmpArray.splice(6, 1, response[yearList[i]][j].count);
+				               } else if (response[yearList[i]][j].memberAge == '40') {
+				                  tmpArray.splice(7, 1, response[yearList[i]][j].count);
+				                  tmpArray.splice(8, 1, response[yearList[i]][j].count);
+				               } else if (response[yearList[i]][j].memberAge == '50') {
+				                  tmpArray.splice(9, 1, response[yearList[i]][j].count);
+				                  tmpArray.splice(10, 1, response[yearList[i]][j].count);
+				               } else if (response[yearList[i]][j].memberAge == '60') {
+				                  tmpArray.splice(11, 1, response[yearList[i]][j].count);
+				                  tmpArray.splice(12, 1, response[yearList[i]][j].count);
 				               } 
 				            }
 					data.addRow(tmpArray);
@@ -909,28 +921,9 @@
 				data.addColumn('number', '60대 이상');
 				
 				for(var i = 0; i < 12; i++){
-					if(response[yearList[0]][i].length == 0){
-						data.addRow([(i + 1) + "월", 0, 0, 0, 0, 0, 0]);
-						continue;
-					}else if(response[yearList[0]][i].length == 1){
-							if(response[yearList[0]][i][0].memberAge == '10'){
-								data.addRow([ (i + 1) + "월", response[yearList[0]][i][0].count, 0, 0, 0, 0, 0]);
-							}else if(response[yearList[0]][i][1].memberAge == '20'){
-								data.addRow([ (i + 1) + "월", 0, response[yearList[0]][i][1].count, 0, 0, 0, 0]);
-							}else if(response[yearList[0]][i][2].memberAge == '30'){
-								data.addRow([ (i + 1) + "월", 0, 0, response[yearList[0]][i][2].count, 0, 0, 0]);
-							}else if(response[yearList[0]][i][3].memberAge == '40'){
-								data.addRow([ (i + 1) + "월", 0, 0, 0, response[yearList[0]][i][3].count, 0, 0]);
-							}else if(response[yearList[0]][i][4].memberAge == '50'){
-								data.addRow([ (i + 1) + "월", 0, 0, 0, 0, response[yearList[0]][i][4].count, 0]);
-							}else if(response[yearList[0]][i][5].memberAge == '60'){
-								data.addRow([ (i + 1) + "월", 0, 0, 0, 0, 0, response[yearList[0]][i][5].count]);
-							}
-						continue;
-					}
-						data.addRow([(i + 1) + "월", response[yearList[0]][i][0].count, response[yearList[0]][i][1].count,
-									response[yearList[0]][i][2].count, response[yearList[0]][i][3].count,
-									response[yearList[0]][i][4].count, response[yearList[0]][i][5].count]);
+					data.addRow([(i + 1) + "월", response[yearList[0]][i][0].count, response[yearList[0]][i][1].count,
+								response[yearList[0]][i][2].count, response[yearList[0]][i][3].count,
+								response[yearList[0]][i][4].count, response[yearList[0]][i][5].count]);
 				}
 			}
 			
