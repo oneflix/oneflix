@@ -31,7 +31,6 @@ public class MemberVO {
 	private String code;
 	private String refresh_token;
 
-	private String google;
 	private String kakao;
 	private String naver;
 
@@ -245,14 +244,6 @@ public class MemberVO {
 
 	public void setRefresh_token(String refresh_token) {
 		this.refresh_token = refresh_token;
-	}
-
-	public String getGoogle() {
-		return google;
-	}
-
-	public void setGoogle(String google) {
-		this.google = google;
 	}
 
 	public String getKakao() {

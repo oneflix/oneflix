@@ -69,7 +69,8 @@
                                         <div class="css-unatsl-Self eu52ful0">
                                            <input id="newNick" name="newNick"
                                                 placeholder="닉네임을 입력해주세요." autocomplete="off"
-                                                class="css-5kai6j-StyledField eu52ful1" type="nick"></div>
+                                                class="css-5kai6j-StyledField eu52ful1" type="nick">
+                                                </div>
                                     </div>
                                 </div>
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims33 next-form">
@@ -112,7 +113,7 @@
                 </section>
                         <div class="css-t5kw01-ChangeProfileButtonBlock e1199ims3">
                             <button style="height:8vh; margin-bottom:2vh; margin-top:0;"
-                            type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
+                            type="submit" onClick="location.href='/nickCheckProcAjax.do'" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
                         </div>
             </form>
         </section>

@@ -218,6 +218,23 @@
             <!-- /.container-fluid -->
          </section>
          <!-- /.content -->
+         
+                     <section class="col-lg-12">
+                     <div class="card card-outline">
+                        <div class="card-header">
+                           <h3 class="card-title">
+                              <i class="far fa-chart-bar"></i> 컨텐츠 장르별 분포
+                           </h3>
+                           <br><br>
+                        </div>
+                        <div class="card-body">
+                           <div id="movie-genre-chart" style="width: 100%;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                     </div>
+                     <!-- /.card -->
+                  </section>
+                  <!-- /.card -->
       </div>
       <!-- /.content-wrapper -->
 

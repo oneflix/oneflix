@@ -150,10 +150,6 @@ $(window).scroll(function(){
 });
 
 // 클릭 이벤트
-$('.bell-button').click(function(){
-    $('.bell-menu').show();
-});
-
 $('.search-button').click(function(){
     $('.search-button').children('span').hide();
     $('#search-ico').hide();
@@ -164,8 +160,7 @@ $('.search-button').click(function(){
 // 마우스 이벤트
 $('.bell-button').mouseenter(function(){
     $('.profile-menu').hide();
-    // $('.badge').empty();
-    // $('.bell-menu').show();
+    $('.bell-menu').show();
 });
 
 $('.profile-button').mouseenter(function(){

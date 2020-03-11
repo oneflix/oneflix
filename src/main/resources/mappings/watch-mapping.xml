@@ -13,8 +13,11 @@
 		SELECT NVL(COUNT(*),0) 
 		FROM (SELECT w.*, m.genre_id1, m.genre_id2
 		FROM watch w, movie m
-		WHERE w.movie_id = m.movie_id AND email = #{email}
+		WHERE w.movie_id = m.movie_id 
 		AND (m.genre_id1 = #{genreId} OR m.genre_id2 = #{genreId})
+		<if test = "email != null and email != '' ">
+		AND email = #{email}
+		</if>
 		)
 	</select>
 	<select id="getCountWatch" parameterType="watch"

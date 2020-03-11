@@ -7,6 +7,9 @@
 <title>ONEFLIX</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- 구글 로그인 -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="구글API아이디.apps.googleusercontent.com">
 <!--===============================================================================================-->
 <link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!--===============================================================================================-->
@@ -39,6 +42,7 @@
 <link rel="stylesheet" type="text/css" href="client/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
+
 </head>
 
 <body>
@@ -80,11 +84,6 @@
 		<div class="css-tssyq1-LoginBlock edt52et1">
 		<p class="css-18x4yp2-SignInMessage edt52et2" style="margin-bottom: 2vh;">
 		소셜 계정으로 로그인하기</p>
-                   <div class="css-11fv0pd-Button">
-                     <a class="css-11fv0pd-Button" href="${googleUrl}">
-                     	구글로 로그인하기
-                     </a>
-                    </div>
                        
                    <div id="kakao_login" class="css-11fv0pd-Button">
                      <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
@@ -141,9 +140,6 @@
    <!-- 네이버 로그인 -->
    <script src="client/js/naverLogin.js"></script>
    
-   <!-- 구글 로그인 -->
-   <script src="https://apis.google.com/js/platform.js" async defer></script>
-
    <script>
    $(document).ready(function(){
 	    $("#loginBtn").attr('disabled', 'true');
