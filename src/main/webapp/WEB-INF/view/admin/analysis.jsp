@@ -203,31 +203,22 @@
                            <div style="width:fit-to-content" class="button-box-container">
                                  <div class="button-box">
                              <div class="sendData-box">
-                              <select style="width:8vw;" id="rankYear" name="dateList"
-                                 class="form-control select2bs4 dateList"
+                              <select style="width:8vw;" id="rankingYear" name="yearList"
+                                 class="form-control select2bs4 yearList rankingDate"
                                  data-placeholder="년">
                               </select>
-                              <select style="width:7vw;" id="rankMonth" name="monthList"
-                                 class="form-control select2bs4 monthList"
+                              <select style="width:7vw;" id="rankingMonth" name="monthList"
+                                 class="form-control select2bs4 monthList rankingDate"
                                  data-placeholder="월">
                               </select>
-   
-<!--                               <div class="button-box-container">
-                                 <div class="button-box">
-                                    <button type="button" id="memberAgeYear"
-                                       class="btn btn-info analysis-year-button member-age-button">연간</button>
-                                    <button type="button" id="memberAgeMonth"
-                                       class="btn btn-info analysis-month-button member-age-button">월간</button>
-                                 </div>
-                              </div> -->
                            </div>
                         </div>
                         </div>
                         </div>
                         <div class="row">
-                           <div class="col-lg-6" id="movie-view-count-chart"
+                           <div class="col-lg-6" id="movie-ranking-chart"
                               style="width: 100%; height: auto;"></div>
-                           <div class="col-lg-6" id="movie-recently-chart"
+                           <div class="col-lg-6" id="genre-ranking-chart"
                               style="width: 100%; height: auto;"></div>
                         </div>
                         <!-- /.card-body-->
@@ -252,7 +243,7 @@
                            <br><br>
                         </div>
                         <div class="card-body">
-                           <div id="content-genre-chart" style="width: 100%;"></div>
+                           <div id="genre-count-chart" style="width: 100%;"></div>
                         </div>
                         <!-- /.card-body-->
                      </div>
@@ -286,6 +277,8 @@
 		var subscriberButton;
 		var genderButton
 		var memberAgeButton
+		// ranking
+		var rankingSelect;
 
 		$(document).ready(
 				function() {
@@ -308,13 +301,26 @@
 								"<option value=\'" + date+ "\'>" + date
 										+ "년</option>");
 					}
+					
+					//setting for Ranking SelectBox 
+					var today = new Date();
+					var launchingDate = new Date('2015-01-01');
+					var subtractionDate = ((today.getTime() - launchingDate
+							.getTime()) / (1000 * 60 * 60 * 24 * 365));
+					for (var i = 0; i <= subtractionDate; i++) {
+						var year = today.getFullYear() - i;
+						$('.yearList').append(
+								"<option value=\'" + year+ "\'>" + year
+										+ "년</option>");
+					}
 					for(var i = 1; i <= 12; i++){
 						var month = i;
 						$('.monthList').append(
 								"<option value=\'" + month+ "\'>" + month
 										+ "월</option>");
 						}
-					$('.monthList').prepend("<option value=\'none\'selected >전체</option>");
+					$('.monthList').prepend("<option value=\'0\'selected >전체</option>");
+					//end for setting 
 					
 					$('#salesDate option:first').prop('selected', true);
 					$('#subscriberDate option:first').prop('selected', true);
@@ -335,9 +341,9 @@
 		google.charts.setOnLoadCallback(drawSubscriberChart);
 		google.charts.setOnLoadCallback(drawGenderChart);
 		google.charts.setOnLoadCallback(drawMemberAgeChart);
-		google.charts.setOnLoadCallback(drawMovieViewCountChart);
-		google.charts.setOnLoadCallback(drawMovieRecentlyChart);
-		google.charts.setOnLoadCallback(drawContentsGenreChart);
+		google.charts.setOnLoadCallback(drawMovieRankingChart);
+		google.charts.setOnLoadCallback(drawGenreRankingChart);
+		google.charts.setOnLoadCallback(drawGenreCountChart);
 
 		$('.dateList').change(function() {
 			switch ($(this).prop('id')) {
@@ -935,21 +941,73 @@
 			}, false);
 		}
 
-		// movie view count
-		function drawMovieViewCountChart() {
-			var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
-				role : "style"
-			}, {
-				role : "annotation"
-			} ], [ "영화1", 2462, "color:#9D8189;", 2462 ],
-					[ "영화2", 2044, "color:#A88B93;", 2044 ],
-					[ "영화3", 1895, "color:#BA9EA6;", 1895 ],
-					[ "영화4", 1322, "color:#C4ACB3;", 1322 ],
-					[ "영화5", 980, "color:#E2D0D7;", 980 ], ]);
+		//start for Ranking chart
+		$('.rankingDate').change(function(){
+		    var monthValue = $("#rankingMonth option:selected").val();
+			if ( monthValue == '0'){
+				rankingSelect = 'year';
+			} else {
+				rankingSelect = 'month';
+			}
+			drawMovieRankingChart();
+			drawGenreRankingChart();
+		});
 
-			var view = new google.visualization.DataView(data);
+		function requestMovieRankingData(sendData){
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/analysisMovieRankingProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res){
+					response = res;
+				}
+			});
+			return response;
+		}
+		function requestGenreRankingData(sendData){
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/analysisGenreRankingProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res){
+					response = res;
+				}
+			});
+			return response;
+		}
+
+		function drawMovieRankingChart() {
+				var yearList = new Array();
+				var monthList = new Array();
+				$('#rankingYear > option').each(function() {
+					if (this.selected) {
+						yearList.push($(this).val());
+					}
+				});
+				$('#rankingMonth > option').each(function() {
+					if (this.selected) {
+						monthList.push($(this).val());
+					}
+				});
+
+				var sendData = {
+ 					'rankingSelect' : rankingSelect,
+					'yearList' : yearList,
+					'monthList' : monthList
+				};
+				var response = requestSalesData(sendData);
+
+				var chart;
+				var data = new google.visualization.DataTable();
+
 			var options = {
-				title : '누적 조회수 순위',
+				title : '영화 TOP5 (시청완료 기준)',
 				align : 'center',
 				chartArea : {
 					height : '70%',
@@ -981,29 +1039,41 @@
 					}
 				}
 			};
-			var chart = new google.visualization.BarChart(document
-					.getElementById("movie-view-count-chart"));
+			var view = new google.visualization.DataView(data);
+			chart = new google.visualization.BarChart(document
+					.getElementById("movie-ranking-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		}
 
-		// movie recently
-		function drawMovieRecentlyChart() {
-			var data = google.visualization.arrayToDataTable([ [ "제목", "회", {
-				role : "style"
-			}, {
-				role : "annotation"
-			} ], [ "영화1", 2462, "color:#4A747C;", 2462 ],
-					[ "영화2", 2044, "color:#5C848C;", 2044 ],
-					[ "영화3", 1895, "color:6B939B;", 1895 ],
-					[ "영화4", 1322, "color:#82A6AD;", 1322 ],
-					[ "영화5", 980, "color:#9EBBC1;", 980 ], ]);
+		// genre ranking
+		function drawGenreRankingChart() {
+			var yearList = new Array();
+			var monthList = new Array();
+			$('#rankingYear > option').each(function() {
+				if (this.selected) {
+					yearList.push($(this).val());
+				}
+			});
+			$('#rankingMonth > option').each(function() {
+				if (this.selected) {
+					monthList.push($(this).val());
+				}
+			});
 
-			var view = new google.visualization.DataView(data);
+			var sendData = {
+ 				'rankingSelect' : rankingSelect,
+				'yearList' : yearList,
+				'monthList' : monthList
+			};
+			var response = requestSalesData(sendData);
+
+			var chart;
+			var data = new google.visualization.DataTable();
 			var options = {
-				title : '최근 30일내 인기 영화',
+				title : '장르 TOP5',
 				align : 'center',
 				chartArea : {
 					height : '70%',
@@ -1035,15 +1105,16 @@
 					}
 				}
 			};
-			var chart = new google.visualization.BarChart(document
-					.getElementById("movie-recently-chart"));
+			var view = new google.visualization.DataView(data);
+			chart = new google.visualization.BarChart(document
+					.getElementById("genre-ranking-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		}
-		// Contents Genre
-		function drawContentsGenreChart() {
+		// GenreCount
+		function drawGenreCountChart() {
 			var data = google.visualization.arrayToDataTable([ [ "장르", "편", {
 				role : "style"
 			}, {
@@ -1088,7 +1159,7 @@
 				}
 			};
 			var chart = new google.visualization.ColumnChart(document
-					.getElementById("content-genre-chart"));
+					.getElementById("genre-count-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
