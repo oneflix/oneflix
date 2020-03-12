@@ -15,6 +15,7 @@ public class MemberVO {
 	private String ticketName;
 	private int ticketPeriod;
 	private Date paymentDate;
+	private Date expiryDate;
 	private String cert;
 	private String ban;
 	private String searchMember;
@@ -124,6 +125,14 @@ public class MemberVO {
 
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public String getCert() {

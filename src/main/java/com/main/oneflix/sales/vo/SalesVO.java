@@ -50,11 +50,13 @@ public class SalesVO {
 	private String email;
 	private Integer ticketId;
 	private String ticketName;
-	private String ticketPrice;
+	private int ticketPrice;
 	private int ticketPeriod;
 	private String salesStatus;
 	private Date paymentDate;
 	private Date expiryDate;
+	private String paymentMethodType;
+	private String cardName;
 	private String startDate;
 	private String endDate;
 	private String searchSales;
@@ -248,11 +250,11 @@ public class SalesVO {
 		this.ticketName = ticketName;
 	}
 
-	public String getTicketPrice() {
+	public int getTicketPrice() {
 		return ticketPrice;
 	}
 
-	public void setTicketPrice(String ticketPrice) {
+	public void setTicketPrice(int ticketPrice) {
 		this.ticketPrice = ticketPrice;
 	}
 
@@ -286,6 +288,22 @@ public class SalesVO {
 
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+
+	public String getPaymentMethodType() {
+		return paymentMethodType;
+	}
+
+	public void setPaymentMethodType(String paymentMethodType) {
+		this.paymentMethodType = paymentMethodType;
+	}
+
+	public String getCardName() {
+		return cardName;
+	}
+
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
 	}
 
 	public String getStartDate() {
@@ -342,6 +360,36 @@ public class SalesVO {
 
 	public void setEnd(int end) {
 		this.end = end;
+	}
+
+	@Override
+	public String toString() {
+		return "SalesVO [cid=" + cid + ", item_name=" + item_name + ", quantity=" + quantity + ", total_amount="
+				+ total_amount + ", tax_free_amount=" + tax_free_amount + ", approval_url=" + approval_url
+				+ ", cancel_url=" + cancel_url + ", fail_url=" + fail_url + ", tid=" + tid + ", next_redirect_pc_url="
+				+ next_redirect_pc_url + ", pg_token=" + pg_token + ", sid=" + sid + ", payment_method_type="
+				+ payment_method_type + ", amount=" + amount + ", card_info=" + card_info + ", approved_at="
+				+ approved_at + ", status=" + status + ", inactivated_at=" + inactivated_at + ", rnum=" + rnum
+				+ ", salesId=" + salesId + ", email=" + email + ", ticketId=" + ticketId + ", ticketName=" + ticketName
+				+ ", ticketPrice=" + ticketPrice + ", ticketPeriod=" + ticketPeriod + ", salesStatus=" + salesStatus
+				+ ", paymentDate=" + paymentDate + ", expiryDate=" + expiryDate + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", searchSales=" + searchSales + ", lastDate=" + lastDate + ", start="
+				+ start + ", end=" + end + ", getCid()=" + getCid() + ", getItem_name()=" + getItem_name()
+				+ ", getQuantity()=" + getQuantity() + ", getTotal_amount()=" + getTotal_amount()
+				+ ", getTax_free_amount()=" + getTax_free_amount() + ", getApproval_url()=" + getApproval_url()
+				+ ", getCancel_url()=" + getCancel_url() + ", getFail_url()=" + getFail_url() + ", getTid()=" + getTid()
+				+ ", getNext_redirect_pc_url()=" + getNext_redirect_pc_url() + ", getPg_token()=" + getPg_token()
+				+ ", getSid()=" + getSid() + ", getPayment_method_type()=" + getPayment_method_type() + ", getAmount()="
+				+ getAmount() + ", getCard_info()=" + getCard_info() + ", getApproved_at()=" + getApproved_at()
+				+ ", getStatus()=" + getStatus() + ", getInactivated_at()=" + getInactivated_at() + ", getRnum()="
+				+ getRnum() + ", getSalesId()=" + getSalesId() + ", getEmail()=" + getEmail() + ", getTicketId()="
+				+ getTicketId() + ", getTicketName()=" + getTicketName() + ", getTicketPrice()=" + getTicketPrice()
+				+ ", getTicketPeriod()=" + getTicketPeriod() + ", getSalesStatus()=" + getSalesStatus()
+				+ ", getPaymentDate()=" + getPaymentDate() + ", getExpiryDate()=" + getExpiryDate()
+				+ ", getStartDate()=" + getStartDate() + ", getEndDate()=" + getEndDate() + ", getSearchEmail()="
+				+ getSearchEmail() + ", getSearchSales()=" + getSearchSales() + ", getLastDate()=" + getLastDate()
+				+ ", getStart()=" + getStart() + ", getEnd()=" + getEnd() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }

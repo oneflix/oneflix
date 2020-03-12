@@ -94,7 +94,7 @@
                 <div class="inner">
                   <h3 id="totalSales"></h3>
 
-                  <p>일매출</p>
+                  <p>월 매출</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-cash"></i>

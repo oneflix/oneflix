@@ -1218,6 +1218,24 @@
 			drawGenreRankingChart();
 		});
 
+		function requestMovieRankingData(sendData){
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/getAnalysisMovieRankingProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res){
+					response = res;
+					console.log("movierankingdata: "+response);
+				},
+				error : function(e) {
+					console.log(e);
+				}
+			});
+			return response;
+		}
 		// movie ranking
 		function drawMovieRankingChart() {
 			var sendData = {
@@ -1271,7 +1289,7 @@
 			};
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
-					.getElementById("movie-ranking-chart"));
+					.getElementById("genre-ranking-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -1349,7 +1367,6 @@
 					async : false,
 					dataType: "json",
                     }).responseText;
-				
 				var chart;
 				data = new google.visualization.DataTable(jsonData);
 			var view = new google.visualization.DataView(data);

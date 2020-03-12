@@ -71,6 +71,11 @@
                                     AND (m.genre_id1 = #{recommendGenre} OR m.genre_id2 = #{recommendGenre})
                                  </if>
                                  <choose>
+                                 	<when test="searchCondition == 'movie'">
+                                       <if test="searchMovie != null and searchMovie != ''">
+                                          AND m.movie_title like '%' || #{searchMovie} || '%'
+                                       </if>
+                                    </when>
                                     <when test="searchCondition == 'director'">
                                        <if test="searchMovie != null and searchMovie != ''">
                                           AND d.director_name like '%' || #{searchMovie} || '%'
@@ -85,7 +90,12 @@
                                     </when>
                                     <otherwise>
                                        <if test="searchMovie != null and searchMovie != ''">
-                                          AND m.movie_title like '%' || #{searchMovie} || '%'
+                                          AND (m.movie_title like '%' || #{searchMovie} || '%'
+                                          		OR d.director_name like '%' || #{searchMovie} || '%'
+                                          		OR (a1.actor_name like '%' || #{searchMovie} || '%' OR a2.actor_name like '%' || #{searchMovie} || '%'
+                                              		OR a3.actor_name like '%' || #{searchMovie} || '%' OR a4.actor_name like '%' || #{searchMovie} || '%'
+                                              		OR a5.actor_name like '%' || #{searchMovie} || '%')
+                                              )
                                        </if>
                                     </otherwise>
                                  </choose>
