@@ -1109,6 +1109,7 @@
 		// GenreCount
 		function drawGenreCountChart() {
 				var response = requestGenreCountData(sendData);
+
 				var response;
 				$.ajax({
 					type : 'POST',
