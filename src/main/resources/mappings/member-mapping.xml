@@ -30,9 +30,9 @@
 
 	<select id="getMember" resultType="member"
 		parameterType="member">
-		SELECT m.*, t.ticket_name, t.ticket_period
+		SELECT m.*, t.ticket_name
 		<if test="ticketId != 0">
-			, s.payment_date
+			, s.payment_date payment_date, s.expiry_date expiry_date
 		</if>
 		FROM member m, ticket t
 		<if test="ticketId != 0">

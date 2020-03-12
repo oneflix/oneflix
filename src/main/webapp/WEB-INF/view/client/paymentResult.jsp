@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="ko_KR"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,20 +42,32 @@
 		<div>
 			<div class="parent">
 				<p class="child-label">주문번호</p>
-				<p class="child-value">2020202020</p>
+				<p class="child-value">${sales.salesId}</p>
 			</div>
 			<div class="parent">
 				<div class="child-label"><p>결제정보</p></div>
 				<div class="child-value">
-					<p>신용카드</p>
-					<p>현대(4040-****-****)</p>
+					<p>${sales.ticketName}</p>
+					<p>
+						<c:choose>
+							<c:when test="${sales.paymentMethodType eq 'CARD'}">
+								${sales.cardName}
+							</c:when>
+							<c:otherwise>
+								카카오머니
+							</c:otherwise>
+						</c:choose>
+					</p>
 					<p>일시불</p>
-					<p>승인일시:2020.02.20 13:06</p>
 				</div>
 			</div>
 			<div class="parent">
 				<p class="child-label">결제금액</p>
-				<p class="child-value">7500</p>
+				<p class="child-value"><fmt:formatNumber type="currency" value="${sales.ticketPrice}"/></p>
+			</div>
+			<div class="parent">
+				<p class="child-label">승인일시</p>
+				<p class="child-value"><fmt:formatDate value="${sales.paymentDate}" pattern="yyyy.MM.dd HH:mm"/></p>
 			</div>
 		</div>
 	</div>	

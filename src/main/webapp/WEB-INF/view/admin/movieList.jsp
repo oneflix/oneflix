@@ -16,6 +16,12 @@
 	td{height: 90px;}
 	img {width: 160px; height: 90px;}
 	td > p, td > div {margin-top: 30px;}
+	.btn {margin-right: 5px;}
+	.movie-type-button-box {margin: 15px 20px 0 auto; float: right;}
+	.movie-type-button-box > button {border: 1px solid #d1d1d5; border-radius: 5px; background: #fff; outline: none;}
+	.movie-type-button-box > button:hover {background: #f1f1f1;}
+	.movie-type-button-box > button:focus {outline: none;}
+	.movie-type-button-box > button:disabled {border-color: #dddddd; background: #e0e0e0;}
 </style>
 
 </head>
@@ -76,6 +82,11 @@
 									</c:forEach>
 								</select>
 							</div>
+							<div class="movie-type-button-box">
+								<button id="all-movie-button" disabled>전체 보기</button>
+								<button id="main-movie-button">메인</button>
+							</div>
+							
 							<!-- /.card-header -->
 
 							<div class="card-body">
@@ -114,6 +125,7 @@
 		var searchGenre;
 		var searchMovie;
 		var searchCondition;
+		var movieType;
 		
 	    $(document).ready(function() {
 	    	
@@ -142,6 +154,7 @@
 	    				sendData.searchGenre = searchGenre;
 	    				sendData.searchMovie = searchMovie;
 	    				sendData.searchCondition = searchCondition;
+	    				sendData.movieType = movieType;
 	    			}
 	    		},
 	   			columns: [
@@ -155,7 +168,6 @@
 	   					}},
 	   				{data: "movieTitle",
 	   					render: function(data){
-	   						console.log(data);
 	   						return "<p>" +data + "</p>" ;
 	   					}},
 	   				{data: "genre1",
@@ -184,9 +196,9 @@
    					{data: "movieId",
 	   					render: function(data){
 	   						var html = "<div>" +
-										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goMovieDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"updateMovie(\'" + data + "\')\">수정</button>" +
 										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
-										"<button type=\"button\" class=\"btn btn-sm btn-info\">상세보기</button>"
+										"<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"goMovieDetail(\'" + data + "\')\">상세보기</button>"
 									"</div>"
 	   						return html;
 	   					}}
@@ -218,11 +230,19 @@
 	    	table.ajax.reload();
 	    });
 	    
+	    $(".movie-type-button-box button").click(function(){
+	    	$(".movie-type-button-box button").prop("disabled", false);
+	    	$(this).prop("disabled", true);
+	    	movieType = $(this).prop('id').split('-')[0];
+	    	table.ajax.reload();
+	    });
+	    
 	    $("#searchMovie").keydown(function(key) {
 	        if (key.keyCode == 13) {
 	        	$('#search-button').trigger('click');
 	        }
 	    });
+	    
 	    
 	    function getFormatDate(date) {
 	    	var date = new Date(date);
@@ -234,7 +254,7 @@
 			return year + '-' + month + '-' + day;
 		}
 	    
-	    function goMovieDetail(movieId) {
+	    function updateMovie(movieId) {
 	    	window.location.href = "/getMovieProc.mdo?movieId=" + movieId;
 	    }
 	
@@ -243,7 +263,12 @@
 			if(check == true){
 				window.location.href = "/deleteMovieProc.mdo?movieId=" + movieId;
 			}
-		};
+		}
+		
+	    function goMovieDetail(movieId) {
+	    	const url = "/getAdminMovieDetailProc.mdo?movieId=" + movieId;
+	    	window.open(url, "_blank");
+	    }
 	    
 	</script>
 </body>
