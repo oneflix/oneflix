@@ -1,7 +1,6 @@
 package com.main.oneflix.analysis.service.impl;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,31 +21,35 @@ public class AnalysisMovieRankingServieImpl implements AnalysisMovieRankingServi
 		String rankingSelect = (String) map.get("rankingSelect");
 		
 		Map<String,String> dbMap = new HashMap<>();
-		String year = (String) map.get("year");
-		String month = (String) map.get("month");
+		String rankingYear = (String) map.get("rankingYear");
+		String rankingMonth = (String) map.get("rankingMonth");
+		String yearPlusOne = Integer.toString(Integer.parseInt(rankingYear)+1);
+		String monthPlusOne = Integer.toString(Integer.parseInt(rankingMonth)+1);
+		if (Integer.parseInt(rankingMonth) < 10) {
+			rankingMonth = "0"+ rankingMonth;
+			if (Integer.parseInt(rankingMonth) < 9) {
+				monthPlusOne = "0"+ monthPlusOne;
+			}
+		}
 		
 		if(rankingSelect.equals("year")) {
-				dbMap.put("startDate", (year + "0101"));
-				String yearPlusOne = Integer.toString(Integer.parseInt(year)+1);
+				dbMap.put("startDate", (rankingYear + "0101"));
 				dbMap.put("endDate", (yearPlusOne + "0101"));
-				response.put(year, analysisDAO.analysisMovieRankingYear(dbMap));
-		}else {	
-					if (Integer.parseInt(month) < 10) {
-						month = "0"+ month;
-						dbMap.put("startDate", (year + month + "01"));
-					}
-				if (Integer.parseInt(month) == 9) {
-						dbMap.put("endDate", (year + "1001"));
-					} else if (Integer.parseInt(month) == 12) {
-						String yearPlusOne = Integer.toString(Integer.parseInt(year)+1);
-						dbMap.put("endDate", (yearPlusOne  + "0101"));
-					} else {
-					String monthPlusOne = Integer.toString(Integer.parseInt(month)+1);
-					dbMap.put("endDate", (year + monthPlusOne + "01"));
-					}
-				response.put(month, analysisDAO.analysisMovieRankingMonth(dbMap));	
+				response.put(rankingYear, analysisDAO.analysisMovieRanking(dbMap));
+		
+		} else {	
+				dbMap.put("startDate", (rankingYear + rankingMonth + "01"));
+				if (Integer.parseInt(rankingMonth) == 12) {
+					dbMap.put("endDate", (yearPlusOne  + "0101"));
+				} else if (Integer.parseInt(rankingMonth) == 9) {
+					dbMap.put("endDate", (rankingYear + "1001"));
+				} else {
+					dbMap.put("endDate", (rankingYear + monthPlusOne + "01"));
+				}
+				System.out.println(dbMap.get("startDate"));
+				System.out.println(dbMap.get("endDate"));
+				response.put(rankingYear+rankingMonth, analysisDAO.analysisMovieRanking(dbMap));	
 		}
-		System.out.println("MovieRanking response : "+response);
 		return response;
 	}
 }
