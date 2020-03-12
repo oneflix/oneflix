@@ -564,7 +564,7 @@
 		});
 		
 		function goWatchMovie(movieId) {
-			window.location.href = "#?movieId=" + movieId;
+			window.location.href = "/moviePlay.do?movieId=" + movieId;
 		}
 	    function goMovieDetail(movieId) {
 	   		window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;

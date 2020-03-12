@@ -20,7 +20,15 @@
 			<mvc:mapping path="/*.do" />
 			<mvc:exclude-mapping path="/oneflix.do"/>
 			<mvc:exclude-mapping path="/login.do"/>
-			<mvc:exclude-mapping path="/join.do"/>
+			<mvc:exclude-mapping path="/loginProc.do"/>
+			<mvc:exclude-mapping path="/naverLoginProc.do"/>
+			<mvc:exclude-mapping path="/connectSNSLoginProc.do"/>
+			<mvc:exclude-mapping path="/findPass.do"/>
+			<mvc:exclude-mapping path="/findPassProc.do"/>
+			<mvc:exclude-mapping path="/paymentApproveProc.do"/>
+			<mvc:exclude-mapping path="/paymentSuccessProc.do"/>
+			<mvc:exclude-mapping path="/paymentCancelProc.do"/>
+			<mvc:exclude-mapping path="/paymentFailProc.do"/>
 			<bean class="com.main.oneflix.interceptor.client.ClientInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
