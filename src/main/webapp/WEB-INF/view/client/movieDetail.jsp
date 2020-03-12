@@ -254,7 +254,7 @@
 										<div class="css-1liv69o-BackgroundStars e1a0u7o32"
 											style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
 										<div class="css-1g8zxed-ActiveStars e1a0u7o31"
-											style="color: rgb(255, 255, 255); width: 78%;">★★★★★</div>
+											style="color: rgb(255, 255, 255);">★★★★★</div>
 									</div>
 								</div>
 								<span class="css-7huvli-RatingAvgNumber e17lrvw517">${movie.movieScore}</span><span
@@ -396,6 +396,31 @@
 					 return false;
 				 }
 			 }
+			
+			 //평균별점 불러와서 별 채우기
+			    if("${movie.movieScore}" >= 0.0 && "${movie.movieScore}" < 0.5){
+			    	$('.e1a0u7o31').css("width", "5%");
+			    } else if("${movie.movieScore}" >= 0.5 && "${movie.movieScore}" < 1.0){
+			    	$('.e1a0u7o31').css("width", "10%");
+			    }else if("${movie.movieScore}" >= 1.0 && "${movie.movieScore}" < 1.5){
+			    	$('.e1a0u7o31').css("width", "20%");
+			    }else if("${movie.movieScore}" >= 1.5 && "${movie.movieScore}" < 2.0){
+			    	$('.e1a0u7o31').css("width", "30%");
+			    }else if("${movie.movieScore}" >= 2.0 && "${movie.movieScore}" < 2.5){
+			    	$('.e1a0u7o31').css("width", "40%");
+			    }else if("${movie.movieScore}" >= 2.5 && "${movie.movieScore}" < 3.0){
+			    	$('.e1a0u7o31').css("width", "50%");
+			    }else if("${movie.movieScore}" >= 3.0 && "${movie.movieScore}" < 3.5){
+			    	$('.e1a0u7o31').css("width", "60%");
+			    }else if("${movie.movieScore}" >= 3.5 && "${movie.movieScore}" < 4.0){
+			    	$('.e1a0u7o31').css("width", "70%");
+			    }else if("${movie.movieScore}" >= 4.0 && "${movie.movieScore}" < 4.5){
+			    	$('.e1a0u7o31').css("width", "80%");
+			    }else if("${movie.movieScore}" >= 4.5 && "${movie.movieScore}" < 5.0){
+			    	$('.e1a0u7o31').css("width", "90%");
+			    }else if("${movie.movieScore}" == 5.0) {
+			    	$('.e1a0u7o31').css("width", "100%");
+			    }
 			
 			//session email이 준 별점,리뷰 세팅
 			reviewScore = "${myReview.reviewScore}";
