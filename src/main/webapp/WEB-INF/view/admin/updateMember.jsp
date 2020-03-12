@@ -67,9 +67,12 @@
 									</div>
 									<div>
 										<input name="ticketName" id="ticketName" value="${member.ticketName}">
-										<button type="button" class="btn btn-sm btn-info">이용권등록</button>
+										<!-- <button type="button" class="btn btn-sm btn-info">이용권등록</button>  -->
 									</div>
-									<div>2020.02.01 - 2020.03.01</div>
+									<div>
+										<fmt:formatDate value="${member.paymentDate}" pattern="yyyy.mm.dd"/> -
+										<fmt:formatDate value="${member.expiryDate}" pattern="yyyy.mm.dd"/>
+									</div>
 									<div>
 										<input name="cert" value="${member.cert}">
 									</div>

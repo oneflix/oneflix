@@ -24,7 +24,6 @@ import com.main.oneflix.review.service.GetReviewService;
 import com.main.oneflix.review.vo.ReviewVO;
 import com.main.oneflix.ticket.service.GetTicketListService;
 import com.main.oneflix.ticket.vo.TicketVO;
-import com.main.oneflix.wish.vo.WishVO;
 
 @Controller
 public class MovieController {
@@ -66,15 +65,6 @@ public class MovieController {
 		vo.setMovieType("wish");
 		List<MovieVO> wishList = getMovieListService.getMovieList(vo);
 
-		for(ReviewLikeVO reviewLike : reviewLikeList) {
-			System.out.println("=========================================");
-			System.out.println("reviewLike.getMovieId() : " + reviewLike.getMovieId());
-			System.out.println("reviewLike.getReviewId() : " + reviewLike.getReviewId());
-			System.out.println("reviewLike.getReviewLikeEmail() : " + reviewLike.getReviewLikeEmail());
-			System.out.println("reviewLike.getReviewLikeId() : " + reviewLike.getReviewLikeId());
-			System.out.println();
-		}
-		
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("reviewLikeList", reviewLikeList);
 		mav.addObject("wishList", wishList);
@@ -100,9 +90,7 @@ public class MovieController {
 		} else {
 			movieList = getMovieListService.getMovieList(vo);
 		}
-		if (vo.getSearchMovie() != null) {
-			mav.addObject("searchMovie", vo.getSearchMovie());
-		}
+		
 		mav.addObject("searchGenre", vo.getSearchGenre());
 		mav.addObject("searchOrder", vo.getSearchOrder());
 		mav.addObject("movieType", vo.getMovieType());
