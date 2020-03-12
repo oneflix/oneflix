@@ -98,13 +98,13 @@
                 ) a, member
         where a.email = member.email
 		GROUP BY ages, TO_CHAR(join_date,'FMMM')
-        ORDER BY ages
+        ORDER BY join_date
 	</select>
 
 	<resultMap type="java.util.HashMap" id="memberAgeList">
 		<id column="count" property="count" javaType="int"/>
-		<result column="member_age" property="memberAge" javaType="string"/>
-		<result column="join_date" property="joinDate" />
+		<result column="member_age" property="memberAge" javaType="int"/>
+		<result column="join_date" property="joinDate" javaType="int"/>
 	</resultMap>
 	
 	
@@ -117,7 +117,7 @@
 	<select id="analysismovieRank" parameterType="java.util.HashMap" resultMap="movieRankList">
 	   SELECT * FROM (
 		        SELECT ROWNUM RNUM, NVL(COUNT(*),0) count, 
-		        	   m.movie_title
+		        	   m.movie_title movie_title
 		        FROM watch w, movie m
 		        WHERE  w.movie_id = m.movie_id
 		        AND w.watch_type = 'watched'
@@ -138,7 +138,7 @@
 	<select id="analysisGenreRank" parameterType="java.util.HashMap" resultMap="genreRankList">
 	   SELECT * FROM (
 			    SELECT ROWNUM RNUM, 
-			    	   NVL(COUNT(*),0) count, g.genre
+			    	   NVL(COUNT(*),0) count, g.genre genre
 		        FROM watch w, movie m, genre g
 		        WHERE w.movie_id = m.movie_id
 		        AND w.watch_type = 'watched'
@@ -159,7 +159,7 @@
 	</resultMap>
 	
 	<select id="analysisGenreCount" parameterType="java.util.HashMap" resultMap="genreCountList">
-		 SELECT NVL(COUNT(*),0) count, g.genre
+		 SELECT NVL(COUNT(*),0) count, g.genre genre
 		        FROM movie m, genre g
 		        WHERE (m.genre_id1 = g.genre_id or m.genre_id2 = g.genre_id)
 		        AND g.genre_id != 0
