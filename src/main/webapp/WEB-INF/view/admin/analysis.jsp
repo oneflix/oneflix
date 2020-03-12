@@ -1108,13 +1108,10 @@
 		}
 		// GenreCount
 		function drawGenreCountChart() {
-				var response = requestGenreCountData(sendData);
-
 				var response;
 				$.ajax({
 					type : 'POST',
 					url : '/analysisGenreRankingProcAjax.mdo',
-					data : JSON.stringify(sendData),
 					contentType : "application/json",
 					async : false,
 					success : function(res) {
@@ -1123,6 +1120,9 @@
 				});
 				return response;
 				
+				response = requestGenreCountData();
+
+
 				var chart;
 				var data = new google.visualization.DataTable();
 			var view = new google.visualization.DataView(data);
