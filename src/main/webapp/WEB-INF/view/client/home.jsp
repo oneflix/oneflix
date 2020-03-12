@@ -160,8 +160,9 @@
                     <div class="css-1926epj-Self e1wyxeas0">
                         <p class="css-kodeqh-Title e1wyxeas6">모든 작품, 무제한 감상하세요. 마음에 들지 않으면 클릭 1번으로 언제든 해지할 수 있어요.
                         </p>
-                        <div class="css-1dm7gp7-Buttons e1wyxeas4"><button id="ticket-modal" type="button"
-                                class="css-18t3r5j-Button-BlackButton-Button e1wyxeas1">이용권 구매</button>
+                        <div class="css-1dm7gp7-Buttons e1wyxeas4">
+                        <button id="ticket-modal" type="button" value="${member.cert}"
+                                style="cursor: pointer" class="css-18t3r5j-Button-BlackButton-Button e1wyxeas1">이용권 구매</button>
                         </div>
                     </div>
                 </div>
@@ -200,7 +201,6 @@
                                 </button>
                                 <ul class="dropdown-menu hamburger-menu">
                                     <li><div><a href="/mypageHome.do">마이 페이지</a></div></li>
-                                    <li><div><a href="/getMovieListProc.do?movieType=new">신작 알림</a></div></li>
                                     <li><div><a href="/getMovieListProc.do?movieType=wish">찜 목록</a></div></li>
                                     <li><div class="divider"></div></li>
                                     <li><div><a href="/getHelpListProc.do">고객센터</a></div></li>
@@ -213,15 +213,32 @@
                             <ul class="clearfix">
                                 <li><a href="/getMovieListProc.do?movieType=wish">보고싶어요</a></li>
                                 <li>
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="height: 43px;">
                                         <button class="btn dropdown-toggle bell-button" type="button"
                                             data-toggle="dropdown">
-                                            <i class="far fa-bell"></i><span class="badge">12</span>
+                                            <i class="far fa-bell"></i>
+                                            <c:if test="${movieAlarmCount + replyAlarmCount ne 0}">
+                                            	<span class="badge bell-badge">${movieAlarmCount + replyAlarmCount}</span>
+                                            </c:if>
                                         </button>
                                         <!-- 데이터 가져와서 .bell-menu에 알림 리스트 추가 -->
                                         <ul class="dropdown-menu bell-menu">
-                                            <li><div><a href="/getMovieListProc.do?movieType=new">새로 올라온 작품</a></div></li>
-                                            <li><div><a href="/inquiryList.do">답변 알림</a></div></li>
+                                            <li class="alarm-li">
+                                            	<div>
+	                                            	<a>
+		                                            	<span>새로 올라온 작품</span>
+		                                            	<span id="movie-alarm" class="badge alarm-badge">${movieAlarmCount}</span>
+	                                            	</a>
+                                            	</div>
+                                            </li>
+                                            <li class="alarm-li">
+                                            	<div>
+                                            		<a>
+		                                            	<span>답변 알림</span>
+				                                        <span id="reply-alarm" class="badge alarm-badge">${replyAlarmCount}</span>
+		    										</a>
+                                            	</div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
@@ -483,10 +500,25 @@
     <script src="client/js/ticket_modal.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+    	    var connectResult = "${connectResult}";
+    	    if (connectResult == "success") {
+        	alert("계정연동이 완료되었습니다.");
+    		} 
+    	    
     		var purchasedTicket = "${member.ticketId}";
-    		alert(purchasedTicket);
+
     		if (purchasedTicket != 0) {
     			$('.ticket-header').css('display', 'none');
+    		}
+    		
+    		var movieAlarmCount = "${movieAlarmCount}";
+    		var replyAlarmCount = "${replyAlarmCount}";
+    		
+    		if (movieAlarmCount == 0) {
+    			$('#movie-alarm').empty();
+    		}
+    		if (replyAlarmCount == 0) {
+    			$('#reply-alarm').empty();
     		}
     	});
     
@@ -507,6 +539,30 @@
 		$('.info-button').mouseleave(function(){
 			$(this).children('img').prop('src','client/images/icons/info.png');
 		});
+		
+		$('.alarm-li').click(function(){
+			var alarmType = $(this).find('.alarm-badge').prop('id');
+			alarmType = alarmType.split('-')[0];
+			
+			if ($(this).find('.alarm-badge').is(':not(:empty)')) {
+				var email = "${member.email}";
+				var sendData = {'alarmType': alarmType, 'email': email};
+				$.ajax({
+					type: 'POST',
+					url: '/deleteAlarmProcAjax.do',
+					async: false,
+					data: sendData
+				});
+			}
+			
+			if (alarmType == 'movie') {
+				window.location.href = '/getMovieListProc.do?movieType=new';
+			} else {
+				window.location.href = '/getInquiryListProc.do';
+			}
+			
+		});
+		
 		function goWatchMovie(movieId) {
 			window.location.href = "#?movieId=" + movieId;
 		}

@@ -12,6 +12,7 @@ import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.watch.service.GetWatchViewPointService;
 import com.main.oneflix.watch.service.InsertWatchService;
 import com.main.oneflix.watch.service.UpdateWatchService;
+
 import com.main.oneflix.watch.vo.WatchVO;
 
 @Controller
@@ -37,10 +38,12 @@ public class WatchController {
 		vo.setViewPoint(viewPoint);
 		
 		mav.addObject("watch", vo);
+
 		mav.setViewName("moviePlay");
 		return mav;
 	}
 	
+
 	@RequestMapping("/insertWatchAjax.do")
 	@ResponseBody
 	public void insertWatch(WatchVO vo) {

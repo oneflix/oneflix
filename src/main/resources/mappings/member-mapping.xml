@@ -5,18 +5,17 @@
 <mapper namespace="MemberDAO">
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO member(email, pass, nick, birth, member_age, gender, cert, ban,
-		join_date, ticket_id, google, kakao, naver)
+		join_date, ticket_id, kakao, naver)
 		VALUES(#{email}, #{pass}, #{nick}, #{birth}, #{memberAge}, #{gender}, #{cert}, #{ban},
 		SYSDATE, 0,
-		#{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver,
-		jdbcType=VARCHAR})
+		#{kakao, jdbcType=VARCHAR}, #{naver,jdbcType=VARCHAR})
 	</insert>
 
 	<update id="updateMember" parameterType="member">
 		UPDATE member SET
 		<choose>
 			<when test="updateType == 'info'">
-				pass = #{pass}, nick = #{nick}, ban = #{ban, jdbcType=CHAR}, #{google, jdbcType=VARCHAR}, #{kakao, jdbcType=VARCHAR}, #{naver, jdbcType=VARCHAR})
+				pass = #{pass}, nick = #{nick}, cert = #{cert, jdbcType=CHAR}, ban = #{ban, jdbcType=CHAR}, kakao = #{kakao, jdbcType=VARCHAR}, naver = #{naver, jdbcType=VARCHAR}
 			</when>
 			<when test="updateType == 'sales'">
 				ticket_id = #{ticketId}
@@ -50,8 +49,8 @@
 			<when test="naver != null and naver != ''">
 				AND m.naver = #{naver}
 			</when>
-			<when test="google != null and google != ''">
-				AND m.google = #{google}
+			<when test="nick != null and nick != ''">
+				AND m.nick = #{nick}
 			</when>
 			<otherwise>
 				AND m.email = #{email}
@@ -95,9 +94,9 @@
 		<if test="lastDate != null and lastDate != '0'">
 			<choose>
 				<when test="lastDate == 30">
-								<![CDATA[
-									AND join_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
-								]]>
+					<![CDATA[
+						AND join_date >= TO_DATE(ADD_MONTHS(SYSDATE, -1))
+					]]>
 				</when>
 			</choose>
 		</if>
@@ -111,4 +110,15 @@
 		resultType="int">
 		SELECT COUNT(*) FROM member
 	</select>
+	
+	<update id="updateTicketExpiry" parameterType="java.util.HashMap">
+			UPDATE member SET
+			ticket_id = 0
+			WHERE 
+
+		<foreach collection="emailList" item="email"  open="(" close=")" separator="AND">
+
+			email = #{email}
+		</foreach>
+	</update>
 </mapper>

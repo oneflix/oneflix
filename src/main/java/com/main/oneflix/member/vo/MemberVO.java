@@ -31,11 +31,12 @@ public class MemberVO {
 	private String code;
 	private String refresh_token;
 
-	private String google;
 	private String kakao;
 	private String naver;
 
 	private String updateType;
+	private String newNick;
+	private String newPass;
 
 	public int getRnum() {
 		return rnum;
@@ -245,14 +246,6 @@ public class MemberVO {
 		this.refresh_token = refresh_token;
 	}
 
-	public String getGoogle() {
-		return google;
-	}
-
-	public void setGoogle(String google) {
-		this.google = google;
-	}
-
 	public String getKakao() {
 		return kakao;
 	}
@@ -275,6 +268,22 @@ public class MemberVO {
 
 	public void setUpdateType(String updateType) {
 		this.updateType = updateType;
+	}
+
+	public String getNewNick() {
+		return newNick;
+	}
+
+	public void setNewNick(String newNick) {
+		this.newNick = newNick;
+	}
+
+	public String getNewPass() {
+		return newPass;
+	}
+
+	public void setNewPass(String newPass) {
+		this.newPass = newPass;
 	}
 
 }

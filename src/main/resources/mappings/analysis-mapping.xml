@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AnalysisDAO">
+
+	<select id="analysisSalesYear" parameterType="sales" resultType="int">
+		SELECT NVL(SUM(t.ticket_price),0)
+		FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id
+		AND s.sales_status != 'ready'
+		AND s.payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+	</select>
+
+	<select id="analysisSalesMonth" parameterType="sales" resultMap="salesMonthList">
+		SELECT
+		NVL(SUM(t.ticket_price), 0) total_sales,
+		TO_CHAR(s.payment_date,'fmMM') payment_date
+		FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id
+		AND s.payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		GROUP BY TO_CHAR(s.payment_date, 'fmMM')
+		ORDER BY payment_date
+	</select>
+
+	<resultMap type="java.util.HashMap" id="salesMonthList">
+		<id column="payment_date" property="paymentDate" />
+		<result column="total_sales" property="totalSales" />
+	</resultMap>
+
+	<select id="analysisGenderYear" parameterType="java.util.HashMap" resultMap="genderList">
+		SELECT
+		NVL(COUNT(*), 0) count, gender
+		FROM member
+		WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		GROUP BY gender
+		ORDER BY gender
+	</select>
+	
+	<select id="analysisGenderMonth" parameterType="java.util.HashMap" resultMap="genderList">
+		SELECT
+		NVL(COUNT(*), 0) count, gender, TO_CHAR(join_date,'FMMM') join_date
+		FROM member
+		WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		GROUP BY gender, TO_CHAR(join_date, 'FMMM')
+		ORDER BY join_date, gender
+	</select>
+
+	<resultMap type="java.util.HashMap" id="genderList">
+		<id column="count" property="count" />
+		<result column="gender" property="gender" />
+		<result column="join_date" property="joinDate" />
+	</resultMap>
+	
+	<select id="analysisSubscriberTicket" parameterType="sales" resultMap="subscriberTicketList">
+		SELECT NVL(COUNT(*),0) count,
+			t.ticket_name ticket_name
+		FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id
+		AND payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+							AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		GROUP BY t.ticket_id, t.ticket_name
+	</select>
+	
+	<resultMap type="java.util.HashMap" id="subscriberTicketList">
+		<id column="count" property="count" />
+		<result column="ticket_name" property="ticketName" />
+	</resultMap>
+	
+	<select id="analysisSubscriberYear" parameterType="sales" resultType="int">
+		SELECT NVL(count(*),0) count
+		FROM sales
+		WHERE payment_date BETWEEN TO_DATE(#{startDate}||'000000','YYYYMMDDHH24MISS')
+		AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+	</select>
+	
+	<select id="analysisMemberAgeYear" parameterType="java.util.HashMap" resultMap="memberAgeList">
+		SELECT
+		NVL(COUNT(*), 0) count, ages member_age
+		FROM (SELECT FLOOR(member_age/10)*10 ages FROM member
+                WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+                AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+                )
+		GROUP BY ages
+        ORDER BY ages
+	</select>
+	
+	<select id="analysisMemberAgeMonth" parameterType="java.util.HashMap" resultMap="memberAgeList">
+		SELECT
+		NVL(COUNT(*), 0) count, ages member_age, TO_CHAR(join_date,'FMMM') join_date
+		FROM (SELECT email, floor(member_age/10)*10 ages FROM member
+                WHERE join_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+                AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+                ) a, member
+        where a.email = member.email
+		GROUP BY ages, TO_CHAR(join_date,'FMMM')
+        ORDER BY join_date
+	</select>
+
+	<resultMap type="java.util.HashMap" id="memberAgeList">
+		<id column="count" property="count" javaType="int"/>
+		<result column="member_age" property="memberAge" javaType="int"/>
+		<result column="join_date" property="joinDate" javaType="int"/>
+	</resultMap>
+	
+	
+    <!-- 조회수 TOP5 -->		
+	<resultMap type="java.util.HashMap" id="movieRankList">
+		<id column="count" property="count"/>
+		<result column="movie_title" property="movieTitle" />
+	</resultMap>
+	
+	<select id="analysismovieRank" parameterType="java.util.HashMap" resultMap="movieRankList">
+	   SELECT * FROM (
+		        SELECT ROWNUM RNUM, NVL(COUNT(*),0) count, 
+		        	   m.movie_title movie_title
+		        FROM watch w, movie m
+		        WHERE  w.movie_id = m.movie_id
+		        AND w.watch_type = 'watched'
+		        AND w.watch_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+							       AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		        GROUP BY m.movie_title
+		        ORDER BY count DESC
+		        )
+       WHERE RNUM BETWEEN 1 AND 5
+	</select>
+	
+	 <!-- 장르 TOP5 -->		
+	<resultMap type="java.util.HashMap" id="genreRankList">
+		<id column="count" property="count"/>
+		<result column="genre" property="genre" />
+	</resultMap>
+	
+	<select id="analysisGenreRank" parameterType="java.util.HashMap" resultMap="genreRankList">
+	   SELECT * FROM (
+			    SELECT ROWNUM RNUM, 
+			    	   NVL(COUNT(*),0) count, g.genre genre
+		        FROM watch w, movie m, genre g
+		        WHERE w.movie_id = m.movie_id
+		        AND w.watch_type = 'watched'
+		        AND (m.genre_id1 = g.genre_id or m.genre_id2 = g.genre_id)
+		        AND g.genre_id != 0
+		        AND w.watch_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
+							         AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
+		        GROUP BY g.genre
+		        ORDER BY count DESC
+		        )
+	   WHERE RNUM BETWEEN 1 AND 5
+	</select>
+	
+	 <!-- 컨텐츠 장르분포 -->		
+	<resultMap type="java.util.HashMap" id="genreCountList">
+		<id column="count" property="count"/>
+		<result column="genre" property="genre" />
+	</resultMap>
+	
+	<select id="analysisGenreCount" parameterType="java.util.HashMap" resultMap="genreCountList">
+		 SELECT NVL(COUNT(*),0) count, g.genre genre
+		        FROM movie m, genre g
+		        WHERE (m.genre_id1 = g.genre_id or m.genre_id2 = g.genre_id)
+		        AND g.genre_id != 0
+		        GROUP BY g.genre
+		        ORDER BY count DESC;
+	</select>
+
+
+	
+</mapper>
