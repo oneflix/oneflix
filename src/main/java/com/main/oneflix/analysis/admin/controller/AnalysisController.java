@@ -84,8 +84,4 @@ public class AnalysisController {
 	public Map<String, Object> analysisGenreCountProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisGenreCountService.analysisGenreCount(map);
 	}		
-		
-		
-
-
 }

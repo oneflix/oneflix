@@ -281,15 +281,6 @@
 		// ranking
 		var rankingSelect;
 		
-	/* 	//1개년도 선택제한
-		$('#subscriberTicket').click(function() {
-			$('#subscriberDate').change(function() {
-				$('#subscriberDate option:first').prop('selected', true);
-				$('#subscriberDate option:first').nextAll().prop('selected', true);
-			});
-			
-		}); */
-		
 
 		$(document).ready(
 				function() {
@@ -341,7 +332,7 @@
 					//subscriber chart 3개년 세팅
 					$('#subscriberDate option:eq(3)').prevAll().prop('selected', true);
 					
-					//gender chart 5개년 세팅
+					//gender chart 3개년 세팅
 					$('#genderDate option:eq(3)').prevAll().prop('selected', true);
 					
 					//memberAge cahrt 2개년 세팅
@@ -1232,6 +1223,7 @@
 				async : false,
 				success : function(res){
 					response = res;
+					console.log("movierankingdata: "+response);
 				}
 			});
 			return response;
@@ -1246,29 +1238,22 @@
 				async : false,
 				success : function(res){
 					response = res;
+					console.log("genrerankingdata: "+response);
 				}
 			});
 			return response;
 		}
 
 		function drawMovieRankingChart() {
-				var yearList = new Array();
-				var monthList = new Array();
-				$('#rankingYear > option').each(function() {
-					if (this.selected) {
-						yearList.push($(this).val());
-					}
-				});
-				$('#rankingMonth > option').each(function() {
-					if (this.selected) {
-						monthList.push($(this).val());
-					}
-				});
+				var year;
+				var month;
+				year = $('#rankingYear option:selected').val();
+				month = $('#rankingMonth option:selected').val();
 
 				var sendData = {
  					'rankingSelect' : rankingSelect,
-					'yearList' : yearList,
-					'monthList' : monthList
+					'year' : year,
+					'month' : month
 				};
 				var response = requestMovieRankingData(sendData);
 
@@ -1319,23 +1304,16 @@
 
 		// genre ranking
 		function drawGenreRankingChart() {
-			var yearList = new Array();
-			var monthList = new Array();
-			$('#rankingYear > option').each(function() {
-				if (this.selected) {
-					yearList.push($(this).val());
-				}
-			});
-			$('#rankingMonth > option').each(function() {
-				if (this.selected) {
-					monthList.push($(this).val());
-				}
-			});
+			var year;
+			var month;
+			year = $('#rankingYear option:selected').val();
+			month = $('#rankingMonth option:selected').val();
+
 
 			var sendData = {
  				'rankingSelect' : rankingSelect,
-				'yearList' : yearList,
-				'monthList' : monthList
+				'year' : year,
+				'month' : month
 			};
 
 			var response = requestGenreRankingData(sendData);
@@ -1389,10 +1367,10 @@
 				$.ajax({
 					type : 'POST',
 					url : '/analysisGenreRankingProcAjax.mdo',
-					contentType : "application/json",
 					async : false,
 					success : function(res) {
 						response = res;
+						console.log("genrecount: "+response);
 					}
 				});
 				return response;

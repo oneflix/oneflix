@@ -6,9 +6,16 @@
 	
 	<insert id="insertWatch" parameterType="watch">
 		INSERT INTO watch
-		VALUES((SELECT NVL(MAX(watch_id),0)+1 FROM watch), #{email}, #{movieId}, SYSDATE, #{viewPoint})
+		VALUES((SELECT NVL(MAX(watch_id),0)+1 FROM watch), #{watchType}, #{email}, #{movieId}, SYSDATE, #{viewPoint})
 	</insert>
 	
+	<update id="updateWatch" parameterType="watch">
+		UPDATE watch SET viewpoint=${viewPoint}, watch_date=SYSDATE WHERE watch_type='${watchType}' AND email='${email}' AND movie_id='${movieId}'
+	</update>
+	
+	<select id="getWatchViewPoint" parameterType="watch" resultType="int">
+		SELECT viewPoint FROM watch WHERE watch_type='watching' AND email='${email}' AND movie_id='${movieId}'
+	</select>
 	<select id="getCountWatchGenre" parameterType="watch" resultType="int">
 		SELECT NVL(COUNT(*),0) 
 		FROM (SELECT w.*, m.genre_id1, m.genre_id2
