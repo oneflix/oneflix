@@ -16,7 +16,8 @@ public class AnalysisGenreCountServiceImpl implements AnalysisGenreCountService 
 	@Override
 	public Map<String, Object> analysisGenreCount(Map<String, Object> map) {
 		Map<String, Object> response = new HashMap<>();
-		// TODO Auto-generated method stub
+		response.put("GenreCount",analysisDAO.analysisGenreCount(map));
+		System.out.println("GenreCount response : "+response);
 		return response;
 	}
 

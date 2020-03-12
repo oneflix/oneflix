@@ -110,6 +110,8 @@
 	    		processing: true,
 	    		searching: false,
 	    		ordering: true,
+	    		dom: 'Bfrtip',
+	    		buttons: ['copy', 'excel', 'pdf', 'print'],
 	    		order: [[0, 'desc']],
 	    		language: {
 	    			"processing": "잠시만 기다려주세요.",

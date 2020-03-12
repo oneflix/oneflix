@@ -109,14 +109,15 @@
 	
 	
     <!-- 조회수 TOP5 -->		
-	<resultMap type="java.util.HashMap" id="movieRankList">
+	<resultMap type="java.util.HashMap" id="movieRankingList">
 		<id column="count" property="count"/>
 		<result column="movie_title" property="movieTitle" />
 	</resultMap>
 	
-	<select id="analysismovieRank" parameterType="java.util.HashMap" resultMap="movieRankList">
-	   SELECT * FROM (
-		        SELECT ROWNUM RNUM, NVL(COUNT(*),0) count, 
+	<select id="analysisMovieRanking" parameterType="java.util.HashMap" resultMap="movieRankingList">
+	   SELECT ROWNUM, A.* 
+	  		    FROM (
+		        SELECT NVL(COUNT(*),0) count, 
 		        	   m.movie_title
 		        FROM watch w, movie m
 		        WHERE  w.movie_id = m.movie_id
@@ -125,31 +126,33 @@
 							       AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 		        GROUP BY m.movie_title
 		        ORDER BY count DESC
-		        )
-       WHERE RNUM BETWEEN 1 AND 5
+		        ) A
+       WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
 	
 	 <!-- 장르 TOP5 -->		
-	<resultMap type="java.util.HashMap" id="genreRankList">
+	<resultMap type="java.util.HashMap" id="genreRankingList">
 		<id column="count" property="count"/>
 		<result column="genre" property="genre" />
 	</resultMap>
 	
-	<select id="analysisGenreRank" parameterType="java.util.HashMap" resultMap="genreRankList">
-	   SELECT * FROM (
-			    SELECT ROWNUM RNUM, 
-			    	   NVL(COUNT(*),0) count, g.genre
+	<select id="analysisGenreRanking" parameterType="java.util.HashMap" resultMap="genreRankingList">
+	    SELECT ROWNUM, A.* 
+	  		    FROM (
+			    SELECT NVL(COUNT(*),0) count, 
+			    	   g.genre
 		        FROM watch w, movie m, genre g
 		        WHERE w.movie_id = m.movie_id
 		        AND w.watch_type = 'watched'
 		        AND (m.genre_id1 = g.genre_id or m.genre_id2 = g.genre_id)
+		        AND m.movie_id = w.movie_id
 		        AND g.genre_id != 0
 		        AND w.watch_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 							         AND TO_DATE(#{endDate}||'000000', 'YYYYMMDDHH24MISS')
 		        GROUP BY g.genre
 		        ORDER BY count DESC
-		        )
-	   WHERE RNUM BETWEEN 1 AND 5
+		        ) A
+	   WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
 	
 	 <!-- 컨텐츠 장르분포 -->		
@@ -164,7 +167,7 @@
 		        WHERE (m.genre_id1 = g.genre_id or m.genre_id2 = g.genre_id)
 		        AND g.genre_id != 0
 		        GROUP BY g.genre
-		        ORDER BY count DESC;
+		        ORDER BY count DESC
 	</select>
 
 

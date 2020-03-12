@@ -12,6 +12,9 @@
 <title>ONeflix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
+<link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" type="text/css" rel="stylesheet">
+
+
 <style>
 	td{height: 90px;}
 	img {width: 160px; height: 90px;}
@@ -120,6 +123,8 @@
 
 	</div>
 	<!-- ./wrapper -->
+	
+
 	<script>
 		var table;
 		var searchGenre;
@@ -139,6 +144,8 @@
 	    		processing: true,
 	    		searching: false,
 	    		ordering: true,
+	    		dom: 'Bfrtip',
+	    		buttons: ['copy', 'excel', 'pdf', 'print'],
 	    		order: [[0, 'desc']],
 	    		language: {
 	    			"processing": "잠시만 기다려주세요.",
@@ -202,7 +209,8 @@
 									"</div>"
 	   						return html;
 	   					}}
-	   			]
+	   			],
+	   		 	
 	    	});
 	    	
 	    });

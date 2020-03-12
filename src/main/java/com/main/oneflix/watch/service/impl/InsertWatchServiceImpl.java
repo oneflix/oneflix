@@ -17,6 +17,4 @@ public class InsertWatchServiceImpl implements InsertWatchService {
 	public void insertWatch(WatchVO vo) {
 		watchDAO.insertWatch(vo);
 	}
-
-
 }

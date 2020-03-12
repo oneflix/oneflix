@@ -188,3 +188,4 @@ $('.e1ia9yz82').keyup(function (e) {
     var content = $(this).val();
     $('.e1ia00').html('(' + content.length + ' / 최대 130자)');
 });
+
