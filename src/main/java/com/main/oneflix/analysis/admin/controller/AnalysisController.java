@@ -55,37 +55,33 @@ public class AnalysisController {
 		return analysisGenderService.analysisGender(map);
 	}
 	
-	@RequestMapping("/analysisSubscriberProcAjax.mdo")
+	@RequestMapping("/getAnalysisSubscriberProcAjax.mdo")
 	@ResponseBody
-	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
+	public Map<String, Object> getAnalysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisSubscriberService.analysisSubscriber(map);
 	}
 	
-	@RequestMapping("/analysisMemberAgeProcAjax.mdo")
+	@RequestMapping("/getAnalysisMemberAgeProcAjax.mdo")
 	@ResponseBody
-	public Map<String, Object> analysisMemberAgeProcAjax(@RequestBody HashMap<String, Object> map){
+	public Map<String, Object> getAnalysisMemberAgeProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisMemberAgeService.analysisMemberAge(map);
 	}
 	
-	@RequestMapping("/analysisMovieRankingProcAjax.mdo")
+	@RequestMapping("/getAnalysisMovieRankingProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> analysisMovieRankingProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisMovieRankingService.analysisMovieRanking(map);
 	}
 	
-	@RequestMapping("/analysisGenreRankingProcAjax.mdo")
+	@RequestMapping("/getAnalysisGenreRankingProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> analysisGenreRankingProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisGenreRankingService.analysisGenreRanking(map);
 	}
 
-	@RequestMapping("/analysisGenreCountProcAjax.mdo")
+	@RequestMapping("/getAnalysisGenreCountProcAjax.mdo")
 	@ResponseBody
 	public Map<String, Object> analysisGenreCountProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisGenreCountService.analysisGenreCount(map);
 	}		
-		
-		
-
-
 }

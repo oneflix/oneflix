@@ -1,7 +1,6 @@
 package com.main.oneflix.analysis.service.impl;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,43 +14,39 @@ public class AnalysisGenreRankingServiceImpl implements AnalysisGenreRankingServ
 	
 	@Autowired
 	private AnalysisDAO analysisDAO;
+	
 	@Override
 	public Map<String, Object> analysisGenreRanking(Map<String, Object> map) {
 		Map<String, Object> response = new HashMap<>();
 		String rankingSelect = (String) map.get("rankingSelect");
-		@SuppressWarnings("unchecked")
-		List<String> yearList = (List<String>) map.get("yearList");
-		@SuppressWarnings("unchecked")
-		List<String> monthList = (List<String>) map.get("monthList");
 		
 		Map<String,String> dbMap = new HashMap<>();
+		String rankingYear = (String) map.get("rankingYear");
+		String rankingMonth = (String) map.get("rankingMonth");
+		String yearPlusOne = Integer.toString(Integer.parseInt(rankingYear)+1);
+		String monthPlusOne = Integer.toString(Integer.parseInt(rankingMonth)+1);
+		if (Integer.parseInt(rankingMonth) < 10) {
+			rankingMonth = "0"+ rankingMonth;
+			if (Integer.parseInt(rankingMonth) < 9) {
+				monthPlusOne = "0"+ monthPlusOne;
+			}
+		}
 		
 		if(rankingSelect.equals("year")) {
-			for(String year : yearList) {
-				dbMap.put("startDate", (year + "0101"));
-				String yearPlusOne = Integer.toString(Integer.parseInt(year)+1);
+				dbMap.put("startDate", (rankingYear + "0101"));
 				dbMap.put("endDate", (yearPlusOne + "0101"));
-				response.put(year, analysisDAO.analysisGenreRankingYear(dbMap));
-			}
-		}else {	
-			for(String year : yearList) {
-				for(String month : monthList) {
-					if (Integer.parseInt(month) < 10) {
-						month = "0"+ month;
-						dbMap.put("startDate", (year + month + "01"));
-					}
-				if (Integer.parseInt(month) == 9) {
-						dbMap.put("endDate", (year + "1001"));
-					} else if (Integer.parseInt(month) == 12) {
-						String yearPlusOne = Integer.toString(Integer.parseInt(year)+1);
-						dbMap.put("endDate", (yearPlusOne  + "0101"));
-					} else {
-					String monthPlusOne = Integer.toString(Integer.parseInt(month)+1);
-					dbMap.put("endDate", (year + monthPlusOne + "01"));
-					}
-				response.put(month, analysisDAO.analysisGenreRankingMonth(dbMap));	
+				response.put(rankingYear, analysisDAO.analysisGenreRanking(dbMap));
+		
+		} else {	
+				dbMap.put("startDate", (rankingYear + rankingMonth + "01"));
+				if (Integer.parseInt(rankingMonth) == 12) {
+					dbMap.put("endDate", (yearPlusOne  + "0101"));
+				} else if (Integer.parseInt(rankingMonth) == 9) {
+					dbMap.put("endDate", (rankingYear + "1001"));
+				} else {
+					dbMap.put("endDate", (rankingYear + monthPlusOne + "01"));
 				}
-			}
+				response.put(rankingYear+rankingMonth, analysisDAO.analysisGenreRanking(dbMap));	
 		}
 		return response;
 	}

@@ -17,6 +17,7 @@ public class AnalysisGenreCountServiceImpl implements AnalysisGenreCountService 
 	public Map<String, Object> analysisGenreCount(Map<String, Object> map) {
 		Map<String, Object> response = new HashMap<>();
 		response.put("GenreCount",analysisDAO.analysisGenreCount(map));
+		System.out.println("GenreCount response : "+response);
 		return response;
 	}
 
