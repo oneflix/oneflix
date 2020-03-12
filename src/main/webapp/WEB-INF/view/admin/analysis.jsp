@@ -278,17 +278,18 @@
 		var subscriberButton;
 		var genderButton
 		var memberAgeButton
-		
-		//1개년도 선택제한
-	/* 	$('#memberAgeMonth').click(function() {
-			if ($('#memberAgeDate option:selected').length >= 2) {
-					$('#memberAgeDate option').prop('selected', false);
-					//$('#memberAgeDate option:first').prop('selected', true);
-				});
-			
-		} */
 		// ranking
 		var rankingSelect;
+		
+	/* 	//1개년도 선택제한
+		$('#subscriberTicket').click(function() {
+			$('#subscriberDate').change(function() {
+				$('#subscriberDate option:first').prop('selected', true);
+				$('#subscriberDate option:first').nextAll().prop('selected', true);
+			});
+			
+		}); */
+		
 
 		$(document).ready(
 				function() {
@@ -335,29 +336,16 @@
 
 					
 					//sales chart 3개년 세팅
-					/* $('#salesDate option:first').prop('selected', true);
-					$('#salesDate option:eq(1)').prop('selected', true);
-					$('#salesDate option:eq(2)').prop('selected', true);
-					$('#salesDate option:eq(3)').prop('selected', true); */
 					$('#salesDate option:eq(3)').prevAll().prop('selected', true);
 					
-					//subscriber chart 5개년 세팅
-					$('#subscriberDate option:first').prop('selected', true);
-					$('#subscriberDate option:eq(1)').prop('selected', true);
-					$('#subscriberDate option:eq(2)').prop('selected', true);
-					$('#subscriberDate option:eq(3)').prop('selected', true);
-					$('#subscriberDate option:eq(4)').prop('selected', true);
+					//subscriber chart 3개년 세팅
+					$('#subscriberDate option:eq(3)').prevAll().prop('selected', true);
 					
 					//gender chart 5개년 세팅
-					$('#genderDate option:first').prop('selected', true);
-					$('#genderDate option:eq(1)').prop('selected', true);
-					$('#genderDate option:eq(2)').prop('selected', true);
-					$('#genderDate option:eq(3)').prop('selected', true);
-					$('#genderDate option:eq(4)').prop('selected', true);
+					$('#genderDate option:eq(3)').prevAll().prop('selected', true);
 					
 					//memberAge cahrt 2개년 세팅
-					$('#memberAgeDate option:first').prop('selected', true);
-					$('#memberAgeDate option:eq(1)').prop('selected', true);
+					$('#memberAgeDate option:eq(2)').prevAll().prop('selected', true);
 
 					$('.analysis-year-button').prop('disabled', true);
 					salesButton = 'year';
@@ -383,13 +371,34 @@
 				drawSalesChart();
 				break;
 			case 'subscriberDate':
-				drawSubscriberChart();
+				if ($(this).children('option:selected').length != 0) {
+					if (subscriberButton == 'ticket') {
+						$(this).children('option').prop('disabled', true);	
+					}
+					drawSubscriberChart();
+				} else {
+					$(this).children('option').prop('disabled', false);
+				}
 				break;
 			case 'genderDate':
-				drawGenderChart();
+				if ($(this).children('option:selected').length != 0) {
+					if (genderButton == 'month') {
+						$(this).children('option').prop('disabled', true);	
+					}
+					drawGenderChart();
+				} else {
+					$(this).children('option').prop('disabled', false);
+				}
 				break;
 			case 'memberAgeDate':
-				drawMemberAgeChart();
+				if ($(this).children('option:selected').length != 0) {
+					if (memberAgeButton == 'month') {
+						$(this).children('option').prop('disabled', true);	
+					}
+					drawMemberAgeChart();
+				} else {
+					$(this).children('option').prop('disabled', false);
+				}
 				break;
 			}
 		});
@@ -543,9 +552,18 @@
 			$(this).prop('disabled', true);
 			if ($(this).prop('id') == 'subscriberYear') {
 				subscriberButton = 'year';
+				$('#subscriberDate option').prop('disabled', false);
 			} else {
 				subscriberButton = 'ticket';
+				$('#subscriberDate option').prop('disabled', true);
 			}
+			  for (var i = 0; i < $('#subscriberDate option:selected').length; i++) {
+				  if ($('#subscriberDate').next().find('ul li:first').next() !=
+					  $('#subscriberDate').next().find('ul li:last')){
+					  $('#subscriberDate').next().find('ul li:first').next().remove();
+				  }
+			  }
+			  $('#subscriberDate > option:selected:first').nextAll().prop('selected', '');
 			drawSubscriberChart();
 		});
 
@@ -553,7 +571,7 @@
 			var response;
 			$.ajax({
 				type : 'POST',
-				url : '/analysisSubscriberProcAjax.mdo',
+				url : '/getAnalysisSubscriberProcAjax.mdo',
 				data : JSON.stringify(sendData),
 				contentType : "application/json",
 				async : false,
@@ -734,9 +752,18 @@
 			$(this).prop('disabled', true);
 			if ($(this).prop('id') == 'genderYear') {
 				genderButton = 'year';
+				$('#genderDate option').prop('disabled', false);
 			} else {
 				genderButton = 'month';
+				$('#genderDate option').prop('disabled', true);
 			}
+			  for (var i = 0; i < $('#genderDate option:selected').length; i++) {
+				  if ($('#genderDate').next().find('ul li:first').next() !=
+					  $('#genderDate').next().find('ul li:last')){
+					  $('#genderDate').next().find('ul li:first').next().remove();
+				  }
+			  }
+			  $('#genderDate > option:selected:first').nextAll().prop('selected', '');
 			drawGenderChart();
 		});
 
@@ -781,7 +808,9 @@
 						color : '#3CAAFF'
 					},
 				},
-
+				legend : {
+					position : "top"
+				},
 				align : 'center',
 				chartArea : {
 					height : '80%',
@@ -820,7 +849,6 @@
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("gender-chart"));
 
-				options.legend = "none";
 
 				data.addColumn('string', '성별');
 				data.addColumn('number', '여성');
@@ -872,7 +900,6 @@
 				chart = new google.visualization.LineChart(document
 						.getElementById("gender-chart"));
 
-				options.legend = "top";
 
 				data.addColumn('string', '월');
 				data.addColumn('number', "여성");
@@ -912,9 +939,18 @@
 			$(this).prop('disabled', true);
 			if ($(this).prop('id') == 'memberAgeYear') {
 				memberAgeButton = 'year';
+				$('#memberAgeDate option').prop('disabled', false);
 			} else {
-				memberAgeButton = 'month';
+				memberAgeButton = 'ticket';
+				$('#memberAgeDate option').prop('disabled', true);
 			}
+			  for (var i = 0; i < $('#memberAgeDate option:selected').length; i++) {
+				  if ($('#memberAgeDate').next().find('ul li:first').next() !=
+					  $('#memberAgeDate').next().find('ul li:last')){
+					  $('#memberAgeDate').next().find('ul li:first').next().remove();
+				  }
+			  }
+			  $('#memberAgeDate > option:selected:first').nextAll().prop('selected', '');
 			drawMemberAgeChart();
 		});
 
@@ -922,7 +958,7 @@
 			var response;
 			$.ajax({
 				type : 'POST',
-				url : '/analysisMemberAgeProcAjax.mdo',
+				url : '/getAnalysisMemberAgeProcAjax.mdo',
 				data : JSON.stringify(sendData),
 				contentType : "application/json",
 				async : false,
@@ -1142,6 +1178,9 @@
 				}
 
 			} else {
+				/* if(var i = 0; i < yearList.length-1; i++){
+					yearList.pop();
+				} */
 				chart = new google.visualization.LineChart(document
 						.getElementById("member-age-chart"));
 

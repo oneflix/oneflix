@@ -55,15 +55,15 @@ public class AnalysisController {
 		return analysisGenderService.analysisGender(map);
 	}
 	
-	@RequestMapping("/analysisSubscriberProcAjax.mdo")
+	@RequestMapping("/getAnalysisSubscriberProcAjax.mdo")
 	@ResponseBody
-	public Map<String, Object> analysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
+	public Map<String, Object> getAnalysisSubscriberProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisSubscriberService.analysisSubscriber(map);
 	}
 	
-	@RequestMapping("/analysisMemberAgeProcAjax.mdo")
+	@RequestMapping("/getAnalysisMemberAgeProcAjax.mdo")
 	@ResponseBody
-	public Map<String, Object> analysisMemberAgeProcAjax(@RequestBody HashMap<String, Object> map){
+	public Map<String, Object> getAnalysisMemberAgeProcAjax(@RequestBody HashMap<String, Object> map){
 		return analysisMemberAgeService.analysisMemberAge(map);
 	}
 	
