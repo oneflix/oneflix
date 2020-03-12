@@ -1374,9 +1374,12 @@
 		}
 		// GenreCount
 		function drawGenreCountChart() {
+			var sendData = {};
 				var response;
 				$.ajax({
 					type : 'POST',
+					data : JSON.stringify(sendData),
+					contentType : "application/json",
 					url : '/getAnalysisGenreCountProcAjax.mdo',
 					async : false,
 					success : function(res) {
@@ -1388,8 +1391,6 @@
 					}
 				});
 				return response;
-				
-				response = requestGenreCountData();
 
 
 				var chart;
