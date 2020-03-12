@@ -994,7 +994,7 @@
 					'yearList' : yearList,
 					'monthList' : monthList
 				};
-				var response = requestSalesData(sendData);
+				var response = requestMovieRankingData(sendData);
 
 				var chart;
 				var data = new google.visualization.DataTable();
@@ -1055,25 +1055,14 @@
 					monthList.push($(this).val());
 				}
 			});
-<<<<<<< HEAD
 
 			var sendData = {
  				'rankingSelect' : rankingSelect,
 				'yearList' : yearList,
 				'monthList' : monthList
 			};
-			var response = requestSalesData(sendData);
+			var response = requestGenreRankingData(sendData);
 
-=======
-
-			var sendData = {
- 				'rankingSelect' : rankingSelect,
-				'yearList' : yearList,
-				'monthList' : monthList
-			};
-			var response = requestSalesData(sendData);
-
->>>>>>> master
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
@@ -1119,12 +1108,10 @@
 		}
 		// GenreCount
 		function drawGenreCountChart() {
-				var response = requestSubscriberData(sendData);
 				var response;
 				$.ajax({
 					type : 'POST',
 					url : '/analysisGenreRankingProcAjax.mdo',
-					data : JSON.stringify(sendData),
 					contentType : "application/json",
 					async : false,
 					success : function(res) {
@@ -1133,6 +1120,9 @@
 				});
 				return response;
 				
+				response = requestGenreCountData();
+
+
 				var chart;
 				var data = new google.visualization.DataTable();
 			var view = new google.visualization.DataView(data);
