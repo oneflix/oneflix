@@ -1212,6 +1212,7 @@
 
 		//start for Ranking chart
 		$('.rankingDate').change(function(){
+			alert("ranking date change")
 		    var monthValue = $("#rankingMonth option:selected").val();
 			if ( monthValue == '0'){
 				rankingSelect = 'year';
@@ -1226,13 +1227,16 @@
 			var response;
 			$.ajax({
 				type : 'POST',
-				url : '/analysisMovieRankingProcAjax.mdo',
+				url : '/getAnalysisMovieRankingProcAjax.mdo',
 				data : JSON.stringify(sendData),
 				contentType : "application/json",
 				async : false,
 				success : function(res){
 					response = res;
 					console.log("movierankingdata: "+response);
+				},
+				error : function(e) {
+					console.log(e);
 				}
 			});
 			return response;
@@ -1241,13 +1245,16 @@
 			var response;
 			$.ajax({
 				type : 'POST',
-				url : '/analysisGenreRankingProcAjax.mdo',
+				url : '/getAnalysisGenreRankingProcAjax.mdo',
 				data : JSON.stringify(sendData),
 				contentType : "application/json",
 				async : false,
 				success : function(res){
 					response = res;
 					console.log("genrerankingdata: "+response);
+				},
+				error : function(e) {
+					console.log(e);
 				}
 			});
 			return response;
@@ -1375,11 +1382,14 @@
 				var response;
 				$.ajax({
 					type : 'POST',
-					url : '/analysisGenreRankingProcAjax.mdo',
+					url : '/getAnalysisGenreRankingProcAjax.mdo',
 					async : false,
 					success : function(res) {
 						response = res;
 						console.log("genrecount: "+response);
+					},
+					error : function(e) {
+						console.log(e);
 					}
 				});
 				return response;

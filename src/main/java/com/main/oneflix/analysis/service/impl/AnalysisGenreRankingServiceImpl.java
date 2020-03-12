@@ -1,7 +1,6 @@
 package com.main.oneflix.analysis.service.impl;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +14,15 @@ public class AnalysisGenreRankingServiceImpl implements AnalysisGenreRankingServ
 	
 	@Autowired
 	private AnalysisDAO analysisDAO;
+	
 	@Override
 	public Map<String, Object> analysisGenreRanking(Map<String, Object> map) {
 		Map<String, Object> response = new HashMap<>();
 		String rankingSelect = (String) map.get("rankingSelect");
-		
-		Map<String,String> dbMap = new HashMap<>();
 		String year = (String) map.get("year");
 		String month = (String) map.get("month");
+		
+		Map<String,String> dbMap = new HashMap<>();
 		
 		if(rankingSelect.equals("year")) {
 				dbMap.put("startDate", (year + "0101"));
