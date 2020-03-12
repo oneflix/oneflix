@@ -9,47 +9,45 @@
 					com.main.oneflix.actor.service.impl,
 					com.main.oneflix.alarm.dao.impl,
 					com.main.oneflix.alarm.service.impl,
-					com.main.oneflix.alarm,
 					com.main.oneflix.sales.service.impl,
-					com.mian.oneflix.sales.dao.impl">
+					com.main.oneflix.sales.dao.impl">
 	</context:component-scan>
 	<!-- 잡  -->
-    <bean id="mainJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref= "alarmService" />
-        <property name="targetMethod" value="insertAlarm" />
+    <bean id="insertMovieAlarmJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref= "insertMovieAlarmServiceImpl" />
+        <property name="targetMethod" value="insertMovieAlarm" />
         <property name="concurrent" value="false" />
     </bean>
 
     <!-- 트리거-->
-    <bean id="mainTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="mainJob" />
-        <property name="cronExpression" value="0/5 * * * * ?" />
+    <bean id="insertMovieAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="insertMovieAlarmJob" />
+        <property name="cronExpression" value="0 0 3 * * ?" />
     </bean>
 
-    <!-- 스케줄러 -->
-    <bean id="mainScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="triggers">
-            <list><ref bean="mainTrigger" /></list>
-        </property>
-    </bean>
 	<!-- ========================================================================================================== -->
-		<!-- screen 잡  -->
-    <bean id="screenJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref= "salesService" />
-        <property name="targetMethod" value="insertSales" />
+
+			<!-- screen 잡  -->
+    <bean id="expiryCheckJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref= "expiryCheckServiceImpl" />
+        <property name="targetMethod" value="expiryCheck" />
         <property name="concurrent" value="false" />
     </bean>
 
     <!-- Screen 트리거-->
-    <bean id="screenTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="screenJob" />
-        <property name="cronExpression" value="0/5 * * * * ?" />
+    <bean id="expiryCheckTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="expiryCheckJob" />
+        <property name="cronExpression" value="0 0 3 * * ?" />
     </bean>
 
-    <!-- Screen 스케줄러 -->
-    <bean id="screenScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+ 	<!-- 스케줄러 -->
+    <bean id="mainScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
-            <list><ref bean="screenTrigger" /></list>
+            <list>
+            	<ref bean="insertMovieAlarmTrigger" />
+            	<ref bean="expiryCheckTrigger" />
+            </list>
         </property>
     </bean>
 

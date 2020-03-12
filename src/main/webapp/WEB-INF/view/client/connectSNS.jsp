@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="client/images/icons/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
    href="client/vendor/bootstrap/css/bootstrap.min.css">
@@ -63,11 +63,11 @@
      <form action="/connectSNSLoginProc.do" method="post" onsubmit="return validate();">
      	<div class="css-unatsl-Self eu52ful0">
      		<input id="email" name="email" placeholder="이메일을 입력해주세요" 
-     		class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
+     		class="oneflix-input e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
      	</div>
      	<div class="css-unatsl-Self eu52ful0">
      		<input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
-    	 	class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
+    	 	class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      	</div>
 		<div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
 			<button type="submit" id="loginBtn" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
@@ -83,9 +83,9 @@
 			onClick="SNSJoin()">아직 ONEFLIX 회원이 아니신가요?
 			</span> 
 		</div>
+						<input type="hidden" name="cert" value="Y"/>
 						<input type="hidden" id="naver" name="naver" value="${member.naver}"/> 
 						<input type="hidden" id="kakao" name="kakao" value="${member.kakao}"/> 
-						<input type="hidden" id="google" name="google" value="${member.google}"/>
 					</form>
 				</div>
        		</main>
@@ -124,45 +124,50 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript">
-   $(document).ready(function(){
+	   $(document).ready(function(){
+		    $("#loginBtn").attr('disabled', 'true');
+		    var emailCheck = false;
+		    var passCheck = false;
 		    var result = "${result}";
 	  	    if (result == "fail") {
 	        alert("로그인 정보가 일치하지 않습니다.");
 	   } 
-		   $("#loginBtn").attr('disabled', 'true');
-		   var emailCheck = false;
-		   var passCheck = false;
-		   $("#email").keyup(function(){
-			   var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			   var email = $("#email").val();
-	 		   if(email.length != 0){
-			       $("#email").parent('div').attr('class','css-1q1k87-Self');
-	 			   if(re.test(email) == true){
-	 			       $("#email").parent('div').attr('class','css-n7c9r1-Self');
-	 			       emailCheck = true;
-	 			   }
-			   } 
-		   });
-		   $("#pass").keyup(function(){
-		       var re2 = /^[a-zA-Z0-9]{4,12}$/ 
-			   var pass = $("#pass").val();
-	 		   if(pass.length != 0){
-			       $("#pass").parent('div').attr('class','css-1q1k87-Self');
-	 			   if(re2.test(pass) == true){
-	 			       $("#pass").parent('div').attr('class','css-n7c9r1-Self');
-	 			       passCheck = true;
-	 			   }
-			   } 
-			   if(emailCheck == passCheck == true){
-				   $("#loginBtn").removeAttr('disabled');
-			   }
-		   });
+		    $('.oneflix-input').keyup(function(){
+		       var re;
+		       var target = $(this).val();
+		       
+		       if ($(this).prop('id') == 'email') {
+		          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		          emailCheck = false;
+		       } else {
+		          re = /^[a-zA-Z0-9]{4,12}$/;
+		          passCheck = false;
+		       }
+		       if (target.length != 0) {
+		          $(this).parent('div').attr('class','css-1q1k87-Self');
+		          if (re.test(target) == true) {
+		             $(this).parent('div').attr('class','css-n7c9r1-Self');
+		             
+		             if ($(this).prop('id') == 'email') {
+		                emailCheck = true;
+		             } else {
+		                passCheck = true;
+		             }
+		          }
+		       }
+		         if(emailCheck == true && passCheck == true){
+		           $("#loginBtn").prop('disabled', false);
+		        } else {
+		           $("#loginBtn").prop('disabled', true);
+		        }
+		    });//KEY EVENT
 	});
-	function SNSJoin(){
+	   
+		function SNSJoin(){
 /* 		   var kakao = document.getElementById("kakao");
 		   var naver = document.getElementById("naver");
-		   var google = document.getElementById("google"); */
-           window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}" + "&google=" + "${member.google}";
+		   */
+           window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}";
         };
    
    

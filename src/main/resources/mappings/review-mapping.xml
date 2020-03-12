@@ -39,8 +39,8 @@
 	</select>
 	<!-- mypageHome.jsp의 평균별점-->
 	<select id="getAverageScore" parameterType="review" resultType="double">
-		SELECT ROUND(AVG(review_score),1) FROM review
-		WHERE email='${email}'
+		SELECT NVL(ROUND(AVG(review_score),1),0) FROM review
+		WHERE email= #{email}
 	</select>
 
 	<resultMap type="review" id="getReviewList">

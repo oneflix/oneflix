@@ -7,8 +7,11 @@
 <title>ONEFLIX</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- 구글 로그인 -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="구글API아이디.apps.googleusercontent.com">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="client/images/icons/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
    href="client/vendor/bootstrap/css/bootstrap.min.css">
@@ -39,6 +42,7 @@
 <link rel="stylesheet" type="text/css" href="client/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
+
 </head>
 
 <body>
@@ -55,7 +59,7 @@
 				</ul>
 		</nav>
 	<main class="css-1a4c3t1-Main e19xg79h5">
-	<div src="#" class="css-9e7b81-Self el4vci00">
+	<div class="css-9e7b81-Self el4vci00">
 
      <main class="css-1494bd8-Self edt52et0">
      	<div class="css-9tzvq5-Inner edt52et4">
@@ -67,27 +71,22 @@
      <form action="/loginProc.do" method="post" onsubmit="return validate();">
      <div class="css-unatsl-Self eu52ful0">
      <input id="email" name="email" placeholder="이메일을 입력해주세요" 
-     class="e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
+     class="oneflix-input e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
      </div>
      <div class="css-unatsl-Self eu52ful0">
      <input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
-     class="e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
+     class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      </div>
 <div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-<button type="submit" id="loginBtn" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
+<button type="submit" id="loginBtn" disabled class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">로그인</button>
 </div>
 	</form>
 		<div class="css-tssyq1-LoginBlock edt52et1">
 		<p class="css-18x4yp2-SignInMessage edt52et2" style="margin-bottom: 2vh;">
 		소셜 계정으로 로그인하기</p>
-                   <div class="css-11fv0pd-Button">
-                     <a class="css-11fv0pd-Button" href="${googleUrl}">
-                     	구글로 로그인하기
-                     </a>
-                    </div>
                        
-                   <div class="css-11fv0pd-Button">
-                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button"> 
+                   <div id="kakao_login" class="css-11fv0pd-Button">
+                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
                    		  카카오로 로그인하기
                        </a>
                     </div>
@@ -111,7 +110,7 @@
    			</div>
    			</main>
    			</div>
-   		<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
+   		<div class="css-8emhun-BackScreen e1rl100y0"></div>
   	</div>
  
    <!--===============================================================================================-->
@@ -141,43 +140,56 @@
    <!-- 네이버 로그인 -->
    <script src="client/js/naverLogin.js"></script>
    
-   <!-- 구글 로그인 -->
-   <script src="https://apis.google.com/js/platform.js" async defer></script>
-
    <script>
    $(document).ready(function(){
+	    $("#loginBtn").attr('disabled', 'true');
+	    var emailCheck = false;
+	    var passCheck = false;
+	    
+	    var joinResult = "${joinResult}";
+	    if (joinResult == "success") {
+    	alert("회원가입이 완료되었습니다.");
+		} 
+	    var findPassResult = "${findPassResult}";
+	    if (findPassResult == "success") {
+    	alert("임시비밀번호 메일 전송이 완료되었습니다.");
+		} 
+	    
 	    var result = "${result}";
   	    if (result == "fail") {
         alert("로그인 정보가 일치하지 않습니다.");
-   } 
-	   $("#loginBtn").attr('disabled', 'true');
-	   var emailCheck = false;
-	   var passCheck = false;
-	   $("#email").keyup(function(){
-		   var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		   var email = $("#email").val();
- 		   if(email.length != 0){
-		       $("#email").parent('div').attr('class','css-1q1k87-Self');
- 			   if(re.test(email) == true){
- 			       $("#email").parent('div').attr('class','css-n7c9r1-Self');
- 			       emailCheck = true;
- 			   }
-		   } 
-	   });
-	   $("#pass").keyup(function(){
-	       var re2 = /^[a-zA-Z0-9]{4,12}$/ 
-		   var pass = $("#pass").val();
- 		   if(pass.length != 0){
-		       $("#pass").parent('div').attr('class','css-1q1k87-Self');
- 			   if(re2.test(pass) == true){
- 			       $("#pass").parent('div').attr('class','css-n7c9r1-Self');
- 			       passCheck = true;
- 			   }
-		   } 
-		   if(emailCheck == passCheck == true){
-			   $("#loginBtn").removeAttr('disabled');
-		   }
-	   });
+ 	    } 
+  	    
+  	    var find
+	    $('.oneflix-input').keyup(function(){
+	       var re;
+	       var target = $(this).val();
+	       
+	       if ($(this).prop('id') == 'email') {
+	          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	          emailCheck = false;
+	       } else {
+	          re = /^[a-zA-Z0-9]{4,12}$/;
+	          passCheck = false;
+	       }
+	       if (target.length != 0) {
+	          $(this).parent('div').attr('class','css-1q1k87-Self');
+	          if (re.test(target) == true) {
+	             $(this).parent('div').attr('class','css-n7c9r1-Self');
+	             
+	             if ($(this).prop('id') == 'email') {
+	                emailCheck = true;
+	             } else {
+	                passCheck = true;
+	             }
+	          }
+	       }
+	         if(emailCheck == true && passCheck == true){
+	           $("#loginBtn").prop('disabled', false);
+	        } else {
+	           $("#loginBtn").prop('disabled', true);
+	        }
+	    });//KEY EVENT
 });
    
    //카카오로그인
@@ -199,7 +211,49 @@
          alert(JSON.stringfy(err));
       }
    }); */
-   </script>
+   
+  //다른 계정으로 로그인하기 버튼
+/*    function loginForm() {
+   Kakao.Auth.loginForm({
+   	success : function(authObj) {
+   		Kakao.API.request({
+   			url : '/v1/user/me',
+   			success : function(res) {
+   				
+   				 json형태로 출력되는 로그인 정보들을 변수에 담는다.
+   				var email = JSON.stringify(res.kaccount_email);
+   				var access_token = JSON.stringify(authObj.access_token);
+   				
+   						$(function() {
+   							
+   							로그인 정보들을 input 태그의 value 에 담는다.
+   							$('#email').val(email);
+   							$('#access_token').val(access_token);
+   							
+   							서브밋 한다.
+   							 var form = document.getElementById("kakao-login");  
+   							
+   							
+   							
+   							  form.submit();
+   						});
+   			}
+   	});
+   			
+   	
+   },
+   	fail : function(error) {
+   		alert(JSON.stringify(error));
+   		alert("로그인 실패!");
+   	}
+   });
+   };
+   function form_submit() {
+   var form = document.getElementById("kakao-login");  
+   form.submit();
+   };
+ */
+   </script> -->
 
 </body>
 

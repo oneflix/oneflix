@@ -9,8 +9,16 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-	modal.style.display = "block";
-	$('body').addClass('not_scroll');
+	var cert = btn.value;
+	if (cert == 'Y') {
+		modal.style.display = "block";
+		$('body').addClass('not_scroll');
+	} else {
+		var result = confirm("이용권 구매를 진행하시려면 본인 인증을 해주세요.\n본인 인증 페이지로 이동하시겠습니까?");
+		if (result) {
+			window.location.href = "/getMemberProc.do";
+		}
+	}
 }
 
 // When the user clicks on <span> (x), close the modal

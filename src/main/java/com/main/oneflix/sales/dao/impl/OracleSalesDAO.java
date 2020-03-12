@@ -11,7 +11,7 @@ import com.main.oneflix.sales.vo.SalesVO;
 
 @Repository
 public class OracleSalesDAO implements SalesDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -49,5 +49,15 @@ public class OracleSalesDAO implements SalesDAO {
 	public int getCountSales(SalesVO vo) {
 		return sqlSessionTemplate.selectOne("SalesDAO.getCountSales", vo);
 	}
-	
+
+	@Override
+	public List<String> expiryCheck() {
+		return sqlSessionTemplate.selectList("SalesDAO.expiryCheck");
+	}
+
+	@Override
+	public void updateExpiry() {
+		sqlSessionTemplate.update("SalesDAO.updateExpiry");
+	}
+
 }

@@ -32,7 +32,7 @@
 					<c:if test="${help.helpType eq 'notice'}">
 						<div class="notice-list">
 							<button class="accordion">${help.helpTitle }</button>
-							<div class="panel">
+							<div style="padding: 0 50px;" class="panel">
 								<p>${help.helpContent }</p>
 							</div>
 						</div>
@@ -40,7 +40,7 @@
 				</c:forEach>
 			</div>
 
-			<button onclick="moreNotice(event)" id="myBtn" class="more-notice">공지사항
+			<button onclick="moreNotice(event)" style="cursor: pointer" id="myBtn" class="more-notice">공지사항
 				더 불러오기</button>
 		</div>
 		<!-- ===================== FAQ ============================== -->
