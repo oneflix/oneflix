@@ -9,7 +9,7 @@ public class WatchVO {
 	private String email;
 	private Integer movieId;
 	private Date watchDate;
-	private int viewPoint;
+	private Integer viewPoint;
 
 	// 조건을 담기 위한 필드
 	private Integer genreId;
@@ -64,11 +64,11 @@ public class WatchVO {
 		this.watchDate = watchDate;
 	}
 	
-	public int getViewPoint() {
+	public Integer getViewPoint() {
 		return viewPoint;
 	}
 
-	public void setViewPoint(int viewPoint) {
+	public void setViewPoint(Integer viewPoint) {
 		this.viewPoint = viewPoint;
 	}
 

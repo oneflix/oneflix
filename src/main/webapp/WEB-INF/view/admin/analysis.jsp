@@ -280,7 +280,9 @@
 		var memberAgeButton
 		// ranking
 		var rankingSelect;
-		
+		var rankingYear;
+		var rankingMonth;
+			
 	/* 	//1개년도 선택제한
 		$('#subscriberTicket').click(function() {
 			$('#subscriberDate').change(function() {
@@ -314,10 +316,6 @@
 					}
 					
 					//setting for Ranking SelectBox 
-					var today = new Date();
-					var launchingDate = new Date('2015-01-01');
-					var subtractionDate = ((today.getTime() - launchingDate
-							.getTime()) / (1000 * 60 * 60 * 24 * 365));
 					for (var i = 0; i <= subtractionDate; i++) {
 						var year = today.getFullYear() - i;
 						$('.yearList').append(
@@ -352,6 +350,10 @@
 					genderButton = 'year';
 					subscriberButton = 'year';
 					memberAgeButton = 'year';
+					
+					rankingYear = $('#rankingYear option:selected').val();
+					rankingMonth = $('#rankingMonth option:selected').val();
+					rankingSelect = 'year';
 				});
 
 		// Google chart
@@ -1212,12 +1214,15 @@
 
 		//start for Ranking chart
 		$('.rankingDate').change(function(){
-			alert("ranking date change")
-		    var monthValue = $("#rankingMonth option:selected").val();
-			if ( monthValue == '0'){
-				rankingSelect = 'year';
-			} else {
+			rankingSelect;
+			rankingYear = $('#rankingYear option:selected').val();
+			rankingMonth = $('#rankingMonth option:selected').val();
+			alert("ranking date change");
+
+			if(rankingMonth != null || rankingMonth != '0'){
 				rankingSelect = 'month';
+			} else {
+				rankingSelect = 'year';
 			}
 			drawMovieRankingChart();
 			drawGenreRankingChart();
@@ -1241,43 +1246,20 @@
 			});
 			return response;
 		}
-		function requestGenreRankingData(sendData){
-			var response;
-			$.ajax({
-				type : 'POST',
-				url : '/getAnalysisGenreRankingProcAjax.mdo',
-				data : JSON.stringify(sendData),
-				contentType : "application/json",
-				async : false,
-				success : function(res){
-					response = res;
-					console.log("genrerankingdata: "+response);
-				},
-				error : function(e) {
-					console.log(e);
-				}
-			});
-			return response;
-		}
-
+		// movie ranking
 		function drawMovieRankingChart() {
-				var year;
-				var month;
-				year = $('#rankingYear option:selected').val();
-				month = $('#rankingMonth option:selected').val();
+			var sendData = {
+ 				'rankingSelect' : rankingSelect,
+				'rankingYear' : rankingYear,
+				'rankingMonth' : rankingMonth
+			};
 
-				var sendData = {
- 					'rankingSelect' : rankingSelect,
-					'year' : year,
-					'month' : month
-				};
-				var response = requestMovieRankingData(sendData);
+			var response = requestMovieRankingData(sendData);
 
-				var chart;
-				var data = new google.visualization.DataTable();
-
+			var chart;
+			var data = new google.visualization.DataTable();
 			var options = {
-				title : '영화 TOP5 (시청완료 기준)',
+				title : '장르 TOP5',
 				align : 'center',
 				chartArea : {
 					height : '70%',
@@ -1311,25 +1293,38 @@
 			};
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
-					.getElementById("movie-ranking-chart"));
+					.getElementById("genre-ranking-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		}
+		function requestGenreRankingData(sendData){
+			var response;
+			$.ajax({
+				type : 'POST',
+				url : '/getAnalysisGenreRankingProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				success : function(res){
+					response = res;
+					console.log("genrerankingdata: "+response);
+				},
+				error : function(e) {
+					console.log(e);
+				}
+			});
+			return response;
+		}
 
+		
 		// genre ranking
 		function drawGenreRankingChart() {
-			var year;
-			var month;
-			year = $('#rankingYear option:selected').val();
-			month = $('#rankingMonth option:selected').val();
-
-
 			var sendData = {
- 				'rankingSelect' : rankingSelect,
-				'year' : year,
-				'month' : month
+				'rankingSelect' : rankingSelect,
+				'rankingYear' : rankingYear,
+				'rankingMonth' : rankingMonth
 			};
 
 			var response = requestGenreRankingData(sendData);
@@ -1382,7 +1377,7 @@
 				var response;
 				$.ajax({
 					type : 'POST',
-					url : '/getAnalysisGenreRankingProcAjax.mdo',
+					url : '/getAnalysisGenreCountProcAjax.mdo',
 					async : false,
 					success : function(res) {
 						response = res;
