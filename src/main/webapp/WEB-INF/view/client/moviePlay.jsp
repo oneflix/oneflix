@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width">
-<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <style>
 body {
 	background-color: rgb(0, 0, 0);
@@ -23,7 +22,6 @@ video {
 </style>
 </head>
 <body>
-	<span id="demo" style="color:white"></span>
 	<video controls autoplay controlsList="nodownload" name="media"
 		id="testVideo">
 		<source src="client/images/test.mp4" type="video/mp4">
@@ -31,58 +29,94 @@ video {
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
-		$(window).bind("beforeunload", function(e) {
-			return "창 닫?";
-			/* $.ajax({
-				url : "처리페이지url",
-				cache : "false", //캐시사용금지
-				method : "POST",
-				data : $("#frm").serialize(),
-				dataType: "html",
-				async : false, //동기화설정(비동기화사용안함)
-				success:function(args){   
-					alert("성공"); 
-				},   
-				error:function(e){  
-					alert(e.responseText);  
-				}
-			}); */
-		});
-
 		var vid = document.getElementById("testVideo");
+		var checkTime = '${watch.viewPoint}';
+
 		vid.onloadedmetadata = function() {
 			var min = parseInt(vid.duration / 60);
 			var seconds = Math.floor(vid.duration % 60);
 			alert(min + "분 " + seconds + "초");
+			vid.currentTime = checkTime;
 		};
 
-		vid.ontimeupdate = function() {
-			document.getElementById("demo").innerHTML = vid.currentTime;
-			if (vid.currentTime > 2) {
-				/* $.ajax({
-					url : "/insertWatch.do",
-					cache : "false",
-					method : "POST",
-					data : $("#frm").serialize(),
-					dataType : "html",
-					success : function(args) {
-						alert("성공");
-					},
-					error : function(e) {
-						alert(e.responseText);
+		var _insert = false;
+		function insertFunction() {
+			var watchType = "watching";
+			var email = "${watch.email}";
+			var movieId = "${watch.movieId}";
+			var viewPoint = parseInt(vid.currentTime);
+			var watchedTime = parseInt(vid.duration) - 300;
+			var sendData = {
+				"watchType" : watchType,
+				"email" : email,
+				"movieId" : movieId,
+				"viewPoint" : viewPoint
+			};
+
+			if (!_insert) {
+				if (viewPoint >= 600) {
+					if (viewPoint > watchedTime) {
+						watchType = "watched";
 					}
-				}); */
-				alert("2초 지남");
+					$.ajax({
+						url : "/insertWatchAjax.do",
+						type : 'POST',
+						data : sendData,
+						async : false,
+						success : function() {
+							_update = true;
+						},
+						error : function(e) {
+							alert(e.responseText);
+						}
+					});
+				}
 			}
 		};
 
-		function myFunction() {
-			
+		var _update = false;
+		function updateFunction() {
+			var watchType = "watching";
+			var email = "${watch.email}";
+			var movieId = "${watch.movieId}";
+			var viewPoint = parseInt(vid.currentTime);
+			var watchedTime = parseInt(vid.duration) - 300;
+			var sendData = {
+				"watchType" : watchType,
+				"email" : email,
+				"movieId" : movieId,
+				"viewPoint" : viewPoint
+			};
+
+			if (!_update) {
+				if (viewPoint >= 600) {
+					if (viewPoint > watchedTime) {
+						watchType = "watched";
+					}
+					$.ajax({
+						url : "/updateWatchAjax.do",
+						type : 'POST',
+						data : sendData,
+						async : false,
+						success : function() {
+							_update = true;
+						},
+						error : function(e) {
+							alert(e.responseText);
+						}
+					});
+				}
+			}
 		};
 
-		vid.onended = function() {
-			alert("ended!");
-		};
+		$(window).on("beforeunload", function() {
+			if (checkTime == 0) {
+				insertFunction();
+			} else {
+				updateFunction();
+			}
+		});
+
 	</script>
 </body>
 </html>

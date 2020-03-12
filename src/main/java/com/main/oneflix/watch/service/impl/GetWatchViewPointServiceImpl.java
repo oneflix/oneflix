@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.main.oneflix.watch.dao.WatchDAO;
-import com.main.oneflix.watch.service.InsertWatchService;
+import com.main.oneflix.watch.service.GetWatchViewPointService;
 import com.main.oneflix.watch.vo.WatchVO;
 
 @Service
-public class InsertWatchServiceImpl implements InsertWatchService {
-
+public class GetWatchViewPointServiceImpl implements GetWatchViewPointService {
 	@Autowired
-	private WatchDAO watchDAO;
+	WatchDAO watchDAO;
 	
 	@Override
-	public void insertWatch(WatchVO vo) {
-		watchDAO.insertWatch(vo);
+	public Integer getWatchViewPoint(WatchVO vo) {
+		return watchDAO.getWatchViewPoint(vo);
 	}
+
 }
