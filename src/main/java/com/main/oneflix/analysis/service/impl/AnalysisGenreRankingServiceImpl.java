@@ -19,24 +19,18 @@ public class AnalysisGenreRankingServiceImpl implements AnalysisGenreRankingServ
 	public Map<String, Object> analysisGenreRanking(Map<String, Object> map) {
 		Map<String, Object> response = new HashMap<>();
 		String rankingSelect = (String) map.get("rankingSelect");
-		@SuppressWarnings("unchecked")
-		List<String> yearList = (List<String>) map.get("yearList");
-		@SuppressWarnings("unchecked")
-		List<String> monthList = (List<String>) map.get("monthList");
 		
 		Map<String,String> dbMap = new HashMap<>();
+		String year = (String) map.get("year");
+		String month = (String) map.get("month");
 		
 		if(rankingSelect.equals("year")) {
-			for(String year : yearList) {
 				dbMap.put("startDate", (year + "0101"));
 				String yearPlusOne = Integer.toString(Integer.parseInt(year)+1);
 				dbMap.put("endDate", (yearPlusOne + "0101"));
 				response.put(year, analysisDAO.analysisGenreRankingYear(dbMap));
-			}
 		}else {	
-			for(String year : yearList) {
-				for(String month : monthList) {
-					if (Integer.parseInt(month) < 10) {
+				if (Integer.parseInt(month) < 10) {
 						month = "0"+ month;
 						dbMap.put("startDate", (year + month + "01"));
 					}
@@ -50,9 +44,8 @@ public class AnalysisGenreRankingServiceImpl implements AnalysisGenreRankingServ
 					dbMap.put("endDate", (year + monthPlusOne + "01"));
 					}
 				response.put(month, analysisDAO.analysisGenreRankingMonth(dbMap));	
-				}
 			}
-		}
+		System.out.println("GenreRanking response : "+response);
 		return response;
 	}
 }

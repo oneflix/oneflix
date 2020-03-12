@@ -956,6 +956,7 @@
 				async : false,
 				success : function(res){
 					response = res;
+					console.log("movierankingdata: "+response);
 				}
 			});
 			return response;
@@ -970,29 +971,22 @@
 				async : false,
 				success : function(res){
 					response = res;
+					console.log("genrerankingdata: "+response);
 				}
 			});
 			return response;
 		}
 
 		function drawMovieRankingChart() {
-				var yearList = new Array();
-				var monthList = new Array();
-				$('#rankingYear > option').each(function() {
-					if (this.selected) {
-						yearList.push($(this).val());
-					}
-				});
-				$('#rankingMonth > option').each(function() {
-					if (this.selected) {
-						monthList.push($(this).val());
-					}
-				});
+				var year;
+				var month;
+				year = $('#rankingYear option:selected').val();
+				month = $('#rankingMonth option:selected').val();
 
 				var sendData = {
  					'rankingSelect' : rankingSelect,
-					'yearList' : yearList,
-					'monthList' : monthList
+					'year' : year,
+					'month' : month
 				};
 				var response = requestMovieRankingData(sendData);
 
@@ -1043,23 +1037,16 @@
 
 		// genre ranking
 		function drawGenreRankingChart() {
-			var yearList = new Array();
-			var monthList = new Array();
-			$('#rankingYear > option').each(function() {
-				if (this.selected) {
-					yearList.push($(this).val());
-				}
-			});
-			$('#rankingMonth > option').each(function() {
-				if (this.selected) {
-					monthList.push($(this).val());
-				}
-			});
+			var year;
+			var month;
+			year = $('#rankingYear option:selected').val();
+			month = $('#rankingMonth option:selected').val();
+
 
 			var sendData = {
  				'rankingSelect' : rankingSelect,
-				'yearList' : yearList,
-				'monthList' : monthList
+				'year' : year,
+				'month' : month
 			};
 			var response = requestGenreRankingData(sendData);
 
@@ -1112,10 +1099,10 @@
 				$.ajax({
 					type : 'POST',
 					url : '/analysisGenreRankingProcAjax.mdo',
-					contentType : "application/json",
 					async : false,
 					success : function(res) {
 						response = res;
+						console.log("genrecount: "+response);
 					}
 				});
 				return response;
