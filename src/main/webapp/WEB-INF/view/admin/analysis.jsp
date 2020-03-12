@@ -281,15 +281,6 @@
 		// ranking
 		var rankingSelect;
 		
-	/* 	//1개년도 선택제한
-		$('#subscriberTicket').click(function() {
-			$('#subscriberDate').change(function() {
-				$('#subscriberDate option:first').prop('selected', true);
-				$('#subscriberDate option:first').nextAll().prop('selected', true);
-			});
-			
-		}); */
-		
 
 		$(document).ready(
 				function() {
@@ -341,7 +332,7 @@
 					//subscriber chart 3개년 세팅
 					$('#subscriberDate option:eq(3)').prevAll().prop('selected', true);
 					
-					//gender chart 5개년 세팅
+					//gender chart 3개년 세팅
 					$('#genderDate option:eq(3)').prevAll().prop('selected', true);
 					
 					//memberAge cahrt 2개년 세팅
