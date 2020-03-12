@@ -282,6 +282,7 @@
 		var rankingSelect;
 		var rankingYear;
 		var rankingMonth;
+		var data;
 
 		$(document).ready(
 				function() {
@@ -1207,7 +1208,6 @@
 			rankingSelect;
 			rankingYear = $('#rankingYear option:selected').val();
 			rankingMonth = $('#rankingMonth option:selected').val();
-			alert("ranking date change");
 
 			if(rankingMonth != null || rankingMonth != '0'){
 				rankingSelect = 'month';
@@ -1243,13 +1243,19 @@
 				'rankingYear' : rankingYear,
 				'rankingMonth' : rankingMonth
 			};
-
-			var response = requestMovieRankingData(sendData);
+			var jsonData = $.ajax({
+				type : 'POST',
+				url : '/getAnalysisMovieRankingProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				dataType: "json",
+                }).responseText;
 
 			var chart;
-			var data = new google.visualization.DataTable();
+			data = new google.visualization.DataTable(jsonData);
 			var options = {
-				title : '장르 TOP5',
+				title : '영화 TOP5',
 				align : 'center',
 				chartArea : {
 					height : '70%',
@@ -1288,27 +1294,7 @@
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
-		}
-		function requestGenreRankingData(sendData){
-			var response;
-			$.ajax({
-				type : 'POST',
-				url : '/getAnalysisGenreRankingProcAjax.mdo',
-				data : JSON.stringify(sendData),
-				contentType : "application/json",
-				async : false,
-				success : function(res){
-					response = res;
-					console.log("genrerankingdata: "+response);
-				},
-				error : function(e) {
-					console.log(e);
-				}
-			});
-			return response;
-		}
-
-		
+		};
 		// genre ranking
 		function drawGenreRankingChart() {
 			var sendData = {
@@ -1316,11 +1302,17 @@
 				'rankingYear' : rankingYear,
 				'rankingMonth' : rankingMonth
 			};
-
-			var response = requestGenreRankingData(sendData);
+			var jsonData =$.ajax({
+				type : 'POST',
+				url : '/getAnalysisGenreRankingProcAjax.mdo',
+				data : JSON.stringify(sendData),
+				contentType : "application/json",
+				async : false,
+				dataType: "json",
+                }).responseText;
 
 			var chart;
-			var data = new google.visualization.DataTable();
+			data = new google.visualization.DataTable(jsonData);
 			var options = {
 				title : '장르 TOP5',
 				align : 'center',
@@ -1353,7 +1345,9 @@
 						opacity : 0.8
 					}
 				}
+			
 			};
+			
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
 					.getElementById("genre-ranking-chart"));
@@ -1361,30 +1355,20 @@
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
-		}
+		};
 		// GenreCount
-		function drawGenreCountChart() {
+		function drawGenreCountChart(sendData) {
 			var sendData = {};
-				var response;
-				$.ajax({
+				var jsonData =$.ajax({
 					type : 'POST',
 					data : JSON.stringify(sendData),
 					contentType : "application/json",
 					url : '/getAnalysisGenreCountProcAjax.mdo',
 					async : false,
-					success : function(res) {
-						response = res;
-						console.log("genrecount: "+response);
-					},
-					error : function(e) {
-						console.log(e);
-					}
-				});
-				return response;
-
-
+					dataType: "json",
+                    }).responseText;
 				var chart;
-				var data = new google.visualization.DataTable();
+				data = new google.visualization.DataTable(jsonData);
 			var view = new google.visualization.DataView(data);
 			var options = {
 				align : 'center',
@@ -1417,6 +1401,8 @@
 					}
 				}
 			};
+			options.legend = "none";
+
 			var chart = new google.visualization.ColumnChart(document
 					.getElementById("genre-count-chart"));
 			chart.draw(view, options);
