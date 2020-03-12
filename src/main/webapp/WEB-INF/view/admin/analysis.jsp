@@ -32,6 +32,7 @@
 .button-box-container>.button-box {float: right; display: flex;}
 .analysis-year-button {width: 60px; margin-right: 5px;}
 .analysis-month-button {width: 60px;}
+.subscriber-button {width: 75px;}
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -113,7 +114,7 @@
                                     <button type="button" id="subscriberYear"
                                        class="btn btn-info analysis-year-button subscriber-button">연간</button>
                                     <button type="button" id="subscriberTicket"
-                                       class="btn btn-info analysis-month-button subscriber-button">상품별</button>
+                                       class="btn btn-info analysis-month-button subscriber-button onlyOneYear">상품별</button>
                                  </div>
                               </div>
                            </div>
@@ -146,7 +147,7 @@
                                     <button type="button" id="genderYear"
                                        class="btn btn-info analysis-year-button gender-button">연간</button>
                                     <button type="button" id="genderMonth"
-                                       class="btn btn-info analysis-month-button gender-button">월간</button>
+                                       class="btn btn-info analysis-month-button gender-button onlyOneYear">월간</button>
                                  </div>
                               </div>
                            </div>
@@ -178,7 +179,7 @@
                                     <button type="button" id="memberAgeYear"
                                        class="btn btn-info analysis-year-button member-age-button">연간</button>
                                     <button type="button" id="memberAgeMonth"
-                                       class="btn btn-info analysis-month-button member-age-button">월간</button>
+                                       class="btn btn-info analysis-month-button member-age-button onlyOneYear">월간</button>
                                  </div>
                               </div>
                            </div>
@@ -286,6 +287,15 @@
 		var subscriberButton;
 		var genderButton
 		var memberAgeButton
+		
+		//1개년도 선택제한
+	/* 	$('#memberAgeMonth').click(function() {
+			if ($('#memberAgeDate option:selected').length >= 2) {
+					$('#memberAgeDate option').prop('selected', false);
+					//$('#memberAgeDate option:first').prop('selected', true);
+				});
+			
+		} */
 
 		$(document).ready(
 				function() {
@@ -308,18 +318,41 @@
 								"<option value=\'" + date+ "\'>" + date
 										+ "년</option>");
 					}
-					for(var i = 1; i <= 12; i++){
+					for (var i = 1; i <= 12; i++) {
 						var month = i;
 						$('.monthList').append(
 								"<option value=\'" + month+ "\'>" + month
 										+ "월</option>");
-						}
-					$('.monthList').prepend("<option value=\'none\'selected >전체</option>");
+					}
 					
+					
+					$('.monthList').prepend(
+							"<option value=\'none\'selected >전체</option>");
+
+					//sales chart 5개년 세팅
 					$('#salesDate option:first').prop('selected', true);
+					$('#salesDate option:eq(1)').prop('selected', true);
+					$('#salesDate option:eq(2)').prop('selected', true);
+					$('#salesDate option:eq(3)').prop('selected', true);
+					$('#salesDate option:eq(4)').prop('selected', true);
+					
+					//subscriber chart 5개년 세팅
 					$('#subscriberDate option:first').prop('selected', true);
+					$('#subscriberDate option:eq(1)').prop('selected', true);
+					$('#subscriberDate option:eq(2)').prop('selected', true);
+					$('#subscriberDate option:eq(3)').prop('selected', true);
+					$('#subscriberDate option:eq(4)').prop('selected', true);
+					
+					//gender chart 5개년 세팅
 					$('#genderDate option:first').prop('selected', true);
+					$('#genderDate option:eq(1)').prop('selected', true);
+					$('#genderDate option:eq(2)').prop('selected', true);
+					$('#genderDate option:eq(3)').prop('selected', true);
+					$('#genderDate option:eq(4)').prop('selected', true);
+					
+					//memberAge cahrt 2개년 세팅
 					$('#memberAgeDate option:first').prop('selected', true);
+					$('#memberAgeDate option:eq(1)').prop('selected', true);
 
 					$('.analysis-year-button').prop('disabled', true);
 					salesButton = 'year';
@@ -329,7 +362,9 @@
 				});
 
 		// Google chart
-		google.charts.load("current", {packages : [ "corechart" ]});
+		google.charts.load("current", {
+			packages : [ "corechart" ]
+		});
 		google.charts.setOnLoadCallback(drawSalesChart);
 		google.charts.setOnLoadCallback(drawSubscriberChart);
 		google.charts.setOnLoadCallback(drawGenderChart);
@@ -401,8 +436,20 @@
 			var options = {
 				series : {
 					0 : {
-						color : '#FF4242'
-					}
+						color : '#fc426a'
+					},
+					1 : {
+						color : '#ff7391'
+					},
+					2 : {
+						color : '#43d9bb'
+					},
+					3 : {
+						color : '#3CAAFF'
+					},
+					4 : {
+						color : '#94d1ff'
+					},
 				},
 				align : 'center',
 				chartArea : {
@@ -415,10 +462,9 @@
 				height : 500,
 				width : '100%',
 				bars : 'vertical',
-				height : 500,
-				width : '100%',
+				pointSize : 3,
 				bar : {
-					groupWidth : "70%"
+					groupWidth : "25%"
 				},
 				isStacked : false,
 				animation : {
@@ -428,11 +474,11 @@
 				},
 				annotations : {
 					textStyle : {
-						fontSize : 15,
+						fontSize : 20,
 						bold : true,
 						italic : true,
 						opacity : 0.8
-					}
+					},
 				}
 			};
 
@@ -448,9 +494,16 @@
 					type : 'number',
 					role : 'annotation'
 				});
+				data.addColumn({
+					type : 'string',
+					role : 'style'
+				});
+
 				for (var i = 0; i < yearList.length; i++) {
-					data.addRow([ yearList[i] + "년", response[yearList[i]],
-							response[yearList[i]] ]);
+					data
+							.addRow([ yearList[i] + "년", response[yearList[i]],
+									response[yearList[i]],
+									'opacity: 0.6; stroke-color: #fc426a; stroke-opacity: 0.8; stroke-width: 2' ]);
 				}
 
 			} else {
@@ -480,20 +533,18 @@
 			}, false);
 		} // sales Chart End
 
-		
-		
 		// subscriber chart start
 		$('.subscriber-button').click(function() {
 			$('.subscriber-button').prop('disabled', false);
 			$(this).prop('disabled', true);
-			if($(this).prop('id') == 'subscriberYear'){
+			if ($(this).prop('id') == 'subscriberYear') {
 				subscriberButton = 'year';
-			}else{
+			} else {
 				subscriberButton = 'ticket';
 			}
 			drawSubscriberChart();
 		});
-		
+
 		function requestSubscriberData(sendData) {
 			var response;
 			$.ajax({
@@ -505,124 +556,165 @@
 				success : function(res) {
 					response = res;
 				},
-				error: function(e){
+				error : function(e) {
 					console.log(e);
 				}
 			});
 			return response;
 		}
-		
+
 		function drawSubscriberChart() {
 			var yearList = new Array();
 			$('#subscriberDate > option').each(function() {
-				if(this.selected){
+				if (this.selected) {
 					yearList.push($(this).val());
 				}
 			});
-			
+
 			var sendData = {
 				'subscriberButton' : subscriberButton,
 				'yearList' : yearList
 			}
-			
+
 			var response = requestSubscriberData(sendData);
-			
+
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
-					series : { 0 : {color : '#FF4242'}},
-					align : 'center',
-					chartArea : {
-						height : '90%',
-						width : '85%'
+				series : {
+					0 : {
+						color : '#3CAAFF'
 					},
-					height : 500,
-					width : '100%',
-					bars : 'vertical',
-					height : 500,
-					width : '100%',
-					bar : {
-						groupWidth : "70%"
+					1 : {
+						color : '#ff7391'
 					},
-					isStacked : false,
-					animation : {
-						startup : true,
-						duration : 1000,
-						easing : 'linear'
+					2 : {
+						color : '#43d9bb'
 					},
-					annotations : {
-						textStyle : {
-							fontSize : 15,
-							bold : true,
-							italic : true,
-							opacity : 0.8
-						}
+					3 : {
+						color : '#3CAAFF'
+					},
+					4 : {
+						color : '#94d1ff'
+					},
+				},
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				pointSize : 3,
+				bar : {
+					groupWidth : "25%"
+				},
+				isStacked : false,
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 20,
+						bold : true,
+						italic : true,
+						opacity : 0.8
 					}
-				};
-			
-			
-			if(subscriberButton == 'year'){ //1개 이상 년의 전체 구독자 컬럼차트
-				chart = new google.visualization.ColumnChart(document.getElementById("subscriber-chart"));
+				}
+			};
+
+			if (subscriberButton == 'year') { //1개 이상 년의 전체 구독자 컬럼차트
+				chart = new google.visualization.ColumnChart(document
+						.getElementById("subscriber-chart"));
 				options.legend = "none";
-				
+
 				data.addColumn('string', '년');
 				data.addColumn('number', '명');
 				data.addColumn({
 					type : 'number',
 					role : 'annotation'
 				});
-				
-				
-				for(var i = 0; i < yearList.length; i++){
-					data.addRow([
-						yearList[i] + "년", response[yearList[i]], response[yearList[i]]
-					]);
+				data.addColumn({
+					type : 'string',
+					role : 'style'
+				});
+
+				for (var i = 0; i < yearList.length; i++) {
+					data.addRow([ yearList[i] + "년", response[yearList[i]],
+									response[yearList[i]],
+									'opacity: 0.6; stroke-color: #3CAAFF; stroke-opacity: 0.8; stroke-width: 2' ]);
 				}
-				
-			} else{ //1개년의 이용권별 구독자 파이차트
-				chart = new google.visualization.PieChart(document.getElementById("subscriber-chart"));
+
+			} else { //1개년의 이용권별 구독자 파이차트
+				chart = new google.visualization.PieChart(document
+						.getElementById("subscriber-chart"));
 				var options = {
-						series : {
-							0 : { color : '#DC3912' },
-							1 : { color : '#3366CC' }
+					slices : {
+						0 : {
+							color : '#fc426a'
 						},
-						align : 'center',
-						chartArea : {
-							height : '80%',
-							width : '85%'
+						1 : {
+							color : '#ff7391'
 						},
-						pieHole : 0.4,
-						pieSliceText : 'value',
-						pieSliceTextStyle : {fontSize: 20},
-						height : 500,
-						width : '100%',
-						bar : { groupWidth : "70%" },
-						legend : {
-							position : "labeled",
-							alignment : "center",
-							textStyle: {bold: true,
-										fontSize: 15},
+						2 : {
+							color : '#43d9bb'
 						},
-						isStacked : true,
-						tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-					};
-				
+						3 : {
+							color : '#3CAAFF'
+						},
+						4 : {
+							color : '#94d1ff'
+						},
+					},
+					align : 'center',
+					chartArea : {
+						height : '80%',
+						width : '85%'
+					},
+					pieHole : 0.4,
+					pieSliceText : 'value',
+					pieSliceTextStyle : {
+						fontSize : 20
+					},
+					height : 500,
+					width : '100%',
+					bar : {
+						groupWidth : "70%"
+					},
+					legend : {
+						position : "labeled",
+						alignment : "center",
+						textStyle : {
+							bold : true,
+							fontSize : 15
+						},
+					},
+					isStacked : true,
+					tooltip : {
+						textStyle : {
+							fontSize : 12
+						},
+						showColorCode : true
+					},
+				};
+
 				data.addColumn('string', '');
 				data.addColumn('number', '명');
-				
-				for(var i = 0; i < response[yearList].length; i++){
+
+				for (var i = 0; i < response[yearList].length; i++) {
 					var ticketArray = new Array();
-					for(var j = 0; j <yearList.length; j++){
-						ticketArray.push(response[yearList[j]][i].ticketName, response[yearList[j]][i].count);
-						console.log(ticketArray);
+					for (var j = 0; j < yearList.length; j++) {
+						ticketArray.push(response[yearList[j]][i].ticketName,
+								response[yearList[j]][i].count);
 					}
 					data.addRow(ticketArray);
-					console.log(data);
 				}
-				
+
 			}
-			
-			
+
 			var view = new google.visualization.DataView(data);
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
@@ -630,7 +722,8 @@
 			}, false);
 		} //subscriber Chart End
 
-
+		
+		
 		// gender Chart Start
 		$('.gender-button').click(function() {
 			$('.gender-button').prop('disabled', false);
@@ -657,7 +750,7 @@
 			});
 			return response;
 		}
-		
+
 		function drawGenderChart() {
 			var yearList = new Array();
 			$('#genderDate > option').each(function() {
@@ -665,21 +758,26 @@
 					yearList.push($(this).val());
 				}
 			});
-			
+
 			var sendData = {
-					'genderButton' : genderButton,
-					'yearList' : yearList
-				};
+				'genderButton' : genderButton,
+				'yearList' : yearList
+			};
 			var response = requestGenderData(sendData);
-			
+
 			var chart;
 			var data = new google.visualization.DataTable();
 
 			var options = {
 				series : {
-					0 : { color : '#DC3912' },
-					1 : { color : '#3366CC' }
+					0 : {
+						color : '#43d9bb'
+					},
+					1 : {
+						color : '#3CAAFF'
+					},
 				},
+
 				align : 'center',
 				chartArea : {
 					height : '80%',
@@ -689,8 +787,13 @@
 				bars : 'vertical',
 				height : 500,
 				width : '100%',
-				bar : { groupWidth : "70%" },
-				legend : { position : "top" },
+				pointSize : 3,
+				bar : {
+					groupWidth : "25%"
+				},
+				legend : {
+					position : "top"
+				},
 				isStacked : true,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
@@ -701,14 +804,14 @@
 				},
 				annotations : {
 					textStyle : {
-						fontSize : 15,
+						fontSize : 20,
 						bold : true,
 						italic : true,
 						opacity : 0.8
 					}
 				}
 			};
-			
+
 			if (genderButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("gender-chart"));
@@ -721,30 +824,49 @@
 					type : 'number',
 					role : 'annotation'
 				});
+				data.addColumn({
+					type : 'string',
+					role : 'style'
+				});
 				data.addColumn('number', '남성');
 				data.addColumn({
 					type : 'number',
 					role : 'annotation'
 				});
-				
+				data.addColumn({
+					type : 'string',
+					role : 'style'
+				});
+
 				for (var i = 0; i < yearList.length; i++) {
 					if (response[yearList[i]].length == 0) {
-						data.addRow([ yearList[i] + "년", 0, 0 ]);
+						data.addRow([ yearList[i] + "년", 0, 0, 'opacity: 0.6; stroke-color: #43d9bb; stroke-opacity: 0.8; stroke-width: 2',
+										0, 0, 'opacity: 0.6; stroke-color: #3CAAFF; stroke-opacity: 0.8; stroke-width: 2' ]);
 						continue;
 					} else if (response[yearList[i]].length == 1) {
 						if (response[yearList[i]][0].gender == 'F') {
-							data.addRow([ yearList[i] + "년", response[yearList[i]][0].count, 0 ]);
+							data.addRow([ yearList[i] + "년",
+									response[yearList[i]][0].count, response[yearList[i]][0].count, 'opacity: 0.6; stroke-color: #43d9bb; stroke-opacity: 0.8; stroke-width: 2',
+									0, 0, 'opacity: 0.6; stroke-color: #3CAAFF; stroke-opacity: 0.8; stroke-width: 2']);
 						} else {
-							data.addRow([ yearList[i] + "년", 0, response[yearList[i]][1].count ]);
+							data.addRow([ yearList[i] + "년", 0, 0, 'opacity: 0.6; stroke-color: #43d9bb; stroke-opacity: 0.8; stroke-width: 2',
+									response[yearList[i]][1].count, response[yearList[i]][1].count, 'opacity: 0.6; stroke-color: #3CAAFF; stroke-opacity: 0.8; stroke-width: 2' ]);
 						}
 						continue;
 					}
-					data.addRow([ yearList[i] + "년", response[yearList[i]][0].count, response[yearList[i]][0].count,
-							response[yearList[i]][1].count, response[yearList[i]][1].count ]);
+					data.addRow([
+									yearList[i] + "년",
+									response[yearList[i]][0].count,
+									response[yearList[i]][0].count,
+									'opacity: 0.6; stroke-color: #43d9bb; stroke-opacity: 0.8; stroke-width: 2',
+									response[yearList[i]][1].count,
+									response[yearList[i]][1].count,
+									'opacity: 0.6; stroke-color: #3CAAFF; stroke-opacity: 0.8; stroke-width: 2' ]);
 				}
 
 			} else {
-				chart = new google.visualization.LineChart(document.getElementById("gender-chart"));
+				chart = new google.visualization.LineChart(document
+						.getElementById("gender-chart"));
 
 				options.legend = "top";
 
@@ -758,18 +880,22 @@
 						continue;
 					} else if (response[yearList[0]][i].length == 1) {
 						if (response[yearList[0]][i][0].gender == 'F') {
-							data.addRow([ (i + 1) + "월", response[yearList[0]][i][0].count, 0 ]);
+							data.addRow([ (i + 1) + "월",
+									response[yearList[0]][i][0].count, 0 ]);
 						} else {
-							data.addRow([ (i + 1) + "월", 0, response[yearList[0]][i][1].count ]);
+							data.addRow([ (i + 1) + "월", 0,
+									response[yearList[0]][i][1].count ]);
 						}
 						continue;
 					}
-					data.addRow([(i + 1) + "월", response[yearList[0]][i][0].count, response[yearList[0]][i][1].count ]);
+					data.addRow([ (i + 1) + "월",
+							response[yearList[0]][i][0].count,
+							response[yearList[0]][i][1].count ]);
 				}
 			}
 
 			var view = new google.visualization.DataView(data);
-			
+
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -802,108 +928,219 @@
 			});
 			return response;
 		}
-		
+
 		function drawMemberAgeChart() {
 			var yearList = new Array();
 			$('#memberAgeDate > option').each(function() {
-				if(this.selected){
+				if (this.selected) {
 					yearList.push($(this).val());
 				}
 			});
-			
+
 			var sendData = {
 				'memberAgeButton' : memberAgeButton,
 				'yearList' : yearList
 			}
-			
+
 			var response = requestMemberAgeData(sendData);
-			
+
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
-					series : { 0 : {color : '#FF4242'}},
-					align : 'center',
-					chartArea : {
-						height : '90%',
-						width : '85%'
+				series : {
+					0 : {
+						color : '#a8f0e2'
 					},
-					legend: "top",
-					height : 500,
-					width : '100%',
-					bars : 'vertical',
-					height : 500,
-					width : '100%',
-					bar : {
-						groupWidth : "70%"
+					1 : {
+						color : '#67d6c1'
 					},
-					isStacked : false,
-					animation : {
-						startup : true,
-						duration : 1000,
-						easing : 'linear'
+					2 : {
+						color : '#41ccb0'
 					},
-					annotations : {
-						textStyle : {
-							fontSize : 15,
-							bold : true,
-							italic : true,
-							opacity : 0.8
-						}
-					}
-				};
-			
-			if(memberAgeButton == 'year'){ 
-				chart = new google.visualization.ColumnChart(document.getElementById("member-age-chart"));
-				
-				data.addColumn('string', "년")
-				data.addColumn('number', '10대');
-				data.addColumn({type: 'number', role: "annotation"});
-				data.addColumn('number', '20대');
-				data.addColumn({type: 'number', role: "annotation"});
-				data.addColumn('number', '30대');
-				data.addColumn({type: 'number', role: "annotation"});
-				data.addColumn('number', '40대');
-				data.addColumn({type: 'number', role: "annotation"});
-				data.addColumn('number', '50대');
-				data.addColumn({type: 'number', role: "annotation"});
-				data.addColumn('number', '60대 이상');
-				data.addColumn({type: 'number', role: "annotation"});
-				
-				for(var i = 0; i < yearList.length; i++){
-					if(response[yearList[i]].length == 0){
-						data.addRow([yearList[i] + "년", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-						continue;
-					}else{
-						var tmpArray = [yearList[i] + "년", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-						for (var j = 0; j < response[yearList[i]].length; j++) {
-				               if (response[yearList[i]][j].memberAge == '10') {
-				                  tmpArray.splice(1, 1, response[yearList[i]][j].count);
-				                  tmpArray.splice(2, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '20') {
-				                  tmpArray.splice(3, 1, response[yearList[i]][j].count);
-				                  tmpArray.splice(4, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '30') {
-				                  tmpArray.splice(5, 1, response[yearList[i]][j].count);
-				                  tmpArray.splice(6, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '40') {
-				                  tmpArray.splice(7, 1, response[yearList[i]][j].count);
-				                  tmpArray.splice(8, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '50') {
-				                  tmpArray.splice(9, 1, response[yearList[i]][j].count);
-				                  tmpArray.splice(10, 1, response[yearList[i]][j].count);
-				               } else if (response[yearList[i]][j].memberAge == '60') {
-				                  tmpArray.splice(11, 1, response[yearList[i]][j].count);
-				                  tmpArray.splice(12, 1, response[yearList[i]][j].count);
-				               } 
-				            }
-					data.addRow(tmpArray);
-					continue;
+					3 : {
+						color : '#22b99b'
+					},
+					4 : {
+						color : '#0c997d'
+					},
+					5 : {
+						color : '#026e58'
+					},
+				},
+				align : 'center',
+				chartArea : {
+					height : '90%',
+					width : '85%'
+				},
+				legend : "top",
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				pointSize : 3,
+				bar : {
+					groupWidth : "61.8%"
+				},
+				isStacked : false,
+				animation : {
+					startup : true,
+					duration : 1000,
+					easing : 'linear'
+				},
+				annotations : {
+					textStyle : {
+						fontSize : 20,
+						bold : true,
+						italic : true,
+						opacity : 0.8
 					}
 				}
-				
-			} else{ 
-				chart = new google.visualization.LineChart(document.getElementById("member-age-chart"));
-				
+			};
+
+			if (memberAgeButton == 'year') {
+				chart = new google.visualization.ColumnChart(document
+						.getElementById("member-age-chart"));
+
+				data.addColumn('string', "년")
+				data.addColumn('number', '10대');
+				data.addColumn({
+					type : 'number',
+					role : "annotation"
+				});
+				data.addColumn({
+					type : 'string',
+					role : "style"
+				});
+				data.addColumn('number', '20대');
+				data.addColumn({
+					type : 'number',
+					role : "annotation"
+				});
+				data.addColumn({
+					type : 'string',
+					role : "style"
+				});
+				data.addColumn('number', '30대');
+				data.addColumn({
+					type : 'number',
+					role : "annotation"
+				});
+				data.addColumn({
+					type : 'string',
+					role : "style"
+				});
+				data.addColumn('number', '40대');
+				data.addColumn({
+					type : 'number',
+					role : "annotation"
+				});
+				data.addColumn({
+					type : 'string',
+					role : "style"
+				});
+				data.addColumn('number', '50대');
+				data.addColumn({
+					type : 'number',
+					role : "annotation"
+				});
+				data.addColumn({
+					type : 'string',
+					role : "style"
+				});
+				data.addColumn('number', '60대 이상');
+				data.addColumn({
+					type : 'number',
+					role : "annotation"
+				});
+				data.addColumn({
+					type : 'string',
+					role : "style"
+				});
+
+				for (var i = 0; i < yearList.length; i++) {
+					if (response[yearList[i]].length == 0) {
+						data.addRow([
+										yearList[i] + "년",
+										0,
+										0,
+										'opacity: 0.6; stroke-color: #a8f0e2; stroke-opacity: 0.8; stroke-width: 2',
+										0,
+										0,
+										'opacity: 0.6; stroke-color: #67d6c1; stroke-opacity: 0.8; stroke-width: 2',
+										0,
+										0,
+										'opacity: 0.6; stroke-color: #41ccb0; stroke-opacity: 0.8; stroke-width: 2',
+										0,
+										0,
+										'opacity: 0.6; stroke-color: #22b99b; stroke-opacity: 0.8; stroke-width: 2',
+										0,
+										0,
+										'opacity: 0.6; stroke-color: #0c997d; stroke-opacity: 0.8; stroke-width: 2',
+										0, 0,
+										'opacity: 0.6; stroke-color: #026e58; stroke-opacity: 0.8; stroke-width: 2' ]);
+						continue;
+					} else {
+						var tmpArray = [
+								yearList[i] + "년",
+								0,
+								0,
+								'opacity: 0.6; stroke-color: #a8f0e2; stroke-opacity: 0.8; stroke-width: 2',
+								0,
+								0,
+								'opacity: 0.6; stroke-color: #67d6c1; stroke-opacity: 0.8; stroke-width: 2',
+								0,
+								0,
+								'opacity: 0.6; stroke-color: #41ccb0; stroke-opacity: 0.8; stroke-width: 2',
+								0,
+								0,
+								'opacity: 0.6; stroke-color: #22b99b; stroke-opacity: 0.8; stroke-width: 2',
+								0,
+								0,
+								'opacity: 0.6; stroke-color: #0c997d; stroke-opacity: 0.8; stroke-width: 2',
+								0, 0,
+								'opacity: 0.6; stroke-color: #026e58; stroke-opacity: 0.8; stroke-width: 2' ];
+
+						for (var j = 0; j < response[yearList[i]].length; j++) {
+							if (response[yearList[i]][j].memberAge == '10') {
+								tmpArray.splice(1, 1,
+										response[yearList[i]][j].count);
+								tmpArray.splice(2, 1,
+										response[yearList[i]][j].count);
+							} else if (response[yearList[i]][j].memberAge == '20') {
+								tmpArray.splice(4, 1,
+										response[yearList[i]][j].count);
+								tmpArray.splice(5, 1,
+										response[yearList[i]][j].count);
+							} else if (response[yearList[i]][j].memberAge == '30') {
+								tmpArray.splice(7, 1,
+										response[yearList[i]][j].count);
+								tmpArray.splice(8, 1,
+										response[yearList[i]][j].count);
+							} else if (response[yearList[i]][j].memberAge == '40') {
+								tmpArray.splice(10, 1,
+										response[yearList[i]][j].count);
+								tmpArray.splice(11, 1,
+										response[yearList[i]][j].count);
+							} else if (response[yearList[i]][j].memberAge == '50') {
+								tmpArray.splice(13, 1,
+										response[yearList[i]][j].count);
+								tmpArray.splice(14, 1,
+										response[yearList[i]][j].count);
+							} else if (response[yearList[i]][j].memberAge == '60') {
+								tmpArray.splice(16, 1,
+										response[yearList[i]][j].count);
+								tmpArray.splice(17, 1,
+										response[yearList[i]][j].count);
+							}
+						}
+						data.addRow(tmpArray);
+						continue;
+					}
+				}
+
+			} else {
+				chart = new google.visualization.LineChart(document
+						.getElementById("member-age-chart"));
+
 				data.addColumn('string', '월');
 				data.addColumn('number', '10대');
 				data.addColumn('number', '20대');
@@ -911,14 +1148,18 @@
 				data.addColumn('number', '40대');
 				data.addColumn('number', '50대');
 				data.addColumn('number', '60대 이상');
-				
-				for(var i = 0; i < 12; i++){
-					data.addRow([(i + 1) + "월", response[yearList[0]][i][0].count, response[yearList[0]][i][1].count,
-								response[yearList[0]][i][2].count, response[yearList[0]][i][3].count,
-								response[yearList[0]][i][4].count, response[yearList[0]][i][5].count]);
+
+				for (var i = 0; i < 12; i++) {
+					data.addRow([ (i + 1) + "월",
+							response[yearList[0]][i][0].count,
+							response[yearList[0]][i][1].count,
+							response[yearList[0]][i][2].count,
+							response[yearList[0]][i][3].count,
+							response[yearList[0]][i][4].count,
+							response[yearList[0]][i][5].count ]);
 				}
 			}
-			
+
 			var view = new google.visualization.DataView(data);
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
@@ -938,7 +1179,6 @@
 					[ "영화4", 1322, "color:#C4ACB3;", 1322 ],
 					[ "영화5", 980, "color:#E2D0D7;", 980 ], ]);
 
-			
 			var view = new google.visualization.DataView(data);
 			var options = {
 				title : '누적 조회수 순위',
@@ -1086,8 +1326,6 @@
 				chart.draw(data, options);
 			}, false);
 		}
-		
-
 	</script>
 </body>
 <style>

@@ -52,7 +52,6 @@ public class AnalysisMemberAgeServiceImpl implements AnalysisMemberAgeService {
 				tmpSixtyUpper.put("memberAge", 60);
 				tmpSixtyUpper.put("count", sixtySum);
 				tmpList.add(tmpSixtyUpper);
-				System.out.println("tmpList : " + tmpList);
 				
 				Map<String, Object> tmpTeenUnder = new HashMap<String, Object>();
 				tmpTeenUnder.put("memberAge", 10);
