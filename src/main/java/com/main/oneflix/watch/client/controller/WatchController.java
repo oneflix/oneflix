@@ -28,19 +28,21 @@ public class WatchController {
 	private GetWatchViewPointService getWatchViewPointService;
 
 	@RequestMapping("/moviePlay.do")
-	public ModelAndView moviePlay(ModelAndView mav, WatchVO vo, HttpSession session) {
+	public ModelAndView moviePlay(WatchVO vo, HttpServletRequest request, ModelAndView mav) {
+		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		
+		MovieVO movie = (MovieVO) request.getAttribute("movie");
+
 		vo.setEmail(member.getEmail());
-		vo.setMovieId(9);
+		vo.setMovieId(movie.getMovieId());
+		
 		Integer viewPoint = getWatchViewPointService.getWatchViewPoint(vo);
 		if(viewPoint == null) {
 			viewPoint = 0;
 		}
-		vo.setViewPoint(viewPoint);
 		
-		mav.addObject("watch", vo);
-
+		vo.setViewPoint(viewPoint);
+		mav.addObject("movie", movie);
 		mav.setViewName("moviePlay");
 		return mav;
 	}

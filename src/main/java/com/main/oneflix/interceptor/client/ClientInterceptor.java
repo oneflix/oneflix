@@ -37,12 +37,14 @@ public class ClientInterceptor implements HandlerInterceptor {
 			movie.setMovieId(Integer.parseInt(movieId));
 			movie = movieDAO.getMovie(movie);
 			if (movie.getRating().equals("19")) {
+				response.setCharacterEncoding("UTF-8"); 
+				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter writer = response.getWriter();
 				if (member.getTicketId() == 0 || member.getMemberAge() < 19) {
 					if (member.getTicketId() == 0) {
-						writer.print("<script>alert('이용권 구매 후 시청해 주세요!');</script>");
+						writer.print("<script>alert('이용권 구매 후 시청해 주세요!'); location.replace('/homeProc.do');</script>");
 					} else {
-						writer.print("<script>alert('성인 영화는 시청하실 수 없습니다!');</script>");
+						writer.print("<script>alert('성인 영화는 시청하실 수 없습니다!'); location.replace('/homeProc.do');</script>");
 					}
 					writer.flush();
 					writer.close();
