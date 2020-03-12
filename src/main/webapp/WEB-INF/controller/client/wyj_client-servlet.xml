@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan
@@ -13,4 +15,21 @@
 			com.main.oneflix.alarm.client.controller">
 	</context:component-scan>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*.do" />
+			<mvc:exclude-mapping path="/oneflix.do"/>
+			<mvc:exclude-mapping path="/login.do"/>
+			<mvc:exclude-mapping path="/loginProc.do"/>
+			<mvc:exclude-mapping path="/naverLoginProc.do"/>
+			<mvc:exclude-mapping path="/connectSNSLoginProc.do"/>
+			<mvc:exclude-mapping path="/findPass.do"/>
+			<mvc:exclude-mapping path="/findPassProc.do"/>
+			<mvc:exclude-mapping path="/paymentApproveProc.do"/>
+			<mvc:exclude-mapping path="/paymentSuccessProc.do"/>
+			<mvc:exclude-mapping path="/paymentCancelProc.do"/>
+			<mvc:exclude-mapping path="/paymentFailProc.do"/>
+			<bean class="com.main.oneflix.interceptor.client.ClientInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

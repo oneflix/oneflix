@@ -100,7 +100,9 @@ public class MovieController {
 		} else {
 			movieList = getMovieListService.getMovieList(vo);
 		}
-		
+		if (vo.getSearchMovie() != null) {
+			mav.addObject("searchMovie", vo.getSearchMovie());
+		}
 		mav.addObject("searchGenre", vo.getSearchGenre());
 		mav.addObject("searchOrder", vo.getSearchOrder());
 		mav.addObject("movieType", vo.getMovieType());
