@@ -27,17 +27,12 @@ public class LoginController {
 		ManagerVO manager = getManagerService.getManager(vo);
 		String viewName;
 		
-		mav.addObject("result", false);
-		if (vo == null) {
-			viewName = "redirect:/login.mdo";
+		if (manager != null && vo.getManagerPass().equals(manager.getManagerPass())) {
+			session.setAttribute("loginManager", vo);
+			viewName = "redirect:/getDashboardProc.mdo";
 		} else {
-			if (vo.getManagerPass().equals(manager.getManagerPass())) {
-				session.setAttribute("loginManager", vo);
-				viewName = "redirect:/getDashboardProc.mdo";
-				mav.addObject("result", true);
-			} else {
-				viewName = "redirect:/login.mdo";
-			}
+			mav.addObject("result", false);
+			viewName = "login";
 		}
 		mav.setViewName(viewName);
 		return mav;

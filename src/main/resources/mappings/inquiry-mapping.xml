@@ -47,14 +47,7 @@
 							ORDER BY inquiry_date
 						) I
 					)
-			<choose>
-				<when test="start != 0 and end != 0">
-					ORDER BY RNUM
-				</when>
-				<otherwise>
 					ORDER BY RNUM DESC
-				</otherwise>
-			</choose>
 			)
 	WHERE 1 = 1
 	<if test="start != 0 and end != 0">

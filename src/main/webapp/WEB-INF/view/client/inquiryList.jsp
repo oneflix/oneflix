@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="sidebar_url" value="/WEB-INF/view/client/mypageSidebar.jsp"></c:set>
+<c:set var="totalLength" value="${fn:length(viewAll)}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -20,7 +22,7 @@
 
 	<jsp:include page="${sidebar_url}"></jsp:include>
 
-	<div class="page-body" style="width:84vw; margin-left:8vw; height:94vh;">
+	<div class="page-body" style="width:84vw; margin-left:8vw;">
 
 		<!-- 페이지 시작 -->
 		<div>
@@ -28,7 +30,7 @@
 		</div>
 		<div>
 			<button class="inquiry" type="button" 
-			style="width:8vw; margin-left:86vw;margin-right:2.5vw;height:7vh;margin-top:1vh; margin-bottom:4vh;"
+			style="width:8vw; margin-left:86vw;margin-right:2.5vw;"
 			onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
 		<div id="outter">
@@ -44,9 +46,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${viewAll}" var="inquiry">
+						<c:forEach items="${viewAll}" var="inquiry" varStatus="status">
 							<tr>
-								<td>${inquiry.inquiryId }</td>
+								<td>${totalLength - status.index + (paging.cntPerPage * (paging.nowPage - 1))}</td>
 								<td><c:choose>
 										<c:when test="${inquiry.inquiryType eq 'payment'}">결제</c:when>
 										<c:when test="${inquiry.inquiryType eq 'refund'}">해지/환불</c:when>
@@ -74,7 +76,7 @@
 						<ul class="pagination pagination-sm m-0 float-right">
 						<c:if test="${paging.startPage != 1 }">
 							<li class="page-item"><a class="page-link"
-								href="/getInquiryListProc.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&laquo;</a></li>
+								href="/getInquiryListProc.do?nowPage=${paging.startPage - 1 }">&laquo;</a></li>
 						</c:if>
 						
 						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
@@ -82,17 +84,17 @@
 							<c:choose>
 								<c:when test="${p == paging.nowPage }">
 									<li class="page-item"><a class="page-link"
-										href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+										href="/getInquiryListProc.do?nowPage=${p }">${p }</a></li>
 								</c:when>
 								<c:when test="${p != paging.nowPage }">
 									<li class="page-item"><a class="page-link"
-										href="/getInquiryListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+										href="/getInquiryListProc.do?nowPage=${p }">${p }</a></li>
 								</c:when>
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
 							<li class="page-item"><a class="page-link"
-								href="/getInquiryListProc.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&raquo;</a></li>
+								href="/getInquiryListProc.do?nowPage=${paging.endPage+1 }">&raquo;</a></li>
 						</c:if>
 					</ul>
 				</div>
