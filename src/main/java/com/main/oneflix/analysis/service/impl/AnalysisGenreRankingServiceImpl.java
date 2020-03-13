@@ -89,7 +89,6 @@ public class AnalysisGenreRankingServiceImpl implements AnalysisGenreRankingServ
 						}
 						data.put("cols", arrayCols);
 						data.put("rows", arrayRows);
-						System.out.println(data);
 		return data;
 	}
 }

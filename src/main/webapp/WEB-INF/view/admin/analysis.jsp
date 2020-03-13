@@ -1289,7 +1289,7 @@
 			};
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
-					.getElementById("genre-ranking-chart"));
+					.getElementById("movie-ranking-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);

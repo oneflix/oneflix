@@ -48,8 +48,6 @@ public class AnalysisMovieRankingServieImpl implements AnalysisMovieRankingServi
 				} else {
 					dbMap.put("endDate", (rankingYear + monthPlusOne + "01"));
 				}
-				System.out.println(dbMap.get("startDate"));
-				System.out.println(dbMap.get("endDate"));
 				response.put(rankingYear+rankingMonth, analysisDAO.analysisMovieRanking(dbMap));	
 		}
 		// 최종으로 넘길 데이터
@@ -91,7 +89,6 @@ public class AnalysisMovieRankingServieImpl implements AnalysisMovieRankingServi
 				}
 				data.put("cols", arrayCols);
 				data.put("rows", arrayRows);
-				System.out.println(data);
 		return data;
 	}
 }
