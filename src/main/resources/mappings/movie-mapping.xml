@@ -196,4 +196,12 @@
          ]]>
       </if>
    </select>
+   
+   <update id="increaseViewCount" parameterType="movie">
+   		<selectKey resultType="int" keyProperty="up" order="BEFORE">
+			SELECT NVL(view_count, 0) FROM movie WHERE movie_id = #{movieId}
+		</selectKey>
+   		UPDATE movie SET
+   		view_count = #{up} + 1 WHERE movie_id = #{movieId}
+   </update>
 </mapper>
