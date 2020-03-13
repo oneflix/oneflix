@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ONeflix</title>
+<title>Oneflix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon"
    href="admin/images/icons/favicon.ico">
@@ -33,6 +33,47 @@
 .analysis-year-button {width: 60px; margin-right: 5px;}
 .analysis-month-button {width: 60px;}
 .subscriber-button {width: 75px;}
+#movie-ranking-chart svg g[clip-path] g:not(:first-child) rect:hover {
+    fill-opacity: 0.6 !important; 
+    stroke:	#3caaff !important; 
+    fill: #3caaff !important; 
+    stroke-opacity: 0.8 !important; 
+    stroke-width: 2 !important;
+}
+#movie-ranking-chart svg g[clip-path] g:not(:first-child) rect {
+    fill-opacity: 0.6 !important; 
+    stroke: #3caaff !important; 
+    fill: #3caaff !important; 
+    stroke-width: 2 !important;
+}
+#genre-ranking-chart svg g[clip-path] g:not(:first-child) rect:hover {
+    fill-opacity: 0.6 !important; 
+    stroke: #fc426a !important; 
+    fill: #fc426a !important; 
+    stroke-opacity: 0.8 !important; 
+    stroke-width: 2 !important;
+}
+#genre-ranking-chart svg g[clip-path] g:not(:first-child) rect {
+    fill-opacity: 0.6 !important; 
+    stroke: #fc426a !important; 
+    fill: #fc426a !important; 
+    stroke-opacity: 0.8 !important; 
+    stroke-width: 2 !important;
+}
+#genre-count-chart svg g[clip-path] g:not(:first-child) rect:hover {
+    fill-opacity: 0.6 !important; 
+    stroke: #3366cc !important; 
+    fill: #3366cc !important; 
+    stroke-opacity: 0.8 !important; 
+    stroke-width: 2 !important;
+}
+#genre-count-chart svg g[clip-path] g:not(:first-child) rect {
+    fill-opacity: 0.6 !important; 
+    stroke: #3366cc !important; 
+    fill: #3366cc !important; 
+    stroke-opacity: 0.8 !important; 
+    stroke-width: 2 !important;
+}
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -198,7 +239,7 @@
                      <div class="card card-outline">
                         <div class="card-header">
                            <h3 class="card-title">
-                              <i class="far fa-chart-bar"></i> 영화 랭킹 TOP-5
+                              <i class="far fa-chart-bar"></i> 영화 랭킹 TOP5
                            </h3>
                            <br><br>
                            <div style="width:fit-to-content" class="button-box-container">
@@ -1258,29 +1299,27 @@
 				title : '영화 TOP5',
 				align : 'center',
 				chartArea : {
-					height : '70%',
-					width : '80%'
+					height : '90%',
+					width : '85%'
 				},
-				bars : 'vertical',
 				height : 500,
 				width : '100%',
+				bars : 'vertical',
 				bar : {
-					groupWidth : "65%"
-				},
-				legend : {
-					position : "none"
+					groupWidth : "25%"
 				},
 				isStacked : false,
-				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-				//차트가 뿌려질때 실행될 애니메이션 효과
 				animation : {
 					startup : true,
 					duration : 1000,
 					easing : 'linear'
 				},
+				legend : {
+					position : "none"
+				},
 				annotations : {
 					textStyle : {
-						fontSize : 15,
+						fontSize : 20,
 						bold : true,
 						italic : true,
 						opacity : 0.8
@@ -1289,7 +1328,7 @@
 			};
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
-					.getElementById("genre-ranking-chart"));
+					.getElementById("movie-ranking-chart"));
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -1321,11 +1360,6 @@
 					width : '80%'
 				},
 				bars : 'vertical',
-				height : 500,
-				width : '100%',
-				bar : {
-					groupWidth : "65%"
-				},
 				legend : {
 					position : "none"
 				},
@@ -1337,9 +1371,10 @@
 					duration : 1000,
 					easing : 'linear'
 				},
+				pointSize : 3,
 				annotations : {
 					textStyle : {
-						fontSize : 15,
+						fontSize : 20,
 						bold : true,
 						italic : true,
 						opacity : 0.8
@@ -1370,19 +1405,12 @@
 				var chart;
 				data = new google.visualization.DataTable(jsonData);
 			var view = new google.visualization.DataView(data);
+
 			var options = {
 				align : 'center',
 				chartArea : {
 					height : '90%',
 					width : '85%'
-				},
-				height : 500,
-				width : '100%',
-				bar : {
-					groupWidth : "65%"
-				},
-				legend : {
-					position : "none"
 				},
 				isStacked : false,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
@@ -1392,9 +1420,13 @@
 					duration : 1000,
 					easing : 'linear'
 				},
+				pointSize : 3,
+				legend : {
+					position : "none"
+				},
 				annotations : {
 					textStyle : {
-						fontSize : 15,
+						fontSize : 20,
 						bold : true,
 						italic : true,
 						opacity : 0.8

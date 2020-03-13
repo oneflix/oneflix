@@ -1,5 +1,6 @@
 package com.main.oneflix.watch.client.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +30,7 @@ public class WatchController {
 	private GetWatchViewPointService getWatchViewPointService;
 
 	@RequestMapping("/moviePlay.do")
+
 	public ModelAndView moviePlay(WatchVO vo, HttpServletRequest request, ModelAndView mav) {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");

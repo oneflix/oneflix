@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ONeflix::payment</title>
+<title>Oneflix::payment</title>
 <link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <style>
 	html, body {

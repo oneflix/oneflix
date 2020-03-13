@@ -29,15 +29,6 @@ public class ReviewLikeController {
 	@RequestMapping("/insertAndUpdateReviewLikeProc.do")
 	@ResponseBody
 	public List<ReviewVO> insertAndUpdateReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO,	HttpSession session) {
-		System.out.println("insertReviewLikeProc.ReviewVO : " + reviewVO);
-		System.out.println("insertReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
-		System.out.println("insertReviewLikeProc.reviewVO.getReviewId() : " + reviewVO.getReviewId());
-		System.out.println("insertReviewLikeProc.reviewVO.getMovieId() : " + reviewVO.getMovieId());
-		System.out.println("insertReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
-		System.out.println("insertReviewLikeProc.ReviewLikeVO : " + reviewLikeVO);
-		System.out.println(
-				"insertReviewLikeProc.reviewLikeVO.getReviewLikeEmail() : " + reviewLikeVO.getReviewLikeEmail());
-
 		int likeCount = reviewVO.getLikeCount();
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(reviewVO);
 			likeCount++;
@@ -56,7 +47,6 @@ public class ReviewLikeController {
 		System.out.println("deleteReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
 		
 		likeCount--;
-		System.out.println("리뷰카운트감소함? : " + likeCount);
 		reviewVO.setLikeCount(likeCount);
 		
 		deleteAndUpdateReviewLikeService.deleteAndUpdateReviewLike(reviewVO, reviewLikeVO);

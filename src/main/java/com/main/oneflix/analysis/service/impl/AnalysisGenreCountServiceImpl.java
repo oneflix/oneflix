@@ -37,7 +37,6 @@ public class AnalysisGenreCountServiceImpl implements AnalysisGenreCountService 
 		arrayCols.add(col2);
 		
 		    for (Map<String, Object> valueMap : analysisDAO.analysisGenreCount(map)) {
-		    	System.out.println(valueMap.values());
 				// map을 json으로
 				// map에서 key와 Value 뽑아서 Row 추가하기
 				// key: genreId value: watchCount
@@ -61,9 +60,6 @@ public class AnalysisGenreCountServiceImpl implements AnalysisGenreCountService 
 				}
 				data.put("cols", arrayCols);
 				data.put("rows", arrayRows);
-
-		        
-		    System.out.println(data);
 		    return data;
 		    }
 	}

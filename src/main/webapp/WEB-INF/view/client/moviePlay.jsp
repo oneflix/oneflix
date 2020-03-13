@@ -88,11 +88,12 @@ video {
 					}
 				});
 			}
-		};
+		}
 
 		$(window).on("beforeunload", function() {
 			inputWatchData();
 		});
+
 	</script>
 </body>
 </html>
