@@ -28,7 +28,8 @@
         <!-- 이전 결제 내역 -->
         <div class="title" style="background-color: #fffff;">
             <p>이용권</p><br><br>
-            <button type="button" class="btn-close" id="ticket-termination">이용권 해지</button>
+            <button type="button" class="btn-close" id="ticket-refund">이용권 환불</button>
+            <button type="button" class="btn-close" id="ticket-termination">정기 결제 해지</button>
         </div>
         
         <div class="table table-hover" style="background-color: #ffffff;">
@@ -57,6 +58,9 @@
 	                        	<c:when test="${payment.salesStatus == 'expired' }">
 	                        		종료
 	                        	</c:when>
+	                        	<c:when test="${payment.salesStatus == 'refund' }">
+	                        		환불
+	                        	</c:when>
 	                        </c:choose>
 	                        </td>
 	                        <td>${payment.ticketName }</td>
@@ -67,6 +71,9 @@
 	                        <fmt:formatDate value="${payment.paymentDate }" pattern="yyyy-MM-dd"/>
 	                        </td>
 	                        <td>
+	                        <c:if test="${payment.salesStatus == 'refund' }">
+	                        	취소일<br>
+	                        </c:if>
 	                        <fmt:formatDate value="${payment.expiryDate }" pattern="yyyy-MM-dd"/>
 	                        </td>
 	                    </tr>
@@ -78,7 +85,7 @@
                 <ul class="pagination pagination-sm m-0 float-right">
 						<c:if test="${paging.startPage != 1 }">
 							<li class="page-item"><a class="page-link"
-								href="/getPaymentListProc.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&laquo;</a></li>
+								href="/getPaymentListProc.do?nowPage=${paging.startPage - 1 }">&laquo;</a></li>
 						</c:if>
 						
 						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
@@ -86,17 +93,17 @@
 							<c:choose>
 								<c:when test="${p == paging.nowPage }">
 									<li class="page-item"><a class="page-link"
-										href="/getPaymentListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+										href="/getPaymentListProc.do?nowPage=${p }">${p }</a></li>
 								</c:when>
 								<c:when test="${p != paging.nowPage }">
 									<li class="page-item"><a class="page-link"
-										href="/getPaymentListProc.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a></li>
+										href="/getPaymentListProc.do?nowPage=${p }">${p }</a></li>
 								</c:when>
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
 							<li class="page-item"><a class="page-link"
-								href="/getPaymentListProc.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&raquo;</a></li>
+								href="/getPaymentListProc.do?nowPage=${paging.endPage+1 }">&raquo;</a></li>
 						</c:if>
 					</ul>
             </div>
@@ -112,21 +119,42 @@
 		var cid;
 		var sid;
 		$(document).ready(function(){
+			var result = "${result}";
+			if (result != null && result != '') {
+				if (result == 'INACTIVE') {
+					alert("정기 결제 해지가 완료되었습니다.");
+				} else if (result == 'CANCEL_PAYMENT') {
+					alert("환불 요청이 완료되었습니다.");
+				} else {
+					alert("요청 실패!! 문의 해주시길 바랍니다.");
+				}
+			}
+			
 			ticketName = "${recentSales.ticketName}";
 			salesStatus = "${recentSales.salesStatus}";
-			
 			if (ticketName == '정기권' && salesStatus == 'success') {
 				$('#ticket-termination').css('display', 'block');
 				salesId = "${recentSales.salesId}";
-				cid = "${recentSales.cid}";
-				sid = "${recentSales.sid}";
+			}
+			
+			var refundCheck = "${refundCheck}";
+			if ((salesStatus == 'success' || salesStatus == 'inactive') && refundCheck == 0) {
+				$('#ticket-refund').css('display', 'block');
+				salesId = "${recentSales.salesId}";
+			}
+		});
+		
+		$('#ticket-refund').click(function(){
+			var check = confirm("정말로 환불 하시겠습니까?");
+			if(check == true){
+				window.location.href = "/refundProc.do?salesId=" + salesId;
 			}
 		});
 		
 		$('#ticket-termination').click(function(){
-			var check = confirm("정말로 해지하시겠습니까?");
+			var check = confirm("정말로 해지 하시겠습니까?");
 			if(check == true){
-				window.location.href = "/inactiveSubscriptionProc.do?salesId=" + salesId + "&cid=" + cid + "&sid=" + sid;
+				window.location.href = "/inactiveSubscriptionProc.do?salesId=" + salesId;
 			}
 		});
 	</script>

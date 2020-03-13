@@ -67,97 +67,108 @@
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item"><a href="/getDashboardProc.mdo"
-					class="nav-link" id="dashboard"> <i
-						class="nav-icon fas fa-tachometer-alt"></i>
-						<p>대시보드</p>
+					class="nav-link" id="dashboard">
+					<i class="nav-icon fas fa-tachometer-alt"></i>
+						<span>대시보드</span>
 				</a></li>
 
 
 				<li class="nav-item"><a href="/movieList.mdo"
-					class="nav-link" id="movie"> <ion-icon name="film" size="small"></ion-icon>&nbsp;&nbsp;
-						<p>영화</p>
+					class="nav-link" id="movie">
+					<i class="nav-icon fas fa-video"></i>
+						<span>영화</span>
 				</a></li>
 
 				<li class="nav-item"><a href="/genreList.mdo"
-					class="nav-link" id="genre"> <ion-icon name="apps" size="small"></ion-icon>&nbsp;&nbsp;
-						<p>장르</p>
+					class="nav-link" id="genre">
+					<i class="nav-icon fas fa-th"></i>
+						<span>장르</span>
 				</a></li>
 
 				<li class="nav-item"><a href="/directorList.mdo"
-					class="nav-link" id="director"> <ion-icon name="megaphone"
-							size="small"></ion-icon>&nbsp;&nbsp;
-						<p>감독</p>
+					class="nav-link" id="director">
+					<i class="nav-icon fas fa-bullhorn"></i>
+						<span>감독</span>
 				</a></li>
 
 				<li class="nav-item"><a href="/actorList.mdo"
-					class="nav-link" id="actor"> <ion-icon name="glasses"
-							size="small"></ion-icon>&nbsp;&nbsp;
-						<p>배우</p>
+					class="nav-link" id="actor">
+					<i class="nav-icon fas fa-hat-cowboy"></i>
+						<span>배우</span>
 				</a></li>
 
 				<li class="nav-item"><a href="/memberList.mdo"
-					class="nav-link" id="member"> <ion-icon name="people"
-							size="small"></ion-icon>&nbsp;&nbsp;
-						<p>회원</p>
+					class="nav-link" id="member">
+					<i class="nav-icon fas fa-user-friends"></i>
+						<span>회원</span>
 				</a></li>
 
 				<li class="nav-item"><a href="/ticketList.mdo"
-					class="nav-link" id="ticket"> <ion-icon name="card"
-							size="small"></ion-icon>&nbsp;&nbsp;
-						<p>이용권</p>
+					class="nav-link" id="ticket">
+					<i class="nav-icon fas fa-credit-card"></i>
+						<span>이용권</span>
 				</a></li>
 
 				<li class="nav-item"><a href="/salesList.mdo"
-					class="nav-link" id="sales"> <ion-icon name="cash" size="small"></ion-icon>&nbsp;&nbsp;
-						<p>판매</p>
+					class="nav-link" id="sales">
+					<i class="nav-icon fas fa-money-bill-wave"></i>
+						<span>판매</span>
 				</a></li>
 
-				<li class="nav-item has-treeview"><a href="#" class="nav-link" id="help">
-						<ion-icon name="help-circle-outline" size="small"></ion-icon>&nbsp;&nbsp;
-						<p>
-							고객센터 <i class="right fas fa-angle-left"></i>
-						</p>
-				</a>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link" id="help">
+						<i class="nav-icon fas fa-question-circle"></i>
+							<span>
+								<span>고객센터 </span>
+								<i style="float: right; margin-top: 5px;" class="right fas fa-angle-left"></i>
+							</span>
+					</a>
 
 					<ul class="nav nav-treeview">
-						<li class="nav-item"><a href="/noticeList.mdo"
-							class="nav-link" id="notice">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
-									name="arrow-dropright" size="small"></ion-icon>
-								<p>공지사항</p>
+						<li class="nav-item">
+							<a href="/noticeList.mdo" class="nav-link" id="notice">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<i class="nav-icon fas fa-angle-right"></i>
+								<span>공지사항</span>
 						</a></li>
 
-						<li class="nav-item"><a href="/FAQList.mdo"
-							class="nav-link" id="faq">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
-									name="arrow-dropright" size="small"></ion-icon>
-								<p>FAQ</p>
+						<li class="nav-item">
+							<a href="/FAQList.mdo" class="nav-link" id="faq">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<i class="nav-icon fas fa-angle-right"></i>
+								<span>FAQ</span>
 						</a></li>
 
-						<li class="nav-item"><a href="/inquiryList.mdo"
-							class="nav-link" id="inquiry">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon
-									name="arrow-dropright" size="small"></ion-icon>
-								<p>1:1 문의</p>
+						<li class="nav-item">
+							<a href="/inquiryList.mdo" class="nav-link" id="inquiry">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<i class="nav-icon fas fa-angle-right"></i>
+								<span>1:1 문의</span>
 						</a></li>
 					</ul></li>
-
-				<li class="nav-item"><a href="/getScreenListProc.mdo"
-					class="nav-link" id="screen"> <ion-icon name="image"
-							size="small"></ion-icon>&nbsp;&nbsp;
-						<p>화면</p>
+					
+				<li class="nav-item">
+					<a href="/termList.mdo" class="nav-link" id="term">
+						<i class="nav-icon fas fa-book"></i>
+						<span>이용 약관</span>
+				</a></li>
+				
+				<li class="nav-item">
+					<a href="/getScreenListProc.mdo" class="nav-link" id="screen">
+						<i class="nav-icon fas fa-desktop"></i>
+						<span>화면</span>
 				</a></li>
 
-				<li class="nav-item"><a href="/analysis.mdo"
-					class="nav-link" id="analysis"> <ion-icon name="pie"
-							size="small"></ion-icon>&nbsp;&nbsp;
-						<p>분석</p>
+				<li class="nav-item">
+					<a href="/analysis.mdo" class="nav-link" id="analysis">
+						<i class="nav-icon fas fa-chart-line"></i>
+						<span>분석</span>
 				</a></li>
 
-				<li class="nav-item" id="manager-menu"><a
-					href="/managerList.mdo" class="nav-link" id="manager"> <ion-icon
-							name="people" size="small"></ion-icon>&nbsp;&nbsp;
-						<p>관리자</p>
+				<li class="nav-item" id="manager-menu">
+					<a href="/managerList.mdo" class="nav-link" id="manager">
+						<i class="nav-icon fas fa-users-cog"></i>
+						<span>관리자</span>
 				</a></li>
 			</ul>
 		</nav>
@@ -193,7 +204,7 @@
 			// 선택된 메뉴 active 추가
 			var menu = [ $('#dashboard'), $('#movie'), $('#genre'),
 					$('#director'), $('#actor'), $('#member'), $('#ticket'),
-					$('#sales'), $('#notice'), $('#faq'), $('#inquiry'),
+					$('#sales'), $('#notice'), $('#faq'), $('#inquiry'), $('#term'),
 					$('#screen'), $('#analysis'), $('#manager') ];
 
 			var action = location.href.substr(
@@ -224,12 +235,14 @@
 			} else if (action.toLowerCase().indexOf('inquiry') != -1) {
 				$('#help').addClass('active');
 				menu[10].addClass('active');
-			} else if (action.toLowerCase().indexOf('screen') != -1) {
+			} else if (action.toLowerCase().indexOf('term') != -1) {
 				menu[11].addClass('active');
-			} else if (action.toLowerCase().indexOf('analysis') != -1) {
+			} else if (action.toLowerCase().indexOf('screen') != -1) {
 				menu[12].addClass('active');
-			} else if (action.toLowerCase().indexOf('manager') != -1) {
+			} else if (action.toLowerCase().indexOf('analysis') != -1) {
 				menu[13].addClass('active');
+			} else if (action.toLowerCase().indexOf('manager') != -1) {
+				menu[14].addClass('active');
 			}
 			// 메뉴 끝
 

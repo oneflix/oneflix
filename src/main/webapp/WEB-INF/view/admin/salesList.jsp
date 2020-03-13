@@ -83,10 +83,12 @@
 									<thead>
 										<tr>
 											<th>#</th>
+											<th>상태</th>
 											<th>이메일</th>
 											<th>이용권</th>
-											<th>가격</th>
+											<th>결제 금액</th>
 											<th>결제일</th>
+											<th>만료일</th>
 										</tr>
 									</thead>
 								</table>
@@ -114,6 +116,7 @@
 	var selectDate;
 	var searchEmail;
 	var totalSales;
+	var salesStatus;
 	
 	//Date range picker
     $('#reservation').daterangepicker();
@@ -177,19 +180,46 @@
     		},
    			columns: [
    				{data: "rnum"},
+   				{data: "salesStatus",
+						render: function(data){
+	   						switch(data) {
+	   						case 'refund' :
+	   							data = "환불";
+	   							salesStatus = false;
+	   							break;
+	   						case 'expired' :
+	   							data = "만료";
+	   							salesStatus = true;
+	   							break;
+	   						default :
+	   							data = "이용중";
+	   							salesStatus = true;
+	   						}
+	   						return data;
+	   					}},
    				{data: "email"},
    				{data: "ticketName"},
    				{data: "ticketPrice",
    					render: function(data){
-   						data = new Number(data);
-   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
+   						if (salesStatus) {
+	   						data = new Number(data);
+	   						data = data.toLocaleString("ko-KR", { style: 'currency', currency: 'KRW' });
+   						} else {
+   							data = "-";
+   						}
    						return data;
    					}},
+   				
    				{data: "paymentDate",
    					render: function(data) {
    						data = getFormatDate(data);
    						return data;
-   					}}
+   					}},
+				{data: "expiryDate",
+ 	   				render: function(data) {
+ 	   					data = getFormatDate(data);
+ 	   					return data;
+ 	   				}}
    			]
     	});
     	

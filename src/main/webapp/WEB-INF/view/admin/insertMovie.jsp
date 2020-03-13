@@ -216,19 +216,29 @@
 		src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script src="admin/js/movie.js"></script>
 	<script>
-	
+		$('#movieStatus').change(function(){
+			if ($('#movieStatus').val() == "Y") {
+				$('#mainCheck').prop("disabled", false);
+			} else {
+				$('#mainCheck').val("N");
+				$('#mainCheck').prop("disabled", true);
+				$('#movieSubtitle').prop("disabled", true);
+			}
+		});
+		
 		$('#mainCheck').change(function(){
 			if ($('#mainCheck').val() == "Y") {
-				$('#movieSubtitle').prop("disabled", "");
+				$('#movieSubtitle').prop("disabled", false);
 			} else {
 				$('#movieSubtitle').prop("disabled", true);
 			}
 		});
 		//submit 하기 전에 전처리
 		function preProc() {
-			//disalbed 안 풀어주면 값 안 넘어감			
-			$("#actorList option").prop("disabled", "");
-			$("#genreList option").prop("disabled", "");
+			//disalbed 안 풀어주면 값 안 넘어감
+			$('#mainCheck').prop('disabled', false)
+			$("#actorList option").prop("disabled", false);
+			$("#genreList option").prop("disabled", false);
 
 			// '분' 글자 짤라서 보내기
 			var duration = $('#duration').val();

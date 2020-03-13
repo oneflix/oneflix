@@ -51,6 +51,11 @@ public class OracleSalesDAO implements SalesDAO {
 	}
 
 	@Override
+	public void sellTicket(SalesVO vo) {
+		sqlSessionTemplate.update("SalesDAO.sellTicket", vo);
+	}
+	
+	@Override
 	public List<String> expiryCheck() {
 		return sqlSessionTemplate.selectList("SalesDAO.expiryCheck");
 	}
@@ -59,5 +64,11 @@ public class OracleSalesDAO implements SalesDAO {
 	public void updateExpiry() {
 		sqlSessionTemplate.update("SalesDAO.updateExpiry");
 	}
+
+	@Override
+	public int refundCheck(SalesVO vo) {
+		return sqlSessionTemplate.selectOne("SalesDAO.refundCheck", vo);
+	}
+
 
 }

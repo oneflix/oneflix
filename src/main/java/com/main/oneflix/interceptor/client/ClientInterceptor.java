@@ -33,6 +33,7 @@ public class ClientInterceptor implements HandlerInterceptor {
 		if (request.getRequestURI().equals("/homeProc.do")) {
 			MemberVO member = (MemberVO) session.getAttribute("member");
 			if (member.getBan().equals("Y")) {
+				session.invalidate();
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter writer = response.getWriter();
 				writer.print("<script>alert('정지된 계정입니다.'); location.replace('/oneflix.do');</script>");

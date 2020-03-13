@@ -267,7 +267,7 @@
                     <div id="header-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
                         <c:forEach var="main" items="${mainMovieList }">
-                            <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808FF), 
+                            <div class="swiper-slide" onclick="goMovieDetail('${main.movieId}')" style="background-image: linear-gradient(to left, #08080800, #0808081E, #080808CC), 
                 											linear-gradient(to bottom, #08080800, #080808FF), url(${pageContext.request.contextPath}/${main.posterPath});">
 	                            <div class="row">
 	                                <h2>${main.movieTitle }</h2>
