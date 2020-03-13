@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.movie.vo.MovieVO;
 import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.movie.service.IncreaseViewCountService;
+import com.main.oneflix.movie.vo.MovieVO;
 import com.main.oneflix.watch.service.GetWatchViewPointService;
 import com.main.oneflix.watch.service.InsertWatchService;
 import com.main.oneflix.watch.service.UpdateWatchService;
-
 import com.main.oneflix.watch.vo.WatchVO;
 
 @Controller
 public class WatchController {
-	
+	@Autowired
+	private IncreaseViewCountService increaseViewCountService;
 	@Autowired
 	private InsertWatchService insertWatchService;
 	@Autowired
@@ -41,6 +42,7 @@ public class WatchController {
 			viewPoint = 0;
 		}
 		
+		increaseViewCountService.increaseViewCount(movie);
 		vo.setViewPoint(viewPoint);
 		mav.addObject("movie", movie);
 		mav.setViewName("moviePlay");
