@@ -35,6 +35,7 @@ video {
 		vid.onloadedmetadata = function() {
 			var min = parseInt(vid.duration / 60);
 			var seconds = Math.floor(vid.duration % 60);
+			alert(min + "분 " + seconds + "초");
 			vid.currentTime = checkTime;
 		};
 		
@@ -69,30 +70,84 @@ video {
 				requestUrl = "/updateWatchAjax.do";
 			}
 
-			// 5분 이상 시청
-			if (viewPoint >= 300) {
-				// 남은 시간이 5분 미만이면
-				if (viewPoint > watchedTime) {
-					watchType = "watched";
-				}
-				$.ajax({
-					url : requestUrl,
-					type : 'POST',
-					data : sendData,
-					async : false,
-					success : function() {
-						checkTime = viewPoint;
-					},
-					error : function(e) {
-						alert(e.responseText);
+		var _insert = false;
+		function insertFunction() {
+			var watchType = "watching";
+			var email = "${watch.email}";
+			var movieId = "${watch.movieId}";
+			var viewPoint = parseInt(vid.currentTime);
+			var watchedTime = parseInt(vid.duration) - 300;
+			var sendData = {
+				"watchType" : watchType,
+				"email" : email,
+				"movieId" : movieId,
+				"viewPoint" : viewPoint
+			};
+
+			if (!_insert) {
+				if (viewPoint >= 600) {
+					if (viewPoint > watchedTime) {
+						watchType = "watched";
 					}
-				});
+					$.ajax({
+						url : "/insertWatchAjax.do",
+						type : 'POST',
+						data : sendData,
+						async : false,
+						success : function() {
+							_update = true;
+						},
+						error : function(e) {
+							alert(e.responseText);
+						}
+					});
+				}
+			}
+		};
+
+		var _update = false;
+		function updateFunction() {
+			var watchType = "watching";
+			var email = "${watch.email}";
+			var movieId = "${watch.movieId}";
+			var viewPoint = parseInt(vid.currentTime);
+			var watchedTime = parseInt(vid.duration) - 300;
+			var sendData = {
+				"watchType" : watchType,
+				"email" : email,
+				"movieId" : movieId,
+				"viewPoint" : viewPoint
+			};
+
+			if (!_update) {
+				if (viewPoint >= 600) {
+					if (viewPoint > watchedTime) {
+						watchType = "watched";
+					}
+					$.ajax({
+						url : "/updateWatchAjax.do",
+						type : 'POST',
+						data : sendData,
+						async : false,
+						success : function() {
+							_update = true;
+						},
+						error : function(e) {
+							alert(e.responseText);
+						}
+					});
+				}
 			}
 		};
 
 		$(window).on("beforeunload", function() {
-			inputWatchData();
+			if (checkTime == 0) {
+				insertFunction();
+			} else {
+				updateFunction();
+			}
 		});
+
 	</script>
 </body>
 </html>
