@@ -204,4 +204,13 @@
    		UPDATE movie SET
    		view_count = #{up} + 1 WHERE movie_id = #{movieId}
    </update>
+   
+   <update id="updateMovieScore" parameterType="movie">
+   		<selectKey resultType="int" keyProperty="avgMovieScore" order="BEFORE">
+			SELECT AVG(SELECT review_score FROM movie m, review r WHERE m.movie_id = r.movie_id)
+			FROM movie WHERE movie_id = #{movieId}
+		</selectKey>
+   		UPDATE movie SET
+   		movie_score = #{avgMovieScore} WHERE movie_id = #{movieId}
+   </update>
 </mapper>
