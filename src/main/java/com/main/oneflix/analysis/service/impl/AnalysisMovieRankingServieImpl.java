@@ -59,13 +59,14 @@ public class AnalysisMovieRankingServieImpl implements AnalysisMovieRankingServi
 		// 위의 컬럼을 담을 배열
 		JSONArray arrayCols = new JSONArray();
 		JSONArray arrayRows = new JSONArray();
+		
 		col1.put("type", "string");
-		col2.put("type", "number");
+		col2.put("type","number");
+		
 		arrayCols.add(col1);
 		arrayCols.add(col2);
-		
+
 		    for (Map<String, Object> valueMap : analysisDAO.analysisMovieRanking(dbMap)) {
-		    	System.out.println(valueMap.values());
 				// map을 json으로
 				// map에서 key와 Value 뽑아서 Row 추가하기
 				// key: genreId value: watchCount
