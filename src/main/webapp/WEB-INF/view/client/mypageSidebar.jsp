@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oneflix</title>
+<title>원플릭스</title>
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/mypage_sidebar.css">
 </head>

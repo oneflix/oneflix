@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Oneflix</title>
+<title>원플릭스</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon"
    href="admin/images/icons/favicon.ico">
@@ -254,9 +254,13 @@
                   <section class="col-lg-12">
                      <div class="card card-outline">
                         <div class="card-header">
+<<<<<<< HEAD
                            <div>
                            <div class="button-box-container">
                            <h3 style="padding-top:20px;" class="card-title">
+=======
+                           <h3 class="card-title">
+>>>>>>> master
                               <i class="far fa-chart-bar"></i> 영화 랭킹 TOP5 (시청완료 기준)
                            </h3>
                              <div class="button-box" style="vertical-align: top; margin-top: 1vh;">

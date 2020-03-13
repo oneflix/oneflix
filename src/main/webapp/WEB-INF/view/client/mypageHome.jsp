@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
-<title>Oneflix</title>
+<title>원플릭스</title>
 
 <!-- Theme style -->
 <link rel="stylesheet" href="../admin/css/adminlte.min.css">

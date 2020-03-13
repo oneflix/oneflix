@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-<title>Oneflix</title>
+<title>원플릭스</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- 구글 로그인 -->
