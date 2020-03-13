@@ -398,20 +398,7 @@
 			    
 			//session email이 준 별점,리뷰 세팅
 			reviewScore = "${myReview.reviewScore}";
-			switch(reviewScore){
-			case '0.5' : posterScore = '1'; break;
-			case '1.0' : posterScore = '2'; break;
-			case '1.5' : posterScore = '3'; break;
-			case '2.0' : posterScore = '4'; break;
-			case '2.5' : posterScore = '5'; break;
-			case '3.0' : posterScore = '6'; break;
-			case '3.5' : posterScore = '7'; break;
-			case '4.0' : posterScore = '8'; break;
-			case '4.5' : posterScore = '9'; break;
-			case '5.0' : posterScore = '10'; break;
-			}
-			
-			
+			posterScore = reviewScore * 2;
 			
 			reviewContent = $('#myReview').val();
 			if (reviewScore != null && reviewScore != 0) {
@@ -490,6 +477,16 @@
 			});
 		});
 
+		//리뷰 부분 별 hover
+		$('.reviewScore').on("mouseenter", function() {
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+		});
+		$('.reviewScore').on("mouseleave", function() {
+			$(this).parent().children('span').removeClass('on');
+			$('#r-' + reviewScore * 2).addClass('on').prevAll('span').addClass('on');
+		});
+	
 		//리뷰 부분 별점주기
 		var clicked = 0;
 		$('.reviewScore').on("click",(function() {
@@ -557,6 +554,16 @@
 			});
 
 		}));
+		
+		//포스터 부분 별 hover
+		$('.posterScore').on("mouseenter", function() {
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+		});
+		$('.posterScore').on("mouseleave", function() {
+			$(this).parent().children('span').removeClass('on');
+			$('#' + reviewScore * 2).addClass('on').prevAll('span').addClass('on');
+		});
 		
 		//포스터 부분 별점주기
 		$('.posterScore').on("click",(function() {
