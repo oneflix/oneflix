@@ -67,10 +67,9 @@ html {
 <body>
 <!-- 텍스트만 바꿔서 사용하기 -->
 <div class="dialog">
-    <h1>404</h1>
-    <p class="text">이 URL은 존재하지 않는 URL이에요</p>
-    <p class="sub-text">여기에 당신과 저 빼고는 아무도 없는 것 같아요<br>
-무서워요</p>
+    <h1>500</h1>
+    <p class="text">알 수 없는 에러가 발생했어요</p>
+    <p class="sub-text">Internal Server Error<br></p>
     <a href="/homeProc.do">ONEFLIX 홈으로 가기</a>
   </div>
    
