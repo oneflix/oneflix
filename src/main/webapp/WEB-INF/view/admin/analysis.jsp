@@ -1405,6 +1405,7 @@
 					legend : {
 						position : "none"
 					},
+					
 					alternatingRowStyle: true,
 			        showRowNumber : true,
 					annotations : {
