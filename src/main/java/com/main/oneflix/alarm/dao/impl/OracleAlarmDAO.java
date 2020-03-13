@@ -22,6 +22,11 @@ public class OracleAlarmDAO implements AlarmDAO {
 	}
 
 	@Override
+	public void insertReplyAlarm(String email) {
+		sqlSessionTemplate.insert("AlarmDAO.insertReplyAlarm", email);
+	} 
+	
+	@Override
 	public List<Map<String, Object>> getTotalAlarmCount(String email) {
 		return sqlSessionTemplate.selectList("AlarmDAO.getTotalAlarmCount", email);
 	}

@@ -13,7 +13,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>ONeflix</title>
-<link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon"
+	href="admin/images/icons/favicon.ico">
 <link rel="stylesheet" type="text/css"
 	href="admin/assets/backend/login/plugins-css.css" />
 <link rel="stylesheet" type="text/css"
@@ -52,15 +53,14 @@
 							<h3 class="mb-30">로그인</h3>
 							<form class="" action="/loginProc.mdo" method="post">
 								<div class="section-field mb-20">
-									<label class="mb-10" for="name">아이디</label>
-									<input id="email" class="web form-control"
-										type="text" placeholder="ID" name="managerId">
+									<label class="mb-10" for="name">아이디</label> <input id="email"
+										class="web form-control" type="text" placeholder="ID"
+										name="managerId">
 								</div>
 								<div class="section-field mb-20">
 									<label class="mb-10" for="Password">비밀번호</label> <input
-										id="Password" class="Password form-control"
-										type="password" placeholder="Password" name="managerPass"
-										required>
+										id="Password" class="Password form-control" type="password"
+										placeholder="Password" name="managerPass" required>
 								</div>
 								<button type="submit" class="btn btn-danger"
 									style="background-color: #e50914;">로그인</button>
@@ -104,16 +104,23 @@
 
 	<script src="admin/assets/backend/login/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
-        function toggleView(elem) {
-            if (elem.id === 'forgot_password_button') {
-                $('#login_area').hide();
-                $('#forgot_password_area').show();
-            }else if (elem.id === 'login_button') {
-                $('#login_area').show();
-                $('#forgot_password_area').hide();
-            }
-        }
-    </script>
+		$(document).ready(function(){
+			var result = "${result}";
+			if (result) {
+				alert("아이디 및 비밀번호가 틀렸습니다.");
+			}
+		});
+	
+		function toggleView(elem) {
+			if (elem.id === 'forgot_password_button') {
+				$('#login_area').hide();
+				$('#forgot_password_area').show();
+			} else if (elem.id === 'login_button') {
+				$('#login_area').show();
+				$('#forgot_password_area').hide();
+			}
+		}
+	</script>
 
 </body>
 </html>

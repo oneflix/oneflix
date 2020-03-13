@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.main.oneflix.analysis.dao.AnalysisDAO;
-import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.sales.vo.SalesVO;
 
 @Repository

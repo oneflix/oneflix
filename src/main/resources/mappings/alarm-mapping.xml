@@ -12,6 +12,12 @@
 		</foreach>
 	</insert>
 	
+	<insert id="insertReplyAlarm" parameterType="string">
+		INSERT INTO alarm (alarm_id, alarm_type, email, send_date, alarm_count)
+		VALUES((SELECT NVL(MAX(alarm_id), 0) + 1 FROM alarm),
+		'reply', #{email}, SYSDATE, 1)
+	</insert>
+	
 	<delete id="deleteAlarm" parameterType="alarm">
 		DELETE FROM alarm
 		WHERE alarm_type = #{alarmType} AND email = #{email}

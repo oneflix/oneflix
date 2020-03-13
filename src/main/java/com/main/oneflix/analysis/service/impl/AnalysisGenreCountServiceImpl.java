@@ -60,7 +60,6 @@ public class AnalysisGenreCountServiceImpl implements AnalysisGenreCountService 
 				}
 				data.put("cols", arrayCols);
 				data.put("rows", arrayRows);
-		        
 		    return data;
 		    }
 	}

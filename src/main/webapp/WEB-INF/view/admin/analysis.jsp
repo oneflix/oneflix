@@ -324,7 +324,6 @@
 		var rankingYear;
 		var rankingMonth;
 		var data;
-		
 
 		$(document).ready(
 				function() {
@@ -1296,7 +1295,6 @@
 
 			var chart;
 			data = new google.visualization.DataTable(jsonData);
-
 			var options = {
 				title : '영화 TOP5',
 				align : 'center',

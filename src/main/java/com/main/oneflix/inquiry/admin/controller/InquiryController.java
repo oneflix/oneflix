@@ -2,6 +2,8 @@ package com.main.oneflix.inquiry.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.main.oneflix.inquiry.service.DeleteInquiryService;
 import com.main.oneflix.inquiry.service.GetInquiryListService;
 import com.main.oneflix.inquiry.service.GetInquiryService;
-import com.main.oneflix.inquiry.service.UpdateInquiryService;
+import com.main.oneflix.inquiry.service.ReplyService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
 import com.main.oneflix.util.datatable.vo.WrapperVO;
 import com.main.oneflix.util.email.service.EmailService;
@@ -24,7 +26,7 @@ public class InquiryController {
 	@Autowired
 	private GetInquiryListService getInquiryListService;
 	@Autowired
-	private UpdateInquiryService updateInquiryService;
+	private ReplyService replyService;
 	@Autowired
 	private DeleteInquiryService deleteInquiryService;
 	@Autowired
@@ -49,10 +51,24 @@ public class InquiryController {
 	}
 	
 	@RequestMapping("/getInquiryProc.mdo")
-	public ModelAndView getInquiryProc(InquiryVO vo, ModelAndView mav) {
-		vo = getInquiryService.getInquiry(vo);
+	public ModelAndView getInquiryProc(InquiryVO vo, HttpSession session, ModelAndView mav) {
+		if (session.getAttribute("tmpReply") != null ) {
+			vo = (InquiryVO)session.getAttribute("tmpReply");
+			session.removeAttribute("tmpReply");
+			mav.addObject("result", false);
+		} else {
+			vo = getInquiryService.getInquiry(vo);
+		}
 		mav.addObject("inquiry", vo);
 		mav.setViewName("replyInquiry");
+		return mav;
+	}
+	
+	@RequestMapping("/getInquiryDetailProc.mdo")
+	public ModelAndView getInquiryDetailProc(InquiryVO vo, ModelAndView mav) {
+		vo = getInquiryService.getInquiry(vo);
+		mav.addObject("inquiry", vo);
+		mav.setViewName("replyInquiryDetail");
 		return mav;
 	}
 
@@ -64,21 +80,21 @@ public class InquiryController {
 	}
 
 	@RequestMapping("/replyInquiryProc.mdo") // 확인 (메일발송) 버튼을 누르면 맵핑되는 메소드
-	public ModelAndView sendEmail(InquiryVO vo, ModelAndView mav) {
+	public ModelAndView sendEmail(InquiryVO vo, HttpSession session, ModelAndView mav) {
 		try {
+			
 			vo.setAdminName("관리자");
 			vo.setAdminEmail("jaenyes17@gmail.com");
 			emailService.sendEmail(vo); // vo (메일관련 정보)를 sendMail에 저장함
-			mav.addObject("message", "이메일 발송성공");
 
-			updateInquiryService.updateInquiry(vo);
+			replyService.reply(vo);
 			mav.setViewName("redirect:/inquiryList.mdo");
 			return mav;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			mav.addObject("message", "이메일 발송실패");
-			mav.setViewName("redirect:/replyInquiry.mdo");
+			session.setAttribute("tmpReply", vo);
+			mav.setViewName("redirect:/getInquiryProc.mdo");
 			return mav;
 		}
 	}
