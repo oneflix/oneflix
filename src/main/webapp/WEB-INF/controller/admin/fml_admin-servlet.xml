@@ -7,7 +7,8 @@
 
 	<context:component-scan base-package="
 				com.main.oneflix.director.admin.controller,
-				com.main.oneflix.screen.admin.controller">
+				com.main.oneflix.screen.admin.controller,
+				com.main.oneflix.term.admin.controller">
 	</context:component-scan>
 	
 	

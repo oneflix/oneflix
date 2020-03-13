@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TermDAO">
+
+	<insert id="insertTerm" parameterType="term">
+		INSERT INTO term(term_id, term_title, term_content)
+		VALUES((SELECT NVL(MAX(term_id), 0) + 1 FROM term), #{termTitle}, #{termContent})
+	</insert>
+
+	<update id="updateTerm" parameterType="term">
+		UPDATE term SET term_title=#{termTitle}, term_content=#{termContent}
+		WHERE term_id = #{termId}
+	</update>
+
+	<delete id="deleteTerm" parameterType="term">
+		DELETE FROM term WHERE
+		term_id = #{termId}
+	</delete>
+	
+	<select id="getTerm" parameterType="term" resultType="term">
+		SELECT * FROM term
+		WHERE term_id=#{termId}
+	</select>
+	
+	<resultMap type="term" id="termList">
+		<id property="termId" column="term_id"/>
+		<result property="termTitle" column="term_title"/>
+		<result property="termContent" column="term_content"/>
+	</resultMap>
+	
+	<select id="getTermList" parameterType="term" resultMap="termList">
+		SELECT * FROM term
+		ORDER BY #{termId}
+	</select>
+</mapper>
