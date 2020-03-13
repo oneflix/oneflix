@@ -13,5 +13,6 @@ public interface MovieDAO {
 	List<MovieVO> getMovieList(MovieVO vo);
 	int getCountMovie(MovieVO vo);
 	void increaseViewCount(MovieVO vo);
+	void updateMovieScore(MovieVO vo);
 
 }
