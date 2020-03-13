@@ -50,4 +50,10 @@ public class OracleMovieDAO implements MovieDAO {
 		sqlSessionTemplate.update("MovieDAO.increaseViewCount", vo);
 	}
 
+	@Override
+	public void updateMovieScore(MovieVO vo) {
+		sqlSessionTemplate.update("MovieDAO.updateMovieScore", vo);
+		
+	}
+
 }
