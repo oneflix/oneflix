@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>ONeflix</title>
+<title>Oneflix</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
