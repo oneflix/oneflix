@@ -12,7 +12,7 @@
 <meta name="author" content="Creativeitem" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>Oneflix</title>
+<title>원플릭스</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="admin/images/icons/favicon.ico">
 <link rel="stylesheet" type="text/css"

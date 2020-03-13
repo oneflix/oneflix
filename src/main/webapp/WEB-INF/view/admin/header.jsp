@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Oneflix</title>
+<title>원플릭스</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -67,8 +67,7 @@
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item"><a href="/getDashboardProc.mdo"
-					class="nav-link" id="dashboard"> <i
-						class="nav-icon fas fa-tachometer-alt"></i>
+					class="nav-link" id="dashboard"><ion-icon name="bar-chart-outline" size="small"></ion-icon>
 						<p>대시보드</p>
 				</a></li>
 
