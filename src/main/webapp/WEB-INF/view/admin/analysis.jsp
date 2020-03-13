@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Oneflix</title>
+<title>원플릭스</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon"
    href="admin/images/icons/favicon.ico">
@@ -239,7 +239,7 @@
                      <div class="card card-outline">
                         <div class="card-header">
                            <h3 class="card-title">
-                              <i class="far fa-chart-bar"></i> 영화 랭킹 TOP5
+                              <i class="far fa-chart-bar"></i> 영화 랭킹 TOP5 (시청완료 기준)
                            </h3>
                            <br><br>
                            <div style="width:fit-to-content" class="button-box-container">
@@ -1259,24 +1259,6 @@
 			drawGenreRankingChart();
 		});
 
-		function requestMovieRankingData(sendData){
-			var response;
-			$.ajax({
-				type : 'POST',
-				url : '/getAnalysisMovieRankingProcAjax.mdo',
-				data : JSON.stringify(sendData),
-				contentType : "application/json",
-				async : false,
-				success : function(res){
-					response = res;
-					console.log("movierankingdata: "+response);
-				},
-				error : function(e) {
-					console.log(e);
-				}
-			});
-			return response;
-		}
 		// movie ranking
 		function drawMovieRankingChart() {
 			var sendData = {
@@ -1298,15 +1280,36 @@
 			var options = {
 				title : '영화 TOP5',
 				align : 'center',
-				chartArea : {
-					height : '90%',
-					width : '85%'
+				series : {
+					0 : {
+						color : '#a8f0e2'
+					},
+					1 : {
+						color : '#67d6c1'
+					},
+					2 : {
+						color : '#41ccb0'
+					},
+					3 : {
+						color : '#22b99b'
+					},
+					4 : {
+						color : '#0c997d'
+					},
+					5 : {
+						color : '#026e58'
+					},
 				},
+				chartArea : {
+					height : '80%',
+					width : '73%'
+				},
+				theme: 'material',
 				height : 500,
-				width : '100%',
+				width : '80%',
 				bars : 'vertical',
 				bar : {
-					groupWidth : "25%"
+					groupWidth : "57.8%"
 				},
 				isStacked : false,
 				animation : {
@@ -1314,12 +1317,16 @@
 					duration : 1000,
 					easing : 'linear'
 				},
+				alternatingRowStyle: true,
+		        showRowNumber : true,
 				legend : {
 					position : "none"
 				},
+				vAxis:{textStyle:{color: '#080808',fontSize: '12', paddingRight: '2',marginRight: '2'}},
+			    hAxis: {textStyle: { color: '#080808', fontSize: '12', paddingRight: '2', marginRight: '2'} } ,
 				annotations : {
 					textStyle : {
-						fontSize : 20,
+						fontSize : 12,
 						bold : true,
 						italic : true,
 						opacity : 0.8
@@ -1353,35 +1360,64 @@
 			var chart;
 			data = new google.visualization.DataTable(jsonData);
 			var options = {
-				title : '장르 TOP5',
-				align : 'center',
-				chartArea : {
-					height : '70%',
-					width : '80%'
-				},
-				bars : 'vertical',
-				legend : {
-					position : "none"
-				},
-				isStacked : false,
-				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-				//차트가 뿌려질때 실행될 애니메이션 효과
-				animation : {
-					startup : true,
-					duration : 1000,
-					easing : 'linear'
-				},
-				pointSize : 3,
-				annotations : {
-					textStyle : {
-						fontSize : 20,
-						bold : true,
-						italic : true,
-						opacity : 0.8
+					title : '장르 TOP5',
+					align : 'center',
+					theme: 'material',
+					seriesType: 'bars',
+					series : {
+						0 : {
+							color : '#a8f0e2'
+						},
+						1 : {
+							color : '#67d6c1'
+						},
+						2 : {
+							color : '#41ccb0'
+						},
+						3 : {
+							color : '#22b99b'
+						},
+						4 : {
+							color : '#0c997d'
+						},
+						5 : {
+							color : '#026e58'
+						},
+					},
+					chartArea : {
+						height : '80%',
+						width : '73%'
+					},
+					height : 500,
+					width : '80%',
+					vAxis:{textStyle:{color: '#080808',fontSize: '12', paddingRight: '2',marginRight: '2'}},
+				    hAxis: {textStyle: { color: '#080808', fontSize: '12', paddingRight: '2', marginRight: '2'}} ,
+					bars : 'vertical',
+					bar : {
+						groupWidth : "57.8%"
+					},
+					isStacked : false,
+					animation : {
+						startup : true,
+						duration : 1000,
+						easing : 'linear'
+					},
+					legend : {
+						position : "none"
+					},
+					
+					alternatingRowStyle: true,
+			        showRowNumber : true,
+					annotations : {
+						textStyle : {
+							fontSize : 12,
+							bold : true,
+							color: '#080808',
+							italic : true,
+							opacity : 0.8
+						}
 					}
-				}
-			
-			};
+				};
 			
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
@@ -1415,12 +1451,23 @@
 				isStacked : false,
 				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
 				//차트가 뿌려질때 실행될 애니메이션 효과
+				pointSize : 3,
+			    seriesType: 'bars',
+				height : 500,
+				width : '100%',
+				bars : 'vertical',
+				bar : {
+					groupWidth : "57.8%"
+				},
+				theme: 'material',
+				isStacked : false,
 				animation : {
 					startup : true,
 					duration : 1000,
 					easing : 'linear'
 				},
-				pointSize : 3,
+				alternatingRowStyle: true,
+		        showRowNumber : true,
 				legend : {
 					position : "none"
 				},
@@ -1433,7 +1480,6 @@
 					}
 				}
 			};
-			options.legend = "none";
 
 			var chart = new google.visualization.ColumnChart(document
 					.getElementById("genre-count-chart"));
