@@ -23,6 +23,10 @@
 			<mvc:exclude-mapping path="/loginProc.do"/>
 			<mvc:exclude-mapping path="/naverLoginProc.do"/>
 			<mvc:exclude-mapping path="/connectSNSLoginProc.do"/>
+			<mvc:exclude-mapping path="/join.do"/>
+			<mvc:exclude-mapping path="/joinProc.do"/>
+			<mvc:exclude-mapping path="/nickCheckProcAjax.do"/>
+			<mvc:exclude-mapping path="/memberCheckProcAjax.do"/>
 			<mvc:exclude-mapping path="/findPass.do"/>
 			<mvc:exclude-mapping path="/findPassProc.do"/>
 			<mvc:exclude-mapping path="/paymentApproveProc.do"/>
