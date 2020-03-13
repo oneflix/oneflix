@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<typeAlias type="com.main.oneflix.watch.vo.WatchVO" alias="watch"/>
 		<typeAlias type="com.main.oneflix.wish.vo.WishVO" alias="wish"/>
 		<typeAlias type="com.main.oneflix.alarm.vo.AlarmVO" alias="alarm"/>
+		<typeAlias type="com.main.oneflix.term.vo.TermVO" alias="term"/>
 	</typeAliases>
 	
 	<mappers>
@@ -44,5 +45,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 		<mapper resource="mappings/wish-mapping.xml"/>
 		<mapper resource="mappings/alarm-mapping.xml"/>
 		<mapper resource="mappings/analysis-mapping.xml"/>
+		<mapper resource="mappings/term-mapping.xml"/>
 	</mappers>
 </configuration>
