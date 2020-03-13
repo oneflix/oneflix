@@ -198,11 +198,11 @@
    </select>
    
    <update id="increaseViewCount" parameterType="movie">
-   		<selectKey resultType="int" keyProperty="up" order="BEFORE">
+   		<selectKey resultType="int" keyProperty="viewCount" order="BEFORE">
 			SELECT NVL(view_count, 0) FROM movie WHERE movie_id = #{movieId}
 		</selectKey>
    		UPDATE movie SET
-   		view_count = #{up} + 1 WHERE movie_id = #{movieId}
+   		view_count = #{viewCount} + 1 WHERE movie_id = #{movieId}
    </update>
    
    <update id="updateMovieScore" parameterType="movie">
