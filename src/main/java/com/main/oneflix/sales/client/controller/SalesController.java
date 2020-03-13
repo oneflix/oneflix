@@ -41,7 +41,7 @@ public class SalesController {
 	private DeleteSalesService deleteSalesService;
 	@Autowired
 	private GetTicketService getTicketService;
-
+	
 	@RequestMapping("/paymentRequestProc.do")
 	@ResponseBody
 	public SalesVO paymentRequestProc(SalesVO vo, ModelAndView mav, HttpSession session) {
@@ -95,11 +95,16 @@ public class SalesController {
 		// 찾아온 vo에 pg_token 셋팅
 		vo.setPg_token(pg_token);
 		vo = approvePaymentService.approvePayment(vo);
-		
+		System.out.println(vo);
+		vo.setPaymentMethodType(vo.getPayment_method_type());
+		if (vo.getPaymentMethodType().equals("CARD")) {
+			vo.setCardName((String)vo.getCard_info().get("issuer_corp"));
+		}
 		vo.setTicketId(ticketId);
 		vo.setEmail(email);
 		// sales_status success로 업데이트 및 나머지 값 업데이트
 		vo.setSalesStatus("success");
+		
 		ticketSalesService.sellTicket(vo);
 		
 		mav.setViewName("redirect:/paymentSuccessProc.do?email=" + vo.getEmail());
@@ -124,7 +129,7 @@ public class SalesController {
 	public ModelAndView paymentCancelProc(SalesVO vo, ModelAndView mav) {
 		vo.setSalesStatus("ready");
 		deleteSalesService.deleteSales(vo);
-		mav.setViewName("redirect:/homeProc.do");
+		mav.setViewName("redirect:/homeProc.do?type=re");
 		return mav;
 	}
 	

@@ -15,6 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon"
 	href="admin/images/icons/favicon.ico">
+<style>
+	.btn {margin-right: 5px;}
+</style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -106,6 +109,8 @@
 	    		processing: true,
 	    		searching: false,
 	    		ordering: true,
+	    		dom: 'Bfrtip',
+	    		buttons: ['copy', 'excel', 'pdf', 'print'],
 	    		order: [[0, 'desc']],
 	    		language: {
 	    			"processing": "잠시만 기다려주세요.",

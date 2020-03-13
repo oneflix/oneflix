@@ -45,4 +45,15 @@ public class OracleMovieDAO implements MovieDAO {
 		return sqlSessionTemplate.selectOne("MovieDAO.getCountMovie", vo);
 	}
 
+	@Override
+	public void increaseViewCount(MovieVO vo) {
+		sqlSessionTemplate.update("MovieDAO.increaseViewCount", vo);
+	}
+
+	@Override
+	public void updateMovieScore(MovieVO vo) {
+		sqlSessionTemplate.update("MovieDAO.updateMovieScore", vo);
+		
+	}
+
 }

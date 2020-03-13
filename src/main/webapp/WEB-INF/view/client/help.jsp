@@ -14,6 +14,13 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/help.css">
+<style>
+	.accordion {font-size: 17px; font-family: "Noto Sans KR";}
+	.panel {padding: 0 50px;}
+	.help-content-textarea {font-size: 15px; font-family: "Noto Sans KR"; margin-top: 20px;  margin-top: 20px;width: 100%; height: auto; border: none; resize: none;}
+	.help-content-textarea:disabled {background-color: #fff;}
+	.more-notice:hover {background-color: #d1d1d5;}
+</style>
 
 </head>
 
@@ -27,25 +34,25 @@
 		<div class="main-container">
 			<!-- ===================== 공 지 사 항 ============================== -->
 			<div class="notice-container">
-				<h2 class="help-label">공지사항</h2>
+				<h1 class="help-label">공지사항</h1>
 				<c:forEach var="help" items="${helpList}">
 					<c:if test="${help.helpType eq 'notice'}">
 						<div class="notice-list">
 							<button class="accordion">${help.helpTitle }</button>
-							<div style="padding: 0 50px;" class="panel">
-								<p>${help.helpContent }</p>
+							<div class="panel">
+								<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 							</div>
 						</div>
 					</c:if>
 				</c:forEach>
 			</div>
 
-			<button onclick="moreNotice(event)" style="cursor: pointer" id="myBtn" class="more-notice">공지사항
+			<button onclick="moreNotice(event)" style="cursor: pointer; outline: none;" id="myBtn" class="more-notice">공지사항
 				더 불러오기</button>
 		</div>
 		<!-- ===================== FAQ ============================== -->
 		<div class="faq-container">
-			<h2 class="help-label">FAQ</h2>
+			<h1 class="help-label">FAQ</h1>
 
 			<!-- Tab links -->
 			<div class="tab">
@@ -69,7 +76,7 @@
 					<c:if test="${help.helpType eq 'faq' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -80,7 +87,7 @@
 					<c:if test="${help.helpType eq 'payment' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -91,7 +98,7 @@
 					<c:if test="${help.helpType eq 'refund' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -102,7 +109,7 @@
 					<c:if test="${help.helpType eq 'ticket' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -113,7 +120,7 @@
 					<c:if test="${help.helpType eq 'account' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -124,7 +131,7 @@
 					<c:if test="${help.helpType eq 'contents' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -135,7 +142,7 @@
 					<c:if test="${help.helpType eq 'video' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -146,7 +153,7 @@
 					<c:if test="${help.helpType eq 'service' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
-							<p>${help.helpContent }</p>
+							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -155,9 +162,13 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
+	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 
 	<script>
+		$(document).ready(function(){
+			autosize($("textarea"));
+		});
+	
 		var acc = document.getElementsByClassName("accordion");
 		var i;
 
@@ -172,9 +183,7 @@
 				}
 			});
 		}
-	</script>
-
-	<script>
+		
 		$(".notice-list").slice(0, 5).css("display", "block"); // 최초 5개 선택
 		function moreNotice(e) {
 			e.preventDefault();
@@ -183,8 +192,13 @@
 				$("#myBtn").css("display", "none");
 			}
 		};
-	</script>
-	<script>
+		
+		
+		$('.tablinks').click(function(){
+			$('.tablinks').css("border-bottom", "none");
+			$(this).css("border-bottom", "1px solid #080808");
+		});
+		
 		function openCity(evt, cityName) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");

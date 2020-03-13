@@ -24,7 +24,7 @@ video {
 <body>
 	<video controls autoplay controlsList="nodownload" name="media"
 		id="testVideo">
-		<source src="client/images/test.mp4" type="video/mp4">
+		<source src="${movie.fullVideoPath}" type="video/mp4">
 	</video>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -38,6 +38,37 @@ video {
 			alert(min + "분 " + seconds + "초");
 			vid.currentTime = checkTime;
 		};
+		
+		vid.addEventListener("play", startInterval, false);
+		vid.addEventListener("pause", stopInterval, false);
+
+		var myInterval;
+		function startInterval(){
+			myInterval = setInterval(inputWatchData, 1000 * 60 * 5);
+		}
+		
+		function stopInterval(){
+			clearInterval(myInterval);
+		}
+		
+		function inputWatchData() {
+			var watchType = "watching";
+			var email = "${member.email}";
+			var movieId = "${movie.movieId}";
+			var viewPoint = parseInt(vid.currentTime);
+			var watchedTime = parseInt(vid.duration) - 300;
+			var sendData = {
+				"watchType" : watchType,
+				"email" : email,
+				"movieId" : movieId,
+				"viewPoint" : viewPoint
+			};
+			var requestUrl;
+			if (checkTime == 0) {
+				requestUrl = "/insertWatchAjax.do";
+			} else {
+				requestUrl = "/updateWatchAjax.do";
+			}
 
 		var _insert = false;
 		function insertFunction() {

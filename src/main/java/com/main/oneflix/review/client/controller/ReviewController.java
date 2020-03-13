@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.oneflix.member.vo.MemberVO;
+import com.main.oneflix.movie.service.UpdateMovieScoreService;
+import com.main.oneflix.movie.vo.MovieVO;
 import com.main.oneflix.review.service.DeleteReviewService;
 import com.main.oneflix.review.service.GetReviewListService;
 import com.main.oneflix.review.service.InsertReviewService;
@@ -28,6 +30,8 @@ public class ReviewController {
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
+	@Autowired
+	private UpdateMovieScoreService updateMovieScoreService;
 
 	@RequestMapping("/insertReviewProc.do")
 	public ModelAndView insertReviewProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
@@ -35,6 +39,8 @@ public class ReviewController {
 		vo.setEmail(member.getEmail());
 		if (vo.getReviewId() != null) deleteReviewService.deleteReview(vo);
 		insertReviewService.insertReview(vo);
+		MovieVO movieVO = new MovieVO();
+		movieVO.setMovieId(vo.getMovieId());
 		mav.addObject("movieId", vo.getMovieId());
 		mav.setViewName("redirect:/getMovieDetailProc.do");
 		return mav;
@@ -44,6 +50,9 @@ public class ReviewController {
 	@ResponseBody
 	public void insertReviewProcAjax(ReviewVO vo) {
 		insertReviewService.insertReview(vo);
+		MovieVO movieVO = new MovieVO();
+		movieVO.setMovieId(vo.getMovieId());
+		updateMovieScoreService.updateMovieScore(movieVO);
 	}
 
 	@RequestMapping("/deleteReviewProc.do")
@@ -58,6 +67,9 @@ public class ReviewController {
 	@ResponseBody
 	public void updateReviewProcAjax(ReviewVO vo) {
 		updateReviewService.updateReview(vo);
+		MovieVO movieVO = new MovieVO();
+		movieVO.setMovieId(vo.getMovieId());
+		updateMovieScoreService.updateMovieScore(movieVO);
 	}
 
 
@@ -76,16 +88,6 @@ public class ReviewController {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
-		for (ReviewVO review : reviewList) {
-			System.out.println("======================================");
-			System.out.println("email = " + vo.getEmail());
-			System.out.println("reviewId = " + review.getReviewId());
-			System.out.println("movieTitle = " + review.getMovieTitle());
-			System.out.println("reviewContent = " + review.getReviewContent());
-			System.out.println("reviewScore = " + review.getReviewScore());
-			System.out.println("======================================");
-			System.out.println();
-		}
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("reviewList");
 
@@ -99,9 +101,6 @@ public class ReviewController {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);
-//		for (ReviewVO review : reviewList) {
-//			System.out.println(review.getReviewContent());
-//		}
 		return reviewList;
 	}
 

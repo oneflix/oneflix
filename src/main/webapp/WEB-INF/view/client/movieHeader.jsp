@@ -48,7 +48,7 @@
 								<form method="POST" action="/getMovieListProc.do"
 									class="search-form">
 
-									<input type="text" id="search" placeholder="제목, 감독, 배우로 검색">
+									<input type="text" name="searchMovie" id="search" placeholder="제목, 감독, 배우로 검색">
 									<button type="submit" id="search-submit-button">
 										<i class="fas fa-search"></i>
 									</button>
