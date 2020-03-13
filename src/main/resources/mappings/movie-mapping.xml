@@ -64,6 +64,9 @@
                               	 </choose>
                               WHERE m.director_id = d.director_id AND m.actor_id1 = a1.actor_id AND m.actor_id2 = a2.actor_id AND m.actor_id3 = a3.actor_id
                                  AND m.actor_id4 = a4.actor_id AND m.actor_id5 = a5.actor_id AND m.genre_id1 = g1.genre_id AND m.genre_id2 = g2.genre_id
+                                 <if test="movieStatus != null and movieStatus != ''">
+                              		AND m.movie_status = #{movieStatus}
+                              	</if>
                                  <if test="searchGenre != 0">
                                     AND (m.genre_id1 = #{searchGenre} OR m.genre_id2 = #{searchGenre}) 
                                  </if>
@@ -174,10 +177,10 @@
    <update id="updateMovie" parameterType="movie">
       UPDATE movie
       SET
-      movie_title = #{movieTitle}, teaser_video_path = #{teaserVideoPath}, full_video_path = #{fullVideoPath},
+      movie_title = #{movieTitle}, rating = #{rating}, teaser_video_path = #{teaserVideoPath}, full_video_path = #{fullVideoPath},
       poster_path = #{posterPath}, duration = #{duration}, summary = #{summary}, director_id = #{directorId},
       actor_id1 = #{actorId1}, actor_id2 = #{actorId2}, actor_id3 = #{actorId3}, actor_id4 = #{actorId4}, actor_id5 = #{actorId5},
-      genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, release = #{release},
+      genre_id1 = #{genreId1}, genre_id2 = #{genreId2}, country = #{country}, release = #{release},
       movie_status = #{movieStatus}, main_check = #{mainCheck}, movie_subtitle = #{movieSubtitle, jdbcType=VARCHAR}  
       WHERE
       movie_id = #{movieId}

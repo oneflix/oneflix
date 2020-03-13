@@ -58,33 +58,20 @@ table-border-grey{
 	display: none;
     float: right;
 	color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 0.8vw;
+    font-weight: 300;
     -webkit-letter-spacing: -0.4px;
     -moz-letter-spacing: -0.4px;
     -ms-letter-spacing: -0.4px;
     letter-spacing: -0.4px;
     line-height: 21px;
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 4px;
-    background-color: #DC3545;
-    font-size: 14px;
-    font-weight: 400;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
-    letter-spacing: -0.4px;
-    line-height: 21px;
-    padding: 7px 11px;
-    border-radius: 3px;
-    font-size: 17px;
-    font-weight: 700;
-    width: 150px;
-    padding: 13px 11px;
+    padding: 3px 10px;
+    border-radius: 30px;
+    background-color: #22B99B;
+    width: 6vw;
     border: 0;
-    margin-right: 0;
-    margin-bottom: 1.5%
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .title .payment-table {

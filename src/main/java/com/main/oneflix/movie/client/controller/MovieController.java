@@ -79,6 +79,7 @@ public class MovieController {
 		if (vo.getSearchOrder() == null) { vo.setSearchOrder("new"); }
 		vo.setStart(1);
 		vo.setEnd(20);
+		vo.setMovieStatus("Y");
 		
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		vo.setEmail(member.getEmail());

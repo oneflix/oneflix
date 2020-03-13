@@ -21,6 +21,7 @@ import com.main.oneflix.ticket.vo.TicketVO;
 import com.main.oneflix.util.kakao.payment.service.ApprovePaymentService;
 import com.main.oneflix.util.kakao.payment.service.InactiveSubscriptionService;
 import com.main.oneflix.util.kakao.payment.service.ReadyPaymentService;
+import com.main.oneflix.util.kakao.payment.service.RefundService;
 
 @Controller
 public class SalesController {
@@ -31,6 +32,8 @@ public class SalesController {
 	private ApprovePaymentService approvePaymentService;
 	@Autowired
 	private InactiveSubscriptionService inactiveSubscriptionService;
+	@Autowired
+	private RefundService refundService;
 	@Autowired
 	private GetSalesService getSalesService;
 	@Autowired
@@ -95,7 +98,7 @@ public class SalesController {
 		// 찾아온 vo에 pg_token 셋팅
 		vo.setPg_token(pg_token);
 		vo = approvePaymentService.approvePayment(vo);
-		System.out.println(vo);
+
 		vo.setPaymentMethodType(vo.getPayment_method_type());
 		if (vo.getPaymentMethodType().equals("CARD")) {
 			vo.setCardName((String)vo.getCard_info().get("issuer_corp"));
@@ -143,10 +146,15 @@ public class SalesController {
 	
 	@RequestMapping("/inactiveSubscriptionProc.do")
 	public ModelAndView inactiveSubscriptionProc(SalesVO vo, ModelAndView mav) {
-		
 		SalesVO response = inactiveSubscriptionService.inactivate(vo);
-		System.out.println(response.getStatus());
-		mav.setViewName("redirect:/getPaymentListProc.do");
+		mav.setViewName("redirect:/getPaymentListProc.do?result=" + response.getStatus());
+		return mav;
+	}
+	
+	@RequestMapping("/refundProc.do")
+	public ModelAndView refundProc(SalesVO vo, ModelAndView mav) {
+		SalesVO response = refundService.refund(vo);
+		mav.setViewName("redirect:/getPaymentListProc.do?result=" + response.getStatus());
 		return mav;
 	}
 	
