@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 body{
   display: table;
@@ -116,6 +117,7 @@ body{
 
   .faq-container{
     width: 100%;
-    margin-top: 10%;
+    margin-top: 200px;
+    margin-bottom: 200px;
     /* display: inline-block; */
   }

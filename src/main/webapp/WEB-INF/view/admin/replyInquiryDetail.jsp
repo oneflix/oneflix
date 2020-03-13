@@ -37,7 +37,7 @@
 				<!-- /.container-fluid -->
 			</section>
 
-			<form action="/replyInquiryProc.mdo" class="row" onsubmit="sendCheck()">
+			<div class="row">
 				<!--editor form-->
 				<div class="editor-body" style="width: 80%; padding-left: 15%;">
 					<input type="hidden" name="adminName" id="adminName"
@@ -84,15 +84,14 @@
 
 					<div class="buttons"
 						style="float: right; margin-top: 0; padding-bottom: 20px;">
-						<button type="submit" class="btn btn-success">보내기</button>
 						<button type="button" class="btn btn-secondary"
-							onclick="location.href='/inquiryList.mdo'">취소</button>
+							onclick="location.href='/inquiryList.mdo'">이전</button>
 					</div>
 					<!-- /.buttons -->
 				</div>
 				<!--editorbody-->
 
-			</form>
+			</div>
 			<!-- /.wrapper -->
 		</div>
 
@@ -111,11 +110,6 @@
 
 	<script>
 		$(document).ready(function() {
-			var result = "${result}";
-			if (result) {
-				alert("이메일 발송을 실패하였습니다.");
-			}
-			
 			$('#replyContent').summernote({
 				height : 300,
 				maxHeight : null,
@@ -137,12 +131,6 @@
 			$('.duallistbox').bootstrapDualListbox()
 
 		})
-		function sendCheck() {
-			var check = confirm("메일을 전송하시겠습니까?");
-			if (check == true) {
-				document.location.href = "/replyInquiryProc.mdo";
-			}
-		}
 	</script>
 </body>
 </html>
