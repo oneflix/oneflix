@@ -30,29 +30,42 @@ public class ClientInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		
+		if (request.getRequestURI().equals("/homeProc.do")) {
+			MemberVO member = (MemberVO) session.getAttribute("member");
+			if (member.getBan().equals("Y")) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.print("<script>alert('정지된 계정입니다.'); location.replace('/oneflix.do');</script>");
+				writer.flush();
+				writer.close();
+				return false;
+			}
+		}
+		
 		if (request.getRequestURI().equals("/moviePlay.do")) {
 			MemberVO member = (MemberVO) session.getAttribute("member");
 			String movieId = request.getParameter("movieId");
 			MovieVO movie = new MovieVO();
 			movie.setMovieId(Integer.parseInt(movieId));
 			movie = movieDAO.getMovie(movie);
-			response.setCharacterEncoding("UTF-8"); 
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer = response.getWriter();
 			if (member.getTicketId() == 0) {
+				PrintWriter writer = response.getWriter();
 				writer.print("<script>alert('이용권 구매 후 시청해 주세요!'); location.replace('/homeProc.do');</script>");
 				writer.flush();
+				writer.close();
 				return false;
 			} else if (movie.getRating().equals("19") && member.getMemberAge() < 19) {
+				PrintWriter writer = response.getWriter();
 				writer.print("<script>alert('성인 영화는 시청하실 수 없습니다!'); location.replace('/homeProc.do');</script>");
 				writer.flush();
+				writer.close();
+				return false;
 			}
-			writer.close();
 			request.setAttribute("movie", movie);
 		}
 		
 		return true;
-		
 	}
 
 	// controller의 handler가 끝나면 처리
