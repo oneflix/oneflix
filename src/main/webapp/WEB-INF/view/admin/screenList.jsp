@@ -128,7 +128,7 @@
 								</div>
 								<div class="buttons" style="float: right;">
 									<button type="submit" class="btn btn-success">적용</button>
-									<button type="button" class="btn btn-secondary">미리보기</button>
+									<!-- <button type="button" class="btn btn-secondary">미리보기</button> -->
 								</div>
 								<!-- /.buttons -->
 							</div>
@@ -220,7 +220,7 @@
 								</div>
 								<div class="buttons" style="float: right;">
 									<button type="submit" class="btn btn-success">적용</button>
-									<button type="button" class="btn btn-secondary">미리보기</button>
+									<!-- <button type="button" class="btn btn-secondary">미리보기</button> -->
 								</div>
 								<!-- /.buttons -->
 							</div>

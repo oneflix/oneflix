@@ -78,6 +78,9 @@
 	                <c:when test="${searchOrder eq 'recommend'}">
 	                	<p>${member.nick }님을 위한 추천 작품</p>
 	                </c:when>
+	                <c:when test="${searchMovie ne null}">
+	                	<p>"${searchMovie}" 검색 결과입니다.
+	                </c:when>
 	                <c:otherwise>
 	                	<p>보고싶은 작품을 찾아보세요</p>
 	                <div>
@@ -185,21 +188,21 @@
 			window.location.href = "/getMovieListProc.do?searchGenre=" + searchGenre + "&searchOrder=" + searchOrder;
 		});
 		
-		$('.play-button').mouseenter(function(){
+		$(document).on('mouseenter', '.play-button', function(){
 			$(this).children('img').prop('src','client/images/icons/play_hover.png');
 		});
-		$('.play-button').mouseleave(function(){
+		$(document).on('mouseleave', '.play-button', function(){
 			$(this).children('img').prop('src','client/images/icons/play.png');
 		});
-		
-		$('.info-button').mouseenter(function(){
+		$(document).on('mouseenter', '.info-button', function(){
 			$(this).children('img').prop('src','client/images/icons/info_hover.png');
 		});
-		$('.info-button').mouseleave(function(){
+		$(document).on('mouseleave', '.info-button', function(){
 			$(this).children('img').prop('src','client/images/icons/info.png');
 		});
+		
 		function goWatchMovie(movieId) {
-			window.location.href = "#?movieId=" + movieId;
+			window.location.href = "/moviePlay.do?movieId=" + movieId;
 		}
 		function goMovieDetail(movieId) {
 			window.location.href = "/getMovieDetailProc.do?movieId=" + movieId;

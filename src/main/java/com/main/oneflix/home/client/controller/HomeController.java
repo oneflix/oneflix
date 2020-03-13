@@ -3,6 +3,7 @@ package com.main.oneflix.home.client.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.main.oneflix.alarm.service.GetTotalAlarmCountService;
 import com.main.oneflix.genre.service.GetGenreListService;
 import com.main.oneflix.genre.vo.GenreVO;
+import com.main.oneflix.member.service.GetMemberService;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.movie.service.GetMovieListService;
 import com.main.oneflix.movie.service.GetRecommendMovieListService;
@@ -33,10 +35,19 @@ public class HomeController {
 	private GetTicketListService getTicketListService;
 	@Autowired
 	private GetTotalAlarmCountService getTotalAlarmCountService;
+	@Autowired
+	private GetMemberService getMemberService;
 	
 	@RequestMapping("/homeProc.do")
-	public ModelAndView homeProc(MovieVO vo, ModelAndView mav, HttpSession session) {
-		MemberVO member = (MemberVO) session.getAttribute("member");
+	public ModelAndView homeProc(MovieVO vo, ModelAndView mav, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO member;
+		if (request.getParameter("type") != null && request.getParameter("type").equals("re")) {
+			member = getMemberService.getMember((MemberVO)session.getAttribute("member"));
+			session.setAttribute("member", member);
+		} else {
+			member = (MemberVO) session.getAttribute("member");
+		}
 		
 		if (session.getAttribute("totalAlarmCount") == null) {
 			Map<String, Integer> totalAlarmCount = getTotalAlarmCountService.getTotalAlarmCount(member.getEmail());

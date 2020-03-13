@@ -174,6 +174,15 @@
 	<script src="admin/js/adminlte.min.js"></script>
 	<script src="admin/js/demo.js"></script>
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+	
+	<!-- dataTable export 관련 js -->
+	<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> 
+	<script src="admin/plugins/pdfmake/pdfmake.min.js"></script> 
+	<script src="admin/plugins/pdfmake/vfs_fonts.js"></script> 
+	<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script> 
+	<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+	
 	<script>
 		$(function() {
 			// 최고 관리자인지 아닌지

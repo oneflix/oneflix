@@ -74,12 +74,12 @@
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="emailTitle">답변제목</label> <input type="text"
 							class="form-control" placeholder="제목을 입력하세요" id="replyTitle"
-							name="replyTitle">
+							name="replyTitle" value="${inquiry.replyTitle}">
 					</div>
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="emailContent">답변내용</label>
 						<textarea class="form-control" placeholder="내용을 입력하세요"
-							id="replyContent" name="replyContent" style="height: 300px;"></textarea>
+							id="replyContent" name="replyContent" style="height: 300px;">${inquiry.replyContent}</textarea>
 					</div>
 
 					<div class="buttons"
@@ -111,6 +111,11 @@
 
 	<script>
 		$(document).ready(function() {
+			var result = "${result}";
+			if (result) {
+				alert("이메일 발송을 실패하였습니다.");
+			}
+			
 			$('#replyContent').summernote({
 				height : 300,
 				maxHeight : null,

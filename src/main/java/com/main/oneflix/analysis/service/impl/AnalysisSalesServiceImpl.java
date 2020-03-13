@@ -61,7 +61,6 @@ public class AnalysisSalesServiceImpl implements AnalysisSalesService{
 	            response.put(year, tmpList);
 	         }
 		}
-		
 		return response;
 	}
 

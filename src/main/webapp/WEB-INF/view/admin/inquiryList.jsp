@@ -15,6 +15,9 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="admin/images/icons/favicon.ico">
+<style>
+	.btn {margin-right: 5px;}
+</style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -119,6 +122,7 @@
 		var searchInquiryType;
 		var searchCondition;
 		var searchInquiry;
+		var answer;
 		
 	    $(document).ready(function() {
 	    	table = $('#inquiryTable').DataTable({
@@ -131,6 +135,8 @@
 	    		processing: true,
 	    		searching: false,
 	    		ordering: true,
+	    		dom: 'Bfrtip',
+	    		buttons: ['copy', 'excel', 'pdf', 'print'],
 	    		order: [[0, 'desc']],
 	    		language: {
 	    			"processing": "잠시만 기다려주세요.",
@@ -179,15 +185,23 @@
 	   				{data: "replyDate",
 	   					render: function(data) {
 	   						if (data == null) {
+	   							answer = false;
 	   							return "미답변";
 	   						}
+	   						answer = true;
 	   						data = getFormatDate(data);
 	   						return data;
 	   					}},
 	   				{data: "inquiryId",
 	   					render: function(data){
+	   						var buttonType;
+	   						if (answer) {
+	   							buttonType = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"goInquiryDetail(\'" + data + "\')\">상세보기</button>"; 
+	   						} else {
+	   							buttonType = "<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goReply(\'" + data + "\')\">답변하기</button>";
+	   						}
 	   						var html = "<div>" +
-										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goInquiryDetail(\'" + data + "\')\">답변하기</button>" +
+										buttonType +
 										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
 									"</div>"
 	   						return html;
@@ -232,6 +246,10 @@
 		}
 	    
 	    function goInquiryDetail(inquiryId) {
+	    	window.location.href = "/getInquiryDetailProc.mdo?inquiryId=" + inquiryId;
+	    }
+	    
+	    function goReply(inquiryId) {
 	    	window.location.href = "/getInquiryProc.mdo?inquiryId=" + inquiryId;
 	    }
 	

@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width">
-<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <style>
 body {
 	background-color: rgb(0, 0, 0);
@@ -23,66 +22,77 @@ video {
 </style>
 </head>
 <body>
-	<span id="demo" style="color:white"></span>
 	<video controls autoplay controlsList="nodownload" name="media"
 		id="testVideo">
-		<source src="client/images/test.mp4" type="video/mp4">
+		<source src="${movie.fullVideoPath}" type="video/mp4">
 	</video>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
-		$(window).bind("beforeunload", function(e) {
-			return "창 닫?";
-			/* $.ajax({
-				url : "처리페이지url",
-				cache : "false", //캐시사용금지
-				method : "POST",
-				data : $("#frm").serialize(),
-				dataType: "html",
-				async : false, //동기화설정(비동기화사용안함)
-				success:function(args){   
-					alert("성공"); 
-				},   
-				error:function(e){  
-					alert(e.responseText);  
-				}
-			}); */
-		});
-
 		var vid = document.getElementById("testVideo");
+		var checkTime = '${watch.viewPoint}';
+
 		vid.onloadedmetadata = function() {
 			var min = parseInt(vid.duration / 60);
 			var seconds = Math.floor(vid.duration % 60);
-			alert(min + "분 " + seconds + "초");
+			vid.currentTime = checkTime;
 		};
+		
+		vid.addEventListener("play", startInterval, false);
+		vid.addEventListener("pause", stopInterval, false);
 
-		vid.ontimeupdate = function() {
-			document.getElementById("demo").innerHTML = vid.currentTime;
-			if (vid.currentTime > 2) {
-				/* $.ajax({
-					url : "/insertWatch.do",
-					cache : "false",
-					method : "POST",
-					data : $("#frm").serialize(),
-					dataType : "html",
-					success : function(args) {
-						alert("성공");
+		var myInterval;
+		function startInterval(){
+			myInterval = setInterval(inputWatchData, 1000 * 60 * 5);
+		}
+		
+		function stopInterval(){
+			clearInterval(myInterval);
+		}
+		
+		function inputWatchData() {
+			var watchType = "watching";
+			var email = "${member.email}";
+			var movieId = "${movie.movieId}";
+			var viewPoint = parseInt(vid.currentTime);
+			var watchedTime = parseInt(vid.duration) - 300;
+			var sendData = {
+				"watchType" : watchType,
+				"email" : email,
+				"movieId" : movieId,
+				"viewPoint" : viewPoint
+			};
+			var requestUrl;
+			if (checkTime == 0) {
+				requestUrl = "/insertWatchAjax.do";
+			} else {
+				requestUrl = "/updateWatchAjax.do";
+			}
+
+			// 5분 이상 시청
+			if (viewPoint >= 300) {
+				// 남은 시간이 5분 미만이면
+				if (viewPoint > watchedTime) {
+					watchType = "watched";
+				}
+				$.ajax({
+					url : requestUrl,
+					type : 'POST',
+					data : sendData,
+					async : false,
+					success : function() {
+						checkTime = viewPoint;
 					},
 					error : function(e) {
 						alert(e.responseText);
 					}
-				}); */
-				alert("2초 지남");
+				});
 			}
 		};
 
-		function myFunction() {
-			
-		};
-
-		vid.onended = function() {
-			alert("ended!");
-		};
+		$(window).on("beforeunload", function() {
+			inputWatchData();
+		});
 	</script>
 </body>
 </html>

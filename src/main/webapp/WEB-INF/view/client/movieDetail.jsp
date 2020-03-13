@@ -126,7 +126,7 @@
 										</ul>
 										<div
 											class="e1vsnrt61 css-7s5tof-Self-ContentActionButtons e1jklz6e0">
-											<a href="/moviePlay.do" class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
+											<a href="/moviePlay.do?movieId=${movie.movieId}" class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
 												aria-label="재생">
 												<span style="margin-top: 3px;" class="SVGInline css-10748d4-MainButtonIcon e1jklz6e2">
 													<svg class="SVGInline-svg css-10748d4-MainButtonIcon- e1jklz6e2-svg"
@@ -211,16 +211,16 @@
 									<div class="e17lrvw524 css-1d7j8ma-Self-StarRating e1a0u7o30">
 										<div class="css-pjw7sn-StarsContainer eu8v4101">
 											<div class="starRev">
-												<span id="0.5" class="starR1 reviewScore"></span> 
-												<span id="1.0" class="starR2 reviewScore"></span>
-												<span id="1.5" class="starR1 reviewScore"></span> 
-												<span id="2.0" class="starR2 reviewScore"></span>
-												<span id="2.5" class="starR1 reviewScore"></span> 
-												<span id="3.0" class="starR2 reviewScore"></span>
-												<span id="3.5" class="starR1 reviewScore"></span> 
-												<span id="4.0" class="starR2 reviewScore"></span>
-												<span id="4.5" class="starR1 reviewScore"></span> 
-												<span id="5.0" class="starR2 reviewScore"></span>
+												<span id="r-1" class="starR1 reviewScore"></span> 
+												<span id="r-2" class="starR2 reviewScore"></span>
+												<span id="r-3" class="starR1 reviewScore"></span> 
+												<span id="r-4" class="starR2 reviewScore"></span>
+												<span id="r-5" class="starR1 reviewScore"></span> 
+												<span id="r-6" class="starR2 reviewScore"></span>
+												<span id="r-7" class="starR1 reviewScore"></span> 
+												<span id="r-8" class="starR2 reviewScore"></span>
+												<span id="r-9" class="starR1 reviewScore"></span> 
+												<span id="r-10" class="starR2 reviewScore"></span>
 											</div>
 										</div>
 									</div>
@@ -254,7 +254,7 @@
 										<div class="css-1liv69o-BackgroundStars e1a0u7o32"
 											style="color: rgba(255, 255, 255, 0.2);">★★★★★</div>
 										<div class="css-1g8zxed-ActiveStars e1a0u7o31"
-											style="color: rgb(255, 255, 255); width: 78%;">★★★★★</div>
+											style="color: rgb(255, 255, 255);">★★★★★</div>
 									</div>
 								</div>
 								<span class="css-7huvli-RatingAvgNumber e17lrvw517">${movie.movieScore}</span><span
@@ -288,8 +288,8 @@
 																	${reviewList[i].reviewContent }</div>
 																<div class="like-container">
 																	<button id="thumbs" class="like-button">
-																		<i id="${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
-																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i].likeCount}</span>
+																		<i id="like-${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
+																		<span id="likeConunt-${reviewList[i].reviewId}" class="like-count">${reviewList[i].likeCount}</span>
 																	</button>
 																</div>
 															</div>
@@ -303,8 +303,8 @@
 																	${reviewList[i+1].reviewContent }</div>
 																<div class="like-container">
 																	<button id="thumbs" class="like-button">
-																		<i id="${reviewList[i+1].reviewId}" class="fa-thumbs-up like-icon far"></i>
-																		<span id="${reviewList[i].likeCount}" class="like-count">${reviewList[i+1].likeCount }</span>
+																		<i id="like-${reviewList[i+1].reviewId}" class="fa-thumbs-up like-icon far"></i>
+																		<span id="likeConunt-${reviewList[i+1].reviewId}" class="like-count">${reviewList[i+1].likeCount }</span>
 																	</button>
 																</div>
 															</div>
@@ -340,7 +340,6 @@
 	<script src="client/js/detail.js"></script>
 
 	<script>
-	
 	//reivewList, reviewLikeList, wishList JSON타입으로 변환
 	var reviewScore;
 	var posterScore;
@@ -355,7 +354,6 @@
 		reviewListJson.reviewId = "${review.reviewId}";
 		reviewList.push(reviewListJson);
 	</c:forEach>
-	console.log("json : " + JSON.stringify(reviewList));
 	
  	var reviewLikeList = new Array();
 	<c:forEach items="${reviewLikeList}" var="reviewLike">
@@ -363,7 +361,6 @@
 		reviewLikeListJson.reviewId = "${reviewLike.reviewId}";
 		reviewLikeList.push(reviewLikeListJson);
 	</c:forEach> 
-	console.log("json : " + JSON.stringify(reviewLikeList));
 	
  	var wishList = new Array();
 	<c:forEach items="${wishList}" var="wish">
@@ -371,17 +368,15 @@
 		wishListJson.movieId = "${wish.movieId}";
 		wishList.push(wishListJson);
 	</c:forEach> 
-	console.log("json : " + JSON.stringify(wishList));
 	//-----------------------------------------------------
 
-	
 		$(document).ready(function() {
-			//session email이 좋아요 해놓은 리뷰 채워진 엄지로 세팅
-			 for (var i = 0; i < reviewListLength; i++){
+			//session email이 좋아요 해놓은 리뷰 채워진 엄지로 세팅	
+			for (var i = 0; i < reviewListLength; i++){
 				for (var j = 0; j < reviewLikeListLength; j++){
 					if(reviewList[i].reviewId == reviewLikeList[j].reviewId){
-						$('#' + reviewList[i].reviewId).removeClass('far');
-						$('#' + reviewList[i].reviewId).addClass('fas');
+						$('#like-' + reviewList[i].reviewId).removeClass('far');
+						$('#like-' + reviewList[i].reviewId).addClass('fas');
 					}
 				}
 			}
@@ -397,9 +392,12 @@
 				 }
 			 }
 			
+			//평균별점 불러와서 별 채우기
+		 	var movieScorePercent = ("${movie.movieScore}" / 5.0) * 100;
+		    $('.e1a0u7o31').css("width", movieScorePercent + "%");
+			    
 			//session email이 준 별점,리뷰 세팅
 			reviewScore = "${myReview.reviewScore}";
-			alert(reviewScore);
 			switch(reviewScore){
 			case '0.5' : posterScore = '1'; break;
 			case '1.0' : posterScore = '2'; break;
@@ -412,34 +410,37 @@
 			case '4.5' : posterScore = '9'; break;
 			case '5.0' : posterScore = '10'; break;
 			}
+			
+			
+			
 			reviewContent = $('#myReview').val();
 			if (reviewScore != null && reviewScore != 0) {
-				var star = document.getElementById(reviewScore);
-				var Pstar = document.getElementById(posterScore);
-				$(star).addClass('on').prevAll('span').addClass('on');
-				$(Pstar).addClass('on').prevAll('span').addClass('on');
-			}
+				var $star = $('#r-' + posterScore);
+				var $pstar = $('#' + posterScore);
+				$star.addClass('on').prevAll('span').addClass('on');
+				$pstar.addClass('on').prevAll('span').addClass('on');
 			
-			if($(star).prop('id') == '0.5'){
-				$('.e1vsnrt610').text('최악이에요!');
-			}else if($(star).prop('id') == '1.0'){
-				$('.e1vsnrt610').text('싫어요');
-			}else if($(star).prop('id') == '1.5'){
-				$('.e1vsnrt610').text('재미없어요');
-			}else if($(star).prop('id') == '2.0'){
-				$('.e1vsnrt610').text('별로예요');
-			}else if($(star).prop('id') == '2.5'){
-				$('.e1vsnrt610').text('부족해요');
-			}else if($(star).prop('id') == '3.0'){
-				$('.e1vsnrt610').text('보통이에요');
-			}else if($(star).prop('id') == '3.5'){
-				$('.e1vsnrt610').text('볼만해요');
-			}else if($(star).prop('id') == '4.0'){
-				$('.e1vsnrt610').text('재미있어요');
-			}else if($(star).prop('id') == '4.5'){
-				$('.e1vsnrt610').text('훌륭해요');
-			}else if($(star).prop('id') == '5.0'){
-				$('.e1vsnrt610').text('최고예요!');
+				if($pstar.prop('id') == '1'){
+					$('.e1vsnrt610').text('최악이에요!');
+				}else if($pstar.prop('id') == '2'){
+					$('.e1vsnrt610').text('싫어요');
+				}else if($pstar.prop('id') == '3'){
+					$('.e1vsnrt610').text('재미없어요');
+				}else if($pstar.prop('id') == '4'){
+					$('.e1vsnrt610').text('별로예요');
+				}else if($pstar.prop('id') == '5'){
+					$('.e1vsnrt610').text('부족해요');
+				}else if($pstar.prop('id') == '6'){
+					$('.e1vsnrt610').text('보통이에요');
+				}else if($pstar.prop('id') == '7'){
+					$('.e1vsnrt610').text('볼만해요');
+				}else if($pstar.prop('id') == '8'){
+					$('.e1vsnrt610').text('재미있어요');
+				}else if($pstar.prop('id') == '9'){
+					$('.e1vsnrt610').text('훌륭해요');
+				}else if($pstar.prop('id') == '10'){
+					$('.e1vsnrt610').text('최고예요!');
+				}
 			}
 			//--------------------------------
 
@@ -448,6 +449,7 @@
 
 			$('.genre-span').addClass('after');
 			$('.genre-span:last').removeClass('after');
+			
 			var reviewCount = 0;
 			for (var i = 0; i < reviewListLength; i++) {
 				if ("${reviewList[i].reviewContent}" != null) {
@@ -488,63 +490,51 @@
 			});
 		});
 
-		function reviewCheck() {
-			var star = document.getElementById(reviewScore);
-			var Fstar = parseFloat(star);
-			if(clicked <= 0 && Fstar < 0.5 ) {
-				alert("별점을 등록해주세요!");
-				return false;
-			}
-			var content = $("#myReview").val();
-			if (content == null || content == "" || reviewScore == null) {
-				return false;
-			}
-
-			$('#hiddenScore').val(reviewScore);
-			return true;
-
-		};
-		
-		
 		//리뷰 부분 별점주기
 		var clicked = 0;
 		$('.reviewScore').on("click",(function() {
 			clicked++;
+			var clickedStar = $(this).prop('id');
+			clickedStar = clickedStar.split('-')[1];
+			
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			
-			if($(this).prop('id') == '0.5'){
+			if(clickedStar == '1'){
 				$('.e1vsnrt610').text('최악이에요!');
-			}else if($(this).prop('id') == '1.0'){
+			}else if(clickedStar == '2'){
 				$('.e1vsnrt610').text('싫어요');
-			}else if($(this).prop('id') == '1.5'){
+			}else if(clickedStar == '3'){
 				$('.e1vsnrt610').text('재미없어요');
-			}else if($(this).prop('id') == '2.0'){
+			}else if(clickedStar == '4'){
 				$('.e1vsnrt610').text('별로예요');
-			}else if($(this).prop('id') == '2.5'){
+			}else if(clickedStar == '5'){
 				$('.e1vsnrt610').text('부족해요');
-			}else if($(this).prop('id') == '3.0'){
+			}else if(clickedStar == '6'){
 				$('.e1vsnrt610').text('보통이에요');
-			}else if($(this).prop('id') == '3.5'){
+			}else if(clickedStar == '7'){
 				$('.e1vsnrt610').text('볼만해요');
-			}else if($(this).prop('id') == '4.0'){
+			}else if(clickedStar == '8'){
 				$('.e1vsnrt610').text('재미있어요');
-			}else if($(this).prop('id') == '4.5'){
+			}else if(clickedStar == '9'){
 				$('.e1vsnrt610').text('훌륭해요');
-			}else if($(this).prop('id') == '5.0'){
+			}else if(clickedStar == '10'){
 				$('.e1vsnrt610').text('최고예요!');
 			}
-
+			// 별점 동기화
+			$('#' + clickedStar).parent().children('span').removeClass('on');
+			$('#' + clickedStar).addClass('on').prevAll('span').addClass('on');
+			// 동기화 끝
+			
 			var url;
-
-			if (reviewScore == null || reviewScore == 0 && reviewContent == null || reviewContent == '') {
+			if (reviewScore == null || reviewScore == 0) {
 				url = "/insertReviewProcAjax.do";
 			} else {
 				url = "/updateReviewProcAjax.do";
 			}
-			
 
-			reviewScore = $(this).prop('id');
+			// 점수 0 ~ 5 형태로 만들어주기
+			reviewScore = clickedStar / 2; 
 			var movieId = "${movie.movieId}";
 			var email = "${member.email}"
 			var reviewId = "${myReview.reviewId}"
@@ -563,66 +553,52 @@
 				async : false,
 				success : function(response) {
 					result = response.result;
-					
-
 				}
 			});
 
 		}));
 		
 		//포스터 부분 별점주기
-		var clicked = 0;
 		$('.posterScore').on("click",(function() {
 			clicked++;
+			var clickedPosterStar = $(this).prop('id');
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			
-			if($(this).prop('id') == '1'){
+			if(clickedPosterStar == '1'){
 				$('.e1vsnrt610').text('최악이에요!');
-			}else if($(this).prop('id') == '2'){
+			}else if(clickedPosterStar == '2'){
 				$('.e1vsnrt610').text('싫어요');
-			}else if($(this).prop('id') == '3'){
+			}else if(clickedPosterStar == '3'){
 				$('.e1vsnrt610').text('재미없어요');
-			}else if($(this).prop('id') == '4'){
+			}else if(clickedPosterStar == '4'){
 				$('.e1vsnrt610').text('별로예요');
-			}else if($(this).prop('id') == '5'){
+			}else if(clickedPosterStar == '5'){
 				$('.e1vsnrt610').text('부족해요');
-			}else if($(this).prop('id') == '6'){
+			}else if(clickedPosterStar == '6'){
 				$('.e1vsnrt610').text('보통이에요');
-			}else if($(this).prop('id') == '7'){
+			}else if(clickedPosterStar == '7'){
 				$('.e1vsnrt610').text('볼만해요');
-			}else if($(this).prop('id') == '8'){
+			}else if(clickedPosterStar == '8'){
 				$('.e1vsnrt610').text('재미있어요');
-			}else if($(this).prop('id') == '9'){
+			}else if(clickedPosterStar == '9'){
 				$('.e1vsnrt610').text('훌륭해요');
-			}else if($(this).prop('id') == '10'){
+			}else if(clickedPosterStar == '10'){
 				$('.e1vsnrt610').text('최고예요!');
 			}
+			// 별점 동기화
+			$('#r-' + clickedPosterStar).parent().children('span').removeClass('on');
+			$('#r-' + clickedPosterStar).addClass('on').prevAll('span').addClass('on');
+			// 동기화 끝
 
 			var url;
-
-			if (reviewScore == null || reviewScore == 0 && reviewContent == null || reviewContent == '') {
+			if (reviewScore == null || reviewScore == 0) {
 				url = "/insertReviewProcAjax.do";
 			} else {
 				url = "/updateReviewProcAjax.do";
 			}
-			
 
-			posterScore = $(this).prop('id');
-			
-			switch(posterScore){
-			case '1' : reviewScore = '0.5'; break;
-			case '2' : reviewScore = '1.0'; break;
-			case '3' : reviewScore = '1.5'; break;
-			case '4' : reviewScore = '2.0'; break;
-			case '5' : reviewScore = '2.5'; break;
-			case '6' : reviewScore = '3.0'; break;
-			case '7' : reviewScore = '3.5'; break;
-			case '8' : reviewScore = '4.0'; break;
-			case '9' : reviewScore = '4.5'; break;
-			case '10' : reviewScore = '5.0'; break;
-			}
-			
+			reviewScore = clickedPosterStar / 2;
 			var movieId = "${movie.movieId}";
 			var email = "${member.email}"
 			var reviewId = "${myReview.reviewId}"
@@ -641,13 +617,25 @@
 				async : false,
 				success : function(response) {
 					result = response.result;
-					
-
 				}
 			});
 
 		}));
 
+		function reviewCheck() {
+			if(clicked <= 0 || reviewScore == null || reviewScore == 0) {
+				alert("별점을 등록해주세요!");
+				return false;
+			}
+			var content = $("#myReview").val();
+			if (content == null || content == "") {
+				alert("내용을 입력해주세요!");
+				return false;
+			}
+			$('#hiddenScore').val(reviewScore);
+			return true;
+		}
+		
 		//리뷰삭제
 		function deleteCheck() {
 			var check = confirm("정말로 삭제하시겠습니까?");
@@ -656,14 +644,6 @@
 			}
 		}
 
-		//클릭 별 색깔 변경
-		/*  $('.starRev span').click(function(){
-			  $(this).parent().children('span').removeClass('on');
-			  $(this).addClass('on').prevAll('span').addClass('on');
-			  return false;
-			}); */
-			
-			
 	 	//좋아요 - 엄지 아이콘 변경, 카운트 변경
 		$('.like-button').click(function() {
 		var url;
@@ -671,6 +651,7 @@
 		var thumbs = $(this).children('i').prop('class')
 		
 		var reviewId = $(this).children('i').prop('id');
+		reviewId = reviewId.split('-')[1];
 		var likeCount = $(this).find('span').text();
 		var reviewLikeEmail = "${member.email}"
 		var movieId = "${movie.movieId}"
@@ -741,8 +722,8 @@
 				data : sendData,
 				async : false,
 				success : function(response) {
-							result = response.result;
-					}
+						result = response.result;
+				}
 			});
 		});
 		
