@@ -67,8 +67,7 @@
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item"><a href="/getDashboardProc.mdo"
-					class="nav-link" id="dashboard"> <i
-						class="nav-icon fas fa-tachometer-alt"></i>
+					class="nav-link" id="dashboard"><ion-icon name="bar-chart-outline" size="small"></ion-icon>
 						<p>대시보드</p>
 				</a></li>
 

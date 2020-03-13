@@ -41,6 +41,7 @@
 <link rel="stylesheet" type="text/css" href="client/css/ls-main.css">
 <link rel="stylesheet" type="text/css" href="client/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="client/css/join.css">
+<link rel="stylesheet" type="text/css" href="client/css/ticket_modal.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -83,7 +84,7 @@
 								</div>
 								<div class="css-unatsl-Self eu52ful0">
 									<input type="number" value="" id="birth" name="birth"
-										placeholder="생년월일 (숫자 8자리)" autofocus=""
+										placeholder="생년월일 (숫자 8자리)" maxlength="6" oninput="maxLengthCheck(this)" autofocus=""
 										class="oneflix-input e1jdphjt3 css-sg09fs-StyledField-BirthField eu52ful1"
 										autocomplete="off">
 								</div>
@@ -117,19 +118,15 @@
 											<input name="term" id="term[1]" type="checkbox"
 											class="oneflix-term checkOp option-input css-3ivnsa-StyledField ejrezr22"
 											value="false">
-											<button type="button" class="css-c1816u-LegalLink e1jdphjt7"
-												style="text-decoration: underline;"
-												onclick="document.getElementById('user_terms').style.display = 'block'">ONEFLIX
-												서비스 이용약관</button>에 동의합니다. (필수)
+											<button type="button" id="user-terms-btn" class="css-c1816u-LegalLink e1jdphjt7"
+												style="text-decoration: underline;">ONEFLIX 서비스 이용약관</button>에 동의합니다. (필수)
 										</label>
 									</div>
-									<div id="user_terms" class="w3-modal" style="z-index: 1001">
+									<div id="user-terms" class="w3-modal" style="z-index: 1001">
 										<div class="w3-modal-content"
 											style="overflow: scroll; width: 600px; height: 700px;">
 											<div class="w3-container">
-												<span
-													onclick="document.getElementById('user_terms').style.display='none'"
-													class="w3-button w3-display-topright">&times;</span> <br />
+												<span id="user-terms-span" class="close">&times;</span> <br />
 												<br />
 												<h2 style="color: black">ONEFLIX 서비스 이용약관</h2>
 												<hr>
@@ -217,20 +214,16 @@
 											<input name="term" id="term[2]" type="checkbox"
 											class="oneflix-term checkOp option-input checkbox css-3ivnsa-StyledField ejrezr22"
 											value="false">
-											<button type="button" class="css-c1816u-LegalLink e1jdphjt7"
-												onclick="document.getElementById('person_terms').style.display = 'block'"
-												style="text-decoration: underline;">개인정보 취급 방침</button>에
-											동의합니다. (필수)
+											<button type="button" id="person-terms-btn" class="css-c1816u-LegalLink e1jdphjt7"
+												style="text-decoration: underline;">개인정보 취급 방침</button>에 동의합니다. (필수)
 										</label>
 									</div>
 								</div>
-								<div id="person_terms" class="w3-modal" style="z-index: 1001">
+								<div id="person-terms" class="w3-modal" style="z-index: 1001">
 									<div class="w3-modal-content"
 										style="overflow: scroll; width: 600px; height: 700px;">
 										<div class="w3-container">
-											<span
-												onclick="document.getElementById('person_terms').style.display='none'"
-												class="w3-button w3-display-topright">&times;</span> <br/>
+											<span id="person-terms-span" class="close">&times;</span> <br/>
 											<br/>
 											<h2 style="color: black">개인정보 취급 방침</h2>
 											<hr>
@@ -410,61 +403,54 @@
 	<!--===============================================================================================-->
 	<script src="client/js/ls-main.js"></script>
 		
-	</script>
 	<script>
-		// 모달창 열기 이벤트
-		$("#user_terms").on("click", function() {
-			$("#user_terms").css({
-				visibility : "visible",
-				opacity : 1
-			});
-		});
+	// Get the modal
+	var userTermsModal = document.getElementById("user-terms");
+	var personTermsModal = document.getElementById("person-terms");
 
-		// 모달창 닫기 이벤트 
-		$(".w3-button w3-display-topright").on("click", function() {
-			$("#user_terms").css({
-				visibility : "hidden",
-				opacity : 0
-			});
-		});
+	// Get the button that opens the modal
+	var userTermsBtn = document.getElementById("user-terms-btn");
+	var personTermsBtn = document.getElementById("person-terms-btn");
 
-		$(document).on("click", function(haha) {
-			if ($("#user_terms").is(haha.target)) {
-				$("#user_terms").css({
-					visibility : "hidden",
-					opacity : 0
-				});
-			}
-		});
-		
-		
-		
-		// 모달창 열기 이벤트
-		$("#person_terms").on("click", function() {
-			$("#person_terms").css({
-				visibility : "visible",
-				opacity : 1
-			});
-		});
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	var userTermsSpan = document.getElementById("user-terms-span");
+	var personTermsSpan = document.getElementById("person-terms-span");
 
-		// 모달창 닫기 이벤트 
-		$(".w3-button w3-display-topright").on("click", function() {
-			$("#person_terms").css({
-				visibility : "hidden",
-				opacity : 0
-			});
-		});
+	// When the user clicks on the button, open the modal
+	userTermsBtn.onclick = function() {
+		userTermsModal.style.display = "block";
+	}
+	personTermsBtn.onclick = function() {
+		personTermsModal.style.display = "block";
+	}
 
-		$(document).on("click", function(hihi) {
-			if ($("#person_terms").is(hihi.target)) {
-				$("#person_terms").css({
-					visibility : "hidden",
-					opacity : 0
-				});
-			}
-		});
+	// When the user clicks on <span> (x), close the modal
+	personTermsSpan.onclick = function() {
+			  personTermsModal.style.display = "none";
+	}
+	userTermsSpan.onclick = function() {
+		userTermsModal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == personTermsModal) {
+		  personTermsModal.style.display = "none";
+	  }
+	  if (event.target == userTermsModal) {
+		  userTermsModal.style.display = "none";
+	  }
+	}
 	</script>
 	<script type="text/javascript">
+		function maxLengthCheck(object){
+		    if (object.value.length > object.maxLength){
+		        object.value = object.value.slice(0, object.maxLength);
+		    }    
+		}
+
+
 		function validate() {
 			var data = {};
 			var email = $('#email').val();
