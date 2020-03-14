@@ -95,7 +95,6 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" id="toolbar_div">
-      
          <!-- Content Header (Page header) -->
          <div class="content-header">
             <div class="container-fluid">
@@ -943,7 +942,6 @@
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("gender-chart"));
 				  var btnSave = document.getElementById('save-pdf-gender');
-
 				  google.visualization.events.addListener(chart, 'ready', function () {
 				    btnSave.disabled = false;
 				  });
@@ -1627,26 +1625,11 @@
 			    doc.save('contentchart.pdf');
 			  }, false);
 
-				chart.draw(view, options);
-				window.addEventListener('resize', function() {
-					chart.draw(data, options);
-				}, false);
-			
-			  new google.visualization.Query('https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA').
-	          send(queryCallback);
-	    }
-			function queryCallback(response) {
-		      visualization.draw(response.getDataTable(), {is3D: true});
-		    }
-			function drawToolbar() {
-			      var components = [
-			          {type: 'html', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA'},
-			          {type: 'csv', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA'}];
-
-			          var container = document.getElementById('toolbar_div');
-			          google.visualization.drawToolbar(container, components);
-			        };
-
+			chart.draw(view, options);
+			window.addEventListener('resize', function() {
+				chart.draw(data, options);
+			}, false);
+		}
 	</script>
 	<script type = "text/javascript" src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>

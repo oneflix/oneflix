@@ -20,7 +20,7 @@ public class TicketSalesServiceImpl implements TicketSalesService {
 	@Override
 	public void sellTicket(SalesVO vo) {
 		
-		salesDAO.updateSales(vo);
+		salesDAO.sellTicket(vo);
 		
 		MemberVO member = new MemberVO();
 		member.setEmail(vo.getEmail());

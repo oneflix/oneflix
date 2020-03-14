@@ -54,7 +54,7 @@ public class HomeController {
 			session.setAttribute("movieAlarmCount", totalAlarmCount.get("movie"));
 			session.setAttribute("replyAlarmCount", totalAlarmCount.get("reply"));
 		}
-		
+		vo.setMovieStatus("Y");
 		vo.setEmail(member.getEmail());
 		// 값 셋팅하기
 		vo.setMovieType("main");		

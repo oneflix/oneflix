@@ -20,7 +20,7 @@
 	img {width: 160px; height: 90px;}
 	td > p, td > div {margin-top: 30px;}
 	.btn {margin-right: 5px;}
-	.movie-type-button-box {margin: 15px 20px 0 auto; float: right;}
+	.movie-type-button-box {margin-top: 10px; float: right;}
 	.movie-type-button-box > button {border: 1px solid #d1d1d5; border-radius: 5px; background: #fff; outline: none;}
 	.movie-type-button-box > button:hover {background: #f1f1f1;}
 	.movie-type-button-box > button:focus {outline: none;}
@@ -85,14 +85,15 @@
 									</c:forEach>
 								</select>
 							</div>
-							<div class="movie-type-button-box">
-								<button id="all-movie-button" disabled>전체 보기</button>
-								<button id="main-movie-button">메인</button>
-							</div>
+							
 							
 							<!-- /.card-header -->
 
 							<div class="card-body">
+							<div class="movie-type-button-box">
+								<button id="all-movie-button" disabled>전체 보기</button>
+								<button id="main-movie-button">메인</button>
+							</div>
 								<table id="movieTable" class="table table-bordered table-hover">
 									<thead>
 										<tr>

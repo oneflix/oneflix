@@ -5,8 +5,8 @@
 <mapper namespace="TermDAO">
 
 	<insert id="insertTerm" parameterType="term">
-		INSERT INTO term(term_id, term_title, term_content)
-		VALUES((SELECT NVL(MAX(term_id), 0) + 1 FROM term), #{termTitle}, #{termContent})
+		INSERT INTO term(term_id, term_title, term_content, term_reg_date)
+		VALUES((SELECT NVL(MAX(term_id), 0) + 1 FROM term), #{termTitle}, #{termContent}, SYSDATE)
 	</insert>
 
 	<update id="updateTerm" parameterType="term">
@@ -26,12 +26,19 @@
 	
 	<resultMap type="term" id="termList">
 		<id property="termId" column="term_id"/>
+		<result property="rnum" column="rnum" />
 		<result property="termTitle" column="term_title"/>
 		<result property="termContent" column="term_content"/>
+		<result property="termRegDate" column="term_reg_date"/>
 	</resultMap>
 	
 	<select id="getTermList" parameterType="term" resultMap="termList">
-		SELECT * FROM term
-		ORDER BY #{termId}
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, T.*
+				FROM (SELECT * FROM term
+						ORDER BY term_reg_date
+					) T
+			)
+		ORDER BY RNUM DESC
 	</select>
 </mapper>

@@ -28,7 +28,7 @@ public class LoginController {
 		String viewName;
 		
 		if (manager != null && vo.getManagerPass().equals(manager.getManagerPass())) {
-			session.setAttribute("loginManager", vo);
+			session.setAttribute("loginManager", manager);
 			viewName = "redirect:/getDashboardProc.mdo";
 		} else {
 			mav.addObject("result", false);
