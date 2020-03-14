@@ -74,15 +74,27 @@
     stroke-opacity: 0.8 !important; 
     stroke-width: 2 !important;
 }
+.saveaspdf{
+	float:right;
+	color: #343a40;
+	border: 1px solid #bdc6d0;
+	border-radius: .2rem;
+	padding: 1px 5px 1px;
+	cursor: pointer;
+	margin-top: .3em;
+	margin-right: 0px;
+	font-size: 14px;
+}
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
-   <div class="wrapper">
+   <div class="wrapper \">
+  <div id="toolbar_div"></div>
 
       <jsp:include page="${header_url}"></jsp:include>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper toolbar_div">
          <!-- Content Header (Page header) -->
          <div class="content-header">
             <div class="container-fluid">
@@ -110,13 +122,13 @@
                            <h3 class="card-title">
                               <i class="far fa-chart-bar"></i> 매출
                            </h3>
+							<div><input class="saveaspdf" id="save-pdf-sales" type="button" value="Save as PDF" disabled /></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="salesDate" name="dateList"
                                  class="form-control select2bs4 dateList"
                                  multiple="multiple" data-placeholder="날짜 선택">
                               </select>
-
                               <div class="button-box-container">
                                  <div class="button-box">
                                     <button type="button" id="salesYear"
@@ -128,7 +140,8 @@
                            </div>
                         </div>
                         <div class="card-body">
-                           <div id="sales-chart" style="width: inherit; height: auto;"></div>
+                           <div id="sales-chart" style="width: inherit; height: auto;">
+                           </div>
                         </div>
                         <!-- /.card-body-->
                      </div>
@@ -143,6 +156,7 @@
                            <h3 class="card-title">
                               <i class="far fa-chart-bar"></i> 상품 이용자 수
                            </h3>
+                           <div><input class="saveaspdf" id="save-pdf-subscriber" type="button" value="Save as PDF" disabled /></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="subscriberDate" name="dateList"
@@ -176,6 +190,7 @@
                            <h3 class="card-title">
                               <i class="far fa-chart-bar"></i> 성별 회원 분포
                            </h3>
+                           <div><input class="saveaspdf" id="save-pdf-gender" type="button" value="Save as PDF" disabled /></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="genderDate" name="dateList"
@@ -208,6 +223,7 @@
                            <h3 class="card-title">
                               <i class="far fa-chart-bar"></i> 연령별 회원 분포
                            </h3>
+                           <div><input class="saveaspdf" id="save-pdf-age" type="button" value="Save as PDF" disabled /></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="memberAgeDate" name="dateList"
@@ -238,30 +254,42 @@
                   <section class="col-lg-12">
                      <div class="card card-outline">
                         <div class="card-header">
+<<<<<<< HEAD
+                           <div>
+                           <div class="button-box-container">
+                           <h3 style="padding-top:20px;" class="card-title">
+=======
                            <h3 class="card-title">
+>>>>>>> master
                               <i class="far fa-chart-bar"></i> 영화 랭킹 TOP5 (시청완료 기준)
                            </h3>
-                           <br><br>
-                           <div style="width:fit-to-content" class="button-box-container">
-                                 <div class="button-box">
-                             <div class="sendData-box">
+                             <div class="button-box" style="vertical-align: top; margin-top: 1vh;">
+                             <div style="float: right; width:fit-to-content; item-align: top;" class="sendData-box">
                               <select style="width:8vw;" id="rankingYear" name="yearList"
                                  class="form-control select2bs4 yearList rankingDate"
                                  data-placeholder="년">
                               </select>
-                              <select style="width:7vw;" id="rankingMonth" name="monthList"
+                              <select style="width:7vw; float:right; margin-bottom: 20px;" id="rankingMonth" name="monthList"
                                  class="form-control select2bs4 monthList rankingDate"
                                  data-placeholder="월">
                               </select>
                            </div>
                         </div>
+                           <br><br>
+                           </div>
+                        </div>
+                        <div>
+                            <input style="float:left; margin-left:25vw;" class="saveaspdf" id="save-pdf-movieRanking" type="button" value="Save as PDF" disabled />
+                           <input  style="float:right;" class="saveaspdf" id="save-pdf-genreRanking" type="button" value="Save as PDF" disabled />
                         </div>
                         </div>
                         <div class="row">
                            <div class="col-lg-6" id="movie-ranking-chart"
-                              style="width: 100%; height: auto;"></div>
+                              style="width: 100%; height: auto;">
+                           </div>
                            <div class="col-lg-6" id="genre-ranking-chart"
-                              style="width: 100%; height: auto;"></div>
+                              style="width: 100%; height: auto;">
+                        	</div>
                         </div>
                         <!-- /.card-body-->
                      </div>
@@ -282,6 +310,7 @@
                            <h3 class="card-title">
                               <i class="far fa-chart-bar"></i> 컨텐츠 장르별 분포
                            </h3>
+                           <div><input class="saveaspdf" id="save-pdf-genre" type="button" value="Save as PDF" disabled /></div>
                            <br><br>
                         </div>
                         <div class="card-body">
@@ -386,6 +415,7 @@
 					rankingYear = $('#rankingYear option:selected').val();
 					rankingMonth = $('#rankingMonth option:selected').val();
 					rankingSelect = 'year';
+					
 				});
 
 		// Google chart
@@ -397,7 +427,6 @@
 		google.charts.setOnLoadCallback(drawMovieRankingChart);
 		google.charts.setOnLoadCallback(drawGenreRankingChart);
 		google.charts.setOnLoadCallback(drawGenreCountChart);
-
 
 		$('.dateList').change(function() {
 			switch ($(this).prop('id')) {
@@ -477,7 +506,7 @@
 				'yearList' : yearList
 			};
 			var response = requestSalesData(sendData);
-
+			
 			var chart;
 			var data = new google.visualization.DataTable();
 			var options = {
@@ -528,10 +557,20 @@
 					},
 				}
 			};
-
 			if (salesButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("sales-chart"));
+				//save as pdf
+				 var btnSave = document.getElementById('save-pdf-sales');
+				  google.visualization.events.addListener(chart, 'ready', function () {
+					    btnSave.disabled = false;
+					  });
+
+					  btnSave.addEventListener('click', function () {
+					    var doc = new jsPDF();
+					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.save('sales-chart.pdf');
+					  }, false);
 
 				options.legend = "none";
 
@@ -685,6 +724,17 @@
 			if (subscriberButton == 'year') { //1개 이상 년의 전체 구독자 컬럼차트
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("subscriber-chart"));
+				//save as pdf
+				 var btnSave = document.getElementById('save-pdf-subscriber');
+				  google.visualization.events.addListener(chart, 'ready', function () {
+					    btnSave.disabled = false;
+					  });
+
+					  btnSave.addEventListener('click', function () {
+					    var doc = new jsPDF();
+					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.save('subscriber-chart.pdf');
+					  }, false);
 				options.legend = "none";
 
 				data.addColumn('string', '년');
@@ -707,6 +757,18 @@
 			} else { //1개년의 이용권별 구독자 파이차트
 				chart = new google.visualization.PieChart(document
 						.getElementById("subscriber-chart"));
+				//save as pdf
+				 var btnSave = document.getElementById('save-pdf-subscriber');
+				 google.visualization.events.addListener(chart, 'ready', function () {
+					    btnSave.disabled = false;
+					  });
+
+					  btnSave.addEventListener('click', function () {
+					    var doc = new jsPDF();
+					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.save('subscriber-chart.pdf');
+					  }, false);
+				
 				var options = {
 					slices : {
 						0 : {
@@ -756,7 +818,7 @@
 						showColorCode : true
 					},
 				};
-
+				
 				data.addColumn('string', '');
 				data.addColumn('number', '명');
 
@@ -882,7 +944,17 @@
 			if (genderButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("gender-chart"));
+				  var btnSave = document.getElementById('save-pdf-gender');
 
+				  google.visualization.events.addListener(chart, 'ready', function () {
+				    btnSave.disabled = false;
+				  });
+
+				  btnSave.addEventListener('click', function () {
+				    var doc = new jsPDF();
+				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.save('genderchart.pdf');
+				  }, false);
 
 				data.addColumn('string', '성별');
 				data.addColumn('number', '여성');
@@ -933,7 +1005,17 @@
 			} else {
 				chart = new google.visualization.LineChart(document
 						.getElementById("gender-chart"));
+				  var btnSave = document.getElementById('save-pdf-gender');
 
+				  google.visualization.events.addListener(chart, 'ready', function () {
+				    btnSave.disabled = false;
+				  });
+
+				  btnSave.addEventListener('click', function () {
+				    var doc = new jsPDF();
+				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.save('genderchart.pdf');
+				  }, false);
 
 				data.addColumn('string', '월');
 				data.addColumn('number', "여성");
@@ -1073,6 +1155,18 @@
 			if (memberAgeButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("member-age-chart"));
+				
+				  var btnSave = document.getElementById('save-pdf-age');
+
+				  google.visualization.events.addListener(chart, 'ready', function () {
+				    btnSave.disabled = false;
+				  });
+
+				  btnSave.addEventListener('click', function () {
+				    var doc = new jsPDF();
+				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.save('agechart.pdf');
+				  }, false);
 
 				data.addColumn('string', "년")
 				data.addColumn('number', '10대');
@@ -1217,6 +1311,18 @@
 				} */
 				chart = new google.visualization.LineChart(document
 						.getElementById("member-age-chart"));
+				
+				  var btnSave = document.getElementById('save-pdf-age');
+
+				  google.visualization.events.addListener(chart, 'ready', function () {
+				    btnSave.disabled = false;
+				  });
+
+				  btnSave.addEventListener('click', function () {
+				    var doc = new jsPDF();
+				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.save('agechart.pdf');
+				  }, false);
 
 				data.addColumn('string', '월');
 				data.addColumn('number', '10대');
@@ -1336,6 +1442,19 @@
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
 					.getElementById("movie-ranking-chart"));
+			
+			  var btnSave = document.getElementById('save-pdf-movieRanking');
+
+			  google.visualization.events.addListener(chart, 'ready', function () {
+			    btnSave.disabled = false;
+			  });
+
+			  btnSave.addEventListener('click', function () {
+			    var doc = new jsPDF();
+			    doc.addImage(chart.getImageURI(), 0, 0);
+			    doc.save('movieRankingchart.pdf');
+			  }, false);
+			
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -1422,6 +1541,18 @@
 			var view = new google.visualization.DataView(data);
 			chart = new google.visualization.BarChart(document
 					.getElementById("genre-ranking-chart"));
+			
+			  var btnSave = document.getElementById('save-pdf-genreRanking');
+
+			  google.visualization.events.addListener(chart, 'ready', function () {
+			    btnSave.disabled = false;
+			  });
+
+			  btnSave.addEventListener('click', function () {
+			    var doc = new jsPDF();
+			    doc.addImage(chart.getImageURI(), 0, 0);
+			    doc.save('genreRankingchart.pdf');
+			  }, false);
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
@@ -1454,7 +1585,7 @@
 				pointSize : 3,
 			    seriesType: 'bars',
 				height : 500,
-				width : '100%',
+				width : '80%',
 				bars : 'vertical',
 				bar : {
 					groupWidth : "57.8%"
@@ -1483,12 +1614,26 @@
 
 			var chart = new google.visualization.ColumnChart(document
 					.getElementById("genre-count-chart"));
+			
+			  var btnSave = document.getElementById('save-pdf-genre');
+
+			  google.visualization.events.addListener(chart, 'ready', function () {
+			    btnSave.disabled = false;
+			  });
+
+			  btnSave.addEventListener('click', function () {
+			    var doc = new jsPDF('l', 'mm', [824, 520]);
+			    doc.addImage(chart.getImageURI(), 0, 0);
+			    doc.save('contentchart.pdf');
+			  }, false);
 			chart.draw(view, options);
 			window.addEventListener('resize', function() {
 				chart.draw(data, options);
 			}, false);
 		}
 	</script>
+	<script type = "text/javascript" src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 </body>
 <style>
 .btn-info:disabled {

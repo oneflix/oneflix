@@ -181,7 +181,7 @@
 								</div>
 								
 								<div class="form-group mb-3">
-									<label for="movieSubtitle">부연 설명</label>
+									<label for="movieSubtitle">소제목</label>
 										<input type="text" class="form-control" id="movieSubtitle" name="movieSubtitle"
 											value="${movie.movieSubtitle}">
 								</div>
@@ -260,6 +260,16 @@
 			}
 		});
 		
+		$('#movieStatus').change(function(){
+			if ($('#movieStatus').val() == "Y") {
+				$('#mainCheck').prop("disabled", false);
+			} else {
+				$('#mainCheck').val("N");
+				$('#mainCheck').prop("disabled", true);
+				$('#movieSubtitle').prop("disabled", true);
+			}
+		});
+		
 		$('#mainCheck').change(function(){
 			if ($('#mainCheck').val() == "Y") {
 				$('#movieSubtitle').prop("disabled", "");
@@ -270,7 +280,8 @@
 
 		//submit 하기 전에 전처리
 		function preProc() {
-			//disalbed 안 풀어주면 값 안 넘어감			
+			//disalbed 안 풀어주면 값 안 넘어감
+			$('#mainCheck').prop('disabled', false)
 			$("#actorList option").prop("disabled", "");
 			$("#genreList option").prop("disabled", "");
 
