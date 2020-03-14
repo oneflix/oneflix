@@ -34,6 +34,7 @@
     	#body, .header-slider {animation: slide-up 0.8s ease;}
     	.main-slider .swiper-button-prev {display: none;}
     	.swiper-button-next, .swiper-button-prev {opacity: 0; transition: opacity 0.5s ease-in-out;}
+    	.watching-slider .swiper-button-disabled {display: none;}
     	.swiper-container:hover .swiper-button-next,
     	.swiper-container:hover .swiper-button-prev {opacity: 1;}
     	.main-slider:hover .swiper-button-next,
@@ -338,7 +339,7 @@
                 <!-- 다음 슬라이드 -->
                 <div class="row">
                     <span class="category">${member.nick}님을 위한 추천 작품</span>
-                    <span class="more" onclick="location.href='/getMovieListProc.do?searchOrder=recommend'">더보기 <i class="fas fa-angle-right"></i></span>
+                    <span class="more" onclick="location.href='/getMovieListProc.do?movieType=recommend'">더보기 <i class="fas fa-angle-right"></i></span>
                 </div>
                 <div class="main-slider recommend-slider">
                     <div id="recommend-slider-container" class="swiper-container">
@@ -442,41 +443,41 @@
                     <span class="category">이어보기</span>
                     <span class="more" onclick="location.href='/getMovieListProc.do?movieType=watching'">더보기 <i class="fas fa-angle-right"></i></span>
                 </div>
-                <div class="main-slider recent-slider">
-                    <div id="recent-slider-container" class="swiper-container">
+                <div class="main-slider watching-slider">
+                    <div id="watching-slider-container" class="swiper-container">
                         <div class="swiper-wrapper">
-                           <c:forEach var="newMovie" items="${newMovieList }">
+                           <c:forEach var="watchingMovie" items="${watchingMovieList }">
                             <div class="swiper-slide">
                             	<div class="movie-box movie-card">
-	                                <img src="${newMovie.posterPath }">
+	                                <img src="${watchingMovie.posterPath }">
 									<div class="row">
-		                                <p>${newMovie.movieTitle }</p>
+		                                <p>${watchingMovie.movieTitle }</p>
 	                                </div>
                             	</div>
                                 <div class="hidden-card movie-card">
-                                	<img src="${newMovie.posterPath}">
+                                	<img src="${watchingMovie.posterPath}">
                                 	<div class="movie-mini-box">
-		                            	<button class="play-button" onclick="goWatchMovie('${newMovie.movieId}')">
+		                            	<button class="play-button" onclick="goWatchMovie('${watchingMovie.movieId}')">
 	                            			<img class="play-button-img" src="client/images/icons/play.png"/>
 	                            			<div class="info-box">
-		                            			<p>${newMovie.movieTitle}</p>
+		                            			<p>${watchingMovie.movieTitle}</p>
 		                            			<p>
 			                            			<c:choose>
-				                            			<c:when test="${newMovie.rating eq 'all'}">
+				                            			<c:when test="${watchingMovie.rating eq 'all'}">
 				                            				전체
 				                            			</c:when>
-			                            				<c:when test="${newMovie.rating eq '19'}">
+			                            				<c:when test="${watchingMovie.rating eq '19'}">
 			                            					청불
 			                            				</c:when>
 			                            				<c:otherwise>
-			                            					${newMovie.rating}세	
+			                            					${watchingMovie.rating}세	
 			                            				</c:otherwise>
 			                            			</c:choose>
-			                            			 · ${newMovie.duration}분
+			                            			 · ${watchingMovie.duration}분
 		                            			 </p>
 	                            			</div>
 	                            		</button>
-	                            		<button class="info-button" onclick="goMovieDetail('${newMovie.movieId}')">
+	                            		<button class="info-button" onclick="goMovieDetail('${watchingMovie.movieId}')">
 	                            			<img class="info-button-img" src="client/images/icons/info.png"/>
 	                            		</button>
                                 	</div>
@@ -485,8 +486,8 @@
                         </c:forEach>
                         </div>
                     </div>
-                    <div id="recent-button-next" class="swiper-button-next"></div>
-                    <div id="recent-button-prev" class="swiper-button-prev"></div>
+                    <div id="watching-button-next" class="swiper-button-next"></div>
+                    <div id="watching-button-prev" class="swiper-button-prev"></div>
                 </div>
             </section>
         </div>
@@ -524,6 +525,12 @@
     
 		$('.swiper-button-next').click(function(){
 			$(this).next().css("display", "block");
+		});
+		
+		$('#watching-button-prev').mouseleave(function(){
+			if ($(this).hasClass('swiper-button-disabled')) {
+				$(this).css('display', 'none');
+			}
 		});
 		
 		$('.play-button').mouseenter(function(){

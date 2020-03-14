@@ -42,7 +42,9 @@
 <link rel="stylesheet" type="text/css" href="client/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="client/css/login.css">
 <!--===============================================================================================-->
-
+<style>
+	input::placeholder {color: #d1d1d5; font-weight: 500;}
+</style>
 </head>
 
 <body>
@@ -74,7 +76,7 @@
      class="oneflix-input e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
      </div>
      <div class="css-unatsl-Self eu52ful0">
-     <input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
+     <input id="pass" name="pass" placeholder="비밀번호 (8자 이상)" 
      class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      </div>
 <div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
@@ -169,13 +171,13 @@
 	          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	          emailCheck = false;
 	       } else {
-	          re = /^[a-zA-Z0-9]{4,12}$/;
+	    	  re = /^[a-zA-Z0-9]{8,25}$/;
 	          passCheck = false;
 	       }
 	       if (target.length != 0) {
-	          $(this).parent('div').attr('class','css-1q1k87-Self');
-	          if (re.test(target) == true) {
-	             $(this).parent('div').attr('class','css-n7c9r1-Self');
+	          $(this).parent('div').prop('class','css-1q1k87-Self');
+	          if (re.test(target)) {
+	             $(this).parent('div').prop('class','css-n7c9r1-Self');
 	             
 	             if ($(this).prop('id') == 'email') {
 	                emailCheck = true;
@@ -183,7 +185,10 @@
 	                passCheck = true;
 	             }
 	          }
+	       } else {
+	    	   $(this).parent('div').prop('class', '');
 	       }
+	       
 	         if(emailCheck == true && passCheck == true){
 	           $("#loginBtn").prop('disabled', false);
 	        } else {
@@ -253,7 +258,7 @@
    form.submit();
    };
  */
-   </script> -->
+   </script>
 
 </body>
 

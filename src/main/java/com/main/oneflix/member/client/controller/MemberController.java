@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.main.oneflix.inquiry.service.GetInquiryListService;
-import com.main.oneflix.inquiry.service.InsertInquiryService;
 import com.main.oneflix.inquiry.vo.InquiryVO;
 import com.main.oneflix.member.service.DeleteMemberService;
 import com.main.oneflix.member.service.GetMemberService;
@@ -22,31 +20,33 @@ import com.main.oneflix.member.service.UpdateMemberService;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.screen.service.GetScreenListService;
 import com.main.oneflix.screen.vo.ScreenVO;
+import com.main.oneflix.term.service.GetTermListService;
+import com.main.oneflix.term.vo.TermVO;
 import com.main.oneflix.util.email.service.EmailService;
 
 @Controller
 public class MemberController {
 	@Autowired
-	InsertMemberService insertMemberService;
+	private InsertMemberService insertMemberService;
 	@Autowired
-	GetMemberService getMemberService;
+	private GetTermListService getTermListService;
 	@Autowired
-	UpdateMemberService updateMemberService;
+	private GetMemberService getMemberService;
 	@Autowired
-	DeleteMemberService deleteMemberService;
+	private UpdateMemberService updateMemberService;
 	@Autowired
-	InsertInquiryService insertInquiryService;
+	private DeleteMemberService deleteMemberService;
 	@Autowired
-	GetInquiryListService getInquiryListService;
-	@Autowired
-	EmailService emailService;
+	private EmailService emailService;
 	@Autowired
 	private GetScreenListService getScreenListService;
 
 	@RequestMapping("/join.do")
 	public ModelAndView join(MemberVO vo,ModelAndView mav) {
+		List<TermVO> termList = getTermListService.getTermList(new TermVO());
 		vo.setKakao(vo.getKakao());
 		vo.setNaver(vo.getNaver());
+		mav.addObject("termList", termList);
 		mav.addObject("member", vo);
 		mav.setViewName("join");
 		return mav;
@@ -71,12 +71,13 @@ public class MemberController {
 		mav.setViewName("login");
 		return mav;
 	}
+	
 	@RequestMapping("/getMemberProc.do")
 	public ModelAndView getMemberProc(ModelAndView mav) {
-		
 		mav.setViewName("updateMember");
 		return mav;
 	}
+	
 	@RequestMapping("/certMailProcAjax.do")
 	@ResponseBody
 	public String certMail(MemberVO vo) {

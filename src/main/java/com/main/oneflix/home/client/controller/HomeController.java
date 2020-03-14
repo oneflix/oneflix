@@ -59,6 +59,8 @@ public class HomeController {
 		// 값 셋팅하기
 		vo.setMovieType("main");		
 		List<MovieVO> mainMovieList = getMovieListService.getMovieList(vo);
+		vo.setMovieType("watching");
+		List<MovieVO> watchingMovieList = getMovieListService.getMovieList(vo);
 		vo.setMovieType("new");		
 		List<MovieVO> newMovieList = getMovieListService.getMovieList(vo);
 		vo.setMovieType("popular");
@@ -70,6 +72,7 @@ public class HomeController {
 		List<MovieVO> recommendMovieList = getRecommendMovieListService.getRecommendMovieList(vo, genreList);
 		
 		mav.addObject("mainMovieList", mainMovieList);
+		mav.addObject("watchingMovieList", watchingMovieList);
 		mav.addObject("newMovieList", newMovieList);
 		mav.addObject("popularMovieList", popularMovieList);
 		mav.addObject("recommendMovieList", recommendMovieList);
