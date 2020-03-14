@@ -34,8 +34,8 @@ public class OracleWatchDAO implements WatchDAO {
 	}
 
 	@Override
-	public Integer getWatchViewPoint(WatchVO vo) {
-		return sqlSessionTemplate.selectOne("WatchDAO.getWatchViewPoint", vo);
+	public WatchVO getWatch(WatchVO vo) {
+		return sqlSessionTemplate.selectOne("WatchDAO.getWatch", vo);
 	}
 	
 }

@@ -139,7 +139,6 @@
  	<select id="expiryCheck" resultMap="expiryEmailList">
 		SELECT email FROM sales
 		WHERE sales_status != 'expired'
-
 			<![CDATA[
 				AND expiry_date >= TRUNC(SYSDATE - 1)
 			]]>
@@ -159,7 +158,7 @@
 		WHERE s.email = #{email} AND m.ticket_id != 0 AND s.email = m.email
 			AND (s.sales_status = 'inactive' OR s.sales_status = 'success')
 			<![CDATA[
-				AND m.join_date < s.payment_date AND s.payment_date > SYSDATE - 7 
+				AND s.payment_date > m.join_date AND s.payment_date > SYSDATE - 7 
 			]]>
 			AND w.watch_date BETWEEN s.payment_date AND s.payment_date + 7
 	</select>

@@ -76,7 +76,7 @@
      class="oneflix-input e19dfl4j0 css-1og2nh1-StyledField-EmailField eu52ful1" autocomplete="off" type="email" value="">
      </div>
      <div class="css-unatsl-Self eu52ful0">
-     <input id="pass" name="pass" placeholder="비밀번호 (8자 이상)" 
+     <input id="pass" name="pass" placeholder="비밀번호 (4자 이상)" 
      class="oneflix-input e19dfl4j2 css-1727o8c-StyledField-PasswordField eu52ful1" autocomplete="off" type="password" value="">
      </div>
 <div class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
@@ -171,7 +171,7 @@
 	          re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	          emailCheck = false;
 	       } else {
-	    	  re = /^[a-zA-Z0-9]{8,25}$/;
+	    	  re = /^[a-zA-Z0-9]{4,12}$/;
 	          passCheck = false;
 	       }
 	       if (target.length != 0) {

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.main.oneflix.member.vo.MemberVO;
 import com.main.oneflix.movie.service.IncreaseViewCountService;
 import com.main.oneflix.movie.vo.MovieVO;
-import com.main.oneflix.watch.service.GetWatchViewPointService;
+import com.main.oneflix.watch.service.GetWatchService;
 import com.main.oneflix.watch.service.InsertWatchService;
 import com.main.oneflix.watch.service.UpdateWatchService;
 import com.main.oneflix.watch.vo.WatchVO;
@@ -27,7 +27,7 @@ public class WatchController {
 	@Autowired
 	private UpdateWatchService updateWatchService;
 	@Autowired
-	private GetWatchViewPointService getWatchViewPointService;
+	private GetWatchService getWatchService;
 
 	@RequestMapping("/moviePlay.do")
 
@@ -39,13 +39,16 @@ public class WatchController {
 		vo.setEmail(member.getEmail());
 		vo.setMovieId(movie.getMovieId());
 		
-		Integer viewPoint = getWatchViewPointService.getWatchViewPoint(vo);
-		if(viewPoint == null) {
-			viewPoint = 0;
+		vo = getWatchService.getWatch(vo);
+		if(vo == null || vo.getWatchType().equals("watched")) {
+			if (vo == null) {
+				vo = new WatchVO();
+			}
+			vo.setViewPoint(0);
 		}
 		
 		increaseViewCountService.increaseViewCount(movie);
-		vo.setViewPoint(viewPoint);
+		mav.addObject("watch", vo);
 		mav.addObject("movie", movie);
 		mav.setViewName("moviePlay");
 		return mav;
@@ -55,14 +58,12 @@ public class WatchController {
 	@RequestMapping("/insertWatchAjax.do")
 	@ResponseBody
 	public void insertWatch(WatchVO vo) {
-		System.out.println("insert 실행");
 		insertWatchService.insertWatch(vo);
 	}
 	
 	@RequestMapping("/updateWatchAjax.do")
 	@ResponseBody
 	public void updateWatch(WatchVO vo) {
-		System.out.println("update 실행");
 		updateWatchService.updateWatch(vo);
 	}
 }

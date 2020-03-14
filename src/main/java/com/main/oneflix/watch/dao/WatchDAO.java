@@ -7,5 +7,5 @@ public interface WatchDAO {
 	void updateWatch(WatchVO vo);
 	int getCountWatchGenre(WatchVO vo);
 	int getCountWatch(WatchVO vo);
-	Integer getWatchViewPoint(WatchVO vo);
+	WatchVO getWatch(WatchVO vo);
 }

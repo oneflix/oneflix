@@ -154,8 +154,8 @@
 		}
 
 		function validate() {
-			var re = /^[a-zA-Z0-9]{8,25}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
-			var nickRe = /^[a-zA-Z0-9가-힣]{3,6}$/
+			var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
+			var nickRe = /^[a-zA-Z0-9가-힣]{2,6}$/
 			var newNick = document.getElementById("newNick");
 			var passConfirm = document.getElementById("passConfirm");
 			var pass = document.getElementById("pass");
@@ -166,7 +166,7 @@
 
 			//닉네임 변경할때
 			if (newNick.value != "" && newNick.value != null) {
-				if (!check(nickRe, newNick, "닉네임은 3~6자의 한글,영문 대소문자 숫자만 입력해주세요.")) {
+				if (!check(nickRe, newNick, "닉네임은 2~6자의 한글,영문 대소문자,숫자만 입력해주세요.")) {
 					return false;
 				}
 				if (passConfirm.value != "${member.pass}") {
@@ -180,7 +180,7 @@
 			//비밀번호 변경할때
 			if (newPass.value != "" && newPass.value != null) {
 				if (!check(re, newPass,
-						"변경할 비밀번호는 8~25자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+						"변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
 					return false;
 				} else if (pass.value != "${member.pass}") {
 					alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")

@@ -5,16 +5,18 @@
 <mapper namespace="WatchDAO">
 	
 	<insert id="insertWatch" parameterType="watch">
-		INSERT INTO watch
+		INSERT INTO watch(watch_id, watch_type, email, movie_id, watch_date, view_point)
 		VALUES((SELECT NVL(MAX(watch_id),0)+1 FROM watch), #{watchType}, #{email}, #{movieId}, SYSDATE, #{viewPoint})
 	</insert>
 	
 	<update id="updateWatch" parameterType="watch">
-		UPDATE watch SET viewpoint=${viewPoint}, watch_date=SYSDATE WHERE watch_type='${watchType}' AND email='${email}' AND movie_id='${movieId}'
+		UPDATE watch SET 
+		view_point = #{viewPoint}, watch_type = #{watchType}, watch_date = SYSDATE 
+		WHERE watch_id = #{watchId}
 	</update>
 	
-	<select id="getWatchViewPoint" parameterType="watch" resultType="int">
-		SELECT viewPoint FROM watch WHERE watch_type='watching' AND email='${email}' AND movie_id='${movieId}'
+	<select id="getWatch" parameterType="watch" resultType="watch">
+		SELECT * FROM watch WHERE email = #{email} AND movie_id = #{movieId}
 	</select>
 	<select id="getCountWatchGenre" parameterType="watch" resultType="int">
 		SELECT NVL(COUNT(*),0) 
@@ -30,6 +32,6 @@
 	<select id="getCountWatch" parameterType="watch"
 		resultType="int">
 		SELECT COUNT(*) FROM watch
-		WHERE watch_type='watched' and email='${email}'
+		WHERE watch_type = 'watched' and email = #{email}
 	</select>
 </mapper>

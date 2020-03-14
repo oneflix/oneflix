@@ -4,46 +4,58 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width">
+<title>원플릭스</title>
+<link rel="shortcut icon" type="image/x-icon" href="client/images/icons/favicon.ico">
 <style>
 body {
 	background-color: rgb(0, 0, 0);
 }
 
 video {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
-	max-height: 100%;
-	max-width: 100%;
-	margin: auto;
+	position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;
+	height: 100%; width: 100%; margin: auto; outline: none; border: 0;
 }
+video:focus {outline: none;}
 </style>
 </head>
-<body>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
 	<video controls autoplay controlsList="nodownload" name="media"
-		id="testVideo">
+		id="fullVideo">
 		<source src="${movie.fullVideoPath}" type="video/mp4">
 	</video>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
-		var vid = document.getElementById("testVideo");
-		var checkTime = '${watch.viewPoint}';
-
-		vid.onloadedmetadata = function() {
-			var min = parseInt(vid.duration / 60);
-			var seconds = Math.floor(vid.duration % 60);
-			vid.currentTime = checkTime;
-		};
+		var vid;
+		var checkTime;
+		var watchType;
+		var email;
+		var movieId;
+		var sendData = new Object;
 		
-		vid.addEventListener("play", startInterval, false);
-		vid.addEventListener("pause", stopInterval, false);
+		$(document).ready(function(){
+			vid = document.getElementById("fullVideo");
+			checkTime = "${watch.viewPoint}";
+			watchType = "${watch.watchType}";
+			if (watchType == '' || watchType == null) {
+				watchType = 'watching';
+				email = "${member.email}";
+				movieId = "${movie.movieId}";
+			}
+	
+			vid.onloadedmetadata = function() {
+				var min = parseInt(vid.duration / 60);
+				var seconds = Math.floor(vid.duration % 60);
+				vid.currentTime = checkTime;
+			};
+			
+			vid.addEventListener("play", startInterval, false);
+			vid.addEventListener("pause", stopInterval, false);
+		});
 
 		var myInterval;
 		function startInterval(){
-			myInterval = setInterval(inputWatchData, 1000 * 60 * 5);
+			myInterval = setInterval(inputWatchData(), 1000 * 60 * 5);
 		}
 		
 		function stopInterval(){
@@ -51,30 +63,32 @@ video {
 		}
 		
 		function inputWatchData() {
-			var watchType = "watching";
-			var email = "${member.email}";
-			var movieId = "${movie.movieId}";
+			
 			var viewPoint = parseInt(vid.currentTime);
 			var watchedTime = parseInt(vid.duration) - 300;
-			var sendData = {
-				"watchType" : watchType,
-				"email" : email,
-				"movieId" : movieId,
-				"viewPoint" : viewPoint
-			};
 			var requestUrl;
-			if (checkTime == 0) {
-				requestUrl = "/insertWatchAjax.do";
-			} else {
-				requestUrl = "/updateWatchAjax.do";
-			}
-
+			
 			// 5분 이상 시청
 			if (viewPoint >= 300) {
+				
+				if (checkTime == 0 && watchType == 'watching') {
+					sendData.email = email;
+					sendData.movieId = movieId;
+					requestUrl = "/insertWatchAjax.do";
+				} else {
+					sendData.watchId = "${watch.watchId}";
+					requestUrl = "/updateWatchAjax.do";
+				}
+				sendData.viewPoint = viewPoint;
+				
 				// 남은 시간이 5분 미만이면
 				if (viewPoint > watchedTime) {
 					watchType = "watched";
+				} else {
+					watchType = "watching";
 				}
+				sendData.watchType = watchType;
+				
 				$.ajax({
 					url : requestUrl,
 					type : 'POST',
