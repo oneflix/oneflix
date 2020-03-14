@@ -83,7 +83,18 @@
 	cursor: pointer;
 	margin-top: .3em;
 	margin-right: 0px;
-	font-size: 14px;
+	font-size: 12px;
+}
+.csv-button{
+	float:right;
+	color: #343a40;
+	border: 1px solid #bdc6d0;
+	border-radius: .2rem;
+	padding: 1px 5px 1px;
+	cursor: pointer;
+	margin-top: .3em;
+	margin-right: 0px;
+	font-size: 12px;
 }
 </style>
 </head>
@@ -123,6 +134,7 @@
                               <i class="far fa-chart-bar"></i> 매출
                            </h3>
 							<div><input class="saveaspdf" id="save-pdf-sales" type="button" value="Save as PDF" disabled /></div>
+                            <div><input class="csv-button" id="csv-sales" type="button" value="Save as CSV"/></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="salesDate" name="dateList"
@@ -157,6 +169,7 @@
                               <i class="far fa-chart-bar"></i> 상품 이용자 수
                            </h3>
                            <div><input class="saveaspdf" id="save-pdf-subscriber" type="button" value="Save as PDF" disabled /></div>
+                           <div><input class="csv-button" id="csv-subscriber" type="button" value="Save as CSV"/></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="subscriberDate" name="dateList"
@@ -191,6 +204,7 @@
                               <i class="far fa-chart-bar"></i> 성별 회원 분포
                            </h3>
                            <div><input class="saveaspdf" id="save-pdf-gender" type="button" value="Save as PDF" disabled /></div>
+                           <div><input class="csv-button" id="csv-memberGender" type="button" value="Save as CSV"/></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="genderDate" name="dateList"
@@ -224,6 +238,7 @@
                               <i class="far fa-chart-bar"></i> 연령별 회원 분포
                            </h3>
                            <div><input class="saveaspdf" id="save-pdf-age" type="button" value="Save as PDF" disabled /></div>
+                           <div><input class="csv-button" id="csv-memberAge" type="button" value="Save as CSV"/></div>
                            <br><br>
                            <div class="sendData-box">
                               <select id="memberAgeDate" name="dateList"
@@ -275,8 +290,10 @@
                            </div>
                         </div>
                         <div>
-                            <input style="float:left; margin-left:25vw;" class="saveaspdf" id="save-pdf-movieRanking" type="button" value="Save as PDF" disabled />
+                           <div><input style="float:left; margin-left:20vw;" class="csv-button" id="csv-movieRanking" type="button" value="Save as CSV"/></div>
+                            <input style="float:left;" class="saveaspdf" id="save-pdf-movieRanking" type="button" value="Save as PDF" disabled />
                            <input  style="float:right;" class="saveaspdf" id="save-pdf-genreRanking" type="button" value="Save as PDF" disabled />
+                           <div><input  style="float:right;" class="csv-button" id="csv-genreRanking" type="button" value="Save as CSV"/></div>
                         </div>
                         </div>
                         <div class="row">
@@ -307,7 +324,9 @@
                               <i class="far fa-chart-bar"></i> 컨텐츠 장르별 분포
                            </h3>
                            <div><input class="saveaspdf" id="save-pdf-genre" type="button" value="Save as PDF" disabled /></div>
+                           <div><input class="csv-button" id="csv-genre" type="button" value="Save as CSV"/></div>
                            <br><br>
+                             
                         </div>
                         <div class="card-body">
                            <div id="genre-count-chart" style="width: 100%;"></div>
@@ -557,6 +576,52 @@
 			if (salesButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("sales-chart"));
+				
+				 $('#csv-sales').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'salesChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
 				//save as pdf
 				 var btnSave = document.getElementById('save-pdf-sales');
 				  google.visualization.events.addListener(chart, 'ready', function () {
@@ -592,6 +657,63 @@
 			} else {
 				chart = new google.visualization.LineChart(document
 						.getElementById("sales-chart"));
+				
+				 $('#csv-sales').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'salesChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
+				//save as pdf
+				 var btnSave = document.getElementById('save-pdf-sales');
+				  google.visualization.events.addListener(chart, 'ready', function () {
+					    btnSave.disabled = false;
+					  });
+
+					  btnSave.addEventListener('click', function () {
+					    var doc = new jsPDF();
+					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.save('sales-chart.pdf');
+					  }, false);
 
 				data.addColumn('string', '월');
 				for (var i = 0; i < yearList.length; i++) {
@@ -721,6 +843,52 @@
 			if (subscriberButton == 'year') { //1개 이상 년의 전체 구독자 컬럼차트
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("subscriber-chart"));
+			
+				 $('#csv-subscriber').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'subscriberChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
 				//save as pdf
 				 var btnSave = document.getElementById('save-pdf-subscriber');
 				  google.visualization.events.addListener(chart, 'ready', function () {
@@ -754,6 +922,53 @@
 			} else { //1개년의 이용권별 구독자 파이차트
 				chart = new google.visualization.PieChart(document
 						.getElementById("subscriber-chart"));
+			
+				 $('#csv-subscriber').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'subscriberChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
+					  
 				//save as pdf
 				 var btnSave = document.getElementById('save-pdf-subscriber');
 				 google.visualization.events.addListener(chart, 'ready', function () {
@@ -941,6 +1156,53 @@
 			if (genderButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("gender-chart"));
+				
+				 $('#csv-memberGender').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'memberGenderChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
+					  
 				  var btnSave = document.getElementById('save-pdf-gender');
 				  google.visualization.events.addListener(chart, 'ready', function () {
 				    btnSave.disabled = false;
@@ -1001,6 +1263,52 @@
 			} else {
 				chart = new google.visualization.LineChart(document
 						.getElementById("gender-chart"));
+				
+				 $('csv-memberGender').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'memberGenderChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
 				  var btnSave = document.getElementById('save-pdf-gender');
 
 				  google.visualization.events.addListener(chart, 'ready', function () {
@@ -1151,6 +1459,52 @@
 			if (memberAgeButton == 'year') {
 				chart = new google.visualization.ColumnChart(document
 						.getElementById("member-age-chart"));
+				
+				 $('#csv-memberAge').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'memberAgeChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
 				
 				  var btnSave = document.getElementById('save-pdf-age');
 
@@ -1308,6 +1662,52 @@
 				chart = new google.visualization.LineChart(document
 						.getElementById("member-age-chart"));
 				
+				 $('#csv-memberAge').on('click', function () {
+					    var browserIsIE;
+					    var csvColumns;
+					    var csvContent;
+					    var downloadLink;
+					    var fileName;
+
+					    // build column headings
+					    csvColumns = '';
+					    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+					      csvColumns += data.getColumnLabel(i);
+					      if (i < (data.getNumberOfColumns() - 1)) {
+					        csvColumns += ',';
+					      }
+					    }
+					    csvColumns += '\n';
+
+					    // build data rows
+					    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+					    // download file
+					    browserIsIE = false || !!document.documentMode;
+					    fileName = 'memberAgeChart.csv';
+					    if (browserIsIE) {
+					      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+					    } else {
+					      downloadLink = document.createElement('a');
+					      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+					      downloadLink.download = fileName;
+					      raiseEvent(downloadLink, 'click');
+					      downloadLink = null;
+					    }
+					  });
+
+					  function raiseEvent(element, eventType) {
+					    var eventRaised;
+					    if (document.createEvent) {
+					      eventRaised = document.createEvent('MouseEvents');
+					      eventRaised.initEvent(eventType, true, false);
+					      element.dispatchEvent(eventRaised);
+					    } else if (document.createEventObject) {
+					      eventRaised = document.createEventObject();
+					      element.fireEvent('on' + eventType, eventRaised);
+					    }
+					  }
+				
 				  var btnSave = document.getElementById('save-pdf-age');
 
 				  google.visualization.events.addListener(chart, 'ready', function () {
@@ -1440,6 +1840,51 @@
 					.getElementById("movie-ranking-chart"));
 			
 			  var btnSave = document.getElementById('save-pdf-movieRanking');
+			  $('#csv-movieRanking').on('click', function () {
+				    var browserIsIE;
+				    var csvColumns;
+				    var csvContent;
+				    var downloadLink;
+				    var fileName;
+
+				    // build column headings
+				    csvColumns = '';
+				    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+				      csvColumns += data.getColumnLabel(i);
+				      if (i < (data.getNumberOfColumns() - 1)) {
+				        csvColumns += ',';
+				      }
+				    }
+				    csvColumns += '\n';
+
+				    // build data rows
+				    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+				    // download file
+				    browserIsIE = false || !!document.documentMode;
+				    fileName = 'movieRankingChart.csv';
+				    if (browserIsIE) {
+				      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+				    } else {
+				      downloadLink = document.createElement('a');
+				      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+				      downloadLink.download = fileName;
+				      raiseEvent(downloadLink, 'click');
+				      downloadLink = null;
+				    }
+				  });
+
+				  function raiseEvent(element, eventType) {
+				    var eventRaised;
+				    if (document.createEvent) {
+				      eventRaised = document.createEvent('MouseEvents');
+				      eventRaised.initEvent(eventType, true, false);
+				      element.dispatchEvent(eventRaised);
+				    } else if (document.createEventObject) {
+				      eventRaised = document.createEventObject();
+				      element.fireEvent('on' + eventType, eventRaised);
+				    }
+				  }
 
 			  google.visualization.events.addListener(chart, 'ready', function () {
 			    btnSave.disabled = false;
@@ -1458,7 +1903,6 @@
 		};
 		// genre ranking
 		function drawGenreRankingChart() {
-			drawToolbar();
 			var sendData = {
 				'rankingSelect' : rankingSelect,
 				'rankingYear' : rankingYear,
@@ -1539,6 +1983,52 @@
 			chart = new google.visualization.BarChart(document
 					.getElementById("genre-ranking-chart"));
 			
+			 $('#csv-genreRanking').on('click', function () {
+				    var browserIsIE;
+				    var csvColumns;
+				    var csvContent;
+				    var downloadLink;
+				    var fileName;
+
+				    // build column headings
+				    csvColumns = '';
+				    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+				      csvColumns += data.getColumnLabel(i);
+				      if (i < (data.getNumberOfColumns() - 1)) {
+				        csvColumns += ',';
+				      }
+				    }
+				    csvColumns += '\n';
+
+				    // build data rows
+				    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+				    // download file
+				    browserIsIE = false || !!document.documentMode;
+				    fileName = 'genreRankingChart.csv';
+				    if (browserIsIE) {
+				      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+				    } else {
+				      downloadLink = document.createElement('a');
+				      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+				      downloadLink.download = fileName;
+				      raiseEvent(downloadLink, 'click');
+				      downloadLink = null;
+				    }
+				  });
+
+				  function raiseEvent(element, eventType) {
+				    var eventRaised;
+				    if (document.createEvent) {
+				      eventRaised = document.createEvent('MouseEvents');
+				      eventRaised.initEvent(eventType, true, false);
+				      element.dispatchEvent(eventRaised);
+				    } else if (document.createEventObject) {
+				      eventRaised = document.createEventObject();
+				      element.fireEvent('on' + eventType, eventRaised);
+				    }
+				  }
+			
 			  var btnSave = document.getElementById('save-pdf-genreRanking');
 
 			  google.visualization.events.addListener(chart, 'ready', function () {
@@ -1613,6 +2103,52 @@
 			var chart = new google.visualization.ColumnChart(document
 					.getElementById("genre-count-chart"));
 			
+			 $('#csv-genre').on('click', function () {
+				    var browserIsIE;
+				    var csvColumns;
+				    var csvContent;
+				    var downloadLink;
+				    var fileName;
+
+				    // build column headings
+				    csvColumns = '';
+				    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+				      csvColumns += data.getColumnLabel(i);
+				      if (i < (data.getNumberOfColumns() - 1)) {
+				        csvColumns += ',';
+				      }
+				    }
+				    csvColumns += '\n';
+
+				    // build data rows
+				    csvContent = "\ufeff"+csvColumns + google.visualization.dataTableToCsv(data);
+
+				    // download file
+				    browserIsIE = false || !!document.documentMode;
+				    fileName = 'genreChart.csv';
+				    if (browserIsIE) {
+				      window.navigator.msSaveBlob(new Blob(["\ufeff"+csvContent], {type: 'data:text/csv'}), fileName);
+				    } else {
+				      downloadLink = document.createElement('a');
+				      downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+				      downloadLink.download = fileName;
+				      raiseEvent(downloadLink, 'click');
+				      downloadLink = null;
+				    }
+				  });
+
+				  function raiseEvent(element, eventType) {
+				    var eventRaised;
+				    if (document.createEvent) {
+				      eventRaised = document.createEvent('MouseEvents');
+				      eventRaised.initEvent(eventType, true, false);
+				      element.dispatchEvent(eventRaised);
+				    } else if (document.createEventObject) {
+				      eventRaised = document.createEventObject();
+				      element.fireEvent('on' + eventType, eventRaised);
+				    }
+				  }
+			
 			  var btnSave = document.getElementById('save-pdf-genre');
 
 			  google.visualization.events.addListener(chart, 'ready', function () {
@@ -1630,6 +2166,7 @@
 				chart.draw(data, options);
 			}, false);
 		}
+	
 	</script>
 	<script type = "text/javascript" src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
