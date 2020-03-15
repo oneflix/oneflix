@@ -17,7 +17,10 @@
     <link rel="stylesheet" href="../admin/css/adminlte.css">
     <link rel="stylesheet" href="client/css/payment_list.css">
 </head>
-
+<style>
+	.btn-close {outline: none;}
+	.btn-close:focus {outline: none;}
+</style>
 
 <body>
 

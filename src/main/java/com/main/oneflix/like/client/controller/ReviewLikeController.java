@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.oneflix.like.service.DeleteAndUpdateReviewLikeService;
-import com.main.oneflix.like.service.GetReviewLikeListService;
 import com.main.oneflix.like.service.InsertAndUpdateReviewLikeService;
 import com.main.oneflix.like.vo.ReviewLikeVO;
 import com.main.oneflix.review.service.GetReviewListService;
@@ -32,7 +31,6 @@ public class ReviewLikeController {
 		int likeCount = reviewVO.getLikeCount();
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(reviewVO);
 			likeCount++;
-			System.out.println("리뷰카운트증가함? : " + likeCount);
 			reviewVO.setLikeCount(likeCount);
 
 		insertAndUpdateReviewLikeService.insertAndUpdateReviewLike(reviewVO, reviewLikeVO);
@@ -44,7 +42,6 @@ public class ReviewLikeController {
 	@ResponseBody
 	public ReviewVO deleteAndUpdateReviewLikeProc(ReviewVO reviewVO, ReviewLikeVO reviewLikeVO, HttpSession session) {
 		int likeCount = reviewVO.getLikeCount();
-		System.out.println("deleteReviewLikeProc.reviewVO.getLikeCount() : " + reviewVO.getLikeCount());
 		
 		likeCount--;
 		reviewVO.setLikeCount(likeCount);

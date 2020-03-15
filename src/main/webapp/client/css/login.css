@@ -142,7 +142,7 @@ a:-webkit-any-link {
     background: #fff;
     color: #121218;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-letter-spacing: -0.3px;
     -moz-letter-spacing: -0.3px;
     -ms-letter-spacing: -0.3px;
@@ -151,7 +151,7 @@ a:-webkit-any-link {
     border-radius: 40px;
     margin: 23px 0 0;
 }
-/*-------------Æû»ó´Ü------------*/
+/*-------------ï¿½ï¿½ï¿½ï¿½ï¿½------------*/
 .css-9tzvq5-Inner {
     display: flex;
     flex-direction: column;
@@ -220,7 +220,7 @@ form {
     margin-top: -10px;
     background-image: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 20 20' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com --%3E%3Ctitle%3EIcons / Settings / Valid%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Icons-/-Settings-/-Valid' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='check-circle-f' fill='%233CAAFF' fill-rule='nonzero'%3E%3Cpath d='M10,19.9988889 C4.50055556,19.9988889 0.00111111111,15.4988889 0.00111111111,9.99944444 C0.00111111111,4.50111111 4.50055556,0.00111111111 10,0.00111111111 C15.4994444,0.00111111111 19.9988889,4.50111111 19.9988889,9.99944444 C19.9988889,15.4988889 15.4994444,19.9988889 10,19.9988889 L10,19.9988889 Z M13.3977778,6.11055556 L8.11944444,11.2961111 L6.04666667,9.26 L4.44388889,10.8344444 L8.11944444,14.445 L9.72222222,12.8705556 L15.0005556,7.68555556 L13.3977778,6.11055556 L13.3977778,6.11055556 Z M8.11944444,11.2961111 L8.11944444,11.2961111 L9.72222222,12.8705556 L8.11944444,11.2961111 L8.11944444,11.2961111 Z' id='Shape'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-/*ÆûÀÔ·Â*/
+/*ï¿½ï¿½ï¿½Ô·ï¿½*/
 .css-unatsl-Self {
     position: relative;
     width: 100%;
@@ -269,7 +269,7 @@ input {
 input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="text"]:focus {
     outline: none;
 }
-/*ÀÌ¸ÞÀÏ ÀÔ·Â*/
+/*ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½*/
 input.css-1og2nh1-StyledField-EmailField[type="email"]:focus {
     border-color: rgba(154, 151, 161, 0.2) !important;
 }
@@ -280,9 +280,9 @@ input.css-1og2nh1-StyledField-EmailField[type="email"] {
     border-color: rgba(154, 151, 161, 0.2) !important;
 }
 input.css-1og2nh1-StyledField-EmailField[type="email"], input.css-1og2nh1-StyledField-EmailField[type="number"], input.css-1og2nh1-StyledField-EmailField[type="password"], input.css-1og2nh1-StyledField-EmailField[type="search"], input.css-1og2nh1-StyledField-EmailField[type="tel"], input.css-1og2nh1-StyledField-EmailField[type="text"] {
-    color: rgb(51, 51, 51);
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
     border-width: 1px 1px 0.5px;
     border-style: solid;
@@ -293,7 +293,7 @@ input.css-1og2nh1-StyledField-EmailField[type="email"], input.css-1og2nh1-Styled
     padding: 10px 44px 10px 14px;
     border-radius: 4px 4px 0px 0px;
 }
-/*ºñ¹Ð¹øÈ£*/
+/*ï¿½ï¿½Ð¹ï¿½È£*/
 input.css-1727o8c-StyledField-PasswordField[type="password"]:focus {
     border-color: rgba(154, 151, 161, 0.2) !important;
 }
@@ -305,9 +305,9 @@ input.css-1727o8c-StyledField-PasswordField[type="password"] {
     border-color: rgba(154, 151, 161, 0.2) !important;
 }
 input.css-1727o8c-StyledField-PasswordField[type="email"], input.css-1727o8c-StyledField-PasswordField[type="number"], input.css-1727o8c-StyledField-PasswordField[type="password"], input.css-1727o8c-StyledField-PasswordField[type="search"], input.css-1727o8c-StyledField-PasswordField[type="tel"], input.css-1727o8c-StyledField-PasswordField[type="text"] {
-    color: rgb(51, 51, 51);
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
     border-width: 0.5px 1px 1px;
     border-style: solid;
@@ -318,7 +318,7 @@ input.css-1727o8c-StyledField-PasswordField[type="email"], input.css-1727o8c-Sty
     padding: 10px 44px 10px 14px;
     border-radius: 0px 0px 4px 4px;
 }
-/*¹öÆ°*/
+/*ï¿½ï¿½Æ°*/
 button:disabled {
     color: -internal-light-dark-color(graytext, rgb(170, 170, 170));
 }
@@ -378,7 +378,7 @@ button, [type="button"], [type="reset"], [type="submit"] {
     height: 48px;
     border-radius: 40px;
 }
-/*¼Ò¼È ·Î±×ÀÎ*/
+/*ï¿½Ò¼ï¿½ ï¿½Î±ï¿½ï¿½ï¿½*/
 .css-11fv0pd-Button {
     background-color: #080808;
     opacity: 0.68;

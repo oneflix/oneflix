@@ -77,6 +77,7 @@ public class MovieController {
 	@RequestMapping("/getMovieListProc.do")
 	public ModelAndView getMovieListProc(MovieVO vo, ModelAndView mav, HttpSession session) {
 		if (vo.getSearchOrder() == null) { vo.setSearchOrder("new"); }
+		if (vo.getMovieType() == null) { vo.setMovieType("all"); }
 		vo.setStart(1);
 		vo.setEnd(20);
 		vo.setMovieStatus("Y");
@@ -86,7 +87,7 @@ public class MovieController {
 		List<GenreVO> genreList = getGenreListService.getGenreList(new GenreVO());
 		List<TicketVO> ticketList = getTicketListService.getTicketList(new TicketVO());
 		List<MovieVO> movieList;
-		if (vo.getSearchOrder().equals("recommend")) {
+		if (vo.getSearchOrder().equals("recommend") || vo.getMovieType().equals("recommend")) {
 			movieList = getRecommedMovieListService.getRecommendMovieList(vo, genreList);
 		} else {
 			movieList = getMovieListService.getMovieList(vo);

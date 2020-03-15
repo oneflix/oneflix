@@ -112,8 +112,8 @@
                     
                 </section>
                         <div class="css-t5kw01-ChangeProfileButtonBlock e1199ims3">
-                            <button style="height:8vh; margin-bottom:2vh; margin-top:0;"
-                            type="submit" onClick="location.href='/nickCheckProcAjax.do'" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
+                            <button style="margin-bottom:2vh; margin-top:0;"
+                            type="submit" class="css-1sli7is-Button-GreenButton-ChangeProfileButton e1199ims1">계정 정보 저장</button>
                         </div>
             </form>
         </section>
@@ -155,6 +155,7 @@
 
 		function validate() {
 			var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
+			var nickRe = /^[a-zA-Z0-9가-힣]{2,6}$/
 			var newNick = document.getElementById("newNick");
 			var passConfirm = document.getElementById("passConfirm");
 			var pass = document.getElementById("pass");
@@ -165,7 +166,7 @@
 
 			//닉네임 변경할때
 			if (newNick.value != "" && newNick.value != null) {
-				if (!check(re, newNick, "닉네임은 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+				if (!check(nickRe, newNick, "닉네임은 2~6자의 한글,영문 대소문자,숫자만 입력해주세요.")) {
 					return false;
 				}
 				if (passConfirm.value != "${member.pass}") {

@@ -155,11 +155,12 @@ public class MovieController {
 		
 		if (filePath.getProperty("posterPath") != null) {
 			vo.setPosterPath(filePath.getProperty("posterPath"));
-			
-		} else if (filePath.getProperty("teaserVideoPath") != null) {
+		} 
+		if (filePath.getProperty("teaserVideoPath") != null) {
 			vo.setTeaserVideoPath(filePath.getProperty("teaserVideoPath"));
 			
-		} else if (filePath.getProperty("fullVideoPath") != null) {
+		} 
+		if (filePath.getProperty("fullVideoPath") != null) {
 			vo.setFullVideoPath(filePath.getProperty("fullVideoPath"));
 		}
 		

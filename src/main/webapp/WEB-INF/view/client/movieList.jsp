@@ -40,7 +40,7 @@
 		.movie-box:hover .normal-card {display: none;}
 		.movie-box:hover .hidden-card {display: block;}
 		
-		.hidden-card > {position: relative;}
+		.hidden-card {position: relative;}
     	.hidden-card > img {opacity: 0.3; position: absolute}
 		.hidden-card > .movie-mini-box {position: relative; height: 100%;}
     	.movie-mini-box > button {cursor: pointer; position: absolute; top: 30%; border: none; background: rgba(0,0,0,0); outline: none;}
@@ -75,7 +75,7 @@
 	                <c:when test="${movieType eq 'watching' }">
 	                	<p>이어보기</p>
 	                </c:when>
-	                <c:when test="${searchOrder eq 'recommend'}">
+	                <c:when test="${movieType eq 'recommend'}">
 	                	<p>${member.nick }님을 위한 추천 작품</p>
 	                </c:when>
 	                <c:when test="${searchMovie ne null}">
@@ -213,7 +213,7 @@
 		var movieType = "${movieType}";
 		 $(window).scroll(function() {
 		        if (Math.round($(window).scrollTop() + 20) >= $(document).height() - $(window).height()) {
-		        	if (movieListLength != 0 && searchOrder != 'recommend') {
+		        	if (movieListLength != 0 && (searchOrder != 'recommend' && movieType != 'recommend')) {
 			        	count++;
 			        	var start = (count - 1) * 10 + 1 ;
 			        	var end = count * 10;

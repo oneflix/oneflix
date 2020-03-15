@@ -195,7 +195,7 @@
 		
 		
 		$('.tablinks').click(function(){
-			$('.tablinks').css("border-bottom", "none");
+			$('.tablinks').css("border-bottom", "1px solid #d1d1d5");
 			$(this).css("border-bottom", "1px solid #080808");
 		});
 		

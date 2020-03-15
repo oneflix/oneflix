@@ -50,13 +50,6 @@ public class GetRecommendMovieListServiceImpl implements GetRecommendMovieListSe
 			}
 		});
 		
-		/*
-		Map<Integer, Integer> orderWatchGenreList = new LinkedHashMap<Integer, Integer>();
-		for (Integer key : keyList) {
-			orderWatchGenreList.put(key, unorderWatchGenreList.get(key));
-		}
-		*/
-		
 		List<Integer> prevKeyList = new ArrayList<>();
 		for (int i = 0; i < genreList.size(); i++) {
 			Integer key = keyList.get(i);
