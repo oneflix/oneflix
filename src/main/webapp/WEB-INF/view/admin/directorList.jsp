@@ -133,7 +133,7 @@
 	   			columns: [
 	   				{data: "rnum"},
 	   				{data: "directorName"},
-	   				{data: "directorAge",
+	   				{data: "directorBirth",
 	   					render: function(data) {
 	   						return data + "년생";
 	   					}},

@@ -127,7 +127,7 @@
 	   			columns: [
 	   				{data: "rnum"},
 	   				{data: "actorName"},
-	   				{data: "actorAge",
+	   				{data: "actorBirth",
 	   					render: function(data) {
 	   						return data + "년생";
 	   					}},
