@@ -23,7 +23,7 @@
     <!-- insertMovieAlarm 트리거-->
     <bean id="insertMovieAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="insertMovieAlarmJob" />
-        <property name="cronExpression" value="0 0 3 * * ?" />
+        <property name="cronExpression" value="0 0 2 * * ?" />
     </bean>
 
 	<!-- ========================================================================================================== -->
@@ -38,7 +38,7 @@
     <!-- expiryCheck 트리거-->
     <bean id="salesTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="salesJob" />
-        <property name="cronExpression" value="0 5 * * * ?" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
     </bean>
     
     	<!-- ========================================================================================================== -->
