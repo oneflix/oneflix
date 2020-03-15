@@ -189,11 +189,8 @@ h2 {
     	
 <script type="text/javascript">    	
 var deactivateResult ="${deactivateResult}"
-      
-      if(deactivateResult == "success" ){
-    	  alert("탈퇴처리가 완료되었습니다.")
-      } else if(deactivateResult == "fail" ){
-    	  alert("다시 한번 시도해주세요.")
+      if(deactivateResult == "fail" ){
+    	  alert("다시 한번 시도해주세요.");
       }
  </script>     
 </body>
