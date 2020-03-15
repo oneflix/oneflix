@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+body {font-family: "Noto Sans KR"}
 /* 이미지 외부 틀 */
 .css-dfr6g9-Self-Wallpaper {
     height: 100vh;
@@ -17,7 +19,6 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.5;
 }
 
 /* footer */
@@ -43,7 +44,6 @@
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
-    width: 20%;
     padding: 0 7px;
 }
 /* footer -> 버튼 라인(안할래요) */

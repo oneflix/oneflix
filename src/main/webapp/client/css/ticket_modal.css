@@ -82,6 +82,7 @@
     border: 1px solid #9d9d9e;
     border-radius: 4px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .radio-toolbar label:hover > span:nth-child(2),
@@ -121,7 +122,7 @@
     text-align: center;
     font-weight: bold;
     font-size: 17px;
-    letter-spacing: 0.01em;            
+    letter-spacing: 0.01em;
 }
 
 .ticket-buy-btn:hover{
@@ -143,6 +144,7 @@
     background: rgb(252, 66, 106);
     border: 0;
     outline: 0;
+    cursor: pointer;
 }
 
 .e111{

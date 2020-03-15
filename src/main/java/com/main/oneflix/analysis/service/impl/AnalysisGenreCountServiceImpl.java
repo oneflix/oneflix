@@ -1,9 +1,7 @@
 package com.main.oneflix.analysis.service.impl;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,7 +26,6 @@ public class AnalysisGenreCountServiceImpl implements AnalysisGenreCountService 
 		// col 추가
 		JSONObject col1 = new JSONObject();
 		JSONObject col2 = new JSONObject();
-		JSONObject col3 = new JSONObject();
 		// 위의 컬럼을 담을 배열
 		JSONArray arrayCols = new JSONArray();
 		JSONArray arrayRows = new JSONArray();

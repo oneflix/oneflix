@@ -184,7 +184,7 @@ nav {
     letter-spacing: -1px;
     margin: 0px 0px 14px;
 }
-/*-------------Æû½ÃÀÛ------------*/
+/*-------------ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½------------*/
 form {
     display: block;
     margin-top: 0em;
@@ -208,7 +208,7 @@ input {
     font: 400 13.3333px Arial;
     padding: 1px 0px;
 }
-/*-------------ÆûÀÔ·Â------------*/
+/*-------------ï¿½ï¿½ï¿½Ô·ï¿½------------*/
 .css-unatsl-Self {
     position: relative;
     width: 100%;
@@ -257,7 +257,7 @@ input:focus {
     outline-offset: -2px;
 }
 
-/*ÀÌ¸ÞÀÏ ÀÔ·Â*/
+/*ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½*/
 input.css-11i8u80-StyledField-EmailField[type="email"] {
     font-size: 16px;
     -webkit-letter-spacing: -0.5px;
@@ -271,9 +271,9 @@ input.css-11i8u80-StyledField-EmailField[type="email"]:focus {
     border-color: rgba(154,151,161,0.2);
 }
 input.css-11i8u80-StyledField-EmailField[type="email"], input.css-11i8u80-StyledField-EmailField[type="number"], input.css-11i8u80-StyledField-EmailField[type="password"], input.css-11i8u80-StyledField-EmailField[type="search"], input.css-11i8u80-StyledField-EmailField[type="tel"], input.css-11i8u80-StyledField-EmailField[type="text"] {
-    color: #333333;
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
     border-width: 0px 0px 0.5px 0px;
 }
@@ -282,7 +282,7 @@ input.css-11i8u80-StyledField-EmailField[type="email"], input.css-11i8u80-Styled
     padding: 10px 44px 10px 14px;
     border-radius: 4px 4px 0px 0px;
 }
-/*--------------------ºñ¹Ð¹øÈ£ÀÔ·Â----------------------------*/
+/*--------------------ï¿½ï¿½Ð¹ï¿½È£ï¿½Ô·ï¿½----------------------------*/
 input[type="password" i] {
     -webkit-text-security: disc !important;
 }
@@ -300,9 +300,9 @@ input.css-1ivms9u-StyledField-PasswordField[type="password"]:focus {
 }
 
 input.css-1ivms9u-StyledField-PasswordField[type="email"], input.css-1ivms9u-StyledField-PasswordField[type="number"], input.css-1ivms9u-StyledField-PasswordField[type="password"], input.css-1ivms9u-StyledField-PasswordField[type="search"], input.css-1ivms9u-StyledField-PasswordField[type="tel"], input.css-1ivms9u-StyledField-PasswordField[type="text"] {
-    color: #333333;
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
     border-width: 0.5px 0px;
 }
@@ -314,7 +314,7 @@ input.css-1ivms9u-StyledField-PasswordField[type="email"], input.css-1ivms9u-Sty
 input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="text"]:focus {
     outline: none;
 }
-/*´Ð³×ÀÓÀÔ·Â*/
+/*ï¿½Ð³ï¿½ï¿½ï¿½ï¿½Ô·ï¿½*/
 input.css-sg09fs-StyledField-NickField[type="text"] {
     font-size: 16px;
     -webkit-letter-spacing: -0.5px;
@@ -328,9 +328,9 @@ input.css-sg09fs-StyledField-NickField[type="text"]:focus {
     border-color: rgba(154,151,161,0.2);
 }
 input.css-sg09fs-StyledField-NickField[type="email"], input.css-sg09fs-StyledField-NickField[type="number"], input.css-sg09fs-StyledField-NickField[type="password"], input.css-sg09fs-StyledField-NickField[type="search"], input.css-sg09fs-StyledField-NickField[type="tel"], input.css-sg09fs-StyledField-NickField[type="text"] {
-    color: #333333;
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
     border-width: 0.5px 0px;
 }
@@ -340,7 +340,7 @@ input.css-sg09fs-StyledField-NickField[type="email"], input.css-sg09fs-StyledFie
     border-radius: 0px;
 
 }
-/*»ýÀÏÀÔ·Â*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½*/
 input.css-sg09fs-StyledField-BirthField[type="number"] {
     font-size: 16px;
     -webkit-letter-spacing: -0.5px;
@@ -354,18 +354,18 @@ input.css-sg09fs-StyledField-BirthField[type="birth"]:focus {
     border-color: rgba(154,151,161,0.2);
 }
 input.css-sg09fs-StyledField-BirthField[type="email"], input.css-sg09fs-StyledField-BirthField[type="number"], input.css-sg09fs-StyledField-BirthField[type="password"], input.css-sg09fs-StyledField-NameField[type="search"], input.css-sg09fs-StyledField-BirthField[type="tel"], input.css-sg09fs-StyledField-BirthField[type="text"] {
-    color: #333333;
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
-    border-width: 0.5px 0px 1.249px 0px;
+    border-width: 0.5px 0px 2px 0px;
 }
 .css-sg09fs-StyledField-BirthField {
     width: 100%;
     padding: 10px 44px 10px 14px;
     border-radius: 0px;
 }
-/*¼ºº°ÀÔ·Â*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½*/
 input.css-sg09fs-StyledField-GenderField[type="button"] {
     font-size: 16px;
     -webkit-letter-spacing: -0.5px;
@@ -378,9 +378,9 @@ input.css-sg09fs-StyledField-GenderField[type="button"]:focus {
     border-color: rgba(154,151,161,0.2);
 }
 input.css-sg09fs-StyledField-GenderField[type="button"], input.css-sg09fs-StyledField-NameField[type="number"], input.css-sg09fs-StyledField-NameField[type="password"], input.css-sg09fs-StyledField-NameField[type="search"], input.css-sg09fs-StyledField-NameField[type="tel"], input.css-sg09fs-StyledField-NameField[type="text"] {
-    color: #333333;
+    color: #595959;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1;
     border-width: 0.5px 0 0;
     border-color: rgba(154,151,161,0.2);
@@ -395,7 +395,7 @@ input.css-sg09fs-StyledField-GenderField[type="button"], input.css-sg09fs-Styled
     border-color: rgba(154,151,161,0.2) !important;
     border-width: 1px 0 0 !important;
 }
-/*¾à°üµ¿ÀÇ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .css-qqrmg3-Legals {
     margin: 16px 0 0;
 }
@@ -485,7 +485,7 @@ input.css-sg09fs-StyledField-GenderField[type="button"], input.css-sg09fs-Styled
 .css-5v9mdr-LegalFieldBlock {
     margin: 6px 0;
 }
-/*¿Ï·á¹öÆ°*/
+/*ï¿½Ï·ï¿½ï¿½Æ°*/
 .css-10mrhk1-SubmitButtonBlock {
     width: 100%;
     margin: 16px 0 14px;

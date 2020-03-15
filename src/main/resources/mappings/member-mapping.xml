@@ -112,13 +112,17 @@
 	</select>
 	
 	<update id="updateTicketExpiry" parameterType="java.util.HashMap">
-			UPDATE member SET
-			ticket_id = 0
-			WHERE 
-
-		<foreach collection="emailList" item="email"  open="(" close=")" separator="AND">
-
+		UPDATE member SET
+		ticket_id = 0
+		WHERE
+		<foreach collection="expiryEmailList" item="email"  open="(" close=")" separator="OR">
 			email = #{email}
 		</foreach>
+		<if test="subscriptionEmailList.size != 0 and expiryEmailList.size != 0">
+			AND
+			<foreach collection="subscriptionEmailList" item="email"  open="(" close=")" separator="AND">
+				email != #{email}
+			</foreach>
+		</if>
 	</update>
 </mapper>

@@ -102,20 +102,17 @@ const createNewSwiper = function(slideCount) {
     });
 };
 
-const createRecentSwiper = function(slideCount) {
-    var recentSwiper = new Swiper('#recent-slider-container', {
+const createWatchingSwiper = function(slideCount) {
+    var watchingSwiper = new Swiper('#watching-slider-container', {
         slidesPerView: slideCount,
         spaceBetween: 8,
         slidesPerGroup: slideCount,
     
-        // loopFillGroupWithBlank: true,
-    
         navigation: {
-            nextEl: '#recent-button-next',
-            prevEl: '#recent-button-prev'
+            nextEl: '#watching-button-next',
+            prevEl: '#watching-button-prev'
         },
     
-        loop: true,
         speed: 1000,
     });
 };
@@ -124,14 +121,14 @@ $(document).ready(function() {
     createPopularSwiper(calcSlideCount());
     createRecommendSwiper(calcSlideCount());
     createNewSwiper(calcSlideCount());
-    createRecentSwiper(calcSlideCount());
+    createWatchingSwiper(calcSlideCount());
 });
 
 $(window).resize(function() {
     createPopularSwiper(calcSlideCount());
     createRecommendSwiper(calcSlideCount());
     createNewSwiper(calcSlideCount());
-    createRecentSwiper(calcSlideCount());
+    createWatchingSwiper(calcSlideCount());
 });
 
 // 스크롤 이벤트

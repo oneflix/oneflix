@@ -51,11 +51,6 @@ public class MypageHomeController {
 		vo.setEmail(email);
 		vo.setCountWatch(getCountWatchService.getCountWatch(vo));
 
-		// 제일 많이본 장르 구하기
-		GenreVO genre = new GenreVO();
-		List<GenreVO> genreList = getGenreListService.getGenreList(genre);
-		Map<Integer, Integer> orderWatchGenreList = getCountWatchGenreService.getCountWatchGenre(vo, genreList);
-
 		// 평균별점구하기
 		ReviewVO review = new ReviewVO();
 		review.setEmail(email);

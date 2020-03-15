@@ -388,7 +388,7 @@
 					 $('.wishBtn').find('i').addClass("fa-check");
 					 $('.wish-comment').css('color','rgb(252, 66, 106)');
 					 $('.wish-comment').css('opacity','1');
-					 return false;
+					 break;
 				 }
 			 }
 			
@@ -630,7 +630,7 @@
 		}));
 
 		function reviewCheck() {
-			if(clicked <= 0 || reviewScore == null || reviewScore == 0) {
+			if(clicked <= 0 && (reviewScore == null || reviewScore == 0 || reviewScore == '')) {
 				alert("별점을 등록해주세요!");
 				return false;
 			}
