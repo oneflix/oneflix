@@ -2,7 +2,7 @@ package com.main.oneflix.util.kakao;
 
 public interface KakaoConst {
 
-	static final String MY_HOST = "http://127.0.0.1:8080/";
+	static final String MY_HOST = "http://113.209.21.185:8080/";
 	static final String CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";
 	
 	static final String KAKAO_HOST = "https://kapi.kakao.com";
@@ -18,7 +18,7 @@ public interface KakaoConst {
 	static final String PAYMENT_REFUND_PATH = "/v1/payment/cancel";
 	
 	static final String KAKAO_CLIENT_ID = "1820aaaf12b6f3ad68c37261ecbf9eed";
-	static final String KAKAO_REDIRECT_URI = "http://localhost:8080/kakao_oauth.do";
+	static final String KAKAO_REDIRECT_URI = "http://13.209.21.185:8080/kakao_oauth.do";
 	static final String KAKAO_REQUEST_URL = "https://kauth.kakao.com/oauth/token";
 	static final String KAKAO_URI = "https://kauth.kakao.com.oauth/authorize?"
 									+"client_id" + KAKAO_CLIENT_ID + "&redirect_uri="

@@ -90,7 +90,7 @@ public class MemberController {
 					"<p>원플릭스 계정 보호를 위해 이메일 인증이 필요합니다.<br/>이메일 인증 완료를 위해 아래 버튼을 눌러주세요.</p>" +
 					"<br>" +
 					"<p>" +
-						"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/updateCertProc.do?email=" + vo.getEmail() + "\">" +
+						"<a style=\"text-decoration: none;\" href=\"http://13.209.21.185:8080/updateCertProc.do?email=" + vo.getEmail() + "\">" +
 							"<button type=\"button\" style=\"width: 150px; height: 80px; color: #FFF; background: #080808\">ONEFLIX로 가기</button>" + 
 						"</a>" +
 					"</p>" +
@@ -179,7 +179,7 @@ public class MemberController {
 			inquiry.setReplyContent("<h2><strong>탈퇴 요청 확인 메일</strong></h2>\r\n" + 
 					"<p>"+vo.getNick()+"님 안녕하세요.</p>\r\n" + 
 					"<p>정말로 탈퇴하실 거라면, 아래 버튼을 눌러주세요.<br/></p>\r\n" + 
-					"<p><a href=\"http://localhost:8080/deleteMemberProc.do?email="+vo.getEmail()+"\">탈퇴하러 가기</a></p>\r\n" + 
+					"<p><a href=\"http://13.209.21.185:8080/deleteMemberProc.do?email="+vo.getEmail()+"\">탈퇴하러 가기</a></p>\r\n" + 
 					"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
 					"<p>Copyright &copy; 2015-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
 			emailService.sendEmail(inquiry);
