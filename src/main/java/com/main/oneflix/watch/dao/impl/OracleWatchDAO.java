@@ -14,8 +14,8 @@ public class OracleWatchDAO implements WatchDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public void insertWatch(WatchVO vo) {
-		sqlSessionTemplate.insert("WatchDAO.insertWatch", vo);
+	public int insertWatch(WatchVO vo) {
+		return sqlSessionTemplate.insert("WatchDAO.insertWatch", vo);
 	}
 	
 	@Override
@@ -34,8 +34,8 @@ public class OracleWatchDAO implements WatchDAO {
 	}
 
 	@Override
-	public Integer getWatchViewPoint(WatchVO vo) {
-		return sqlSessionTemplate.selectOne("WatchDAO.getWatchViewPoint", vo);
+	public WatchVO getWatch(WatchVO vo) {
+		return sqlSessionTemplate.selectOne("WatchDAO.getWatch", vo);
 	}
 	
 }

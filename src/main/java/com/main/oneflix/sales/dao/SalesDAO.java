@@ -17,4 +17,6 @@ public interface SalesDAO {
 	List<String> expiryCheck();
 	void updateExpiry();
 	int refundCheck(SalesVO vo);
+	List<SalesVO> getSubscriptionList();
+	void insertSubscrition(SalesVO vo);
 }

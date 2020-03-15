@@ -80,7 +80,7 @@ i {font-size: 20px; float: left;}
 
 /* grid-wrapper */
 .grid-wrapper {padding: 0 50px 0; display: grid;
-    grid-template-columns: repeat(6, 1fr); grid-auto-rows: 12vw; grid-gap: 5px;}
+    grid-template-columns: repeat(6, 1fr); grid-auto-rows: 11vw; grid-row-gap: 5vw; grid-column-gap: 8px;}
 .grid-wrapper > .movie-box > .movie-card {width: 100%; height: 100%;}
 .grid-wrapper > .movie-box > .movie-card > img {width: 100%; height: 80%;}
 .grid-wrapper > .movie-box > .movie-card > p {margin-top: -3px; font-size: 1.1vw; font-weight: bold;}

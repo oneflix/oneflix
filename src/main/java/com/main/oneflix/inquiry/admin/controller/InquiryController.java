@@ -84,7 +84,7 @@ public class InquiryController {
 		try {
 			
 			vo.setAdminName("관리자");
-			vo.setAdminEmail("jaenyes17@gmail.com");
+			vo.setAdminEmail("wyj10076@gmail.com");
 			emailService.sendEmail(vo); // vo (메일관련 정보)를 sendMail에 저장함
 
 			replyService.reply(vo);

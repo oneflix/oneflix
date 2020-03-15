@@ -6,7 +6,7 @@
 
 	<insert id="insertScreen" parameterType="java.util.HashMap">
 		<foreach collection="newScreenList" item="screen" open="DECLARE BEGIN" close="; END;" separator=";">
-			INSERT INTO screen
+			INSERT INTO screen(screen_id, screen_type, screen_img_path, screen_title, screen_subtitle)
 			VALUES((SELECT NVL(MAX(screen_id), 0) + 1 FROM screen),
 					#{screen.screenType}, #{screen.screenImgPath}, #{screen.screenTitle}, #{screen.screenSubtitle}
 					)

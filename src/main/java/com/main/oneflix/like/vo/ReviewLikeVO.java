@@ -39,4 +39,12 @@ public class ReviewLikeVO {
 		ReviewLikeEmail = reviewLikeEmail;
 	}
 
+	@Override
+	public String toString() {
+		return "ReviewLikeVO [reviewLikeId=" + reviewLikeId + ", reviewId=" + reviewId + ", movieId=" + movieId
+				+ ", ReviewLikeEmail=" + ReviewLikeEmail + "]";
+	}
+	
+	
+
 }

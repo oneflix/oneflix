@@ -104,6 +104,14 @@ public class ReviewVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
+
+	@Override
+	public String toString() {
+		return "ReviewVO [reviewId=" + reviewId + ", movieId=" + movieId + ", movieTitle=" + movieTitle + ", email="
+				+ email + ", nick=" + nick + ", reviewContent=" + reviewContent + ", reviewScore=" + reviewScore
+				+ ", likeCount=" + likeCount + ", reviewRegDate=" + reviewRegDate + ", start=" + start + ", end=" + end
+				+ "]";
+	}
 	
 	
 

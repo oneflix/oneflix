@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+<property resource="logback.properties"/>
+<property name="LOG_PACKAGE_NAME" value="${log.config.packagename}" />
+<property name="LOG_PATH" value="${log.config.path}" />
+<property name="LOG_FILE_NAME" value="${log.config.filename}" />
+<property name="LOG_DAYS" value="${log.config.days}" />
+<property name="LOG_FILESIZE_LOG" value="${log.config.filesizelog}" />
+<property name="LOG_FILESIZE_ZIP" value="${log.config.filesizezip}" />
+<property name="LOG_TOTAL_FILESIZE" value="${log.config.totalfilesize}" />
+<property name="LOG_FILE_MIN" value="${log.config.min}" />
+<property name="LOG_FILE_MAX" value="${log.config.max}" />
+<property name="LOG_PATTERN" value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender> 
+    
+    <appender name="FILE"
+      class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+         <pattern>${LOG_PATTERN}</pattern>
+      </encoder>
+      <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${LOG_PATH}.%d{yyyy-MM-dd}_${LOG_FILE_NALE}.log</fileNamePattern>
+         <maxFileSize>${LOG_TOTAL_FILESIZE}</maxFileSize>
+         <maxHistory>${LOG_DAYS}</maxHistory>
+      </rollingPolicy>
+   </appender>
+    
+    <logger name="org.springframework" level="info"/>
+    <logger name="kr.or.connect" level="debug"/>
+ 
+    <root level="debug">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

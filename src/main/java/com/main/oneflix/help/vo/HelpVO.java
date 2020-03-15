@@ -68,4 +68,11 @@ public class HelpVO {
 		this.helpRegDate = helpRegDate;
 	}
 
+	@Override
+	public String toString() {
+		return "HelpVO [rnum=" + rnum + ", helpId=" + helpId + ", helpType=" + helpType + ", helpTitle=" + helpTitle
+				+ ", helpContent=" + helpContent + ", helpRegDate=" + helpRegDate + ", searchHelp=" + searchHelp + "]";
+	}
+
+	
 }

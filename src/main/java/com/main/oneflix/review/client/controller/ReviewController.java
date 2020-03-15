@@ -30,29 +30,11 @@ public class ReviewController {
 	private DeleteReviewService deleteReviewService;
 	@Autowired
 	private GetReviewListService getReviewListService;
-	@Autowired
-	private UpdateMovieScoreService updateMovieScoreService;
-
-	@RequestMapping("/insertReviewProc.do")
-	public ModelAndView insertReviewProc(ReviewVO vo, HttpSession session, ModelAndView mav) {
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		vo.setEmail(member.getEmail());
-		if (vo.getReviewId() != null) deleteReviewService.deleteReview(vo);
-		insertReviewService.insertReview(vo);
-		MovieVO movieVO = new MovieVO();
-		movieVO.setMovieId(vo.getMovieId());
-		mav.addObject("movieId", vo.getMovieId());
-		mav.setViewName("redirect:/getMovieDetailProc.do");
-		return mav;
-	}
 
 	@RequestMapping("/insertReviewProcAjax.do")
 	@ResponseBody
 	public void insertReviewProcAjax(ReviewVO vo) {
 		insertReviewService.insertReview(vo);
-		MovieVO movieVO = new MovieVO();
-		movieVO.setMovieId(vo.getMovieId());
-		updateMovieScoreService.updateMovieScore(movieVO);
 	}
 
 	@RequestMapping("/deleteReviewProc.do")
@@ -67,9 +49,6 @@ public class ReviewController {
 	@ResponseBody
 	public void updateReviewProcAjax(ReviewVO vo) {
 		updateReviewService.updateReview(vo);
-		MovieVO movieVO = new MovieVO();
-		movieVO.setMovieId(vo.getMovieId());
-		updateMovieScoreService.updateMovieScore(movieVO);
 	}
 
 
@@ -97,7 +76,6 @@ public class ReviewController {
 	@RequestMapping("/getReviewListProcAjax.do")
 	@ResponseBody
 	public List<ReviewVO> getReviewListPRocAjax(ReviewVO vo, HttpSession session) {
-		
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setEmail(member.getEmail());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(vo);

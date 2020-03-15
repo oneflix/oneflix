@@ -121,7 +121,7 @@
 								<div class="dropdown">
 									<button class="btn dropdown-toggle profile-button"
 										type="button" data-toggle="dropdown">
-										<span>${member.nick}님</span> <span class="caret"></span>
+										<span>${member.nick} 님</span> <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu dropdown-menu-right profile-menu">
 										<li><div>
@@ -163,7 +163,7 @@
 						</div>
 						<br>
 						<c:forEach var="ticket" items="${ticketList}">
-							<c:if test="${ticket.ticketPeriod eq -1}">
+							<c:if test="${ticket.ticketName eq '정기권'}">
 								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
 							</c:if>
 							<c:if
@@ -172,7 +172,7 @@
 									value="${ticket.ticketId}"> <span style="float: left;">${ticket.ticketName}</span>
 									<span style="float: right;"> <fmt:formatNumber
 											type="currency" value="${ticket.ticketPrice}" />
-								</span> <c:if test="${ticket.ticketPeriod ne -1}">
+								</span> <c:if test="${ticket.ticketName ne '정기권'}">
 										<span style="float: right;" class="ticket-origin-price">
 											<fmt:formatNumber type="currency"
 												value="${originPrice * ticket.ticketPeriod / 30}" />
@@ -190,7 +190,7 @@
 						</div>
 						<br>
 						<c:forEach var="ticket" items="${ticketList}">
-							<c:if test="${ticket.ticketPeriod eq -1}">
+							<c:if test="${ticket.ticketName eq '정기권'}">
 								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
 							</c:if>
 							<c:if
@@ -199,7 +199,7 @@
 									value="${ticket.ticketId}"> <span style="float: left;">${ticket.ticketName}</span>
 									<span style="float: right;"> <fmt:formatNumber
 											type="currency" value="${ticket.ticketPrice}" />
-								</span> <c:if test="${ticket.ticketPeriod ne -1}">
+								</span> <c:if test="${ticket.ticketName ne '정기권'}">
 										<span style="float: right;" class="ticket-origin-price">
 											<fmt:formatNumber type="currency"
 												value="${originPrice * ticket.ticketPeriod / 30}" />

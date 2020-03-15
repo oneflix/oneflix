@@ -59,4 +59,13 @@ public class ManagerVO {
 		this.searchManager = searchManager;
 	}
 
+	@Override
+	public String toString() {
+		return "ManagerVO [rnum=" + rnum + ", managerId=" + managerId + ", managerPass=" + managerPass
+				+ ", managerType=" + managerType + ", managerRegDate=" + managerRegDate + ", searchManager="
+				+ searchManager + "]";
+	}
+	
+	
+
 }

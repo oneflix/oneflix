@@ -50,4 +50,11 @@ public class TermVO {
 		this.termRegDate = termRegDate;
 	}
 
+	@Override
+	public String toString() {
+		return "TermVO [rnum=" + rnum + ", termId=" + termId + ", termTitle=" + termTitle + ", termContent="
+				+ termContent + ", termRegDate=" + termRegDate + "]";
+	}
+
+	
 }
