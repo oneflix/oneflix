@@ -5,7 +5,7 @@ public class ActorVO {
 	private int rnum;
 	private Integer actorId;
 	private String actorName;
-	private int actorAge;
+	private String actorAge;
 	private String searchActor;
 
 	public int getRnum() {
@@ -20,14 +20,6 @@ public class ActorVO {
 		return actorId;
 	}
 
-	public String getSearchActor() {
-		return searchActor;
-	}
-
-	public void setSearchActor(String searchActor) {
-		this.searchActor = searchActor;
-	}
-
 	public void setActorId(Integer actorId) {
 		this.actorId = actorId;
 	}
@@ -40,12 +32,20 @@ public class ActorVO {
 		this.actorName = actorName;
 	}
 
-	public int getActorAge() {
+	public String getActorAge() {
 		return actorAge;
 	}
 
-	public void setActorAge(int actorAge) {
+	public void setActorAge(String actorAge) {
 		this.actorAge = actorAge;
+	}
+
+	public String getSearchActor() {
+		return searchActor;
+	}
+
+	public void setSearchActor(String searchActor) {
+		this.searchActor = searchActor;
 	}
 
 }

@@ -53,9 +53,8 @@
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="title">나이</label> <input type="text"
-									class="form-control" id="directorAge" name="directorAge"
-									required />
+								<label for="directorBirth">생년</label>
+									<input type="text" class="form-control" id="directorBirth" placeholder="YYYY" name="directorBirth">
 							</div>
 
 							<br>

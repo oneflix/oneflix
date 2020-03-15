@@ -46,8 +46,8 @@
 									<input type="text" class="form-control" id="actorName" name="actorName">
 							</div>
 							<div class="form-group mb-3">
-								<label for="actorAge">나이</label>
-									<input type="text" class="form-control" id="actorAge" name="actorAge">
+								<label for="actorBirth">생년</label>
+									<input type="text" class="form-control" id="actorBirth" placeholder="YYYY" name="actorBirth">
 							</div>
 							<br>
 							<div class="buttons" style="float: right;">

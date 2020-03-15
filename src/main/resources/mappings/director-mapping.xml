@@ -5,12 +5,12 @@
 <mapper namespace="DirectorDAO">
 
 	<insert id="insertDirector" parameterType="director">
-		INSERT INTO director(director_id, director_name, director_age)
-		VALUES((SELECT NVL(MAX(director_id),0)+1 FROM director), #{directorName}, #{directorAge})
+		INSERT INTO director(director_id, director_name, director_birth)
+		VALUES((SELECT NVL(MAX(director_id),0)+1 FROM director), #{directorName}, #{directorBirth})
 	</insert>
 
 	<update id="updateDirector" parameterType="director">
-		UPDATE director SET director_name = #{directorName}, director_age = #{directorAge} 
+		UPDATE director SET director_name = #{directorName}, director_birth = #{directorBirth} 
 		WHERE director_id = #{directorId}
 	</update>
 
@@ -28,7 +28,7 @@
 		<id property="directorId" column="director_id"/>
 		<result property="rnum" column="rnum"/>
 		<result property="directorName" column="director_name"/>
-		<result property="directorAge" column="director_age"/>
+		<result property="directorBirth" column="director_birth"/>
 	</resultMap>
 	
 	<select id="getDirectorList" parameterType="director" resultMap="directorList">

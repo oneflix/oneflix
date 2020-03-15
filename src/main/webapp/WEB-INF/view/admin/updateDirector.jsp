@@ -45,15 +45,15 @@
 						<div class="card-body pad">
 
 							<div class="form-group mb-3">
-								<label for="title">이름</label> <input type="text"
+								<label for="directorName">이름</label> <input type="text"
 									class="form-control" id="directorName" name="directorName"
 									value="${director.directorName }" required />
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="title">나이</label> <input type="text"
-									class="form-control" id="directorName" name="directorAge"
-									value="${director.directorAge }" required />
+								<label for="directorBirth">생년</label> <input type="text"
+									class="form-control" id="directorBirth" name="directorBirth"
+									value="${director.directorBirth }" required />
 							</div>
 
 							<br>

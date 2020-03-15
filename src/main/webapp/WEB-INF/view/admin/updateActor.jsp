@@ -53,9 +53,9 @@
 								</div>
 
 								<div class="form-group mb-3">
-									<label for="actorAge">나이</label> <input type="text"
-										value="${actor.actorAge}" class="form-control" id="actorAge"
-										name="actorAge">
+									<label for="actorBirth">생년</label> <input type="text"
+										value="${actor.actorBirth}" class="form-control" id="actorBirth"
+										name="actorBirth">
 								</div>
 
 								<br>

@@ -5,7 +5,7 @@ public class DirectorVO {
 	private int rnum;
 	private Integer directorId;
 	private String directorName;
-	private int directorAge;
+	private String directorBirth;
 	private String searchDirector;
 
 	public int getRnum() {
@@ -32,12 +32,12 @@ public class DirectorVO {
 		this.directorName = directorName;
 	}
 
-	public int getDirectorAge() {
-		return directorAge;
+	public String getDirectorBirth() {
+		return directorBirth;
 	}
 
-	public void setDirectorAge(int directorAge) {
-		this.directorAge = directorAge;
+	public void setDirectorBirth(String directorBirth) {
+		this.directorBirth = directorBirth;
 	}
 
 	public String getSearchDirector() {

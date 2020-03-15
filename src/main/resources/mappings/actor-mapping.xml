@@ -5,13 +5,13 @@
 <mapper namespace="ActorDAO">
 
 	<insert id="insertActor" parameterType="actor">
-		INSERT INTO actor(actor_id, actor_name, actor_age)
+		INSERT INTO actor(actor_id, actor_name, actor_birth)
 		VALUES((SELECT NVL(MAX(actor_id),0)+1 FROM actor),
-		#{actorName}, #{actorAge})
+		#{actorName}, #{actorBirth})
 	</insert>
 	<update id="updateActor" parameterType="actor">
 		UPDATE actor SET
-		actor_name = #{actorName}, actor_age = #{actorAge}
+		actor_name = #{actorName}, actor_birth = #{actorBirth}
 		WHERE actor_id = #{actorId}
 	</update>
 	<delete id="deleteActor" parameterType="actor">
@@ -26,7 +26,7 @@
 		<id property="actorId" column="actor_id" />
 		<result property="rnum" column="rnum" />
 		<result property="actorName" column="actor_name" />
-		<result property="actorAge" column="actor_age" />
+		<result property="actorBirth" column="actor_birth" />
 	</resultMap>
 	<select id="getActorList" resultMap="actorList">
 		SELECT *

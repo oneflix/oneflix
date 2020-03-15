@@ -70,7 +70,7 @@
 										<tr>
 											<th>#</th>
 											<th>이름</th>
-											<th>나이</th>
+											<th>생년</th>
 											<th>관리</th>
 										</tr>
 									</thead>
@@ -129,7 +129,7 @@
 	   				{data: "actorName"},
 	   				{data: "actorAge",
 	   					render: function(data) {
-	   						return data + "세";
+	   						return data + "년생";
 	   					}},
 	   				{data: "actorId",
 	   					render: function(data){

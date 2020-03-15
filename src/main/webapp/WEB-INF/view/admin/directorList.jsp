@@ -70,7 +70,7 @@
 										<tr>
 											<th>#</th>
 											<th>이름</th>
-											<th>나이</th>
+											<th>생년</th>
 											<th>관리</th>
 										</tr>
 									</thead>
@@ -135,7 +135,7 @@
 	   				{data: "directorName"},
 	   				{data: "directorAge",
 	   					render: function(data) {
-	   						return data + "세";
+	   						return data + "년생";
 	   					}},
 	   				{data: "directorId",
 	   					render: function(data){
