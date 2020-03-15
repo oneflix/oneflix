@@ -34,13 +34,6 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.11</version>
 		</dependency>
-
-		<!-- google -->
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-google</artifactId>
-			<version>1.0.0.RELEASE</version>
-		</dependency>
 		<!-- naver -->
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
@@ -121,6 +114,18 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.30</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-core</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
 
 		<!-- logback-classic -->
 		<dependency>
@@ -134,7 +139,6 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.30</version>
 		</dependency>
-
 
 		<!-- Spring MVC -->
 		<dependency>
