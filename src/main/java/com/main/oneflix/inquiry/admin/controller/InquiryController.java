@@ -83,10 +83,7 @@ public class InquiryController {
 	public ModelAndView sendEmail(InquiryVO vo, HttpSession session, ModelAndView mav) {
 		try {
 			
-			vo.setAdminName("관리자");
-			vo.setAdminEmail("wyj10076@gmail.com");
 			emailService.sendEmail(vo); // vo (메일관련 정보)를 sendMail에 저장함
-
 			replyService.reply(vo);
 			mav.setViewName("redirect:/inquiryList.mdo");
 			return mav;

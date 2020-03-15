@@ -103,7 +103,7 @@
        		<footer class="css-eexbuk-Self e16ogtil0">
        		<span class="css-j4zj9u-Contact e16ogtil1">
        		<em><a style="font-size: 0.8333333333333334vw; line-height: 0;" href="/help.do">고객센터(이용 및 결제 문의)</a>
-       		</em>&nbsp;&nbsp;<a style="font-size: 0.8333333333333334vw; line-height: 0;" href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
+       		</em>&nbsp;&nbsp;<a style="font-size: 0.8333333333333334vw; line-height: 0;" href="mailto:main.oneflix@gmail.com">main.oneflix@gmail.com</a>
        		</span>
        		<br>
          <strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
@@ -195,69 +195,8 @@
 	           $("#loginBtn").prop('disabled', true);
 	        }
 	    });//KEY EVENT
-});
+	});
    
-   //카카오로그인
-   /* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
-   Kakao.Auth.createLoginButton({
-      container:'#kakao-login-btn',
-      success : function(authObj){
-         Kakao.API.request({
-            url:'/v2/user/me',
-            success: function(res){
-               alert(JSON.stringfy(res));
-            },
-            fail: function(error){
-               alert(JSON.stringfy(error));
-            }
-         });
-      },
-      fail: function(error){
-         alert(JSON.stringfy(err));
-      }
-   }); */
-   
-  //다른 계정으로 로그인하기 버튼
-/*    function loginForm() {
-   Kakao.Auth.loginForm({
-   	success : function(authObj) {
-   		Kakao.API.request({
-   			url : '/v1/user/me',
-   			success : function(res) {
-   				
-   				 json형태로 출력되는 로그인 정보들을 변수에 담는다.
-   				var email = JSON.stringify(res.kaccount_email);
-   				var access_token = JSON.stringify(authObj.access_token);
-   				
-   						$(function() {
-   							
-   							로그인 정보들을 input 태그의 value 에 담는다.
-   							$('#email').val(email);
-   							$('#access_token').val(access_token);
-   							
-   							서브밋 한다.
-   							 var form = document.getElementById("kakao-login");  
-   							
-   							
-   							
-   							  form.submit();
-   						});
-   			}
-   	});
-   			
-   	
-   },
-   	fail : function(error) {
-   		alert(JSON.stringify(error));
-   		alert("로그인 실패!");
-   	}
-   });
-   };
-   function form_submit() {
-   var form = document.getElementById("kakao-login");  
-   form.submit();
-   };
- */
    </script>
 
 </body>

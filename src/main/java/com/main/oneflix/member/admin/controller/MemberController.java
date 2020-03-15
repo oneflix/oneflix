@@ -64,14 +64,14 @@ public class MemberController {
 			vo.setBan("N");
 		}
 		updateMemeberService.updateMember(vo);
-		mav.setViewName("redirect:/getMemberListProc.mdo");
+		mav.setViewName("redirect:/memberList.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteMemberProc.mdo")
 	public ModelAndView deleteMemberProc(MemberVO vo, ModelAndView mav) {
 		deleteMemberService.deleteMember(vo);
-		mav.setViewName("redirect:/getMemberListProc.mdo");
+		mav.setViewName("redirect:/memberList.mdo");
 		return mav;
 	}
 

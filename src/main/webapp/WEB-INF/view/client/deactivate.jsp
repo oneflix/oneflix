@@ -59,23 +59,22 @@ body {margin: 0 auto; padding: 0;}
 			</div>
 		</div>
 	</footer>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		function deactivate() {
-			const email = "${member.email}";
-			const nick = "${member.nick}";
-			var sendData = {
-				"email" : email,
-				"nick" : nick
-			};
+			var email = "${member.email}";
+			var nick = "${member.nick}";
+			var sendData = {"email": email, "nick": nick};
 			$.ajax({
 				url : "/deactivateMailProcAjax.do",
 				type : "POST",
-				data : sendData,
+				data: sendData,
+				async : false,
 				success : function(res) {
 					if (res == "success") {
-						alert("가입된 이메일로 탈퇴메일을 보내드렸습니다.")
+						alert("가입된 이메일로 탈퇴메일을 보내드렸습니다.");
 					} else if (res == "fail") {
-						alert("해당 계정의 메일이 유효한지 확인해주세요.")
+						alert("해당 계정의 메일이 유효한지 확인해주세요.");
 					}
 				}
 			});

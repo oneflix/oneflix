@@ -55,7 +55,7 @@ public class TicketController {
 	@RequestMapping("/insertTicketProc.mdo")
 	public ModelAndView insertTicketProc(TicketVO vo, ModelAndView mav) {
 		insertTicketService.insertTicket(vo);
-		mav.setViewName("redirect:/getTicketListProc.mdo");
+		mav.setViewName("redirect:/ticketList.mdo");
 		return mav;
 	}
 
@@ -70,14 +70,14 @@ public class TicketController {
 	@RequestMapping("/updateTicketProc.mdo")
 	public ModelAndView updateTicketProc(TicketVO vo, ModelAndView mav) {
 		updateTicketService.updateTicket(vo);
-		mav.setViewName("redirect:/getTicketListProc.mdo");
+		mav.setViewName("redirect:/ticketList.mdo");
 		return mav;
 	}
 
 	@RequestMapping("/deleteTicketProc.mdo")
 	public ModelAndView deleteTicketProc(TicketVO vo, ModelAndView mav) {
 		deleteTicketService.deleteTicket(vo);
-		mav.setViewName("redirect:/getTicketListProc.mdo");
+		mav.setViewName("redirect:/ticketList.mdo");
 		return mav;
 	}
 }

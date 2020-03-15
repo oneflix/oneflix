@@ -22,6 +22,7 @@
 			<mvc:exclude-mapping path="/login.do"/>
 			<mvc:exclude-mapping path="/loginProc.do"/>
 			<mvc:exclude-mapping path="/naverLoginProc.do"/>
+			<mvc:exclude-mapping path="/kakaoLogin.do"/>
 			<mvc:exclude-mapping path="/connectSNSLoginProc.do"/>
 			<mvc:exclude-mapping path="/join.do"/>
 			<mvc:exclude-mapping path="/joinProc.do"/>

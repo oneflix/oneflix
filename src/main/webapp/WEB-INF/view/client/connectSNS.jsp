@@ -92,7 +92,7 @@
      		<footer class="css-eexbuk-Self e16ogtil0">
        		<span class="css-j4zj9u-Contact e16ogtil1">
        		<em><a style="font-size: 0.8333333333333334vw; line-height: 0;" href="/help.do">고객센터(이용 및 결제 문의)</a>
-       		</em>&nbsp;&nbsp;<a style="font-size: 0.8333333333333334vw; line-height: 0;" href="mailto:oneflix@gmail.com">oneflix@gmail.com</a>
+       		</em>&nbsp;&nbsp;<a style="font-size: 0.8333333333333334vw; line-height: 0;" href="mailto:main.oneflix@gmail.com">main.oneflix@gmail.com</a>
        		</span><br>
          <strong>ONeflix</strong> Copyright © 2020 by ONeflix, Inc. All rights
          reserved.
@@ -161,35 +161,12 @@
 		           $("#loginBtn").prop('disabled', true);
 		        }
 		    });//KEY EVENT
-	});
+		});
 	   
 		function SNSJoin(){
-/* 		   var kakao = document.getElementById("kakao");
-		   var naver = document.getElementById("naver");
-		   */
            window.location.href = "/join.do?kakao=" + "${member.kakao}" + "&naver=" + "${member.naver}";
         };
    
-   
-   //카카오로그인
-   /* Kakao.init('0049fd0389c5227d9b37e3daadbbcf35');
-   Kakao.Auth.createLoginButton({
-      container:'#kakao-login-btn',
-      success : function(authObj){
-         Kakao.API.request({
-            url:'/v2/user/me',
-            success: function(res){
-               alert(JSON.stringfy(res));
-            },
-            fail: function(error){
-               alert(JSON.stringfy(error));
-            }
-         });
-      },
-      fail: function(error){
-         alert(JSON.stringfy(err));
-      }
-   }); */
    </script>
 
 </body>
