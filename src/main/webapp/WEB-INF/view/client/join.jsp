@@ -77,13 +77,13 @@
 								</div>
 								<div class="css-unatsl-Self eu52ful0">
 									<input type="password" value="" id="pass" name="pass"
-										placeholder="비밀번호 (4자 이상)"
+										placeholder="비밀번호 (8~15자)"
 										class="oneflix-input e1jdphjt4 css-1ivms9u-StyledField-PasswordField eu52ful1"
 										autocomplete="off">
 								</div>
 								<div class="css-unatsl-Self eu52ful0">
 									<input type="text" value="" id="nick" name="nick"
-										placeholder="닉네임"
+										placeholder="닉네임 (2~6자)"
 										class="oneflix-input e1jdphjt3 css-sg09fs-StyledField-NickField eu52ful1"
 										autocomplete="off">
 								</div>
@@ -281,7 +281,7 @@
 				re = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 				emailCheck = false;
 			} else if ($(this).prop('id') == 'pass') {
-				re = /^[a-zA-Z0-9]{4,12}$/;
+				re = /^[a-zA-Z0-9]{8,15}$/;
 				passCheck = false;
 			} else if ($(this).prop('id') == 'nick') {
 				re = /^[a-zA-Z0-9가-힣]{2,6}$/;

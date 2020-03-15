@@ -68,7 +68,7 @@
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0">
                                            <input id="newNick" name="newNick"
-                                                placeholder="닉네임을 입력해주세요." autocomplete="off"
+                                                placeholder="닉네임을 입력해주세요 (2~6자)" autocomplete="off"
                                                 class="css-5kai6j-StyledField eu52ful1" type="nick">
                                                 </div>
                                     </div>
@@ -76,7 +76,7 @@
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims33 next-form">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="passConfirm" name="passConfirm"
-                                                placeholder="비밀번호를 입력해주세요." autocomplete="off"
+                                                placeholder="현재 비밀번호를 입력해주세요" autocomplete="off"
                                                 class="css-5kai6j-StyledField eu52ful1" type="password"></div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                 <div class="css-1epg2mh-SettingListContentRow e1199ims19">
                                     <div class="css-1ymlnpj-FieldBlock e1199ims8">
                                         <div class="css-unatsl-Self eu52ful0"><input id="newPass" name="newPass"
-                                                placeholder="새 비밀번호" autocomplete="off"
+                                                placeholder="새 비밀번호 (8~15자)" autocomplete="off"
                                                 class=" css-5kai6j-StyledField eu52ful1" type="password"></div>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
 		}
 
 		function validate() {
-			var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
+			var re = /^[a-zA-Z0-9]{8,15}$/ // 패스워드,닉네임이 적합한지 검사할 정규식
 			var nickRe = /^[a-zA-Z0-9가-힣]{2,6}$/
 			var newNick = document.getElementById("newNick");
 			var passConfirm = document.getElementById("passConfirm");
@@ -180,7 +180,7 @@
 			//비밀번호 변경할때
 			if (newPass.value != "" && newPass.value != null) {
 				if (!check(re, newPass,
-						"변경할 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+						"변경할 비밀번호는 8~15자의 영문 대소문자와 숫자로만 입력해주세요.")) {
 					return false;
 				} else if (pass.value != "${member.pass}") {
 					alert("기존 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
