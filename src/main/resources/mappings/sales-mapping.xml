@@ -57,6 +57,12 @@
 			ORDER BY RNUM DESC
 	</select>
 
+	<select id="getSubscriptionList" resultMap="salesList">
+		SELECT s.*, t.ticket_price FROM sales s, ticket t
+		WHERE s.ticket_id = t.ticket_id AND s.sales_status = 'success' AND s.cid = 'TCSUBSCRIP'
+		AND s.expiry_date BETWEEN TRUNC(SYSDATE - 1) AND TRUNC(SYSDATE) 
+	</select>
+
 	<select id="getSales" parameterType="sales" resultType="sales">
 		SELECT s.*, t.ticket_name, t.ticket_price FROM sales s, ticket t 
 		WHERE s.ticket_id = t.ticket_id
@@ -76,13 +82,20 @@
 		VALUES (#{cid}, #{tid}, #{salesId}, #{email}, #{ticketId}, #{salesStatus})
 	</insert>
 	
+	<insert id="insertSubscription" parameterType="sales">
+		INSERT INTO sales(cid, tid, sid, sales_id, email, ticket_id, sales_status,
+							payment_date, expiry_date, payment_method_type, card_name)
+		VALUES (#{cid}, #{tid}, #{sid}, #{salesId}, #{email}, #{ticketId}, #{salesStatus},
+				SYSDATE, TRUNC(SYSDATE + 31) - (INTERVAL '1' SECOND), #{paymentMethodType}, #{cardName, jdbcType=VARCHAR})
+	</insert>
+	
 	<update id="sellTicket" parameterType="sales">
 		<selectKey resultType="int" keyProperty="ticketPeriod" order="BEFORE">
 			SELECT ticket_period FROM ticket WHERE ticket_id = #{ticketId}
 		</selectKey>
 		UPDATE sales SET
 		sales_status = #{salesStatus} ,sid = #{sid, jdbcType=VARCHAR}, payment_date = SYSDATE, 
-		expiry_date = SYSDATE + #{ticketPeriod}, payment_method_type = #{paymentMethodType}, card_name = #{cardName, jdbcType=VARCHAR}
+		expiry_date = TRUNC(SYSDATE + #{ticketPeriod} + 1) - (INTERVAL '1' SECOND), payment_method_type = #{paymentMethodType}, card_name = #{cardName, jdbcType=VARCHAR}
 		WHERE sales_id = #{salesId}
 	</update>
 	
@@ -139,28 +152,23 @@
  	<select id="expiryCheck" resultMap="expiryEmailList">
 		SELECT email FROM sales
 		WHERE sales_status != 'expired'
-			<![CDATA[
-				AND expiry_date >= TRUNC(SYSDATE - 1)
-			]]>
+			AND expiry_date = TRUNC(SYSDATE) - (INTERVAL '1' SECOND)
 	</select>
 	
 	<update id="updateExpiry">
 		UPDATE sales SET
 		sales_status = 'expired'
-		WHERE 
-		<![CDATA[
-			expiry_date >= TRUNC(SYSDATE - 1)
-		]]>
+		WHERE (sales_status = 'success' OR sales_status = 'inactive') 
+			AND expiry_date = TRUNC(SYSDATE) - (INTERVAL '1' SECOND)
 	</update>
 	
 	<select id="refundCheck" parameterType="sales" resultType="int">
 		SELECT NVL(COUNT(*), 0) FROM sales s, watch w, member m
-		WHERE s.email = #{email} AND m.ticket_id != 0 AND s.email = m.email
+		WHERE s.email = #{email} AND s.email = w.email AND s.email = m.email
 			AND (s.sales_status = 'inactive' OR s.sales_status = 'success')
 			<![CDATA[
-				AND s.payment_date > m.join_date AND s.payment_date > SYSDATE - 7 
+				AND s.payment_date > m.join_date
 			]]>
-			AND w.watch_date BETWEEN s.payment_date AND s.payment_date + 7
+			AND w.watch_date BETWEEN s.payment_date AND s.expiry_date
 	</select>
-	
 </mapper>

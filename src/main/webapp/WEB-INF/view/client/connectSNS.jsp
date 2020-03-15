@@ -51,7 +51,7 @@
 				<ul class="css-k2rcg7-RightNav e19xg79h12"></ul>
 		</nav>
 	<main class="css-1a4c3t1-Main e19xg79h5">
-	<div src="#" class="css-9e7b81-Self el4vci00">
+	<div class="css-9e7b81-Self el4vci00">
 
      <main class="css-1494bd8-Self edt52et0">
      	<div class="css-9tzvq5-Inner edt52et4">
@@ -100,7 +100,7 @@
    			</div>
    			</main>
    			</div>
-   		<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
+   		<div class="css-8emhun-BackScreen e1rl100y0"></div>
   	</div>
  
 	<!--===============================================================================================-->

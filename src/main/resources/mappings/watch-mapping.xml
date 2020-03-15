@@ -5,6 +5,9 @@
 <mapper namespace="WatchDAO">
 	
 	<insert id="insertWatch" parameterType="watch">
+		<selectKey keyProperty="watchId" resultType="int" order="AFTER">
+			SELECT watch_id FROM watch WHERE email = #{email} AND movie_id = #{movieId}
+		</selectKey>
 		INSERT INTO watch(watch_id, watch_type, email, movie_id, watch_date, view_point)
 		VALUES((SELECT NVL(MAX(watch_id),0)+1 FROM watch), #{watchType}, #{email}, #{movieId}, SYSDATE, #{viewPoint})
 	</insert>

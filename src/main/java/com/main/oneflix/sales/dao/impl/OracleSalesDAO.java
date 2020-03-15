@@ -70,5 +70,15 @@ public class OracleSalesDAO implements SalesDAO {
 		return sqlSessionTemplate.selectOne("SalesDAO.refundCheck", vo);
 	}
 
+	@Override
+	public List<SalesVO> getSubscriptionList() {
+		return sqlSessionTemplate.selectList("SalesDAO.getSubscriptionList");
+	}
+
+	@Override
+	public void insertSubscrition(SalesVO vo) {
+		sqlSessionTemplate.insert("SalesDAO.insertSubscription", vo);
+	}
+
 
 }

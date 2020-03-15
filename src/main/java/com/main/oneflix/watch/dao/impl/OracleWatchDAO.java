@@ -14,8 +14,8 @@ public class OracleWatchDAO implements WatchDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public void insertWatch(WatchVO vo) {
-		sqlSessionTemplate.insert("WatchDAO.insertWatch", vo);
+	public int insertWatch(WatchVO vo) {
+		return sqlSessionTemplate.insert("WatchDAO.insertWatch", vo);
 	}
 	
 	@Override

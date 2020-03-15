@@ -57,8 +57,8 @@ public class WatchController {
 
 	@RequestMapping("/insertWatchAjax.do")
 	@ResponseBody
-	public void insertWatch(WatchVO vo) {
-		insertWatchService.insertWatch(vo);
+	public int insertWatch(WatchVO vo) {
+		return insertWatchService.insertWatch(vo);
 	}
 	
 	@RequestMapping("/updateWatchAjax.do")

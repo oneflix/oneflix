@@ -73,7 +73,7 @@
 
 
 			<main class="css-1a4c3t1-Main e19xg79h5">
-				<div src="#" class="css-9e7b81-Self el4vci00">
+				<div class="css-9e7b81-Self el4vci00">
 
 					<main class="css-1494bd8-Self edt52et0">
 						<div class="css-9tzvq5-Inner edt52et4">
@@ -100,7 +100,7 @@
 								</div>
 
 						<div style="border-bottom:0;" class="css-cmoq9h-SubmitButtonBlock e19dfl4j3">
-							<button type="submit" id="loginBtn" disabled="" class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">
+							<button type="submit" id="loginBtn" disabled class="css-vklyy4-RoundedButton-SignSubmitButton e1gv9myf0">
 							확인</button>
 						</div>
 							</form>
@@ -118,7 +118,7 @@
 			</div>
 			</main>
 		</div>
-	<div disabled="" class="css-8emhun-BackScreen e1rl100y0"></div>
+	<div class="css-8emhun-BackScreen e1rl100y0"></div>
 </div> //root
 
 

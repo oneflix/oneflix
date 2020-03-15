@@ -96,7 +96,7 @@ public class MemberController {
 					"</p>" +
 					"<br>" + 
 					"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
-					"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
+					"<p>Copyright &copy; 2015-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
 			emailService.sendEmail(inquiry);
 			return "success";
 		} catch (Exception e) {
@@ -181,7 +181,7 @@ public class MemberController {
 					"<p>정말로 탈퇴하실 거라면, 아래 버튼을 눌러주세요.<br/></p>\r\n" + 
 					"<p><a href=\"http://localhost:8080/deleteMemberProc.do?email="+vo.getEmail()+"\">탈퇴하러 가기</a></p>\r\n" + 
 					"<p>감사합니다.<br/>ONEFLIX 드림</p>\r\n" + 
-					"<p>Copyright &copy; 2019-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
+					"<p>Copyright &copy; 2015-2020 ONEFLIX, Inc..<br />All rights reserved.본 메일은 발신 전용입니다.</p>");
 			emailService.sendEmail(inquiry);
 			return "success";
 		} catch (Exception e) {

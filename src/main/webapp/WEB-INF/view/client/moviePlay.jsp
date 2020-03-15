@@ -31,12 +31,14 @@ video:focus {outline: none;}
 		var watchType;
 		var email;
 		var movieId;
+		var watchId;
 		var sendData = new Object;
 		
 		$(document).ready(function(){
 			vid = document.getElementById("fullVideo");
 			checkTime = "${watch.viewPoint}";
 			watchType = "${watch.watchType}";
+			watchId = "${watch.watchId}";
 			if (watchType == '' || watchType == null) {
 				watchType = 'watching';
 				email = "${member.email}";
@@ -76,7 +78,7 @@ video:focus {outline: none;}
 					sendData.movieId = movieId;
 					requestUrl = "/insertWatchAjax.do";
 				} else {
-					sendData.watchId = "${watch.watchId}";
+					sendData.watchId = watchId;
 					requestUrl = "/updateWatchAjax.do";
 				}
 				sendData.viewPoint = viewPoint;
@@ -94,11 +96,11 @@ video:focus {outline: none;}
 					type : 'POST',
 					data : sendData,
 					async : false,
-					success : function() {
+					success : function(res) {
+						if (res != null && res != 0 && res != '') {
+							watchId = res;
+						}
 						checkTime = viewPoint;
-					},
-					error : function(e) {
-						alert(e.responseText);
 					}
 				});
 			}

@@ -14,7 +14,8 @@ public class InsertWatchServiceImpl implements InsertWatchService {
 	private WatchDAO watchDAO;
 	
 	@Override
-	public void insertWatch(WatchVO vo) {
+	public int insertWatch(WatchVO vo) {
 		watchDAO.insertWatch(vo);
+		return vo.getWatchId();
 	}
 }

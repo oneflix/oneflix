@@ -209,8 +209,8 @@
    </update>
    
    <update id="updateMovieScore" parameterType="movie">
-   		<selectKey resultType="int" keyProperty="movieScore" order="BEFORE">
-			SELECT TRUNC(AVG(M.review_score)) movie_score
+   		<selectKey resultType="double" keyProperty="movieScore" order="BEFORE">
+			SELECT NVL(ROUND(AVG(M.review_score), 2), 0) movie_score
 			FROM (SELECT review_score FROM movie m, review r WHERE m.movie_id = r.movie_id AND m.movie_id = #{movieId}) M
 		</selectKey>
    		UPDATE movie SET
