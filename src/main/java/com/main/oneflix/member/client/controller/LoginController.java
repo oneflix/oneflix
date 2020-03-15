@@ -194,7 +194,7 @@ public class LoginController {
 		
 		/*
 		 * if(vo.getKakao() != null) { HashMap<String, Object> token =
-		 * kakaoLoginService.kakaoLogout(code); System.out.println(token); }
+		 * kakaoLoginService.kakaoLogout(code);}
 		 */
 		session.invalidate();
 		mav.setViewName("redirect:/oneflix.do");

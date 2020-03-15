@@ -78,8 +78,6 @@ public class SalesScheduleServiceImpl implements KakaoConst, SalesScheduleServic
 			map.put("expiryEmailList", expiryEmailList);
 			map.put("subscriptionEmailList", subscriptionEmailList);
 			if (expiryEmailList.size() != 0 || subscriptionEmailList.size() != 0) {
-				System.out.println(expiryEmailList.size());
-				System.out.println(subscriptionEmailList.size());
 				memberDAO.updateTicketExpiry(map);
 			}
 		}

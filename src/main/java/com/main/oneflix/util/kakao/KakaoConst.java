@@ -2,7 +2,7 @@ package com.main.oneflix.util.kakao;
 
 public interface KakaoConst {
 
-	static final String MY_HOST = "http://113.209.21.185:8080/";
+	static final String MY_HOST = "http://13.209.21.185:8080/";
 	static final String CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";
 	
 	static final String KAKAO_HOST = "https://kapi.kakao.com";
