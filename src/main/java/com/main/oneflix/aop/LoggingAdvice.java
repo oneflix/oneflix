@@ -11,20 +11,22 @@ import org.slf4j.LoggerFactory;
 @Aspect
 public class LoggingAdvice {
 
-	private static Logger logger = LoggerFactory.getLogger(LoggingAdvice.class);
+	//private static Logger consoleLogger = LoggerFactory.getLogger(LoggingAdvice.class);
+	public static final Logger fileLogger = LoggerFactory.getLogger("org.springframework");
 
 	@Around("execution(* com.main.oneflix..*ServiceImpl.*(..))")
 	public Object logging(ProceedingJoinPoint jp) throws Throwable {
 
 		// 메서드가 실행되기 전
-		logger.info("메서드 명: " + jp.getSignature().getName() + " 시작");
-		logger.info("파라미터: " + Arrays.toString(jp.getArgs()));
+		fileLogger.info("메서드 명: " + jp.getSignature().getName() + " 시작");
+		fileLogger.info("파라미터: " + Arrays.toString(jp.getArgs()));
 		
 		// 메서드 실행
 		Object result = jp.proceed();
 
 		// 메서드가 실행된 후
-		logger.info("메서드 명: " + jp.getSignature().getName() + " 종료");
+		fileLogger.info("메서드 명: " + jp.getSignature().getName() + " 종료");
 		return result;
 	}
+	
 }

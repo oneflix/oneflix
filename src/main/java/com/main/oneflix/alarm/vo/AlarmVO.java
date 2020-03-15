@@ -58,4 +58,12 @@ public class AlarmVO {
 		this.alarmCount = alarmCount;
 	}
 
+	@Override
+	public String toString() {
+		return "AlarmVO [alarmId=" + alarmId + ", alarmType=" + alarmType + ", email=" + email + ", sendDate="
+				+ sendDate + ", readCheck=" + readCheck + ", alarmCount=" + alarmCount + "]";
+	}
+	
+	
+
 }

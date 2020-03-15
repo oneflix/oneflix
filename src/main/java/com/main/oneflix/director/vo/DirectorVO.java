@@ -48,4 +48,11 @@ public class DirectorVO {
 		this.searchDirector = searchDirector;
 	}
 
+	@Override
+	public String toString() {
+		return "DirectorVO [rnum=" + rnum + ", directorId=" + directorId + ", directorName=" + directorName
+				+ ", directorAge=" + directorAge + ", searchDirector=" + searchDirector + "]";
+	}
+
+	
 }

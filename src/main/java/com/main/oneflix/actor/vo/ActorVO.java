@@ -48,4 +48,11 @@ public class ActorVO {
 		this.actorAge = actorAge;
 	}
 
+	@Override
+	public String toString() {
+		return "ActorVO [rnum=" + rnum + ", actorId=" + actorId + ", actorName=" + actorName + ", actorAge=" + actorAge
+				+ ", searchActor=" + searchActor + "]";
+	}
+
+	
 }

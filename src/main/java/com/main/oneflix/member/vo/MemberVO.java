@@ -295,4 +295,13 @@ public class MemberVO {
 		this.newPass = newPass;
 	}
 
+	@Override
+	public String toString() {
+		return "MemberVO [email=" + email + ", nick=" + nick + ", gender=" + gender + ", MemberAge=" + MemberAge
+				+ ", ticketId=" + ticketId + ", ticketName=" + ticketName + ", paymentDate=" + paymentDate
+				+ ", expiryDate=" + expiryDate + ", cert=" + cert + ", ban=" + ban + ", kakao=" + kakao + ", naver="
+				+ naver + "]";
+	}
+
+	
 }
