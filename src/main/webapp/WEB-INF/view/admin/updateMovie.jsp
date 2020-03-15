@@ -80,7 +80,7 @@
 										required="required" data-placeholder="감독 선택"
 										style="width: 100%;">
 										<c:forEach var="director" items="${directorList}">
-											<option value='${director.directorId }'>${director.directorName }</option>
+											<option value='${director.directorId }'>${director.directorName}(${director.directorBirth})</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -91,7 +91,7 @@
 										required="required" multiple="multiple"
 										data-placeholder="배우 선택" style="width: 100%;">
 										<c:forEach var="actor" items="${actorList}">
-											<option value="${actor.actorId }">${actor.actorName}</option>
+											<option value="${actor.actorId }">${actor.actorName}(${actor.actorBirth})</option>
 										</c:forEach>
 									</select>
 								</div>
