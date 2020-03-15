@@ -21,6 +21,6 @@
 	
 	<aop:aspectj-autoproxy/>
 	<bean id="loggingAdvice" class="com.main.oneflix.aop.LoggingAdvice"/>
-		
-
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
