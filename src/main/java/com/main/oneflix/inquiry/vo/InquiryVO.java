@@ -182,4 +182,16 @@ public class InquiryVO {
 		this.replyCheck = replyCheck;
 	}
 
+	@Override
+	public String toString() {
+		return "InquiryVO [rnum=" + rnum + ", inquiryId=" + inquiryId + ", inquiryType=" + inquiryType
+				+ ", inquiryTitle=" + inquiryTitle + ", inquiryContent=" + inquiryContent + ", nick=" + nick
+				+ ", email=" + email + ", adminName=" + adminName + ", adminEmail=" + adminEmail + ", replyTitle="
+				+ replyTitle + ", replyContent=" + replyContent + ", inquiryDate=" + inquiryDate + ", replyDate="
+				+ replyDate + ", start=" + start + ", end=" + end + ", searchInquiryType=" + searchInquiryType
+				+ ", searchCondition=" + searchCondition + ", searchInquiry=" + searchInquiry + ", replyCheck="
+				+ replyCheck + "]";
+	}
+
+	
 }

@@ -39,4 +39,11 @@ public class GenreVO {
 		this.searchGenre = searchGenre;
 	}
 
+	@Override
+	public String toString() {
+		return "GenreVO [rnum=" + rnum + ", genreId=" + genreId + ", genre=" + genre + ", searchGenre=" + searchGenre
+				+ "]";
+	}
+
+	
 }

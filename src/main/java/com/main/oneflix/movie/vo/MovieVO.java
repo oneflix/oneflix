@@ -440,4 +440,24 @@ public class MovieVO {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "MovieVO [rnum=" + rnum + ", movieId=" + movieId + ", movieTitle=" + movieTitle + ", movieScore="
+				+ movieScore + ", rating=" + rating + ", duration=" + duration + ", directorId=" + directorId
+				+ ", directorName=" + directorName + ", actorId1=" + actorId1 + ", actorId2=" + actorId2 + ", actorId3="
+				+ actorId3 + ", actorId4=" + actorId4 + ", actorId5=" + actorId5 + ", actorName1=" + actorName1
+				+ ", actorName2=" + actorName2 + ", actorName3=" + actorName3 + ", actorName4=" + actorName4
+				+ ", actorName5=" + actorName5 + ", genreId1=" + genreId1 + ", genreId2=" + genreId2 + ", genre1="
+				+ genre1 + ", genre2=" + genre2 + ", country=" + country + ", release=" + release + ", summary="
+				+ summary + ", poster=" + poster + ", posterPath=" + posterPath + ", fullVideo=" + fullVideo
+				+ ", fullVideoPath=" + fullVideoPath + ", teaserVideo=" + teaserVideo + ", teaserVideoPath="
+				+ teaserVideoPath + ", viewCount=" + viewCount + ", movieRegDate=" + movieRegDate + ", movieStatus="
+				+ movieStatus + ", mainCheck=" + mainCheck + ", movieSubtitle=" + movieSubtitle + ", actorList="
+				+ actorList + ", genreList=" + genreList + ", searchGenre=" + searchGenre + ", recommendGenre="
+				+ recommendGenre + ", searchCondition=" + searchCondition + ", searchMovie=" + searchMovie
+				+ ", movieType=" + movieType + ", searchOrder=" + searchOrder + ", onlyViewCount=" + onlyViewCount
+				+ ", start=" + start + ", end=" + end + ", email=" + email + "]";
+	}
+
+	
 }

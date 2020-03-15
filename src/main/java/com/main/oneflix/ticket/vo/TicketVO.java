@@ -65,4 +65,13 @@ public class TicketVO {
 	public void setTicketStatus(String ticketStatus) {
 		this.ticketStatus = ticketStatus;
 	}
+
+	@Override
+	public String toString() {
+		return "TicketVO [rnum=" + rnum + ", ticketId=" + ticketId + ", ticketName=" + ticketName + ", ticketPeriod="
+				+ ticketPeriod + ", ticketPrice=" + ticketPrice + ", ticketRecommend=" + ticketRecommend
+				+ ", ticketStatus=" + ticketStatus + "]";
+	}
+	
+	
 }

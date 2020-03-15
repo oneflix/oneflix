@@ -80,4 +80,13 @@ public class WatchVO {
 		this.genreId = genreId;
 	}
 
+	@Override
+	public String toString() {
+		return "WatchVO [watchId=" + watchId + ", watchType=" + watchType + ", email=" + email + ", movieId=" + movieId
+				+ ", watchDate=" + watchDate + ", viewPoint=" + viewPoint + ", genreId=" + genreId + ", countWatch="
+				+ countWatch + "]";
+	}
+	
+	
+
 }

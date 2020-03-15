@@ -116,4 +116,15 @@ public class ScreenVO {
 		this.screenStatusList = screenStatusList;
 	}
 
+	@Override
+	public String toString() {
+		return "ScreenVO [screenId=" + screenId + ", screenType=" + screenType + ", screenOrder=" + screenOrder
+				+ ", screenImgPath=" + screenImgPath + ", screenTitle=" + screenTitle + ", screenSubtitle="
+				+ screenSubtitle + ", screenIdList=" + screenIdList + ", screenImgFileList=" + screenImgFileList
+				+ ", screenImgPathList=" + screenImgPathList + ", screenTitleList=" + screenTitleList
+				+ ", screenSubtitleList=" + screenSubtitleList + ", screenStatusList=" + screenStatusList + "]";
+	}
+
+	
+	
 }

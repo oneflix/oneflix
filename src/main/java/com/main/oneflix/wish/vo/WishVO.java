@@ -39,4 +39,12 @@ public class WishVO {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "WishVO [wishId=" + wishId + ", movieId=" + movieId + ", movieTitle=" + movieTitle + ", email=" + email
+				+ "]";
+	}
+	
+	
+
 }
