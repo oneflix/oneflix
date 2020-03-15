@@ -2,6 +2,7 @@ package com.main.oneflix.sales.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.oneflix.member.dao.MemberDAO;
 import com.main.oneflix.member.vo.MemberVO;
@@ -9,6 +10,7 @@ import com.main.oneflix.sales.dao.SalesDAO;
 import com.main.oneflix.sales.service.TicketSalesService;
 import com.main.oneflix.sales.vo.SalesVO;
 
+@Transactional
 @Service
 public class TicketSalesServiceImpl implements TicketSalesService {
 

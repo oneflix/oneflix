@@ -157,6 +157,14 @@
 			<version>1.9.5</version>
 		</dependency>
 
+		<!-- SPRING-TRANSACTION -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>5.2.4.RELEASE</version>
+		</dependency>
+
+
 		<!-- OJDBC -->
 		<dependency>
 			<groupId>com.oracle</groupId>
