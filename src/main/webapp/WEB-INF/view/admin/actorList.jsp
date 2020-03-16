@@ -70,7 +70,7 @@
 										<tr>
 											<th>#</th>
 											<th>이름</th>
-											<th>생년</th>
+											<th>출생</th>
 											<th>관리</th>
 										</tr>
 									</thead>

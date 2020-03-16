@@ -46,7 +46,7 @@
 									<input type="text" class="form-control" id="actorName" name="actorName">
 							</div>
 							<div class="form-group mb-3">
-								<label for="actorBirth">생년</label>
+								<label for="actorBirth">출생</label>
 									<input type="text" class="form-control" id="actorBirth" placeholder="YYYY" name="actorBirth">
 							</div>
 							<br>

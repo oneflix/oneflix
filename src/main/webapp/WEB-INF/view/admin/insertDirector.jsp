@@ -53,7 +53,7 @@
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="directorBirth">생년</label>
+								<label for="directorBirth">출생</label>
 									<input type="text" class="form-control" id="directorBirth" placeholder="YYYY" name="directorBirth">
 							</div>
 
