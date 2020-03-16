@@ -16,13 +16,22 @@ video {
 	height: 100%; width: 100%; margin: auto; outline: none; border: 0;
 }
 video:focus {outline: none;}
+.back-play-page {
+	position: absolute; top:30px; right: 30px; font-size: 30px; 
+	z-index: 9; background: transparent; border: none; color: #fff; outline: none;
+	cursor: pointer;
+}
 </style>
 </head>
 <body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+	<button class="back-play-page" onclick="history.back()">X</button>
+	<div>
+	
 	<video controls autoplay controlsList="nodownload" name="media"
 		id="fullVideo">
 		<source src="${movie.fullVideoPath}" type="video/mp4">
 	</video>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
@@ -57,10 +66,12 @@ video:focus {outline: none;}
 
 		var myInterval;
 		function startInterval(){
+			$('.back-play-page').hide();
 			myInterval = setInterval(inputWatchData(), 1000 * 60 * 5);
 		}
 		
 		function stopInterval(){
+			$('.back-play-page').show();
 			clearInterval(myInterval);
 		}
 		
@@ -109,7 +120,7 @@ video:focus {outline: none;}
 		$(window).on("beforeunload", function() {
 			inputWatchData();
 		});
-
+		
 	</script>
 </body>
 </html>

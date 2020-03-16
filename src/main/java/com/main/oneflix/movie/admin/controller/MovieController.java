@@ -134,6 +134,14 @@ public class MovieController {
 		mav.setViewName("adminMovieDetail");
 		return mav;
 	}
+	
+	@RequestMapping("/adminMoviePlay.mdo")
+	public ModelAndView adminMoviePlay(MovieVO vo, ModelAndView mav) {
+		vo = getMovieService.getMovie(vo);
+		mav.addObject("movie", vo);
+		mav.setViewName("adminMoviePlay");
+		return mav;
+	}
 
 	@RequestMapping("/updateMovieProc.mdo")
 	public ModelAndView updateMovieProc(MovieVO vo, HttpSession session, ModelAndView mav) {

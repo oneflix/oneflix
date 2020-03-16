@@ -78,19 +78,19 @@
 											<li class="css-ajo6y3-CreditList e1qb11zh1"><span
 												class="css-gvfmob-CreditTitle e1qb11zh3">출연&nbsp;&nbsp;</span>
 												<span class="css-1mnni33-CreditContent e1qb11zh2">
-													<c:if test="${movie.actorName1 != null}">
+													<c:if test="${movie.actorName1 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName1}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName2 != null}">
+													<c:if test="${movie.actorName2 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName2}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName3 != null}">
+													<c:if test="${movie.actorName3 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName3}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName4 != null}">
+													<c:if test="${movie.actorName4 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName4}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName5 != null}">
+													<c:if test="${movie.actorName5 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName5}</a></span>
 													</c:if>
 												</span>
@@ -98,10 +98,10 @@
 											<li class="css-ajo6y3-CreditList e1qb11zh1">
 												<span class="css-gvfmob-CreditTitle e1qb11zh3">개요&nbsp;&nbsp;</span>
 												<span class="css-1mnni33-CreditContent e1qb11zh2">
-													<c:if test="${movie.genre1 != null}">
+													<c:if test="${movie.genre1 != ' '}">
 														<span class="genre-span"><a href="#">${movie.genre1}</a></span>
 													</c:if>
-													<c:if test="${movie.genre2 != null}">
+													<c:if test="${movie.genre2 != ' '}">
 														<span class="genre-span"><a href="#">${movie.genre2}</a></span>
 													</c:if>
 													<span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
@@ -112,7 +112,7 @@
 										</ul>
 										<div
 											class="e1vsnrt61 css-7s5tof-Self-ContentActionButtons e1jklz6e0">
-											<a href="/moviePlay.do" class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
+											<a href="/adminMoviePlay.mdo?movieId=${movie.movieId}" class="css-62azfr-PlayButton-MainButtonStyle e1jklz6e3"
 												aria-label="재생">
 												<span style="margin-top: 3px;" class="SVGInline css-10748d4-MainButtonIcon e1jklz6e2">
 													<svg class="SVGInline-svg css-10748d4-MainButtonIcon- e1jklz6e2-svg"
