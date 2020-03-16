@@ -226,7 +226,7 @@
 		document.addEventListener("DOMContentLoaded", function(){
 			$("#rating").val("${movie.rating}").prop("selected", true);
 			$("#directorId").val("${movie.directorId}").prop("selected", true);
-			$('#actorList').val(["${movie.actorId1}","${movie.actorId2}","${movie.actorId3}","${movie.actorId4}","${movie.actorId5}"]);
+			$('#actorList').val(["${movie.actorId1}","${movie.actorId2}","${movie.actorId3}"]);
 			$('#genreList').val(["${movie.genreId1}","${movie.genreId2}"]);
 			$("#country").val("${movie.country}").prop("selected", true);
 			$("#release").val("${movie.release}").prop("selected", true);
@@ -247,7 +247,7 @@
 				$('#movieSubtitle').prop("disabled", true);
 			}
 			
-			if ($('#actorList option:selected').length == 5) {
+			if ($('#actorList option:selected').length == 3) {
 				$("#actorList option").prop("disabled", "disabled");
 			} else {
 				$("#actorList option").prop("disabled", "");

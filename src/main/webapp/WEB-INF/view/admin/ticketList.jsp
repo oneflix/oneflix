@@ -148,7 +148,6 @@
    					render: function(data){
    						var html = "<div>" +
 									"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goTicketDetail(\'" + data + "\')\">수정</button>" +
-									"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
 								"</div>"
    						return html;
    					}}

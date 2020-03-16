@@ -328,14 +328,14 @@
 	   					}},
 	   				{data: "genre1",
 	   					render: function(data){
-	   						if (data == null) {
+	   						if (data == ' ') {
 	   							data = "-"; 
 	   						}
 	   						return "<p>" +data + "</p>" ;
 	   					}},
 	   				{data: "genre2",
 	   					render: function(data){
-	   						if (data == null) {
+	   						if (data == ' ') {
 	   							data = "-"; 
 	   						}
 	   						return "<p>" +data + "</p>" ;

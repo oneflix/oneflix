@@ -45,7 +45,7 @@
 			</section>
 
 
-			<form action="/updateTicketProc.mdo" method="post" class="row" name="insertTicket" onsubmit="return check()">
+			<form action="/updateTicketProc.mdo" method="post" onsubmit="preProc()" class="row" name="insertTicket" onsubmit="return check()">
 				<input name="ticketId" type="hidden" value="${ticket.ticketId}" />
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
@@ -62,7 +62,6 @@
 									id="ticketPeriod" name="ticketPeriod" required="required"
 									data-placeholder="Select a State">
 									<option value="30">정기권</option>
-									<option value="30">30</option>
 									<option value="60">60</option>
 									<option value="90">90</option>
 									<option value="180">180</option>
@@ -71,7 +70,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="title">가격</label> <input type="number"
+								<label for="title">가격</label> <input disabled type="number"
 									class="form-control" id="ticketPrice" name="ticketPrice"
 									value="${ticket.ticketPrice}" />
 							</div>
@@ -143,6 +142,9 @@
 			$('.duallistbox').bootstrapDualListbox()
 
 		})
+		function preProc(){
+			$('#ticketPrice').prop('disabled', false);
+		}
 	</script>
 
 

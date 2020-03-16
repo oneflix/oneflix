@@ -163,7 +163,7 @@
 						</div>
 						<br>
 						<c:forEach var="ticket" items="${ticketList}">
-							<c:if test="${ticket.ticketName eq '정기권'}">
+							<c:if test="${ticket.ticketPeriod eq 30}">
 								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
 							</c:if>
 							<c:if
@@ -190,7 +190,7 @@
 						</div>
 						<br>
 						<c:forEach var="ticket" items="${ticketList}">
-							<c:if test="${ticket.ticketName eq '정기권'}">
+							<c:if test="${ticket.ticketPeriod eq 30}">
 								<c:set var="originPrice" value="${ticket.ticketPrice}"></c:set>
 							</c:if>
 							<c:if
@@ -199,7 +199,7 @@
 									value="${ticket.ticketId}"> <span style="float: left;">${ticket.ticketName}</span>
 									<span style="float: right;"> <fmt:formatNumber
 											type="currency" value="${ticket.ticketPrice}" />
-								</span> <c:if test="${ticket.ticketName ne '정기권'}">
+								</span> <c:if test="${ticket.ticketPeriod ne 30}">
 										<span style="float: right;" class="ticket-origin-price">
 											<fmt:formatNumber type="currency"
 												value="${originPrice * ticket.ticketPeriod / 30}" />

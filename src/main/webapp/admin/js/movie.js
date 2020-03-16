@@ -15,7 +15,7 @@ $(function() {
 
 //배우 선택 제한
 $('#actorList').change(function() {
-	if ($('#actorList option:selected').length == 5) {
+	if ($('#actorList option:selected').length == 3) {
 		$("#actorList option").prop("disabled", "disabled");
 	} else {
 		$("#actorList option").prop("disabled", "");
