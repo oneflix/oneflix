@@ -129,7 +129,6 @@
 			<version>1.2.3</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
@@ -156,6 +155,14 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.9.5</version>
 		</dependency>
+
+		<!-- SPRING-TRANSACTION -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>5.2.4.RELEASE</version>
+		</dependency>
+
 
 		<!-- OJDBC -->
 		<dependency>
