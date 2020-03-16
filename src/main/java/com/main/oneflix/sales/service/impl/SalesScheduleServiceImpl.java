@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -23,7 +22,6 @@ import com.main.oneflix.sales.vo.SalesVO;
 import com.main.oneflix.util.factory.rest.RestTemplateFactory;
 import com.main.oneflix.util.kakao.KakaoConst;
 
-@Transactional
 @Service
 public class SalesScheduleServiceImpl implements KakaoConst, SalesScheduleService {
 
