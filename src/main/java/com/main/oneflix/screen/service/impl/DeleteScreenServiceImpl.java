@@ -15,7 +15,7 @@ public class DeleteScreenServiceImpl implements DeleteScreenService {
 	
 	@Override
 	public void deleteScreen(ScreenVO vo) {
-		screenDAO.deleteScreen(vo);
+			screenDAO.deleteScreen(vo);
 	}
 
 }

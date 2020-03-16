@@ -39,9 +39,11 @@ public class InsertScreenServiceImpl implements InsertScreenService {
 				newScreenList.add(screen);
 			}
 		}
-		Map<String, List<ScreenVO>> map = new HashMap<>();
-		map.put("newScreenList", newScreenList);
-		screenDAO.insertScreen(map);
+		if (newScreenList.size() != 0) {
+			Map<String, List<ScreenVO>> map = new HashMap<>();
+			map.put("newScreenList", newScreenList);
+			screenDAO.insertScreen(map);
+		}
 	}
 
 }

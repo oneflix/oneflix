@@ -39,9 +39,11 @@ public class UpdateScreenServiceImpl implements UpdateScreenService {
 				newScreenList.add(screen);
 			}
 		}
-		Map<String, List<ScreenVO>> map = new HashMap<>();
-		map.put("newScreenList", newScreenList);
-		screenDAO.updateScreen(map);
+		if (newScreenList.size() != 0) {
+			Map<String, List<ScreenVO>> map = new HashMap<>();
+			map.put("newScreenList", newScreenList);
+			screenDAO.updateScreen(map);
+		}
 	}
 
 }

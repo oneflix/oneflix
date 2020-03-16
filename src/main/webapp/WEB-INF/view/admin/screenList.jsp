@@ -60,7 +60,7 @@
 										<label>비회원 페이지</label>
 									</div>
 									<c:forEach var="i" begin="0" end="${oneflixScreenListLength}" varStatus="status">
-										<c:if test="${i eq 0 || i ne oneflixScreenListLength}">
+										<c:if test="${oneflixScreenListLength ne i}">
 											<c:set var="screenImgPath" value="${oneflixScreenList[i].screenImgPath}"/>
 											<c:set var="screenImgPathLength" value="${fn:length(screenImgPath)}"/>
 											<table class="custom-table-width">
@@ -78,7 +78,7 @@
 																		<input id="oneflix-file-path" type="hidden"
 																			name="screenImgPathList" value="${oneflixScreenList[i].screenImgPath}"/>
 																		<input type="hidden" value="${oneflixScreenList[i].screenId}" name="screenIdList"/>
-																		<input id="oneflix-status" type="hidden" name="screenStatusList"/>
+																		<input id="oneflix-status" type="hidden" name="screenStatusList" value="old"/>
 																	</div>
 																</td>
 														
@@ -98,7 +98,7 @@
 																		<input id="oneflixPath${i}" type="hidden" 
 																			name="screenImgPathList" value="${oneflixScreenList[i].screenImgPath}"/>
 																		<input type="hidden" value="${oneflixScreenList[i].screenId}" name="screenIdList"/>
-																		<input id="oneflixStatus${i}" type="hidden" name="screenStatusList"/>
+																		<input id="oneflixStatus${i}" type="hidden" name="screenStatusList" value="old"/>
 																	</div>
 																</td>
 															
@@ -108,6 +108,39 @@
 																</td>
 															</c:otherwise>
 														</c:choose>
+													</tr>
+													<tr>
+														<td>
+															<input type="text" class="form-control" placeholder="Title"
+																name="screenTitleList" value="${oneflixScreenList[i].screenTitle }"/>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<input type="text" class="form-control" placeholder="SubTitle"
+																name="screenSubtitleList" value="${oneflixScreenList[i].screenSubtitle }"/>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</c:if>
+										<c:if test="${oneflixScreenListLength eq 0}">
+											<table class="custom-table-width">
+												<tbody>
+													<tr>
+														<td>
+															<div class="custom-file">
+																<input type="file" class="custom-file-input" name="screenImgFileList">
+																<label class="custom-file-label">파일 선택</label>
+																<input type="hidden" name="screenImgPathList" value="new"/>
+																<input type="hidden" name="screenIdList" value="0"/>
+																<input type="hidden" name="screenStatusList" value="new"/>
+															</div>
+														</td>
+														<td>&nbsp; 
+															<input id="oneflix-add-button" type="button" class="btn btn-xs btn-primary"
+																value="+ 추가" onclick="addTable(this)">
+														</td>
 													</tr>
 													<tr>
 														<td>
@@ -152,7 +185,7 @@
 										<label>회원 탈퇴 페이지</label>
 									</div>
 									<c:forEach var="i" begin="0" end="${fn:length(deactivateScreenList)}" varStatus="status">
-										<c:if test="${i eq 0 || i ne deactivateScreenListLength}">
+										<c:if test="${deactivateScreenListLength ne i}">
 											<c:set var="screenImgPath" value="${deactivateScreenList[i].screenImgPath}"/>
 											<c:set var="screenImgPathLength" value="${fn:length(screenImgPath)}"/>
 											<table class="custom-table-width">
@@ -170,7 +203,7 @@
 																		<input id="deactivate-file-path" type="hidden" 
 																			name="screenImgPathList" value="${deactivateScreenList[i].screenImgPath}"/>
 																		<input type="hidden" value="${deactivateScreenList[i].screenId}" name="screenIdList"/>
-																		<input id="deactivate-status" type="hidden" name="screenStatusList"/>	
+																		<input id="deactivate-status" type="hidden" name="screenStatusList" value="old"/>	
 																	</div>
 																</td>
 														
@@ -190,7 +223,7 @@
 																		<input id="deactivatePath${i}" type="hidden"
 																			name="screenImgPathList" value="${deactivateScreenList[i].screenImgPath}"/>
 																		<input type="hidden" value="${deactivateScreenList[i].screenId}" name="screenIdList"/>
-																		<input id="deactivateStatus${i}" type="hidden" name="screenStatusList"/>	
+																		<input id="deactivateStatus${i}" type="hidden" name="screenStatusList" value="old"/>	
 																	</div>
 																</td>
 																
@@ -200,6 +233,42 @@
 																</td>
 															</c:otherwise>
 														</c:choose>
+													</tr>
+													<tr>
+														<td>
+															<input type="text" class="form-control" placeholder="Title"
+																name="screenTitleList" value="${deactivateScreenList[i].screenTitle }"/>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<input type="text" class="form-control" placeholder="SubTitle"
+																name="screenSubtitleList"	value="${deactivateScreenList[i].screenSubtitle }"/>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</c:if>
+										<c:if test="${deactivateScreenListLength eq 0}">
+											<c:set var="screenImgPath" value="${deactivateScreenList[i].screenImgPath}"/>
+											<c:set var="screenImgPathLength" value="${fn:length(screenImgPath)}"/>
+											<table class="custom-table-width">
+												<tbody>
+													<tr>
+														<td>
+															<div class="custom-file">
+																<input type="file" class="custom-file-input" name="screenImgFileList">
+																<label class="custom-file-label">파일 선택</label>
+																<input type="hidden" name="screenImgPathList" value="new"/>
+																<input type="hidden" name="screenIdList" value="0"/>
+																<input type="hidden" name="screenStatusList" value="new"/>
+															</div>
+														</td>
+												
+														<td>&nbsp;
+															<input id="deactivate-add-button" type="button" class="btn btn-xs btn-primary"
+																value="+ 추가" onclick="addTable(this)">
+														</td>
 													</tr>
 													<tr>
 														<td>
@@ -373,7 +442,6 @@
 				box = document.getElementById('oneflixBox');
 			} else {
 				box = document.getElementById('deactivateBox');
-				table = document.getElementById('deactivateTable');
 			}
 			box.removeChild(table);
 		}

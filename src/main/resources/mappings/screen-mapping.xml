@@ -27,12 +27,12 @@
 	<delete id="deleteScreen" parameterType="screen">
 		DELETE FROM screen 
 		WHERE screen_type = #{screenType}
-		<if test="screenIdList.size != 0">
-			AND
-			<foreach collection="screenIdList" item="screenId" open="(" close=")" separator="AND">
-				screen_id != #{screenId}
-			</foreach>
-		</if>
+			<if test="screenIdList.size != 0">
+				AND
+				<foreach collection="screenIdList" item="screenId" open="(" close=")" separator="AND">
+					screen_id != #{screenId}
+				</foreach>
+			</if>
 	</delete>
 	
 	<resultMap type="screen" id="screenList">

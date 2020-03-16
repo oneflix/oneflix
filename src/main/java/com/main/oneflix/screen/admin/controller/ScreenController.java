@@ -46,7 +46,7 @@ public class ScreenController {
 	public ModelAndView modifyScreenProc(ScreenVO vo, HttpSession session, ModelAndView mav) {
 		String realPath = session.getServletContext().getRealPath("/");
 		List<String> filePathList = screenFileuploadService.screenFileupload(vo, realPath);
-
+		
 		deleteScreenService.deleteScreen(vo);
 		updateScreenService.updateScreen(vo, filePathList);
 		insertScreenService.insertScreen(vo, filePathList);
