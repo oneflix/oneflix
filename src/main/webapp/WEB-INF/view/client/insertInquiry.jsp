@@ -38,8 +38,7 @@
 					<select id="inquiryType" name="inquiryType"
 						class="form-control select2bs4" required="required"
 						data-placeholder="Select a State" style="width: 100%;">
-						<option value="all" selected>카테고리를 선택해주세요</option>
-						<option value="payment">결제</option>
+						<option value="payment" selected>결제</option>
 						<option value="refund">해지/환불</option>
 						<option value="ticket">이용권/쿠폰</option>
 						<option value="account">로그인/계정 관리</option>

@@ -46,7 +46,6 @@
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="inquiryType">문의타입</label> 
 						<select id="inquiryType" name="inquiryType" class="form-control" required="required" data-placeholder="Select a State" style="width: 100%;">
-							<option value="all">카테고리 미분류</option>
 							<option value="payment">결제</option>
 							<option value="refund">해지/환불</option>
 							<option value="ticket">이용권/쿠폰</option>
