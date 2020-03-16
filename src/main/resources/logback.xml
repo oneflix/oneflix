@@ -11,30 +11,37 @@
 <property name="LOG_FILE_MIN" value="${log.config.min}" />
 <property name="LOG_FILE_MAX" value="${log.config.max}" />
 <property name="LOG_PATTERN" value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n"/>
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+<property name="LOG_DATE" value="%d{yyyy-MM-dd}"/>
+   
+ 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender> 
-    
-    <appender name="FILE"
-      class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <file>${LOG_PATH}/${LOG_DATE}_${LOG_FILE_NAME}.log</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${LOG_PATH}/${LOG_DATE}_${LOG_FILE_NAME}.%i.log</fileNamePattern>
+          <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+         <maxFileSize>50MB</maxFileSize>
+         </timeBasedFileNamingAndTriggeringPolicy>
+         <maxHistory>30</maxHistory>
+         <totalSizeCap>3GB</totalSizeCap>
+      </rollingPolicy>
+       
       <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
          <pattern>${LOG_PATTERN}</pattern>
       </encoder>
-      <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
-      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-         <fileNamePattern>${LOG_PATH}.%d{yyyy-MM-dd}_${LOG_FILE_NALE}.log</fileNamePattern>
-         <maxFileSize>${LOG_TOTAL_FILESIZE}</maxFileSize>
-         <maxHistory>${LOG_DAYS}</maxHistory>
-      </rollingPolicy>
    </appender>
     
-    <logger name="org.springframework" level="info"/>
-    <logger name="kr.or.connect" level="debug"/>
- 
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
+    <logger name="org.springframework" level="info"  additivity="false">
+    	<appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
 </configuration>
