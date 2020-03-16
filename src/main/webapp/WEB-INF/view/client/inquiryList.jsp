@@ -30,7 +30,7 @@
 		</div>
 		<div>
 			<button class="inquiry" type="button" 
-			style="width:8vw; margin-left:86vw;margin-right:2.5vw;"
+			style="font-size: 2.5vh; width:7.1vw; margin-left:86vw;margin-right:2.5vw;"
 			onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
 		<div id="outter">
