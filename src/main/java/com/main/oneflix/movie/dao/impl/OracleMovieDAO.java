@@ -1,6 +1,7 @@
 package com.main.oneflix.movie.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,16 @@ public class OracleMovieDAO implements MovieDAO {
 	@Override
 	public void updateMovieScore(MovieVO vo) {
 		sqlSessionTemplate.update("MovieDAO.updateMovieScore", vo);
-		
+	}
+
+	@Override
+	public List<MovieVO> searchDeleteId(MovieVO vo) {
+		return sqlSessionTemplate.selectList("MovieDAO.searchDeleteId", vo);
+	}
+
+	@Override
+	public void changeMovie(Map<String, Object> map) {
+		sqlSessionTemplate.update("MovieDAO.changeMovie", map);
 	}
 
 }

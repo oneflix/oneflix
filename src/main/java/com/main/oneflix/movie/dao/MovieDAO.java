@@ -1,6 +1,7 @@
 package com.main.oneflix.movie.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.main.oneflix.movie.vo.MovieVO;
 
@@ -14,5 +15,7 @@ public interface MovieDAO {
 	int getCountMovie(MovieVO vo);
 	void increaseViewCount(MovieVO vo);
 	void updateMovieScore(MovieVO vo);
+	List<MovieVO> searchDeleteId(MovieVO vo);
+	void changeMovie(Map<String, Object> map);
 
 }

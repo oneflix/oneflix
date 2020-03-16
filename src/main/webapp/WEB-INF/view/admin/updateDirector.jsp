@@ -38,6 +38,7 @@
 			</section>
 
 			<form action="/updateDirectorProc.mdo" class="row" method="post">
+				<input type="hidden" name="directorId" value="${director.directorId}">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -51,7 +52,7 @@
 							</div>
 
 							<div class="form-group mb-3">
-								<label for="directorBirth">생년</label> <input type="text"
+								<label for="directorBirth">출생</label> <input type="text"
 									class="form-control" id="directorBirth" name="directorBirth"
 									value="${director.directorBirth }" required />
 							</div>

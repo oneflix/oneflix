@@ -56,7 +56,7 @@
 
 			<!-- Tab links -->
 			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'faq-faq')"
+				<button class="tablinks" onclick="openCity(event, 'faq-frequency')"
 					id="defaultOpen">자주 묻는 질문</button>
 				<button class="tablinks" onclick="openCity(event, 'faq-payment')">결제</button>
 				<button class="tablinks" onclick="openCity(event, 'faq-refund')">해지/환불</button>
@@ -71,9 +71,9 @@
 			</div>
 
 
-			<div id="faq-faq" class=" tabcontent">
+			<div id="faq-frequency" class=" tabcontent">
 				<c:forEach var="help" items="${helpList}">
-					<c:if test="${help.helpType eq 'faq' }">
+					<c:if test="${help.helpType eq 'frequency' }">
 						<button class="accordion">${help.helpTitle }</button>
 						<div class="panel">
 							<textarea class="help-content-textarea" disabled>${help.helpContent }</textarea>
@@ -165,8 +165,8 @@
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 
 	<script>
-		$(document).ready(function(){
-			autosize($("textarea"));
+		$('.accordion').click(function(){
+			autosize($(this).next().find('textarea'));
 		});
 	
 		var acc = document.getElementsByClassName("accordion");

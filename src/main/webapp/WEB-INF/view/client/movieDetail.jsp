@@ -92,19 +92,19 @@
 											<li class="css-ajo6y3-CreditList e1qb11zh1"><span
 												class="css-gvfmob-CreditTitle e1qb11zh3">출연&nbsp;&nbsp;</span>
 												<span class="css-1mnni33-CreditContent e1qb11zh2">
-													<c:if test="${movie.actorName1 != null}">
+													<c:if test="${movie.actorName1 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName1}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName2 != null}">
+													<c:if test="${movie.actorName2 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName2}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName3 != null}">
+													<c:if test="${movie.actorName3 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName3}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName4 != null}">
+													<c:if test="${movie.actorName4 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName4}</a></span>
 													</c:if>
-													<c:if test="${movie.actorName5 != null}">
+													<c:if test="${movie.actorName5 != ' '}">
 														<span class="actorName-span"><a href="#">${movie.actorName5}</a></span>
 													</c:if>
 												</span>
@@ -112,10 +112,10 @@
 											<li class="css-ajo6y3-CreditList e1qb11zh1">
 												<span class="css-gvfmob-CreditTitle e1qb11zh3">개요&nbsp;&nbsp;</span>
 												<span class="css-1mnni33-CreditContent e1qb11zh2">
-													<c:if test="${movie.genre1 != null}">
+													<c:if test="${movie.genre1 != ' '}">
 														<span class="genre-span"><a href="#">${movie.genre1}</a></span>
 													</c:if>
-													<c:if test="${movie.genre2 != null}">
+													<c:if test="${movie.genre2 != ' '}">
 														<span class="genre-span"><a href="#">${movie.genre2}</a></span>
 													</c:if>
 													<span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
@@ -266,62 +266,67 @@
 						<div class="css-1ee1e7c-ArrowWrapper-ArrowWrapperRight e1aaa9mb3">
 							<span class="css-x8sb0a-ArrowIcon e1aaa9mb0"></span>
 						</div>
-						<div class="review-container">
-							<!--리뷰 카드 여기 추가-->
-							<div class="review-slider">
-								<div id="review-slider-container" class="swiper-container">
-									<div class="swiper-wrapper">
-										<c:forEach var="i" begin="0" end="${reviewListLength}"
-											step="2">
-											<c:choose>
-												<c:when test="${i eq reviewListLength }">
-													<c:set var="doneLoop" value="true" />
-												</c:when>
-												<c:otherwise>
-													<div class="swiper-slide">
-														<c:if test="${reviewList[i].reviewContent != null}">
-															<div class="review-box">
-																<div class="review-title">
-																	<span class="review-writer">${reviewList[i].nick }</span>
-																</div>
-																<div class="review-content">
-																	${reviewList[i].reviewContent }</div>
-																<div class="like-container">
-																	<button id="thumbs" class="like-button">
-																		<i id="like-${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
-																		<span id="likeConunt-${reviewList[i].reviewId}" class="like-count">${reviewList[i].likeCount}</span>
-																	</button>
-																</div>
+						<c:choose>
+							<c:when test="${reviewListLength eq 0}">
+								<div style="width: 100%; height: 13vw; margin: 0 auto;"><p style="margin-top: 50px; text-align: center; font-size: 2vw;">첫 리뷰를 남겨주세요!</p></div>										
+							</c:when>
+							<c:otherwise>
+								<div class="review-container">
+									<!--리뷰 카드 여기 추가-->
+									<div class="review-slider">
+										<div id="review-slider-container" class="swiper-container">
+											<div class="swiper-wrapper">
+												<c:forEach var="i" begin="0" end="${reviewListLength}"
+													step="2">
+													<c:choose>
+														<c:when test="${i eq reviewListLength }">
+															<c:set var="doneLoop" value="true" />
+														</c:when>
+														<c:otherwise>
+															<div class="swiper-slide">
+																<c:if test="${reviewList[i].reviewContent != null}">
+																	<div class="review-box">
+																		<div class="review-title">
+																			<span class="review-writer">${reviewList[i].nick }</span>
+																		</div>
+																		<div class="review-content">
+																			${reviewList[i].reviewContent }</div>
+																		<div class="like-container">
+																			<button id="thumbs" class="like-button">
+																				<i id="like-${reviewList[i].reviewId}" class="fa-thumbs-up like-icon far"></i> 
+																				<span id="likeConunt-${reviewList[i].reviewId}" class="like-count">${reviewList[i].likeCount}</span>
+																			</button>
+																		</div>
+																	</div>
+																</c:if>
+																<c:if test="${(reviewListLength - 1 ne i) && (reviewList[i+1].reviewContent != null)}">
+																	<div class="review-box">
+																		<div class="review-title">
+																			<span class="review-writer">${reviewList[i+1].nick }</span>
+																		</div>
+																		<div class="review-content">
+																			${reviewList[i+1].reviewContent }</div>
+																		<div class="like-container">
+																			<button id="thumbs" class="like-button">
+																				<i id="like-${reviewList[i+1].reviewId}" class="fa-thumbs-up like-icon far"></i>
+																				<span id="likeConunt-${reviewList[i+1].reviewId}" class="like-count">${reviewList[i+1].likeCount }</span>
+																			</button>
+																		</div>
+																	</div>
+		
+																</c:if>
 															</div>
-														</c:if>
-														<c:if test="${(reviewListLength - 1 ne i) && (reviewList[i+1].reviewContent != null)}">
-															<div class="review-box">
-																<div class="review-title">
-																	<span class="review-writer">${reviewList[i+1].nick }</span>
-																</div>
-																<div class="review-content">
-																	${reviewList[i+1].reviewContent }</div>
-																<div class="like-container">
-																	<button id="thumbs" class="like-button">
-																		<i id="like-${reviewList[i+1].reviewId}" class="fa-thumbs-up like-icon far"></i>
-																		<span id="likeConunt-${reviewList[i+1].reviewId}" class="like-count">${reviewList[i+1].likeCount }</span>
-																	</button>
-																</div>
-															</div>
-
-														</c:if>
-													</div>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-
-
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</div>
+											<div id="review-button-next" class="swiper-button-next"></div>
+											<div id="review-button-prev" class="swiper-button-prev"></div>
+										</div>
 									</div>
-									<div id="review-button-next" class="swiper-button-next"></div>
-									<div id="review-button-prev" class="swiper-button-prev"></div>
 								</div>
-							</div>
-						</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</section>
 			</main>

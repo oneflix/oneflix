@@ -55,6 +55,9 @@ public class MovieVO {
 	private int start;
 	private int end;
 	private String email;
+	private String searchDeleteType;
+	private int searchDeleteOrder;
+	private int searchDeleteId;
 
 	public int getRnum() {
 		return rnum;
@@ -438,6 +441,30 @@ public class MovieVO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSearchDeleteType() {
+		return searchDeleteType;
+	}
+
+	public void setSearchDeleteType(String searchDeleteType) {
+		this.searchDeleteType = searchDeleteType;
+	}
+
+	public int getSearchDeleteOrder() {
+		return searchDeleteOrder;
+	}
+
+	public void setSearchDeleteOrder(int searchDeleteOrder) {
+		this.searchDeleteOrder = searchDeleteOrder;
+	}
+
+	public int getSearchDeleteId() {
+		return searchDeleteId;
+	}
+
+	public void setSearchDeleteId(int searchDeleteId) {
+		this.searchDeleteId = searchDeleteId;
 	}
 
 }

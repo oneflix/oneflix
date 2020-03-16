@@ -216,4 +216,62 @@
    		UPDATE movie SET
    		movie_score = #{movieScore} WHERE movie_id = #{movieId}
    </update>
+   
+   <select id="searchDeleteId" parameterType="movie" resultMap="movieList">
+   		SELECT * FROM movie
+   		WHERE
+   		<choose>
+	   		<when test="searchDeleteType == 'director'">
+	   			director_id = #{searchDeleteId}
+	   		</when>
+	   		<when test="searchDeleteType == 'actor'">
+	   			actor_id1 = #{searchDeleteId} OR actor_id2 = #{searchDeleteId} OR actor_id3 = #{searchDeleteId}
+	   		</when>
+	   		<when test="searchDeleteType == 'genre'">
+	   			genre_id1 = #{searchDeleteId} OR genre_id2 = #{searchDeleteId}
+	   		</when>
+   		</choose>
+   </select>
+   
+   <update id="changeMovie" parameterType="java.util.HashMap">
+   		<choose>
+	   		<when test="changeType == 'director'">
+	   			UPDATE movie SET director_id = 0 WHERE
+	   			<foreach collection="changeMovieList" item="changeMovie" open="(" close=")" separator="OR">
+					movie_id = #{changeMovie.movieId}
+				</foreach>
+	   		</when>
+	   		<when test="changeType == 'actor'">
+	   			<foreach collection="changeMovieList" item="changeMovie" open="DECLARE BEGIN" close="; END;" separator=";">
+		   			UPDATE movie SET
+		   			<choose>
+		   				<when test="changeMovie.searchDeleteOrder == 1">
+		   					actor_id1 = 0 
+		   				</when>
+		   				<when test="changeMovie.searchDeleteOrder == 2">
+		   					actor_id2 = 0 
+		   				</when> 
+		   				<when test="changeMovie.searchDeleteOrder == 3">
+		   					actor_id3 = 0 
+		   				</when>  
+		   			</choose>
+		   				WHERE movie_id = #{changeMovie.movieId}
+	   			</foreach>
+	   		</when>
+	   		<when test="changeType == 'genre'">
+	   			<foreach collection="changeMovieList" item="changeMovie" open="DECLARE BEGIN" close="; END;" separator=";">
+		   			UPDATE movie SET
+		   			<choose>
+		   				<when test="changeMovie.searchDeleteOrder == 1">
+		   					genre_id1 = 0 
+		   				</when>
+		   				<when test="changeMovie.searchDeleteOrder == 2">
+		   					genre_id2 = 0 
+		   				</when> 
+		   			</choose>
+		   				WHERE movie_id = #{changeMovie.movieId}
+	   			</foreach>
+	   		</when>
+   		</choose>
+   </update>
 </mapper>
