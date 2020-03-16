@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 @Aspect
 public class LoggingAdvice {
 
-	//private static Logger consoleLogger = LoggerFactory.getLogger(LoggingAdvice.class);
+//	private static Logger fileLogger = LoggerFactory.getLogger(LoggingAdvice.class);
 	public static final Logger fileLogger = LoggerFactory.getLogger("org.springframework");
 
 	@Around("execution(* com.main.oneflix..*ServiceImpl.*(..))")

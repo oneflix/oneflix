@@ -98,7 +98,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>5.2.3.RELEASE</version>
-
 			<!-- JCL 제외 -->
 			<exclusions>
 				<exclusion>
@@ -121,20 +120,25 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.30</version>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+		</dependency>
 
 		<!-- logback-classic -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
-			<scope>test</scope>
+			 <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.30</version>
-		</dependency>
 
 
 		<!-- Spring MVC -->
