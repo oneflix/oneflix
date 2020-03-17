@@ -2,6 +2,7 @@ package com.main.oneflix.review.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.oneflix.movie.dao.MovieDAO;
 import com.main.oneflix.movie.vo.MovieVO;
@@ -18,6 +19,7 @@ public class DeleteReviewServiceImpl implements DeleteReviewService {
 	private MovieDAO movieDAO;
 	
 	@Override
+	@Transactional
 	public void deleteReview(ReviewVO vo) {
 		reviewDAO.deleteReview(vo);
 		MovieVO movie = new MovieVO();

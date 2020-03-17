@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.oneflix.actor.dao.ActorDAO;
 import com.main.oneflix.actor.service.DeleteActorService;
@@ -23,6 +24,7 @@ public class DeleteActorServiceImpl implements DeleteActorService {
 	private MovieDAO movieDAO;
 
 	@Override
+	@Transactional
 	public void deleteActor(ActorVO vo) {
 		MovieVO movie = new MovieVO();
 		movie.setSearchDeleteType("actor");

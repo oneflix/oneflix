@@ -1,5 +1,6 @@
 package com.main.oneflix.movie.client.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -54,9 +55,17 @@ public class MovieController {
 		myReview.setEmail(member.getEmail());
 		myReview.setMovieId(vo.getMovieId());
 		myReview = getReviewService.getReview(myReview);
+
 		ReviewVO review = new ReviewVO();
 		review.setMovieId(vo.getMovieId());
 		List<ReviewVO> reviewList = getReviewListService.getReviewList(review);
+		List<ReviewVO> filteredList = new ArrayList<>();
+		for (int i = 0; i < reviewList.size(); i++) {
+			if (reviewList.get(i).getReviewContent() != null &&
+					!reviewList.get(i).getReviewContent().equals("")) {
+				filteredList.add(reviewList.get(i));
+			}
+		}
 		ReviewLikeVO reviewLikeVO = new ReviewLikeVO();
 		reviewLikeVO.setMovieId(vo.getMovieId());
 		reviewLikeVO.setReviewLikeEmail(member.getEmail());
@@ -64,8 +73,9 @@ public class MovieController {
 		vo.setEmail(member.getEmail());
 		vo.setMovieType("wish");
 		List<MovieVO> wishList = getMovieListService.getMovieList(vo);
-
-		mav.addObject("reviewList", reviewList);
+		
+		mav.addObject("totalReview", reviewList.size());
+		mav.addObject("reviewList", filteredList);
 		mav.addObject("reviewLikeList", reviewLikeList);
 		mav.addObject("wishList", wishList);
 		mav.addObject("myReview", myReview);

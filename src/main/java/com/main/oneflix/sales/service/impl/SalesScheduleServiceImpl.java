@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -31,6 +32,7 @@ public class SalesScheduleServiceImpl implements KakaoConst, SalesScheduleServic
 	private MemberDAO memberDAO;
 		
 	@Override
+	@Transactional
 	public void salesSchedule() {
 		
 		// 이용권 만료

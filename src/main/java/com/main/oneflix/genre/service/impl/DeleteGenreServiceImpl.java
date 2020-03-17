@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.oneflix.genre.dao.GenreDAO;
 import com.main.oneflix.genre.service.DeleteGenreService;
@@ -23,6 +24,7 @@ public class DeleteGenreServiceImpl implements DeleteGenreService {
 	private MovieDAO movieDAO;
 	
 	@Override
+	@Transactional
 	public void deleteGenre(GenreVO vo) {
 		MovieVO movie = new MovieVO();
 		movie.setSearchDeleteType("genre");

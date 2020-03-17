@@ -259,7 +259,7 @@
 								</div>
 								<span class="css-7huvli-RatingAvgNumber e17lrvw517">${movie.movieScore}</span><span
 									class="css-guq473-RatingAvgCount e17lrvw516">
-									<fmt:formatNumber type="number" value="${reviewListLength}"/>명</span>
+									<fmt:formatNumber type="number" value="${totalReview}"/>명</span>
 							</div>
 						</div>
 						<div class="css-1sd2d4e-CommentGuideText e17lrvw514"></div>

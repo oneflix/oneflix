@@ -15,6 +15,7 @@ public class ReviewVO {
 	private Date reviewRegDate;
 	private int start;
 	private int end;
+	private String reviewType;
 
 	public Integer getReviewId() {
 		return reviewId;
@@ -47,7 +48,6 @@ public class ReviewVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getNick() {
 		return nick;
@@ -104,7 +104,17 @@ public class ReviewVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-	
-	
+
+	public String getReviewType() {
+		return reviewType;
+	}
+
+	public void setReviewType(String reviewType) {
+		this.reviewType = reviewType;
+	}
+
+	public void setReviewScore(Double reviewScore) {
+		this.reviewScore = reviewScore;
+	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.oneflix.director.dao.DirectorDAO;
 import com.main.oneflix.director.service.DeleteDirectorService;
@@ -22,6 +23,7 @@ public class DeleteDirectorServiceImpl implements DeleteDirectorService {
 	private MovieDAO movieDAO;
 	
 	@Override
+	@Transactional
 	public void deleteDirector(DirectorVO vo) {
 		MovieVO movie = new MovieVO();
 		movie.setSearchDeleteType("director");

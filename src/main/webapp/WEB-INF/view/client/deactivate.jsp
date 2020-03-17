@@ -20,10 +20,10 @@ body {margin: 0 auto; padding: 0;}
 }
 
 .text-uppercase {
-	letter-spacing: 0.08em;
+	letter-spacing: 0em;
 }
-.screen-title {color: #fff; font-size: 70px;}
-.screen-subtitle {color: #fff; font-size: 30px; margin-top: -50px;}
+.screen-title {color: #fff; font-size: 50px;}
+.screen-subtitle {color: #fff; font-size: 30px; margin-top: -20px;}
 </style>
 </head>
 
@@ -36,8 +36,10 @@ body {margin: 0 auto; padding: 0;}
 					style="background-image: url(${pageContext.request.contextPath}/${screen.screenImgPath});">
 					<div class="back"></div>
 					<div class="container text-center text-white">
-						<p class="screen-title text-uppercase my-4 text-white">${screen.screenTitle}</p>
-						<p class="screen-subtitle text-white">${screen.screenSubtitle}</p>
+						<div style="width: 80%; padding: 0 10%;">
+							<p class="screen-title text-uppercase my-4 text-white">${screen.screenTitle}</p>
+							<p class="screen-subtitle text-white">${screen.screenSubtitle}</p>
+						</div>
 					</div>
 				</div>
 			</div>

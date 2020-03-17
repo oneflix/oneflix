@@ -17,7 +17,8 @@ public class GetReviewListServiceImpl implements GetReviewListService {
 	
 	@Override
 	public List<ReviewVO> getReviewList(ReviewVO vo) {
-		return reviewDAO.getReviewList(vo); 
+		List<ReviewVO> reviewList = reviewDAO.getReviewList(vo);
+		return reviewList;
 	}
 
 }

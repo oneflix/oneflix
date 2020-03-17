@@ -42,6 +42,9 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
 <link rel="stylesheet" href="admin/css/custom.css">
+<style>
+.brand-link {padding: 1rem 1rem .5rem;}
+</style>
 </head>
 <body>
 
