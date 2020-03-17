@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="../admin/css/adminlte.css">
 <link rel="stylesheet" href="client/css/all.css">
 <link rel="stylesheet" href="client/css/inquiry.css">
+<style>
+	tr {cursor: pointer;}
+</style>
 </head>
 <body style="background-color:#fff">
 
