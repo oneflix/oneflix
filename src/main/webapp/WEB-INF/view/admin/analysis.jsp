@@ -1752,7 +1752,7 @@
 			rankingYear = $('#rankingYear option:selected').val();
 			rankingMonth = $('#rankingMonth option:selected').val();
 
-			if(rankingMonth != null || rankingMonth != '0'){
+			if(rankingMonth != null && rankingMonth != '0'){
 				rankingSelect = 'month';
 			} else {
 				rankingSelect = 'year';
@@ -2061,46 +2061,96 @@
 			var view = new google.visualization.DataView(data);
 
 			var options = {
-				align : 'center',
-				chartArea : {
-					height : '90%',
-					width : '85%'
-				},
-				isStacked : false,
-				//tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-				//차트가 뿌려질때 실행될 애니메이션 효과
-				pointSize : 3,
-			    seriesType: 'bars',
-				height : 500,
-				width : '80%',
-				bars : 'vertical',
-				bar : {
-					groupWidth : "57.8%"
-				},
-				theme: 'material',
-				isStacked : false,
-				animation : {
-					startup : true,
-					duration : 1000,
-					easing : 'linear'
-				},
-				alternatingRowStyle: true,
-		        showRowNumber : true,
-				legend : {
-					position : "none"
-				},
-				displayAnnotations: true,
-				annotations : {
-					textStyle : {
-						fontSize : 20,
-						bold : true,
-						italic : true,
-						opacity : 0.8
-					}
-				}
-			};
-
-			var chart = new google.visualization.ColumnChart(document
+            		slices: {
+            			0: {
+            				color: '#73E1E1'
+            			},
+            			1 : {
+            				color: '#20B2AA'
+            			},
+            			2 : {
+            				color: '#2CE0BC'
+            			},
+            			3 : {
+            				color: '#5F9EA0'
+            			},
+            			4 : {
+            				color: '#91D0D2'
+            			},
+            			5 : {
+            				color: '#3CB371'
+            			},
+            			6: {
+            				color: '#6EE5A3'
+            			},
+            			7 : {
+            				color: '#2E8B57'
+            			},
+            			8 : {
+            				color: '#60BD89'
+            			},
+            			9 : {
+            				color: '#228B22'
+            			},
+            			10 : {
+            				color: '#54BD54'
+            			},
+            			11 : {
+            				color: '#497649'
+            			},
+            			12: {
+            				color: '#7BA87B'
+            			},
+            			13 : {
+            				color: '#006400'
+            			},
+            			14 : {
+            				color: '#329632'
+            			},
+            			15 : {
+            				color: '#008C8C'
+            			},
+            			16 : {
+            				color: '#32BEBE'
+            			},
+            			17 : {
+            				color: '#008080'
+            			},
+            			18 : {
+            				color: '#32B2B2'
+            			},
+            		},					    		    
+                    responsive: true,
+                    align: 'right',
+                    legendTextStyle: { color: '#080808'},
+                    chartArea: { height: '100%', width: '100%' },
+                    pieHole: 0.3,
+                    bars: 'vertical',
+                    height: 450,
+                    width: '150%',
+                    bar: { groupWidth: "70%" },
+                    legend: { position: "right", maxLines: 2},
+                    isStacked: false,
+                    curveType: 'function',
+                    backgroundColor: '#fff;',
+                    //    tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+                    animation: { //차트가 뿌려질때 실행될 애니메이션 효과
+                        startup: true,
+                        duration: 1000,
+                        easing: 'linear'
+                    },
+                    annotations: {
+                        textStyle: {
+                            fontSize: 15,
+                            bold: true,
+                            italic: true,
+                            opacity: 0.8,
+                            color: '#080808;'
+                        	}
+                    	}
+                	}; //옵션
+             // Create DataTable and add the array to it
+			var chart = new google.visualization.PieChart(document
 					.getElementById("genre-count-chart"));
 			
 			 $('#csv-genre').on('click', function () {

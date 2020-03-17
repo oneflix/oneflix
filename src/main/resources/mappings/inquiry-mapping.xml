@@ -10,8 +10,8 @@
 		<result property="inquiryType" column="inquiry_type" />
 		<result property="email" column="email" />
 		<result property="nick" column="nick" />
-		<result property="adminName" column="admin_name" />
-		<result property="adminEmail" column="admin_email" />
+		<result property="managerName" column="manager_name" />
+		<result property="managerEmail" column="manager_email" />
 		<result property="inquiryTitle" column="inquiry_title" />
 		<result property="inquiryContent" column="inquiry_content" />
 		<result property="replyTitle" column="reply_title" />
@@ -69,7 +69,7 @@
 
 	<update id="updateInquiry" parameterType="inquiry">
 		UPDATE inquiry
-		SET admin_email = #{adminEmail}, inquiry_type = #{inquiryType}, reply_title = #{replyTitle},
+		SET manager_email = #{managerEmail}, inquiry_type = #{inquiryType}, reply_title = #{replyTitle},
 			reply_content = #{replyContent}, reply_date = SYSDATE
 		WHERE inquiry_id = #{inquiryId}
 	</update>

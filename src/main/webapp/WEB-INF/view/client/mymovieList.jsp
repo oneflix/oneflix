@@ -121,7 +121,7 @@
 			<div class="row">
 				<span class="category">시청 완료한 작품</span>
 				<c:if test="${fn:length(watchedMovieList) ne 0}">
-					<span class="more" onclick="location.href='/getMovieListProc.do?movieType=watching'">더보기 <i class="fas fa-angle-right"></i></span>
+					<span class="more" onclick="location.href='/getMovieListProc.do?movieType=watched'">더보기 <i class="fas fa-angle-right"></i></span>
 				</c:if>
 			</div>
 			<c:choose>

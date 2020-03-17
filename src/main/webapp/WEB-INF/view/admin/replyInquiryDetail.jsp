@@ -40,8 +40,8 @@
 			<div class="row">
 				<!--editor form-->
 				<div class="editor-body" style="width: 80%; padding-left: 15%;">
-					<input type="hidden" name="adminName" id="adminName"
-						value="${inquiry.adminName}" /> <input type="hidden"
+					<input type="hidden" name="managerName" id="managerName"
+						value="${inquiry.managerName}" /> <input type="hidden"
 						name="inquiryId" id="inquiryId" value="${inquiry.inquiryId}" />
 					<div class="form-group" style="padding-top: 2%;">
 						<label for="inquiryType">문의타입</label> 

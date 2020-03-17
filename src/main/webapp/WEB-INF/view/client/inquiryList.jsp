@@ -53,7 +53,7 @@
 						<c:forEach items="${viewAll}" var="inquiry" varStatus="status">
 							<tr>
 								<td style="display: none;">${inquiry.inquiryId}</td>
-								<td>${totalLength - status.index + (paging.cntPerPage * (paging.nowPage - 1))}</td>
+								<td>${myTotalCount - (status.index + (paging.cntPerPage * (paging.nowPage - 1)))}</td>
 								<td><c:choose>
 										<c:when test="${inquiry.inquiryType eq 'payment'}">결제</c:when>
 										<c:when test="${inquiry.inquiryType eq 'refund'}">해지/환불</c:when>

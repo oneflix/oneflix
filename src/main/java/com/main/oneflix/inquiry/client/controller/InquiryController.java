@@ -67,7 +67,7 @@ public class InquiryController {
 
 		inquiry.setStart(vo.getStart());
 		inquiry.setEnd(vo.getEnd());
-
+		mav.addObject("myTotalCount", total);
 		mav.addObject("paging", vo);
 		mav.addObject("viewAll", getInquiryListService.getInquiryList(inquiry));
 		mav.setViewName("inquiryList");
