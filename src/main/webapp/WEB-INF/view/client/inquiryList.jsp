@@ -30,7 +30,7 @@
 		</div>
 		<div>
 			<button class="inquiry" type="button" 
-			style="width:8vw; margin-left:86vw;margin-right:2.5vw;"
+			style="font-size: 1.3vw; width:7.1vw; margin-left:86vw;margin-right:2.5vw;"
 			onclick="location.href='/insertInquiry.do'">문의하기</button>
 		</div>
 		<div id="outter">
@@ -38,6 +38,7 @@
 				<table id="tablebody" class="table table-hover">
 					<thead>
 						<tr>
+							<th style="display: none;"></th>
 							<th scope="col">문의번호</th>
 							<th scope="col">카테고리</th>
 							<th scope="col">제목</th>
@@ -48,6 +49,7 @@
 					<tbody>
 						<c:forEach items="${viewAll}" var="inquiry" varStatus="status">
 							<tr>
+								<td style="display: none;">${inquiry.inquiryId}</td>
 								<td>${totalLength - status.index + (paging.cntPerPage * (paging.nowPage - 1))}</td>
 								<td><c:choose>
 										<c:when test="${inquiry.inquiryType eq 'payment'}">결제</c:when>

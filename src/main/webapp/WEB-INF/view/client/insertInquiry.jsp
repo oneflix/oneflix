@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body style="background: #fff;">
 
 	<jsp:include page="${sidebar_url}"></jsp:include>
 

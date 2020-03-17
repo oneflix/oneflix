@@ -91,14 +91,13 @@ var nick;
                 spaceBetween: 3,
                 slidesPerGroup: slideCount,
             
-                // loopFillGroupWithBlank: true,
+                loopFillGroupWithBlank: true,
             
                 navigation: {
                     nextEl: '#review-button-next',
                     prevEl: '#review-button-prev'
                 },
             
-                loop: true,
                 speed: 1000,
             });
         };

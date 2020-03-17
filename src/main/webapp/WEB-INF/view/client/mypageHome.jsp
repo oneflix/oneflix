@@ -45,7 +45,13 @@
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body chart" style="margin-bottom:0;">
-							<div id="genre_chart"></div>
+							<c:if test="${watch.countWatch eq '0'}">
+								<h5 style="margin: 2vh;" class="nodata">
+									아직 시청한 이력이 없어요. 한번 둘러보세요.
+								</h5>
+							</c:if>
+							<div id="genre_chart">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -105,9 +111,10 @@
 									                            	<div class="review-card">
 									                            		<div class="card" style="width:25vw; height:32vh;">
 									                            			<div class="card-body">
-									                            			<p class="card-title m-0" style="font-size: 14px; padding-left: 0;">${review.movieTitle}</p>
+									                            			<p class="card-title m-0" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 0.5px solid #d4d4d4;font-size: 15px;font-weight:700; padding-left: 0;">
+									                            			${review.movieTitle}</p><p style="float: right; border:0.5px solid #d4d4d4; border-radius: 8px; font-size: 12px; padding: 3px 12px 3px 8px; ">★ ${review.reviewScore }</p>
 									                            			<div>
-						                            						<p class="card-text">${review.reviewContent}</p>
+									                            			<p style="padding-top: 10px !important; text-align:left;" class="card-text">${review.reviewContent}</p>
 						                            						</div>
 						                            					</div>
 						                            				</div>

@@ -57,9 +57,9 @@
 	<!-- 사이드바 -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<a href="/getDashboardProc.mdo" class="brand-link"> <img
-			src="admin/images/AdminLTELogo.png" alt="AdminLTE Logo"
-			class="brand-image img-circle elevation-3" style="opacity: .8">
-			<span class="brand-text font-weight-light">ONEFLIX</span>
+			src="admin/images/oneflix_logo.png"
+			class="brand-image">
+			<span class="brand-text font-weight-light">Manager</span>
 		</a>
 
 		<!-- 메뉴 -->
