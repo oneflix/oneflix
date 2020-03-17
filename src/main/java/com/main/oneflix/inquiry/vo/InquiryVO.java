@@ -13,8 +13,8 @@ public class InquiryVO {
 	// 이메일정보
 	private String nick; // 수신자이름
 	private String email; // 수신자메일
-	private String adminName; // 발신자이름
-	private String adminEmail; // 발신자메일
+	private String managerName; // 발신자이름
+	private String managerEmail; // 발신자메일
 	private String replyTitle; // 메일제목
 	private String replyContent; // 메일내용
 	private Date inquiryDate;
@@ -86,20 +86,20 @@ public class InquiryVO {
 		this.email = email;
 	}
 
-	public String getAdminName() {
-		return adminName;
+	public String getManagerName() {
+		return managerName;
 	}
 
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
 
-	public String getAdminEmail() {
-		return adminEmail;
+	public String getManagerEmail() {
+		return managerEmail;
 	}
 
-	public void setAdminEmail(String adminEmail) {
-		this.adminEmail = adminEmail;
+	public void setManagerEmail(String managerEmail) {
+		this.managerEmail = managerEmail;
 	}
 
 	public String getReplyTitle() {

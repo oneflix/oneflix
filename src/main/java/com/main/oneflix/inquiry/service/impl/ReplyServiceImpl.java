@@ -19,8 +19,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	@Transactional
 	public void reply(InquiryVO vo) {
-		vo.setAdminName("oneflix");
-		vo.setAdminEmail("main.oneflix@gmail.com");
+		vo.setManagerEmail("main.oneflix@gmail.com");
 		inquiryDAO.updateInquiry(vo);
 		alarmDAO.insertReplyAlarm(vo.getEmail());
 	}

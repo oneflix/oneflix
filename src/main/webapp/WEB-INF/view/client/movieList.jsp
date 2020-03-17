@@ -75,6 +75,12 @@
 	                <c:when test="${movieType eq 'watching' }">
 	                	<p>이어보기</p>
 	                </c:when>
+	                <c:when test="${movieType eq 'watched' }">
+	                	<p>시청 완료한 작품</p>
+	                </c:when>
+	                <c:when test="${movieType eq 'rated' }">
+	                	<p>평가한 작품</p>
+	                </c:when>
 	                <c:when test="${movieType eq 'recommend'}">
 	                	<p>${member.nick }님을 위한 추천 작품</p>
 	                </c:when>
