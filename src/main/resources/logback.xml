@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<!-- 콘솔로 로그를 남김 -->
+	<appender name="consoleAppender"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<!-- 로그 메시지 패턴 -->
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%level] %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 파일로 로그를 남김 -->
+	<appender name="fileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>C:\Log\today.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%level] %msg%n
+			</Pattern>
+		</encoder>
+
+		<!-- 파일을 덮어쓰는 정책 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>C:\Log\%d{yyyy_MM_dd}.log</FileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<!-- com.victolee.logExample 아래 패키지 로그들만 consoleAppender, fileAppender 방법으로 
+		로그를 남긴다. 물론 <appender-ref ref="consoleAppender" />를 추가하여 콘솔로도 로그를 남길 수 있다. -->
+	<logger name="com.oneflix.main.aop" level="info"
+		additivity="false">
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="fileAppender" />
+
+	</logger>
+
+	<!-- root는 글로벌 로거를 의미하며, 위의 logger에 해당하지 않으면 root 로거가 실행된다. -->
+	<root>
+		<level value="info" />
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="fileAppender" />
+	</root>
+
+</configuration>
