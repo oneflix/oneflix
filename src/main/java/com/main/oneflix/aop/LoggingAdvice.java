@@ -42,8 +42,8 @@ public class LoggingAdvice {
 		} finally {
 			DecimalFormat formatter = new DecimalFormat("###,###");
 			long finish = System.currentTimeMillis();
-			
-			LOGGER.info("[" + ip + "/" + id + "]\n\t" + joinPoint.getSignature().toShortString() + 
+			//joinPoint.getSignature().toShortString()
+			LOGGER.info("[" + ip + "/" + id + "] " + request.getRequestURI() + 
 					" in [" + formatter.format(finish - start) + "] ms");
 			
 		}
