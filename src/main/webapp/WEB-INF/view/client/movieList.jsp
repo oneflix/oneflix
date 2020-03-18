@@ -30,9 +30,10 @@
     	.movie-box {cursor: pointer; display: none;}
     	.hidden-card {display: none;}
     	.opacity-animation {animation: slide-up 0.4s ease;}
-		#myBtn {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; font-size: 18px; border: none;
-		  outline: none; background-color: red; color: white; cursor: pointer; padding: 15px; border-radius: 4px;}
-		#myBtn:hover {background-color: #555;}
+    	#myBtn {display: none; position: fixed; bottom: 10%; right: 80px; z-index: 99; font-size: 20px;
+			font-weight: bold; outline: none; border: none; background-color: #080808; color: #22b99b;
+			cursor: pointer; padding: 8px 15px; border-radius: 60px; scroll-behavior: smooth;}
+		.fa-angle-double-up {margin-top: 6px; margin-right: 6px;} 
 		.no-result {height: 350px; padding-top: 100px; color: #fff; 
 				font-size: 22px; text-align: center; display: none;}
 		
