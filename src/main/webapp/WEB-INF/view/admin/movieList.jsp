@@ -25,6 +25,11 @@
 	.movie-type-button-box > button:hover {background: #f1f1f1;}
 	.movie-type-button-box > button:focus {outline: none;}
 	.movie-type-button-box > button:disabled {border-color: #dddddd; background: #e0e0e0;}
+	.detail-button {width: 95px;}
+	
+	@media (max-width: 1345px) {
+		.detail-button {margin-top: 5px;}
+	}
 </style>
 
 </head>
@@ -206,7 +211,7 @@
 	   						var html = "<div>" +
 										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"updateMovie(\'" + data + "\')\">수정</button>" +
 										"<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"deleteCheck(\'" + data + "\')\">삭제</button>" +
-										"<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"goMovieDetail(\'" + data + "\')\">상세보기</button>"
+										"<button type=\"button\" class=\"btn btn-sm btn-info detail-button\" onclick=\"goMovieDetail(\'" + data + "\')\">상세보기</button>"
 									"</div>"
 	   						return html;
 	   					}}

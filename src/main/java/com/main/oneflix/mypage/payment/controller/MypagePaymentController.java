@@ -57,7 +57,7 @@ public class MypagePaymentController {
 		List<SalesVO> paymentList = getSalesListService.getSalesList(sales);
 		int refundCheck = refundCheckService.refundCheck(sales);
 		
-		int total = getCountSalesService.getCountSales(sales);
+		int total = paymentList.size();
 		if (vo.getNowPage() == 0) {
 			vo.setNowPage(1);
 		}
@@ -68,7 +68,7 @@ public class MypagePaymentController {
 		sales.setEnd(vo.getEnd());
 		
 		mav.addObject("paging", vo);
-		mav.addObject("paymentList", paymentList);
+		mav.addObject("paymentList", getSalesListService.getSalesList(sales));
 		mav.addObject("refundCheck", refundCheck);
 		mav.addObject("ticketList", ticketList);
 		mav.setViewName("paymentList");
