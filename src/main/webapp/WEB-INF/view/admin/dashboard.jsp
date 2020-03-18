@@ -194,8 +194,8 @@
   <!-- ./wrapper -->
 	<script>
 		var lastDate = 30;
-		
-	    $(document).ready(function() {
+
+		$(document).ready(function() {
 	    	
 	    	$('#memberTable').DataTable({
 	    		pageLength: 5,
@@ -239,7 +239,7 @@
 	   			]
 	    	}); // memberTable END
 	    	
-	    	$('#salesTable').DataTable({
+	    	salesTable = $('#salesTable').DataTable({
 	    		pageLength: 5,
 	    		pagingType: "simple_numbers",
 	    		lengthChange: false,
@@ -261,6 +261,7 @@
 	    			"type": "POST",
 	    			"url": "/getSalesListProcAjax.mdo",
 	    			"data": function(sendData) {
+	    				sendData.salesStatus = 'exceptRefund';
 	    				sendData.lastDate = lastDate;
 	    			},
 	    			"dataSrc": function(response) {

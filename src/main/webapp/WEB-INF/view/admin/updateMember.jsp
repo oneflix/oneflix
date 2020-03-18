@@ -36,6 +36,8 @@
 			<form action="/updateMemberProc.mdo" method="post" class="row">
 				<input type="hidden" name="pass" value="${member.pass }">
 				<input type="hidden" name="ticketId" value="${member.ticketId}">
+				<input type="hidden" name="kakao" value="${member.kakao}">
+				<input type="hidden" name="naver" value="${member.naver}">
 				<div class="col-md-3"></div>
 				<!-- 센터 맞추기 위한 빈 div (화면의 왼쪽)-->
 				<div class="col-md-6" style="margin-bottom: 5%;">
@@ -66,17 +68,22 @@
 										<input name="memberAge" value="${member.memberAge}">
 									</div>
 									<div>
-										<input name="ticketName" id="ticketName" value="${member.ticketName}">
+										<c:choose>
+											<c:when test="${member.ticketId eq 0}"> - </c:when>
+											<c:otherwise>
+												<input name="ticketName" id="ticketName" value="${member.ticketName}">	
+											</c:otherwise>
+										</c:choose>
 										<!-- <button type="button" class="btn btn-sm btn-info">이용권등록</button>  -->
 									</div>
 									<div>
-										<fmt:formatDate value="${member.paymentDate}" pattern="yyyy.mm.dd"/> -
-										<fmt:formatDate value="${member.expiryDate}" pattern="yyyy.mm.dd"/>
+										<fmt:formatDate value="${member.paymentDate}" pattern="yyyy.MM.dd"/> -
+										<fmt:formatDate value="${member.expiryDate}" pattern="yyyy.MM.dd"/>
 									</div>
-									<div>
+									<div style="margin-top: 40px;">
 										<input name="cert" value="${member.cert}">
 									</div>
-									<div>
+									<div style="margin-top: 20px;">
 										<input type="checkbox" name="ban" id="ban"
 											data-toggle="toggle" data-on="BAN" data-off="ACT"
 											data-onstyle="danger" data-size="small"
