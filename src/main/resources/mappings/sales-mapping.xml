@@ -20,6 +20,7 @@
 	</resultMap>
 
 	<select id="getSalesList" parameterType="sales" resultMap="salesList">
+	SELECT * FROM (
 		SELECT * 
 			FROM (SELECT ROWNUM RNUM, S.*
 				FROM (SELECT s.*, t.ticket_name, t.ticket_price 
@@ -55,6 +56,10 @@
 			 		) S
 				)
 			ORDER BY RNUM DESC
+			)
+	<if test="start != 0 and end != 0">
+		WHERE RNUM BETWEEN #{start} AND #{end}
+	</if>
 	</select>
 
 	<select id="getSubscriptionList" resultMap="salesList">
