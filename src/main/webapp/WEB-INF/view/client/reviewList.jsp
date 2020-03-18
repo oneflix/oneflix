@@ -113,7 +113,6 @@
     var reviewListLength;
     
     $(window).scroll(function() {
-    	console.log(Math.round(($(window).scrollTop())+20));
         if (($(window).scrollTop())+20 >= $(document).height() - $(window).height()) {
         	
         	if (reviewListLength != 0) {
@@ -199,5 +198,10 @@
     </script>
 
 </body>
+<style>
+@media (max-width: 768px) {
+	.page-body{padding-left: 0;}
+}
+</style>
 
 </html>

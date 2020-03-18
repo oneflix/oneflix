@@ -33,6 +33,9 @@
 						AND	payment_date BETWEEN TO_DATE(#{startDate}||'000000', 'YYYYMMDDHH24MISS')
 						AND TO_DATE(#{endDate}||'235959', 'YYYYMMDDHH24MISS')
 					</if>
+					<if test="salesStatus == 'exceptRefund'">
+						AND s.sales_status != 'refund'
+					</if>
 					<if test="searchSales != null and searchSales != ''">
 						AND s.email like '%'||#{searchSales}||'%'
 					</if>

@@ -54,7 +54,7 @@ p > a{
 } */
 
 .my-review {
-	width: 60vw;
+	width: 100%;
 	color: #080808;
 	text-align: justify;
 	padding-bottom: 10px;
@@ -118,7 +118,7 @@ p > a{
 }
 
 .post-seperator {
-	width: 60vw;
+	width: 97%;
 	margin-right: 550px;
 	margin-top: 70px;
 	border-color: #3d3d3d80;
@@ -144,6 +144,7 @@ p > a{
 
 .col-12 {
 	margin-top: 50px;
+	padding-right: 16vw;
 	width: 80%;
 	background-color: #ffffff;
 }

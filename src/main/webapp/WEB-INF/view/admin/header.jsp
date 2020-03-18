@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="admin/css/custom.css">
 <style>
 .brand-link {padding: 1rem 1rem .5rem;}
+.logout-button {background: transparent; font-size:12px; border: none;}
 </style>
 </head>
 <body>
@@ -55,6 +56,12 @@
 				href="#"> <i class="fas fa-bars"></i>
 			</a></li>
 		</ul>
+		<div style="width: 100%;">
+			<div style="float: right;">
+				<span>${loginManager.managerId}</span>
+				<button type="button" class="logout-button" onclick="requestLogout()">로그아웃</button>
+			</div>
+		</div>
 	</nav>
 
 	<!-- 사이드바 -->
@@ -250,6 +257,10 @@
 			// 메뉴 끝
 
 		});
+		
+		function requestLogout(){
+			window.location.href = "/logout.mdo";
+		}
 	</script>
 </body>
 </html>

@@ -125,7 +125,7 @@
 		var searchCert;
 		var searchBan;
 		var searchMember;
-		
+		var ticketId;
 	    $(document).ready(function() {
 	    	table = $('#memberTable').DataTable({
 	    		pageLength: 10,
@@ -165,7 +165,15 @@
 	   					render: function(data){
 	   						return data + "세";
 	   					}},
-	   				{data: "ticketName"},
+	   				{data: "ticketName",
+	   						render: function(data) {
+	   							if (data != ' ') {
+	   								ticketId = 1;
+	   							} else {
+	   								ticketId = 0;
+	   							}
+	   							return data;
+	   						}},
 	   				{data: "cert"},
 	   				{data: "ban",
 	   					render: function(data){
@@ -182,7 +190,7 @@
 	   				{data: "email",
 	   					render: function(data){
 	   						var html = "<div>" +
-										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goMemberDetail(\'" + data + "\')\">수정</button>" +
+										"<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"goMemberDetail(\'" + data + "," + ticketId + "\')\">수정</button>" +
 									"</div>"
 	   						return html;
 	   					}}
@@ -252,16 +260,10 @@
 			return year + '-' + month + '-' + day;
 		}
 	    
-	    function goMemberDetail(email) {
-	    	window.location.href = "/getMemberProc.mdo?email=" + email;
+	    function goMemberDetail(obj) {
+	    	window.location.href = "/getMemberProc.mdo?email=" + obj.split(',')[0] + "&ticketId=" + obj.split(',')[1];
 	    }
 	
-		/* function deleteCheck(email){
-			var check = confirm("정말로 삭제하시겠습니까?");
-			if(check == true){
-				window.location.href = "/deleteMemberProc.mdo?email=" + email;
-			}
-		}; */
 	</script>
 
 

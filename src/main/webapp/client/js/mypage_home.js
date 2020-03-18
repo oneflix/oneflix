@@ -85,6 +85,15 @@ var nick;
 
 
 //슬라이더
+	    const calcSlideCount = function() {
+	        var slideCount = 2;
+	        var windowWidth = $(window).width();
+	        if (windowWidth < 620) {
+	            slideCount = 1;
+	        } 
+	        return slideCount;
+	    }
+    
         const createReviewSwiper = function(slideCount) {
             var reviewSwiper = new Swiper('#review-slider-container', {
                 slidesPerView: slideCount,
@@ -102,6 +111,9 @@ var nick;
             });
         };
 
-        $(document).ready(function() {
-        	createReviewSwiper(2);
-        });
+		$(document).ready(function() {
+		    createReviewSwiper(calcSlideCount());
+		});
+		 $(window).resize(function() {
+		    createReviewSwiper(calcSlideCount());
+		 });

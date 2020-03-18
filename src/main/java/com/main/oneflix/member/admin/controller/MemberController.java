@@ -63,6 +63,7 @@ public class MemberController {
 		if (vo.getBan() == null) {
 			vo.setBan("N");
 		}
+		vo.setUpdateType("info");
 		updateMemeberService.updateMember(vo);
 		mav.setViewName("redirect:/memberList.mdo");
 		return mav;

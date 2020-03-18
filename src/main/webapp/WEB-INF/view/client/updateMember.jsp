@@ -50,6 +50,9 @@
             </section>
             <form name="update" action="/updateMemberProc.do" onsubmit="return validate()" method="post">
             	<input type="hidden" name="email" value="${member.email}"/>
+            	<input type="hidden" name="ban" value="${member.ban}" />
+            	<input type="hidden" name="kakao" value="${member.kakao}" />
+            	<input type="hidden" name="naver" value="${member.naver}" />
                 <section class="css-34jiqc-Section e1199ims14" style="height:48vh; margin-bottom:3vh; margin-top:3vh;">
                     <h2 class="css-14w6zap-SectionHeader e1199ims15">계정</h2>
                     <ul class="css-gi4296-SettingListUl e1199ims20">
