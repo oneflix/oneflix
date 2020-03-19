@@ -175,40 +175,40 @@ p,span,h4{
    border-top: 0px !important;
    margin-top: 0 !important;
 }
-.review-card > card {width:50%; height: 100%;}
+.card-sentence {
+	font-size: 1.6vw;
+}
 @media (max-width: 1240px) {
-   .chart-cart {height : 100%;}
-   .sentence > p {font-size: 1.6vw;}
-   .info-box-number {font-size: 1.8vw;}
-   .card-body {width: 100%;}
+   .chart-card {height : 100%;}
+   .card-sentence {font-size: 2vw;}
+   .info-box-number {font-size: 2.6vw;}
 }
 
 @media (max-width: 960px) {
-   .chart-cart {height : 80%;}
-   .sentence > p {font-size: 1.8vw;}
-   .info-box-number {font-size: 1.9vw;}
-   .card-body {width: 100%;}
+   .chart-card {height : 80%;}
+   .card-sentence {font-size: 2.3vw;}
+   .info-box-number {font-size: 2.7vw;}
 }
 
 @media (max-width: 768px) {
-   .chart-cart {height : 70%;}
-   .sentence > p {font-size: 1.9vw;}
-   .info-box-number {font-size: 2vw;}
-   .card-body {width: 100%;}
+   .chart-card {height : 70%;}
+   .info-box-number {font-size: 2.6vw;}
+   .card-sentence {font-size: 2.1vw;}
    .card-text {font-size: 1.9vw;}
 }
 
 @media (max-width: 640px) {
-   .chart-cart {height : 60%;}
-   .sentence > p {font-size: 2vw;}
-   .info-box-number {font-size: 2.2vw;}
+   .chart-card {height : 60%;}
+   .info-box-number {font-size: 3.6vw;}
    .card-body {width: 100%;}
    .review-card > card {width: 80%;}
-   .card-text {font-size: 1.8vw;}
+   .card-sentence {font-size: 2.6vw;}
+   .card-text {font-size: 2.8vw;}
 }
 
 @media (max-width: 512px) {
-   .chart-cart {height : 50%;}
-   .sentence > p {font-size: 2.4w;}
-   .card-text {font-size: 1.6vw;}
+   .chart-card {height : 20%;}
+   .info-box-number {font-size: 2.3vw;}
+   .card-sentence {font-size: 2vw;}
+   .card-text {font-size: 3.1vw;}
 }

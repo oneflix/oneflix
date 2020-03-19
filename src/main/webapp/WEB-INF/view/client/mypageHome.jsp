@@ -59,7 +59,7 @@
             <div class="col-lg-6">
                <div class="sentence-card">
                   <div class="card-body" style="margin-bottom:0;">
-                     <p id="sentence" class="card-text sentence" style="font-size: 1.6vw;">
+                     <p id="sentence" class="card-sentence" style="margin-bottom:0; ">
                      ${nick}님은 
                      </p>
                   </div>
@@ -100,15 +100,15 @@
                         </section>
                             <section class="content">
                                 <div class="main-slider review-slider">
-                                  <div class="review-outside" style="padding-top:0; margin-bottom:0.6rem;">
-                                    <div class="card-body" style="margin-bottom:0; padding:1vw;">
+                                  <div class="review-outside" style="padding-top:0; padding:1.4vw; margin-bottom:0.6rem;">
+                                    <div class="review-card-body" style="margin-bottom:0; padding:1vw;">
                                        <div class="row">
                                                <div id="review-slider-container" class="swiper-container">
                                                    <div class="swiper-wrapper">
                                                       <c:forEach var="review" items="${reviewList }">
                                                        <div  class="swiper-slide" onclick="goMovieDetail('${review.movieId}')">
                                                           <div class="review-card">
-                                                             <div class="card">
+                                                             <div class="reviewCard">
                                                                 <div class="card-body">
                                                                 <p class="card-title m-0" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 0.5px solid #d4d4d4;font-size: 15px;font-weight:700; padding-left: 0;">
                                                                 ${review.movieTitle}</p><p style="float: right; border:0.5px solid #d4d4d4; border-radius: 8px; font-size: 12px; padding: 3px 12px 3px 8px; ">★ ${review.reviewScore }</p>
@@ -156,5 +156,20 @@
 	</script>
 
 </body>
+<style>
+.reviewCard{
+ 	height: 30vh !important;
+ 	border-radius: 0.25rem 0.25rem 0.25rem 0.25rem !important;
+ 	border: 1px solid #d4d4d4 !important;
+}
+.review-card{
+	height: 30vh !important;
+	border-radius: 0.25rem 0.25rem 0.25rem 0.25rem !important;
+}
+.review-card-body{
+	border: 0;
+}
+
+</style>
 
 </html>

@@ -97,7 +97,7 @@ var nick;
         const createReviewSwiper = function(slideCount) {
             var reviewSwiper = new Swiper('#review-slider-container', {
                 slidesPerView: slideCount,
-                spaceBetween: 3,
+                spaceBetween: 15,
                 slidesPerGroup: slideCount,
             
                 loopFillGroupWithBlank: true,
