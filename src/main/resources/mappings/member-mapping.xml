@@ -15,7 +15,7 @@
 		UPDATE member SET
 		<choose>
 			<when test="updateType == 'info'">
-				pass = #{pass}, nick = #{nick}, cert = #{cert, jdbcType=CHAR}, ban = #{ban, jdbcType=CHAR}, kakao = #{kakao, jdbcType=VARCHAR}, naver = #{naver, jdbcType=VARCHAR}
+				pass = #{pass}, nick = #{nick}, cert = #{cert}, ban = #{ban}, kakao = #{kakao, jdbcType=VARCHAR}, naver = #{naver, jdbcType=VARCHAR}
 			</when>
 			<when test="updateType == 'sales'">
 				ticket_id = #{ticketId}
@@ -28,11 +28,10 @@
 		DELETE FROM member WHERE email = #{email}
 	</delete>
 
-	<select id="getMember" resultType="member"
-		parameterType="member">
+	<select id="getMember" resultType="member" parameterType="member">
 		SELECT m.*, t.ticket_name
 		<if test="ticketId != 0">
-			, s.payment_date payment_date, s.expiry_date expiry_date
+			, s.payment_date, s.expiry_date
 		</if>
 		FROM member m, ticket t
 		<if test="ticketId != 0">
@@ -40,7 +39,7 @@
 		</if>
 		WHERE m.ticket_id = t.ticket_id
 		<if test="ticketId != 0">
-			AND m.email = s.email AND (s.sales_status like 'success' OR s.sales_status like 'inactive')
+			AND m.email = s.email AND (s.sales_status = 'success' OR s.sales_status = 'inactive')
 		</if>
 		<choose>
 			<when test="kakao != null and kakao != ''">

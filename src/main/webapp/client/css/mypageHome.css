@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 html {
-	background-color: #fff;
+   background-color: #fff;
 }
 body, input, textarea, select, button, table {
     font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", sans-serif;
@@ -10,18 +10,18 @@ p,span,h4{
     color: #080808;
 }
 .page-body {
-	padding: 0 70px;
-	background-color: #fff;
-	text-align: center;
+   padding: 0 70px;
+   background-color: #fff;
+   text-align: center;
     color: #080808;
 }
 .chart { 
-	margin-bottom: 0;
-	padding-top: 0;
-	padding-bottom: 5%;
+   margin-bottom: 0;
+   padding-top: 0;
+   padding-bottom: 5%;
 }
 .info-box.sm-light {
-	color: #080808;
+   color: #080808;
     border-radius: 0.25rem;
     background: #ffffff;
     display: -ms-flexbox;
@@ -64,17 +64,151 @@ p,span,h4{
     background-color: rgb(255, 255, 255);
     margin-bottom: 0.5rem;
     box-shadow: none;
-    
-    width: 56vw;
 }
 .card-body{
-	box-shadow: none;
+   box-shadow: none;
     margin-bottom: 1rem;
 }
 .one{
-	margin-bottom:0;
+   margin-bottom:0;
 }
 .info-box-number{
-	font-size: 1.8vw;
-	
+   font-size: 1.8vw;
+   
+}
+.chart-card{
+   color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+   border: 1px solid #d4d4d4;
+    line-height: 21px;
+    padding: 4px 8px 5px 8px;
+    margin: 8px 0 0 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+    
+    width: 56vw;
+   
+   margin-bottom: 0 !important;
+   border-radius: 0.25rem 0.25rem 0 0!important;
+   border: 1px 1px 0px 1px solid #d4d4d4 !important;
+}
+.sentence-card{
+   color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+   border: 1px solid #d4d4d4;
+    line-height: 21px;
+    padding: 4px 8px 5px 8px;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 0;
+    margin-top: 0;
+    box-shadow: none;
+    
+    width: 56vw;
+   
+   border-top: 0;
+   border-radius: 0 0 0 0 !important;
+   border: 0px 1px solid #d4d4d4 !important;
+   margin-top: 0 !important;
+}
+.info-card{
+   color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+
+    border: 1px solid #d4d4d4;
+    line-height: 21px;
+    padding: 4px 8px 5px 8px;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+    
+    width: 56vw;
+    
+    border-top: 0;
+   
+   margin-bottom: 0 !important;
+   border-radius: 0 !important;
+   border: 0px 1px solid #d4d4d4 !important;
+}
+.review-outside{
+   color: #333333;
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 21px;
+    box-sizing: border-box;
+   
+   border: 1px solid #d4d4d4;
+    line-height: 21px;
+    padding: 4px 8px 5px 8px;
+    margin: 8px 0 0 0;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 0.5rem;
+    box-shadow: none;
+    
+    width: 56vw;
+    
+   border-radius: 0 0 0.25rem 0.25rem !important;
+   border-top: 0px !important;
+   margin-top: 0 !important;
+}
+.card-sentence {
+	font-size: 1.6vw;
+}
+@media (max-width: 1240px) {
+   .chart-card {height : 100%;}
+   .card-sentence {font-size: 2vw;}
+   .info-box-number {font-size: 2.6vw;}
+}
+
+@media (max-width: 960px) {
+   .chart-card {height : 80%;}
+   .card-sentence {font-size: 2.3vw;}
+   .info-box-number {font-size: 2.7vw;}
+}
+
+@media (max-width: 768px) {
+   .chart-card {height : 70%;}
+   .info-box-number {font-size: 2.6vw;}
+   .card-sentence {font-size: 2.1vw;}
+   .card-text {font-size: 1.9vw;}
+}
+
+@media (max-width: 640px) {
+   .chart-card {height : 60%;}
+   .info-box-number {font-size: 3.6vw;}
+   .card-body {width: 100%;}
+   .review-card > card {width: 80%;}
+   .card-sentence {font-size: 2.6vw;}
+   .card-text {font-size: 2.8vw;}
+}
+
+@media (max-width: 512px) {
+   .chart-card {height : 20%;}
+   .info-box-number {font-size: 2.3vw;}
+   .card-sentence {font-size: 2vw;}
+   .card-text {font-size: 3.1vw;}
 }
