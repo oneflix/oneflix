@@ -88,7 +88,7 @@
 		소셜 계정으로 로그인하기</p>
                        
                    <div id="kakao_login" class="css-11fv0pd-Button">
-                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
+                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1820aaaf12b6f3ad68c37261ecbf9eed&redirect_uri=http://localhost:8080/oneflix/kakaoLogin.do&response_type=code" class="css-11fv0pd-Button" onclick="loginForm()"> 
                    		  카카오로 로그인하기
                        </a>
                     </div>

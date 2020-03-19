@@ -162,7 +162,7 @@ public class LoginController {
 						"<p>임시비밀번호는 ["+tempPass+"]입니다.<br/>로그인 후 새 비밀번호를 설정해주세요.</p>" +
 						"<br>" +
 						"<p>" +
-							"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/login.do\">" +
+							"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/oneflix/login.do\">" +
 								"<button type=\"button\" style=\"width: 150px; height: 80px; color: #FFF; background: #080808\">ONEFLIX로 가기</button>" + 
 							"</a>" +
 						"</p>" +
