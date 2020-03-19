@@ -90,7 +90,7 @@ public class MemberController {
 					"<p>원플릭스 계정 보호를 위해 이메일 인증이 필요합니다.<br/>이메일 인증 완료를 위해 아래 버튼을 눌러주세요.</p>" +
 					"<br>" +
 					"<p>" +
-						"<a style=\"text-decoration: none;\" href=\"http://13.209.21.185:8080/updateCertProc.do?email=" + vo.getEmail() + "\">" +
+						"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/updateCertProc.do?email=" + vo.getEmail() + "\">" +
 							"<button type=\"button\" style=\"border: 1px solid #080808; border-radius: 5px; outline: none; width: 150px; height: 80px; font-size: 15px; color: #FFF; background: #2E2E2E\">ONEFLIX로 가기</button>" + 
 						"</a>" +
 					"</p>" +
@@ -181,7 +181,7 @@ public class MemberController {
 					"<p>정말로 탈퇴하실 거라면, 아래 버튼을 눌러주세요.</p>" + 
 					"<br>" +
 					"<p>" +
-						"<a style=\"text-decoration: none;\" href=\"http://13.209.21.185:8080/deleteMemberProc.do?email=" + vo.getEmail() + "\">" +
+						"<a style=\"text-decoration: none;\" href=\"http://localhost:8080/deleteMemberProc.do?email=" + vo.getEmail() + "\">" +
 							"<button type=\"button\" style=\"border: 1px solid #080808; border-radius: 5px; outline: none; width: 150px; height: 80px; font-size: 15px; color: #FFF; background: #2E2E2E\">탈퇴하러 가기</button>" + 
 						"</a>" +
 					"</p>" +
