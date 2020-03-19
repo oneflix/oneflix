@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="header_url" value="/WEB-INF/view/admin/header.jsp"></c:set>
 <c:set var="footer_url" value="/WEB-INF/view/admin/footer.jsp"></c:set>
-<c:out value="${member.paymentDate}"></c:out>
 <!DOCTYPE html>
 <html>
 <head>

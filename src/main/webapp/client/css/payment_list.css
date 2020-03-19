@@ -59,16 +59,15 @@ table-border-grey{
     float: right;
 	color: #FFFFFF;
     font-size: 0.8vw;
-    font-weight: 300;
+    font-weight: 700;
     -webkit-letter-spacing: -0.4px;
     -moz-letter-spacing: -0.4px;
     -ms-letter-spacing: -0.4px;
     letter-spacing: -0.4px;
     line-height: 21px;
     padding: 3px 10px;
-    border-radius: 30px;
+    border-radius: 0.25rem;
     background-color: #22B99B;
-    width: 6vw;
     border: 0;
     margin-right: 10px;
     margin-bottom: 10px;
