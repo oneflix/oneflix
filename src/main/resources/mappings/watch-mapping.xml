@@ -35,6 +35,6 @@
 	<select id="getCountWatch" parameterType="watch"
 		resultType="int">
 		SELECT COUNT(*) FROM watch
-		WHERE watch_type = 'watched' and email = #{email}
+		WHERE email = #{email}
 	</select>
 </mapper>

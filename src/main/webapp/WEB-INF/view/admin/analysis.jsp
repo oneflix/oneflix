@@ -630,7 +630,7 @@
 
 					  btnSave.addEventListener('click', function () {
 					    var doc = new jsPDF();
-					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.addImage(chart.getImageURI(), 30, 30);
 					    doc.save('sales-chart.pdf');
 					  }, false);
 
@@ -711,7 +711,7 @@
 
 					  btnSave.addEventListener('click', function () {
 					    var doc = new jsPDF();
-					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.addImage(chart.getImageURI(), 30, 30);
 					    doc.save('sales-chart.pdf');
 					  }, false);
 
@@ -897,7 +897,7 @@
 
 					  btnSave.addEventListener('click', function () {
 					    var doc = new jsPDF();
-					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.addImage(chart.getImageURI(), 30, 30);
 					    doc.save('subscriber-chart.pdf');
 					  }, false);
 				options.legend = "none";
@@ -977,7 +977,7 @@
 
 					  btnSave.addEventListener('click', function () {
 					    var doc = new jsPDF();
-					    doc.addImage(chart.getImageURI(), 0, 0);
+					    doc.addImage(chart.getImageURI(), 30, 30);
 					    doc.save('subscriber-chart.pdf');
 					  }, false);
 				
@@ -1210,7 +1210,7 @@
 
 				  btnSave.addEventListener('click', function () {
 				    var doc = new jsPDF();
-				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.addImage(chart.getImageURI(), 30, 30);
 				    doc.save('genderchart.pdf');
 				  }, false);
 
@@ -1317,7 +1317,7 @@
 
 				  btnSave.addEventListener('click', function () {
 				    var doc = new jsPDF();
-				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.addImage(chart.getImageURI(), 30, 30);
 				    doc.save('genderchart.pdf');
 				  }, false);
 
@@ -1514,7 +1514,7 @@
 
 				  btnSave.addEventListener('click', function () {
 				    var doc = new jsPDF();
-				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.addImage(chart.getImageURI(), 30, 30);
 				    doc.save('agechart.pdf');
 				  }, false);
 
@@ -1716,7 +1716,7 @@
 
 				  btnSave.addEventListener('click', function () {
 				    var doc = new jsPDF();
-				    doc.addImage(chart.getImageURI(), 0, 0);
+				    doc.addImage(chart.getImageURI(), 30, 30);
 				    doc.save('agechart.pdf');
 				  }, false);
 
@@ -1892,7 +1892,7 @@
 
 			  btnSave.addEventListener('click', function () {
 			    var doc = new jsPDF();
-			    doc.addImage(chart.getImageURI(), 0, 0);
+			    doc.addImage(chart.getImageURI(), 30, 30);
 			    doc.save('movieRankingchart.pdf');
 			  }, false);
 			
@@ -2037,7 +2037,7 @@
 
 			  btnSave.addEventListener('click', function () {
 			    var doc = new jsPDF();
-			    doc.addImage(chart.getImageURI(), 0, 0);
+			    doc.addImage(chart.getImageURI(), 30, 30);
 			    doc.save('genreRankingchart.pdf');
 			  }, false);
 			chart.draw(view, options);
@@ -2207,7 +2207,7 @@
 
 			  btnSave.addEventListener('click', function () {
 			    var doc = new jsPDF('l', 'mm', [824, 520]);
-			    doc.addImage(chart.getImageURI(), 0, 0);
+			    doc.addImage(chart.getImageURI(), 30, 30);
 			    doc.save('contentchart.pdf');
 			  }, false);
 

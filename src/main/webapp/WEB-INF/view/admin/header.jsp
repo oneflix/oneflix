@@ -44,7 +44,8 @@
 <link rel="stylesheet" href="admin/css/custom.css">
 <style>
 .brand-link {padding: 1rem 1rem .5rem;}
-.logout-button {background: transparent; font-size:12px; border: none;}
+.logout-button {background: #fff; font-size:12px; border: 1px solid #d1d1d5; border-radius: 20px;}
+.logout-button:hover {background: #e9e9e9;}
 </style>
 </head>
 <body>

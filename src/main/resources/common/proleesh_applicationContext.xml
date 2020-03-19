@@ -15,7 +15,7 @@
 	</context:component-scan>
 	<!-- insertMovieAlarm 잡  -->
     <bean id="insertMovieAlarmJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref= "insertMovieAlarmServiceImpl" />
+        <property name="targetObject" ref= "insertMovieAlarmServiceImplS" />
         <property name="targetMethod" value="insertMovieAlarm" />
         <property name="concurrent" value="false" />
     </bean>
@@ -23,14 +23,14 @@
     <!-- insertMovieAlarm 트리거-->
     <bean id="insertMovieAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="insertMovieAlarmJob" />
-        <property name="cronExpression" value="0 0 2 * * ?" />
+        <property name="cronExpression" value="0 0 1 * * ?" />
     </bean>
 
 	<!-- ========================================================================================================== -->
 
 	<!-- expiryCheck 잡  -->
     <bean id="salesJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref= "salesScheduleServiceImpl" />
+        <property name="targetObject" ref= "salesScheduleServiceImplS" />
         <property name="targetMethod" value="salesSchedule" />
         <property name="concurrent" value="false" />
     </bean>

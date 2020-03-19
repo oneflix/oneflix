@@ -166,8 +166,10 @@
 		var searchOrder;
 		var movieList;
 		var movieListLength;
+		var email;
 		
 		$(document).ready(function(){
+			email = "${member.email}";
 			$('#searchGenre').val("${searchGenre}");
 			$('#searchOrder').val("${searchOrder}");
 			
@@ -224,7 +226,7 @@
 			        	count++;
 			        	var start = (count - 1) * 10 + 1 ;
 			        	var end = count * 10;
-	                	var sendData = {"start": start, "end": end, "movieType": movieType, "searchGenre": searchGenre, "searchOrder": searchOrder};
+	                	var sendData = {"email": email, "start": start, "end": end, "movieType": movieType, "searchGenre": searchGenre, "searchOrder": searchOrder};
 	                	$.ajax({
 	                		type: "POST",
 	                		url: "/getMovieListProcAjax.do",

@@ -19,7 +19,8 @@ import com.main.oneflix.member.vo.MemberVO;
 
 @Aspect
 public class LoggingAdvice {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAdvice.class); 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAdvice.class);
+	
 	@Around("execution(* com.main.oneflix..*ServiceImpl.*(..))") 
 	public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable {
 

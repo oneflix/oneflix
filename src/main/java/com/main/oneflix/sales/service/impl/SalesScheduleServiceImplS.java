@@ -24,7 +24,7 @@ import com.main.oneflix.util.factory.rest.RestTemplateFactory;
 import com.main.oneflix.util.kakao.KakaoConst;
 
 @Service
-public class SalesScheduleServiceImpl implements KakaoConst, SalesScheduleService {
+public class SalesScheduleServiceImplS implements KakaoConst, SalesScheduleService {
 
 	@Autowired
 	private SalesDAO salesDAO;
@@ -40,7 +40,6 @@ public class SalesScheduleServiceImpl implements KakaoConst, SalesScheduleServic
 		List<String> subscriptionEmailList = new ArrayList<>();
 		List<String> expiryEmailList = salesDAO.expiryCheck();
 		salesDAO.updateExpiry();
-		
 		// 구독자 이용권 구매
 		for (SalesVO vo : subscriptionList) {
 			subscriptionEmailList.add(vo.getEmail());
